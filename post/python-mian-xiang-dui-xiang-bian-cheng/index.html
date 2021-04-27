@@ -1,0 +1,460 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Python-面向对象编程 | Reticence</title>
+<link rel="shortcut icon" href="http://127.0.0.1:8080/favicon.ico?v=1619508275369">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="http://127.0.0.1:8080/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="Python-面向对象编程 | Reticence - Atom Feed" href="http://127.0.0.1:8080/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-90HNEFFE0M"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-90HNEFFE0M');
+</script>
+
+
+    <meta name="description" content="参考链接：标准库，realpython教程 非常好的教程：python-course
+Everything is a class in Python.，我们可以在下面看到数字、列表这些都是类。实现了那些“接口”，你也可以创造数字类型、可枚举..." />
+    <meta name="keywords" content="Python" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="http://127.0.0.1:8080">
+  <img class="avatar" src="http://127.0.0.1:8080/images/avatar.png?v=1619508275369" alt="">
+  </a>
+  <h1 class="site-title">
+    Reticence
+  </h1>
+  <p class="site-description">
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          Index
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          Classification
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          Archives
+        </a>
+      
+    
+      
+        <a href="/navigator.html" class="menu">
+          Navigator
+        </a>
+      
+    
+      
+        <a href="/post/book-list" class="menu">
+          Booklist
+        </a>
+      
+    
+      
+        <a href="/post/fei-md-ge-shi-bi-ji-hui-zong" class="menu">
+          Notes
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          About
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+        <a href="https://github.com/reticenceji" target="_blank">
+          <i class="ri-github-line"></i>
+        </a>
+      
+    
+      
+    
+      
+    
+      
+        <a href="https://www.zhihu.com/people/reticenceji" target="_blank">
+          <i class="ri-zhihu-line"></i>
+        </a>
+      
+    
+      
+    
+  </div>
+  <script>
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
+    var s = document.getElementsByTagName("script")[0]; 
+    s.parentNode.insertBefore(hm, s);
+  })();
+  </script>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              Python-面向对象编程
+            </h2>
+            <div class="post-info">
+              <span>
+                2020-11-11
+              </span>
+              <span>
+                9 min read
+              </span>
+              
+                <a href="http://127.0.0.1:8080/tag/aTiVQxwll/" class="post-tag">
+                  # Python
+                </a>
+              
+            </div>
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <p>参考链接：<a href="https://docs.python.org/3/reference/datamodel.html">标准库</a>，<a href="https://realpython.com/python3-object-oriented-programming/">realpython教程</a> <a href="https://www.python-course.eu/python3_object_oriented_programming.php">非常好的教程：python-course</a></p>
+<p><strong>Everything is a class in Python.</strong>，我们可以在下面看到数字、列表这些都是类。实现了那些“接口”，你也可以创造数字类型、可枚举类型。目前先看到这里，以后用到更深的技巧了再说。</p>
+<h2 id="类和实例基础">类和实例基础</h2>
+<p>class and instance. 实例是类的创建出来的对象。</p>
+<pre><code class="language-python">class Student(object):
+	pass
+
+zxy = Student()
+</code></pre>
+<p>属性和方法是类的基础。</p>
+<h3 id="属性-attribute">属性 Attribute</h3>
+<p>Python的类和实例都可以有Attribute。我们可以观察到Attribute是存储在<code>__dict__</code>中的。<br>
+当我们试图访问一个不存在的属性，如<code>x.nama</code>时，会产生一个异常。</p>
+<pre><code class="language-python">class Robot():
+	def __init__(self,name):
+		self.name = name
+
+	def hi(self):
+		print(&quot;hello world&quot;)
+
+x = Robot(&quot;JGQ&quot;)
+print(x.name,x.__dict__)
+&gt;&gt;&gt; JGQ {'name': 'JGQ'}
+print(Robot.__dict__)
+</code></pre>
+<p>我们要给类定义Attribute，应该在类的层面：</p>
+<pre><code class="language-python">class Robot():
+	factory = &quot;ZhongTai&quot;	#这是类的属性
+</code></pre>
+<p>这样，就算你在某个实例中定义一个同名的Attribute也不会改变或覆盖类的Attribute。当然，这样在这个实例中这个Attribute就不可见了。</p>
+<h3 id="方法-methods">方法 Methods</h3>
+<p>可以认为方法是定义内Class内的Function，他和Function主要有两点不同：</p>
+<ol>
+<li>It belongs to a class, and it is defined within a class.（注意是属于Class，我们可以在<code>__dict__</code>中看到类的方法）</li>
+<li>The first parameter in the definition of a method has to be a reference to the instance, which called the method. This parameter is usually called &quot;self&quot;.</li>
+</ol>
+<h3 id="静态方法-static-method">静态方法 static method</h3>
+<p>我们用 <code>@staticmethod</code>修饰静态方法后，我们可以通过类或实例访问静态方法。否则我们只能通过类访问，因为如果通过实例访问的话，会传入额外的参数self。</p>
+<pre><code class="language-python">class Robot:
+	__counter = 0
+	
+    @staticmethod
+	def RobotInstances():
+		return Robot.__counter
+
+	def __init__(self):
+		type(self).__counter += 1
+
+x = Robot()
+print(Robot.RobotInstances())
+</code></pre>
+<h3 id="类方法-class-method">类方法 class method</h3>
+<p>Like static methods class methods are not bound to instances, but unlike static methods class methods are bound to a class。他们的主要区别在于是否有一个cls的传参。（cls并不是什么关键字，但是约定俗称，指代该class，就像self指代那个实例一样。）</p>
+<pre><code class="language-python">class fraction(object):
+
+    def __init__(self, n, d):
+        self.numerator, self.denominator = fraction.reduce(n, d)
+        
+
+    @staticmethod
+    def gcd(a,b):
+        while b != 0:
+            a, b = b, a%b
+        return a
+
+    @classmethod
+    def reduce(cls, n1, n2):
+        g = cls.gcd(n1, n2)
+        return (n1 // g, n2 // g)
+
+    def __str__(self):
+        return str(self.numerator)+'/'+str(self.denominator)
+</code></pre>
+<p>Q：那么Class Methods &amp;&amp; Static Methods &amp;&amp; Instance Methods的区别是什么呢？</p>
+<p>A：个人理解，static methods是一个独立于类的方法，就像一个函数，没有特殊参数。Class Method是和类同一个层级的，传入<code>cls</code>参数表示这个Class，Instance Method是和实例一个层级的，传入<code>self</code>参数表示这个Instance。<br>
+如果我们的函数用到实例的Attribute应该用Instance Method，用到类的Attribute应该用Class Method。如果都没有可以用static methods。</p>
+<h2 id="属性的可见性">属性的可见性</h2>
+<p>python中是没有所谓的private/public修饰符的。采用下面的方法限定属性。</p>
+<table>
+<thead>
+<tr>
+<th>Naming</th>
+<th>Type</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>name</td>
+<td>Public</td>
+<td>These attributes can be freely used inside or outside a class definition.</td>
+</tr>
+<tr>
+<td>_name</td>
+<td>Protected</td>
+<td>Protected attributes should not be used outside the class definition, unless inside a subclass definition.</td>
+</tr>
+<tr>
+<td>__name</td>
+<td>Private</td>
+<td>This kind of attribute is inaccessible and invisible. It's neither possible to read nor write to those attributes, except inside the class definition itself. 如果我们调用的话，会提示我们没有这个属性。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="getter-and-setter">Getter and Setter</h3>
+<p>参考链接：https://www.python-course.eu/python3_properties.php</p>
+<p>如果熟悉了Java可能会很喜欢定义一个Private变量，然后提供<code>get()</code>和<code>set()</code>。但是这个做法一点也不Python。</p>
+<pre><code class="language-python">class P:
+    def __init__(self,x):
+        self.x = x
+
+    @property
+    def x(self):
+        return self.__x
+
+    #注意，@property定义了x这个符号。
+    @x.setter
+    def x(self, x):
+        if x &lt; 0:
+            self.__x = 0
+        elif x &gt; 1000:
+            self.__x = 1000
+        else:
+            self.__x = x
+            
+xy = P(1023)	#我们观察初始化函数，其实也调用了setter
+xy.x = 123		#@x.setter的调用方法
+print(xy.x)		#@property的调用方法
+</code></pre>
+<p>A method which is used for getting a value is decorated with &quot;@property&quot;, i.e. we put this line directly in front of the header. The method which has to function as the setter is decorated with &quot;@x.setter&quot;. 太优美了。</p>
+<p>那么我们应该如何选择变量的定义呢？以变量X为例。</p>
+<ol>
+<li>我们类的可能用户是否需要<code>X</code>的值？</li>
+<li>如果没有，我们可以或者应该将其作为Private Attribute。</li>
+<li>如果必须访问它，我们将其作为Public Attribute进行访问。</li>
+<li>当且仅当我们必须对数据进行一些检查(<code>@x.setter</code>)或转换(<code>@property</code>)时，我们将它定义为具有相应属性的私有属性。</li>
+</ol>
+<h2 id="继承-inheritance">继承 Inheritance</h2>
+<pre><code class="language-python">class Animal(object):
+    def run(self):
+        print('Animal is running...')
+</code></pre>
+<p>我们可以看到Animal继承了object类。继承可以获得父类的所有方法。Python支持多重继承。</p>
+<p>类似的，如果子类和父类有同名的方法，可以实现<strong>Overriding</strong>。子类的方法可以覆盖父类的方法。如果我们想在父类的方法上添加新特性，可以用<code>super()</code>调用父类的方法。</p>
+<ul>
+<li><code>type(ins)</code>：返回对象的类型</li>
+<li><code>isinstance(ins,class)</code>：判断一个对象是否是一个类的实例。父类也会返回<code>True</code>.</li>
+</ul>
+<h2 id="描述器-descriptors未完待续">描述器 Descriptors（未完待续）</h2>
+<p><a href="https://blog.csdn.net/caoyu1221/article/details/81056526?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromBaidu-2.channel_param&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromBaidu-2.channel_param">CSDN一篇文章</a></p>
+<p>A descriptor is an object attribute with &quot;binding behavior&quot;, one whose attribute access has been overridden by methods in the descriptor protocol. Those methods are <code>__get__()</code>, <code>__set__()</code>, The descriptors are introduced to get, set or delete attributes from the object's <code>__dict__</code> dictionary via the above mentioned methods. and <code>__delete__()</code>.我们需要实现<code>__get__()</code> ,<code>__set__()</code> ,<code>__delete__()</code> 三个特殊方法，这样就完成一个描述器。描述器可实现大部分python类特性中的底层魔法，包括<code>@classmethod</code>,<code>@staticmethod</code>,<code>@property</code>,甚至是<code>__slots__</code>特性。</p>
+<hr>
+<h2 id="类的特殊方法">类的特殊方法</h2>
+<p>或者说是object类的方法。显然所有的类都会继承object类的这些方法。</p>
+<ol>
+<li><code>__init__</code>，<code>__new__</code><br>
+这两个方法共同创建一个类的实例。对于我们来说只要掌握<code>__init__</code>即可。</li>
+</ol>
+<pre><code class="language-python">class Student(object):
+	def __init__(self,name,age):
+		self.name = name
+		self.age = age
+
+zxy = Student(&quot;zxy&quot;,18)
+</code></pre>
+<ol start="2">
+<li>
+<p><code>__repr__</code>和<code>__str__</code><br>
+<code>__repr__</code>这个方法主要用于调试。Called by the repr() built-in function to compute the “official” string representation of an object 。<br>
+<code>__str__</code>，Called by str(object) and the built-in functions format() and print() to compute the “informal” or nicely printable string representation of an object。也就是说，当我们试图print(objA)的时候，我们其实就是在<code>print(objA.__str__())</code><br>
+是不是觉得这个东西就像“接口”呢？我们接着往下看。</p>
+</li>
+<li>
+<p><code>__bytes__</code><br>
+Called by bytes() to compute a byte-string representation of an object. This should return a bytes object.<br>
+但是我试图<code>[123].__bytes__()</code>的时候给我报错了？</p>
+</li>
+<li>
+<p><code>__hash__</code></p>
+<p>Called by built-in function <a href="https://docs.python.org/3/library/functions.html#hash"><code>hash()</code></a>.主要是给对于set/dict这种需要hash的数据结构用的。对于这个方法，唯一的要求是<strong>如果两个类相等那么他们的hash值也要是一样的</strong>。所以，如果一个class没有定义<code>__eq__</code>方法那么他也不应该定义<code>__hash__</code>方法。</p>
+</li>
+<li>
+<p><code>__bool__</code></p>
+<p>Called to implement truth value testing and the built-in operation <code>bool()</code>; should return <code>False</code> or <code>True</code>.如果未定义此方法，则会查找并调用 <a href="https://docs.python.org/zh-cn/3/reference/datamodel.html?highlight=__hash__#object.__len__"><code>__len__()</code></a> 并在其返回非零值时视对象的逻辑值为真。如果一个类既未定义 <a href="https://docs.python.org/zh-cn/3/reference/datamodel.html?highlight=__hash__#object.__len__"><code>__len__()</code></a> 也未定义 <a href="https://docs.python.org/zh-cn/3/reference/datamodel.html?highlight=__hash__#object.__bool__"><code>__bool__()</code></a> 则视其所有实例的逻辑值为真。</p>
+</li>
+</ol>
+<h3 id="模拟特殊的对象">模拟特殊的对象</h3>
+<p>感觉就和Java中实现那些接口一样。Python具有<strong>鸭子特性</strong></p>
+<blockquote>
+<p>When I see a bird that walks like a duck and swims like a duck and quacks like a duck, I call that bird a duck.<br>
+也就是说，如果比如我们需要调用一个类的run方法，那么任何有run方法的类都可以。</p>
+</blockquote>
+<ol>
+<li><a href="https://docs.python.org/zh-cn/3/reference/datamodel.html?highlight=__hash__#emulating-callable-objects">模拟可调用对象</a>：<code>__call__</code></li>
+<li><a href="https://docs.python.org/zh-cn/3/reference/datamodel.html?highlight=__hash__#emulating-container-types">模拟容器类型</a>：</li>
+<li><a href="https://docs.python.org/zh-cn/3/reference/datamodel.html?highlight=__hash__#emulating-numeric-types">模拟数字类型</a>：</li>
+</ol>
+<hr>
+<ul>
+<li>override:子类的同名方法覆盖父类的</li>
+<li>overloading: Python没有显式类型，所以没有这个特性</li>
+<li>overwriting: 前面的直接被覆盖</li>
+</ul>
+
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#%E7%B1%BB%E5%92%8C%E5%AE%9E%E4%BE%8B%E5%9F%BA%E7%A1%80">类和实例基础</a>
+<ul>
+<li><a href="#%E5%B1%9E%E6%80%A7-attribute">属性 Attribute</a></li>
+<li><a href="#%E6%96%B9%E6%B3%95-methods">方法 Methods</a></li>
+<li><a href="#%E9%9D%99%E6%80%81%E6%96%B9%E6%B3%95-static-method">静态方法 static method</a></li>
+<li><a href="#%E7%B1%BB%E6%96%B9%E6%B3%95-class-method">类方法 class method</a></li>
+</ul>
+</li>
+<li><a href="#%E5%B1%9E%E6%80%A7%E7%9A%84%E5%8F%AF%E8%A7%81%E6%80%A7">属性的可见性</a>
+<ul>
+<li><a href="#getter-and-setter">Getter and Setter</a></li>
+</ul>
+</li>
+<li><a href="#%E7%BB%A7%E6%89%BF-inheritance">继承 Inheritance</a></li>
+<li><a href="#%E6%8F%8F%E8%BF%B0%E5%99%A8-descriptors%E6%9C%AA%E5%AE%8C%E5%BE%85%E7%BB%AD">描述器 Descriptors（未完待续）</a></li>
+<li><a href="#%E7%B1%BB%E7%9A%84%E7%89%B9%E6%AE%8A%E6%96%B9%E6%B3%95">类的特殊方法</a>
+<ul>
+<li><a href="#%E6%A8%A1%E6%8B%9F%E7%89%B9%E6%AE%8A%E7%9A%84%E5%AF%B9%E8%B1%A1">模拟特殊的对象</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="http://127.0.0.1:8080/post/os-deadlock/">
+              <h3 class="post-title">
+                OS-Deadlock
+              </h3>
+            </a>
+          </div>
+        
+
+        
+
+        <div class="site-footer">
+  
+  <a class="rss" href="http://127.0.0.1:8080/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>

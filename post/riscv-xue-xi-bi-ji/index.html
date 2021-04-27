@@ -1,0 +1,326 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>RISCV学习笔记 | Reticence</title>
+<link rel="shortcut icon" href="http://127.0.0.1:8080/favicon.ico?v=1619508275369">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="http://127.0.0.1:8080/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="RISCV学习笔记 | Reticence - Atom Feed" href="http://127.0.0.1:8080/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-90HNEFFE0M"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-90HNEFFE0M');
+</script>
+
+
+    <meta name="description" content="
+
+
+
+Registers
+
+
+
+
+Instructions
+
+
+
+
+Trap in RISCV
+
+
+
+
+
+1. Registers
+
+2. Instructions
+参考中文手册的附录，这里只是随便列了几个提供一下查找的方向。
+
+csr(..." />
+    <meta name="keywords" content="OS" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="http://127.0.0.1:8080">
+  <img class="avatar" src="http://127.0.0.1:8080/images/avatar.png?v=1619508275369" alt="">
+  </a>
+  <h1 class="site-title">
+    Reticence
+  </h1>
+  <p class="site-description">
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          Index
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          Classification
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          Archives
+        </a>
+      
+    
+      
+        <a href="/navigator.html" class="menu">
+          Navigator
+        </a>
+      
+    
+      
+        <a href="/post/book-list" class="menu">
+          Booklist
+        </a>
+      
+    
+      
+        <a href="/post/fei-md-ge-shi-bi-ji-hui-zong" class="menu">
+          Notes
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          About
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+        <a href="https://github.com/reticenceji" target="_blank">
+          <i class="ri-github-line"></i>
+        </a>
+      
+    
+      
+    
+      
+    
+      
+        <a href="https://www.zhihu.com/people/reticenceji" target="_blank">
+          <i class="ri-zhihu-line"></i>
+        </a>
+      
+    
+      
+    
+  </div>
+  <script>
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
+    var s = document.getElementsByTagName("script")[0]; 
+    s.parentNode.insertBefore(hm, s);
+  })();
+  </script>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              RISCV学习笔记
+            </h2>
+            <div class="post-info">
+              <span>
+                2020-10-17
+              </span>
+              <span>
+                2 min read
+              </span>
+              
+                <a href="http://127.0.0.1:8080/tag/nfABdWVsa/" class="post-tag">
+                  # OS
+                </a>
+              
+            </div>
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <!-- vscode-markdown-toc -->
+<ul>
+<li>
+<ol>
+<li><a href="#Registers">Registers</a></li>
+</ol>
+</li>
+<li>
+<ol start="2">
+<li><a href="#Instructions">Instructions</a></li>
+</ol>
+</li>
+<li>
+<ol start="3">
+<li><a href="#TrapinRISCV">Trap in RISCV</a></li>
+</ol>
+</li>
+</ul>
+<!-- vscode-markdown-toc-config
+	numbering=true
+	autoSave=true
+	/vscode-markdown-toc-config -->
+<!-- /vscode-markdown-toc -->
+<h2 id="1-a-nameregistersaregisters">1. <a name='Registers'></a>Registers</h2>
+<figure data-type="image" tabindex="1"><img src="http://127.0.0.1:8080/post-images/1602941945927.png" alt="Register" loading="lazy"></figure>
+<h2 id="2-a-nameinstructionsainstructions">2. <a name='Instructions'></a>Instructions</h2>
+<p>参考中文手册的附录，这里只是随便列了几个提供一下查找的方向。</p>
+<ul>
+<li>csr( Control and State Register) series：
+<ul>
+<li>csrr rd, csr  <code>x[rd] = CSRs[csr]，读CSR寄存器</code></li>
+<li>csrw csr,rd   <code>CSRs[csr]=x[rd]，写CSR寄存器</code></li>
+</ul>
+</li>
+<li>b( Branch ) series：
+<ul>
+<li>beq rs1, rs2, offset  <code>if (rs1 == rs2) pc += sext(offset)</code></li>
+<li>beqz rs1, offset        <code>if (rs1 == 0) pc += sext(offset)</code></li>
+</ul>
+</li>
+<li>l( Load ) series：
+<ul>
+<li>la rd, symbol	 <code>x[rd] = &amp;symbol，加载位置</code></li>
+<li>lb rd, offset(rs1)  <code>x[rd] = sext(M[x[rs1] + sext(offset)][7:0])，字节加载</code></li>
+</ul>
+</li>
+<li>s( Store ) series：
+<ul>
+<li>sb rs2, offset(rs1)		<code>M[x[rs1] + sext(offset) = x[rs2][7: 0]</code></li>
+</ul>
+</li>
+<li>j ( Jump )：
+<ul>
+<li>j offset  <code>pc += sext(offset) 无条件跳转</code></li>
+<li>jal rd, offset    <code>x[rd] = pc+4; pc += sext(offset) 保存下一条指令的位置并无条件跳转</code></li>
+<li>jr rs1    <code>pc = x[rs1]，寄存器跳转</code></li>
+</ul>
+</li>
+</ul>
+<h2 id="3-a-nametrapinriscvatrap-in-riscv">3. <a name='TrapinRISCV'></a>Trap in RISCV</h2>
+<p>参考《riscv-privileged》Chapter 3；中文手册第十章<br>
+<a href="https://naotu.baidu.com/file/3f263ff379065fbe84138f5ba36cdb04">思维导图</a></p>
+
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#1-a-nameregistersaregisters">1. <a name='Registers'></a>Registers</a></li>
+<li><a href="#2-a-nameinstructionsainstructions">2. <a name='Instructions'></a>Instructions</a></li>
+<li><a href="#3-a-nametrapinriscvatrap-in-riscv">3. <a name='TrapinRISCV'></a>Trap in RISCV</a></li>
+</ul>
+</li>
+</ul>
+
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="http://127.0.0.1:8080/post/docker-de-jian-dan-shi-yong/">
+              <h3 class="post-title">
+                Docker的简单使用
+              </h3>
+            </a>
+          </div>
+        
+
+        
+
+        <div class="site-footer">
+  
+  <a class="rss" href="http://127.0.0.1:8080/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>

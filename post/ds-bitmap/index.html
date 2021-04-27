@@ -1,0 +1,270 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>DS-Bitmap | Reticence</title>
+<link rel="shortcut icon" href="http://127.0.0.1:8080/favicon.ico?v=1619508275369">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="http://127.0.0.1:8080/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="DS-Bitmap | Reticence - Atom Feed" href="http://127.0.0.1:8080/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-90HNEFFE0M"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-90HNEFFE0M');
+</script>
+
+
+    <meta name="description" content="参考链接：
+漫画：什么是bitmap算法
+简单的实现 - C语言位运算的实践
+首先，一个二进制数字的一位有两种情况：1/0。
+我们有N个对象，每个对象对于属性ATTR_A有两种可能：有/没有。
+那么我们可以用一个N bit的数来存储（bit..." />
+    <meta name="keywords" content="DS" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="http://127.0.0.1:8080">
+  <img class="avatar" src="http://127.0.0.1:8080/images/avatar.png?v=1619508275369" alt="">
+  </a>
+  <h1 class="site-title">
+    Reticence
+  </h1>
+  <p class="site-description">
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          Index
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          Classification
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          Archives
+        </a>
+      
+    
+      
+        <a href="/navigator.html" class="menu">
+          Navigator
+        </a>
+      
+    
+      
+        <a href="/post/book-list" class="menu">
+          Booklist
+        </a>
+      
+    
+      
+        <a href="/post/fei-md-ge-shi-bi-ji-hui-zong" class="menu">
+          Notes
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          About
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+        <a href="https://github.com/reticenceji" target="_blank">
+          <i class="ri-github-line"></i>
+        </a>
+      
+    
+      
+    
+      
+    
+      
+        <a href="https://www.zhihu.com/people/reticenceji" target="_blank">
+          <i class="ri-zhihu-line"></i>
+        </a>
+      
+    
+      
+    
+  </div>
+  <script>
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
+    var s = document.getElementsByTagName("script")[0]; 
+    s.parentNode.insertBefore(hm, s);
+  })();
+  </script>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              DS-Bitmap
+            </h2>
+            <div class="post-info">
+              <span>
+                2021-01-14
+              </span>
+              <span>
+                2 min read
+              </span>
+              
+                <a href="http://127.0.0.1:8080/tag/0AqTQfzSL/" class="post-tag">
+                  # DS
+                </a>
+              
+            </div>
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <p>参考链接：<br>
+<a href="https://zhuanlan.zhihu.com/p/54783053?utm_source=wechat_timeline">漫画：什么是bitmap算法</a></p>
+<h2 id="简单的实现-c语言位运算的实践">简单的实现 - C语言位运算的实践</h2>
+<p>首先，一个二进制数字的一位有两种情况：1/0。<br>
+我们有N个对象，每个对象对于属性ATTR_A有两种可能：有/没有。<br>
+那么我们可以用一个N bit的数来存储（bitmap），每个对象对应于bitmap中的一位，用1和0来表示有和无。</p>
+<p>举一个简单的例子，我们的PID有64种情况（0～63）。我们用一个bitmap来存储PID的使用情况：</p>
+<ul>
+<li><code>uint64 pid_bitmap;</code><br>
+如果我们将PID=4分配出去，那么我们需要把pid_bitmap的第4位标记为1：</li>
+<li><code>pid_bitmap |= 0x1&lt;&lt;PID;</code><br>
+如果我们将PID=4回收，那么我们需要把pid_bitmap的第4位标记为0：</li>
+<li><code>pid_bitmap &amp;= ~(0x1&lt;&lt;PID)</code><br>
+查看PID=4的状态：</li>
+<li><code>return pid_bitmap &amp; (0x1&lt;&lt;PID)</code><br>
+从最低位开始查找第一个为0的位：</li>
+<li><code>for (mask=1,PID=0; pid_bitmap &amp; mask; mask&lt;&lt;1,PID++);</code></li>
+</ul>
+<p>可以 看到我这个算法很明显的局限性。</p>
+<ol>
+<li>位数不能太大。</li>
+<li>只能有两个状态。</li>
+</ol>
+<p>关于解决办法</p>
+<ol>
+<li>用python（不是；或者自己实现一下数组</li>
+<li>把状态细分成只有两个状态，比如有4种可能的ATTR_B可以用两个bitmap实现。</li>
+</ol>
+
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#%E7%AE%80%E5%8D%95%E7%9A%84%E5%AE%9E%E7%8E%B0-c%E8%AF%AD%E8%A8%80%E4%BD%8D%E8%BF%90%E7%AE%97%E7%9A%84%E5%AE%9E%E8%B7%B5">简单的实现 - C语言位运算的实践</a></li>
+</ul>
+</li>
+</ul>
+
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="http://127.0.0.1:8080/post/os-thread/">
+              <h3 class="post-title">
+                OS-Thread
+              </h3>
+            </a>
+          </div>
+        
+
+        
+
+        <div class="site-footer">
+  
+  <a class="rss" href="http://127.0.0.1:8080/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>

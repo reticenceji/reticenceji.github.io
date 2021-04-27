@@ -1,0 +1,255 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Networking-NAT | Reticence</title>
+<link rel="shortcut icon" href="http://127.0.0.1:8080/favicon.ico?v=1619508275369">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="http://127.0.0.1:8080/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="Networking-NAT | Reticence - Atom Feed" href="http://127.0.0.1:8080/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-90HNEFFE0M"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-90HNEFFE0M');
+</script>
+
+
+    <meta name="description" content="NAT，Network Address Translation。
+简单的说，Internet的目的就是为了让两个端点之间能相互通信。
+有点像连接内网和外网的转发器。把你原本内网的IP address转换成公网的IP address，当然端口..." />
+    <meta name="keywords" content="Networking" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="http://127.0.0.1:8080">
+  <img class="avatar" src="http://127.0.0.1:8080/images/avatar.png?v=1619508275369" alt="">
+  </a>
+  <h1 class="site-title">
+    Reticence
+  </h1>
+  <p class="site-description">
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          Index
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          Classification
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          Archives
+        </a>
+      
+    
+      
+        <a href="/navigator.html" class="menu">
+          Navigator
+        </a>
+      
+    
+      
+        <a href="/post/book-list" class="menu">
+          Booklist
+        </a>
+      
+    
+      
+        <a href="/post/fei-md-ge-shi-bi-ji-hui-zong" class="menu">
+          Notes
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          About
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+        <a href="https://github.com/reticenceji" target="_blank">
+          <i class="ri-github-line"></i>
+        </a>
+      
+    
+      
+    
+      
+    
+      
+        <a href="https://www.zhihu.com/people/reticenceji" target="_blank">
+          <i class="ri-zhihu-line"></i>
+        </a>
+      
+    
+      
+    
+  </div>
+  <script>
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
+    var s = document.getElementsByTagName("script")[0]; 
+    s.parentNode.insertBefore(hm, s);
+  })();
+  </script>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              Networking-NAT
+            </h2>
+            <div class="post-info">
+              <span>
+                2021-02-14
+              </span>
+              <span>
+                2 min read
+              </span>
+              
+                <a href="http://127.0.0.1:8080/tag/GLCgJ5F7H/" class="post-tag">
+                  # Networking
+                </a>
+              
+            </div>
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <p>NAT，Network Address Translation。<br>
+简单的说，Internet的目的就是为了让两个端点之间能相互通信。</p>
+<p>有点像连接内网和外网的转发器。把你原本内网的IP address转换成公网的IP address，当然端口也可能发生改变。<br>
+NAT缓解了IPV4地址不够用的问题，同时也也带了限制，那就是NAT外部的主机无法主动跟位于NAT内部的主机通信，NAT内部主机想要通信，必须主动和公网的一个IP通信，路由器负责建立一个映射关系，从而实现数据的转发， 这就是NAT的工作原理。</p>
+<h2 id="nat的分类">NAT的分类</h2>
+<p><a href="https://www.rfc-editor.org/rfc/rfc3489.html#page-5">RFC3489</a>，NAT Variations。</p>
+<ul>
+<li>Full Cone NAT：全锥NAT 把所有相同（internal IP address，port）的请求映射到相同的（external IP address，port）。因此，任何一个外部主机均可通过该映射发送数据包到该内部主机。</li>
+<li>Restricted cone NAT：限制性锥NAT 把所有来自相同（internal IP address，port）的请求映射到相同的（external IP address，port）。但是, 和全锥NAT 不同的是：只有当内部主机先给外部主机（某IP地址）发送数据包, 该外部主机（该IP地址）才能向该内部主机发送数据包。</li>
+<li>Port restricted NAT：端口限制性锥NAT 与限制性锥NAT 类似, 不过又多了端口号的限制, 即只有内部主机先向（某外部地址：某端口号）对发送数据包, （该外部主机：该端口号）才能使用特定的端口号向内部主机发送数据包。所以说，上面三种类型依次更加严格。</li>
+<li>Symmetric NAT：对称型NAT把从相同（internal IP address，port）到相同（destination IP address，port）地址和端口的所有请求，都映射到同一个（external IP address，port）。并且这个映射只有在所以这也是也这是最严格的类型。</li>
+</ul>
+<h2 id="nat打洞">NAT打洞</h2>
+<p><img src="http://127.0.0.1:8080/post-images/1614438660634.jpg" alt="" loading="lazy"><br>
+如果是Full Cone NAT，问题比较好解决。可以通过一个中间的媒介交换两个需要通信的internal host各自在NAT上映射的external IP address。</p>
+
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#nat%E7%9A%84%E5%88%86%E7%B1%BB">NAT的分类</a></li>
+<li><a href="#nat%E6%89%93%E6%B4%9E">NAT打洞</a></li>
+</ul>
+</li>
+</ul>
+
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="http://127.0.0.1:8080/post/networking-transport/">
+              <h3 class="post-title">
+                Networking-传输层
+              </h3>
+            </a>
+          </div>
+        
+
+        
+
+        <div class="site-footer">
+  
+  <a class="rss" href="http://127.0.0.1:8080/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>

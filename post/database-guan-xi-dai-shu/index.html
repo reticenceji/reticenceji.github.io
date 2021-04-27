@@ -1,0 +1,382 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Database-关系代数 | Reticence</title>
+<link rel="shortcut icon" href="http://127.0.0.1:8080/favicon.ico?v=1619508275369">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="http://127.0.0.1:8080/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="Database-关系代数 | Reticence - Atom Feed" href="http://127.0.0.1:8080/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-90HNEFFE0M"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-90HNEFFE0M');
+</script>
+
+
+    <meta name="description" content="关系代数
+严谨的定义看书。
+六个基本运算：
+
+Select 选择：返回输入关系中满足谓词的行。可以认为是选择行。用 σ\sigmaσ 表示。
+Project 投影：对输入关系所有的行输出指定的属性。从输出中除去重复行。可以认为是选择列。用 ..." />
+    <meta name="keywords" content="Database" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="http://127.0.0.1:8080">
+  <img class="avatar" src="http://127.0.0.1:8080/images/avatar.png?v=1619508275369" alt="">
+  </a>
+  <h1 class="site-title">
+    Reticence
+  </h1>
+  <p class="site-description">
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          Index
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          Classification
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          Archives
+        </a>
+      
+    
+      
+        <a href="/navigator.html" class="menu">
+          Navigator
+        </a>
+      
+    
+      
+        <a href="/post/book-list" class="menu">
+          Booklist
+        </a>
+      
+    
+      
+        <a href="/post/fei-md-ge-shi-bi-ji-hui-zong" class="menu">
+          Notes
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          About
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+        <a href="https://github.com/reticenceji" target="_blank">
+          <i class="ri-github-line"></i>
+        </a>
+      
+    
+      
+    
+      
+    
+      
+        <a href="https://www.zhihu.com/people/reticenceji" target="_blank">
+          <i class="ri-zhihu-line"></i>
+        </a>
+      
+    
+      
+    
+  </div>
+  <script>
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
+    var s = document.getElementsByTagName("script")[0]; 
+    s.parentNode.insertBefore(hm, s);
+  })();
+  </script>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              Database-关系代数
+            </h2>
+            <div class="post-info">
+              <span>
+                2021-04-02
+              </span>
+              <span>
+                4 min read
+              </span>
+              
+                <a href="http://127.0.0.1:8080/tag/uXp2zQxRH/" class="post-tag">
+                  # Database
+                </a>
+              
+            </div>
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <h2 id="关系代数">关系代数</h2>
+<p>严谨的定义看书。<br>
+六个基本运算：</p>
+<ul>
+<li>Select 选择：返回输入关系中满足谓词的行。可以认为是选择行。用 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>σ</mi></mrow><annotation encoding="application/x-tex">\sigma</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">σ</span></span></span></span> 表示。</li>
+<li>Project 投影：对输入关系所有的行输出指定的属性。从输出中除去重复行。可以认为是选择列。用 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>∏</mo></mrow><annotation encoding="application/x-tex">\prod</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.00001em;vertical-align:-0.25001em;"></span><span class="mop op-symbol small-op" style="position:relative;top:-0.0000050000000000050004em;">∏</span></span></span></span> 表示。</li>
+<li>Union 并：输出两个关系中元组的并，用<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>r</mi><mo>∪</mo><mi>s</mi></mrow><annotation encoding="application/x-tex">r \cup s</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.55556em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∪</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">s</span></span></span></span>表示。要求
+<ul>
+<li>等目，同元，即他们的属性数目必须相同</li>
+<li>对任意i，r的第i个属性域和s的第i个属性域相同</li>
+</ul>
+</li>
+<li>set difference 差（集合差）：r-s就是把s中出现的tuple从r中移出。需要满足的条件和Union相同。</li>
+<li>Cartesian product 笛卡儿积：从两个关系中输出所有的元组对，无论他们在共同属性上的取值是否相同。用<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">x</span></span></span></span>表示。</li>
+<li>Rename 更名（重命名）：用 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>ρ</mi></mrow><annotation encoding="application/x-tex">\rho</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">ρ</span></span></span></span> 表示。</li>
+</ul>
+<p>附加运算，都可以用基本运算表示：</p>
+<ul>
+<li>Set intersection 交：<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>r</mi><mo>∩</mo><mi>s</mi><mo>=</mo><mi>r</mi><mo>−</mo><mo>(</mo><mi>r</mi><mo>−</mo><mi>s</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">r \cap s = r-(r-s)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.55556em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∩</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">s</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">s</span><span class="mclose">)</span></span></span></span></li>
+<li>Natural join 自然连接：从两个关系中输出所有在<strong>共同属性上的取值相同的元组对。</strong> 用 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>⋈</mo></mrow><annotation encoding="application/x-tex">\bowtie</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.51em;vertical-align:-0.005em;"></span><span class="mrel">⋈</span></span></span></span> 表示，非常好用。</li>
+<li>Division 除：<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>r</mi><mo>÷</mo><mi>s</mi><mo>=</mo><mo>{</mo><mi>t</mi><mi mathvariant="normal">∣</mi><mi>t</mi><mo>∈</mo><msub><mo>∏</mo><mrow><mi>R</mi><mo>−</mo><mi>S</mi></mrow></msub><mo>(</mo><mi>r</mi><mo>)</mo><mtext> </mtext><mi>a</mi><mi>n</mi><mi>d</mi><mtext> </mtext><mi mathvariant="normal">∀</mi><mi>u</mi><mo>∈</mo><mi>s</mi><mo>(</mo><mi>t</mi><mi>u</mi><mo>∈</mo><mi>r</mi><mo>)</mo><mo>}</mo></mrow><annotation encoding="application/x-tex">r \div s = \{ t|t\in \prod_{R-S}(r)\  and\   \forall u\in s(tu\in r)\}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">÷</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">s</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">{</span><span class="mord mathdefault">t</span><span class="mord">∣</span><span class="mord mathdefault">t</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">∈</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.108041em;vertical-align:-0.35804100000000005em;"></span><span class="mop"><span class="mop op-symbol small-op" style="position:relative;top:-0.0000050000000000050004em;">∏</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.17862099999999992em;"><span style="top:-2.40029em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.00773em;">R</span><span class="mbin mtight">−</span><span class="mord mathdefault mtight" style="margin-right:0.05764em;">S</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.35804100000000005em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mclose">)</span><span class="mspace"> </span><span class="mord mathdefault">a</span><span class="mord mathdefault">n</span><span class="mord mathdefault">d</span><span class="mspace"> </span><span class="mord">∀</span><span class="mord mathdefault">u</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">∈</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">s</span><span class="mopen">(</span><span class="mord mathdefault">t</span><span class="mord mathdefault">u</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">∈</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mclose">)</span><span class="mclose">}</span></span></span></span> 。如果要用基本运算表示，可以是：。用自然语言表示，就是找出满足r中包含所有s的r-s。“查询…<strong>全部的/所有的</strong>…&quot;，就要想到除运算。</li>
+<li>Assignment 赋值：</li>
+</ul>
+<p>总结：</p>
+<ul>
+<li>并、差、交为双目、等元运算</li>
+<li>笛卡尔积，自然连接，除为双目运算</li>
+<li>投影、选择为单运算对象</li>
+<li>关系运算的优先级：
+<ul>
+<li>投影</li>
+<li>选择</li>
+<li>笛卡尔积</li>
+<li>连接、除</li>
+<li>交</li>
+<li>并、差</li>
+</ul>
+</li>
+</ul>
+<p>扩展关系代数运算：都是非常有用的运算</p>
+<ul>
+<li>
+<p>Generalize projection：允许在投影列表中使用算术函数来对投影操作进行扩展</p>
+</li>
+<li>
+<p>Aggregate function（聚合函数）：输入一堆值，输出一个值。</p>
+<ul>
+<li><img src="http://127.0.0.1:8080/post-images/1615616631796.jpg" alt="" loading="lazy">前面的是分组规则，后面的是聚合函数。</li>
+<li>sum,max,min,count,</li>
+</ul>
+</li>
+<li>
+<p>Outer join：自然连接把无法匹配上的tuple丢弃了。但是有时候，我们可能想保留那些对不上的tuple。但是这样在另一张表找不到对应的记录，我们就用null来填充。</p>
+</li>
+</ul>
+<p>删除：<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>r</mi><mo>←</mo><mi>r</mi><mi mathvariant="normal">–</mi><mi>E</mi></mrow><annotation encoding="application/x-tex">r \leftarrow r – E</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">←</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mord" style="margin-right:0.02778em;">–</span><span class="mord mathdefault" style="margin-right:0.05764em;">E</span></span></span></span><br>
+插入：<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>r</mi><mo>←</mo><mi>r</mi><mo>∪</mo><mi>E</mi></mrow><annotation encoding="application/x-tex">r \leftarrow r\cup E</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">←</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.55556em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∪</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">E</span></span></span></span></p>
+<h2 id="centersql和关系代数对照center"><center>SQL和关系代数对照</center></h2>
+<table>
+<thead>
+<tr>
+<th>关系代数</th>
+<th>比较相似的SQL</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Project 投影</td>
+<td>select + distinct</td>
+</tr>
+<tr>
+<td>Select 选择</td>
+<td>select + where</td>
+</tr>
+<tr>
+<td>Union 并集</td>
+<td>union</td>
+</tr>
+<tr>
+<td>different 差集</td>
+<td>except</td>
+</tr>
+<tr>
+<td>笛卡尔积</td>
+<td>select * from A,B</td>
+</tr>
+<tr>
+<td>rename 重命名</td>
+<td>as</td>
+</tr>
+<tr>
+<td>intersection 交集</td>
+<td>intersection</td>
+</tr>
+<tr>
+<td>自然连接</td>
+<td>join比他更强大</td>
+</tr>
+<tr>
+<td>theta 连接</td>
+<td>join + having 比他更强大</td>
+</tr>
+<tr>
+<td>divition 除</td>
+<td>见下</td>
+</tr>
+<tr>
+<td>赋值运算</td>
+<td>select into</td>
+</tr>
+<tr>
+<td>聚合函数</td>
+<td>聚合函数+group by</td>
+</tr>
+<tr>
+<td>Outer join</td>
+<td>SQL中的full outer join, right outer join ,left outer join</td>
+</tr>
+<tr>
+<td>Generalize projection</td>
+<td>在SQL中很方便，就是在select后面添加表达式</td>
+</tr>
+</tbody>
+</table>
+<pre><code class="language-sql">--B div A =&gt;
+SELECT * FROM B
+WHERE NOT EXISTS(
+	SELECT * FROM A
+	WHERE NOT EXISTS(
+		-- 用中间表将A,B连接起来
+		SELECT * FROM 中间表
+		WHERE 中间表.key1 = A.key AND 中间表.key2 = B.key
+	)
+)
+/*
+版权声明：本文为CSDN博主「一个不想写代码的程序员」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/weixin_36979214/article/details/105993194
+*/
+</code></pre>
+
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#%E5%85%B3%E7%B3%BB%E4%BB%A3%E6%95%B0">关系代数</a></li>
+<li><a href="#centersql%E5%92%8C%E5%85%B3%E7%B3%BB%E4%BB%A3%E6%95%B0%E5%AF%B9%E7%85%A7center"><center>SQL和关系代数对照</center></a></li>
+</ul>
+</li>
+</ul>
+
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="http://127.0.0.1:8080/post/shu-ju-ku-she-ji/">
+              <h3 class="post-title">
+                Database-数据库设计
+              </h3>
+            </a>
+          </div>
+        
+
+        
+
+        <div class="site-footer">
+  
+  <a class="rss" href="http://127.0.0.1:8080/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>

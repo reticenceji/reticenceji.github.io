@@ -1,0 +1,348 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>一个进程是怎么开始的 | Reticence</title>
+<link rel="shortcut icon" href="http://127.0.0.1:8080/favicon.ico?v=1619508275369">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="http://127.0.0.1:8080/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="一个进程是怎么开始的 | Reticence - Atom Feed" href="http://127.0.0.1:8080/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-90HNEFFE0M"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-90HNEFFE0M');
+</script>
+
+
+    <meta name="description" content="Perface
+最开始，我们可能会认为程序是从main开始执行的。
+了解深入之后，以Linux为例，一个进程的开始，往往是先fork，然后exec。在这个过程中，寄存器什么的环境被设置，具体发生了什么呢？
+我们还知道一个ELF文件里面有en..." />
+    <meta name="keywords" content="Reverse,Linux" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="http://127.0.0.1:8080">
+  <img class="avatar" src="http://127.0.0.1:8080/images/avatar.png?v=1619508275369" alt="">
+  </a>
+  <h1 class="site-title">
+    Reticence
+  </h1>
+  <p class="site-description">
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          Index
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          Classification
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          Archives
+        </a>
+      
+    
+      
+        <a href="/navigator.html" class="menu">
+          Navigator
+        </a>
+      
+    
+      
+        <a href="/post/book-list" class="menu">
+          Booklist
+        </a>
+      
+    
+      
+        <a href="/post/fei-md-ge-shi-bi-ji-hui-zong" class="menu">
+          Notes
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          About
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+        <a href="https://github.com/reticenceji" target="_blank">
+          <i class="ri-github-line"></i>
+        </a>
+      
+    
+      
+    
+      
+    
+      
+        <a href="https://www.zhihu.com/people/reticenceji" target="_blank">
+          <i class="ri-zhihu-line"></i>
+        </a>
+      
+    
+      
+    
+  </div>
+  <script>
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
+    var s = document.getElementsByTagName("script")[0]; 
+    s.parentNode.insertBefore(hm, s);
+  })();
+  </script>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              一个进程是怎么开始的
+            </h2>
+            <div class="post-info">
+              <span>
+                2020-11-21
+              </span>
+              <span>
+                5 min read
+              </span>
+              
+                <a href="http://127.0.0.1:8080/tag/DhIxrI5Uq/" class="post-tag">
+                  # Reverse
+                </a>
+              
+                <a href="http://127.0.0.1:8080/tag/i1ce0_J8S/" class="post-tag">
+                  # Linux
+                </a>
+              
+            </div>
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <h2 id="perface">Perface</h2>
+<p>最开始，我们可能会认为程序是从main开始执行的。<br>
+了解深入之后，以Linux为例，一个进程的开始，往往是先fork，然后exec。在这个过程中，寄存器什么的环境被设置，具体发生了什么呢？<br>
+我们还知道一个ELF文件里面有entry point表示程序的入口地址。通过观察一个程序的反汇编代码，我们知道他指向的并不是main，之前还有别的准备工作。那是什么呢。<br>
+带着这些疑问，开始探索。（未完待续）</p>
+<h2 id="fork和exec">fork和exec</h2>
+<h2 id="user-space部分">User Space部分</h2>
+<p>https://0xax.gitbooks.io/linux-insides/content/Misc/linux-misc-4.html<br>
+观察一个空的C代码，entry point指向了一个<code>_start</code>函数。</p>
+<h3 id="_start">_start</h3>
+<p>来自这个文件<code>crt1.o</code></p>
+<pre><code>0000000000000530 &lt;_start&gt;:
+ 530:	31 ed                	xor    %ebp,%ebp
+ 532:	49 89 d1             	mov    %rdx,%r9
+ 535:	5e                   	pop    %rsi         		#参数个数argc
+ 536:	48 89 e2             	mov    %rsp,%rdx    		#argv，指向参数指针列表位置的指针
+ 539:	48 83 e4 f0          	and    $0xfffffffffffffff0,%rsp     
+ 53d:	50                   	push   %rax
+ 53e:	54                   	push   %rsp
+ 53f:	4c 8d 05 9a 01 00 00 	lea    0x19a(%rip),%r8		# &lt;__libc_csu_fini&gt;
+ 546:	48 8d 0d 23 01 00 00 	lea    0x123(%rip),%rcx		# &lt;__libc_csu_init&gt;
+ 54d:	48 8d 3d 0c 01 00 00 	lea    0x10c(%rip),%rdi		#  main函数的地址
+ 554:	ff 15 7e 0a 20 00    	callq  *0x200a7e(%rip)		# &lt;__libc_start_main@GLIBC_2.2.5&gt;
+ 55a:	f4                   	hlt    
+ 55b:	0f 1f 44 00 00       	nopl   0x0(%rax,%rax,1)
+</code></pre>
+<p>这里的操作都在干什么呢？其实都是在准备<code>__libc_start_main</code>的参数然后<code>call __libc_start_main</code>。至于具体的参数准备，结合下面介绍吧。<br>
+注意一下在我试验的平台（64位Linux）的函数调用规范是：第1到第6个参数rdi，rsi，rdx，rcx，r8，r9，超出6个的参数从右向左放入栈中。<br>
+以及当_start开始时的堆栈情况：<img src="http://127.0.0.1:8080/post-images/1605964015326.png" alt="" loading="lazy"></p>
+<h3 id="__libc_start_main">__libc_start_main</h3>
+<p>我们来看他的函数原型。</p>
+<pre><code class="language-c">STATIC int LIBC_START_MAIN (
+    int (*main) (int, char **, char **),
+    int argc,
+    char **argv,
+    __typeof (main) init,
+    void (*fini) (void),
+    void (*rtld_fini) (void),
+    void *stack_end
+)
+</code></pre>
+<p>他是做什么用的呢？call the main function with appropriate arguments, and handle the return from main().</p>
+<h3 id="_init和_fini"><code>_init</code>和<code>_fini</code></h3>
+<p>分别是constructor和destructor。什么意思呢？他们分别是调用动态链接库时的初始化函数和释放函数。具体是怎么工作的我也不是很清楚。</p>
+<p>我们通过readelf可以查看到有这两个名字的段</p>
+<pre><code class="language-asm">  [10] .init             PROGBITS         00000000000004f8  000004f8
+       0000000000000017  0000000000000000  AX       0     0     4
+  [14] .fini             PROGBITS         00000000000006e4  000006e4
+       0000000000000009  0000000000000000  AX       0     0     4
+</code></pre>
+<p>通过objdump查看他们各自的内容</p>
+<pre><code class="language-asm">0000000000000670 &lt;__libc_csu_init&gt;:
+ 670:	41 57                	push   %r15
+ 672:	41 56                	push   %r14
+ 674:	41 89 ff             	mov    %edi,%r15d
+ 677:	41 55                	push   %r13
+ 679:	41 54                	push   %r12
+ 67b:	4c 8d 25 86 07 20 00 	lea    0x200786(%rip),%r12        # 200e08 &lt;__frame_dummy_init_array_entry&gt;
+ 682:	55                   	push   %rbp
+ 683:	48 8d 2d 86 07 20 00 	lea    0x200786(%rip),%rbp        # 200e10 &lt;__init_array_end&gt;
+ 68a:	53                   	push   %rbx
+ 68b:	49 89 f6             	mov    %rsi,%r14
+ 68e:	49 89 d5             	mov    %rdx,%r13
+ 691:	4c 29 e5             	sub    %r12,%rbp
+ 694:	48 83 ec 08          	sub    $0x8,%rsp
+ 698:	48 c1 fd 03          	sar    $0x3,%rbp
+ 69c:	e8 57 fe ff ff       	callq  4f8 &lt;_init&gt;
+ 6a1:	48 85 ed             	test   %rbp,%rbp
+ 6a4:	74 20                	je     6c6 &lt;__libc_csu_init+0x56&gt;
+ 6a6:	31 db                	xor    %ebx,%ebx
+ 6a8:	0f 1f 84 00 00 00 00 	nopl   0x0(%rax,%rax,1)
+ 6af:	00 
+ 6b0:	4c 89 ea             	mov    %r13,%rdx
+ 6b3:	4c 89 f6             	mov    %r14,%rsi
+ 6b6:	44 89 ff             	mov    %r15d,%edi
+ 6b9:	41 ff 14 dc          	callq  *(%r12,%rbx,8)
+ 6bd:	48 83 c3 01          	add    $0x1,%rbx
+ 6c1:	48 39 dd             	cmp    %rbx,%rbp
+ 6c4:	75 ea                	jne    6b0 &lt;__libc_csu_init+0x40&gt;
+ 6c6:	48 83 c4 08          	add    $0x8,%rsp
+ 6ca:	5b                   	pop    %rbx
+ 6cb:	5d                   	pop    %rbp
+ 6cc:	41 5c                	pop    %r12
+ 6ce:	41 5d                	pop    %r13
+ 6d0:	41 5e                	pop    %r14
+ 6d2:	41 5f                	pop    %r15
+ 6d4:	c3                   	retq   
+ 6d5:	90                   	nop
+ 6d6:	66 2e 0f 1f 84 00 00 	nopw   %cs:0x0(%rax,%rax,1)
+ 6dd:	00 00 00 
+
+00000000000006e0 &lt;__libc_csu_fini&gt;:
+ 6e0:	f3 c3                	repz retq 
+
+</code></pre>
+<p>所以得出的结论是，这三个段在逆向中应该不需要关注。。</p>
+
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#perface">Perface</a></li>
+<li><a href="#fork%E5%92%8Cexec">fork和exec</a></li>
+<li><a href="#user-space%E9%83%A8%E5%88%86">User Space部分</a>
+<ul>
+<li><a href="#_start">_start</a></li>
+<li><a href="#__libc_start_main">__libc_start_main</a></li>
+<li><a href="#_init%E5%92%8C_fini"><code>_init</code>和<code>_fini</code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="http://127.0.0.1:8080/post/ds-xian-xing-biao/">
+              <h3 class="post-title">
+                DS-Linear List
+              </h3>
+            </a>
+          </div>
+        
+
+        
+
+        <div class="site-footer">
+  
+  <a class="rss" href="http://127.0.0.1:8080/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>

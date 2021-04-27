@@ -1,0 +1,289 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Networking-链路层 | Reticence</title>
+<link rel="shortcut icon" href="http://127.0.0.1:8080/favicon.ico?v=1619508275369">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="http://127.0.0.1:8080/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="Networking-链路层 | Reticence - Atom Feed" href="http://127.0.0.1:8080/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-90HNEFFE0M"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-90HNEFFE0M');
+</script>
+
+
+    <meta name="description" content="局域网、广域网
+广播、点到点
+基本概念
+结点node：主机、路由器
+链路：网络中两个结点之间的物理通道，比如之前提到的双绞线、光纤。
+数据链路：网络中两个结点之间的逻辑通道。把实现控制数据传输协议的硬件和软件加到链路上就构成数据链路。
+帧f..." />
+    <meta name="keywords" content="Networking" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="http://127.0.0.1:8080">
+  <img class="avatar" src="http://127.0.0.1:8080/images/avatar.png?v=1619508275369" alt="">
+  </a>
+  <h1 class="site-title">
+    Reticence
+  </h1>
+  <p class="site-description">
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          Index
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          Classification
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          Archives
+        </a>
+      
+    
+      
+        <a href="/navigator.html" class="menu">
+          Navigator
+        </a>
+      
+    
+      
+        <a href="/post/book-list" class="menu">
+          Booklist
+        </a>
+      
+    
+      
+        <a href="/post/fei-md-ge-shi-bi-ji-hui-zong" class="menu">
+          Notes
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          About
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+        <a href="https://github.com/reticenceji" target="_blank">
+          <i class="ri-github-line"></i>
+        </a>
+      
+    
+      
+    
+      
+    
+      
+        <a href="https://www.zhihu.com/people/reticenceji" target="_blank">
+          <i class="ri-zhihu-line"></i>
+        </a>
+      
+    
+      
+    
+  </div>
+  <script>
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
+    var s = document.getElementsByTagName("script")[0]; 
+    s.parentNode.insertBefore(hm, s);
+  })();
+  </script>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              Networking-链路层
+            </h2>
+            <div class="post-info">
+              <span>
+                2021-03-07
+              </span>
+              <span>
+                3 min read
+              </span>
+              
+                <a href="http://127.0.0.1:8080/tag/GLCgJ5F7H/" class="post-tag">
+                  # Networking
+                </a>
+              
+            </div>
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <p>局域网、广域网<br>
+广播、点到点</p>
+<h2 id="基本概念">基本概念</h2>
+<p><strong>结点node</strong>：主机、路由器<br>
+链路：网络中两个结点之间的物理通道，比如之前提到的双绞线、光纤。<br>
+数据链路：网络中两个结点之间的逻辑通道。把实现控制数据传输协议的硬件和软件加到链路上就构成数据链路。<br>
+<strong>帧frame</strong>：链路层的协议数据单元。</p>
+<p>链路层功能概述：</p>
+<ol>
+<li>为网络层提供服务。无确认无连接服务，有确认无连接服务，有确认面相连接服务。</li>
+<li>链路管理，连接的建立、维持、释放</li>
+<li>组帧framing</li>
+<li>流量控制。</li>
+<li>差错纠正和检测（链路层的检测主要是为了提高上层的传输效率）</li>
+</ol>
+<h2 id="组装成帧">组装成帧</h2>
+<p><img src="http://127.0.0.1:8080/post-images/1615118128709.jpg" alt="" loading="lazy"><br>
+在IP数据报的前后添加一些字段，帧首部和帧尾部。<br>
+首部和尾部包含许多的控制信息，还可以做到定界的作用。</p>
+<p>透明传输：有一个可能的问题，就是传输的数据中出现了控制字符（如下图所示）。所以我们要防止这种情况的发生。也就是说，无论数据是什么都应该能正常的传输。有下面几种方法：<br>
+<img src="http://127.0.0.1:8080/post-images/1615118868520.jpg" alt="" loading="lazy"></p>
+<ol>
+<li>字符计数法</li>
+<li>字符填充法。可以封装的时候，在控制字符前面填充转义字符。（就跟字符串里的&quot;&quot;一样），在解的时候，再删除控制字符。</li>
+<li>零比特填充法（ 5&quot;1&quot;1&quot;0&quot;法）：封装的时候遇到连续的5个1就填充一个0。（比如开始和结束的标志是01111110），解的时候遇到连续的5个1就删除后面的0。</li>
+<li>违规编码法：比如曼彻斯特编码只有 “高低”和“低高”，所以我们用“高高”和“低低”作为控制字符。（不是很理解，怎么确定周期呢），IEEE802标准采用。<br>
+就是让原有数据序列中（包括你要加上的一位）1的个数为奇数<br>
+其中零比特和填充法和违规编码法常用。</li>
+</ol>
+<h2 id="差错纠正">差错纠正</h2>
+<p>帧错 ，比如说有帧1,2,3。<br>
+丢失：1-3<br>
+重复：1-2-2-3<br>
+失序：1-3-2</p>
+<p>检测错误的基本思想，是添加一些冗余数据。</p>
+<ol>
+<li>奇偶校验码（检错编码）</li>
+<li>循环冗余码CRC（检错编码）</li>
+<li>海明码（纠错编码）</li>
+</ol>
+<p>奇偶校验，n-1位信息元+1位校验元。让校验元=原有数据序列中（包括你要加上的一位）1的个数为奇数个。只能检测出奇数比特错误。<br>
+CRC循环冗余码：<br>
+<img src="http://127.0.0.1:8080/post-images/1615129488821.jpg" alt="" loading="lazy"><br>
+<img src="http://127.0.0.1:8080/post-images/1615129492632.jpg" alt="" loading="lazy"></p>
+
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5">基本概念</a></li>
+<li><a href="#%E7%BB%84%E8%A3%85%E6%88%90%E5%B8%A7">组装成帧</a></li>
+<li><a href="#%E5%B7%AE%E9%94%99%E7%BA%A0%E6%AD%A3">差错纠正</a></li>
+</ul>
+</li>
+</ul>
+
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="http://127.0.0.1:8080/post/rust/">
+              <h3 class="post-title">
+                Rust-基础知识
+              </h3>
+            </a>
+          </div>
+        
+
+        
+
+        <div class="site-footer">
+  
+  <a class="rss" href="http://127.0.0.1:8080/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>

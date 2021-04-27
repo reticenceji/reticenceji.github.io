@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>http://127.0.0.1:8080</id>
+    <title>Reticence</title>
+    <updated>2021-04-27T07:41:40.636Z</updated>
+    <generator>https://github.com/jpmonette/feed</generator>
+    <link rel="alternate" href="http://127.0.0.1:8080"/>
+    <link rel="self" href="http://127.0.0.1:8080/atom.xml"/>
+    <subtitle>&lt;script&gt;
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement(&quot;script&quot;);
+  hm.src = &quot;https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002&quot;;
+  var s = document.getElementsByTagName(&quot;script&quot;)[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+&lt;/script&gt;</subtitle>
+    <logo>http://127.0.0.1:8080/images/avatar.png</logo>
+    <icon>http://127.0.0.1:8080/favicon.ico</icon>
+    <rights>All rights reserved 2021, Reticence</rights>
+    <entry>
+        <title type="html"><![CDATA[PyQt5]]></title>
+        <id>http://127.0.0.1:8080/post/pyqt5/</id>
+        <link href="http://127.0.0.1:8080/post/pyqt5/">
+        </link>
+        <updated>2021-04-27T04:40:05.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Linux 桌面应用开发]]></title>
+        <id>http://127.0.0.1:8080/post/linux-zhuo-mian-ying-yong-kai-fa/</id>
+        <link href="http://127.0.0.1:8080/post/linux-zhuo-mian-ying-yong-kai-fa/">
+        </link>
+        <updated>2021-04-25T10:55:51.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Tip-VScode Python pylint(no-name-in-module)]]></title>
+        <id>http://127.0.0.1:8080/post/tip-vscode-python-pylintno-name-in-module/</id>
+        <link href="http://127.0.0.1:8080/post/tip-vscode-python-pylintno-name-in-module/">
+        </link>
+        <updated>2021-04-25T10:38:27.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[C++ Q&A]]></title>
+        <id>http://127.0.0.1:8080/post/c-qanda/</id>
+        <link href="http://127.0.0.1:8080/post/c-qanda/">
+        </link>
+        <updated>2021-04-23T03:05:43.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[XML]]></title>
+        <id>http://127.0.0.1:8080/post/xml/</id>
+        <link href="http://127.0.0.1:8080/post/xml/">
+        </link>
+        <updated>2021-04-22T01:42:20.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[VSCode使用技巧]]></title>
+        <id>http://127.0.0.1:8080/post/vscode-shi-yong-ji-qiao/</id>
+        <link href="http://127.0.0.1:8080/post/vscode-shi-yong-ji-qiao/">
+        </link>
+        <updated>2021-04-21T02:04:26.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[ADS-动态规划 Dynamic Programming]]></title>
+        <id>http://127.0.0.1:8080/post/ads-dong-tai-gui-hua-dynamic-programming/</id>
+        <link href="http://127.0.0.1:8080/post/ads-dong-tai-gui-hua-dynamic-programming/">
+        </link>
+        <updated>2021-04-20T04:33:31.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[OS-调试]]></title>
+        <id>http://127.0.0.1:8080/post/os-diao-shi/</id>
+        <link href="http://127.0.0.1:8080/post/os-diao-shi/">
+        </link>
+        <updated>2021-04-18T06:21:32.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Python-Flask之图书管理系统]]></title>
+        <id>http://127.0.0.1:8080/post/python-flash-zhi-tu-shu-guan-li-xi-tong/</id>
+        <link href="http://127.0.0.1:8080/post/python-flash-zhi-tu-shu-guan-li-xi-tong/">
+        </link>
+        <updated>2021-04-16T13:38:14.000Z</updated>
+        <summary type="html"><![CDATA[<p>这是一篇解决问题的记录。</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>这是一篇解决问题的记录。</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Database-Object-Based Databases]]></title>
+        <id>http://127.0.0.1:8080/post/database-object-based-databases/</id>
+        <link href="http://127.0.0.1:8080/post/database-object-based-databases/">
+        </link>
+        <updated>2021-04-15T03:04:11.000Z</updated>
+    </entry>
+</feed>

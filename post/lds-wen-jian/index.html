@@ -1,0 +1,312 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>lds文件-链接器 | Reticence</title>
+<link rel="shortcut icon" href="http://127.0.0.1:8080/favicon.ico?v=1619508275369">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="http://127.0.0.1:8080/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="lds文件-链接器 | Reticence - Atom Feed" href="http://127.0.0.1:8080/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-90HNEFFE0M"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-90HNEFFE0M');
+</script>
+
+
+    <meta name="description" content="lds是什么
+linker script，简单的可以认为是告诉链接器ld怎么去链接的。
+
+The main purpose of the linker script is to describe how the sections in th..." />
+    <meta name="keywords" content="Tools" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="http://127.0.0.1:8080">
+  <img class="avatar" src="http://127.0.0.1:8080/images/avatar.png?v=1619508275369" alt="">
+  </a>
+  <h1 class="site-title">
+    Reticence
+  </h1>
+  <p class="site-description">
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          Index
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          Classification
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          Archives
+        </a>
+      
+    
+      
+        <a href="/navigator.html" class="menu">
+          Navigator
+        </a>
+      
+    
+      
+        <a href="/post/book-list" class="menu">
+          Booklist
+        </a>
+      
+    
+      
+        <a href="/post/fei-md-ge-shi-bi-ji-hui-zong" class="menu">
+          Notes
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          About
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+        <a href="https://github.com/reticenceji" target="_blank">
+          <i class="ri-github-line"></i>
+        </a>
+      
+    
+      
+    
+      
+    
+      
+        <a href="https://www.zhihu.com/people/reticenceji" target="_blank">
+          <i class="ri-zhihu-line"></i>
+        </a>
+      
+    
+      
+    
+  </div>
+  <script>
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
+    var s = document.getElementsByTagName("script")[0]; 
+    s.parentNode.insertBefore(hm, s);
+  })();
+  </script>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              lds文件-链接器
+            </h2>
+            <div class="post-info">
+              <span>
+                2020-10-07
+              </span>
+              <span>
+                4 min read
+              </span>
+              
+                <a href="http://127.0.0.1:8080/tag/nL6gwIN_5/" class="post-tag">
+                  # Tools
+                </a>
+              
+            </div>
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <h2 id="lds是什么">lds是什么</h2>
+<p>linker script，简单的可以认为是告诉链接器ld怎么去链接的。</p>
+<blockquote>
+<p>The main purpose of the linker script is to describe how the sections in the input files should be mapped into the output file, and to control the memory layout of the output file.<br>
+说明各个section怎么映射到输出的文件，并且规定输出文件的内存布局。<br>
+<a href="https://sourceware.org/binutils/docs/ld/Basic-Script-Concepts.html">基础知识</a></p>
+</blockquote>
+<h2 id="基础lds文件分析">基础lds文件分析</h2>
+<p>以这一段代码为例，要用的话是不能带#后面的东西的。</p>
+<pre><code>OUTPUT_ARCH( &quot;riscv&quot; )      #架构
+ENTRY( _start )         #设置入口点
+BASE_ADDR = 0x80000000;
+SECTIONS
+{
+  . = BASE_ADDR;      
+  #对一个特殊的符号'.'赋值, 这是一个定位计数器.
+  .text : { *(.text) }        
+  #定义一个输出节.text ，节名后面的花括号中，列所有应当被放入到这个输出节中的输入节的名字.
+  #'*'是一个通配符,匹配任何文件名
+  #此时定位计数器 . 的值是'0x10000',连接器会把输出文件中的'.text'节的地址设为'0x10000'.
+  .rodata : { *(.rodata) }  
+  #此时定位计数器的值为 .+text节的长度。
+  #连接器会通过在必要时增加定位计数器的值来保证每一个输出节具有它所需的对齐.
+  .data : { *(.data) }
+  .bss : { *(.bss) }
+  . += 0x8000;
+  stack_top = .;
+  _end = .;
+}
+</code></pre>
+<h2 id="memory">MEMORY</h2>
+<p><a href="https://sourceware.org/binutils/docs/ld/MEMORY.html">参考文档</a><br>
+The MEMORY command describes the location and size of blocks of memory in the target. 给内存分块（origin~origin+length），attr说明属性（读、写、执行、初始化、可分配）</p>
+<pre><code>MEMORY
+  {
+    name [(attr)] : ORIGIN = origin, LENGTH = len
+    …
+  }
+</code></pre>
+<p>显然我们把内存分块之后，是为了要把上面提到的各个section装载进去的。<br>
+一个没有被映射的section，如果和上面提到的attr完全匹配。<br>
+也可以用<code>&gt;name</code>指定section要映射的内存区域。默认是VMA。<br>
+要指定LMA的映射内存区域，The load address is specified by the AT or AT&gt; keywords。The AT keyword takes an expression as an argument. This specifies the exact load address of the section. The AT&gt; keyword takes the name of a memory region as an argument.<br>
+否则的话，LMA就等于VMA了。</p>
+<blockquote>
+<p>The output section address heuristic is as follows:<br>
+If an output memory region is set for the section then it is added to this region and its address will be the next free address in that region.<br>
+If the MEMORY command has been used to create a list of memory regions then the first region which has attributes compatible with the section is selected to contain it. The section’s output address will be the next free address in that region; MEMORY.<br>
+If no memory regions were specified, or none match the section then the output address will be based on the current value of the location counter.</p>
+</blockquote>
+<p>https://sourceware.org/binutils/docs/ld/Output-Section-LMA.html#Output-Section-LMA</p>
+<h2 id="phdrs">PHDRS</h2>
+<p><a href="https://sourceware.org/binutils/docs/ld/PHDRS.html">参考文档</a><br>
+简单的说，这个段用来<strong>显式</strong>的指明要生成的Program Headers。Program headers 说明程序要如何装载入内存。可以用<code>objdump -p</code>打印Program Headers.</p>
+<pre><code>    PHDRS
+    {
+    name type [ FILEHDR ] [ PHDRS ] [ AT ( address ) ]
+            [ FLAGS ( flags ) ] ;
+    }
+</code></pre>
+<p>同样的这个也是要和上面提到的section对应的。我们加入<code>:name</code>指定section对应的Header Entry。</p>
+<h2 id="provide和hidden">PROVIDE和HIDDEN</h2>
+<p>PROVIDE引出一个符号，外部可以使用。<br>
+HIDDEN隐藏符号，对外部不可见。<br>
+要使用符号，正确的做法是取符号的地址。</p>
+<pre><code class="language-c">  extern char start_of_ROM, end_of_ROM, start_of_FLASH;
+  memcpy (&amp; start_of_FLASH, &amp; start_of_ROM, &amp; end_of_ROM - &amp; start_of_ROM);
+</code></pre>
+
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#lds%E6%98%AF%E4%BB%80%E4%B9%88">lds是什么</a></li>
+<li><a href="#%E5%9F%BA%E7%A1%80lds%E6%96%87%E4%BB%B6%E5%88%86%E6%9E%90">基础lds文件分析</a></li>
+<li><a href="#memory">MEMORY</a></li>
+<li><a href="#phdrs">PHDRS</a></li>
+<li><a href="#provide%E5%92%8Chidden">PROVIDE和HIDDEN</a></li>
+</ul>
+</li>
+</ul>
+
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="http://127.0.0.1:8080/post/os_bootloader/">
+              <h3 class="post-title">
+                OS-Bootloader
+              </h3>
+            </a>
+          </div>
+        
+
+        
+
+        <div class="site-footer">
+  
+  <a class="rss" href="http://127.0.0.1:8080/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>

@@ -1,0 +1,273 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>GCC-在C程序中调用汇编程序 | Reticence</title>
+<link rel="shortcut icon" href="http://127.0.0.1:8080/favicon.ico?v=1619508275369">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="http://127.0.0.1:8080/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="GCC-在C程序中调用汇编程序 | Reticence - Atom Feed" href="http://127.0.0.1:8080/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-90HNEFFE0M"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-90HNEFFE0M');
+</script>
+
+
+    <meta name="description" content="我们在之前一篇文章提到了内嵌汇编的语法(GCC内嵌汇编)。但是如果我们想调用一个汇编文件中的函数，应该怎么做呢？
+其实非常简单。我们直接看一个demo
+#第一个参数 a0 current
+#第二个参数 a1 prev
+.globl __sw..." />
+    <meta name="keywords" content="C" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="http://127.0.0.1:8080">
+  <img class="avatar" src="http://127.0.0.1:8080/images/avatar.png?v=1619508275369" alt="">
+  </a>
+  <h1 class="site-title">
+    Reticence
+  </h1>
+  <p class="site-description">
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          Index
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          Classification
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          Archives
+        </a>
+      
+    
+      
+        <a href="/navigator.html" class="menu">
+          Navigator
+        </a>
+      
+    
+      
+        <a href="/post/book-list" class="menu">
+          Booklist
+        </a>
+      
+    
+      
+        <a href="/post/fei-md-ge-shi-bi-ji-hui-zong" class="menu">
+          Notes
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          About
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+        <a href="https://github.com/reticenceji" target="_blank">
+          <i class="ri-github-line"></i>
+        </a>
+      
+    
+      
+    
+      
+    
+      
+        <a href="https://www.zhihu.com/people/reticenceji" target="_blank">
+          <i class="ri-zhihu-line"></i>
+        </a>
+      
+    
+      
+    
+  </div>
+  <script>
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
+    var s = document.getElementsByTagName("script")[0]; 
+    s.parentNode.insertBefore(hm, s);
+  })();
+  </script>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              GCC-在C程序中调用汇编程序
+            </h2>
+            <div class="post-info">
+              <span>
+                2020-11-10
+              </span>
+              <span>
+                3 min read
+              </span>
+              
+                <a href="http://127.0.0.1:8080/tag/1N1qlBrCX/" class="post-tag">
+                  # C
+                </a>
+              
+            </div>
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <p>我们在之前一篇文章提到了内嵌汇编的语法(<a href="https://reticenceji.github.io/post/gcc-nei-qian-hui-bian/">GCC内嵌汇编</a>)。但是如果我们想调用一个汇编文件中的函数，应该怎么做呢？</p>
+<p>其实非常简单。我们直接看一个demo</p>
+<pre><code>#第一个参数 a0 current
+#第二个参数 a1 prev
+.globl __switch_to
+.type __switch_to,@function
+__switch_to:
+	sd ra,0(a1)
+	sd sp,8(a1)
+	sd s0,16(a1)
+	sd s1,24(a1)
+	sd s2,32(a1)
+	sd s3,40(a1)
+	sd s4,48(a1)
+	sd s5,56(a1)
+    ......
+    ret
+</code></pre>
+<p>ASM文件中重点就两个：</p>
+<ol>
+<li>明确参数和返回值的传递方式，这个和具体架构有关。GCC似乎也有几个宏可以规定使用的&quot;calling convention&quot;，但是在RISCV中没找到。上面的例子是riscv的传参规范。</li>
+<li>伪指令。首先globl是显然的，全局符号才能在别的文件中被使用。<code>.type symbol, @function</code>：accepted for source compatibility。</li>
+<li>以上内容应该在<code>.S</code>文件中。</li>
+</ol>
+<p>我们再来看C语言中怎么调用。</p>
+<ol>
+<li>首先我们需要一个函数原型：<code>extern TypeRet __switch_to(Type1 ,Type2);</code></li>
+<li>我们直接调用即可<code>__switch_to(Arg1,Arg2)</code></li>
+</ol>
+<p>这是GCC规定参数传递规范的宏，针对x86。使用方法<code>__atrribute__((cdecl))</code>：</p>
+<ul>
+<li>cdecl<br>
+On the x86-32 targets, the cdecl attribute causes the compiler to assume that the calling function pops off the stack space used to pass arguments. This is useful to override the effects of the -mrtd switch.</li>
+<li>fastcall<br>
+On x86-32 targets, the fastcall attribute causes the compiler to pass the first argument (if of integral type) in the register ECX and the second argument (if of integral type) in the register EDX. Subsequent and other typed arguments are passed on the stack. The called function pops the arguments off the stack. If the number of arguments is variable all arguments are pushed on the stack.</li>
+<li>thiscall<br>
+On x86-32 targets, the thiscall attribute causes the compiler to pass the first argument (if of integral type) in the register ECX. Subsequent and other typed arguments are passed on the stack. The called function pops the arguments off the stack. If the number of arguments is variable all arguments are pushed on the stack. The thiscall attribute is intended for C++ non-static member functions. As a GCC extension, this calling convention can be used for C functions and for static member methods.<br>
+riscv可以参考这个链接：https://gcc.gnu.org/onlinedocs/gcc/RISC-V-Options.html</li>
+</ul>
+
+              </div>
+              <div class="toc-container">
+                
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="http://127.0.0.1:8080/post/gcc-nei-qian-hui-bian/">
+              <h3 class="post-title">
+                GCC-内嵌汇编
+              </h3>
+            </a>
+          </div>
+        
+
+        
+
+        <div class="site-footer">
+  
+  <a class="rss" href="http://127.0.0.1:8080/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>

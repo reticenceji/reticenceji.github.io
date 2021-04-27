@@ -1,0 +1,386 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Database-导论 | Reticence</title>
+<link rel="shortcut icon" href="http://127.0.0.1:8080/favicon.ico?v=1619508275369">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="http://127.0.0.1:8080/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="Database-导论 | Reticence - Atom Feed" href="http://127.0.0.1:8080/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-90HNEFFE0M"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-90HNEFFE0M');
+</script>
+
+
+    <meta name="description" content="
+导论 Introduction
+什么是数据库DB？
+
+a large collection of integrated and persistent data.
+长期存储在计算机内部，有组织的，可共享的数据集合。
+
+什么是数据库管理系统D..." />
+    <meta name="keywords" content="Database,Notes" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="http://127.0.0.1:8080">
+  <img class="avatar" src="http://127.0.0.1:8080/images/avatar.png?v=1619508275369" alt="">
+  </a>
+  <h1 class="site-title">
+    Reticence
+  </h1>
+  <p class="site-description">
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          Index
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          Classification
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          Archives
+        </a>
+      
+    
+      
+        <a href="/navigator.html" class="menu">
+          Navigator
+        </a>
+      
+    
+      
+        <a href="/post/book-list" class="menu">
+          Booklist
+        </a>
+      
+    
+      
+        <a href="/post/fei-md-ge-shi-bi-ji-hui-zong" class="menu">
+          Notes
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          About
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+        <a href="https://github.com/reticenceji" target="_blank">
+          <i class="ri-github-line"></i>
+        </a>
+      
+    
+      
+    
+      
+    
+      
+        <a href="https://www.zhihu.com/people/reticenceji" target="_blank">
+          <i class="ri-zhihu-line"></i>
+        </a>
+      
+    
+      
+    
+  </div>
+  <script>
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
+    var s = document.getElementsByTagName("script")[0]; 
+    s.parentNode.insertBefore(hm, s);
+  })();
+  </script>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              Database-导论
+            </h2>
+            <div class="post-info">
+              <span>
+                2021-03-04
+              </span>
+              <span>
+                5 min read
+              </span>
+              
+                <a href="http://127.0.0.1:8080/tag/uXp2zQxRH/" class="post-tag">
+                  # Database
+                </a>
+              
+                <a href="http://127.0.0.1:8080/tag/Gq2mdKppx/" class="post-tag">
+                  # Notes
+                </a>
+              
+            </div>
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <!--  TA马国华：1332420455@qq.com。上机课助教在。
+ 陈岭。
+ ftp://10.214.163.16 db+db
+ 考试0.5，实验0.3，作业和测验0.2（纸质）。
+- modeling and design of database：数据库的设计
+- programming：用程序操作数据库，SQL
+- DBMS implementation：实现DBMS，minisql -->
+<h2 id="导论-introduction">导论 Introduction</h2>
+<p>什么是数据库DB？</p>
+<ul>
+<li>a large collection of <strong>integrated and persistent</strong> data.</li>
+<li>长期存储在计算机内部，有组织的，可共享的数据集合。</li>
+</ul>
+<p>什么是数据库管理系统DBMS？<br>
+DBMS=Database + a set of programs used to access, update and manage database.</p>
+<p>数据库管理系统的特性：</p>
+<ul>
+<li>数据访问的<strong>高效Efficiency</strong>和<strong>可扩展性scalability</strong></li>
+<li>缩短应用开发时间</li>
+<li>数据<strong>独立性independence</strong>（物理数据独立性 / 逻辑数据独立性）</li>
+<li>数据<strong>完整性integrity</strong>和安全性</li>
+<li><strong>并发Concurrent</strong>访问和鲁棒性（恢复）</li>
+</ul>
+<h3 id="view-of-data">View of data</h3>
+<p>我们用下面的抽象层次结构来管理数据：</p>
+<ul>
+<li>Physical level：最底层，关注数据是怎么样真实的存储的。</li>
+<li>Logical level：关注数据是怎么在数据库中存储的，DBA管理的。</li>
+<li>View level：是logical level存储的数据的一部分，提取出来方便使用。<br>
+<img src="http://127.0.0.1:8080/post-images/1614835991393.png" alt="" loading="lazy"></li>
+</ul>
+<p>Schemas and instances，就像类和实例一样，前者是后者的模板。<br>
+<img src="http://127.0.0.1:8080/post-images/1614836802907.jpg" alt="" loading="lazy"><br>
+Logical schemas是最重要的。在关系型数据库中他就是一张表。<br>
+Physical schemas是描述底层设计的。</p>
+<p>数据模型帮助我们设计数据库：</p>
+<ul>
+<li>Entitu-Relationship Model ⭐️ ：</li>
+<li>Relational Model</li>
+<li>Object-Based Data model</li>
+</ul>
+<h3 id="数据库设计">数据库设计</h3>
+<ol>
+<li>需求分析<br>
+– 需要什么样的数据、应用程序和业务</li>
+<li>概念数据库设计<br>
+– 使用 E-R 模型或类似的高层次数据模型，描述数据</li>
+<li>逻辑数据库设计<br>
+– 将概念设计转换为某个DBMS所支持的数据模型</li>
+<li>结构优化<br>
+– 关系标准化，检查冗余和相关的异常关系结构</li>
+<li>物理数据库设计<br>
+– 索引，集群和数据库调优</li>
+<li>创建并初始化数据库&amp;安全设计<br>
+– 加载初始数据，测试<br>
+– 识别不同的用户及他们的角色</li>
+</ol>
+<h3 id="database-language">Database Language</h3>
+<ul>
+<li>DDL=Data Definition Language</li>
+<li>DML=Data Manipulation Language</li>
+<li>DCL=Data Control Language</li>
+</ul>
+<p>我们学习的重点是SQL。</p>
+<h3 id="database用户">Database用户</h3>
+<p>DBA：Database Administrator。拥有最高权限，有下面5个功能：</p>
+<ul>
+<li><strong>Schema definition</strong>. The DBA creates the original database schema by executing a set of data definition statements in the DDL.</li>
+<li><strong>Storage structure and access-method definition.</strong></li>
+<li><strong>Schema and physical-organization modification</strong>：The DBA carries out changes to the schema and physical organization to reflect the changing needs of the organization, or to alter the physical organization to improve performance</li>
+<li><strong>Granting of authorization for data access.</strong> By granting different types of authorization, the database administrator can regulate which parts of the database various users can access. The authorization information is kept in a special system structure that the database system consults whenever someone attempts to access the data in the system</li>
+<li>**Routine maintenance.**日常维护</li>
+</ul>
+<h3 id="transaction-management">Transaction Management</h3>
+<p>我们需要让事务具有如下特性：</p>
+<ul>
+<li>atomicity 原子性：一个事务要么发生，要么不发生</li>
+<li>consistence 一致性</li>
+<li>isolation 隔离性</li>
+<li>durability 持久性：一旦执行成功就会永久保存</li>
+</ul>
+<h3 id="dbms结构">DBMS结构</h3>
+<figure data-type="image" tabindex="1"><img src="http://127.0.0.1:8080/post-images/1614829205175.png" alt="" loading="lazy"></figure>
+<ol>
+<li>Storage manager：</li>
+<li>Query processor：</li>
+</ol>
+<h2 id="二-关系模型-relational-model">二、关系模型 Relational Model</h2>
+<h3 id="relation">Relation：</h3>
+<ul>
+<li>A <strong>relational database</strong> is a collection of one or more <strong>relations</strong>, which are based on <strong>relational model</strong>. 关系型数据库是使用最广泛的数据库。</li>
+<li>A <strong>relation</strong> is a table with rows and columns. 简单的理解Relation就是一张表。</li>
+<li>The set of allowed values for each <strong>attribute</strong> is called the <strong>domain</strong> (域) of the attribute. 简单的理解Attribute就是列，对应的数据取值范围就是Domain。</li>
+<li><strong>tuple</strong>代表的就是数据库中的一行。</li>
+</ul>
+<h3 id="schema-instance">Schema &amp; instance：</h3>
+<ul>
+<li>The <strong>relation schema</strong> describe the structure of the relation. 比如<code>Instructor-schema = (ID: string, name: string, dept_name: string, salary: int)</code>，介绍了表头以及域（类型）。规定了表的结构。
+<ul>
+<li>我们用R表示schema. <code>R={ID, name, dept_name, salary}</code></li>
+</ul>
+</li>
+<li>The relation <strong>instance</strong> corresponds to the snapshot of the data in the relation at a given instant in time.
+<ul>
+<li>我们用r(R)表示某个instance。是一张具体的表。他和schema的关系，就跟class和instance一样。</li>
+</ul>
+</li>
+</ul>
+<h3 id="key">Key：</h3>
+<ul>
+<li>K is a <strong>superkey</strong> (超码) of R if values for K are sufficient to identify a unique tuple of each possible relation r(R) 。或者说K是可以唯一确定某条记录的，一个或多个属性的集合，
+<ul>
+<li>K is a <strong>candidate key</strong> (候选码) if K is minimal superkey. 如果K的任意一个真子集都不是superkey,那么K就是candidate key。这也是我们通常关心的。</li>
+<li>K is a <strong>primary key</strong> (主码), if k is a candidate key and been defined by user explicitly. Primary key is usually marked by underline. <strong>Primary key</strong>是被数据库设计者专门选出的candidate key。我们通常用下划线表示它。</li>
+</ul>
+</li>
+<li>如果一个relation r1中包含另一个relation r2的primary key<u>KK</u>。那么在r1中，我们把KK称为<strong>foreign key</strong>。把r1称为refering relation(参照关系)，把r2称为referenced relation (被参照关系).
+<ul>
+<li>参照关系中外键的值必须<strong>在被参照关系中实际存在或为null</strong>。定义外键的好处是防止r(A,B,C)中的B出现无效数据，这种约束称为referential integrity constraint。</li>
+</ul>
+</li>
+</ul>
+
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#%E5%AF%BC%E8%AE%BA-introduction">导论 Introduction</a>
+<ul>
+<li><a href="#view-of-data">View of data</a></li>
+<li><a href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AE%BE%E8%AE%A1">数据库设计</a></li>
+<li><a href="#database-language">Database Language</a></li>
+<li><a href="#database%E7%94%A8%E6%88%B7">Database用户</a></li>
+<li><a href="#transaction-management">Transaction Management</a></li>
+<li><a href="#dbms%E7%BB%93%E6%9E%84">DBMS结构</a></li>
+</ul>
+</li>
+<li><a href="#%E4%BA%8C-%E5%85%B3%E7%B3%BB%E6%A8%A1%E5%9E%8B-relational-model">二、关系模型 Relational Model</a>
+<ul>
+<li><a href="#relation">Relation：</a></li>
+<li><a href="#schema-instance">Schema &amp; instance：</a></li>
+<li><a href="#key">Key：</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="http://127.0.0.1:8080/post/shu-zhi-ji-suan-fang-fa/">
+              <h3 class="post-title">
+                数值计算方法
+              </h3>
+            </a>
+          </div>
+        
+
+        
+
+        <div class="site-footer">
+  
+  <a class="rss" href="http://127.0.0.1:8080/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>

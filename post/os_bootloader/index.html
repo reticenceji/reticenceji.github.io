@@ -1,0 +1,268 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>OS-Bootloader | Reticence</title>
+<link rel="shortcut icon" href="http://127.0.0.1:8080/favicon.ico?v=1619508275369">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="http://127.0.0.1:8080/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="OS-Bootloader | Reticence - Atom Feed" href="http://127.0.0.1:8080/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-90HNEFFE0M"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-90HNEFFE0M');
+</script>
+
+
+    <meta name="description" content="参考链接：https://www.ionos.com/digitalguide/server/configuration/what-is-a-bootloader/
+当我们需要运行程序的时候，我们需要把他载入内存（main memory）。..." />
+    <meta name="keywords" content="OS" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="http://127.0.0.1:8080">
+  <img class="avatar" src="http://127.0.0.1:8080/images/avatar.png?v=1619508275369" alt="">
+  </a>
+  <h1 class="site-title">
+    Reticence
+  </h1>
+  <p class="site-description">
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          Index
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          Classification
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          Archives
+        </a>
+      
+    
+      
+        <a href="/navigator.html" class="menu">
+          Navigator
+        </a>
+      
+    
+      
+        <a href="/post/book-list" class="menu">
+          Booklist
+        </a>
+      
+    
+      
+        <a href="/post/fei-md-ge-shi-bi-ji-hui-zong" class="menu">
+          Notes
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          About
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+        <a href="https://github.com/reticenceji" target="_blank">
+          <i class="ri-github-line"></i>
+        </a>
+      
+    
+      
+    
+      
+    
+      
+        <a href="https://www.zhihu.com/people/reticenceji" target="_blank">
+          <i class="ri-zhihu-line"></i>
+        </a>
+      
+    
+      
+    
+  </div>
+  <script>
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
+    var s = document.getElementsByTagName("script")[0]; 
+    s.parentNode.insertBefore(hm, s);
+  })();
+  </script>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              OS-Bootloader
+            </h2>
+            <div class="post-info">
+              <span>
+                2020-10-07
+              </span>
+              <span>
+                3 min read
+              </span>
+              
+                <a href="http://127.0.0.1:8080/tag/nfABdWVsa/" class="post-tag">
+                  # OS
+                </a>
+              
+            </div>
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <p>参考链接：https://www.ionos.com/digitalguide/server/configuration/what-is-a-bootloader/<br>
+当我们需要运行程序的时候，我们需要把他载入内存（main memory）。<br>
+而操作系统是最重要的程序，我们需要在设备启动的时候就将操作系统载入main memory。这就是bootloader要做的事。</p>
+<h2 id="什么是bootloader">什么是bootloader</h2>
+<p>A bootloader, also known as a boot program or bootstrap loader, is a special <strong>operating system software</strong> that loads into the working memory of a computer after start-up.<br>
+Immediately after a device starts, a bootloader is generally launched by a bootable medium。The boot medium(介质) receives information from the computer’s firmware (固件，e.g. BIOS) about where the bootloader is.</p>
+<h2 id="计算机是如何启动的">计算机是如何启动的</h2>
+<ol>
+<li>在计算机的ROM（Read-Only Memory），存储着BIOS程序（现在更新的技术是UEFI）。他会检测计算机的硬件（collect the most diverse hardware data and create a complete list of all of the device’s available drives）。<br>
+然后 BIOS按照&quot;启动顺序&quot;，把控制权转交给排在第一位的能用于启动的储存设备。如何判断能否用于启动呢？需要检查存储设备是否有boot record(也叫boot signature)，<br>
+goes through the data carriers found in sequence,checking for a bootloader by means of boot signature</li>
+</ol>
+<h2 id="bootloader存储在哪里">Bootloader存储在哪里</h2>
+<ol>
+<li>通常第一个扇区，前512个字节，也就是MBR(Master boot record)）如果这512个字节的最后两个字节是0x55和0xAA，表明这个设备可以用于启动。</li>
+<li>The bootloader is stored on a specific partition of the bootable medium.</li>
+</ol>
+<h2 id="bootloader的工作">Bootloader的工作</h2>
+<ol>
+<li>The first task is to load the main memory, which is essential for the processor to work.</li>
+<li>In the second step, the bootloader <strong>loads the kernel of the operating system</strong>, that is, the primary component of the system software that controls all storage and processor permissions and contains all important drivers.</li>
+<li>After successfully completing all tasks, the bootloader returns the system responsibility to the kernel.</li>
+</ol>
+<p>BootLoader是系统加电后运⾏的第⼀段代码，它在操作系统内核运⾏之前运⾏，可以分为Booter<br>
+和Loader，Booter是初始化系统硬件使之能够运⾏起来；Loader是建⽴内存空间映射图，将操作系统<br>
+镜像加载到内存中，并跳转过去运⾏。经过Bootloader的引导加载后，系统就会退出bootloader程序，<br>
+启动并运⾏操作系统，此后交由Linux内核接管。</p>
+
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#%E4%BB%80%E4%B9%88%E6%98%AFbootloader">什么是bootloader</a></li>
+<li><a href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%98%AF%E5%A6%82%E4%BD%95%E5%90%AF%E5%8A%A8%E7%9A%84">计算机是如何启动的</a></li>
+<li><a href="#bootloader%E5%AD%98%E5%82%A8%E5%9C%A8%E5%93%AA%E9%87%8C">Bootloader存储在哪里</a></li>
+<li><a href="#bootloader%E7%9A%84%E5%B7%A5%E4%BD%9C">Bootloader的工作</a></li>
+</ul>
+</li>
+</ul>
+
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="http://127.0.0.1:8080/post/za-tan-kuai-su-xue-xi-neng-li/">
+              <h3 class="post-title">
+                杂谈-快速学习能力
+              </h3>
+            </a>
+          </div>
+        
+
+        
+
+        <div class="site-footer">
+  
+  <a class="rss" href="http://127.0.0.1:8080/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>

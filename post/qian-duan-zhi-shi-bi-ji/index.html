@@ -1,0 +1,707 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>前端知识笔记-html,js,css | Reticence</title>
+<link rel="shortcut icon" href="http://127.0.0.1:8080/favicon.ico?v=1619508275369">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="http://127.0.0.1:8080/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="前端知识笔记-html,js,css | Reticence - Atom Feed" href="http://127.0.0.1:8080/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-90HNEFFE0M"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-90HNEFFE0M');
+</script>
+
+
+    <meta name="description" content="
+HTML基础
+HTML骨架
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+    &lt;head&gt;
+    ...
+    &lt;/head&gt;
+    &lt;body&gt;
+    ...
+  ..." />
+    <meta name="keywords" content="Web" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="http://127.0.0.1:8080">
+  <img class="avatar" src="http://127.0.0.1:8080/images/avatar.png?v=1619508275369" alt="">
+  </a>
+  <h1 class="site-title">
+    Reticence
+  </h1>
+  <p class="site-description">
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          Index
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          Classification
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          Archives
+        </a>
+      
+    
+      
+        <a href="/navigator.html" class="menu">
+          Navigator
+        </a>
+      
+    
+      
+        <a href="/post/book-list" class="menu">
+          Booklist
+        </a>
+      
+    
+      
+        <a href="/post/fei-md-ge-shi-bi-ji-hui-zong" class="menu">
+          Notes
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          About
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+        <a href="https://github.com/reticenceji" target="_blank">
+          <i class="ri-github-line"></i>
+        </a>
+      
+    
+      
+    
+      
+    
+      
+        <a href="https://www.zhihu.com/people/reticenceji" target="_blank">
+          <i class="ri-zhihu-line"></i>
+        </a>
+      
+    
+      
+    
+  </div>
+  <script>
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
+    var s = document.getElementsByTagName("script")[0]; 
+    s.parentNode.insertBefore(hm, s);
+  })();
+  </script>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              前端知识笔记-html,js,css
+            </h2>
+            <div class="post-info">
+              <span>
+                2020-07-29
+              </span>
+              <span>
+                13 min read
+              </span>
+              
+                <a href="http://127.0.0.1:8080/tag/FsPAOTRN-/" class="post-tag">
+                  # Web
+                </a>
+              
+            </div>
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <hr>
+<h2 id="html基础">HTML基础</h2>
+<h5 id="html骨架">HTML骨架</h5>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+    &lt;head&gt;
+    ...
+    &lt;/head&gt;
+    &lt;body&gt;
+    ...
+    &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<h5 id="静态网页最基本的四个标签">静态网页最基本的四个标签</h5>
+<pre><code class="language-html">&lt;h1&gt;This is heading 1&lt;/h1&gt;     //表示标题
+&lt;p&gt;This is a paragraph.&lt;/p&gt;    //表示段落
+&lt;a href=&quot;http://www.w3school.com.cn&quot;&gt;This is a link&lt;/a&gt;    //超链接
+&lt;img src=&quot;w3school.jpg&quot; width=&quot;104&quot; height=&quot;142&quot; /&gt;    //图像
+&lt;!-- This is a comment 注释 --&gt;
+</code></pre>
+<h5 id="属性">属性</h5>
+<p>每个标签会有属性,属性的格式参考上面</p>
+<table>
+<thead>
+<tr>
+<th>常见属性</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td>规定元素的唯一id</td>
+</tr>
+<tr>
+<td>hidden</td>
+<td>是否隐藏</td>
+</tr>
+<tr>
+<td>style</td>
+<td>利用CSS规定元素样式</td>
+</tr>
+</tbody>
+</table>
+<p>详细的参考:</p>
+<ul>
+<li><a href="https://www.w3school.com.cn/tags/html_ref_standardattributes.asp">全局属性参考手册</a></li>
+<li><a href="https://www.w3school.com.cn/tags/index.asp">完整的HTML参考手册</a></li>
+</ul>
+<pre><code class="language-html">&lt;a href=&quot;www.baidu.com&quot;&gt;
+    &lt;img src=&quot;w3school.jpg&quot; width=&quot;104&quot; height=&quot;142&quot; /&gt;
+&lt;/a&gt;        //用图像做超链接
+</code></pre>
+<pre><code class="language-html">&lt;table border=&quot;1&quot;&gt;
+	&lt;tr&gt;
+		&lt;td&gt;row 1, cell 1&lt;/td&gt;
+		&lt;td&gt;row 1, cell 2&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;td&gt;row 2, cell 1&lt;/td&gt;
+		&lt;td&gt;row 2, cell 2&lt;/td&gt;
+	&lt;/tr&gt;
+&lt;/table&gt;
+&lt;!-- HTML中的表格 --&gt;
+</code></pre>
+<h5 id="配合css样式表的一些元素">配合CSS样式表的一些元素</h5>
+<table>
+<thead>
+<tr>
+<th>标签或属性</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>&lt;div&gt;</td>
+<td>定义文档中的分区或节（division/section）</td>
+</tr>
+<tr>
+<td>&lt;span&gt;</td>
+<td>定义 span，用来组合文档中的行内元素。</td>
+</tr>
+<tr>
+<td>class</td>
+<td>为标签分类</td>
+</tr>
+<tr>
+<td>id</td>
+<td>指定元素的唯一ID</td>
+</tr>
+</tbody>
+</table>
+<p>https://www.w3school.com.cn/html/html_classes.asp</p>
+<h5 id="框架">框架</h5>
+<p>通过框架我们可以在一个浏览器窗口浏览不止一个页面</p>
+<pre><code class="language-html">&lt;frameset cols=&quot;25%,75%&quot;&gt;
+   &lt;frame src=&quot;frame_a.htm&quot;&gt;
+   &lt;frame src=&quot;frame_b.htm&quot;&gt;
+&lt;/frameset&gt;
+&lt;!--框架集    --&gt;
+&lt;iframe src=&quot;/example/html/demo_iframe.html&quot; width=&quot;200&quot; height=&quot;200&quot;
+    frameborder=&quot;0&quot;
+&gt;&lt;/iframe&gt;
+&lt;!--内联框架--&gt;
+&lt;iframe src=&quot;demo_iframe.htm&quot; name=&quot;iframe_a&quot;&gt;&lt;/iframe&gt;
+&lt;p&gt;&lt;a href=&quot;http://www.w3school.com.cn&quot; target=&quot;iframe_a&quot;&gt;W3School.com.cn&lt;/a&gt;&lt;/p&gt;
+&lt;!--让超链接在内联框架里打开--&gt;
+</code></pre>
+<h5 id="脚本">脚本</h5>
+<p>JavaScript 使 HTML 页面具有更强的动态和交互性。</p>
+<pre><code class="language-html">&lt;script type=&quot;text/javascript&quot;&gt;
+    document.write(&quot;&lt;h1&gt;Hello World!&lt;/h1&gt;&quot;)
+&lt;/script&gt; 
+&lt;!--简单的插入一段脚本--&gt;
+</code></pre>
+<h5 id="路径">路径</h5>
+<p>路径也分为绝对路径和相对路径</p>
+<pre><code class="language-html">&lt;img src=&quot;https://www.w3school.com.cn/images/picture.jpg&quot; alt=&quot;flower&quot;&gt;
+&lt;!--URL的绝对寻址--&gt;
+&lt;img src=&quot;/images/picture.jpg&quot; alt=&quot;flower&quot;&gt;
+&lt;!--从网站根目录开始--&gt;
+&lt;img src=&quot;images/picture.jpg&quot; alt=&quot;flower&quot;&gt;
+&lt;!--相对于当前路径--&gt;
+</code></pre>
+<h5 id="html头部元素">HTML头部元素</h5>
+<table>
+<thead>
+<tr>
+<th>标签</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>&lt;title&gt;</td>
+<td>定义文档的标题。</td>
+</tr>
+<tr>
+<td>&lt;link&gt;</td>
+<td>定义文档与外部资源之间的关系。</td>
+</tr>
+<tr>
+<td>&lt;style&gt;</td>
+<td>用于为 HTML 文档定义样式信息。</td>
+</tr>
+<tr>
+<td>&lt;meta&gt;</td>
+<td>元数据（metadata）是关于数据的信息。标签提供关于 HTML 文档的元数据。元数据不会显示在页面上，但是对于机器是可读的。典型的情况是，meta 元素被用于规定页面的描述、关键词、文档的作者、最后修改时间以及其他元数据。标签始终位于 head 元素中。元数据可用于浏览器（如何显示内容或重新加载页面），搜索引擎（关键词），或其他 web 服务。</td>
+</tr>
+<tr>
+<td>&lt;script&gt;</td>
+<td>标签用于定义客户端脚本，比如 JavaScript。</td>
+</tr>
+</tbody>
+</table>
+<h5 id="关于字符">关于字符</h5>
+<p>URL 只能使用 ASCII 字符集来通过因特网进行发送。<br>
+由于 URL 常常会包含 ASCII 集合之外的字符，URL 必须转换为有效的 ASCII 格式。<br>
+URL 编码使用 &quot;%&quot; 其后跟随两位的十六进制数来替换非 ASCII 字符。<br>
+URL 不能包含空格。URL 编码通常使用 + 来替换空格。<br>
+<a href="https://www.w3school.com.cn/tags/html_ref_urlencode.html">URL编码参考手册</a><br>
+<a href="https://www.w3school.com.cn/tags/html_ref_entities.html">HTML字符实体参考手册</a></p>
+<h5 id="表单form">表单form</h5>
+<p>HTML 表单用于搜集不同类型的用户输入。</p>
+<pre><code class="language-html">&lt;form&gt;
+    First name:&lt;br&gt;
+    &lt;input type=&quot;text&quot; name=&quot;firstname&quot;&gt;
+    &lt;br&gt;
+    Last name:&lt;br&gt;
+    &lt;input type=&quot;text&quot; name=&quot;lastname&quot;&gt;
+&lt;/form&gt;
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>&lt;input&gt;的属性或表单Form的元素</th>
+<th>对应的显示</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>type=&quot;text&quot;</td>
+<td>输入框</td>
+</tr>
+<tr>
+<td>type=&quot;radio&quot;</td>
+<td>单选按钮</td>
+</tr>
+<tr>
+<td>type=&quot;password&quot;</td>
+<td>密码输入框</td>
+</tr>
+<tr>
+<td>type=&quot;submit&quot;</td>
+<td>提交按钮</td>
+</tr>
+<tr>
+<td>&lt;button&gt;</td>
+<td>按钮 onclick=&quot;单击脚本&quot;</td>
+</tr>
+<tr>
+<td>&lt;textarea&gt;</td>
+<td>定义多行输入字段（文本域）</td>
+</tr>
+<tr>
+<td>&lt;select&gt;</td>
+<td>定义下拉列表</td>
+</tr>
+<tr>
+<td>disabled</td>
+<td>禁用input</td>
+</tr>
+<tr>
+<td>value</td>
+<td>初始值</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>&lt;form&gt;的action</td>
+<td>规定了submit按钮执行的动作</td>
+</tr>
+<tr>
+<td>&lt;form&gt;method</td>
+<td>可以选择POST或者GET(默认)</td>
+</tr>
+<tr>
+<td>&lt;input&gt;的name</td>
+<td>必不可少,指定提交字段名</td>
+</tr>
+<tr>
+<td>&lt;form&gt;的target</td>
+<td>规定 action 属性中地址的目标（默认：_self)</td>
+</tr>
+</tbody>
+</table>
+<p>#####HTML5</p>
+<blockquote>
+<p>HTML5 是最新的 HTML 标准。<br>
+HTML5 是专门为承载丰富的 web 内容而设计的，并且无需额外插件。<br>
+HTML5 拥有新的语义、图形以及多媒体元素。<br>
+HTML5 提供的新元素和新的 API 简化了 web 应用程序的搭建。<br>
+HTML5 是跨平台的，被设计为在不同类型的硬件（PC、平板、手机、电视机等等）之上运行。</p>
+</blockquote>
+<hr>
+<p>##CSS层叠样式表<br>
+#####CSS基础语法<br>
+CSS 规则由两个主要的部分构成：选择器，以及一条或多条声明。<br>
+selector {declaration1; declaration2; ... declarationN }</p>
+<pre><code class="language-css">div#sp_sidebar div#sps_1
+{
+    width: 160px;
+    height: 600px;
+    padding: 0;
+    margin: 0;
+}
+</code></pre>
+<p>根据 CSS，子元素从父元素继承属性。<br>
+#####CSS选择器</p>
+<pre><code class="language-css">/*你会发现这里的属性值都没有引号*/
+h2,p {color:black;}
+/*这是最基本的元素选择器*/
+* {color:black;}
+/* *号是通配符 */
+h2 strong {
+     color: blue;
+     }
+/*这是派生选择器,&lt;h2&gt;&lt;strong&gt;被选择的元素&lt;/strong&gt;&lt;/h2&gt;*/
+#red {color:red;}
+/*这是ID选择器,选择了id是red的元素.也可以和派生合用*/
+#sidebar p {
+	font-style: italic;
+	text-align: right;
+	margin-top: 0.5em;
+	}
+/*id选择器和派生合用*/
+.center 
+{
+    text-align: center
+}
+/*这是class选择器,选择了class是center的元素.也可以和派生合用*/
+[title]
+{
+    color:red;
+    border:5px solid blue;
+}
+/*这是attribute选择器,选择了有title属性的元素*/
+[type=&quot;button&quot;]
+{
+    width:120px;
+    margin-left:35px;
+    display:block;
+    font-family: Verdana, Arial;
+}
+/*属性选择器,指定了属性的值为button才会被选择*/
+</code></pre>
+<p><a href="https://www.w3school.com.cn/css/css_syntax_attribute_selector.asp">CSS属性选择器参考</a></p>
+<p>#####使用CSS的方式</p>
+<ol>
+<li>外部样式表</li>
+</ol>
+<pre><code class="language-html">&lt;head&gt;
+    &lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;mystyle.css&quot; /&gt;
+&lt;/head&gt;
+</code></pre>
+<ol start="2">
+<li>内部样式表</li>
+</ol>
+<pre><code class="language-html">&lt;head&gt;
+&lt;style type=&quot;text/css&quot;&gt;
+  hr {color: sienna;}
+  p {margin-left: 20px;}
+  body {background-image: url(&quot;images/back40.gif&quot;);}
+&lt;/style&gt;
+&lt;/head&gt;
+</code></pre>
+<ol start="3">
+<li>内联样式表</li>
+</ol>
+<pre><code class="language-html">&lt;p style=&quot;color: sienna; margin-left: 20px&quot;&gt;
+This is a paragraph
+&lt;/p&gt;
+</code></pre>
+<p>#####And So On<br>
+因为我只是想学习一下CSS选择器,所以先到此为止了.有空继续完善</p>
+<p><kbd>F12</kbd>打开开发者工具</p>
+<h2 id="javascript">JavaScript</h2>
+<hr>
+<h5 id="javascript可以用来做什么">JavaScript可以用来做什么?</h5>
+<ol>
+<li><strong>JavaScript 为 HTML 设计师提供了一种编程工具</strong><br>
+HTML 创作者往往都不是程序员，但是 JavaScript 却是一种只拥有极其简单的语法的脚本语言！几乎每个人都有能力将短小的代码片断放入他们的 HTML 页面当中。</li>
+<li><strong>JavaScript 可以将动态的文本放入 HTML 页面</strong><br>
+类似于这样的一段 JavaScript 声明可以将一段可变的文本放入 HTML 页面：<code>document.write(&quot;&lt;h1&gt;&quot; + name + &quot;&lt;/h1&gt;&quot;)</code></li>
+<li><strong>JavaScript 可以对事件作出响应</strong><br>
+可以将 JavaScript 设置为当某事件发生时才会被执行，例如页面载入完成或者当用户点击某个 HTML 元素时。</li>
+<li><strong>JavaScript 可以读写 HTML 元素</strong></li>
+<li><strong>JavaScript 可以读取及改变 HTML 元素的内容。</strong></li>
+<li><strong>JavaScript 可被用来验证数据</strong><br>
+在数据被提交到服务器之前，JavaScript 可被用来验证这些数据。</li>
+<li><strong>JavaScript 可被用来检测访问者的浏览器</strong><br>
+JavaScript 可被用来检测访问者的浏览器，并根据所检测到的浏览器，为这个浏览器载入相应的页面。</li>
+<li><strong>JavaScript 可被用来创建 cookies</strong></li>
+<li><strong>JavaScript 可被用来存储和取回位于访问者的计算机中的信息。</strong></li>
+</ol>
+<p>基本语法：https://www.runoob.com/js/js-syntax.html<br>
+正则表达式：https://www.runoob.com/js/js-regexp.html<br>
+HTML 中的脚本必须位于 &lt;script&gt; 与 &lt;/script&gt; 标签之间。<br>
+脚本可被放置在 HTML 页面的 &lt;body&gt; 和 &lt;head&gt; 部分中。<br>
+我们也可以将js文件放在外部，外部的js脚本不需要&lt;script&gt;标签<br>
+<code>&lt;script src=&quot;myScript.js&quot;&gt;&lt;/script&gt;</code></p>
+<h2 id="输出方式">输出方式</h2>
+<pre><code class="language-javascript">使用 window.alert() 弹出警告框。
+使用 document.write() 方法将内容写到 HTML 文档中。
+使用 innerHTML 写入到 HTML 元素。
+使用 console.log() 写入到浏览器的控制台。(用于调试)
+</code></pre>
+<h2 id="dom-document-object-model">DOM （Document Object Model）</h2>
+<blockquote>
+<p>HTML DOM 是关于如何获取、更改、添加或删除 HTML 元素的标准</p>
+</blockquote>
+<p><img src="https://www.w3school.com.cn/i/ct_htmltree.gif" alt="DOM树结构" loading="lazy"><br>
+通过这个对象模型,我们可以操作HTML.<br>
+在 DOM 中，所有 HTML 元素都被定义为对象。<br>
+属性是您能够获取或设置的值（就比如改变 HTML 元素的内容）。<br>
+方法是您能够完成的动作（比如添加或删除 HTML 元素）。</p>
+<h3 id="document对象">document对象</h3>
+<p>document对象代表这个HTML.。<br>
+访问网页中的元素总是从document开始</p>
+<pre><code>document.write(&quot;&lt;h1&gt;这是一个标题&lt;/h1&gt;&quot;);
+</code></pre>
+<h3 id="查找元素">查找元素</h3>
+<pre><code class="language-JavaScript">document.getElementById(id)     
+//最简单的办法是查找ID
+var x = document.getElementsByTagName(&quot;p&quot;);     
+//通过标签名查找元素
+var y = documnet.querySelectorAll(&quot;p.intro&quot;)
+//利用CSS选择器查找元素
+for (i in x.element[i])
+{
+
+}
+//element属性包括了他的子元素?
+</code></pre>
+<h3 id="改变元素">改变元素</h3>
+<pre><code class="language-JS">document.getElementById(&quot;p12&quot;).innerHTML = &quot;Hello world！&quot;;
+document.getElementById(&quot;pic1&quot;).src = &quot;land.jpg&quot;; 
+x=document.getElementById(&quot;demo&quot;);
+x.style.color=&quot;#ff0000&quot;;          // 改变样式
+</code></pre>
+<h3 id="对事件做出响应">对事件做出响应</h3>
+<p>该例子中的js代码将在页面被加载时执行。</p>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;meta charset=&quot;utf-8&quot;&gt;
+&lt;title&gt;菜鸟教程(runoob.com)&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+	
+&lt;p&gt;
+JavaScript 能够直接写入 HTML 输出流中：
+&lt;/p&gt;
+&lt;script&gt;
+document.write(&quot;&lt;h1&gt;这是一个标题&lt;/h1&gt;&quot;);
+document.write(&quot;&lt;p&gt;这是一个段落。&lt;/p&gt;&quot;);
+&lt;/script&gt;
+&lt;p&gt;
+您只能在 HTML 输出流中使用 &lt;strong&gt;document.write&lt;/strong&gt;。
+如果您在文档已加载后使用它（比如在函数中），会覆盖整个文档。
+&lt;/p&gt;
+	
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p>一般我们需要对点击等事件做出响应，那么我们可以将js代码写入函数，然后在发生事件时调用函数。</p>
+<pre><code class="language-JS">&lt;input type=&quot;button&quot; onclick = &quot;document.getElementById('p12').visibility = 'hidden' &quot;&gt;
+&lt;body onload=&quot;checkCookies()&quot;&gt;
+&lt;a href=&quot;www.baidu.com&quot; onmouseover=&quot;style.color='red'&quot; onmouseout=&quot;style.color='black'&quot;&gt;&lt;/a&gt;
+//这个函数不是内置的
+
+&lt;script&gt;
+document.getElementById(&quot;myBtn&quot;).addEventListener(&quot;click&quot;, function(){
+    document.getElementById(&quot;demo&quot;).innerHTML = &quot;Hello World&quot;;}  );
+&lt;/script&gt;
+</code></pre>
+<p><a href="https://www.w3school.com.cn/jsref/dom_obj_event.asp">事件参考</a></p>
+
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#html%E5%9F%BA%E7%A1%80">HTML基础</a><br>
+*<br>
+*<br>
+* <a href="#html%E9%AA%A8%E6%9E%B6">HTML骨架</a><br>
+* <a href="#%E9%9D%99%E6%80%81%E7%BD%91%E9%A1%B5%E6%9C%80%E5%9F%BA%E6%9C%AC%E7%9A%84%E5%9B%9B%E4%B8%AA%E6%A0%87%E7%AD%BE">静态网页最基本的四个标签</a><br>
+* <a href="#%E5%B1%9E%E6%80%A7">属性</a><br>
+* <a href="#%E9%85%8D%E5%90%88css%E6%A0%B7%E5%BC%8F%E8%A1%A8%E7%9A%84%E4%B8%80%E4%BA%9B%E5%85%83%E7%B4%A0">配合CSS样式表的一些元素</a><br>
+* <a href="#%E6%A1%86%E6%9E%B6">框架</a><br>
+* <a href="#%E8%84%9A%E6%9C%AC">脚本</a><br>
+* <a href="#%E8%B7%AF%E5%BE%84">路径</a><br>
+* <a href="#html%E5%A4%B4%E9%83%A8%E5%85%83%E7%B4%A0">HTML头部元素</a><br>
+* <a href="#%E5%85%B3%E4%BA%8E%E5%AD%97%E7%AC%A6">关于字符</a><br>
+* <a href="#%E8%A1%A8%E5%8D%95form">表单form</a></li>
+<li><a href="#javascript">JavaScript</a><br>
+*<br>
+*<br>
+* <a href="#javascript%E5%8F%AF%E4%BB%A5%E7%94%A8%E6%9D%A5%E5%81%9A%E4%BB%80%E4%B9%88">JavaScript可以用来做什么?</a></li>
+<li><a href="#%E8%BE%93%E5%87%BA%E6%96%B9%E5%BC%8F">输出方式</a></li>
+<li><a href="#dom-document-object-model">DOM （Document Object Model）</a>
+<ul>
+<li><a href="#document%E5%AF%B9%E8%B1%A1">document对象</a></li>
+<li><a href="#%E6%9F%A5%E6%89%BE%E5%85%83%E7%B4%A0">查找元素</a></li>
+<li><a href="#%E6%94%B9%E5%8F%98%E5%85%83%E7%B4%A0">改变元素</a></li>
+<li><a href="#%E5%AF%B9%E4%BA%8B%E4%BB%B6%E5%81%9A%E5%87%BA%E5%93%8D%E5%BA%94">对事件做出响应</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="http://127.0.0.1:8080/post/webcompany-de-writeup/">
+              <h3 class="post-title">
+                Webcompany的writeup
+              </h3>
+            </a>
+          </div>
+        
+
+        
+
+        <div class="site-footer">
+  
+  <a class="rss" href="http://127.0.0.1:8080/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>

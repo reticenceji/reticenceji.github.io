@@ -1,0 +1,906 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Linux使用笔记 | Reticence</title>
+<link rel="shortcut icon" href="http://127.0.0.1:8080/favicon.ico?v=1619508275369">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="http://127.0.0.1:8080/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="Linux使用笔记 | Reticence - Atom Feed" href="http://127.0.0.1:8080/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-90HNEFFE0M"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-90HNEFFE0M');
+</script>
+
+
+    <meta name="description" content="——主要是看了鸟哥的书的笔记
+——如果你记不住指令，也没关系。知道有执行这个功能的指令就好。
+——其实我没有看完，实在是太多了。但是先就这样子吧。
+——结合Ctrl+F食用
+鸟哥的读书笔记
+开机
+BIOS：根据使用者的设定去指定的硬盘读取第..." />
+    <meta name="keywords" content="Linux" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="http://127.0.0.1:8080">
+  <img class="avatar" src="http://127.0.0.1:8080/images/avatar.png?v=1619508275369" alt="">
+  </a>
+  <h1 class="site-title">
+    Reticence
+  </h1>
+  <p class="site-description">
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          Index
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          Classification
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          Archives
+        </a>
+      
+    
+      
+        <a href="/navigator.html" class="menu">
+          Navigator
+        </a>
+      
+    
+      
+        <a href="/post/book-list" class="menu">
+          Booklist
+        </a>
+      
+    
+      
+        <a href="/post/fei-md-ge-shi-bi-ji-hui-zong" class="menu">
+          Notes
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          About
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+        <a href="https://github.com/reticenceji" target="_blank">
+          <i class="ri-github-line"></i>
+        </a>
+      
+    
+      
+    
+      
+    
+      
+        <a href="https://www.zhihu.com/people/reticenceji" target="_blank">
+          <i class="ri-zhihu-line"></i>
+        </a>
+      
+    
+      
+    
+  </div>
+  <script>
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
+    var s = document.getElementsByTagName("script")[0]; 
+    s.parentNode.insertBefore(hm, s);
+  })();
+  </script>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              Linux使用笔记
+            </h2>
+            <div class="post-info">
+              <span>
+                2020-07-29
+              </span>
+              <span>
+                34 min read
+              </span>
+              
+                <a href="http://127.0.0.1:8080/tag/i1ce0_J8S/" class="post-tag">
+                  # Linux
+                </a>
+              
+            </div>
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <p>——主要是看了鸟哥的书的笔记<br>
+——如果你记不住指令，也没关系。知道有执行这个功能的指令就好。<br>
+——其实我没有看完，实在是太多了。但是先就这样子吧。<br>
+——结合<code>Ctrl+F</code>食用</p>
+<h2 id="鸟哥的读书笔记">鸟哥的读书笔记</h2>
+<h3 id="开机">开机</h3>
+<p>BIOS：根据使用者的设定去指定的硬盘读取第一个扇区的MBR位置。<br>
+【主引导记录（MBR，Master Boot Record）是装有Linux系统的硬盘的第一个扇区，即C/H/S地址的0柱面0磁头1扇区，也叫做MBR扇区。】<br>
+BIOS-&gt;MBR-&gt;启动代码-&gt;核心文件（操作系统）<br>
+启动代码也可以装在各个分区的启动扇区。每个分区有自己的启动扇区，核心文件可以放在各个分区。<br>
+UEFI：</p>
+<h3 id="挂载">挂载</h3>
+<p>挂载：利用一个目录当做进入点（挂载点），将磁盘分区的数据存放在该目录下。<br>
+根目录一定要挂载到某个分区。<br>
+还需要一个swap分区</p>
+<h3 id="x-window和-console">X window和 console</h3>
+<p>Ctrl+Alt+F1 X window模式<br>
+Ctrl+Alt+F2-6 console模式<br>
+以上分别是tty1,tty2...tty6,（可以认为tty=terminal)<br>
+所谓的X window模式，不过是在命令行模式下打开了图形界面。用startx命令即可。不过不要在已经有其他X window被启动的情况下用startx。<br>
+sudo systemctl disable lightdm	#取消开机进入图形模式，enable恢复</p>
+<h3 id="一些键盘操作">一些键盘操作</h3>
+<p>TabTab		命令补全、文件补全<br>
+Ctrl+C		中断当前程序<br>
+Ctrl+D		EOF<br>
+如果文件名里有空格，用\ ，想换一行接着输命令，用<br>
+;可以让你在一行输入好几个命令</p>
+<p>man			查看manual			空格翻页，q退出，/string?string向下向上搜索，n,N正向反向。<br>
+info			在线求助				n下一个节点，p上一个节点，s搜索</p>
+<h3 id="科学关机">科学关机</h3>
+<p>who			查看当前用户在线状况<br>
+netstat		查看网络的联机状态<br>
+sync			把内存中尚未写入硬盘的数据写入硬盘中，shutdown前也会使用。sudo<br>
+shutdown	关机。sudo</p>
+<h3 id="权限">权限</h3>
+<p><strong>User，Group，Other</strong>，		万能的root<br>
+/etc/group		记录群组信息<br>
+/etc/shadow		记录用户密码<br>
+/etc/passwd		记录用户信息</p>
+<h3 id="ls-l的显示详解">ls -l的显示详解：</h3>
+<p>1.第一栏的十个位	文件类型-User权限-Group权限-Other权限<br>
+2.有多少档名连结到此节点（i-node）<br>
+3.表示文件（目录）的所有者账号<br>
+4.表示文件的所属群组<br>
+5.文件大小，默认单位byte<br>
+6.修改日期<br>
+7.文件名，带.的是隐藏文件<br>
+权限为----------的，就是root才能用了，因为他不受权限限制<br>
+###改变文件属性和权限<br>
+chgrp		修改群组<br>
+chown		修改所有者,群组		chown User:Group filename<br>
+chmod		修改文件权限			chmod -R 755	AppImage	(-R表示递归的修改目录下的所有文件）<br>
+chmod u=rwx,g+r,o-r PPTX\ 演示文稿.pptx<br>
+###权限rwx，对文件来说读、写、执行<br>
+对于目录来说，分别为：能否看到该目录内容，能否修改该目录内容，能否进入该目录。一般开放的目录需要rx权限。<br>
+种类：<br>
+-：正规文件，纯文本，二进制文件，数据格式文件<br>
+d：目录（directory）<br>
+l：链接（link）<br>
+b：区块设备档（block）			在/dev目录下常见<br>
+c：字符设备文件（character）		在/dev目录下常见<br>
+s：资料接口文件（socket）		在/run或/tmp目录下常见<br>
+p：数据输送文件（pipe）<br>
+和文件扩展名没有任何关系，文件扩展名只是给人看的。<br>
+###默认权限<br>
+文件的默认权限为-rw-rw-rw,666.目录的默认权限为drwxrwxrwx,777.<br>
+当新建一个文件时，文件的权限要“减去”umask中的权限。（umask顾名思义就是掩码）<br>
+直接在umask后面输入数字即可修改<br>
+###文件的隐藏属性<br>
+chattr [+-=][ASacdistu] 文件或目录名称		：修改隐藏属性<br>
++添加属性 -去除属性 =设定属性<br>
+i：让一个文件 不能被删除、改名、设定连结也无法写入或新增数据。只有 root 能设定。<br>
+a：文件将只能增加数据，而不能删除也不能修改数据，只有 root 才能设定这属性。<br>
+lsattr [adR] （文件或目录名称）	查看隐藏属性<br>
+###特殊权限（插眼，之后回来填坑）<br>
+当 s 这个标志出现在文件拥有者的 x 权限上时，例如刚刚提到的 /usr/bin/passwd 这个文件的权限状态：『-rwsr-xr-x』，此时就被称为 Set UID，简称为 SUID 的特殊权限。用于文件。<br>
+那么，其他用户在执行该文件的时候（要求其他用户对该文件有x权限），可以获得该程序拥有者的权限，在程序的执行过程中有效。<br>
+当 s 标志在文件拥有者的 x 项目为 SUID，那 s 在群组的 x 时则称为 Set GID，SGID<br>
+当t，SBIT，用于目录。<br>
+chmod 4755 filename	第一个数字就是上面三个特殊权限，依次为421.</p>
+<h3 id="文件系统">文件系统</h3>
+<p>根据FHS(filesystem hierarchy standard)<br>
+/根目录<br>
+/var			与系统运作有关<br>
+/usr			unix software resource与软件安装执行有关<br>
+/bin			可执行命令文件<br>
+/boot		放置着系统核心文件和开机所需文件<br>
+/dev			系统设备（device）相关文件<br>
+/etc			系统主要配置文件<br>
+/home 		除了根用户外其他用户的家目录<br>
+/lib			系统和程序运行所要调用的库函数文件<br>
+/root		根用户家目录<br>
+/sbin		根用户才能执行的命令<br>
+/srv			服务启动后需要访问的数据<br>
+/tmp		程序临时储存目录，任何人都可访问<br>
+/opt			第三方软件建议安装目录<br>
+/media		移动设备相关文件<br>
+/lost+found	当文件系统发生错误时一些遗失的片段放置的目录，在deepin里也是回收站？<br>
+/proc		虚拟文件系统，内存信息<br>
+/sys			虚拟文件系统，记录核心与系统硬件信息相关的信息</p>
+<p>#文件和目录<br>
+###相对路径：<br>
+.	当前目录<br>
+..	上级目录<br>
+~	当前用户的家目录</p>
+<ul>
+<li>前一个目录，就像windows中的后退</li>
+</ul>
+<p>Linux中文件的时间戳信息，主要有三个。第一个最重要。<br>
+mtime : modification time	文件的修改时间<br>
+ctime : status time			文件的权限、属性被更改时间<br>
+atime : access time			文件的读取时间<br>
+ls默认显示第一个mtime，查看下面两个加上选项--time=atime/ctime</p>
+<h4 id="目录操作命令">目录操作命令：</h4>
+<pre><code>cd		change directory切换目录
+pwd		显示当前目录
+mkdir	创建新的空目录
+rmdir	删除空目录
+
+ls		列出文件	-R递归列出子文件	-l详细信息
+cp		复制（建立链接，更新文件）	-a完全复制，权限不变	-l创建硬链接	-s创建软链接 -r目录复制 
+在默认情况下，会改变群组和权限
+mv		移动目录，重命名	
+mv source1 source2 ... destination, cp也一样
+rm		移除文件		-r递归删除目录 -i删除前询问 -f强制删除，忽略不存在的文件
+
+basename	路径中的档名
+dirname		路径中的目录名
+touch	改变文件时间戳，创建新文件	-a只修改atime -m只修改mtime -t修改成任意时间（默认为现在）
+</code></pre>
+<h4 id="文件读取命令">文件读取命令：</h4>
+<pre><code>cat 		从第一行开始显示文件内容 -n显示行号
+tac		从最后一行开始显示文件内容
+nl		显示文件内容的时候输出行号
+less		分页显示，比more好用
+[Space][PgDown]向下翻页	[PgUp]向上翻页	/向下字符串搜索	？向上字符串搜索	q离开	
+G最后一行	g第一行	n/N切换搜索结果
+od		以二进制方式读取文件内容 	-t xCc：ASCII对照表
+head	看文件头几行
+tail		看文件末几行
+head和tail可以配合使用，如查看11-20行：head -n 20 filename | tail -n 10
+</code></pre>
+<h4 id="文件操作命令">文件操作命令</h4>
+<pre><code>grep		在输入中寻找匹配的字符(RE)，输出匹配的行		grep [option] pattern file1 file2 ...
+cut		-d后面接分隔字符，与 -f 一起使用		-f依据-d的分隔字符将一段讯息分区成为数段，用 -f取出第几段
+-c以字符 (characters) 的单位取出固定字符区，用于排列整齐的输出，比如ls -l | cut -c 1-10
+sort		排序，默认为字典序。
+uniq		对连续重复的条目去重计数
+Note: 'uniq' does not detect repeated lines unless they are adjacent.
+You may want to sort the input first, or use 'sort -u' without 'uniq'.
+wc		对文件的行数、字数、字符数进行统计。
+
+tr		进行字符的删除替换		tr ... old new	把...中的old换成new
+tr ... -b old	删除...中的old
+col		把tab换成对应个数的空格
+split		把一个大文件拆成若干个小文件 	-b按大小拆分		-l按行数拆分		split [option] filename prefix
+xargs	给命令提供参数，对于不能用Pipe的命令。
+-n一次接受的最大参数	-p执行命令前询问
+xargs [option] command ,然后从标准输入获得arguments	
+printf	格式化输出，有点像C语言，但是分隔符是空格
+awk		一个处理行数据的工具，会把file的行根据空白符拆分成字段，$1 $2 ...，$0代表整行
+awk ‘条件表达式{指令} 条件表达式{指令}...’	filename		条件表达式为真会执行指令
+diff		顾名思义，比较两个文本文件或目录的差异，逐行比较 	diff from-file to-file
+-b忽略空白数不同的差异		-B忽略空白行的差异		-i忽略大小写的差异
+cmp		比较两个文件的差异，逐字节比较
+patch	更新指令，插眼
+pr		打印准备指令、略
+</code></pre>
+<h4 id="文件信息和查找命令">文件信息和查找命令</h4>
+<pre><code>file		查看文件类型
+which	查找脚本文件
+whereis	在特定的目录下查找文件	-l列出特定的目录
+locate	在系统的数据库中查找文件
+deepin系统默认没有安装locate.
+updatedb更新数据库
+find		根据条件寻找文件，并可以对找到的结果执行action脚本。
+find [PATH] [Option] [Action] 
+例如：find -name 'DOC*' -exec ls -l {} \;		这里还有正则表达式
+</code></pre>
+<p>环境变量PATH，提供上下文</p>
+<h1 id="磁盘管理这里头学问太深这里是皮毛中的尖尖">磁盘管理（这里头学问太深，这里是皮毛中的尖尖）</h1>
+<p>对一块硬盘的操作流程：<br>
+1.对磁盘进行分区，建立可用的partition<br>
+2.对partion进行格式化，建立可用的file system<br>
+3.可以对刚刚建立的file system进行检验<br>
+4.在Linux系统中，把硬盘挂在到某个目录上<br>
+分区表格式：MBR/GPT<br>
+file system<br>
+Windows的操作系统使用NTFS文件系统。<br>
+Linux使用Ext2/3/4算是官方文件格式，除此之外/proc/filesystems可以查看已经被加载到内存中支持的文件系统。<br>
+当然还有很多其他的文件系统。</p>
+<p>文件数据除了本身的内容之外，还包括很多属性。<br>
+在 Linux 系统下，每个文件(不管是一般文件还是目录文件)都会占用一个inode ， 且可依据文件内容的大小来分配多个 block 给该文件使用。<br>
+大致可以这么理解。<br>
+目录中的文件文件名存在目录对应的块中。<br>
+df：列出文件系统中的整体磁盘使用情况<br>
+du：列出文件的磁盘使用情况</p>
+<p>硬链接：我们访问文件的方式是 通过文件名找到inode从而访问其内容。硬链接就是不同目录下的文件指向同一个inode的情况。可想而知，修改其中一个所有的都会改变，删除其中一个不影响其他的打开。不能链接目录，不能跨file system.<br>
+软链接：就像快捷方式。</p>
+<p>lsblk		列出系统上所有的磁盘列表，以及信息。<br>
+blkid	也是查看磁盘信息的</p>
+<p>磁盘分区：<br>
+对于分区表是MBR的使用fdisk分区，GPT的使用gdisk。<br>
+可以使用fdisk -l devicename 查看分区类型。<br>
+parted两者都可。<br>
+<strong>格式化</strong>建立file system：<br>
+mkfs		make file system,双击tab看看。<br>
+挂载：<br>
+mount	挂载命令	[设备名][挂载目录]	<br>
+也可以把目录挂载到目录上，--bind dir1 dir2，dir2是挂载点<br>
+umont	卸载命令<br>
+/etc/fstab中存储了开机挂载信息。六个字段分别为# Device Mount | point | filesystem | parameters | dump | fs<br>
+/etc/fstab 是开机时的配置文件，不过，实际 filesystem 的挂载是记录到 /etc/mtab 与 /proc/mounts 这两个文件当中的。每次我们在更动 filesystem 的挂载时，也会同时更动这两个文件喔！</p>
+<p>关于Swap分区：<br>
+mkswap	格式化为swap格式<br>
+free		查看内存与swap使用情况<br>
+swapon	打开、查看swap分区对应的文件？设备？<br>
+swapoff	关闭某个打开的swap分区	这两个就像mount和umount</p>
+<h1 id="压缩文件">压缩文件</h1>
+<p>虽然扩展名没什么用，Linux上常见的压缩文件一般用这些标示。<br>
+*.Z 		compress 程序压缩的文件；<br>
+*.zip 	zip 程序压缩的文件；<br>
+*.gz 		gzip 程序压缩的文件；<br>
+*.bz2 	bzip2 程序压缩的文件；<br>
+*.xz 		xz 程序压缩的文件；<br>
+*.tar 		tar 程序打包的数据，并没有压缩过；<br>
+*.tar.gz 	tar 程序打包的文件，其中并且经过 gzip 的压缩<br>
+*.tar.bz2 	tar 程序打包的文件，其中并且经过 bzip2 的压缩<br>
+<em>.tar.xz 	tar 程序打包的文件，其中并且经过 xz 的压缩<br>
+1.gzip<br>
+压缩文件之后，默认会产生</em>.gz的文件，并且源文件消失。<br>
+-1~9表示压缩等级		-d表示解压缩		-k表示源文件不消失		-v显示压缩信息</p>
+<p>zcat		如果被压缩的是文本文件，可以考虑使用zcat读取<br>
+类似的还有zgrep , zless<br>
+2.bzip2<br>
+用法和gzip很像，默认产生.bz2文件，压缩比比gzip大<br>
+3.xz<br>
+用法依然很像，默认产生.xz文件，压缩比更大<br>
+相应的有xzcat , xzless , xzgrep<br>
+4.tar<br>
+这是打包指令，功能很强大，指令很多。<br>
+tar -cv -f filename.tar 要被打包的文件或目录名称				打包命令<br>
+tar -zcv -f filename.tar.gz 要被压缩的文件或目录名称			压缩命令<br>
+tar -ztv -f filename.tar.gz								查询命令<br>
+tar -zxv -f filename.tar.gz -C 欲解压缩的目录					解压缩命令<br>
+tar -zxv -f filename.tar.gz 要解压的文件名 -C 欲解压缩的目录	部分解压缩命令</p>
+<p>上面的z表示压缩成.gz，换成j表示.bz2，换成J表示.xz<br>
+-p保留原来的权限设置，常用于备份配置文件<br>
+当已绝对路径指定文件时，tar会删除开头根目录/ -P可以保留路径的根目录<br>
+--exclude=filename 指定不打包的文件名<br>
+5.dd<br>
+dd if=”input file” of=”output file”<br>
+file除了可以是文件，也可以是装置<br>
+dd会单纯的记录磁盘的信息，所以和文件系统无关。<br>
+6.cpio<br>
+7.7z<br>
+.7z也是常见的压缩文件<br>
+7z x filename		解压缩</p>
+<p>#vi和vim<br>
+vi有三个模式：<br>
+command mode：		按ESC进入			移动光标、复制粘贴、删除		一<br>
+insert mode：			在一般模式下i/a/o/r	进入，编辑					二<br>
+command-line mode：	在一般模式下按 : / ? 	进入，搜索、保存、退出等		三</p>
+<p>基本操作：<br>
+三	:wq保存退出		:q!强制离开不保存		:w [filename]另存为<br>
+:r [filename]将filename里的内容添加到光标后面<br>
+一	hjkl 左下上右		[n]hjkl上下左右n个单位		gg回到第一行		[n]G到第[n]行<br>
+三	/word向下搜索word		?word向上搜索word	<br>
+:[n1],[n2]s/word1/word2	/g	在[n1]~[n2]之间搜索word1并替换成word2<br>
+:[n1],[n2]s/word1/word2	/g	在[n1]~[n2]之间搜索word1并替换成word2，替换前确认<br>
+x&lt;=&gt;delete	X&lt;=&gt;backspace<br>
+dd删除整行	[n]dd删除光标向下[n]行<br>
+yy复制整行	[n]yy复制光标向下[n]行<br>
+p将已经复制的数据粘贴到光标下一行	P将已经复制的数据粘贴到光标上一行<br>
+u撤销 		Ctrl+r取消撤销		.重复前一个指令<br>
+v字符选择	V行选择		Ctrl+V区块选择		然后结合ydp进行复制删除粘贴操作～<br>
+三	:sp {filename} 分窗口显示，没有filename就是当前文件<br>
+Ctrl+w+jk	上下切换窗口		Ctrl+w+q		退出窗口<br>
+三	:set xxx设定vim的环境</p>
+<p>dos2unix		转换windows的换行格式为unix的换行格式<br>
+unix2dos		转换unix的换行格式为windows的换行格式<br>
+iconv		转换文件的编码格式<br>
+iconv -f 原来的编码 -t 目标编码 文件 -o 输出文件</p>
+<p>#Bash<br>
+bash是预设的shell，很好用。<br>
+一些功能：<br>
+双tab命令补全	历史命令记录↑<br>
+shell脚本<br>
+工作前景背景控制	<br>
+通配符<br>
+history	历史命令记录 history 10 最近的10个历史记录<br>
+alias		设置命令别名 alias name=“指令” 		-p输出已经定义的别名<br>
+ulimit	限制用户对某些系统资源的使用<br>
+source	在当前shell中直接执行命令，让配置文件立即生效而不需要注销		source filename<br>
+stty		-a查看键盘快捷键对应的作用</p>
+<p>一些默认的快捷键：<br>
+Ctrl + C 		终止目前的命令<br>
+Ctrl + D 		输入结束 (EOF)，例如邮件结束的时<br>
+Ctrl + S 		暂停屏幕的输出<br>
+Ctrl + Q 		恢复屏幕的输出<br>
+Ctrl + U 		在提示字符下，将整列命令删除<br>
+Ctrl + Z 		『暂停』目前的</p>
+<p>login shell &amp; non-login shell:<br>
+tty1~tty6属于login shell，你需要先登录才能输入指令。<br>
+在X window下打开的bash窗口属于non-login shell，你不需要再次登录。</p>
+<p>指令运行顺序：<br>
+1.以相对、绝对路径指明<br>
+2.用alias指明<br>
+3.bash的builtin内建指令<br>
+4.通过$PATH指明的路径寻找指令</p>
+<p>一些bash中的变量：<br>
+HOME：代表用户家目录		LANG：代表当前系统语言	PATH：执行文件搜寻的目录<br>
+HISTSIZE：代表记录的历史命令最大值<br>
+?：上一次操作的返回值，0为正常		$：shell进程的PID</p>
+<p>一些bash的配置文件：（插眼，现在还看不懂这些配置文件）<br>
+/etc/issue			保存bash的进站欢迎信息<br>
+/etc/profile		login shell会读取，会设定环境变量和呼叫其他配置文件<br>
+<sub>/.bash_profile或</sub>/.bash_login或~/.profile	<br>
+会依次读取三者中的一个，在我的电脑里是.profile。这是使用者的配置文件，也是login shell。<br>
+~/.bashrc			non-login shell会读取<br>
+~/.bash_logout	当我注销 bash 后，系统再帮我做完什么动作后才离开<br>
+~/.bash_history	记录历史指令</p>
+<p>数据的重定向：<br>
+标准输入 (stdin) ：		代码为 0 		键盘<br>
+标准输出 (stdout)：		代码为 1 		屏幕<br>
+标准错误输出(stderr)：	代码为 2 		屏幕</p>
+<pre><code>&gt;		覆盖重定向		
+&gt;&gt;		累加重定向
+&lt;		输入重定向
+&lt;&lt;		指定字符作为eof
+tee		将标准输入复制到每个指定文件，并显示到标准输出。 -a追加模式
+</code></pre>
+<p>cmd1 &amp;&amp; cmd2	1. 若 cmd1 执行完毕且正确执行($?=0)，则开始执行 cmd2</p>
+<ol>
+<li>若 cmd1 执行完毕且为错误 (<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>?</mo><mi mathvariant="normal">≠</mi><mn>0</mn><mo>)</mo><mi mathvariant="normal">，</mi><mi mathvariant="normal">则</mi><mi>c</mi><mi>m</mi><mi>d</mi><mn>2</mn><mi mathvariant="normal">不</mi><mi mathvariant="normal">执</mi><mi mathvariant="normal">行</mi><mi mathvariant="normal">。</mi><mi>c</mi><mi>m</mi><mi>d</mi><mn>1</mn><mi mathvariant="normal">∣</mi><mi mathvariant="normal">∣</mi><mi>c</mi><mi>m</mi><mi>d</mi><mn>21.</mn><mi mathvariant="normal">若</mi><mi>c</mi><mi>m</mi><mi>d</mi><mn>1</mn><mi mathvariant="normal">执</mi><mi mathvariant="normal">行</mi><mi mathvariant="normal">完</mi><mi mathvariant="normal">毕</mi><mi mathvariant="normal">且</mi><mi mathvariant="normal">正</mi><mi mathvariant="normal">确</mi><mi mathvariant="normal">执</mi><mi mathvariant="normal">行</mi><mo>(</mo></mrow><annotation encoding="application/x-tex">?≠0)，则 cmd2 不执行。
+cmd1 || cmd2		1. 若 cmd1 执行完毕且正确执行(</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mclose">?</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel"><span class="mrel"><span class="mord"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.69444em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="rlap"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="inner"><span class="mrel"></span></span><span class="fix"></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.19444em;"><span></span></span></span></span></span></span><span class="mrel">=</span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">0</span><span class="mclose">)</span><span class="mord cjk_fallback">，</span><span class="mord cjk_fallback">则</span><span class="mord mathdefault">c</span><span class="mord mathdefault">m</span><span class="mord mathdefault">d</span><span class="mord">2</span><span class="mord cjk_fallback">不</span><span class="mord cjk_fallback">执</span><span class="mord cjk_fallback">行</span><span class="mord cjk_fallback">。</span><span class="mord mathdefault">c</span><span class="mord mathdefault">m</span><span class="mord mathdefault">d</span><span class="mord">1</span><span class="mord">∣</span><span class="mord">∣</span><span class="mord mathdefault">c</span><span class="mord mathdefault">m</span><span class="mord mathdefault">d</span><span class="mord">2</span><span class="mord">1</span><span class="mord">.</span><span class="mord cjk_fallback">若</span><span class="mord mathdefault">c</span><span class="mord mathdefault">m</span><span class="mord mathdefault">d</span><span class="mord">1</span><span class="mord cjk_fallback">执</span><span class="mord cjk_fallback">行</span><span class="mord cjk_fallback">完</span><span class="mord cjk_fallback">毕</span><span class="mord cjk_fallback">且</span><span class="mord cjk_fallback">正</span><span class="mord cjk_fallback">确</span><span class="mord cjk_fallback">执</span><span class="mord cjk_fallback">行</span><span class="mopen">(</span></span></span></span>?=0)，则 cmd2 不执行。<br>
+2.若 cmd1 执行完毕且为错误 ($?≠0)，则开始执行 cmd2<br>
+cmd1 &amp;&amp; cmd2 || cmd3		正确执行cmd2，错误执行cmd3<br>
+；				就是都执行啦<br>
+管道pipe：<br>
+left | right		把左边的stdout输送到右边的stdin<br>
+某些指令需要用到文件名 (例如 tar) 来进行处理时，该 stdin 与 stdout 可以利用减号 &quot;-&quot;<br>
+tar -cv -f - aaa bbb | tar -xv -C ~		这里的-就代表标准输出</li>
+</ol>
+<p>通配符：这是bash内置的通配符，不是正则表达式</p>
+<pre><code>* 		代表『 0 个到无穷多个』任意字符
+? 		代表『一定有一个』任意字符
+[ ]		同样代表『一定有一个在括号内』的字符(非任意字符)。[abcd] 代表一定有一个abcd中的字符
+[ - ]		若有减号在中括号内时，代表『在编码顺序内的所有字符』。例如 [0-9] 代表 0 到 9 之间的所有数字
+[^ ]		若中括号内的第一个字符为指数符号 (^) ，那表示『反向选择』，例如 [^abc] 代表一定有一个非abc字符
+</code></pre>
+<h1 id="shell脚本">shell脚本</h1>
+<p>就像Windows里的.bat	里头就是Linux指令，多以.sh为后缀<br>
+# 后面跟注释<br>
+鸟哥建议在开头注释的内容：script 的功能；script 的版本信息；script 的作者与联络方式；script 的版权宣告方式；script 的 History (历史纪录)；script 内较特殊的指令，使用『绝对路径』的方式来下达；script 运作时需要的环境变量预先宣告与设定。<br>
+变量：<br>
+变量的命名和C语言十分类似，一般系统的变量都是大写字母。<br>
+使用变量的值：	$var	或 ${var}<br>
+删除变量：	unset var<br>
+字符串：				没有引号也是字符串，就是空格要转义</p>
+<pre><code>“”		双引号，里头可以有命令替换$(command)和变量${variable}
+‘’		单引号，里头的字符就是单纯的字符，raw
+``              反引号，里头放命令，会被执行
+</code></pre>
+<p>数组：		var=(value1 value2 value3)	中间用空格隔开，或者 var[n]=value<br>
+使用数组的值${a[1]}<br>
+变量有环境变量和局部变量两种。环境变量可以理解为全局变量。</p>
+<p>修改字符串：</p>
+<pre><code>#		${var#keyword}		如果变量从头开始的数据符合关键字，将符合的最短数据删
+##		${var##keyword}		如果变量从头开始的数据符合关键字，将符合的最长数据删
+%		${var%keyword}		如果变量从尾开始的数据符合关键字，将符合的最短数据删
+%%		${var%%keyword}		如果变量从尾开始的数据符合关键字，将符合的最长数据删
+/		${var/oldstr//newstr}	将变量符合的第一个oldstr换成newstr
+${var//oldstr/newstr}	将变量符合的所有oldstr换成newstr
+</code></pre>
+<p>这里似乎是可以用正则表达式的<br>
+整数运算：<br>
+var=$((运算内容))				感觉有点像eval?<br>
+declare -i var=运算内容</p>
+<p>shell脚本的参数：</p>
+<pre><code>${number}		第几个参数
+$#				参数个数
+$@				全部参数，空格隔开
+shift				变量偏移，把前面的变量移走	shift 3
+</code></pre>
+<p>变量测试：（不知道有什么用。。）P448插眼</p>
+<p>env		查看环境变量<br>
+set		查看所有变量<br>
+export	把局部变量转换成环境变量	export var<br>
+read		读取变量的值 		-p提示字符 	read -p “please input xx: ” var<br>
+declare	设置变量类型和属性		-i整数<br>
+echo		输出<br>
+test		检查当前文件的属性和权限，逻辑判断。没有输出，与&amp;&amp; || if配合使用，<br>
+[  ]是test命令的另一种形式，注意两边有空格，中间输test的表达式<br>
+sh		shell的debug命令</p>
+<p>条件表达式：<br>
+if	[test-expr]; then<br>
+...<br>
+else<br>
+...<br>
+fi<br>
+函数：<br>
+function name(){<br>
+...<br>
+}<br>
+循环：<br>
+while [ test-expr ]<br>
+do<br>
+...<br>
+done</p>
+<p>until [ test-expr ]<br>
+do<br>
+...<br>
+done</p>
+<p>for var in xx,xxx,<br>
+do<br>
+...<br>
+done</p>
+<p>for (( i=1; i&lt;=${nu}; i=i+1 ))<br>
+do<br>
+...<br>
+done</p>
+<h1 id="正则表达式regular-expression略">正则表达式regular expression（略）</h1>
+<p>有些命令是支持正则表达式的，如果不支持的话也可以用bash内建的通配符。<br>
+比如grep/vim都是支持RE的</p>
+<h1 id="网络">网络</h1>
+<pre><code>netstat		显示所有打开的服务以及Socket
+telnet          远程登录到网络上的某一台服务器主机
+nc
+ping        
+ifconfig        网卡配置
+</code></pre>
+<h1 id="例行性工作">例行性工作</h1>
+<p>at ：at 是个可以处理仅执行一次就结束排程的指令，不过要执行 at 时， 必须要有 atd 这个服务 (第十七章) 的支援才行。在某些新版的 distributions 中，atd 可能预设并没有启动，那么 at 这个指令就会失效呢！不过我们的 CentOS 预设是启动的！	crontab ：crontab 这个指令所设定的工作将会循环的一直进行下去！ 可循环的时间为分钟、小时、每周、每月或每年等。crontab 除了可以使用指令执行外，亦可编辑 /etc/crontab 来支持。 至于让 crontab 可以生效的服务则是 crond 这个服务</p>
+<h1 id="进程管理">进程管理</h1>
+<p>进程 (process)：程序被触发后，执行者的权限与属性、程序的程序代码与所需数据等都会被加载内存中， 操作系统并给予这个内存内的单元一个标识符 (PID)。<br>
+子进程：子进程可以继承父进程的环境变量，通过PPID判断父进程是什么。<br>
+进程都会藉由父进程以fork的方式产生一个一模一样的子进程， 然后被复制出来的子进程再以exec的方式来执行实际要进行的程序，最终就成为一个子进程的存在。<br>
+服务(daemon)：常驻在内存当中的进程通常都是负责一些系统所提供的功能以服务用户各项任务，因此这些常驻程序就会被我们称为服务。</p>
+<p>ps			列出进程		-l列出详细信息		-lA或aux列出系统中的所有进程（默认是bash中的进程）<br>
+axjf列出进程树<br>
+F：代表这个进程旗标 (process flags)，说明这个进程的总结权限，常见号码有：<br>
+若为 4 表示此进程的权限为 root。<br>
+若为 1 则表示此子进程仅进行复制(fork)而没有实际执行(exec)。<br>
+S：代表这个进程的状态 (STAT)，主要的状态有：<br>
+R (Running)：该程序正在运作中；。<br>
+S (Sleep)：该程序目前正在睡眠状态(idle)，但可以被唤醒(signal)。<br>
+D：不可被唤醒的睡眠状态，通常这支程序可能在等待 I/O 的情况(ex&gt;打印)。<br>
+T：停止状态(stop)，可能是在工作控制(背景暂停)或除错 (traced) 状态。<br>
+Z (Zombie)：僵尸状态，进程已经终止但却无法被移除至内存。<br>
+C：代表 CPU 使用率，单位为百分比<br>
+PRI/NI：Priority/Nice 的缩写，代表此进程被 CPU 所执行的优先级，数值越小代表该进程越快被 CPU 执行。	ADDR：是 kernel function，指出该进程在内存的哪个部分，如果是个running 的进程，一般就会显示-<br>
+SZ：代表此进程用掉多少内存 。<br>
+WCHAN：表示目前进程是否运作中，同样的， 若为 - 表示正在运行<br>
+TIME：使用掉的 CPU 时间<br>
+pstree		画出进程树<br>
+top			动态监测进程<br>
+-p PID 观察指定进程<br>
+在命令行的最后输入 &amp;，可以让命令在背景中执行	<br>
+Ctrl+z		将进程放到bash后台中并暂停(Ctrl+D表示EOF)<br>
+jobs			查看bash后台运行的进程<br>
+fg			将后台的进程放到前台运行		fg %jobnumber<br>
+bg			将后台暂停的进程在后台继续运行	bg %jobnumber<br>
+kill			给进程发信号signal				kill -signal %jobnumber/PID<br>
+-l列出kill中的信号有哪些<br>
+nohup		将进程放到系统后台执行，配合&amp;<br>
+renice		赋给进程新的nice值，影响程序执行的优先级		renice -n number -p PID<br>
+nice 值可调整的范围为 -20 ~ 19 ；	<br>
+root 可随意调整自己或他人进程的 Nice 值，且范围为 -20 ~ 19<br>
+一般使用者仅可调整自己进程的 Nice 值，且范围仅为 0 ~ 19 (避免一般用户抢占系统资源)<br>
+nice			赋给进程nice值	nice -n number command<br>
+free			观察内存和Swap的使用情况<br>
+vmstat 		可以侦测『 CPU / 内存 / 磁盘输入输出状态 』等等，<br>
+fuser		藉由文件(或文件系统)找出正在使用该文件的进程<br>
+-m,--mount            show all processes using the named filesystems or block device<br>
+fuser -uvm filename列出占用文件的进程	fuser -mki filename杀死占用文件的进程<br>
+lsof			查看进程开启的文件（不加选项多的一匹）<br>
+-p指定PID 		-u指定User		+d指定目录</p>
+<h1 id="软件安装">软件安装</h1>
+<p>执行configure来建立Makefile<br>
+用make指令执行Makefile完成编译<br>
+sudo apt-get autoremove xxx 卸载软件</p>
+<h1 id="gdb">GDB</h1>
+<p>1		<br>
+list	l	显示多行源代码<br>
+break	b	设置断点,程序运行到断点的位置会停下来<br>
+info	i	描述程序的状态<br>
+run	r	开始运行程序<br>
+display	disp	跟踪查看某个变量,每次停下来都显示它的值<br>
+step	s	执行下一条语句,如果该语句为函数调用,则进入函数执行其中的第一条语句<br>
+next	n	执行下一条语句,如果该语句为函数调用,不会进入函数内部执行(即不会一步步地调试函数内部语句)<br>
+print	p	打印内部变量值<br>
+continue	c	继续程序的运行,直到遇到下一个断点<br>
+set var name=v	 	设置变量的值<br>
+start	st	开始执行程序,在main函数的第一条语句前面停下来<br>
+file	 	装入需要调试的程序<br>
+kill	k	终止正在调试的程序<br>
+watch	 	监视变量值的变化<br>
+backtrace	bt	产看函数调用信息(堆栈)<br>
+frame	f	查看栈帧<br>
+quit	q	退出GDB环境</p>
+<h2 id="gcc">GCC</h2>
+<p>基本操作<br>
+gcc -c file1.c file2.c			把文件编译成可重定位目标文件 .o<br>
+gcc -o out file1.o file2.o		把可重定位目标文件、静态库、动态链接库链接成为可执行目标文件<br>
+静态库在Linux中以存档（archive）.a的形式储存<br>
+动态链接库在Linux中以.so的形式储存<br>
+-Onumber				优化</p>
+<p>gcc -shared -fpic -o libname.so file1.c file2.c		编译一个动态链接库<br>
+ar rcs libname.a file1.o file2.o						编译一个静态库</p>
+<p>makefile这个内容太多了，先略过。可以认为是自动化编译的脚本。<br>
+target... : prerequisites ...<br>
+command</p>
+<p>target也就是一个目标文件，可以是Object File，也可以是执行文件。还可以是一个标签（Label），对于标签这种特性，在后续的“伪目标”章节中会有叙述。<br>
+ prerequisites就是，要生成那个target所需要的文件或是目标。<br>
+command也就是make需要执行的命令，前面要有个Tab。（任意的Shell命令）</p>
+<h2 id="日常使用">日常使用</h2>
+<ul>
+<li>本地DNS服务器：<br>
+查看 <code>cat /etc/resolv.conf</code>，你可以自己修改，也可能被<a href="https://baike.baidu.com/item/DHCP/218195?fr=aladdin">DHCP</a>协议分配。</li>
+<li>设置代理：</li>
+</ul>
+<pre><code> export http_proxy=&quot;http://proxy-XXXXX&quot;
+ export https_proxy=&quot;https://proxy-XXXXX:&quot;
+</code></pre>
+<p>取消代理：</p>
+<pre><code>unset http_proxy
+unset https_proxy
+</code></pre>
+<p>（这个环境变量的改变都是临时的，只在当前的shell下生效。）</p>
+<ul>
+<li>
+<p>生成一对秘钥-使用 ssh-keygen</p>
+</li>
+<li>
+<p>把ls的结果按照文件大小排序：ls -l | sort  +4 -n</p>
+</li>
+</ul>
+<p>lspci:在系统中显示有关pci总线的信息以及连接到它们的设备。</p>
+<p>寻找文件：<strong>find</strong>指令<br>
+<code>find -name *demo* #寻找文件名中带有demo的文件，有些目录的查找需要root权限</code></p>
+<ul>
+<li>计算文件的SHA<br>
+sha双击Tab之后，顾名思义啦<br>
+sha1sum          sha256sum        sha512sum        shapeclustering  sharesec<br>
+sha224sum        sha384sum        shadowconfig     shar             shasum</li>
+</ul>
+<h2 id="指令">指令</h2>
+<h3 id="kill命令对进程发信号">kill命令————对进程发信号</h3>
+<p>kill -signal pid<br>
+kill -l显示所有信号，常用的有下面几个：<br>
+1 (HUP)：重新加载进程。<br>
+9 (KILL)：杀死一个进程。<br>
+15 (TERM)：正常停止一个进程。</p>
+<h3 id="file命令查看文件类型">file命令————查看文件类型</h3>
+<h3 id="目录操作命令-2">目录操作命令：</h3>
+<pre><code>cd		change directory切换目录
+pwd		显示当前目录
+mkdir	创建新的空目录
+rmdir	删除空目录
+
+ls		列出文件	-R递归列出子文件	-l详细信息
+cp		复制（建立链接，更新文件）	-a完全复制，权限不变	-l创建硬链接	-s创建软链接 -r目录复制 
+在默认情况下，会改变群组和权限
+mv		移动目录，重命名	
+mv source1 source2 ... destination, cp也一样
+rm		移除文件		-r递归删除目录 -i删除前询问 -f强制删除，忽略不存在的文件
+
+basename	路径中的档名
+dirname		路径中的目录名
+touch	改变文件时间戳，创建新文件	-a只修改atime -m只修改mtime -t修改成任意时间（默认为现在）
+</code></pre>
+<h3 id="文件读取命令-2">文件读取命令：</h3>
+<pre><code>cat 		从第一行开始显示文件内容 -n显示行号
+tac		从最后一行开始显示文件内容
+nl		显示文件内容的时候输出行号
+less		分页显示，比more好用
+[Space][PgDown]向下翻页	[PgUp]向上翻页	/向下字符串搜索	？向上字符串搜索	q离开	
+G最后一行	g第一行	n/N切换搜索结果
+od		以二进制方式读取文件内容 	-t xCc：ASCII对照表
+head	看文件头几行
+tail		看文件末几行
+head和tail可以配合使用，如查看11-20行：head -n 20 filename | tail -n 10
+</code></pre>
+<h3 id="文件操作命令-2">文件操作命令</h3>
+<pre><code>grep		在输入中寻找匹配的字符(RE)，输出匹配的行		grep [option] pattern file1 file2 ...
+cut		-d后面接分隔字符，与 -f 一起使用		-f依据-d的分隔字符将一段讯息分区成为数段，用 -f取出第几段
+-c以字符 (characters) 的单位取出固定字符区，用于排列整齐的输出，比如ls -l | cut -c 1-10
+sort		排序，默认为字典序。
+uniq		对连续重复的条目去重计数
+Note: 'uniq' does not detect repeated lines unless they are adjacent.
+You may want to sort the input first, or use 'sort -u' without 'uniq'.
+wc		对文件的行数、字数、字符数进行统计。
+
+tr		进行字符的删除替换		tr ... old new	把...中的old换成new
+tr ... -b old	删除...中的old
+col		把tab换成对应个数的空格
+split		把一个大文件拆成若干个小文件 	-b按大小拆分		-l按行数拆分		split [option] filename prefix
+xargs	给命令提供参数，对于不能用Pipe的命令。
+-n一次接受的最大参数	-p执行命令前询问
+xargs [option] command ,然后从标准输入获得arguments	
+printf	格式化输出，有点像C语言，但是分隔符是空格
+awk		一个处理行数据的工具，会把file的行根据空白符拆分成字段，$1 $2 ...，$0代表整行
+awk ‘条件表达式{指令} 条件表达式{指令}...’	filename		条件表达式为真会执行指令
+diff		顾名思义，比较两个文本文件或目录的差异，逐行比较 	diff from-file to-file
+-b忽略空白数不同的差异		-B忽略空白行的差异		-i忽略大小写的差异
+cmp		比较两个文件的差异，逐字节比较
+patch	更新指令，插眼
+pr		打印准备指令、略
+</code></pre>
+<h3 id="文件信息和查找命令-2">文件信息和查找命令</h3>
+<pre><code>file		查看文件类型
+which	查找脚本文件
+whereis	在特定的目录下查找文件	-l列出特定的目录
+locate	在系统的数据库中查找文件
+deepin系统默认没有安装locate.
+updatedb更新数据库
+find		根据条件寻找文件，并可以对找到的结果执行action脚本。
+find [PATH] [Option] [Action] 
+例如：find -name 'DOC*' -exec ls -l {} \;		这里还有正则表达式
+</code></pre>
+
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#%E9%B8%9F%E5%93%A5%E7%9A%84%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0">鸟哥的读书笔记</a>
+<ul>
+<li><a href="#%E5%BC%80%E6%9C%BA">开机</a></li>
+<li><a href="#%E6%8C%82%E8%BD%BD">挂载</a></li>
+<li><a href="#x-window%E5%92%8C-console">X window和 console</a></li>
+<li><a href="#%E4%B8%80%E4%BA%9B%E9%94%AE%E7%9B%98%E6%93%8D%E4%BD%9C">一些键盘操作</a></li>
+<li><a href="#%E7%A7%91%E5%AD%A6%E5%85%B3%E6%9C%BA">科学关机</a></li>
+<li><a href="#%E6%9D%83%E9%99%90">权限</a></li>
+<li><a href="#ls-l%E7%9A%84%E6%98%BE%E7%A4%BA%E8%AF%A6%E8%A7%A3">ls -l的显示详解：</a></li>
+<li><a href="#%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F">文件系统</a>
+<ul>
+<li><a href="#%E7%9B%AE%E5%BD%95%E6%93%8D%E4%BD%9C%E5%91%BD%E4%BB%A4">目录操作命令：</a></li>
+<li><a href="#%E6%96%87%E4%BB%B6%E8%AF%BB%E5%8F%96%E5%91%BD%E4%BB%A4">文件读取命令：</a></li>
+<li><a href="#%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C%E5%91%BD%E4%BB%A4">文件操作命令</a></li>
+<li><a href="#%E6%96%87%E4%BB%B6%E4%BF%A1%E6%81%AF%E5%92%8C%E6%9F%A5%E6%89%BE%E5%91%BD%E4%BB%A4">文件信息和查找命令</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#%E7%A3%81%E7%9B%98%E7%AE%A1%E7%90%86%E8%BF%99%E9%87%8C%E5%A4%B4%E5%AD%A6%E9%97%AE%E5%A4%AA%E6%B7%B1%E8%BF%99%E9%87%8C%E6%98%AF%E7%9A%AE%E6%AF%9B%E4%B8%AD%E7%9A%84%E5%B0%96%E5%B0%96">磁盘管理（这里头学问太深，这里是皮毛中的尖尖）</a></li>
+<li><a href="#%E5%8E%8B%E7%BC%A9%E6%96%87%E4%BB%B6">压缩文件</a></li>
+<li><a href="#shell%E8%84%9A%E6%9C%AC">shell脚本</a></li>
+<li><a href="#%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8Fregular-expression%E7%95%A5">正则表达式regular expression（略）</a></li>
+<li><a href="#%E7%BD%91%E7%BB%9C">网络</a></li>
+<li><a href="#%E4%BE%8B%E8%A1%8C%E6%80%A7%E5%B7%A5%E4%BD%9C">例行性工作</a></li>
+<li><a href="#%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86">进程管理</a></li>
+<li><a href="#%E8%BD%AF%E4%BB%B6%E5%AE%89%E8%A3%85">软件安装</a></li>
+<li><a href="#gdb">GDB</a>
+<ul>
+<li><a href="#gcc">GCC</a></li>
+<li><a href="#%E6%97%A5%E5%B8%B8%E4%BD%BF%E7%94%A8">日常使用</a></li>
+<li><a href="#%E6%8C%87%E4%BB%A4">指令</a>
+<ul>
+<li><a href="#kill%E5%91%BD%E4%BB%A4%E5%AF%B9%E8%BF%9B%E7%A8%8B%E5%8F%91%E4%BF%A1%E5%8F%B7">kill命令————对进程发信号</a></li>
+<li><a href="#file%E5%91%BD%E4%BB%A4%E6%9F%A5%E7%9C%8B%E6%96%87%E4%BB%B6%E7%B1%BB%E5%9E%8B">file命令————查看文件类型</a></li>
+<li><a href="#%E7%9B%AE%E5%BD%95%E6%93%8D%E4%BD%9C%E5%91%BD%E4%BB%A4-2">目录操作命令：</a></li>
+<li><a href="#%E6%96%87%E4%BB%B6%E8%AF%BB%E5%8F%96%E5%91%BD%E4%BB%A4-2">文件读取命令：</a></li>
+<li><a href="#%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C%E5%91%BD%E4%BB%A4-2">文件操作命令</a></li>
+<li><a href="#%E6%96%87%E4%BB%B6%E4%BF%A1%E6%81%AF%E5%92%8C%E6%9F%A5%E6%89%BE%E5%91%BD%E4%BB%A4-2">文件信息和查找命令</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="http://127.0.0.1:8080/post/sql-xue-xi-bi-ji/">
+              <h3 class="post-title">
+                Database-SQL
+              </h3>
+            </a>
+          </div>
+        
+
+        
+
+        <div class="site-footer">
+  
+  <a class="rss" href="http://127.0.0.1:8080/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>

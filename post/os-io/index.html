@@ -1,0 +1,398 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>OS-I/O | Reticence</title>
+<link rel="shortcut icon" href="http://127.0.0.1:8080/favicon.ico?v=1619508275369">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="http://127.0.0.1:8080/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="OS-I/O | Reticence - Atom Feed" href="http://127.0.0.1:8080/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-90HNEFFE0M"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-90HNEFFE0M');
+</script>
+
+
+    <meta name="description" content="很多具体的东西都是设备实现的，操作系统(驱动？)把硬件抽象给我们使用。
+Storage
+设备
+Magnetic Tape
+磁带。已经被淘汰了。。
+因为要转，所以最好的方式是顺序读。
+唯一的优点是便宜。
+HDD*
+磁盘可能都要被淘汰了。。
+
+..." />
+    <meta name="keywords" content="OS" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="http://127.0.0.1:8080">
+  <img class="avatar" src="http://127.0.0.1:8080/images/avatar.png?v=1619508275369" alt="">
+  </a>
+  <h1 class="site-title">
+    Reticence
+  </h1>
+  <p class="site-description">
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          Index
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          Classification
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          Archives
+        </a>
+      
+    
+      
+        <a href="/navigator.html" class="menu">
+          Navigator
+        </a>
+      
+    
+      
+        <a href="/post/book-list" class="menu">
+          Booklist
+        </a>
+      
+    
+      
+        <a href="/post/fei-md-ge-shi-bi-ji-hui-zong" class="menu">
+          Notes
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          About
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+        <a href="https://github.com/reticenceji" target="_blank">
+          <i class="ri-github-line"></i>
+        </a>
+      
+    
+      
+    
+      
+    
+      
+        <a href="https://www.zhihu.com/people/reticenceji" target="_blank">
+          <i class="ri-zhihu-line"></i>
+        </a>
+      
+    
+      
+    
+  </div>
+  <script>
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
+    var s = document.getElementsByTagName("script")[0]; 
+    s.parentNode.insertBefore(hm, s);
+  })();
+  </script>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              OS-I/O
+            </h2>
+            <div class="post-info">
+              <span>
+                2020-12-18
+              </span>
+              <span>
+                6 min read
+              </span>
+              
+                <a href="http://127.0.0.1:8080/tag/nfABdWVsa/" class="post-tag">
+                  # OS
+                </a>
+              
+            </div>
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <p>很多具体的东西都是设备实现的，操作系统(驱动？)把硬件<strong>抽象</strong>给我们使用。</p>
+<h2 id="storage">Storage</h2>
+<h3 id="设备">设备</h3>
+<h4 id="magnetic-tape">Magnetic Tape</h4>
+<p>磁带。已经被淘汰了。。<br>
+因为要转，所以最好的方式是顺序读。<br>
+唯一的优点是便宜。</p>
+<h4 id="hdd">HDD*</h4>
+<p>磁盘可能都要被淘汰了。。<br>
+<img src="http://127.0.0.1:8080/post-images/1608951186211.png" alt="" loading="lazy"><br>
+挪动磁头的时间：seek time<br>
+转动磁盘的时间：rotational latency<br>
+为了减少磁头挪动的时间，我们要合理的<strong>调度*：</strong></p>
+<ul>
+<li><strong>FCFS</strong>：First come first serve</li>
+<li><strong>SSTF</strong>：shortest seektime time first，但是这样可能会starve</li>
+<li><strong>SCAN &amp; C-SCAN</strong>：磁头从头扫描到尾，再从尾扫描到头/磁头从头扫描到尾，然后立即回到头再开始下一次扫描</li>
+<li><strong>LOOK &amp; C-LOOK</strong>：磁头从最小到最大的请求处，再从最大到最小/磁头最小到最大的请求处，然后立即回到最小的请求处再开始下一次扫描</li>
+</ul>
+<p>这上面的算法除了FCFS都有可能发生starve。</p>
+<h4 id="ssd">SSD</h4>
+<p>一般寿命会短一点，有写入次数的限制。我们应该平衡每一个block的使用。<br>
+但是比HDD快。调度算法使用FCFS就可以了。</p>
+<h3 id="disk-attachment">Disk Attachment</h3>
+<p>计算机访问磁盘有两种方式，一个是通过IO端口，称为主机连接存储(<strong>host-attached storage</strong>)，另一种是通过分布式文件系统的远程主机，称为网络连接存储(network-attached storage)。</p>
+<p>network-attached storage: NAS iSCSI</p>
+<h3 id="raid">RAID*</h3>
+<p>Disk是unreliable, slow but cheap的。</p>
+<p>我们通过Redundancy（冗余）的思想，试图解决这个问题。Redundant arrays of independent disks (RAIDs)。</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>特点</th>
+<th>解决的问题</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>RAID0</td>
+<td>有block-level striping，把文件的块分散到多个磁盘上，这样可以并行的访问改善performance。</td>
+<td>performance</td>
+</tr>
+<tr>
+<td>RAID1</td>
+<td>有mirrow disk，给Disk一个完整的copy</td>
+<td>reliability</td>
+</tr>
+<tr>
+<td>RAID2（不使用）</td>
+<td>把数据从bit级别切分，使用<strong>Hamming code</strong>进行纠错，可以纠正1bit的错误。</td>
+<td>reliability</td>
+</tr>
+<tr>
+<td>RAID3</td>
+<td>也是把数据从bit级别切分，使用<strong>Bit Interleaved Parity</strong>进行纠错，可以纠正1bit的错误，</td>
+<td>reliability</td>
+</tr>
+<tr>
+<td>RAID4</td>
+<td>把数据从strip级别切分，在一个单独的磁盘上保存其他块的奇偶校验块，可以并行的读入所有的块和奇偶校验。</td>
+<td>performance&amp;reliability</td>
+</tr>
+<tr>
+<td>RAID5</td>
+<td>把数据从strip级别切分，把奇偶校验块分散在所有的磁盘里</td>
+<td>performance&amp;reliability</td>
+</tr>
+<tr>
+<td>RAID6</td>
+<td>和RAID5很像，但是用了P+Q两额外的冗余信息，可以容忍两个bit的错误</td>
+<td>performance&amp;reliability</td>
+</tr>
+</tbody>
+</table>
+<p>对上面出现的纠错方式的解释，以4bit的数据<code>1101</code>为例，他会变成 <code>110_1__</code></p>
+<p>Hamming code：</p>
+<ol>
+<li>
+<p>首先我们注意到数据一共有4bit，我们需要<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mn>2</mn><mi>k</mi></msup><mo>−</mo><mn>1</mn><mo>≥</mo><mi>n</mi><mo>+</mo><mi>k</mi></mrow><annotation encoding="application/x-tex">2^k-1≥n+k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.932438em;vertical-align:-0.08333em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.849108em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.03148em;">k</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.78041em;vertical-align:-0.13597em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≥</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span></span></span></span>的k bit的校验位，k=3。</p>
+</li>
+<li>
+<p>第1位校验码考虑<strong>编号为XX1</strong>的位（也就是第1,3,5,7...位）的XOR。<code>1xor0xor1=0</code>，插到第1位。</p>
+<p>第2位校验码考虑<strong>编号末位为X1X</strong>的位（也就是第2,3,6,7...位）的XOR。<code>1xor1xor1=1</code>，插到第2位。</p>
+<p>第3位校验码考虑<strong>编号末位为1XX</strong>的位（也就是第4,5,6,7,12,13,14,15...位）的XOR。<code>0xor1xor1=0</code>，插到第4位。</p>
+</li>
+<li>
+<p>所以我们得到的校验码是<code>110</code>。我们把他插入我们的数据中：110<strong>0</strong>1<strong>10</strong></p>
+</li>
+<li>
+<p>那么比如我们的数据变成了<code>111 0110</code>我们要怎么纠错呢？我们要再算一他的Hamming code=<code>101</code>，如果有<code>1</code>那么说明出现了错误。那么错误在哪里呢？出错的位置为<code>101</code>即第5位。我们对他取反就完成了纠错。</p>
+</li>
+</ol>
+<p>Bit Interleaved Parity：</p>
+<ol>
+<li>纠错码为<code>1 xor 0 xor 1 xor 1 = 1</code>。</li>
+<li>比如我们的数据一位损坏了，变成了<code>110?</code>，那么<code>？=1 xor 0 xor 1 xor 1 = 1</code>，把原来<code>？</code>的地方换成纠错码。</li>
+<li>我们可以这样做的原因是，磁盘控制器能够检测到一个扇区是否被正确读取，所以我们只需要1个额外的bit。</li>
+</ol>
+<h2 id="io设备">IO设备</h2>
+<p>IO device多种多样，有不同的方式去控制他们。我们不可能让操作系统去为每一种IO设备专门写一段代码，没有问题是多加一层抽象解决不了的。</p>
+<figure data-type="image" tabindex="1"><img src="http://127.0.0.1:8080/post-images/1608951259015.png" alt="" loading="lazy"></figure>
+<h3 id="io-access">IO access</h3>
+<p>一些CPU有专门的IO指令，比如x86的<code>in</code>，<code>out</code>。<br>
+另一种是Memory Mapped IO，把这些设备的控制寄存器map到内存的某个部分，然后用和操作内存一样的指令操作IO。</p>
+<p>Polling（轮询）：CPU主动，需要busy waiting，如果Device比较慢就不合理。<br>
+Interrupt（中断）：IO主动<br>
+DMA（Direct Memory Access）：直接把数据从硬盘传输到内存，不经过CPU，从而减少CPU负担。</p>
+<h3 id="分类">分类</h3>
+<h4 id="接口">接口</h4>
+<p>block I/O：块设备以块为单位进行访问，比如说Disk就是一个例子。基本的应该实现<code>read()</code> <code>write()</code> <code>seek()</code></p>
+<p>character-stream I/O：字符设备比如键盘和鼠标，stream，<code>get()</code> <code>put()</code></p>
+<p>memory-mapped file access：</p>
+<p>network sockets：网络设备一般用socket接口</p>
+<h4 id="阻塞与异步">阻塞与异步</h4>
+<p>同步IO包括阻塞IO和非阻塞IO：</p>
+<ul>
+<li><strong>阻塞Blocking</strong>的IO比较简单，在执行system call的时候，应用程序暂时被挂起，变成waiting状态。当system call完成的时候，又变成ready。等到他被调度为running的时候，就收到了system call的返回值，完成了IO动作。</li>
+<li><strong>非阻塞NonBlocking</strong>的IO</li>
+</ul>
+<p>异步IO</p>
+<h3 id="kernel-io-subsystem">Kernel IO Subsystem</h3>
+<p>caching：hold a copy of data for fast access</p>
+<p>Device reservation: provides exclusive access to a device</p>
+<p>Spooling: A spool is a buffer that holds the output (device’s input) if device can serve only one request at a time</p>
+<p>I/O Protection：</p>
+<p>Error Handling：</p>
+
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#storage">Storage</a>
+<ul>
+<li><a href="#%E8%AE%BE%E5%A4%87">设备</a>
+<ul>
+<li><a href="#magnetic-tape">Magnetic Tape</a></li>
+<li><a href="#hdd">HDD*</a></li>
+<li><a href="#ssd">SSD</a></li>
+</ul>
+</li>
+<li><a href="#disk-attachment">Disk Attachment</a></li>
+<li><a href="#raid">RAID*</a></li>
+</ul>
+</li>
+<li><a href="#io%E8%AE%BE%E5%A4%87">IO设备</a>
+<ul>
+<li><a href="#io-access">IO access</a></li>
+<li><a href="#%E5%88%86%E7%B1%BB">分类</a>
+<ul>
+<li><a href="#%E6%8E%A5%E5%8F%A3">接口</a></li>
+<li><a href="#%E9%98%BB%E5%A1%9E%E4%B8%8E%E5%BC%82%E6%AD%A5">阻塞与异步</a></li>
+</ul>
+</li>
+<li><a href="#kernel-io-subsystem">Kernel IO Subsystem</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="http://127.0.0.1:8080/post/tpp/">
+              <h3 class="post-title">
+                TPP
+              </h3>
+            </a>
+          </div>
+        
+
+        
+
+        <div class="site-footer">
+  
+  <a class="rss" href="http://127.0.0.1:8080/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>

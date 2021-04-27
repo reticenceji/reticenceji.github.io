@@ -1,0 +1,394 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Python-装饰器 | Reticence</title>
+<link rel="shortcut icon" href="http://127.0.0.1:8080/favicon.ico?v=1619508275369">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="http://127.0.0.1:8080/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="Python-装饰器 | Reticence - Atom Feed" href="http://127.0.0.1:8080/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-90HNEFFE0M"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-90HNEFFE0M');
+</script>
+
+
+    <meta name="description" content="
+By definition, a decorator is a function that takes another function and extends the behavior of the latter function wi..." />
+    <meta name="keywords" content="Python" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="http://127.0.0.1:8080">
+  <img class="avatar" src="http://127.0.0.1:8080/images/avatar.png?v=1619508275369" alt="">
+  </a>
+  <h1 class="site-title">
+    Reticence
+  </h1>
+  <p class="site-description">
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          Index
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          Classification
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          Archives
+        </a>
+      
+    
+      
+        <a href="/navigator.html" class="menu">
+          Navigator
+        </a>
+      
+    
+      
+        <a href="/post/book-list" class="menu">
+          Booklist
+        </a>
+      
+    
+      
+        <a href="/post/fei-md-ge-shi-bi-ji-hui-zong" class="menu">
+          Notes
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          About
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+        <a href="https://github.com/reticenceji" target="_blank">
+          <i class="ri-github-line"></i>
+        </a>
+      
+    
+      
+    
+      
+    
+      
+        <a href="https://www.zhihu.com/people/reticenceji" target="_blank">
+          <i class="ri-zhihu-line"></i>
+        </a>
+      
+    
+      
+    
+  </div>
+  <script>
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
+    var s = document.getElementsByTagName("script")[0]; 
+    s.parentNode.insertBefore(hm, s);
+  })();
+  </script>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              Python-装饰器
+            </h2>
+            <div class="post-info">
+              <span>
+                2021-01-27
+              </span>
+              <span>
+                7 min read
+              </span>
+              
+                <a href="http://127.0.0.1:8080/tag/aTiVQxwll/" class="post-tag">
+                  # Python
+                </a>
+              
+            </div>
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <blockquote>
+<p>By definition, a decorator is a function that takes another function and extends the behavior of the latter function without explicitly modifying it.</p>
+</blockquote>
+<p>装饰器可以让我们在不修改一个函数的情况下，扩展函数的功能。让我们的代码更加优雅。<a href="https://foofish.net/python-decorator.html">这篇文章</a>写的很清楚，<a href="https://realpython.com/primer-on-python-decorators/">这篇英文文章</a>更清楚。 至于原理，我是参考的《Fluent Python》。</p>
+<h2 id="demo">Demo</h2>
+<p>我们的目标是，让函数每一次使用的时候都输出函数的使用时间。最简单的，我们可以这样：</p>
+<pre><code class="language-python">import time
+
+def print_time(func):
+    print(time.strftime(&quot;Time: %H:%M:%S&quot;,time.gmtime()))
+    func()
+
+def foo():
+    print(&quot;I'm foo&quot;)
+
+print_time(foo)
+</code></pre>
+<p>但是这样，我们每次调用<code>foo</code>的时候都要调用<code>print_time(foo)</code>。我们通过一个简单的装饰器来完成这个任务。我们用wrapper把函数包装了起来，并且这样还能很好的处理参数。</p>
+<pre><code class="language-python">import time
+
+def print_time(func):
+    def wrapper(num):
+        print(time.strftime(&quot;Time: %H:%M:%S&quot;,time.gmtime()))
+        func(num)
+    return wrapper
+
+def foo(num):
+    print(&quot;We are {} foo&quot;.format(num))
+
+foo = print_time(foo)
+foo(2)
+</code></pre>
+<p>Python提供了一个语法糖<code>@</code>，让我们用更简单的办法完成这件事情。<code>@my_decorator</code> 是  <code>func = my_decorator(func)</code>的简单写法。</p>
+<p>另外注意<code>wrapper(*args, **kwargs)</code>，这样就能处理任意多个参数的情况了。</p>
+<pre><code class="language-python">import time
+
+def print_time(func):
+    #注意这个参数的写法，可以处理任意多的参数
+    def wrapper(*args, **kwargs):
+        print(time.strftime(&quot;Time: %H:%M:%S&quot;,time.gmtime()))
+        #这样能处理有返回值的情况，虽然func没有
+        return func(*args, **kwargs)
+    return wrapper
+
+#@语法糖
+@print_time
+def foo(num):
+    print(&quot;We are {} foo&quot;.format(num))
+
+foo(2)
+</code></pre>
+<p>还可以包装上额外的参数。<code>@print_time(&quot;Warning&quot;)</code>等价于<code>foo = @print_time(&quot;Warning&quot;)(foo)</code>，注意到函数<code>print_time</code>返回的是一个函数，就可以理解了。</p>
+<p>另外注意到decorator的作用域其实应该是仅限于print_time的，此处是一个闭包。</p>
+<p>另外用包装器封装会失去函数的metadata，我们使用<code>@wraps(func)</code>来解决这个问题。通过这个装饰器把func的metadata复制到decorator里去。</p>
+<pre><code class="language-python">import time
+from functools import wraps
+
+def print_time(prefix):
+  	@wraps(func)
+    def decorator(func):
+        def wrapper(num):
+            print(time.strftime(&quot;[{}]Time: %H:%M:%S&quot;.format(prefix),time.gmtime()))
+            func(num)
+        return wrapper
+    return decorator
+
+@print_time(&quot;Warning&quot;)
+def foo(num):
+    print(&quot;We are {} foo&quot;.format(num))
+
+foo(2)
+</code></pre>
+<h2 id="example">Example</h2>
+<p>真实世界的例子<code>@debug</code>，提供调试信息的输出。注意f-string是Python3.6版本之后才有的新特性。</p>
+<pre><code class="language-python">import functools
+
+def debug(func):
+    &quot;&quot;&quot;Print the function signature and return value&quot;&quot;&quot;
+    @functools.wraps(func)
+    def wrapper_debug(*args, **kwargs):
+        args_repr = [repr(a) for a in args]                      # 1
+        kwargs_repr = [f&quot;{k}={v!r}&quot; for k, v in kwargs.items()]  # 2
+        signature = &quot;, &quot;.join(args_repr + kwargs_repr)           # 3
+        print(f&quot;Calling {func.__name__}({signature})&quot;)
+        value = func(*args, **kwargs)
+        print(f&quot;{func.__name__!r} returned {value!r}&quot;)           # 4
+        return value
+    return wrapper_debug
+</code></pre>
+<p>内置装饰器：<code>@staticmathod</code>、<code>@classmethod</code>、<code>@property</code>。我们在介绍python的类的时候提到。</p>
+<ul>
+<li><strong>@property</strong>：把类内方法当成属性来使用，必须要有返回值，相当于getter；</li>
+<li><strong>@staticmethod</strong>：静态方法，不需要表示自身对象的self和自身类的cls参数，就跟使用函数一样。</li>
+<li><strong>@classmethod</strong>：类方法，不需要self参数，但第一个参数需要是表示自身类的cls参数。</li>
+</ul>
+<h2 id="深入理解装饰器">深入理解装饰器</h2>
+<h3 id="python什么时候运行装饰器">Python什么时候运行装饰器</h3>
+<p>答案是，装饰器在函数定义之后立即运行，而不是在函数第一次执行时运行。</p>
+<h3 id="闭包">闭包</h3>
+<p>多数装饰器会修改被装饰的函数。通常会像上面的例子一样，定义一个内部函数，然后把它返回替换被装饰的函数。使用内部函数的代码几乎都要依靠闭包才能正常运作。</p>
+<p>首先我们要了解python中变量的<strong>作用域</strong>。变量有全局变量和局部变量。下面的例子中，a,c就只有局部作用域，而b是全局变量。要在函数中引用全局变量，应该用global关键字声明。在Python中没有变量声明这个东西。对一个变量进行赋值的动作就是声明。所以在下面的例子中，如果你把<code>global b</code>删除，那么最后<code>print(b)</code>得到的将会是1，函数中的b是局部变量，和全局变量b没有关系。</p>
+<pre><code class="language-python">def f(a):
+	global b
+	c=1
+  b=2
+	print(a)
+	print(b)
+	print(c)
+	
+b=1
+f(1)
+print(b)
+</code></pre>
+<p>我们再来看这样一个求平均数的例子。每次调用avg都可以求之前所有数字的平均。可是，series是make_average的局部变量，因为在那个函数中初始化了series变量。可是在我们调用avg函数的时候，make_average早就已经返回了，它的本地作用域也一起不复返了。</p>
+<p>对于average函数来说，series是<strong>自由变量(free variable)</strong>，指未在本地作用域中绑定的变量。函数average的闭包包括了series的声明。不过我们之前也提到了，对一个变量的赋值在python中起到了声明的效果。所以和上面的<code>global</code>关键字类似，为了把变量声明为自由变量而不是局部变量，我们使用<code>nonlocal</code>关键字。</p>
+<pre><code class="language-python">def make_average():
+    series = []
+    def average(new):
+        nonlocal series			#在这个函数中不是必要的，因为我们没有给series赋值
+        series.append(new)
+        total = sum(series)
+        return total/len(series)
+    return average
+
+avg = make_average()
+
+print(avg(1))
+print(avg(3))
+</code></pre>
+<p>如果你想查看一下自由变量，可以执行一下<code>print(avg.__code__.co_freevars)</code>。</p>
+<h3 id="函数就是对象">函数就是对象</h3>
+<p>在python中函数就是一个对象，或者说，函数是一个callable的对象，对象如果callable，那么它也能表现的像一个函数。怎么让一个函数callable呢？定义一个<code>__call__</code>方法。</p>
+<p>我们使用<code>dir</code>内置函数查看一下函数都有哪些属性，其中有一些属性是所有的对象共有的，有一些属性是所有的函数都有的：</p>
+<pre><code class="language-python">&gt;&gt;&gt; def a():
+...     '''demo'''
+...     return 1
+...
+&gt;&gt;&gt; dir(a)
+['__annotations__', '__call__', '__class__', '__closure__', '__code__', '__defaults__', '__delattr__', '__dict__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '__get__', '__getattribute__', '__globals__', '__gt__', '__hash__', '__init__', '__init_subclass__', '__kwdefaults__', '__le__', '__lt__', '__module__', '__name__', '__ne__', '__new__', '__qualname__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__sizeof__', '__str__', '__subclasshook__']
+</code></pre>
+<ul>
+<li><code>__name__</code>：函数的名字，str</li>
+<li><code>__globals__</code>：函数所在模块中的全局变量，dict</li>
+<li><code>__closure__</code>：函数闭包，即自由变量的绑定，tuple</li>
+<li><code>__default__</code>：形式参数的默认值，tuple</li>
+<li><code>__annotations__</code>：参数和返回值的注解，dict</li>
+<li><code>__code__</code>：编译成字节码的函数metadata和函数定义体</li>
+</ul>
+
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#demo">Demo</a></li>
+<li><a href="#example">Example</a></li>
+<li><a href="#%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%A3%85%E9%A5%B0%E5%99%A8">深入理解装饰器</a>
+<ul>
+<li><a href="#python%E4%BB%80%E4%B9%88%E6%97%B6%E5%80%99%E8%BF%90%E8%A1%8C%E8%A3%85%E9%A5%B0%E5%99%A8">Python什么时候运行装饰器</a></li>
+<li><a href="#%E9%97%AD%E5%8C%85">闭包</a></li>
+<li><a href="#%E5%87%BD%E6%95%B0%E5%B0%B1%E6%98%AF%E5%AF%B9%E8%B1%A1">函数就是对象</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="http://127.0.0.1:8080/post/flask/">
+              <h3 class="post-title">
+                Python-Flask
+              </h3>
+            </a>
+          </div>
+        
+
+        
+
+        <div class="site-footer">
+  
+  <a class="rss" href="http://127.0.0.1:8080/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>

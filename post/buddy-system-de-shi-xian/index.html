@@ -1,0 +1,650 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>OS-Buddy System&amp;Slub | Reticence</title>
+<link rel="shortcut icon" href="http://127.0.0.1:8080/favicon.ico?v=1619508275369">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="http://127.0.0.1:8080/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="OS-Buddy System&amp;Slub | Reticence - Atom Feed" href="http://127.0.0.1:8080/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-90HNEFFE0M"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-90HNEFFE0M');
+</script>
+
+
+    <meta name="description" content="Buddy system
+这篇文章详细的介绍了我们为什么要使用Buddy System.具体的实现可以参考这篇文章。
+当User运行进程申请内存的时候，我们会在内核维护的Free Frame List上为他分配。
+但是在Kernel中情况有..." />
+    <meta name="keywords" content="OS" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="http://127.0.0.1:8080">
+  <img class="avatar" src="http://127.0.0.1:8080/images/avatar.png?v=1619508275369" alt="">
+  </a>
+  <h1 class="site-title">
+    Reticence
+  </h1>
+  <p class="site-description">
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          Index
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          Classification
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          Archives
+        </a>
+      
+    
+      
+        <a href="/navigator.html" class="menu">
+          Navigator
+        </a>
+      
+    
+      
+        <a href="/post/book-list" class="menu">
+          Booklist
+        </a>
+      
+    
+      
+        <a href="/post/fei-md-ge-shi-bi-ji-hui-zong" class="menu">
+          Notes
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          About
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+        <a href="https://github.com/reticenceji" target="_blank">
+          <i class="ri-github-line"></i>
+        </a>
+      
+    
+      
+    
+      
+    
+      
+        <a href="https://www.zhihu.com/people/reticenceji" target="_blank">
+          <i class="ri-zhihu-line"></i>
+        </a>
+      
+    
+      
+    
+  </div>
+  <script>
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
+    var s = document.getElementsByTagName("script")[0]; 
+    s.parentNode.insertBefore(hm, s);
+  })();
+  </script>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              OS-Buddy System&amp;Slub
+            </h2>
+            <div class="post-info">
+              <span>
+                2021-01-03
+              </span>
+              <span>
+                11 min read
+              </span>
+              
+                <a href="http://127.0.0.1:8080/tag/nfABdWVsa/" class="post-tag">
+                  # OS
+                </a>
+              
+            </div>
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <h2 id="buddy-system">Buddy system</h2>
+<p><a href="(https://www.halolinux.us/kernel-reference/the-buddy-system-algorithm.html)">这篇文章</a>详细的介绍了我们为什么要使用Buddy System.具体的实现可以参考<a href="https://coolshell.cn/articles/10427.html">这篇文章</a>。</p>
+<p>当User运行进程申请内存的时候，我们会在内核维护的<strong>Free Frame List</strong>上为他分配。</p>
+<p>但是在Kernel中情况有所不同。因为我们往往需要让kernel的<strong>物理内存连续</strong>，或者有些负责作为外部硬件设备的mapping的内存并不能被换出。所以我们引入了一些专门用于Kernel的Frame管理机制，比如说Buddy system和slab。</p>
+<p>Buddy system也可以有不同的实现。Linux采用的和下面要讲述的是<strong>Binary buddy system</strong>。</p>
+<h2 id="binary-buddy-system">Binary buddy system</h2>
+<p>例如，我们要管理的是一块大小为8的内存：</p>
+<pre><code>+--------+--------+--------+--------+--------+--------+--------+--------+
+| page 0 | page 1 | page 2 | page 3 | page 4 | page 5 | page 6 | page 7 |
++--------+--------+--------+--------+--------+--------+--------+--------+
+</code></pre>
+<p>我们把他组织成下图所示的结构：</p>
+<pre><code>8 +---&gt; 4 +---&gt; 2 +---&gt; 1
+  |       |       |
+  |       |       +---&gt; 1
+  |       |
+  |       +---&gt; 2 +---&gt; 1
+  |               |
+  |               +---&gt; 1
+  |
+  +---&gt; 4 +---&gt; 2 +---&gt; 1
+          |       |
+          |       +---&gt; 1
+          |
+          +---&gt; 2 +---&gt; 1
+                  |
+                  +---&gt; 1
+</code></pre>
+<p>这是一个<strong>满二叉树</strong>。所以我们可以用一个数组来存储他：</p>
+<pre><code>+-----------------------------------------------------------+
+| 8 | 4 | 4 | 2 | 2 | 2 | 2 | 1 | 1 | 1 | 1 | 1 | 1 | 1 | 1 |
++-----------------------------------------------------------+
+</code></pre>
+<p>数组中的数字代表的是可分配的物理地址连续页的最大个数，比如此时：</p>
+<ul>
+<li>
+<p>bitmap[0] 对应的是 page 0 ~ page 7</p>
+</li>
+<li>
+<p>bitmap[1] 对应的是 page 0 ~ page 3</p>
+</li>
+<li>
+<p>bitmap[2] 对应的是 page 4 ~ page 7</p>
+</li>
+<li>
+<p>bitmap[3] 对应的是 page 0 ~ page 1</p>
+</li>
+<li>
+<p>bitmap[4] 对应的是 page 2 ~ page 3</p>
+<p>以此类推。</p>
+</li>
+</ul>
+<p>我们要实现两个接口，一个时alloc_page分配页，一个是free_page回收页。</p>
+<h3 id="alloc_page">alloc_page</h3>
+<p><code>uint64 alloc_page(int num_of_page)</code>。接受申请的page数量，返回申请得到的连续内存的首地址，如果申请失败（内存不够），返回NULL。</p>
+<p>如果我们申请一个alloc_page(3)：</p>
+<pre><code>4 +---&gt; 0 +---&gt; 2 +---&gt; 1
+  |       |       |
+  |       |       +---&gt; 1
+  |       |
+  |       +---&gt; 2 +---&gt; 1
+  |               |
+  |               +---&gt; 1
+  |
+  +---&gt; 4 +---&gt; 2 +---&gt; 1
+          |       |
+          |       +---&gt; 1
+          |
+          +---&gt; 2 +---&gt; 1
+                  |
+                  +---&gt; 1
+                  
++-----------------------------------------------------------+
+| 4 | 0 | 4 | 2 | 2 | 2 | 2 | 1 | 1 | 1 | 1 | 1 | 1 | 1 | 1 |
++-----------------------------------------------------------+
+</code></pre>
+<p>我们把<strong>3向上对齐到4</strong>，然后分配一个正好为4的空间。</p>
+<p>然后我们<strong>只需要更新他祖先节点</strong>的值。</p>
+<p>我们继续申请 alloc_page(1):</p>
+<pre><code>2 +---&gt; 0 +---&gt; 2 +---&gt; 1
+  |       |       |
+  |       |       +---&gt; 1
+  |       |
+  |       +---&gt; 2 +---&gt; 1
+  |               |
+  |               +---&gt; 1
+  |
+  +---&gt; 2 +---&gt; 1 +---&gt; 0 ← 
+          |       |
+          |       +---&gt; 1
+          |
+          +---&gt; 2 +---&gt; 1
+                  |
+                  +---&gt; 1
+
++-----------------------------------------------------------+
+| 2 | 0 | 2 | 2 | 2 | 1 | 2 | 1 | 1 | 1 | 1 | 0 | 1 | 1 | 1 |
++-----------------------------------------------------------+
+</code></pre>
+<p>注意到我们<strong>节点上的值是最大可用的连续内存</strong>，所以是2不是3（第2层）。</p>
+<p>然后我们考虑实现上的一些细节，数据结构采用上面的堆。</p>
+<ol>
+<li>我们要返回的是虚拟地址，也就是说我们要把我们找到的array index转换成VA，因为我们在Kernel对物理空间和虚拟空间进行了等值映射，所以其实我们就是把array index转换成page number.</li>
+<li>更新当前节点的值不难，如何更新父节点的值？</li>
+<li>如何找到符合条件的最小节点？</li>
+<li>如何向上对齐到2^n</li>
+</ol>
+<p><strong>可能的解决方案：</strong></p>
+<h3 id="free_page">free_page</h3>
+<p><code>void free_page(uint64 VA)</code>接受要释放的虚拟空间的地址，在我们维护的buddy system中把它释放。</p>
+<p>我们来看一个例子，假设初始状态如此，我们要释放箭头指向节点。我们首先需要恢复他的值，然后如果他的buddy可以和他合并，那么继续更新他的parent；如果不行，那么更新到此为止。</p>
+<pre><code>4 +---&gt; 2 +---&gt; 2 +---&gt; 1
+  |       |       |
+  |       |       +---&gt; 1
+  |       |             
+  |       +---&gt; 1 +---&gt; 0 ← 
+  |               |
+  |               +---&gt; 1
+  |
+  +---&gt; 4 +---&gt; 2 +---&gt; 1
+          |       |
+          |       +---&gt; 1
+          |
+          +---&gt; 2 +---&gt; 1
+                  |
+                  +---&gt; 1
+                  ↓
++-----------------------------------------------------------+
+| 4 | 2 | 4 | 1 | 2 | 2 | 2 | 0 | 1 | 1 | 1 | 1 | 1 | 1 | 1 |
++-----------------------------------------------------------+
+=================================================================================
+8 +---&gt; 4 +---&gt; 2 +---&gt; 1
+  |       |       |
+  |       |       +---&gt; 1
+  |       |             
+  |       +---&gt; 2 +---&gt; 1 ← 
+  |               |
+  |               +---&gt; 1
+  |
+  +---&gt; 4 +---&gt; 2 +---&gt; 1
+          |       |
+          |       +---&gt; 1
+          |
+          +---&gt; 2 +---&gt; 1
+                  |
+                  +---&gt; 1
+                  ↓
++-----------------------------------------------------------+
+| 8 | 4 | 4 | 2 | 2 | 2 | 2 | 1 | 1 | 1 | 1 | 1 | 1 | 1 | 1 |
++-----------------------------------------------------------+
+
+</code></pre>
+<p>然后我们考虑实现上的一些细节，数据结构采用上面的堆。</p>
+<ol>
+<li>之前的index对应的唯一的<code>page_num==VA</code>，现在的<code>VA==page_num</code>对应着多个index，要释放哪一个呢？</li>
+<li>我们要如何和他的buddy进行合并呢？如何更新祖先节点的值呢？</li>
+</ol>
+<p><strong>可能的解决方案：</strong></p>
+<h2 id="slub">Slub</h2>
+<p><a href="https://blog.csdn.net/lukuen/article/details/6935068">实现参考链接</a>，<a href="https://www.ibm.com/developerworks/cn/linux/l-cn-slub/index.html">教科书般的参考链接</a>，讲的很好。</p>
+<p>内核管理页面使用了2个算法：buddy system和slub。buddy system以page为单位管理内存，但在大多数情况下，程序需要的并不是一整页，而是几个、几十个字节的小内存。于是需要另外一套系统来完成对小内存的管理，这就是slub系统。slub系统运行在buddy system之上，为内核提供小内存管理的功能。</p>
+<p>每个数组元素对应一种大小的内存，可以把一个kmem_cache结构体看做是一个特定大小内存的零售商，整个slub系统中共有12个这样的零售商，每个“零售商”只“零售”特定大小的内存，例如：有的“零售商”只&quot;零售&quot;8Byte大小的内存，有的只”零售“16Byte大小的内存。</p>
+<h3 id="kmem_cache">kmem_cache</h3>
+<p><code>struct kmem_cache* slub_allocator[NR_PARTIAL] = {};</code>。slub_allocator是一个全局的结构，描述了整个SLUB分配器，他可以分配一共<code>NR_PARTIAL</code>种内存大小。</p>
+<p>他的每一个元素都是一个特定大小的“内存零售商”，我们一共有<code>NR_PARTIAL</code>个这样的内存零售商（准确的说法是<strong>内核对象缓冲区 kernel memory cache</strong>），每个“零售商”只“零售”特定大小的内存。我们来看kmem_cache的数据结构（省略了统计和调试相关的字段）。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">类型</th>
+<th style="text-align:left">名称</th>
+<th style="text-align:left">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">unsigned long</td>
+<td style="text-align:left">flags</td>
+<td style="text-align:left">描述缓冲区属性的一组标志</td>
+</tr>
+<tr>
+<td style="text-align:left">int</td>
+<td style="text-align:left">size</td>
+<td style="text-align:left">分配给对象的内存大小（可能大于对象的实际大小）</td>
+</tr>
+<tr>
+<td style="text-align:left">int</td>
+<td style="text-align:left">objsize</td>
+<td style="text-align:left">对象的实际大小</td>
+</tr>
+<tr>
+<td style="text-align:left">int</td>
+<td style="text-align:left">offset</td>
+<td style="text-align:left">存放空闲对象指针的位移</td>
+</tr>
+<tr>
+<td style="text-align:left">int</td>
+<td style="text-align:left">order</td>
+<td style="text-align:left">表示一个 slab 需要2^order 个物理页框</td>
+</tr>
+<tr>
+<td style="text-align:left">kmem_cache_node</td>
+<td style="text-align:left">local_node</td>
+<td style="text-align:left">创建缓冲区的节点的 slab 信息</td>
+</tr>
+<tr>
+<td style="text-align:left">int</td>
+<td style="text-align:left">objects</td>
+<td style="text-align:left">一个 slab 中的对象总个数</td>
+</tr>
+<tr>
+<td style="text-align:left">gfp_t</td>
+<td style="text-align:left">allocflags</td>
+<td style="text-align:left">创建一个 slab 时使用的一组额外标志</td>
+</tr>
+<tr>
+<td style="text-align:left">int</td>
+<td style="text-align:left">refcount</td>
+<td style="text-align:left">缓冲区计数器。当用户请求创建新的缓冲区时，SLUB 分配器重用已创建的相似大小的缓冲区，从而减少缓冲区的个数。</td>
+</tr>
+<tr>
+<td style="text-align:left">void (*)(…)</td>
+<td style="text-align:left">ctor</td>
+<td style="text-align:left">创建 slab 时用于初始化每个对象的构造函数</td>
+</tr>
+<tr>
+<td style="text-align:left">int</td>
+<td style="text-align:left">inuse</td>
+<td style="text-align:left">元数据的位移</td>
+</tr>
+<tr>
+<td style="text-align:left">int</td>
+<td style="text-align:left">align</td>
+<td style="text-align:left">对齐</td>
+</tr>
+<tr>
+<td style="text-align:left">const char *</td>
+<td style="text-align:left">name</td>
+<td style="text-align:left">缓冲区名字</td>
+</tr>
+<tr>
+<td style="text-align:left">struct list_head</td>
+<td style="text-align:left">list</td>
+<td style="text-align:left">包含所有缓冲区描述结构的双向循环队列，队列头为 slab_caches</td>
+</tr>
+<tr>
+<td style="text-align:left">int</td>
+<td style="text-align:left">remote_node_defrag_ratio</td>
+<td style="text-align:left">该值越小，越倾向从本节点中分配对象</td>
+</tr>
+<tr>
+<td style="text-align:left">struct kmem_cache_node * []</td>
+<td style="text-align:left">node</td>
+<td style="text-align:left">为每个节点创建的 slab 信息的数据结构（创建缓冲区的节点除外，使用 local_node 字段）</td>
+</tr>
+<tr>
+<td style="text-align:left">struct kmem_cache_cpu * []</td>
+<td style="text-align:left">cpu_slab</td>
+<td style="text-align:left">为每个处理器创建的 slab 信息的数据结构</td>
+</tr>
+</tbody>
+</table>
+<h3 id="kmem_cache_cpu">kmem_cache_cpu</h3>
+<p>每个零售商<code>kmem_cache</code>有两个“部门”，一个是“仓库”：<code>kmem_cache_node</code>，一个“营业厅”：<code>kmem_cache_cpu</code>。“营业厅”里只保留一个slab，只有在营业厅<code>kmem_cache_cpu</code>中没有空闲内存的情况下才会从仓库中换出其他的slab。 <strong>所谓slab就是零售商<code>kmem_cache</code>批发的连续的整页内存</strong>，零售商把这些整页的内存分成许多小内存，然后分别“零售”出去，一个slab可能包含多个连续的内存页。slab的大小和零售商有关。</p>
+<p>我们来看kmem_cache_cpu 数据结构。描述了一个正在被使用的slab。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">类型</th>
+<th style="text-align:left">名称</th>
+<th style="text-align:left">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">void **</td>
+<td style="text-align:left">freelist</td>
+<td style="text-align:left">free object队列的指针，即第一个空闲对象的指针</td>
+</tr>
+<tr>
+<td style="text-align:left">struct page *</td>
+<td style="text-align:left">page</td>
+<td style="text-align:left">slab 的第一个物理页框描述符</td>
+</tr>
+<tr>
+<td style="text-align:left">int</td>
+<td style="text-align:left">node</td>
+<td style="text-align:left">处理器所在 NUMA 节点号，值 -1 用于调试</td>
+</tr>
+<tr>
+<td style="text-align:left">unsigned int</td>
+<td style="text-align:left">offset</td>
+<td style="text-align:left">用于存放下一个空闲对象指针的位移，以字（word）为单位</td>
+</tr>
+<tr>
+<td style="text-align:left">unsigned int</td>
+<td style="text-align:left">objsize</td>
+<td style="text-align:left">对象实际大小，与 kmem_cache 结构 objsize 字段一致</td>
+</tr>
+</tbody>
+</table>
+<p>**一个 slab 就是一组连续的物理内存frame，被划分成了固定数目的object。**slab没有额外的free object queue（这与 SLAB 的实现不同），而是重用了free object自身的空间。slab 也没有额外的描述结构，因为 SLUB 分配器在代表物理frame的 <code>struct page</code>中加入 freelist，inuse 和 slab 的 union 字段，分别代表第一个空闲对象的指针，已分配对象的数目和缓冲区 kmem_cache 结构的指针，所以 slab 的第一个物理页框的 page 结构就可以描述自己。</p>
+<h3 id="kmem_cache_node">kmem_cache_node</h3>
+<p>在 SLUB 中，没有单独的 Empty slab 队列。每个 NUMA 节点使用 kmem_cache_node 结构维护一个处于 Partial 状态的 slab 队列。我们来看他的数据结构：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">类型</th>
+<th style="text-align:left">名称</th>
+<th style="text-align:left">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">spinlock_t</td>
+<td style="text-align:left">list_lock</td>
+<td style="text-align:left">保护 nr_partial 和 partial 字段的自旋锁</td>
+</tr>
+<tr>
+<td style="text-align:left">unsigned long</td>
+<td style="text-align:left">nr_partial</td>
+<td style="text-align:left">本节点 Partial slab 的数目</td>
+</tr>
+<tr>
+<td style="text-align:left">atomic_long_t</td>
+<td style="text-align:left">nr_slabs</td>
+<td style="text-align:left">本节点 slab 的总数</td>
+</tr>
+<tr>
+<td style="text-align:left">struct list_head</td>
+<td style="text-align:left">partial</td>
+<td style="text-align:left">Partial slab 的双向循环队列</td>
+</tr>
+</tbody>
+</table>
+<h3 id="接口">接口</h3>
+<p>我们创建SLUB的目的是为了管理内存空间，所以他提供的接口自然是malloc和free，准确的如下</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">函数</th>
+<th style="text-align:left">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">kmem_cache_create</td>
+<td style="text-align:left">创建新的缓冲区。</td>
+</tr>
+<tr>
+<td style="text-align:left">kmem_cache_destroy</td>
+<td style="text-align:left">销毁缓冲区。因为存在重用缓冲区的情况，只有当 kmem_cache 结构的 refcount 字段为 0时才真正销毁。</td>
+</tr>
+<tr>
+<td style="text-align:left">kmem_cache_alloc</td>
+<td style="text-align:left">从处理器本地的活动 slab 中分配对象。</td>
+</tr>
+<tr>
+<td style="text-align:left">kmem_cache_alloc_node</td>
+<td style="text-align:left">如果指定的 NUMA 节点与本处理器所在节点不一致，则先从指定节点上获取 slab，替换处理器活动 slab，然后分配对象。</td>
+</tr>
+<tr>
+<td style="text-align:left">kmem_cache_free</td>
+<td style="text-align:left">释放对象。如果对象属于某 Partial slab 且释放操作使这个 slab转变成Empty 状态，则释放该 slab。</td>
+</tr>
+<tr>
+<td style="text-align:left">kmem_ptr_validate</td>
+<td style="text-align:left">检查给定对象的指针是否合法。</td>
+</tr>
+<tr>
+<td style="text-align:left">kmem_cache_size</td>
+<td style="text-align:left">返回对象实际大小。</td>
+</tr>
+<tr>
+<td style="text-align:left">kmem_cache_shrink</td>
+<td style="text-align:left">检查各个节点的 Partial 队列，回收实际处于 Empty 状态的 slab，并将剩余的 slab 按已分配对象的数目排序。</td>
+</tr>
+<tr>
+<td style="text-align:left">kmalloc</td>
+<td style="text-align:left">从通用缓冲区中分配一个对象。</td>
+</tr>
+<tr>
+<td style="text-align:left">kmalloc_node</td>
+<td style="text-align:left">从通用缓冲区中分配一个属于指定 NUMA 节点的对象。</td>
+</tr>
+<tr>
+<td style="text-align:left">kfree</td>
+<td style="text-align:left">释放一个通用对象。</td>
+</tr>
+<tr>
+<td style="text-align:left">ksize</td>
+<td style="text-align:left">返回分配给对象的内存大小（可能大于对象的实际大小）</td>
+</tr>
+</tbody>
+</table>
+<p>SLUB在初始化时，需要预先申请一定的空间来做数据结构和Cache的初始化，此时依赖于Buddy System提供的接口。</p>
+<p>关于分配和释放内存，第一个链接讲的真是太好了。</p>
+
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#buddy-system">Buddy system</a></li>
+<li><a href="#binary-buddy-system">Binary buddy system</a>
+<ul>
+<li><a href="#alloc_page">alloc_page</a></li>
+<li><a href="#free_page">free_page</a></li>
+</ul>
+</li>
+<li><a href="#slub">Slub</a>
+<ul>
+<li><a href="#kmem_cache">kmem_cache</a></li>
+<li><a href="#kmem_cache_cpu">kmem_cache_cpu</a></li>
+<li><a href="#kmem_cache_node">kmem_cache_node</a></li>
+<li><a href="#%E6%8E%A5%E5%8F%A3">接口</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="http://127.0.0.1:8080/post/2020/">
+              <h3 class="post-title">
+                2020小结
+              </h3>
+            </a>
+          </div>
+        
+
+        
+
+        <div class="site-footer">
+  
+  <a class="rss" href="http://127.0.0.1:8080/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>

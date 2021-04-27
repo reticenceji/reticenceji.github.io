@@ -1,0 +1,309 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Rust-输入输出 | Reticence</title>
+<link rel="shortcut icon" href="http://127.0.0.1:8080/favicon.ico?v=1619508275369">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="http://127.0.0.1:8080/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="Rust-输入输出 | Reticence - Atom Feed" href="http://127.0.0.1:8080/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-90HNEFFE0M"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-90HNEFFE0M');
+</script>
+
+
+    <meta name="description" content="格式化输出
+std::fmt
+通过在:后面添加控制字符
+demo
+format!(&quot;Hello&quot;);                 // =&gt; &quot;Hello&quot;
+format!(&quot;He..." />
+    <meta name="keywords" content="Rust" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="http://127.0.0.1:8080">
+  <img class="avatar" src="http://127.0.0.1:8080/images/avatar.png?v=1619508275369" alt="">
+  </a>
+  <h1 class="site-title">
+    Reticence
+  </h1>
+  <p class="site-description">
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          Index
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          Classification
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          Archives
+        </a>
+      
+    
+      
+        <a href="/navigator.html" class="menu">
+          Navigator
+        </a>
+      
+    
+      
+        <a href="/post/book-list" class="menu">
+          Booklist
+        </a>
+      
+    
+      
+        <a href="/post/fei-md-ge-shi-bi-ji-hui-zong" class="menu">
+          Notes
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          About
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+        <a href="https://github.com/reticenceji" target="_blank">
+          <i class="ri-github-line"></i>
+        </a>
+      
+    
+      
+    
+      
+    
+      
+        <a href="https://www.zhihu.com/people/reticenceji" target="_blank">
+          <i class="ri-zhihu-line"></i>
+        </a>
+      
+    
+      
+    
+  </div>
+  <script>
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
+    var s = document.getElementsByTagName("script")[0]; 
+    s.parentNode.insertBefore(hm, s);
+  })();
+  </script>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              Rust-输入输出
+            </h2>
+            <div class="post-info">
+              <span>
+                2021-03-14
+              </span>
+              <span>
+                3 min read
+              </span>
+              
+                <a href="http://127.0.0.1:8080/tag/3Sdf--wHm/" class="post-tag">
+                  # Rust
+                </a>
+              
+            </div>
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <h1 id="格式化输出">格式化输出</h1>
+<p><a href="https://doc.rust-lang.org/std/fmt/">std::fmt</a><br>
+通过在:后面添加控制字符</p>
+<h2 id="demo">demo</h2>
+<pre><code>format!(&quot;Hello&quot;);                 // =&gt; &quot;Hello&quot;
+format!(&quot;Hello, {}!&quot;, &quot;world&quot;);   // =&gt; &quot;Hello, world!&quot;
+format!(&quot;The number is {}&quot;, 1);   // =&gt; &quot;The number is 1&quot;
+format!(&quot;{:?}&quot;, (3, 4));          // =&gt; &quot;(3, 4)&quot;
+format!(&quot;{value}&quot;, value=4);      // 命名参数
+format!(&quot;{1} {0}&quot;, 1, 2);           // 位置参数
+format!(&quot;{:04}&quot;, 42);             // =&gt; &quot;0042&quot; with leading zeros
+format!(&quot;{:.4},3.14159&quot;);        // 保留小数
+format!(&quot;{:.2$},3.14159,2&quot;);        // 保留小数，使用第二个参数作为保留标准
+</code></pre>
+<p>对齐和填充<code>[fill]&lt;/&gt;/^</code></p>
+<pre><code>    println!(&quot;Hello {:0&lt;5}!&quot;,&quot;X&quot;);  //左对齐，填0
+    println!(&quot;Hello {:-^5}!&quot;,&quot;X&quot;);  //居中，填-
+    println!(&quot;Hello {:*&gt;2$}!&quot;,&quot;X&quot;,5);  //右对齐，填*。使用第二个参数作为填充标准。
+</code></pre>
+<p>数字</p>
+<ul>
+<li>+输出正号</li>
+<li>#? - pretty-print the Debug formatting</li>
+<li>#x - precedes the argument with a 0x    十六进制
+<ul>
+<li>:X 不带0x的十六进制，下面同理</li>
+</ul>
+</li>
+<li>#X - precedes the argument with a 0x</li>
+<li>#b - precedes the argument with a 0b  二进制</li>
+<li>#o - precedes the argument with a 0o</li>
+</ul>
+<h2 id="trait">Trait</h2>
+<p><a href="https://doc.rust-lang.org/std/fmt/#formatting-traits">formatting的接口</a>，通过实现这些接口我们可以利用格式化输出我们自己的类型。</p>
+<h1 id="输入">输入</h1>
+<p>当我想用rust写PTA的时候，发现我连输入都无法解决。。。</p>
+<p><code>std::io::stdin() -&gt; Stdin</code>，这个Constructs a new handle to the standard input of the current process。我们在PTA上的输入都是通过标准输入进行的。</p>
+<pre><code>let stdin = io::stdin();
+let mut buf =  String::new();
+stdin.read_line(&amp;mut buf).expect(&quot;&quot;);
+println!(&quot;{}&quot;,buf);
+</code></pre>
+<p>除了read_line，还有各种各样的读入方法，Trait std::io::Read定义的方法，标准库已经帮我们实现了。</p>
+<table>
+<thead>
+<tr>
+<th>函数</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>fn read_to_string(&amp;mut self, buf: &amp;mut String) -&gt; Result&lt;usize&gt;</code></td>
+<td>Read all bytes until EOF in this source, <strong>appending</strong> them to buf.</td>
+</tr>
+<tr>
+<td><code>fn read_to_end(&amp;mut self, buf: &amp;mut Vec&lt;u8&gt;) -&gt; Result&lt;usize&gt;</code></td>
+<td>Read all bytes until EOF in this source, <strong>placing</strong> them into buf</td>
+</tr>
+<tr>
+<td><code>fn read_exact(&amp;mut self, buf: &amp;mut [u8]) -&gt; Result&lt;()&gt;</code></td>
+<td>Read the exact number of bytes required to fill buf</td>
+</tr>
+</tbody>
+</table>
+
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li><a href="#%E6%A0%BC%E5%BC%8F%E5%8C%96%E8%BE%93%E5%87%BA">格式化输出</a>
+<ul>
+<li><a href="#demo">demo</a></li>
+<li><a href="#trait">Trait</a></li>
+</ul>
+</li>
+<li><a href="#%E8%BE%93%E5%85%A5">输入</a></li>
+</ul>
+
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="http://127.0.0.1:8080/post/ben-di-bu-shu-jing-tai-ye-mian-grideadocker/">
+              <h3 class="post-title">
+                本地部署静态页面 Gridea+Docker
+              </h3>
+            </a>
+          </div>
+        
+
+        
+
+        <div class="site-footer">
+  
+  <a class="rss" href="http://127.0.0.1:8080/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>

@@ -1,0 +1,278 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>C程序中变量在ELF段中的位置 | Reticence</title>
+<link rel="shortcut icon" href="http://127.0.0.1:8080/favicon.ico?v=1619508275369">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="http://127.0.0.1:8080/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="C程序中变量在ELF段中的位置 | Reticence - Atom Feed" href="http://127.0.0.1:8080/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-90HNEFFE0M"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-90HNEFFE0M');
+</script>
+
+
+    <meta name="description" content="我们知道数据主要存放在三个段：.bss, .rodata, .data
+.bss：未被初始化的全局和静态C变量，以及被初始化成0的全局或静态变量。（所以我们要被bss段清零）
+.rodata：只读数据。如下面的&quot;hello wor..." />
+    <meta name="keywords" content="C,Reverse" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="http://127.0.0.1:8080">
+  <img class="avatar" src="http://127.0.0.1:8080/images/avatar.png?v=1619508275369" alt="">
+  </a>
+  <h1 class="site-title">
+    Reticence
+  </h1>
+  <p class="site-description">
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          Index
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          Classification
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          Archives
+        </a>
+      
+    
+      
+        <a href="/navigator.html" class="menu">
+          Navigator
+        </a>
+      
+    
+      
+        <a href="/post/book-list" class="menu">
+          Booklist
+        </a>
+      
+    
+      
+        <a href="/post/fei-md-ge-shi-bi-ji-hui-zong" class="menu">
+          Notes
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          About
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+        <a href="https://github.com/reticenceji" target="_blank">
+          <i class="ri-github-line"></i>
+        </a>
+      
+    
+      
+    
+      
+    
+      
+        <a href="https://www.zhihu.com/people/reticenceji" target="_blank">
+          <i class="ri-zhihu-line"></i>
+        </a>
+      
+    
+      
+    
+  </div>
+  <script>
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
+    var s = document.getElementsByTagName("script")[0]; 
+    s.parentNode.insertBefore(hm, s);
+  })();
+  </script>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              C程序中变量在ELF段中的位置
+            </h2>
+            <div class="post-info">
+              <span>
+                2020-11-15
+              </span>
+              <span>
+                3 min read
+              </span>
+              
+                <a href="http://127.0.0.1:8080/tag/1N1qlBrCX/" class="post-tag">
+                  # C
+                </a>
+              
+                <a href="http://127.0.0.1:8080/tag/DhIxrI5Uq/" class="post-tag">
+                  # Reverse
+                </a>
+              
+            </div>
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <p>我们知道数据主要存放在三个段：<code>.bss</code>, <code>.rodata</code>, <code>.data</code><br>
+.bss：未被初始化的全局和静态C变量，以及被初始化成0的全局或静态变量。（所以我们要被bss段清零）<br>
+.rodata：只读数据。如下面的&quot;hello world&quot;和const。<br>
+.data：已初始化的全局和静态C变量。<br>
+对于局部的C变量，一般保存在栈里，或者有可能就在寄存器中。</p>
+<p>我们直接采用一个C程序结合readelf工具进行分析。</p>
+<pre><code class="language-c">#include &lt;stdio.h&gt;
+static int i_static;    //.bss
+int i_global;           //.bss
+static int i_static_ini=10;    //.data
+int i_global_ini=10;       //.data
+const int i_const_global=101;  //.rodata
+const static int i_const_static=102;   //.rodata
+
+int main()
+{
+    int i;      //stack
+    static int i_static_function;     //.bss
+    static int in_static_function_ini = 100;    //.data
+    const int i_con=103;    //stack
+    const static int i_con_static=104;  //.rodata
+    printf(&quot;Hello world\n&quot;);    //.rodata
+    return 0;
+}
+</code></pre>
+<pre><code class="language-c">  [Nr] Name              Type             Address           Offset
+       Size              EntSize          Flags  Link  Info  Align
+  [16] .rodata           PROGBITS         0000000000000750  00000750
+       0000000000000010  0000000000000000   A       0     0     4
+  [25] .data             PROGBITS         0000000000201020  00001020
+       000000000000001c  0000000000000000  WA       0     0     8
+  [26] .bss              NOBITS           000000000020103c  0000103c
+       0000000000000014  0000000000000000  WA       0     0     4
+</code></pre>
+<p>我们可以由此算出三个段的起止位置，然后结合符号表中描述的地址。</p>
+<p>当然了，这都是在ELF文件中的位置。由于内存的随机化，程序运行时这些变量在内存中的位置还要另说，但是段总是不变的。另外我们可以看到符号表中的GLOBAL和LOCAL选项，顾名思义啦。</p>
+<ul>
+<li>函数中的const变量<br>
+我们可以观察到一个有趣的现象，就是<code>const int i_con=103; //stack</code>也是在stack中的，而不是在rodata段。我们并不能在符号表中找到他。<br>
+然后我们思考，stack不可能具有写的保护。我们利用指针可以轻易地更改这个const变量。如果我们使用指针指向这个变量，GCC也会警告我们const不再管用。<br>
+与之对比，如果我们把指针指向那些在rodata段的变量然后修改它，会得到segment fault。</li>
+</ul>
+
+              </div>
+              <div class="toc-container">
+                
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="http://127.0.0.1:8080/post/linux-shi-yong-ssh-yuan-cheng-deng-lu/">
+              <h3 class="post-title">
+                Linux使用SSH远程登录
+              </h3>
+            </a>
+          </div>
+        
+
+        
+
+        <div class="site-footer">
+  
+  <a class="rss" href="http://127.0.0.1:8080/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>

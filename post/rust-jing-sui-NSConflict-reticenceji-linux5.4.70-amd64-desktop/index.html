@@ -1,0 +1,441 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Rust-精髓 | Reticence</title>
+<link rel="shortcut icon" href="http://127.0.0.1:8080/favicon.ico?v=1619508275369">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="http://127.0.0.1:8080/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="Rust-精髓 | Reticence - Atom Feed" href="http://127.0.0.1:8080/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-90HNEFFE0M"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-90HNEFFE0M');
+</script>
+
+
+    <meta name="description" content="探讨了ownership, lifetime, reference, 泛型以及智能指针
+
+
+
+
+所有权
+
+所有权解决了什么问题
+
+
+生命周期
+
+生命周期解决了什么问题
+
+
+引用 reference
+智能指针
+泛型
+Trait
+
+
+
+
+所有权..." />
+    <meta name="keywords" content="Rust" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="http://127.0.0.1:8080">
+  <img class="avatar" src="http://127.0.0.1:8080/images/avatar.png?v=1619508275369" alt="">
+  </a>
+  <h1 class="site-title">
+    Reticence
+  </h1>
+  <p class="site-description">
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          Index
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          Classification
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          Archives
+        </a>
+      
+    
+      
+        <a href="/navigator.html" class="menu">
+          Navigator
+        </a>
+      
+    
+      
+        <a href="/post/book-list" class="menu">
+          Booklist
+        </a>
+      
+    
+      
+        <a href="/post/fei-md-ge-shi-bi-ji-hui-zong" class="menu">
+          Notes
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          About
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+        <a href="https://github.com/reticenceji" target="_blank">
+          <i class="ri-github-line"></i>
+        </a>
+      
+    
+      
+    
+      
+    
+      
+        <a href="https://www.zhihu.com/people/reticenceji" target="_blank">
+          <i class="ri-zhihu-line"></i>
+        </a>
+      
+    
+      
+    
+  </div>
+  <script>
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
+    var s = document.getElementsByTagName("script")[0]; 
+    s.parentNode.insertBefore(hm, s);
+  })();
+  </script>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              Rust-精髓
+            </h2>
+            <div class="post-info">
+              <span>
+                2021-03-21
+              </span>
+              <span>
+                9 min read
+              </span>
+              
+                <a href="http://127.0.0.1:8080/tag/3Sdf--wHm/" class="post-tag">
+                  # Rust
+                </a>
+              
+            </div>
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <p>探讨了ownership, lifetime, reference, 泛型以及智能指针</p>
+<!-- more -->
+<p><ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#%E6%89%80%E6%9C%89%E6%9D%83">所有权</a>
+<ul>
+<li><a href="#%E6%89%80%E6%9C%89%E6%9D%83%E8%A7%A3%E5%86%B3%E4%BA%86%E4%BB%80%E4%B9%88%E9%97%AE%E9%A2%98">所有权解决了什么问题</a></li>
+</ul>
+</li>
+<li><a href="#%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F">生命周期</a>
+<ul>
+<li><a href="#%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E8%A7%A3%E5%86%B3%E4%BA%86%E4%BB%80%E4%B9%88%E9%97%AE%E9%A2%98">生命周期解决了什么问题</a></li>
+</ul>
+</li>
+<li><a href="#%E5%BC%95%E7%94%A8-reference">引用 reference</a></li>
+<li><a href="#%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88">智能指针</a></li>
+<li><a href="#%E6%B3%9B%E5%9E%8B">泛型</a></li>
+<li><a href="#trait">Trait</a></li>
+</ul>
+</li>
+</ul>
+</p>
+<h2 id="所有权">所有权</h2>
+<blockquote>
+<p>Each value in Rust has a variable that's called its owner.<br>
+There can only be one owner at one time.<br>
+When the owner goes out of scope, the value will be dropped.</p>
+</blockquote>
+<h3 id="所有权解决了什么问题">所有权解决了什么问题</h3>
+<p>通过保证同时只有一个owner，就不会出现反复释放同一块内存（Drop）的情况。防止内存泄露。并且Owner在离开作用域的时候被自动Drop，无需手动。在Rust中没有手动释放内存的操作（吧？</p>
+<h2 id="生命周期">生命周期</h2>
+<p>https://learning-rust.github.io/docs/c3.lifetimes.html</p>
+<h3 id="生命周期解决了什么问题">生命周期解决了什么问题</h3>
+<p>当我们使用Reference的时候，我们要保证referencing data的生存时间比我们的reference长，准确的说是我们不再使用reference的时候referencing data依然存在。否则就是<strong>悬垂引用</strong>（在别的语言中，就是一个指向无效地址的指针）</p>
+<ul>
+<li>A resource can only have <strong>one owner</strong> at a time. When it goes <strong>out of the scope</strong>, Rust removes it from the Memory.</li>
+<li>When we want to reuse the same resource, we are <strong>referencing</strong> it/ <strong>borrowing</strong> its content.</li>
+<li>When dealing with <strong>references</strong>, we have to specify <strong>lifetime annotations</strong> to provide instructions for the <strong>compiler</strong> to set <strong>how long</strong> those referenced resources <strong>should be alive</strong>.</li>
+<li>⭐️ But because of lifetime annotations make the <strong>code more verbose</strong>, in order to make <strong>common patterns</strong> more ergonomic, Rust allows lifetimes to be <strong>elided/omitted</strong> in <code>fn</code> definitions. In this case, the compiler assigns lifetime annotations <strong>implicitly</strong>.</li>
+</ul>
+<ol>
+<li><strong>On Function Declaration</strong></li>
+</ol>
+<ul>
+<li>Input and output parameters with references should attach lifetimes after the <code>&amp;</code> sign. ex. <code>..(x: &amp;'a str)</code> , <code>..(x: &amp;'a mut str)</code></li>
+<li>After the function name, we should mention that the given lifetimes are generic types. ex. <code>fn foo&lt;'a&gt;(..)</code> , <code>fn foo&lt;'a, 'b&gt;(..)</code></li>
+</ul>
+<pre><code>// No inputs, return a reference
+fn function&lt;'a&gt;() -&gt; &amp;'a str {}
+
+// Single input
+fn function&lt;'a&gt;(x: &amp;'a str) {}
+
+// Single input and output, both have the same lifetime
+// The output should live at least as long as input exists
+fn function&lt;'a&gt;(x: &amp;'a str) -&gt; &amp;'a str {}
+
+// Multiple inputs, only one input and the output share same lifetime
+// The output should live at least as long as y exists
+fn function&lt;'a&gt;(x: i32, y: &amp;'a str) -&gt; &amp;'a str {}
+
+// Multiple inputs, both inputs and the output share same lifetime
+// The output should live at least as long as x and y exist
+fn function&lt;'a&gt;(x: &amp;'a str, y: &amp;'a str) -&gt; &amp;'a str {}
+
+// Multiple inputs, inputs can have different lifetimes 🔎
+// The output should live at least as long as x exists
+fn function&lt;'a, 'b&gt;(x: &amp;'a str, y: &amp;'b str) -&gt; &amp;'a str {}
+</code></pre>
+<ol start="2">
+<li><strong>On Struct or Enum Declaration</strong></li>
+</ol>
+<ul>
+<li>Elements with references should attach lifetimes after the <code>&amp;</code> sign.</li>
+<li>After the name of the struct or enum, we should mention that the given lifetimes are generic types.</li>
+</ul>
+<pre><code>// Single element
+// Data of x should live at least as long as Struct exists
+struct Struct&lt;'a&gt; {
+    x: &amp;'a str
+}
+
+// Multiple elements
+// Data of x and y should live at least as long as Struct exists
+struct Struct&lt;'a&gt; {
+    x: &amp;'a str,
+    y: &amp;'a str
+}
+
+// Variant with a single element
+// Data of the variant should live at least as long as Enum exists
+enum Enum&lt;'a&gt; {
+    Variant(&amp;'a Type)
+}
+</code></pre>
+<p>'static 变量拥有整个程序执行期间的生命周期，就是说写进了二进制文件。</p>
+<h2 id="引用-reference">引用 reference</h2>
+<p>引用的本质是指针，不会获得引用变量的ownership。比如在函数传递参数、for循环枚举的时候我们可能需要这个特性。如下例：</p>
+<pre><code>fn main() {
+    let s1 = String::from(&quot;hello&quot;);
+    let len = calculate_length(&amp;s1);
+
+    println!(&quot;The length of '{}' is {}.&quot;, s1, len);
+}
+
+fn calculate_length(s: &amp;String) -&gt; usize {
+    s.len()
+}
+</code></pre>
+<p><img src="http://127.0.0.1:8080/post-images/1616217051614.svg" alt="" loading="lazy"><br>
+reference:<code>&amp;</code> mutable reference:<code>&amp;mut</code>, dereference:<code>*</code>。<br>
+变量 s 有效的作用域与函数参数的作用域一样，不过<strong>当引用离开作用域后并不丢弃它指向的数据（不Drop）</strong>，因为我们没有所有权。当函数使用引用而不是实际值作为参数，无需通过返回值来交还所有权，因为就不曾拥有所有权。<br>
+注意一个<strong>引用的作用域从声明的地方开始一直持续到最后一次使用为止</strong>。<br>
+Reference:</p>
+<blockquote>
+<p>At any given time, you can have either one mutable reference or any number of immutable references.<br>
+References must always be valid. （在Rust中编译器确保引用永远也不会变成悬垂状态：当你拥有一些数据的引用，编译器确保数据不会在其引用之前离开作用域。variable live longer than its reference）</p>
+</blockquote>
+<p>Rust强大的地方在于，他甚至能在编译的时候就保证这些特性。</p>
+<p>另一个<strong>Slice</strong>概念，也可以不是Owner，引用变量的内容，不过是引用集合中一段连续的元素序列。Slice也是不可变的。Slice:<code>s[1..4]</code>。<br>
+类似的，Rust在编译的时候，就保证Slice是始终有效的。</p>
+<h2 id="智能指针">智能指针</h2>
+<p>Rust 中最常见的指针是第四章介绍的 引用（reference）。引用以 &amp; 符号为标志并借用了他们所指向的值。除了引用数据没有任何其他特殊功能。它们也没有任何额外开销，所以应用得最多。<br>
+<strong>智能指针（smart pointers）是一类数据结构，他们的表现类似指针，但是也拥有额外的元数据和功能。</strong> 我们看的到的String和Vec都是智能指针。通常用结构体来实现，但是智能指针区别于常规的结构体的显著特性在于实现了<code>Deref</code>和<code>Drop</code>两个trait。 <strong><code>Deref</code>允许智能指针结构体实例表现的像引用一样。<code>Drop</code>允许我们自定义当智能指针离开作用域时运行的代码（类似析构函数的感觉）</strong></p>
+<h2 id="泛型">泛型</h2>
+<p>在Rust中使用泛型，可以让代码适应更多的情况。但是需要注意的是，其实泛型在编译的时候会变成一个确定的类型。<br>
+当使用泛型定义<strong>函数</strong>时，本来在函数签名中指定参数和返回值的类型的地方，会改用泛型来表示。<br>
+一个例子：<code>fn largest&lt;T&gt;(list: &amp;[T]) -&gt; T {...}</code><br>
+在结构体重定义泛型。注意下面的integer和float是两个不同的类型。虽然他们都是Point，但是因为Rust 通过在编译时进行泛型代码的 **单态化（monomorphization）**来保证效率，他们实际上被编译成了两种不同的类型。</p>
+<pre><code>struct Point&lt;T&gt; {
+    x: T,
+    y: T,
+}
+
+fn main() {
+    let integer = Point { x: 5, y: 10 };
+    let float = Point { x: 1.0, y: 4.0 };
+}
+</code></pre>
+<h2 id="trait">Trait</h2>
+<p>Trait和别的语言里的implement很像，但是不太一样。<br>
+定义一个trait叫做Summary，要实现这个trait，你需要实现一个summarize方法。必须以self（或者说不需要参数，但是要写出来）作为参数并返回一个String。一个trait也可以有多个方法。如下所示：</p>
+<pre><code class="language-rust">pub trait Summary {
+    fn summarize(&amp;self) -&gt; String;
+}
+</code></pre>
+<p>然后你就可以在你自己的类上实现这个trait。一旦实现了 trait，我们就可以用与 NewsArticle 和 Tweet 实例的非 trait 方法一样的方式调用 trait 方法了。如下所示：</p>
+<pre><code class="language-rust">impl Summary for MyClass {
+    fn summarize(&amp;self) -&gt; String {
+        format!(&quot;{}, by {} ({})&quot;, self.headline, self.author, self.location)
+    }
+}
+</code></pre>
+<p>利用trait，我们可以接受各种各样的参数。比如下面这个例子。本来我们在<code>item:</code> 后面需要书写我们传递参数的具体类型，但是我们现在用<code>impl Summary</code>，那么我们传入的参数可以是<strong>任何实现了trait Summary的任何类型</strong>。</p>
+<pre><code>pub fn notify(item: impl Summary) {
+    println!(&quot;Breaking news! {}&quot;, item.summarize());
+}
+//需要同时实现两种Trait
+pub fn notify(item: impl Summary + Display) {}
+//语法糖，指定泛型T和U为满足where从句限定trait的类型。
+fn some_function&lt;T, U&gt;(t: T, u: U) -&gt; i32
+    where  T: Display + Clone, U: Clone + Debug
+{}
+</code></pre>
+<p>少见一点的，你可以把返回值也用trait限定。<code>fn returns_summarizable() -&gt; impl Summary {}</code>，这样的话你需要返回一个实现了trait的类。</p>
+<p>一个很典型的例子就是格式化输出。在 <code>println(&quot;{}\n&quot;,myinstance);</code> 的时候，其实<code>{}</code>就被替换成了执行trait之后的内容。准确来说，是这样子：<br>
+<a href="https://doc.rust-lang.org/src/core/fmt/mod.rs.html#642-666">标准库</a>中有一个trait叫做<code>std::fmt::Display</code>，里面定义了一个方法签名<code>fn fmt(&amp;self, f: &amp;mut Formatter&lt;'_&gt;) -&gt; Result;</code>。如果你为你自己的类实现了这个方法，那么你就可以用格式化字符串了，或者简单的说就可以用<code>println(&quot;{}&quot;)</code>了。</p>
+
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#%E6%89%80%E6%9C%89%E6%9D%83">所有权</a>
+<ul>
+<li><a href="#%E6%89%80%E6%9C%89%E6%9D%83%E8%A7%A3%E5%86%B3%E4%BA%86%E4%BB%80%E4%B9%88%E9%97%AE%E9%A2%98">所有权解决了什么问题</a></li>
+</ul>
+</li>
+<li><a href="#%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F">生命周期</a>
+<ul>
+<li><a href="#%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E8%A7%A3%E5%86%B3%E4%BA%86%E4%BB%80%E4%B9%88%E9%97%AE%E9%A2%98">生命周期解决了什么问题</a></li>
+</ul>
+</li>
+<li><a href="#%E5%BC%95%E7%94%A8-reference">引用 reference</a></li>
+<li><a href="#%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88">智能指针</a></li>
+<li><a href="#%E6%B3%9B%E5%9E%8B">泛型</a></li>
+<li><a href="#trait">Trait</a></li>
+</ul>
+</li>
+</ul>
+
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="http://127.0.0.1:8080/post/chang-yong-ruan-jian-kuai-jie-jian/">
+              <h3 class="post-title">
+                常用软件快捷键
+              </h3>
+            </a>
+          </div>
+        
+
+        
+
+        <div class="site-footer">
+  
+  <a class="rss" href="http://127.0.0.1:8080/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>

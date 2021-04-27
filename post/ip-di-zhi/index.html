@@ -1,0 +1,357 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Networking-网络层-IP地址 | Reticence</title>
+<link rel="shortcut icon" href="http://127.0.0.1:8080/favicon.ico?v=1619508275369">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="http://127.0.0.1:8080/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="Networking-网络层-IP地址 | Reticence - Atom Feed" href="http://127.0.0.1:8080/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-90HNEFFE0M"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-90HNEFFE0M');
+</script>
+
+
+    <meta name="description" content="
+IP地址目前有两个版本，分别是IPv4和IPv6。
+IPv4是一个32位的地址，常采用4个十进制数字表示。IP协议将这个32位的地址分为两部分，前面部分代表网络地址，后面部分表示该主机在局域网中的地址。
+
+
+
+
+A类IPv4地址
+B类IP..." />
+    <meta name="keywords" content="Networking" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="http://127.0.0.1:8080">
+  <img class="avatar" src="http://127.0.0.1:8080/images/avatar.png?v=1619508275369" alt="">
+  </a>
+  <h1 class="site-title">
+    Reticence
+  </h1>
+  <p class="site-description">
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          Index
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          Classification
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          Archives
+        </a>
+      
+    
+      
+        <a href="/navigator.html" class="menu">
+          Navigator
+        </a>
+      
+    
+      
+        <a href="/post/book-list" class="menu">
+          Booklist
+        </a>
+      
+    
+      
+        <a href="/post/fei-md-ge-shi-bi-ji-hui-zong" class="menu">
+          Notes
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          About
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+        <a href="https://github.com/reticenceji" target="_blank">
+          <i class="ri-github-line"></i>
+        </a>
+      
+    
+      
+    
+      
+    
+      
+        <a href="https://www.zhihu.com/people/reticenceji" target="_blank">
+          <i class="ri-zhihu-line"></i>
+        </a>
+      
+    
+      
+    
+  </div>
+  <script>
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
+    var s = document.getElementsByTagName("script")[0]; 
+    s.parentNode.insertBefore(hm, s);
+  })();
+  </script>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              Networking-网络层-IP地址
+            </h2>
+            <div class="post-info">
+              <span>
+                2020-12-12
+              </span>
+              <span>
+                3 min read
+              </span>
+              
+                <a href="http://127.0.0.1:8080/tag/GLCgJ5F7H/" class="post-tag">
+                  # Networking
+                </a>
+              
+            </div>
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <hr>
+<p>IP地址目前有两个版本，分别是IPv4和IPv6。</p>
+<p>IPv4是一个32位的地址，常采用4个十进制数字表示。IP协议将这个32位的地址分为两部分，<strong>前面部分代表网络地址，后面部分表示该主机在局域网中的地址。</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center">A类IPv4地址</th>
+<th style="text-align:center"><strong>B类IPv4地址</strong></th>
+<th style="text-align:center"><strong>C类IPv4地址</strong></th>
+<th style="text-align:center"><strong>D类IPv4地址</strong></th>
+<th><strong>E类IPv4地址</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><strong>网络标志位</strong></td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">10</td>
+<td style="text-align:center">110</td>
+<td style="text-align:center">1110</td>
+<td>11110</td>
+</tr>
+<tr>
+<td style="text-align:center"><strong>IP地址范围</strong></td>
+<td style="text-align:center">1.0.0.0~127.255.255.255</td>
+<td style="text-align:center">128.0.0.0~191.255.255.255</td>
+<td style="text-align:center">192.0.0.0~223.255.255.255</td>
+<td style="text-align:center">224.0.0.0~239.255.255.255</td>
+<td>240.0.0.0~247.255.255.255</td>
+</tr>
+<tr>
+<td style="text-align:center"><strong>可用IP地址范围</strong></td>
+<td style="text-align:center">1.0.0.1~127.255.255.254</td>
+<td style="text-align:center">128.0.0.1~191.255.255.254</td>
+<td style="text-align:center">192.0.0.1~223.255.255.254</td>
+<td style="text-align:center"></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:center"><strong>是否可以分配给主机使用</strong></td>
+<td style="text-align:center">是</td>
+<td style="text-align:center">是</td>
+<td style="text-align:center">是</td>
+<td style="text-align:center">否</td>
+<td>否</td>
+</tr>
+<tr>
+<td style="text-align:center"><strong>网络数量（个）</strong></td>
+<td style="text-align:center">126 (2^7-2)</td>
+<td style="text-align:center">16384 (2^14)</td>
+<td style="text-align:center">2097152 (2^21)</td>
+<td style="text-align:center">---</td>
+<td>---</td>
+</tr>
+<tr>
+<td style="text-align:center"><strong>每个网络中可容纳主机数（个）</strong></td>
+<td style="text-align:center">16777214 (2^24-2)</td>
+<td style="text-align:center">65534 (2^16-2)</td>
+<td style="text-align:center">254 (2^8-2)</td>
+<td style="text-align:center">---</td>
+<td>---</td>
+</tr>
+<tr>
+<td style="text-align:center"><strong>适用范围</strong></td>
+<td style="text-align:center">大量主机的大型网络</td>
+<td style="text-align:center">中等规模主机数的网络</td>
+<td style="text-align:center">小型局域网</td>
+<td style="text-align:center">留给Internet体系结构委员会(IAB)使用【组播地址】</td>
+<td>保留，仅作为搜索、Internet的实验和开发用</td>
+</tr>
+</tbody>
+</table>
+<p>私有地址：由于IP地址的不足，我们不要求为每一台主机或路由器分配一个固定的IP地址，尤其是对于那些没有连接互联网的独立网络中的主机，只要保证在这个<strong>网络</strong>内的地址唯一即可。所以出现了私有网络的IP。</p>
+<p>私有IP一开始是用于互联网之外的独立网络，但是NAT技术可以让私有地址的主机和互联网实现通信。因此，私有地址+NAT技术在一定程度上可以缓解IP地址不足的情况。当然，IPv6就没有这个困扰了。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Name</th>
+<th style="text-align:center"><a href="https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing">CIDR</a> block</th>
+<th>Address range</th>
+<th style="text-align:center">Number of addresses</th>
+<th style="text-align:center"><em><a href="https://en.wikipedia.org/wiki/Classful_network">Classful</a></em> description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">24-bit block</td>
+<td style="text-align:center">10.0.0.0/8</td>
+<td>10.0.0.0 – 10.255.255.255</td>
+<td style="text-align:center">16777216</td>
+<td style="text-align:center">Single Class A.</td>
+</tr>
+<tr>
+<td style="text-align:center">20-bit block</td>
+<td style="text-align:center">172.16.0.0/12</td>
+<td>172.16.0.0 – 172.31.255.255</td>
+<td style="text-align:center">1048576</td>
+<td style="text-align:center">Contiguous range of 16 Class B blocks.</td>
+</tr>
+<tr>
+<td style="text-align:center">16-bit block</td>
+<td style="text-align:center">192.168.0.0/16</td>
+<td>192.168.0.0 – 192.168.255.255</td>
+<td style="text-align:center">65536</td>
+<td style="text-align:center">Contiguous range of 256 Class C blocks</td>
+</tr>
+</tbody>
+</table>
+<figure data-type="image" tabindex="1"><img src="http://127.0.0.1:8080/post-images/1607743061486.png" alt="" loading="lazy"></figure>
+<h2 id="172">172</h2>
+<p>所以我们经常会在主机的虚拟机上看到172开头的IP地址。这是内网。</p>
+
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#172">172</a></li>
+</ul>
+</li>
+</ul>
+
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="http://127.0.0.1:8080/post/zotero/">
+              <h3 class="post-title">
+                Zotero
+              </h3>
+            </a>
+          </div>
+        
+
+        
+
+        <div class="site-footer">
+  
+  <a class="rss" href="http://127.0.0.1:8080/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>

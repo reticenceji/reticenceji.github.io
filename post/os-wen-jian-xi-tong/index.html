@@ -1,0 +1,339 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>OS-File System | Reticence</title>
+<link rel="shortcut icon" href="http://127.0.0.1:8080/favicon.ico?v=1619508275369">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="http://127.0.0.1:8080/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="OS-File System | Reticence - Atom Feed" href="http://127.0.0.1:8080/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-90HNEFFE0M"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-90HNEFFE0M');
+</script>
+
+
+    <meta name="description" content="文件的概念
+
+The operating system provides a uniform logical view of stored information. The operating system abstracts from t..." />
+    <meta name="keywords" content="OS" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="http://127.0.0.1:8080">
+  <img class="avatar" src="http://127.0.0.1:8080/images/avatar.png?v=1619508275369" alt="">
+  </a>
+  <h1 class="site-title">
+    Reticence
+  </h1>
+  <p class="site-description">
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          Index
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          Classification
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          Archives
+        </a>
+      
+    
+      
+        <a href="/navigator.html" class="menu">
+          Navigator
+        </a>
+      
+    
+      
+        <a href="/post/book-list" class="menu">
+          Booklist
+        </a>
+      
+    
+      
+        <a href="/post/fei-md-ge-shi-bi-ji-hui-zong" class="menu">
+          Notes
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          About
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+        <a href="https://github.com/reticenceji" target="_blank">
+          <i class="ri-github-line"></i>
+        </a>
+      
+    
+      
+    
+      
+    
+      
+        <a href="https://www.zhihu.com/people/reticenceji" target="_blank">
+          <i class="ri-zhihu-line"></i>
+        </a>
+      
+    
+      
+    
+  </div>
+  <script>
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
+    var s = document.getElementsByTagName("script")[0]; 
+    s.parentNode.insertBefore(hm, s);
+  })();
+  </script>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              OS-File System
+            </h2>
+            <div class="post-info">
+              <span>
+                2020-12-26
+              </span>
+              <span>
+                7 min read
+              </span>
+              
+                <a href="http://127.0.0.1:8080/tag/nfABdWVsa/" class="post-tag">
+                  # OS
+                </a>
+              
+            </div>
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <h2 id="文件的概念">文件的概念</h2>
+<blockquote>
+<p>The operating system provides a uniform logical view of stored information. The operating system abstracts from the physical properties of its storage devices to define a logical storage unit, the <strong>file</strong> .</p>
+</blockquote>
+<p>文件，就是操作系统把物理存储设备上的内容做了抽象，提供的统一单元。</p>
+<p>通常，文件的<strong>属性</strong>包括名称、类型、大小、保护信息、修改时间、创建时间等等。</p>
+<p>文件是一个抽象的数据类型，应该实现的操作包括：创建文件(touch)、写文件(write)、读文件(read)、删除文件(rm)、文件定位(seek)、截断文件（截断文件的意思是删除文件的全部能容但是保留文件的属性不变）</p>
+<h2 id="文件共享">文件共享</h2>
+<p>网络共享</p>
+<h2 id="挂载">挂载</h2>
+<p>可以认为是把文件系统的信息从disk装载到memory里，或者说是文件系统的安装。</p>
+<h2 id="保护机制">保护机制</h2>
+<p>Type of access:</p>
+<ul>
+<li>read write append</li>
+<li>execute</li>
+</ul>
+<h2 id="文件系统">文件系统</h2>
+<p>没有什么问题是加一层抽象不能解决的——我也不知道是谁说的。我们对文件系统可以分成下面几层。<br>
+<img src="http://127.0.0.1:8080/post-images/1610171155594.png" alt="" loading="lazy"><br>
+<img src="http://127.0.0.1:8080/post-images/1610206607176.jpeg" alt="" loading="lazy"></p>
+<ul>
+<li>Logical file system: 管理metadata。FCB（file control block）包含有关文件的信息，包括文件的所有者、权限、文件内容的位置等。</li>
+<li>FIle-organization module: 每个文件的Logical Block从0到N编号，而包含数据的物理块并不与逻辑号匹配，需要通过转换来定位。</li>
+<li>Basic file system: 想适当的设备驱动程序发送通用命令以读写。同时管理内存缓冲区和保存各种文件系统、目录和数据块的缓存。</li>
+<li>I/O control: 输入为高级命令，输出为硬件特定的指令。</li>
+</ul>
+<p>类似内存要给每个process分配frame，我们要给每个file分配Block。<br>
+类似内存要管理free frame，我们也需要管理free block。</p>
+<h3 id="目录">目录</h3>
+<p>在Linux中，一切皆文件。目录是一种特殊的文件，存储<strong>文件名到文件inode的映射。</strong><br>
+文件的很多属性都存储在inode里，但是文件名不是。文件名存储在目录里。<br>
+所以，多个文件名可以映射到同一个inode，这也就是<strong>硬链接</strong>。<br>
+<img src="http://127.0.0.1:8080/post-images/1610175053053.png" alt="" loading="lazy"><br>
+由于目录的内容其实是一个key-value字典，所以我们一般采用hash table的方式存储以加快查找速度。当然简单的实现也可以用线性表。</p>
+<p>整个操作系统会hold一个<strong>System-Wide Open-File Table</strong>，里面的内容是inode。<br>
+每个Process也有一个Open-File Table，内容是在<strong>Sysrem-Wide Open-File Table</strong>的index。<br>
+我们知道我们调用底层的open会返回一个fd(File Descriptor)，就是在这个Process的<strong>Open-File Table</strong>的index。</p>
+<h3 id="disk-block-allocation">Disk Block Allocation</h3>
+<p>我们需要为File在Disk上分配Block用来存储信息。<br>
+我们有几种策略 continuous, linked, indexed。<br>
+<strong>continuous allocation</strong>: 这样我们在存储文件信息的时候，只需要存储文件的起始block和长度。我们读取文件的代价也很小。<br>
+但是文件大小变化会很麻烦：如果一段连续的空间被用完了但是文件还要继续扩大就带来了很大的问题。<br>
+连续存储会带来碎片，所以我们有整理磁盘这个操作，把磁盘碎片合并起来。<br>
+<img src="http://127.0.0.1:8080/post-images/1610176724376.png" alt="" loading="lazy"></p>
+<p><strong>linked allocation</strong>:用链表的形式，这样可以方便扩展文件大小，解决连续分配的问题。<br>
+我们在每一个block存储下一个block的地址。<br>
+问题有很多，指针会占用空间。<br>
+可靠性不高，一旦link中间的一个某节点损坏就完了；<br>
+比如我想读中间的某一块（随即访问），我就要从前往后遍历，比较低效率。<br>
+FAT采用这个策略。<br>
+<img src="http://127.0.0.1:8080/post-images/1610176786317.png" alt="" loading="lazy"><br>
+<strong>indexed allocation</strong>:每个文件有它的<strong>index blocks</strong>，index block存储着指向他的别的内容块的指针。这样没有externel fragmentation，并且允许文件物理不连续。<br>
+<img src="http://127.0.0.1:8080/post-images/1610176816631.png" alt="" loading="lazy"><br>
+我们来看Linux上的实现Ext2，一个Block的大小是4KB。引入了和页表类似的多级概念，可以很好的handle大文件和小文件。<br>
+最大能够支持的文件大小为<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>12</mn><mo>∗</mo><mn>4096</mn><mo>+</mo><mn>1024</mn><mo>∗</mo><mn>4096</mn><mo>+</mo><mn>102</mn><msup><mn>4</mn><mn>2</mn></msup><mo>∗</mo><mn>4096</mn><mo>+</mo><mn>102</mn><msup><mn>4</mn><mn>3</mn></msup><mo>∗</mo><mn>4096</mn><mo>=</mo><mn>4</mn><mi>T</mi></mrow><annotation encoding="application/x-tex">12*4096+1024*4096+1024^2*4096+1024^3*4096 = 4T</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord">2</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">4</span><span class="mord">0</span><span class="mord">9</span><span class="mord">6</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord">0</span><span class="mord">2</span><span class="mord">4</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">4</span><span class="mord">0</span><span class="mord">9</span><span class="mord">6</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord">0</span><span class="mord">2</span><span class="mord"><span class="mord">4</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">4</span><span class="mord">0</span><span class="mord">9</span><span class="mord">6</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord">0</span><span class="mord">2</span><span class="mord"><span class="mord">4</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">4</span><span class="mord">0</span><span class="mord">9</span><span class="mord">6</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord">4</span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span></span></span></span><br>
+<img src="http://127.0.0.1:8080/post-images/1609893543519.png" alt="" loading="lazy"></p>
+<h3 id="free-space-management">Free-Space Management*</h3>
+<p><strong>Bit Vector</strong>：我们用一个bit map来管理所有的block。举一个例子，我们的硬盘一共有10个block，block0-block9，其中block0空闲其他已用。<br>
+那么我们用一个10bit vector表示<code>1000 0000 00</code>。<code>V[0]==1</code>表示block0空闲。<br>
+<strong>Linked List</strong>：不需要额外的空间，因为可以把链表的指针存储在free block里。每一个空闲的block指向下一个空闲的block，然后我们只用保存第一个空闲的Block。但这样不是一个高效的做法，因为遍历磁盘代价很高。FAT。<br>
+<img src="http://127.0.0.1:8080/post-images/1610176695183.png" alt="" loading="lazy"><br>
+<strong>Grouping</strong>：是Link list的改进，在第一个free block中存储n个free block的location，前n-1个直接指向free block，最后一个又指向一个存储着n个free blockdlocation的块，<br>
+<strong>Counting</strong>：基于这样一个事实：通常多个连续的block可能要同时分配或者释放。因此我们不是记录n个free block的location，而是记录第一个free block的地址以及紧接着的free block的数量。</p>
+<p>soft link：就是一个普通的文件，但是他的内容指向另一个文件。（快捷方式）</p>
+<h2 id="管理文件系统的数据结构">管理文件系统的数据结构</h2>
+<p>Super Block和File control block</p>
+<h2 id="从linux看文件">从Linux看文件</h2>
+<p><code>mkfs</code>：格式化命令。<br>
+<code>stat</code>：查看文件信息或文件系统信息。<br>
+<code>ls</code>：</p>
+<h3 id="superblock-inode-dentry-file">superblock inode dentry file</h3>
+<p>以下内容来自于该<a href="https://unix.stackexchange.com/questions/4402/what-is-a-superblock-inode-dentry-and-a-file">链接</a>的翻译。</p>
+<p>首先我们要理解metadata是什么。从wikipedia中偷来的解释为，metadata是data的data，意思是说metadata包括了data的一些信息。举个例子，我有一辆车，然后车的颜色、价格、型号等信息它们虽然不是车本身，但是是关于车的信息。</p>
+<p><strong>superblock</strong>存储文件系统的重要的metadata，并且定义了文件系统的类型，大小，状态以及metadata的metadata。superblock对文件系统十分重要，所以会有很多冗余的备份。</p>
+<p>在文件系统中，一个<strong>inode</strong>存储了一个file的metadata。为了清楚起见，在Linux/Unix中一切皆文件，包括files, directories, devices 等等。另外需要注意的是，inode中没有文件名。inode存储了文件的ownership, access mode等所有的metadata除了文件名。</p>
+<p><strong>dentry</strong>是联系inodes和file name的纽带。同时dentry在目录缓存中扮演重要角色，维护着最经常被访问的files。文件系统会经常遍历dentry来寻找文件。</p>
+<p><strong>file</strong>的概念在最开始讲了。</p>
+<h3 id="链接">链接</h3>
+<p><code>ln a.out ahard</code><br>
+hard link: 在<strong>目录文件</strong>创建一个条目，他的inode和原来文件的inode一模一样。文件的link数+1。<br>
+我们看到的<code>.</code>和<code>..</code>都是hard link。<br>
+我们删除一个文件，其实是把文件的link数-1。当link数变成0了，那文件就真的被删掉了。（有点像垃圾回收）</p>
+
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#%E6%96%87%E4%BB%B6%E7%9A%84%E6%A6%82%E5%BF%B5">文件的概念</a></li>
+<li><a href="#%E6%96%87%E4%BB%B6%E5%85%B1%E4%BA%AB">文件共享</a></li>
+<li><a href="#%E6%8C%82%E8%BD%BD">挂载</a></li>
+<li><a href="#%E4%BF%9D%E6%8A%A4%E6%9C%BA%E5%88%B6">保护机制</a></li>
+<li><a href="#%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F">文件系统</a>
+<ul>
+<li><a href="#%E7%9B%AE%E5%BD%95">目录</a></li>
+<li><a href="#disk-block-allocation">Disk Block Allocation</a></li>
+<li><a href="#free-space-management">Free-Space Management*</a></li>
+</ul>
+</li>
+<li><a href="#%E7%AE%A1%E7%90%86%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E7%9A%84%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84">管理文件系统的数据结构</a></li>
+<li><a href="#%E4%BB%8Elinux%E7%9C%8B%E6%96%87%E4%BB%B6">从Linux看文件</a>
+<ul>
+<li><a href="#superblock-inode-dentry-file">superblock inode dentry file</a></li>
+<li><a href="#%E9%93%BE%E6%8E%A5">链接</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="http://127.0.0.1:8080/post/remote-containers/">
+              <h3 class="post-title">
+                Remote-Containers
+              </h3>
+            </a>
+          </div>
+        
+
+        
+
+        <div class="site-footer">
+  
+  <a class="rss" href="http://127.0.0.1:8080/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>

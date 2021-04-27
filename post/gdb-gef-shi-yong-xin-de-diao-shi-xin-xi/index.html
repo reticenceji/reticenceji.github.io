@@ -1,0 +1,344 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>GDB-Debug调试 | Reticence</title>
+<link rel="shortcut icon" href="http://127.0.0.1:8080/favicon.ico?v=1619508275369">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="http://127.0.0.1:8080/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="GDB-Debug调试 | Reticence - Atom Feed" href="http://127.0.0.1:8080/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-90HNEFFE0M"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-90HNEFFE0M');
+</script>
+
+
+    <meta name="description" content="我们需要给源代码加上调试选项，如gcc -g3 hello.c -o hello.dbg，然后用gdb进行调试。
+常用命令：
+start在开始处(main/libc_main/entry_point)断住。
+finish可以执行完当前函数，..." />
+    <meta name="keywords" content="C,Tools" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="http://127.0.0.1:8080">
+  <img class="avatar" src="http://127.0.0.1:8080/images/avatar.png?v=1619508275369" alt="">
+  </a>
+  <h1 class="site-title">
+    Reticence
+  </h1>
+  <p class="site-description">
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          Index
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          Classification
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          Archives
+        </a>
+      
+    
+      
+        <a href="/navigator.html" class="menu">
+          Navigator
+        </a>
+      
+    
+      
+        <a href="/post/book-list" class="menu">
+          Booklist
+        </a>
+      
+    
+      
+        <a href="/post/fei-md-ge-shi-bi-ji-hui-zong" class="menu">
+          Notes
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          About
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+        <a href="https://github.com/reticenceji" target="_blank">
+          <i class="ri-github-line"></i>
+        </a>
+      
+    
+      
+    
+      
+    
+      
+        <a href="https://www.zhihu.com/people/reticenceji" target="_blank">
+          <i class="ri-zhihu-line"></i>
+        </a>
+      
+    
+      
+    
+  </div>
+  <script>
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
+    var s = document.getElementsByTagName("script")[0]; 
+    s.parentNode.insertBefore(hm, s);
+  })();
+  </script>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              GDB-Debug调试
+            </h2>
+            <div class="post-info">
+              <span>
+                2020-11-09
+              </span>
+              <span>
+                3 min read
+              </span>
+              
+                <a href="http://127.0.0.1:8080/tag/1N1qlBrCX/" class="post-tag">
+                  # C
+                </a>
+              
+                <a href="http://127.0.0.1:8080/tag/nL6gwIN_5/" class="post-tag">
+                  # Tools
+                </a>
+              
+            </div>
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <p>我们需要给源代码加上调试选项，如<code>gcc -g3 hello.c -o hello.dbg</code>，然后用gdb进行调试。<br>
+常用命令：<br>
+<code>start</code>在开始处(main/libc_main/entry_point)断住。<br>
+<code>finish</code>可以执行完当前函数，然后返回。<br>
+<code>display 变量名</code>可以对变量添加监视。</p>
+<p><code>set variable</code>还可以给变量赋值。</p>
+<h2 id="查看内容">查看内容</h2>
+<h3 id="frame">Frame</h3>
+<p>查看栈帧Frame</p>
+<p><code>info frame</code>：<br>
+This command prints a verbose description of the selected stack frame, including:</p>
+<ul>
+<li>the address of the frame</li>
+<li>the address of the next frame down (called by this frame)</li>
+<li>the address of the next frame up (caller of this frame)</li>
+<li>the language in which the source code corresponding to this frame is written</li>
+<li>the address of the frame’s arguments</li>
+<li>the address of the frame’s local variables</li>
+<li>the program counter saved in it (the address of execution in the caller frame)</li>
+<li>which registers were saved in the frame</li>
+</ul>
+<h3 id="print">print</h3>
+<p><code>p 变量名</code>，p是print的缩写，我们可以查看变量的值：</p>
+<ul>
+<li>全局变量（所有文件可见的）</li>
+<li>静态全局变量（当前文件可见的）</li>
+<li>局部变量（当前Scope可见的）</li>
+</ul>
+<p>如果你在编译的时候开启了O3选项，那有些变量可能被优化了GDB会告诉你无法访问。</p>
+<p><code>print [options --] [/fmt] expr</code>，是print的完整用法。</p>
+<p>我们可以规定我们打印出变量的格式，这个和查看内存的x命令类似：</p>
+<table>
+<thead>
+<tr>
+<th>/fmt</th>
+<th>功 能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>/x</td>
+<td>以十六进制的形式打印出整数。</td>
+</tr>
+<tr>
+<td>/d</td>
+<td>以有符号、十进制的形式打印出整数。</td>
+</tr>
+<tr>
+<td>/u</td>
+<td>以无符号、十进制的形式打印出整数。</td>
+</tr>
+<tr>
+<td>/o</td>
+<td>以八进制的形式打印出整数。</td>
+</tr>
+<tr>
+<td>/t</td>
+<td>以二进制的形式打印出整数。</td>
+</tr>
+<tr>
+<td>/f</td>
+<td>以浮点数的形式打印变量或表达式的值。</td>
+</tr>
+<tr>
+<td>/c</td>
+<td>以字符形式打印变量或表达式的值。</td>
+</tr>
+</tbody>
+</table>
+<p>一般情况下你不需要指定打印信息的格式，有调试信息的帮助GDB会自己判断，他甚至能打印结构和数组！</p>
+<h2 id="控制流">控制流</h2>
+<p><code>start</code>：他可以智能的在程序的入口设下断点。它会寻找<code>main</code>,ELF的Entry Point等。<br>
+<code>until 行号</code>：比如你在面对一个大循环的时候，可以用它快速执行到指定的行号。<br>
+我们现在要用<code>ni</code>和<code>si</code>来单步执行一条汇编指令<code>i=instruction</code>，单纯的<code>n</code>和<code>s</code>可以执行一条代码的下一步。</p>
+<h3 id="b-断点">b 断点</h3>
+<p><code>b</code>设置断点。相比没有调试信息的，我们可以：</p>
+<ul>
+<li>直接根据文件和行号设置断点了。<code>b file:linenum</code></li>
+<li>我们设置条件断点可以更加灵活。</li>
+</ul>
+<h3 id="watch-观察点">watch 观察点</h3>
+<p><code>watch</code>命令设置<strong>观察点</strong>，也就是当一个变量值发生变化时，程序会停下来。观察点可以通过软件或硬件的方式实现，取决于具体的系统。但是软件实现的观察点会导致程序运行很慢，使用时需注意。</p>
+<h2 id="gui">GUI</h2>
+<p><code>Crtl+X+A</code>组合键，可以切换CLI和GUI界面。</p>
+<p><code>layout asm</code></p>
+<p><code>layout regs</code></p>
+<h2 id="改变程序的执行">改变程序的执行</h2>
+
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#%E6%9F%A5%E7%9C%8B%E5%86%85%E5%AE%B9">查看内容</a>
+<ul>
+<li><a href="#frame">Frame</a></li>
+<li><a href="#print">print</a></li>
+</ul>
+</li>
+<li><a href="#%E6%8E%A7%E5%88%B6%E6%B5%81">控制流</a>
+<ul>
+<li><a href="#b-%E6%96%AD%E7%82%B9">b 断点</a></li>
+<li><a href="#watch-%E8%A7%82%E5%AF%9F%E7%82%B9">watch 观察点</a></li>
+</ul>
+</li>
+<li><a href="#gui">GUI</a></li>
+<li><a href="#%E6%94%B9%E5%8F%98%E7%A8%8B%E5%BA%8F%E7%9A%84%E6%89%A7%E8%A1%8C">改变程序的执行</a></li>
+</ul>
+</li>
+</ul>
+
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="http://127.0.0.1:8080/post/elf-wen-jian-de-fu-hao-biao/">
+              <h3 class="post-title">
+                ELF文件的符号表
+              </h3>
+            </a>
+          </div>
+        
+
+        
+
+        <div class="site-footer">
+  
+  <a class="rss" href="http://127.0.0.1:8080/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>

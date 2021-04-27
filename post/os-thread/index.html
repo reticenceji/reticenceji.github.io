@@ -1,0 +1,298 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>OS-Thread | Reticence</title>
+<link rel="shortcut icon" href="http://127.0.0.1:8080/favicon.ico?v=1619508275369">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="http://127.0.0.1:8080/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="OS-Thread | Reticence - Atom Feed" href="http://127.0.0.1:8080/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-90HNEFFE0M"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-90HNEFFE0M');
+</script>
+
+
+    <meta name="description" content="
+申老师说，理解了这张图就理解了thread
+线程Thread是最小的执行单元，而进程Process是资源分配的最小单元。
+Process中的每一个Thread有它自己的PC、Register Set、Stack；同时和其他Thread共享..." />
+    <meta name="keywords" content="OS" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="http://127.0.0.1:8080">
+  <img class="avatar" src="http://127.0.0.1:8080/images/avatar.png?v=1619508275369" alt="">
+  </a>
+  <h1 class="site-title">
+    Reticence
+  </h1>
+  <p class="site-description">
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          Index
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          Classification
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          Archives
+        </a>
+      
+    
+      
+        <a href="/navigator.html" class="menu">
+          Navigator
+        </a>
+      
+    
+      
+        <a href="/post/book-list" class="menu">
+          Booklist
+        </a>
+      
+    
+      
+        <a href="/post/fei-md-ge-shi-bi-ji-hui-zong" class="menu">
+          Notes
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          About
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+        <a href="https://github.com/reticenceji" target="_blank">
+          <i class="ri-github-line"></i>
+        </a>
+      
+    
+      
+    
+      
+    
+      
+        <a href="https://www.zhihu.com/people/reticenceji" target="_blank">
+          <i class="ri-zhihu-line"></i>
+        </a>
+      
+    
+      
+    
+  </div>
+  <script>
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
+    var s = document.getElementsByTagName("script")[0]; 
+    s.parentNode.insertBefore(hm, s);
+  })();
+  </script>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              OS-Thread
+            </h2>
+            <div class="post-info">
+              <span>
+                2021-01-11
+              </span>
+              <span>
+                3 min read
+              </span>
+              
+                <a href="http://127.0.0.1:8080/tag/nfABdWVsa/" class="post-tag">
+                  # OS
+                </a>
+              
+            </div>
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <figure data-type="image" tabindex="1"><img src="http://127.0.0.1:8080/post-images/1610346132999.png" alt="" loading="lazy"></figure>
+<p>申老师说，理解了这张图就理解了thread<br>
+<strong>线程Thread是最小的执行单元，而进程Process是资源分配的最小单元。</strong></p>
+<p>Process中的每一个Thread有它自己的PC、Register Set、Stack；同时和其他Thread共享Heap，Code section，Data section，打开的文件和信号。这意味着Thread之间的信息共享很方便，同时也是问题。</p>
+<h2 id="thread的优点和缺点">Thread的优点和缺点</h2>
+<p>优点：</p>
+<ul>
+<li>高效：创造一个Thread更简单，Context-Swtich的Overhead更小，不需要刷新cache。</li>
+<li>共享Resource更方便，Thread天生的优点。</li>
+<li>Responsiveness更高。</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li>如果一个Thread导致Process崩溃，整个Process就崩溃了。</li>
+<li><strong>并发Concurrency</strong>非常难以编程。</li>
+<li>对曾经的32位系统来说，由于所有的Thread共享一个虚拟地址空间，所以可能会不太够用。</li>
+</ul>
+<h3 id="thread-cancellation">Thread Cancellation</h3>
+<p><strong>线程撤销</strong>是指在线程完成之前终止线程。比如我们在浏览器中停止加载，那么所有的请求线程被撤销。</p>
+<p>但是在我们发出<code>pthread_cancel()</code>之后，实际的撤销情况取决于目标线程的设置。</p>
+<ul>
+<li>Delay：目标线程会不断检查他是否被撤销（或者说收到了被撤销的信号），然后自己终止自己。</li>
+<li>Asynchrony：我们立刻终止线程。</li>
+<li>我们还可以禁止线程撤销。</li>
+</ul>
+<h2 id="user-thread和kernel-thread">User Thread和Kernel Thread</h2>
+<p><a href="https://stackoverflow.com/questions/15983872/difference-between-user-level-and-kernel-supported-threads#:~:text=A%20User%20thread%20is%20one,with%20a%20user%2Dspace%20process.">关于二者的解释</a>   <a href="https://www.geeksforgeeks.org/difference-between-user-level-thread-and-kernel-level-thread/">关于二者的优劣</a></p>
+<p>这个问题困扰了我很久，<strong>一个关键是这里的Kernel Thread不是指运行在Kernel Mode的Thread</strong>。</p>
+<ul>
+<li>User Thread指的是在user level被管理的Thread。比如Java Green Thread。<!-- 是不是就是说我们在ps的时候看不到的意思呢 --></li>
+<li>Kernel Thread指的是被Kernel管理的Thread。操作系统只知道Kernel Thread的存在。</li>
+</ul>
+<h3 id="multi-threading-models">Multi-threading Models</h3>
+<ul>
+<li>
+<p>Many-To-One Model，一个Kernel Thread对应多个User Thread。优点是overhead小。缺点是不能多核并行，并且一个Thread如果Block了，所有的Thread就都Block了。</p>
+</li>
+<li>
+<p>One-To-One Model，一个Kernel Thread对应一个User Thread。这样子比Many-To-One的代价稍大，但是不存在Many-To-One的缺点。被现代操作系统广泛采用，比如LInux，我们为每一个Thread分配一个task_struct。</p>
+</li>
+<li>
+<p>Many-To-Many Model，多个Kernel Thread对应多个User Thread。非常复杂。</p>
+</li>
+<li>
+<p>Two-Level Model。</p>
+</li>
+</ul>
+<p>一个有趣的事情是，thread和Process在Linux中<code>thread = light-weight process</code>，统一管理。</p>
+<p>编程的细节，在另一篇文章里有。我当然不是很会，这太难了。</p>
+
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#thread%E7%9A%84%E4%BC%98%E7%82%B9%E5%92%8C%E7%BC%BA%E7%82%B9">Thread的优点和缺点</a>
+<ul>
+<li><a href="#thread-cancellation">Thread Cancellation</a></li>
+</ul>
+</li>
+<li><a href="#user-thread%E5%92%8Ckernel-thread">User Thread和Kernel Thread</a>
+<ul>
+<li><a href="#multi-threading-models">Multi-threading Models</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="http://127.0.0.1:8080/post/ds-suan-fa-fen-xi/">
+              <h3 class="post-title">
+                DS-Algorithm Analysis
+              </h3>
+            </a>
+          </div>
+        
+
+        
+
+        <div class="site-footer">
+  
+  <a class="rss" href="http://127.0.0.1:8080/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>

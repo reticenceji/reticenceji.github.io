@@ -1,0 +1,460 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Python-时间和日期 | Reticence</title>
+<link rel="shortcut icon" href="http://127.0.0.1:8080/favicon.ico?v=1619508275369">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="http://127.0.0.1:8080/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="Python-时间和日期 | Reticence - Atom Feed" href="http://127.0.0.1:8080/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-90HNEFFE0M"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-90HNEFFE0M');
+</script>
+
+
+    <meta name="description" content="outline
+话不多说，直接上图。方框内可以认为是三种时间数据的存储形式。箭头上的函数用于转换。
+
+time.struct_time
+可以认为python用这个类来存储时间。It is an object with a named tup..." />
+    <meta name="keywords" content="Python" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="http://127.0.0.1:8080">
+  <img class="avatar" src="http://127.0.0.1:8080/images/avatar.png?v=1619508275369" alt="">
+  </a>
+  <h1 class="site-title">
+    Reticence
+  </h1>
+  <p class="site-description">
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          Index
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          Classification
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          Archives
+        </a>
+      
+    
+      
+        <a href="/navigator.html" class="menu">
+          Navigator
+        </a>
+      
+    
+      
+        <a href="/post/book-list" class="menu">
+          Booklist
+        </a>
+      
+    
+      
+        <a href="/post/fei-md-ge-shi-bi-ji-hui-zong" class="menu">
+          Notes
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          About
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+        <a href="https://github.com/reticenceji" target="_blank">
+          <i class="ri-github-line"></i>
+        </a>
+      
+    
+      
+    
+      
+    
+      
+        <a href="https://www.zhihu.com/people/reticenceji" target="_blank">
+          <i class="ri-zhihu-line"></i>
+        </a>
+      
+    
+      
+    
+  </div>
+  <script>
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
+    var s = document.getElementsByTagName("script")[0]; 
+    s.parentNode.insertBefore(hm, s);
+  })();
+  </script>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              Python-时间和日期
+            </h2>
+            <div class="post-info">
+              <span>
+                2020-11-18
+              </span>
+              <span>
+                4 min read
+              </span>
+              
+                <a href="http://127.0.0.1:8080/tag/aTiVQxwll/" class="post-tag">
+                  # Python
+                </a>
+              
+            </div>
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <h2 id="outline">outline</h2>
+<p>话不多说，直接上图。方框内可以认为是三种时间数据的存储形式。箭头上的函数用于转换。<br>
+<img src="http://127.0.0.1:8080/post-images/1605668356058.png" alt="" loading="lazy"></p>
+<h3 id="timestruct_time">time.struct_time</h3>
+<p>可以认为python用这个类来存储时间。It is an object with a named tuple interface: values can be accessed by index and by attribute name. 我们看下面index和attribute说明：</p>
+<table>
+<thead>
+<tr>
+<th>Index</th>
+<th>Attribute</th>
+<th>Values</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td><code>tm_year</code></td>
+<td>(for example, 1993)</td>
+</tr>
+<tr>
+<td>1</td>
+<td><code>tm_mon</code></td>
+<td>range [1, 12]</td>
+</tr>
+<tr>
+<td>2</td>
+<td><code>tm_mday</code></td>
+<td>range [1, 31]</td>
+</tr>
+<tr>
+<td>3</td>
+<td><code>tm_hour</code></td>
+<td>range [0, 23]</td>
+</tr>
+<tr>
+<td>4</td>
+<td><code>tm_min</code></td>
+<td>range [0, 59]</td>
+</tr>
+<tr>
+<td>5</td>
+<td><code>tm_sec</code></td>
+<td>range [0, 61]; see <strong>(2)</strong> in <a href="https://docs.python.org/3/library/time.html?highlight=struct_time#time.strftime"><code>strftime()</code></a> description</td>
+</tr>
+<tr>
+<td>6</td>
+<td><code>tm_wday</code></td>
+<td>range [0, 6], Monday is 0</td>
+</tr>
+<tr>
+<td>7</td>
+<td><code>tm_yday</code></td>
+<td>range [1, 366]</td>
+</tr>
+<tr>
+<td>8</td>
+<td><code>tm_isdst</code></td>
+<td>0, 1 or -1; see below</td>
+</tr>
+<tr>
+<td>N/A</td>
+<td><code>tm_zone</code></td>
+<td>abbreviation of timezone name</td>
+</tr>
+<tr>
+<td>N/A</td>
+<td><code>tm_gmtoff</code></td>
+<td>offset east of UTC in seconds</td>
+</tr>
+</tbody>
+</table>
+<h3 id="timestrptime和strftime">time.strptime和strftime</h3>
+<p>这个方法可以解析（parse）一个字符串为一个struct_time. <code>time.strptime(string[,format]</code>，与之相对应的是<code>time.strftime(format[, t])</code>,这个方法可以把一个struct_time格式化（format）成一个字符串。下为格式化字符表。</p>
+<table>
+<thead>
+<tr>
+<th>Directive</th>
+<th>Meaning</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>%a</code></td>
+<td>Locale’s abbreviated weekday name.</td>
+<td></td>
+</tr>
+<tr>
+<td><code>%A</code></td>
+<td>Locale’s full weekday name.</td>
+<td></td>
+</tr>
+<tr>
+<td><code>%b</code></td>
+<td>Locale’s abbreviated month name.</td>
+<td></td>
+</tr>
+<tr>
+<td><code>%B</code></td>
+<td>Locale’s full month name.</td>
+<td></td>
+</tr>
+<tr>
+<td><code>%c</code></td>
+<td>Locale’s appropriate date and time representation.</td>
+<td></td>
+</tr>
+<tr>
+<td><code>%d</code></td>
+<td>Day of the month as a decimal number [01,31].</td>
+<td></td>
+</tr>
+<tr>
+<td><code>%H</code></td>
+<td>Hour (24-hour clock) as a decimal number [00,23].</td>
+<td></td>
+</tr>
+<tr>
+<td><code>%I</code></td>
+<td>Hour (12-hour clock) as a decimal number [01,12].</td>
+<td></td>
+</tr>
+<tr>
+<td><code>%j</code></td>
+<td>Day of the year as a decimal number [001,366].</td>
+<td></td>
+</tr>
+<tr>
+<td><code>%m</code></td>
+<td>Month as a decimal number [01,12].</td>
+<td></td>
+</tr>
+<tr>
+<td><code>%M</code></td>
+<td>Minute as a decimal number [00,59].</td>
+<td></td>
+</tr>
+<tr>
+<td><code>%p</code></td>
+<td>Locale’s equivalent of either AM or PM.</td>
+<td>(1)</td>
+</tr>
+<tr>
+<td><code>%S</code></td>
+<td>Second as a decimal number [00,61].</td>
+<td>(2)</td>
+</tr>
+<tr>
+<td><code>%U</code></td>
+<td>Week number of the year (Sunday as the first day of the week) as a decimal number [00,53]. All days in a new year preceding the first Sunday are considered to be in week 0.</td>
+<td>(3)</td>
+</tr>
+<tr>
+<td><code>%w</code></td>
+<td>Weekday as a decimal number [0(Sunday),6].</td>
+<td></td>
+</tr>
+<tr>
+<td><code>%W</code></td>
+<td>Week number of the year (Monday as the first day of the week) as a decimal number [00,53]. All days in a new year preceding the first Monday are considered to be in week 0.</td>
+<td>(3)</td>
+</tr>
+<tr>
+<td><code>%x</code></td>
+<td>Locale’s appropriate date representation.</td>
+<td></td>
+</tr>
+<tr>
+<td><code>%X</code></td>
+<td>Locale’s appropriate time representation.</td>
+<td></td>
+</tr>
+<tr>
+<td><code>%y</code></td>
+<td>Year without century as a decimal number [00,99].</td>
+<td></td>
+</tr>
+<tr>
+<td><code>%Y</code></td>
+<td>Year with century as a decimal number.</td>
+<td></td>
+</tr>
+<tr>
+<td><code>%z</code></td>
+<td>Time zone offset indicating a positive or negative time difference from UTC/GMT of the form +HHMM or -HHMM, where H represents decimal hour digits and M represents decimal minute digits [-23:59, +23:59].</td>
+<td></td>
+</tr>
+<tr>
+<td><code>%Z</code></td>
+<td>Time zone name (no characters if no time zone exists).</td>
+<td></td>
+</tr>
+<tr>
+<td><code>%%</code></td>
+<td>A literal <code>'%'</code> character.</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="gtime和localtime">gtime和localtime</h3>
+<p><code>time.gmtime([secs])</code>：将以自 epoch 开始的秒数表示的时间转换为 UTC 的 <strong>struct_time</strong> 。 如果没有给出secs参数那么默认为<code>time()</code>返回的当前时间。</p>
+<p><code>time.localtime([secs])</code>与 gmtime() 相似但转换为当地时间。</p>
+<h3 id="timetime">time.time()</h3>
+<p>返回以浮点数表示的从 <a href="https://docs.python.org/zh-cn/3/library/time.html?highlight=struct_time#epoch">epoch</a> 开始的秒数的时间值。</p>
+<h3 id="timesleep">time.sleep()</h3>
+<p><a href="https://docs.python.org/zh-cn/3/library/time.html?highlight=struct_time#time.sleep">懂得都懂</a></p>
+<h2 id="demo">Demo</h2>
+<pre><code class="language-python"># 当前时间字符串：
+time.strftime(&quot;%Y-%m-%d&quot;,time.localtime(time.time()))
+</code></pre>
+
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#outline">outline</a>
+<ul>
+<li><a href="#timestruct_time">time.struct_time</a></li>
+<li><a href="#timestrptime%E5%92%8Cstrftime">time.strptime和strftime</a></li>
+<li><a href="#gtime%E5%92%8Clocaltime">gtime和localtime</a></li>
+<li><a href="#timetime">time.time()</a></li>
+<li><a href="#timesleep">time.sleep()</a></li>
+</ul>
+</li>
+<li><a href="#demo">Demo</a></li>
+</ul>
+</li>
+</ul>
+
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="http://127.0.0.1:8080/post/python-wen-jian/">
+              <h3 class="post-title">
+                Python-文件
+              </h3>
+            </a>
+          </div>
+        
+
+        
+
+        <div class="site-footer">
+  
+  <a class="rss" href="http://127.0.0.1:8080/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>

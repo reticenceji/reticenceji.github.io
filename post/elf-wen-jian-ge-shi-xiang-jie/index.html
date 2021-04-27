@@ -1,0 +1,323 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>ELF文件格式详解(一) | Reticence</title>
+<link rel="shortcut icon" href="http://127.0.0.1:8080/favicon.ico?v=1619508275369">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="http://127.0.0.1:8080/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="ELF文件格式详解(一) | Reticence - Atom Feed" href="http://127.0.0.1:8080/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-90HNEFFE0M"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-90HNEFFE0M');
+</script>
+
+
+    <meta name="description" content="参考链接：维基百科
+Linux Hint
+man elf，你可以看到ELF文件的构造详解。
+
+ELF that abbreviates Executable and Linkable Format。It is widely used for..." />
+    <meta name="keywords" content="Reverse,OS" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="http://127.0.0.1:8080">
+  <img class="avatar" src="http://127.0.0.1:8080/images/avatar.png?v=1619508275369" alt="">
+  </a>
+  <h1 class="site-title">
+    Reticence
+  </h1>
+  <p class="site-description">
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          Index
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          Classification
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          Archives
+        </a>
+      
+    
+      
+        <a href="/navigator.html" class="menu">
+          Navigator
+        </a>
+      
+    
+      
+        <a href="/post/book-list" class="menu">
+          Booklist
+        </a>
+      
+    
+      
+        <a href="/post/fei-md-ge-shi-bi-ji-hui-zong" class="menu">
+          Notes
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          About
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+        <a href="https://github.com/reticenceji" target="_blank">
+          <i class="ri-github-line"></i>
+        </a>
+      
+    
+      
+    
+      
+    
+      
+        <a href="https://www.zhihu.com/people/reticenceji" target="_blank">
+          <i class="ri-zhihu-line"></i>
+        </a>
+      
+    
+      
+    
+  </div>
+  <script>
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
+    var s = document.getElementsByTagName("script")[0]; 
+    s.parentNode.insertBefore(hm, s);
+  })();
+  </script>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              ELF文件格式详解(一)
+            </h2>
+            <div class="post-info">
+              <span>
+                2020-09-29
+              </span>
+              <span>
+                6 min read
+              </span>
+              
+                <a href="http://127.0.0.1:8080/tag/DhIxrI5Uq/" class="post-tag">
+                  # Reverse
+                </a>
+              
+                <a href="http://127.0.0.1:8080/tag/nfABdWVsa/" class="post-tag">
+                  # OS
+                </a>
+              
+            </div>
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <p>参考链接：<a href="https://en.wikipedia.org/wiki/Executable_and_Linkable_Format#:~:text=In%20computing%2C%20the%20Executable%20and,shared%20libraries%2C%20and%20core%20dumps.&amp;text=By%20design%2C%20the%20ELF%20format,extensible%2C%20and%20cross%2Dplatform.">维基百科</a><br>
+<a href="https://linuxhint.com/understanding_elf_file_format/">Linux Hint</a><br>
+man elf，你可以看到ELF文件的构造详解。</p>
+<figure data-type="image" tabindex="1"><img src="http://127.0.0.1:8080/post-images/1601380850124.png" alt="" loading="lazy"></figure>
+<p>ELF that abbreviates Executable and Linkable Format。It is widely used for executable files, relocatable object files, shared libraries, and core dumps.</p>
+<h2 id="三个header">三个Header</h2>
+<h3 id="elf-header">ELF header</h3>
+<ul>
+<li>e_ident：首先是MagicNumber（4byte），然后指出32bit/64bit（1byte）、大端小端（1byte）、Version（1byte）、<strong>ABI</strong>（2byte）、暂未使用（1byte）</li>
+<li>0x10：指出了文件的类型：（Relocatable file.Executable file. Shared object.A core file.）</li>
+<li>e_machine：指出了架构（AMD x86-64,80386,不过没看见RISCV）</li>
+<li>0x14：Version。</li>
+<li>0x18：程序Entry，执行的第一条指令位置。如果没有所谓的第一条指令，就是0。</li>
+<li>0x1C/0x20（32bit/64bit）：program header table's file offset。（e_phoff）</li>
+<li>0x20/0x28（32bit/64bit）：section header table's file offset。</li>
+<li>指出ELF Header的大小，一般是52byte/64byte（32bit/64bit）、Program Header的大小（e_phentsize）、Section Header的大小</li>
+<li>Section headers的个数（e_phnum），Program Header的个数</li>
+</ul>
+<h3 id="program-header">Program header</h3>
+<p>The program header table tells the system how to create a process image. It is found at file offset e_phoff, and consists of e_phnum entries, each with size e_phentsize.</p>
+<ul>
+<li>0-0x3：p_type：指出了segment的类型，Loadable segment。</li>
+<li>p_flags（64bit的位置）</li>
+<li>p_offset：指出在ELF文件中该segment的位置。</li>
+<li>p_vaddr：Virtual address of the segment in memory。</li>
+<li>p_paddr：On systems where physical address is relevant, reserved for segment's physical address.意思是说，给某些操作系统保留的位置，基本没有用。</li>
+<li>p_filesz：该Segment在ELF文件中的大小，可能是0。</li>
+<li>p_memsz：该Segment在内存文件中的大小，可能是0。</li>
+<li>p_flags（32bit的位置）</li>
+<li>p_align：对齐。如果0 and 1 说明不需要对齐； 否则 应该是2的幂次。<strong>不懂</strong></li>
+</ul>
+<p>我们可以使用 <code>readelf -l filename</code>查看</p>
+<h3 id="section-header">Section Header</h3>
+<ul>
+<li>sh_name：指出了section的名字，可以认为是一个字符指针。Its value ian index into the section header string table section,  giving the location of a null-terminated string.</li>
+<li>sh_type： This member categorizes(归类) the section's contents and semantics.具体的可以查看<code>man elf</code>中的讲解。</li>
+<li>sh_flags：比如writable,executable,allocable</li>
+<li>sh_addr：如果要被加载到内存中，就是Virtual address of the section in memory</li>
+<li>sh_offset：Offset of the section in the file Image；在ELF文件中的位置。</li>
+<li>sh_size：该Section在ELF文件中的大小，可能是0。</li>
+<li>sh_link，sh_info：可能有特殊用途，和不同的section有关。</li>
+<li>sh_addralign： Contains the required alignment of the section. This field must be a power of two.</li>
+<li>sh_entsize： Contains the size, in bytes, of each entry, for sections that contain fixed-size entries. Otherwise, this field contains zero.就是说Section中每个条目的长度。</li>
+</ul>
+<h2 id="其他的segment和section">其他的segment和section</h2>
+<h3 id="一些重要的section">一些重要的section</h3>
+<p><strong>.bss section</strong>：This section holds uninitialized data that contributes to  the program's memory image.  By definition, the system initializes the data with zeros when the program begins to run.  This section is of type SHT_NOBITS.  The attribute types are SHF_ALLOC and SHF_WRITE.<br>
+<strong>.data section</strong>：This  section  holds  initialized  data that contribute to the program's memory image.  This section is of type SHT_PROGBITS. The attribute types are SHF_ALLOC and SHF_WRITE.<br>
+<strong>.text</strong>：This section holds the &quot;text&quot;, or executable instructions, of a program.  This section is of type SHT_PROGBITS.   The attributes used are SHF_ALLOC and SHF_EXECINSTR. 存放着代码。<br>
+<strong>.symtab</strong>：This  section holds a symbol table.  If the file has a loadable segment that includes the symbol table, the section's attributes will include the SHF_ALLOC bit. Otherwise, the bit will be off.  This section is of type SHT_SYMTAB. 存放着符号表。可以用<code>nm</code>，<code>readelf -c</code>查看。<br>
+<strong>.rodata</strong>：This  section  holds  read-only  data that typically contributes to a nonwritable segment in the process image.  This section is of type SHT_PROGBITS.  The attribute used is SHF_ALLOC.只读数据</p>
+<h3 id="四个sectionplt-pltgot-got-gotplt和pic">四个section：.plt .plt.got .got .got.plt和PIC</h3>
+<p><strong>.got</strong>：This  section  holds the global offset table.  This section is of type  SHT_PROGBITS.  The attributes are processor-specific.<br>
+<strong>.plt</strong>： This section holds the procedure linkage table.  This section is of type SHT_PROGBITS.  The attributes are processor-specific.</p>
+<p>他们之间的相互配合，让我们得以使用动态链接函数。</p>
+<h3 id="附录">附录：</h3>
+<p>segment和section：</p>
+<p>ABI（application binary interface） cover details such as:</p>
+<ul>
+<li>a processor instruction set (with details like register file structure, stack organization, memory access types, ...)	指令集</li>
+<li>the sizes, layouts, and <a href="https://en.wikipedia.org/wiki/Data_structure_alignment">alignments</a> of basic <a href="https://en.wikipedia.org/wiki/Data_type">data types</a> that the processor can directly access（对齐）</li>
+<li>the <a href="https://en.wikipedia.org/wiki/Calling_convention">calling convention</a>, which controls how <a href="https://en.wikipedia.org/wiki/Function_(programming)">functions</a>' arguments are passed and return values are retrieved; for example, whether all parameters are passed on the stack or some are passed in registers, which registers are used for which function parameters, and whether the first function parameter passed on the stack is pushed first or last onto the stack （参数传递方式）</li>
+<li>how an application should make <a href="https://en.wikipedia.org/wiki/System_call">system calls</a> to the operating system and, if the ABI specifies direct system calls rather than procedure calls to system call stubs, the system call numbers（system call）</li>
+<li>and in the case of a complete operating system ABI, the binary format of <a href="https://en.wikipedia.org/wiki/Object_file">object files</a>, program libraries and so on.</li>
+</ul>
+
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#%E4%B8%89%E4%B8%AAheader">三个Header</a>
+<ul>
+<li><a href="#elf-header">ELF header</a></li>
+<li><a href="#program-header">Program header</a></li>
+<li><a href="#section-header">Section Header</a></li>
+</ul>
+</li>
+<li><a href="#%E5%85%B6%E4%BB%96%E7%9A%84segment%E5%92%8Csection">其他的segment和section</a>
+<ul>
+<li><a href="#%E4%B8%80%E4%BA%9B%E9%87%8D%E8%A6%81%E7%9A%84section">一些重要的section</a></li>
+<li><a href="#%E5%9B%9B%E4%B8%AAsectionplt-pltgot-got-gotplt%E5%92%8Cpic">四个section：.plt .plt.got .got .got.plt和PIC</a></li>
+<li><a href="#%E9%99%84%E5%BD%95">附录：</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="http://127.0.0.1:8080/post/make-xiang-jie/">
+              <h3 class="post-title">
+                Make与Makefile
+              </h3>
+            </a>
+          </div>
+        
+
+        
+
+        <div class="site-footer">
+  
+  <a class="rss" href="http://127.0.0.1:8080/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>

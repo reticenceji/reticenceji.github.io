@@ -1,0 +1,444 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Python-文件 | Reticence</title>
+<link rel="shortcut icon" href="http://127.0.0.1:8080/favicon.ico?v=1619508275369">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="http://127.0.0.1:8080/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="Python-文件 | Reticence - Atom Feed" href="http://127.0.0.1:8080/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-90HNEFFE0M"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-90HNEFFE0M');
+</script>
+
+
+    <meta name="description" content="Outline
+在Linux中，一切皆文件。
+我们用操作文件的方式处理所有的东西。
+所以我觉得我有必要把python学习的重点，放在文件的处理上。
+一个是文件的读，写，查的基本操作。或者说是Create, Open, Append, Rea..." />
+    <meta name="keywords" content="Python" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="http://127.0.0.1:8080">
+  <img class="avatar" src="http://127.0.0.1:8080/images/avatar.png?v=1619508275369" alt="">
+  </a>
+  <h1 class="site-title">
+    Reticence
+  </h1>
+  <p class="site-description">
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          Index
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          Classification
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          Archives
+        </a>
+      
+    
+      
+        <a href="/navigator.html" class="menu">
+          Navigator
+        </a>
+      
+    
+      
+        <a href="/post/book-list" class="menu">
+          Booklist
+        </a>
+      
+    
+      
+        <a href="/post/fei-md-ge-shi-bi-ji-hui-zong" class="menu">
+          Notes
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          About
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+        <a href="https://github.com/reticenceji" target="_blank">
+          <i class="ri-github-line"></i>
+        </a>
+      
+    
+      
+    
+      
+    
+      
+        <a href="https://www.zhihu.com/people/reticenceji" target="_blank">
+          <i class="ri-zhihu-line"></i>
+        </a>
+      
+    
+      
+    
+  </div>
+  <script>
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
+    var s = document.getElementsByTagName("script")[0]; 
+    s.parentNode.insertBefore(hm, s);
+  })();
+  </script>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              Python-文件
+            </h2>
+            <div class="post-info">
+              <span>
+                2020-11-17
+              </span>
+              <span>
+                8 min read
+              </span>
+              
+                <a href="http://127.0.0.1:8080/tag/aTiVQxwll/" class="post-tag">
+                  # Python
+                </a>
+              
+            </div>
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <h2 id="outline">Outline</h2>
+<p>在Linux中，一切皆文件。<br>
+我们用操作文件的方式处理所有的东西。<br>
+所以我觉得我有必要把python学习的重点，放在文件的处理上。<br>
+一个是文件的读，写，查的基本操作。或者说是Create, Open, Append, Read, Write的基本操作。<br>
+然后文件也分为ascii文件，binary文件。读入他们之后，具体怎么操作，就依靠string&amp;bytes了。<br>
+不过下面的内容也覆盖了对文件系统的操作，以及文件加密、压缩等操作。</p>
+<h2 id="io">IO</h2>
+<p>The <a href="https://docs.python.org/3/library/io.html?highlight=%E6%96%87%E4%BB%B6#module-io"><code>io</code></a> module provides Python’s main facilities for dealing with various types of I/O. There are three main types of I/O: <em>text I/O</em>, <em>binary I/O</em> and <em>raw I/O</em>. These are generic categories, and various backing stores can be used for each of them. A concrete object belonging to any of these categories is called a <a href="https://docs.python.org/3/glossary.html#term-file-object">file object</a>. Other common terms are <em>stream</em> and <em>file-like object</em>.</p>
+<p>Independent of its category, each concrete stream object will also have various capabilities: it can be read-only, write-only, or read-write. It can also allow arbitrary random access (seeking forwards or backwards to any location), or only sequential access (for example in the case of a socket or pipe).</p>
+<h3 id="不同类型的io">不同类型的IO</h3>
+<table>
+<thead>
+<tr>
+<th>ABC</th>
+<th>Inherits</th>
+<th>Stub Methods</th>
+<th>Mixin Methods and Properties</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://docs.python.org/3/library/io.html?highlight=tell#io.IOBase"><code>IOBase</code></a></td>
+<td></td>
+<td><code>fileno</code>, <code>seek</code>, and <code>truncate</code></td>
+<td><code>close</code>, <code>closed</code>, <code>__enter__</code>, <code>__exit__</code>, <code>flush</code>, <code>isatty</code>, <code>__iter__</code>, <code>__next__</code>, <code>readable</code>, <code>readline</code>, <code>readlines</code>, <code>seekable</code>, <code>tell</code>, <code>writable</code>, and <code>writelines</code></td>
+</tr>
+<tr>
+<td><a href="https://docs.python.org/3/library/io.html?highlight=tell#io.RawIOBase"><code>RawIOBase</code></a></td>
+<td><a href="https://docs.python.org/3/library/io.html?highlight=tell#io.IOBase"><code>IOBase</code></a></td>
+<td><code>readinto</code> and <code>write</code></td>
+<td>Inherited <a href="https://docs.python.org/3/library/io.html?highlight=tell#io.IOBase"><code>IOBase</code></a> methods, <code>read</code>, and <code>readall</code></td>
+</tr>
+<tr>
+<td><a href="https://docs.python.org/3/library/io.html?highlight=tell#io.BufferedIOBase"><code>BufferedIOBase</code></a></td>
+<td><a href="https://docs.python.org/3/library/io.html?highlight=tell#io.IOBase"><code>IOBase</code></a></td>
+<td><code>detach</code>, <code>read</code>, <code>read1</code>, and <code>write</code></td>
+<td>Inherited <a href="https://docs.python.org/3/library/io.html?highlight=tell#io.IOBase"><code>IOBase</code></a> methods, <code>readinto</code>, and <code>readinto1</code></td>
+</tr>
+<tr>
+<td><a href="https://docs.python.org/3/library/io.html?highlight=tell#io.TextIOBase"><code>TextIOBase</code></a></td>
+<td><a href="https://docs.python.org/3/library/io.html?highlight=tell#io.IOBase"><code>IOBase</code></a></td>
+<td><code>detach</code>, <code>read</code>, <code>readline</code>, and <code>write</code></td>
+<td>Inherited <a href="https://docs.python.org/3/library/io.html?highlight=tell#io.IOBase"><code>IOBase</code></a> methods, <code>encoding</code>, <code>errors</code>, and <code>newlines</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="open-a-file">Open a file</h3>
+<p>我们用 <code>fileobj = open(filename,mode)</code></p>
+<table>
+<thead>
+<tr>
+<th>Mode</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>r</code></td>
+<td>Opens a file for reading. (default)</td>
+</tr>
+<tr>
+<td><code>w</code></td>
+<td>Opens a file for writing. Creates a new file if it does not exist or truncates the file if it exists.</td>
+</tr>
+<tr>
+<td><code>x</code></td>
+<td>Opens a file for exclusive creation. If the file already exists, the operation fails.</td>
+</tr>
+<tr>
+<td><code>a</code></td>
+<td>Opens a file for appending at the end of the file without truncating it. Creates a new file if it does not exist.</td>
+</tr>
+<tr>
+<td><code>t</code></td>
+<td>Opens in text mode. (default)</td>
+</tr>
+<tr>
+<td><code>b</code></td>
+<td>Opens in binary mode.</td>
+</tr>
+<tr>
+<td><code>+</code></td>
+<td>Opens a file for updating (reading and writing)</td>
+</tr>
+</tbody>
+</table>
+<p>对于文本文件，我们还可以指定打开的编码方式<code>f = open(&quot;test.txt&quot;, mode='r', encoding='utf-8')</code></p>
+<h3 id="close-a-file">Close a file</h3>
+<p><code>f.close</code>，我们一般把他放在finally语句中保证被执行。</p>
+<p>像下面这种方式，我们就不需要显式的关闭文件。</p>
+<pre><code>with open(&quot;test.txt&quot;, encoding = 'utf-8') as f:
+   # perform file operations
+</code></pre>
+<h3 id="readwrite-a-file">Read&amp;Write a file</h3>
+<p><a href="https://docs.python.org/zh-cn/3/library/os.html?highlight=seek_set#os.SEEK_SET">三个常量</a>:os.SEEK_SET,SEEK_END,SEEK_CUR</p>
+<pre><code class="language-python">#以下针对文本流的读写
+s = f.read(size)	#读取size字符，如果不指定则读取全部文件内容
+s = f.readline(size)	#读取一行/size字符，包括末尾的换行符
+l = f.readlines()	#readlines() method returns a list of remaining lines of the entire file.
+# All these reading methods return empty values when the end of file (EOF) is reached.当读到文件末尾的时候，返回空null。
+f.seek(offset, whence=os.SEEK_SET)	#改变文件指针的位置，whence+offset.whence有常见的三个常量
+f.tell()	#Returns the current file location.
+f.write(s)	#Write the string s to the stream and return the number of characters written.
+</code></pre>
+<p>关于压缩文件的参考：<a href="https://docs.python.org/3.8/library/archiving.html">标准库</a>支持zip,bz2,gz,tar</p>
+<h2 id="对文件系统的操作">对文件系统的操作</h2>
+<p>主要是os模块和os.path模块。</p>
+<p><a href="https://docs.python.org/zh-cn/3/library/os.html#module-os"><code>os</code></a> --- 多种操作系统接口。提供了一种使用与操作系统相关的功能的便捷式途径。 比如修改文件属性，重命名，移动。</p>
+<p><a href="https://docs.python.org/zh-cn/3/library/os.path.html#module-os.path"><code>os.path</code></a> --- 常用路径操作。该模块在路径名上实现了一些有用的功能。</p>
+<p><a href="#module-shutil"><code>shutil</code></a> 模块提供了一系列对文件和文件集合的高阶操作，比如复制。</p>
+<pre><code class="language-Python">import os
+#获得文件的后缀名
+file_ext = os.path.splitext('./data/py/test.py')		
+front,ext = file_ext	
+#创建文件夹，如果os.mkdir如果文件夹已经存在会报错
+if not os.path.exists(&quot;delete_it&quot;):
+	os.mkdir(&quot;delete_it&quot;)
+</code></pre>
+<h2 id="examples">Examples</h2>
+<p>更多的example看github仓库吧。</p>
+<p>一个二进制文件比较的程序<a href="https://docs.python.org/3.9/library/stdtypes.html?highlight=from_byte#int.from_bytes">int.from_bytes</a>。之前做白老师的作业的时候写的。</p>
+<pre><code class="language-python">block_size = 1	#假设目标数据是1位的
+# 打开文件，with语句可以免去很多麻烦
+with open(&quot;1A.BIN&quot;,&quot;rb&quot;) as f1,open(&quot;2A.BIN&quot;,'rb') as f2,open(&quot;3A.BIN&quot;,&quot;rb&quot;) as f3,\
+	open('1B.BIN',&quot;rb&quot;) as f1b, open(&quot;3b.BIN&quot;,'rb') as f3b, open(&quot;2b.BIN&quot;,&quot;rb&quot;) as f2b:
+	while True:
+		a = f1.read(block_size)
+        #Python里没有EOF这种东西，读到最后的标志是什么都没读到
+		if not(a):
+			break
+		a = int.from_bytes(a, byteorder='big', signed=False)
+        #把bytes array转换成int，好东西
+		a2 = int.from_bytes(f1b.read(block_size), byteorder='big', signed=False)
+		a3 = int.from_bytes(f1c.read(block_size), byteorder='big', signed=False)
+		a4 = int.from_bytes(f1e.read(block_size), byteorder='big', signed=False)
+		b = int.from_bytes(f2.read(block_size), byteorder='big', signed=False)
+		b2 = int.from_bytes(f2b.read(block_size), byteorder='big', signed=False)
+		c = int.from_bytes(f3.read(block_size), byteorder='big', signed=False)
+		c2 = int.from_bytes(f3b.read(block_size), byteorder='big', signed=False)
+		if (c-b == b-a and c!=b and a==a2 and c==c2 and b==b2):
+			print(&quot;{seg:x}:{off:x} {offset:x}&quot;.format(seg = (f2.tell()&gt;&gt;4)+0x477, off=f2.tell()&amp;0xf-1, offset=f1.tell()))
+			print(&quot;1:{:x},2:{:x},3:{:x}&quot;.format(a4,b,c))
+</code></pre>
+<p>这是批量修改文件后缀名的小demo，顺便回忆一下argparse的使用。</p>
+<pre><code class="language-python">#批量修改文件后缀名
+import os
+import argparse
+
+#批量修改文件名，递归选项设成全局的了。问题不大。
+def batch_rename(work_dir,old_ext,new_ext):
+	global recursive
+    #os.scandir,Doc里建议用上下文管理器，但是好像没必要。返回一个os.DirEntry 对象的迭代器
+	for entry in os.scandir(work_dir):
+		if entry.is_file():
+			#获取文件后缀
+			front,ext = os.path.splitext(entry.name)
+			if ext==old_ext:
+				new_name = front+new_ext
+				if os.path.exists(os.path.join(work_dir,new_name)):
+					print(&quot;'{}' already exists.&quot;.format(os.path.join(work_dir,new_name)))
+				else:
+					print(&quot;rename '{}' to '{}'&quot;.format(os.path.join(work_dir,entry.name),os.path.join(work_dir,new_name)))
+					os.rename(os.path.join(work_dir,entry.name),os.path.join(work_dir,new_name))
+		#扫描的结果不包括.和..不用担心死递归吧？
+		elif entry.is_dir(follow_symlinks=False) and recursive:
+			batch_rename(os.path.join(work_dir,entry.name),old_ext,new_ext)
+
+def main():
+	#参数,help会自动生成
+	parser = argparse.ArgumentParser(description=&quot;批量修改文件后缀名 By Reticenceji&quot;)
+	parser.add_argument('-d',action='store',dest='dir',help=&quot;指定目标目录，默认是当前目录&quot;,default='.')
+	parser.add_argument('-R',action='store_true',dest='r',help='如果指定了该参数，将递归的修改子目录的文件')
+	parser.add_argument('--old',action='store',dest='old',help=&quot;旧文件后缀&quot;,required=True)
+	parser.add_argument('--new',action='store',dest='new',help='新文件后缀',required=True)
+	arguments = parser.parse_args()
+	
+	#处理
+	work_dir = arguments.dir
+	old_ext = arguments.old if arguments.old[0]=='.' else '.'+arguments.old
+	new_ext = arguments.new if arguments.new[0]=='.' else '.'+arguments.new
+	global recursive 
+	recursive = arguments.r
+	#print(work_dir,old_ext,new_ext,recursive)
+	try:
+		batch_rename(work_dir,old_ext,new_ext)
+	except:
+		print(&quot;Some error happend.Maybe limits of authority&quot;)
+	print(&quot;Done&quot;)
+
+if __name__ == &quot;__main__&quot;:
+	main()
+</code></pre>
+
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#outline">Outline</a></li>
+<li><a href="#io">IO</a>
+<ul>
+<li><a href="#%E4%B8%8D%E5%90%8C%E7%B1%BB%E5%9E%8B%E7%9A%84io">不同类型的IO</a></li>
+<li><a href="#open-a-file">Open a file</a></li>
+<li><a href="#close-a-file">Close a file</a></li>
+<li><a href="#readwrite-a-file">Read&amp;Write a file</a></li>
+</ul>
+</li>
+<li><a href="#%E5%AF%B9%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E7%9A%84%E6%93%8D%E4%BD%9C">对文件系统的操作</a></li>
+<li><a href="#examples">Examples</a></li>
+</ul>
+</li>
+</ul>
+
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="http://127.0.0.1:8080/post/c-cheng-xu-zhong-bian-liang-zai-elf-duan-zhong-de-wei-zhi/">
+              <h3 class="post-title">
+                C程序中变量在ELF段中的位置
+              </h3>
+            </a>
+          </div>
+        
+
+        
+
+        <div class="site-footer">
+  
+  <a class="rss" href="http://127.0.0.1:8080/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>

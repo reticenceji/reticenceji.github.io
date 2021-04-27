@@ -1,0 +1,365 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>ADS-RB Tree&amp;B+ Tree | Reticence</title>
+<link rel="shortcut icon" href="http://127.0.0.1:8080/favicon.ico?v=1619508275369">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="http://127.0.0.1:8080/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="ADS-RB Tree&amp;B+ Tree | Reticence - Atom Feed" href="http://127.0.0.1:8080/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-90HNEFFE0M"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-90HNEFFE0M');
+</script>
+
+
+    <meta name="description" content="根据对平衡的不同定义，我们还有红黑树和B+树。
+Red-Black Tree
+
+Target：加速动态搜索的平衡树。
+定义：
+
+A red-black tree is a binary search tree that satisfies ..." />
+    <meta name="keywords" content="DS" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="http://127.0.0.1:8080">
+  <img class="avatar" src="http://127.0.0.1:8080/images/avatar.png?v=1619508275369" alt="">
+  </a>
+  <h1 class="site-title">
+    Reticence
+  </h1>
+  <p class="site-description">
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          Index
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          Classification
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          Archives
+        </a>
+      
+    
+      
+        <a href="/navigator.html" class="menu">
+          Navigator
+        </a>
+      
+    
+      
+        <a href="/post/book-list" class="menu">
+          Booklist
+        </a>
+      
+    
+      
+        <a href="/post/fei-md-ge-shi-bi-ji-hui-zong" class="menu">
+          Notes
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          About
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+        <a href="https://github.com/reticenceji" target="_blank">
+          <i class="ri-github-line"></i>
+        </a>
+      
+    
+      
+    
+      
+    
+      
+        <a href="https://www.zhihu.com/people/reticenceji" target="_blank">
+          <i class="ri-zhihu-line"></i>
+        </a>
+      
+    
+      
+    
+  </div>
+  <script>
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
+    var s = document.getElementsByTagName("script")[0]; 
+    s.parentNode.insertBefore(hm, s);
+  })();
+  </script>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              ADS-RB Tree&amp;B+ Tree
+            </h2>
+            <div class="post-info">
+              <span>
+                2021-03-08
+              </span>
+              <span>
+                5 min read
+              </span>
+              
+                <a href="http://127.0.0.1:8080/tag/0AqTQfzSL/" class="post-tag">
+                  # DS
+                </a>
+              
+            </div>
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <p>根据对平衡的不同定义，我们还有红黑树和B+树。</p>
+<h2 id="red-black-tree">Red-Black Tree</h2>
+<p><img src="http://127.0.0.1:8080/post-images/1615191307420.jpg" alt="" loading="lazy"><br>
+Target：加速动态搜索的平衡树。<br>
+定义：</p>
+<blockquote>
+<p>A red-black tree is a binary search tree that satisfies the following red-black properties:<br>
+(1) Every node is either red or black.<br>
+(2) The root is black.<br>
+(3) Every leaf (NIL) is black.<br>
+(4) If a node is red, then both its children are black.(平衡)<br>
+(5) For each node, all simple paths from the node to descendant leaves contain the <strong>same number of black nodes.</strong>(平衡条件)<br>
+一些概念：</p>
+<ul>
+<li><strong>black-height</strong>：The black-height of any node x, denoted by bh(x), is the number of black nodes on any simple path from x (x not included) down to a leaf.  bh(Tree) = bh(root).</li>
+</ul>
+</blockquote>
+<ul>
+<li>internal node：可以认为是非NULL结点。</li>
+<li>external node：NULL结点。</li>
+</ul>
+<h3 id="操作">操作</h3>
+<p>Rotate：左旋和右旋是基本的旋转操作，和AVL Tree中类似。<img src="http://127.0.0.1:8080/post-images/1615369541135.jpg" alt="rotate" loading="lazy"></p>
+<p>Insert：红黑树的插入操作最多有2次旋转。<br>
+我们把插入的点（4）染成红色，然后考虑：</p>
+<ol>
+<li>如果parent是黑色，那么插入成功。</li>
+<li>如果parent是红色：
+<ol>
+<li>如果parent的cousin是红色，执行case1的操作。不过要注意的是，这个操作可能会带来新的问题，看到顶部的结点变成红色了。(如果顶部结点变红了，再把他变成黑的)</li>
+<li>如果parent的cousin是黑色：
+<ol>
+<li>如果是RL型或LR型，执行case2的操作，转换成case3。</li>
+<li>如果是RR型或LL型，执行case3的操作。<br>
+<img src="http://127.0.0.1:8080/post-images/1615194006560.jpg" alt="" loading="lazy"></li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<pre><code class="language-c">insert_fixup(T, z)
+{
+    while (z-&gt;parent-&gt;color == RED) //如果是黑色就完成了
+    {
+        if (z-&gt;parent == z-&gt;parent-&gt;parent-&gt;left)
+        {
+            y = z-&gt;parent-&gt;parent-&gt;right;
+            if (y-&gt;color ==RED)     //case 1
+            {
+                z-&gt;parent-&gt;color = BLACK;
+                y-&gt;color = BLACK;
+                z-&gt;parent-&gt;parent-&gt;color = RED;
+                z = z-&gt;parent-&gt;parent;
+            }
+            else 
+            {
+                if (z == z-&gt;parent-&gt;right)     //case 2
+                {
+                    z = z-&gt;parent;
+                    left_rotate(T,z)
+                }
+                z-&gt;parent.color = BLACK;            //case 3
+                z-&gt;parent-&gt;parent-&gt;color = RED;
+                right_rotate(T,z-&gt;parent-&gt;parent);
+            }
+            else 
+            }
+        }    
+    }
+}
+
+</code></pre>
+<p>Delete：红黑树的删除操作最多有3次旋转，<strong>麻烦的不行</strong>。<a href="https://zhuanlan.zhihu.com/p/22800206">参考链接</a><br>
+回顾一个普通的二叉树的删除过程</p>
+<ul>
+<li>0度节点：Reset its parent link to NULL.很简单，删了就好。</li>
+<li>1度节点：Replace the node by its single child.也比较简单，把它的孩子当作它。</li>
+<li>2度节点：Replace the node by the <strong>largest one in its left subtree</strong> or the <strong>smallest one in its right subtree</strong>. Then Delete the replacing node from the subtree.</li>
+</ul>
+<p>所以我们看到最简单的操作是删掉一个red leaf。<strong>所以删除的解决办法保证从上到下删除期间树叶是红的</strong>。<br>
+在整个讨论中，令X为当前结点，T是他的sbling，P是他的parent。<strong>如果X就是我们要删除的结点，我们把他和X左子树上最大的结点或右子树上最小的结点交换。</strong><br>
+当我们沿着树向下遍历的时候，<strong>我们保证X是红色的</strong>。我们首先把root染成红色（最后再染回黑色，也可以忽略它，我不是很明白这个的意义是什么）。当我们到达一个新的结点的时候，我们就知道P是红的（就是之前的X），并且X和T是黑的（不能有两个连续的红色）。</p>
+<h2 id="b-tree">B+ Tree</h2>
+<p>B+树不是一个二叉树，但是是搜索树。适用于超大规模的数，迎合硬件存储机制。</p>
+<blockquote>
+<p>A B+ tree of order <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>M</mi></mrow><annotation encoding="application/x-tex">M</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.10903em;">M</span></span></span></span> is a tree with the following structural properties:<br>
+(1)  The root is either a leaf or has between <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>2</mn></mrow><annotation encoding="application/x-tex">2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span></span></span></span> and <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>M</mi></mrow><annotation encoding="application/x-tex">M</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.10903em;">M</span></span></span></span> children.<br>
+(2)  All nonleaf nodes (except the root) have between <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>⌈</mo><mi>M</mi><mi mathvariant="normal">/</mi><mn>2</mn><mo>⌉</mo></mrow><annotation encoding="application/x-tex">\lceil M/2\rceil</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">⌈</span><span class="mord mathdefault" style="margin-right:0.10903em;">M</span><span class="mord">/</span><span class="mord">2</span><span class="mclose">⌉</span></span></span></span> and <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>M</mi></mrow><annotation encoding="application/x-tex">M</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.10903em;">M</span></span></span></span> children.<br>
+(3)  All leaves are at the same depth.</p>
+</blockquote>
+<p><a href="https://www.geeksforgeeks.org/introduction-of-b-tree-2/?ref=leftbar-rightbar">https://www.geeksforgeeks.org/introduction-of-b-tree-2/?ref=leftbar-rightbar</a></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Sr. No.</th>
+<th style="text-align:left">Algorithm</th>
+<th style="text-align:left">Time Complexity</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">1.</td>
+<td style="text-align:left">Search</td>
+<td style="text-align:left">O(log n)</td>
+</tr>
+<tr>
+<td style="text-align:left">2.</td>
+<td style="text-align:left">Insert</td>
+<td style="text-align:left">O(log n)</td>
+</tr>
+<tr>
+<td style="text-align:left">3.</td>
+<td style="text-align:left">Delete</td>
+<td style="text-align:left">O(log n)</td>
+</tr>
+</tbody>
+</table>
+
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#red-black-tree">Red-Black Tree</a>
+<ul>
+<li><a href="#%E6%93%8D%E4%BD%9C">操作</a></li>
+</ul>
+</li>
+<li><a href="#b-tree">B+ Tree</a></li>
+</ul>
+</li>
+</ul>
+
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="http://127.0.0.1:8080/post/tip-ru-he-jie-jue-zai-linux-zhong-an-zhuang-vivado-xun-zhao-bu-dao-she-bei-de-qing-kuang/">
+              <h3 class="post-title">
+                Tip-如何解决在Linux中安装Vivado寻找不到设备的情况
+              </h3>
+            </a>
+          </div>
+        
+
+        
+
+        <div class="site-footer">
+  
+  <a class="rss" href="http://127.0.0.1:8080/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>

@@ -1,0 +1,265 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>CSRF笔记 | Reticence</title>
+<link rel="shortcut icon" href="http://127.0.0.1:8080/favicon.ico?v=1619508275369">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="http://127.0.0.1:8080/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="CSRF笔记 | Reticence - Atom Feed" href="http://127.0.0.1:8080/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-90HNEFFE0M"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-90HNEFFE0M');
+</script>
+
+
+    <meta name="description" content="跨站点请求伪造（Cross Site Request Forgery）。
+#Cookie
+参考链接：https://en.wikipedia.org/wiki/HTTP_cookie
+cookie用来让无状态的HTTP具有“状态”，了解CS..." />
+    <meta name="keywords" content="Web" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="http://127.0.0.1:8080">
+  <img class="avatar" src="http://127.0.0.1:8080/images/avatar.png?v=1619508275369" alt="">
+  </a>
+  <h1 class="site-title">
+    Reticence
+  </h1>
+  <p class="site-description">
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          Index
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          Classification
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          Archives
+        </a>
+      
+    
+      
+        <a href="/navigator.html" class="menu">
+          Navigator
+        </a>
+      
+    
+      
+        <a href="/post/book-list" class="menu">
+          Booklist
+        </a>
+      
+    
+      
+        <a href="/post/fei-md-ge-shi-bi-ji-hui-zong" class="menu">
+          Notes
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          About
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+        <a href="https://github.com/reticenceji" target="_blank">
+          <i class="ri-github-line"></i>
+        </a>
+      
+    
+      
+    
+      
+    
+      
+        <a href="https://www.zhihu.com/people/reticenceji" target="_blank">
+          <i class="ri-zhihu-line"></i>
+        </a>
+      
+    
+      
+    
+  </div>
+  <script>
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
+    var s = document.getElementsByTagName("script")[0]; 
+    s.parentNode.insertBefore(hm, s);
+  })();
+  </script>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              CSRF笔记
+            </h2>
+            <div class="post-info">
+              <span>
+                2020-08-02
+              </span>
+              <span>
+                4 min read
+              </span>
+              
+                <a href="http://127.0.0.1:8080/tag/FsPAOTRN-/" class="post-tag">
+                  # Web
+                </a>
+              
+            </div>
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <p>跨站点请求伪造（Cross Site Request Forgery）。</p>
+<p>#Cookie<br>
+参考链接：https://en.wikipedia.org/wiki/HTTP_cookie<br>
+cookie用来让无状态的HTTP具有“状态”，了解CSRF攻击需要先了解Cookie，因为敏感操作大都需要认证，认证手段一般也就是cookie。<br>
+但是浏览器会阻止跨域cookie的使用。<br>
+###Session cookie<br>
+A session cookie, also known as an in-memory cookie, transient cookie or non-persistent cookie, exists only in temporary memory while the user navigates the website.[18] Web browsers normally delete session cookies when the user closes the browser.[19] Unlike other cookies, session cookies do not have an expiration date assigned to them, which is how the browser knows to treat them as session cookies.</p>
+<h3 id="http-only-cookie">Http-only cookie</h3>
+<p>An http-only cookie cannot be accessed by client-side APIs, such as JavaScript. This restriction eliminates the threat of cookie theft via cross-site scripting (XSS). However, the cookie remains vulnerable to cross-site tracing (XST) and cross-site request forgery (XSRF) attacks. A cookie is given this characteristic by adding the HttpOnly flag to the cookie.</p>
+<h3 id="same-site-cookie">Same-site cookie</h3>
+<p>In 2016 Google Chrome version 51 introduced[20] a new kind of cookie with attribute SameSite. Attribute SameSite can have a value of Strict, Lax or None.[21] With attribute SameSite=Strict, the browsers should only send these cookies with requests originated from the same domain/site as the target domain. This would effectively mitigate cross-site request forgery (XSRF) attacks.[22] SameSite=Lax would not restrict originating site, but enforce target domain to be the same as cookie domain, effectively blocking third-party (cross-site) cookies. Attribute SameSite=None would allow third-party (cross-site) cookies. The Same-site cookie is incorporated into a new RFC draft for &quot;Cookies: HTTP State Management Mechanism&quot; to update RFC6265 (if approved).<br>
+Chrome, Firefox, Microsoft Edge all started to support Same-site cookies.The key of rollout is the treatment of existing cookies without SameSite attribute defined, Chrome has been treating those existing cookies as if SameSite=None, this would keep all website/applications run as before. Google intended to change that default to SameSite=Lax in February 2020, the change would break those applications/websites if they reply on third-party/cross-site cookies, but without SameSite attribute defined. Given the extensive changes for web developers and COVID-19 circumstances, Google temporarily rolled back the SameSite cookie change.</p>
+<h3 id="third-party-cookie">Third-party cookie</h3>
+<p>Normally, a cookie's domain attribute will match the domain that is shown in the web browser's address bar. This is called a first-party cookie. A third-party cookie, however, belongs to a domain different from the one shown in the address bar. This sort of cookie typically appears when web pages feature content from external websites, such as banner advertisements. This opens up the potential for tracking the user's browsing history and is often used by advertisers in an effort to serve relevant advertisements to each user.</p>
+<h1 id="初级攻击手段">初级攻击手段</h1>
+<p>例如，创建一个网页 www.evil.com/index.html<br>
+在里面放一张图片<code>&lt;img src=&quot;www.b.com/index.html?构造好的参数，执行不好的动作&quot; height=&quot;1&quot; width=&quot;1&quot; style=&quot;opacity:0;&quot;&gt;</code><br>
+如果受害者打开了这个网页，就会执行src里的动作。结合本地的cookie的授权，起到破坏作用。</p>
+
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li>
+<ul>
+<li><a href="#http-only-cookie">Http-only cookie</a></li>
+<li><a href="#same-site-cookie">Same-site cookie</a></li>
+<li><a href="#third-party-cookie">Third-party cookie</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#%E5%88%9D%E7%BA%A7%E6%94%BB%E5%87%BB%E6%89%8B%E6%AE%B5">初级攻击手段</a></li>
+</ul>
+
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="http://127.0.0.1:8080/post/xss-bi-ji/">
+              <h3 class="post-title">
+                XSS笔记
+              </h3>
+            </a>
+          </div>
+        
+
+        
+
+        <div class="site-footer">
+  
+  <a class="rss" href="http://127.0.0.1:8080/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>

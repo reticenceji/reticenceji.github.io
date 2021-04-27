@@ -1,0 +1,271 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>中断、异常、陷阱、系统调用 | Reticence</title>
+<link rel="shortcut icon" href="http://127.0.0.1:8080/favicon.ico?v=1619508275369">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="http://127.0.0.1:8080/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="中断、异常、陷阱、系统调用 | Reticence - Atom Feed" href="http://127.0.0.1:8080/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-90HNEFFE0M"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-90HNEFFE0M');
+</script>
+
+
+    <meta name="description" content="参考资料：《CSAPP》，我觉得他们的概念本来就很混乱。
+异常Exception：
+Exceptions (as the word indicates) are rare events that are triggered by the h..." />
+    <meta name="keywords" content="OS" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="http://127.0.0.1:8080">
+  <img class="avatar" src="http://127.0.0.1:8080/images/avatar.png?v=1619508275369" alt="">
+  </a>
+  <h1 class="site-title">
+    Reticence
+  </h1>
+  <p class="site-description">
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          Index
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          Classification
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          Archives
+        </a>
+      
+    
+      
+        <a href="/navigator.html" class="menu">
+          Navigator
+        </a>
+      
+    
+      
+        <a href="/post/book-list" class="menu">
+          Booklist
+        </a>
+      
+    
+      
+        <a href="/post/fei-md-ge-shi-bi-ji-hui-zong" class="menu">
+          Notes
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          About
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+        <a href="https://github.com/reticenceji" target="_blank">
+          <i class="ri-github-line"></i>
+        </a>
+      
+    
+      
+    
+      
+    
+      
+        <a href="https://www.zhihu.com/people/reticenceji" target="_blank">
+          <i class="ri-zhihu-line"></i>
+        </a>
+      
+    
+      
+    
+  </div>
+  <script>
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
+    var s = document.getElementsByTagName("script")[0]; 
+    s.parentNode.insertBefore(hm, s);
+  })();
+  </script>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              中断、异常、陷阱、系统调用
+            </h2>
+            <div class="post-info">
+              <span>
+                2020-10-26
+              </span>
+              <span>
+                3 min read
+              </span>
+              
+                <a href="http://127.0.0.1:8080/tag/nfABdWVsa/" class="post-tag">
+                  # OS
+                </a>
+              
+            </div>
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <p>参考资料：《CSAPP》，我觉得他们的概念本来就很混乱。</p>
+<h2 id="异常exception">异常Exception：</h2>
+<p>Exceptions (as the word indicates) are rare events that are triggered by the hardware and force the processor to execute an exception handler.<br>
+异常是中断和陷阱的统称。异常处理需要硬件和软件密切配合。<br>
+每一种异常都有一个唯一的<strong>异常号</strong>，一些号码由处理器的设计者分配（比如被0除，缺页，断点），一些号码由操作系统内核分配（比如IO设备信号）。<br>
+操作系统维护一张<strong>异常表</strong>，他的基地址存在一个被称为<strong>exception table base register</strong>的寄存器里。</p>
+<h2 id="中断interrupt">中断Interrupt：</h2>
+<p>一般来说，我们说的中断指的是IO Interrupt，由外部设备产生。比如键盘、鼠标、时钟。<br>
+这也意味着中断是异步产生的，但是我们一般采用同步处理。</p>
+<h2 id="陷阱trap">陷阱Trap：</h2>
+<p>Trap是执行一条指令的结果。有可能是指令出错了（比如除以0），也有可能是指令有意产生一个trap。<br>
+也就是说trap是同步产生的。我们也同步处理，所以也叫<strong>同步异常</strong>。<br>
+当然，对于不同情况产生的trap,操作系统的实现者也采用不一样的处理。下面举几个例子：<br>
+1）缺页异常(page fault)：这个属于产生错误。但是操作系统调用处理函数解决这个错误，然后返回到该<strong>条指令</strong>。<br>
+2）系统调用(system call)：完成服务之后，返回到<strong>下一条指令</strong>。<br>
+3）内存损坏。那么操作系统不返回，终止这个程序。<br>
+**NOTE：**在CSAPP中，上面三种被称为 陷阱Trap、故障Fault和终止Abort。</p>
+<h2 id="系统调用system-call">系统调用System call：</h2>
+<p>我们可以利用Trap来实现system call.</p>
+<ul>
+<li>比如在DOS中，我们就利用int 21来实现system call.</li>
+<li>Linux0.12的实现<br>
+在Linux0.12中，我们通过产生<code>int 0x80</code>(这个我觉得应该翻译成Trap)中断，在寄存器eax指明系统调用号，来进行系统调用。至于携带的参数，Linux0.12中最多仅仅只有三个，分别存放在ebc,ecx,edx。<br>
+<code>strace</code>可以观察系统调用。<br>
+我们观察/kernel/system_call.s，第94行<code>call *sys_call_table(,%eax,4)</code></li>
+</ul>
+<h2 id="概念混淆">概念混淆</h2>
+<p>PS：有的地方也把异常称为中断，中断称为硬件中断、外部中断，陷阱称为内部中断、同步中断、软件中断。。。读的时候注意一下整本书的行文，对于网上的帖子，那就自己理解吧。。</p>
+
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#%E5%BC%82%E5%B8%B8exception">异常Exception：</a></li>
+<li><a href="#%E4%B8%AD%E6%96%ADinterrupt">中断Interrupt：</a></li>
+<li><a href="#%E9%99%B7%E9%98%B1trap">陷阱Trap：</a></li>
+<li><a href="#%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%94%A8system-call">系统调用System call：</a></li>
+<li><a href="#%E6%A6%82%E5%BF%B5%E6%B7%B7%E6%B7%86">概念混淆</a></li>
+</ul>
+</li>
+</ul>
+
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="http://127.0.0.1:8080/post/tree/">
+              <h3 class="post-title">
+                DS-Tree
+              </h3>
+            </a>
+          </div>
+        
+
+        
+
+        <div class="site-footer">
+  
+  <a class="rss" href="http://127.0.0.1:8080/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>

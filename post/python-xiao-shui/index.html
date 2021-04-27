@@ -1,0 +1,479 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Python-胶水 | Reticence</title>
+<link rel="shortcut icon" href="http://127.0.0.1:8080/favicon.ico?v=1619508275369">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="http://127.0.0.1:8080/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="Python-胶水 | Reticence - Atom Feed" href="http://127.0.0.1:8080/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-90HNEFFE0M"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-90HNEFFE0M');
+</script>
+
+
+    <meta name="description" content="我们知道Python被称为最好的胶水语言，利用它可以很好的粘合不同编程语言写的程序，那么具体是怎么样呢？
+调用C库——ctypes
+ctypes是标准库。
+在我们开始调用函数前，我们必须先了解作为函数参数的 ctypes 数据类型。ctyp..." />
+    <meta name="keywords" content="Python" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="http://127.0.0.1:8080">
+  <img class="avatar" src="http://127.0.0.1:8080/images/avatar.png?v=1619508275369" alt="">
+  </a>
+  <h1 class="site-title">
+    Reticence
+  </h1>
+  <p class="site-description">
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          Index
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          Classification
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          Archives
+        </a>
+      
+    
+      
+        <a href="/navigator.html" class="menu">
+          Navigator
+        </a>
+      
+    
+      
+        <a href="/post/book-list" class="menu">
+          Booklist
+        </a>
+      
+    
+      
+        <a href="/post/fei-md-ge-shi-bi-ji-hui-zong" class="menu">
+          Notes
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          About
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+        <a href="https://github.com/reticenceji" target="_blank">
+          <i class="ri-github-line"></i>
+        </a>
+      
+    
+      
+    
+      
+    
+      
+        <a href="https://www.zhihu.com/people/reticenceji" target="_blank">
+          <i class="ri-zhihu-line"></i>
+        </a>
+      
+    
+      
+    
+  </div>
+  <script>
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
+    var s = document.getElementsByTagName("script")[0]; 
+    s.parentNode.insertBefore(hm, s);
+  })();
+  </script>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              Python-胶水
+            </h2>
+            <div class="post-info">
+              <span>
+                2021-01-04
+              </span>
+              <span>
+                8 min read
+              </span>
+              
+                <a href="http://127.0.0.1:8080/tag/aTiVQxwll/" class="post-tag">
+                  # Python
+                </a>
+              
+            </div>
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <p>我们知道Python被称为最好的胶水语言，利用它可以很好的粘合不同编程语言写的程序，那么具体是怎么样呢？</p>
+<h2 id="调用c库ctypes">调用C库——ctypes</h2>
+<p><strong>ctypes</strong>是标准库。</p>
+<p>在我们开始调用函数前，我们必须先了解作为函数参数的 <a href="https://docs.python.org/zh-cn/3/library/ctypes.html?highlight=ctype#module-ctypes"><code>ctypes</code></a> 数据类型。<a href="https://docs.python.org/zh-cn/3/library/ctypes.html?highlight=ctype#module-ctypes"><code>ctypes</code></a> 是 Python 的外部函数库。它提供了与 C 兼容的数据类型，并允许调用 DLL 或共享库中的函数。可使用该模块以纯 Python 形式对这些库进行封装。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">ctypes 类型</th>
+<th style="text-align:left">C 类型</th>
+<th style="text-align:left">Python 数据类型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><a href="https://docs.python.org/zh-cn/3/library/ctypes.html?highlight=ctype#ctypes.c_bool"><code>c_bool</code></a></td>
+<td style="text-align:left"><code>_Bool</code></td>
+<td style="text-align:left">bool (1)</td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="https://docs.python.org/zh-cn/3/library/ctypes.html?highlight=ctype#ctypes.c_char"><code>c_char</code></a></td>
+<td style="text-align:left"><code>char</code></td>
+<td style="text-align:left">单字符字节串对象</td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="https://docs.python.org/zh-cn/3/library/ctypes.html?highlight=ctype#ctypes.c_wchar"><code>c_wchar</code></a></td>
+<td style="text-align:left"><code>wchar_t</code></td>
+<td style="text-align:left">单字符字符串</td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="https://docs.python.org/zh-cn/3/library/ctypes.html?highlight=ctype#ctypes.c_byte"><code>c_byte</code></a></td>
+<td style="text-align:left"><code>char</code></td>
+<td style="text-align:left">int</td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="https://docs.python.org/zh-cn/3/library/ctypes.html?highlight=ctype#ctypes.c_ubyte"><code>c_ubyte</code></a></td>
+<td style="text-align:left"><code>unsigned char</code></td>
+<td style="text-align:left">int</td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="https://docs.python.org/zh-cn/3/library/ctypes.html?highlight=ctype#ctypes.c_short"><code>c_short</code></a></td>
+<td style="text-align:left"><code>short</code></td>
+<td style="text-align:left">int</td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="https://docs.python.org/zh-cn/3/library/ctypes.html?highlight=ctype#ctypes.c_ushort"><code>c_ushort</code></a></td>
+<td style="text-align:left"><code>unsigned short</code></td>
+<td style="text-align:left">int</td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="https://docs.python.org/zh-cn/3/library/ctypes.html?highlight=ctype#ctypes.c_int"><code>c_int</code></a></td>
+<td style="text-align:left"><code>int</code></td>
+<td style="text-align:left">int</td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="https://docs.python.org/zh-cn/3/library/ctypes.html?highlight=ctype#ctypes.c_uint"><code>c_uint</code></a></td>
+<td style="text-align:left"><code>unsigned int</code></td>
+<td style="text-align:left">int</td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="https://docs.python.org/zh-cn/3/library/ctypes.html?highlight=ctype#ctypes.c_long"><code>c_long</code></a></td>
+<td style="text-align:left"><code>long</code></td>
+<td style="text-align:left">int</td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="https://docs.python.org/zh-cn/3/library/ctypes.html?highlight=ctype#ctypes.c_ulong"><code>c_ulong</code></a></td>
+<td style="text-align:left"><code>unsigned long</code></td>
+<td style="text-align:left">int</td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="https://docs.python.org/zh-cn/3/library/ctypes.html?highlight=ctype#ctypes.c_longlong"><code>c_longlong</code></a></td>
+<td style="text-align:left"><code>__int64</code> 或 <code>long long</code></td>
+<td style="text-align:left">int</td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="https://docs.python.org/zh-cn/3/library/ctypes.html?highlight=ctype#ctypes.c_ulonglong"><code>c_ulonglong</code></a></td>
+<td style="text-align:left"><code>unsigned __int64</code> 或 <code>unsigned long long</code></td>
+<td style="text-align:left">int</td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="https://docs.python.org/zh-cn/3/library/ctypes.html?highlight=ctype#ctypes.c_size_t"><code>c_size_t</code></a></td>
+<td style="text-align:left"><code>size_t</code></td>
+<td style="text-align:left">int</td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="https://docs.python.org/zh-cn/3/library/ctypes.html?highlight=ctype#ctypes.c_ssize_t"><code>c_ssize_t</code></a></td>
+<td style="text-align:left"><code>ssize_t</code> 或 <code>Py_ssize_t</code></td>
+<td style="text-align:left">int</td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="https://docs.python.org/zh-cn/3/library/ctypes.html?highlight=ctype#ctypes.c_float"><code>c_float</code></a></td>
+<td style="text-align:left"><code>float</code></td>
+<td style="text-align:left">float</td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="https://docs.python.org/zh-cn/3/library/ctypes.html?highlight=ctype#ctypes.c_double"><code>c_double</code></a></td>
+<td style="text-align:left"><code>double</code></td>
+<td style="text-align:left">float</td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="https://docs.python.org/zh-cn/3/library/ctypes.html?highlight=ctype#ctypes.c_longdouble"><code>c_longdouble</code></a></td>
+<td style="text-align:left"><code>long double</code></td>
+<td style="text-align:left">float</td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="https://docs.python.org/zh-cn/3/library/ctypes.html?highlight=ctype#ctypes.c_char_p"><code>c_char_p</code></a></td>
+<td style="text-align:left"><code>char *</code> (NUL terminated)</td>
+<td style="text-align:left">字节串对象或 <code>None</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="https://docs.python.org/zh-cn/3/library/ctypes.html?highlight=ctype#ctypes.c_wchar_p"><code>c_wchar_p</code></a></td>
+<td style="text-align:left"><code>wchar_t *</code> (NUL terminated)</td>
+<td style="text-align:left">字符串或 <code>None</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="https://docs.python.org/zh-cn/3/library/ctypes.html?highlight=ctype#ctypes.c_void_p"><code>c_void_p</code></a></td>
+<td style="text-align:left"><code>void *</code></td>
+<td style="text-align:left">int 或 <code>None</code></td>
+</tr>
+</tbody>
+</table>
+<p>除了整数、字符串以及字节串之外，所有的 Python 类型都必须使用它们对应的 <a href="https://docs.python.org/zh-cn/3/library/ctypes.html?highlight=ctype#module-ctypes"><code>ctypes</code></a> 类型包装，才能够被正确地转换为所需的C语言类型。</p>
+<h3 id="使用方法">使用方法</h3>
+<p>库中的函数使用<strong>标准 C 调用约定</strong>，并假定返回 <code>int</code> 。通过CDLL方法调用库，返回一个库的实例：</p>
+<pre><code class="language-python">import ctypes
+libc = ctypes.CDLL(&quot;libc.so.6&quot;)
+libc.printf(b&quot;hello world&quot;)
+libc.printf(b&quot;pi %f&quot;,ctypes.c_double(3.14))
+</code></pre>
+<p><strong>参数</strong>：可以通过设置 argtypes 属性的方法指定从 DLL 中导出函数的必选参数类型。指定数据类型可以防止不合理的参数传递（就像 C 函数的原型），并且会自动尝试将参数转换为需要的类型（printf并不是一个好的例子，他是可变参数的）：</p>
+<pre><code class="language-python">&gt;&gt;&gt; libc.printf.argtypes = [c_char_p, c_char_p, c_int, c_double]
+&gt;&gt;&gt; libc.printf(b&quot;String '%s', Int %d, Double %f\n&quot;, b&quot;Hi&quot;, 10, 2.2)
+String 'Hi', Int 10, Double 2.200000
+37
+</code></pre>
+<p><strong>返回值</strong>：默认情况下都会假定函数返回 C <code>int</code> 类型。 其他返回类型可以通过设置函数对象的 <code>restype</code> 属性来指定。</p>
+<pre><code>libc.funcname.restype = c_char_p
+</code></pre>
+<p><strong>指针</strong>：有时函数传参可能需要指针，<a href="https://docs.python.org/3/library/ctypes.html?highlight=ctype#ctypes.byref"><code>byref()</code></a>方法可以做到这一点，他有点像<code>&amp;</code>。pointer这个运算符更加强大，是完全的<code>&amp;</code>（当然也代价更大）。</p>
+<pre><code class="language-python">from ctypes import *
+
+libc = CDLL(&quot;libc.so.6&quot;)
+i = c_int()
+libc.scanf(b&quot;%d&quot;,byref(i))
+print(i.value)
+
+ptr_i = pointer(i)
+libc.scanf(b&quot;%d&quot;,ptr_i)
+print(ptr_i.contents,ptr_i.contents.value)
+//你甚至可以像C一样对指针进行[]运算，不过python对他的重载好像直接取了value
+print(ptr_i[0])
+</code></pre>
+<p><strong>结构和联合</strong>：在python中也有对应的方法。我们需要<strong>继承Structure类型</strong>，然后定义<code>_fields_</code>字段，他是一个由2-tuple构成的list，包括字段名和字段类型。 或者你可以用3-tuple，那么最后一个元素将指定对齐方式（默认情况和C对齐方式一样）。</p>
+<pre><code class="language-python">class POINT(Structure):
+     _fields_ = [(&quot;x&quot;, c_double),
+     			(&quot;y&quot;, c_double)]
+&quot;&quot;&quot;相当于这个效果
+struct POINT {
+    double x;
+    double y;
+};
+&quot;&quot;&quot;
+point = POINT(11.5,20) 
+print(point.x,point.y)
+</code></pre>
+<p><strong>数组</strong>：我们可以用<code>n*type</code>的方式定义一个数组类型（class），然后实例化他，就得到了一个数组。</p>
+<pre><code class="language-python">ARRAY = 10 * c_double
+array = ARRAY(1,2,3,4,5,6,7,8,9)
+scanf(&quot;%d&quot;,array)
+print(ARRAY,array,array[1])
+</code></pre>
+<p><strong>函数指针</strong>：，定义了一个函数指针<code>cmp_func</code>：</p>
+<pre><code>CMPFUNC = CFUNCTYPE(c_int, POINTER(c_int), POINTER(c_int))
+def py_cmp_func(a, b):
+    print(&quot;py_cmp_func&quot;, a[0], b[0])
+    return 0
+cmp_func = CMPFUNC(py_cmp_func)
+
+IntArray5 = c_int * 5
+ia = IntArray5(5, 1, 7, 33, 99)		//数组
+qsort = libc.qsort
+qsort.restype = None
+
+qsort(ia, len(ia), sizeof(c_int), py_cmp_func)	
+for i in ia: print(i, end=&quot; &quot;)
+</code></pre>
+<h2 id="调用cc库cython">调用C/C++库——Cython</h2>
+<p><a href="https://cython.readthedocs.io/en/latest/index.html">官方文档</a></p>
+<p>Cython不是Python的标准库。[<a href="https://cython.readthedocs.io/en/latest/src/quickstart/overview.html#cython">Cython]</a>是一种编程语言，它使编写Python语言的C扩展与Python本身一样容易。它旨在成为[<a href="https://cython.readthedocs.io/en/latest/src/quickstart/overview.html#python">Python]</a>语言的超集，从而为它提供高级，面向对象，功能和动态编程。这些功能的主要特点是支持作为语言一部分的可选静态类型声明。将源代码转换为优化的C / C ++代码，并编译为Python扩展模块。这样既可以非常快速地执行程序，又可以与外部C库紧密集成，同时又可以保持众所周知的Python语言的高程序员生产率。</p>
+<p><strong>安装</strong>：<code>pip install Cython</code>即可，不过前提是需要安装好C编译器如gcc。这在Linux上当然不是问题。</p>
+<p><strong>Cython是编译的魔法。</strong></p>
+<h3 id="hello-world">hello world</h3>
+<p>这是一个简单的python代码<code>hello.pyx</code>：</p>
+<pre><code class="language-python">def say_hello_to(name):
+    print(&quot;Hello %s!&quot; % name)
+</code></pre>
+<p>这是<code>setup.py</code>，跟Makefile有点像，他指导python如何编译hello world.</p>
+<pre><code class="language-python">from setuptools import setup
+from Cython.Build import cythonize
+
+setup(
+    name='Hello world app',
+    ext_modules=cythonize(&quot;hello.pyx&quot;),
+    zip_safe=False,
+)
+</code></pre>
+<p>然后我们需要<code>python setup.py build_ext --inplace</code>，我们可以观察到目录里多了一个<code>.c</code>文件和<code>.so</code>文件以及一个build目录，这个<code>.c</code>文件就是编译的魔法生成的，这个<code>.so</code>文件我们就能像调用一般的库一样去调用它。</p>
+<pre><code class="language-python">import hello
+hello.say_hello_to(&quot;1&quot;)
+</code></pre>
+<p>或者是这样，加上第一行，我们就不用预先生存动态链接库.so文件了（其实第一行的任务就是帮我们生成）</p>
+<pre><code class="language-python">import pyximport; pyximport.install()
+import hello
+hello.say_hello_to(&quot;1&quot;)
+</code></pre>
+<p>当然，没有这么简单，这个<code>.pyx</code>文件的编写语法是一个混合了C和Python风格的可以说是新的语言的产物。我们要通过这些语法来指导编译器生成更好的代码。我们可以在这个<code>.pyx</code>代码里调用C库，定义静态变量、使用指针等等C操作，甚至可以有C++的类，也可以使用普通python的特性。然后<strong>魔法</strong>会把他编译好。</p>
+<h3 id="cython语法">cython语法</h3>
+<p>留个坑，可能不会再填上了。因为这是<strong>魔法</strong>。</p>
+<h2 id="调用可执行文件">调用可执行文件</h2>
+<p>上面看到的都是调用动态链接库。其实还有一种简单粗暴的方法就是直接调用可执行文件。就是利用<code>fork</code>和<code>exec</code>，在os模块有提供这种方法。还有Subprocess。这些我都忘了。用到再说。</p>
+<h2 id="数据库">数据库</h2>
+<p>还可以通过数据库这个中间储存的东西，大家一起操作数据库实现数据的通信。</p>
+<h2 id="调用javajpype">调用JAVA——jpype</h2>
+<p><a href="http://jpype.sourceforge.net/">官网</a></p>
+<p>JPype致力于允许python程序完全访问java类库。这不是通过像Jython / JPython一样通过重新实现Python来实现的，而是通过在两个虚拟机中的本机级接口实现的。</p>
+<p>最终，在许多（尽管不是全部）情况下，应该有可能用python替换Java。JSP，Servlet，RMI服务器和IDE插件是不错的选择。</p>
+<p>一旦实现了这种集成，便将开始第二阶段，将Java逻辑与Python逻辑分离，最终允许将该桥接技术用于其他环境，例如IE Ruby，Perl，COM等。</p>
+
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#%E8%B0%83%E7%94%A8c%E5%BA%93ctypes">调用C库——ctypes</a>
+<ul>
+<li><a href="#%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95">使用方法</a></li>
+</ul>
+</li>
+<li><a href="#%E8%B0%83%E7%94%A8cc%E5%BA%93cython">调用C/C++库——Cython</a>
+<ul>
+<li><a href="#hello-world">hello world</a></li>
+<li><a href="#cython%E8%AF%AD%E6%B3%95">cython语法</a></li>
+</ul>
+</li>
+<li><a href="#%E8%B0%83%E7%94%A8%E5%8F%AF%E6%89%A7%E8%A1%8C%E6%96%87%E4%BB%B6">调用可执行文件</a></li>
+<li><a href="#%E6%95%B0%E6%8D%AE%E5%BA%93">数据库</a></li>
+<li><a href="#%E8%B0%83%E7%94%A8javajpype">调用JAVA——jpype</a></li>
+</ul>
+</li>
+</ul>
+
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="http://127.0.0.1:8080/post/buddy-system-de-shi-xian/">
+              <h3 class="post-title">
+                OS-Buddy System&amp;Slub
+              </h3>
+            </a>
+          </div>
+        
+
+        
+
+        <div class="site-footer">
+  
+  <a class="rss" href="http://127.0.0.1:8080/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>

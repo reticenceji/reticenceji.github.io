@@ -1,0 +1,308 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Python-简单的数据分析和绘图 | Reticence</title>
+<link rel="shortcut icon" href="http://127.0.0.1:8080/favicon.ico?v=1619508275369">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="http://127.0.0.1:8080/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="Python-简单的数据分析和绘图 | Reticence - Atom Feed" href="http://127.0.0.1:8080/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-90HNEFFE0M"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-90HNEFFE0M');
+</script>
+
+
+    <meta name="description" content="Python的数据分析主要是第三方库支持的：(下面的链接不是官网)
+Numpy是使用Python进行科学计算的基础软件包。除其他外，它包括：功能强大的N维数组对象。精密广播功能函数。集成 C/C+和Fortran 代码的工具。强大的线性代数..." />
+    <meta name="keywords" content="Python" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="http://127.0.0.1:8080">
+  <img class="avatar" src="http://127.0.0.1:8080/images/avatar.png?v=1619508275369" alt="">
+  </a>
+  <h1 class="site-title">
+    Reticence
+  </h1>
+  <p class="site-description">
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          Index
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          Classification
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          Archives
+        </a>
+      
+    
+      
+        <a href="/navigator.html" class="menu">
+          Navigator
+        </a>
+      
+    
+      
+        <a href="/post/book-list" class="menu">
+          Booklist
+        </a>
+      
+    
+      
+        <a href="/post/fei-md-ge-shi-bi-ji-hui-zong" class="menu">
+          Notes
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          About
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+        <a href="https://github.com/reticenceji" target="_blank">
+          <i class="ri-github-line"></i>
+        </a>
+      
+    
+      
+    
+      
+    
+      
+        <a href="https://www.zhihu.com/people/reticenceji" target="_blank">
+          <i class="ri-zhihu-line"></i>
+        </a>
+      
+    
+      
+    
+  </div>
+  <script>
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
+    var s = document.getElementsByTagName("script")[0]; 
+    s.parentNode.insertBefore(hm, s);
+  })();
+  </script>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              Python-简单的数据分析和绘图
+            </h2>
+            <div class="post-info">
+              <span>
+                2020-11-18
+              </span>
+              <span>
+                4 min read
+              </span>
+              
+                <a href="http://127.0.0.1:8080/tag/aTiVQxwll/" class="post-tag">
+                  # Python
+                </a>
+              
+            </div>
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <p>Python的数据分析主要是第三方库支持的：(下面的链接不是官网)<br>
+<a href="https://www.numpy.org.cn/"><strong>Numpy</strong></a>是使用Python进行科学计算的基础软件包。除其他外，它包括：功能强大的N维数组对象。精密广播功能函数。集成 C/C+和Fortran 代码的工具。强大的线性代数、傅立叶变换和随机数功能。<br>
+<a href="https://www.pypandas.cn/"><strong>Pandas</strong></a>是一个强大的分析结构化数据的工具集；它的使用基础是Numpy（提供高性能的矩阵运算）；用于数据挖掘和数据分析，同时也提供数据清洗功能。<br>
+<a href="https://www.matplotlib.org.cn/"><strong>matplotlib</strong></a>是一个图形绘制库，专门用于数据可视化。<br>
+<strong>Scipy</strong>是一个用于数学、科学、工程领域的常用软件包，可以处理插值、积分、优化、图像处理、常微分方程数值解的求解、信号处理等问题。它用于有效计算Numpy矩阵，使Numpy和Scipy协同工作，高效解决问题。</p>
+<h2 id="example-1最小二乘法拟合直线">Example 1：最小二乘法拟合直线</h2>
+<pre><code>##最小二乘法
+import numpy as np   ##科学计算库 
+import scipy as sp   ##在numpy基础上实现的部分算法库
+import matplotlib.pyplot as plt  ##绘图库
+from scipy.optimize import leastsq  ##引入最小二乘法算法
+
+'''
+    设定拟合函数和偏差函数
+    函数的形状确定过程：
+    1.先画样本图像
+    2.根据样本图像大致形状确定函数形式(直线、抛物线、正弦余弦等)
+'''
+
+##需要拟合的函数func :指定函数的形状
+def func(p,x):
+    k,b=p
+    return k*x+b
+
+##偏差函数：x,y都是列表:这里的x,y更上面的Xi,Yi中是一一对应的
+def error(p,x,y):
+    return func(p,x)-y
+
+def main():
+    '''
+    设置样本数据，真实数据需要在这里处理
+    '''
+    # 样本数据(Xi,Yi)，需要转换成数组(列表)形式
+    Xi=np.arange(30,70,5)
+    Yi=np.array([56.55,57.50,58.53,59.60,60.65,61.73,62.74,63.87])
+
+    # p0表示k,b的初始值，可以任意设定,发现p0的值会影响cost的值：Para[1]
+    # leastsq是scipy提供的最小二乘函数
+    # leastsq函数的返回值是一个tuple，第一个元素是求解结果，第二个是求解的代价值(个人理解)
+    # 求解结果也是一个tuple，元素数量和args参数数量一致。
+    p0=[1,20]
+    Para=leastsq(error,p0,args=(Xi,Yi))
+
+    #求解结果
+    k,b=Para[0]
+    print(&quot;cost：&quot;+str(Para[1]))
+    print(&quot;求解的拟合直线为:&quot;)
+    print(&quot;y=&quot;+str(round(k,2))+&quot;x+&quot;+str(round(b,2)))
+
+    #画散点图，样本点
+    plt.figure(figsize=(8,6)) ##指定图像比例： 8：6
+    plt.scatter(Xi,Yi,color=&quot;green&quot;,label=&quot;样本数据&quot;,linewidth=2) 
+
+    #画拟合直线
+    plt.rcParams['font.sans-serif'] = ['Microsoft YaHei']  # 指定默认字体
+    plt.rcParams['axes.unicode_minus'] = False  # 解决保存图像是负号'-'显示为方块的问题
+    x=np.linspace(30,70,100) ##返回30-70之间100个均匀点
+    y=k*x+b ##函数式，我们得到一个对应于x的y的列表
+    plt.plot(x,y,color=&quot;red&quot;,label=&quot;拟合直线&quot;,linewidth=2) 
+    plt.xlabel('温度/摄氏度')   #x轴名称
+    plt.ylabel('电阻/欧姆')
+    plt.title(&quot;铜电阻的温度特性曲线&quot;)
+    plt.xticks(np.arange(30,71,5),[&quot;{:.2f}&quot;.format(i) for i in np.arange(30,71,5)])     #x刻度绘制
+    plt.yticks(np.arange(55,66,1),[&quot;{:.1f}&quot;.format(i) for i in np.arange(55,66,1)])
+    plt.legend(loc='lower right') #绘制图例
+    plt.show()
+
+if __name__ == &quot;__main__&quot;:
+    main()
+</code></pre>
+
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#example-1%E6%9C%80%E5%B0%8F%E4%BA%8C%E4%B9%98%E6%B3%95%E6%8B%9F%E5%90%88%E7%9B%B4%E7%BA%BF">Example 1：最小二乘法拟合直线</a></li>
+</ul>
+</li>
+</ul>
+
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="http://127.0.0.1:8080/post/python-jia-mi-he-ha-xi/">
+              <h3 class="post-title">
+                Python-加密和哈希
+              </h3>
+            </a>
+          </div>
+        
+
+        
+
+        <div class="site-footer">
+  
+  <a class="rss" href="http://127.0.0.1:8080/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>

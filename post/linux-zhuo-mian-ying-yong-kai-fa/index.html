@@ -1,0 +1,402 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Linux 桌面应用开发 | Reticence</title>
+<link rel="shortcut icon" href="http://127.0.0.1:8080/favicon.ico?v=1619508275369">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="http://127.0.0.1:8080/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="Linux 桌面应用开发 | Reticence - Atom Feed" href="http://127.0.0.1:8080/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-90HNEFFE0M"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-90HNEFFE0M');
+</script>
+
+
+    <meta name="description" content="今天突发奇想，搜索了这个问题挺久的。有下面这些解决方案。
+https://makealinux.app/#/
+
+GTK。因为Gnome和xfce都是基于GTK的，所以这个在Linux上会比较原生。据说也有跨平台的能力，但是似乎没见过别的平台..." />
+    <meta name="keywords" content="" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="http://127.0.0.1:8080">
+  <img class="avatar" src="http://127.0.0.1:8080/images/avatar.png?v=1619508275369" alt="">
+  </a>
+  <h1 class="site-title">
+    Reticence
+  </h1>
+  <p class="site-description">
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          Index
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          Classification
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          Archives
+        </a>
+      
+    
+      
+        <a href="/navigator.html" class="menu">
+          Navigator
+        </a>
+      
+    
+      
+        <a href="/post/book-list" class="menu">
+          Booklist
+        </a>
+      
+    
+      
+        <a href="/post/fei-md-ge-shi-bi-ji-hui-zong" class="menu">
+          Notes
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          About
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+        <a href="https://github.com/reticenceji" target="_blank">
+          <i class="ri-github-line"></i>
+        </a>
+      
+    
+      
+    
+      
+    
+      
+        <a href="https://www.zhihu.com/people/reticenceji" target="_blank">
+          <i class="ri-zhihu-line"></i>
+        </a>
+      
+    
+      
+    
+  </div>
+  <script>
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
+    var s = document.getElementsByTagName("script")[0]; 
+    s.parentNode.insertBefore(hm, s);
+  })();
+  </script>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              Linux 桌面应用开发
+            </h2>
+            <div class="post-info">
+              <span>
+                2021-04-25
+              </span>
+              <span>
+                6 min read
+              </span>
+              
+            </div>
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <p>今天突发奇想，搜索了这个问题挺久的。有下面这些解决方案。<br>
+https://makealinux.app/#/</p>
+<ol>
+<li><a href="https://www.gtk.org/docs/">GTK</a>。因为Gnome和xfce都是基于GTK的，所以这个在Linux上会比较原生。据说也有跨平台的能力，但是似乎没见过别的平台用这个技术啊。
+<ol>
+<li>C语言。GTK+就是用C语言写的，发行版中都自带了GTK的库。</li>
+<li>Python。<a href="https://pygobject.readthedocs.io/en/latest/">PyGObject库</a>提供了Python使用GTK库的支持。</li>
+<li>Rust。<a href="https://gtk-rs.org/">gtk-rs</a>提供了Rust支持。</li>
+<li>Vala。这个就比较神奇了，像是带了面向对象的C语言，但不是C++，看起来还挺优美。不过这门语言的应用范围好像仅限于GTK。所以不太推荐，不过我觉得他本身还是值得学习的。</li>
+</ol>
+</li>
+<li>QT。用**C++**开发，难点在于C++，不过QT很强大。</li>
+<li>Electron。这个技术开始流行了，<strong>nodejs</strong>+html+css，可以让我们像开发网站一样开发桌面程序。这个的跨平台能力很强，不过性能肯定是稍弱的。</li>
+<li>PyQt5。准确的说这个是一个GUI库，python不太适合桌面程序的开发，不过自己写个小东西自娱自乐或者学习应该也还可以。看名字就知道，Python+QT。</li>
+</ol>
+<p>关于开发之后怎么打包成可执行程序，也有很多解决方案了。比如AppImage。</p>
+<h2 id="hello-world-of-gtk">Hello world of gtk</h2>
+<p>首先是安装。我发现我的Ubuntu自带了gtk-3，如果没有的话，参考https://www.gtk.org/docs/installations/linux/。<br>
+这是一个C语言GTK3的demo。现在已经升级到GTK4了：</p>
+<pre><code class="language-c">#include &lt;gtk/gtk.h&gt;
+
+/* 下面是两个回调函数 */
+
+static void print_hello (GtkWidget *widget,
+                         gpointer   data)
+{
+    g_print (&quot;Hello World\n&quot;);
+}
+
+static gboolean on_delete_event (GtkWidget *widget,
+                                 GdkEvent  *event,
+                                 gpointer   data)
+{
+    /* If you return FALSE in the &quot;delete_event&quot; signal handler,
+     * GTK will emit the &quot;destroy&quot; signal. Returning TRUE means
+     * you don't want the window to be destroyed.
+     *
+     * This is useful for popping up 'are you sure you want to quit?'
+     * type dialogs.
+     */
+
+    g_print (&quot;delete event occurred\n&quot;);
+
+    return TRUE;
+}
+
+int main (int argc, char *argv[])
+{
+    /* GtkWidget is the storage type for widgets */
+    GtkWidget *window;
+    GtkWidget *button;
+
+    /* This is called in all GTK applications. Arguments are parsed
+     * from the command line and are returned to the application.
+     */
+    gtk_init (&amp;argc, &amp;argv);
+
+    /* create a new window, and set its title */
+    window = gtk_window_new (GTK_WINDOW_TOPLEVEL);
+    gtk_window_set_title (GTK_WINDOW (window), &quot;Hello&quot;);
+
+    /* When the window emits the &quot;delete-event&quot; signal (which is emitted
+     * by GTK+ in response to an event coming from the window manager,
+     * usually as a result of clicking the &quot;close&quot; window control), we
+     * ask it to call the on_delete_event() function as defined above.
+     *
+     * The data passed to the callback function is NULL and is ignored
+     * in the callback function.
+     */
+    g_signal_connect (window, &quot;delete-event&quot;, G_CALLBACK (on_delete_event), NULL);
+
+    /* Here we connect the &quot;destroy&quot; event to the gtk_main_quit() function.
+     *
+     * This signal is emitted when we call gtk_widget_destroy() on the window,
+     * or if we return FALSE in the &quot;delete_event&quot; callback.
+     */
+    g_signal_connect (window, &quot;destroy&quot;, G_CALLBACK (gtk_main_quit), NULL);
+
+    /* Sets the border width of the window. */
+    gtk_container_set_border_width (GTK_CONTAINER (window), 10);
+
+    /* Creates a new button with the label &quot;Hello World&quot;. */
+    button = gtk_button_new_with_label (&quot;Hello World&quot;);
+
+    /* When the button receives the &quot;clicked&quot; signal, it will call the
+     * function print_hello() passing it NULL as its argument.
+     *
+     * The print_hello() function is defined above.
+     */
+    g_signal_connect (button, &quot;clicked&quot;, G_CALLBACK (print_hello), NULL);
+
+    /* The g_signal_connect_swapped() function will connect the &quot;clicked&quot; signal
+     * of the button to the gtk_widget_destroy() function; instead of calling it
+     * using the button as its argument, it will swap it with the user data
+     * argument. This will cause the window to be destroyed by calling
+     * gtk_widget_destroy() on the window.
+     */
+    g_signal_connect_swapped (button, &quot;clicked&quot;, G_CALLBACK (gtk_widget_destroy), window);
+
+    /* This packs the button into the window. A GtkWindow inherits from GtkBin,
+     * which is a special container that can only have one child
+     */
+    gtk_container_add (GTK_CONTAINER (window), button);
+
+    /* The final step is to display this newly created widget... */
+    gtk_widget_show (button);
+
+    /* ... and the window */
+    gtk_widget_show (window);
+
+    /* All GTK applications must have a gtk_main(). Control ends here
+     * and waits for an event to occur (like a key press or a mouse event),
+     * until gtk_main_quit() is called.
+     */
+    gtk_main ();
+
+    return 0;
+}
+</code></pre>
+<p>编译选项：</p>
+<pre><code>gcc -o hello-world-gtk hello-world-gtk.c `pkg-config --libs --cflags gtk+-3.0`
+</code></pre>
+<h2 id="hello_world-of-electron">Hello_world of Electron</h2>
+<p>先安装nodejs，setup_16.x可以改成你需要的版本，一般是最新的或者LTS的</p>
+<pre><code>curl -sL https://deb.nodesource.com/setup_16.x | sudo -E bash -
+sudo apt-get install -y nodejs
+</code></pre>
+<p>然后</p>
+<pre><code># 克隆示例项目的仓库
+$ git clone https://github.com/electron/electron-quick-start
+# 进入这个仓库
+$ cd electron-quick-start
+# 安装依赖并运行
+$ npm install &amp;&amp; npm start
+</code></pre>
+<h2 id="hello_world-of-pyqt5">Hello_world of PyQt5</h2>
+<pre><code class="language-python"># Filename: hello.py
+
+&quot;&quot;&quot;Simple Hello World example with PyQt5.&quot;&quot;&quot;
+
+import sys
+
+# 1. Import `QApplication` and all the required widgets
+from PyQt5.QtWidgets import QApplication
+from PyQt5.QtWidgets import QLabel
+from PyQt5.QtWidgets import QWidget
+
+# 2. Create an instance of QApplication
+app = QApplication(sys.argv)
+
+# 3. Create an instance of your application's GUI
+window = QWidget()
+window.setWindowTitle('PyQt5 App')
+window.setGeometry(100, 100, 280, 80)
+window.move(60, 15)
+helloMsg = QLabel('&lt;h1&gt;Hello World!&lt;/h1&gt;', parent=window)
+helloMsg.move(60, 15)
+
+# 4. Show your application's GUI
+window.show()
+
+# 5. Run your application's event loop (or main loop)
+sys.exit(app.exec_())
+</code></pre>
+
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#hello-world-of-gtk">Hello world of gtk</a></li>
+<li><a href="#hello_world-of-electron">Hello_world of Electron</a></li>
+<li><a href="#hello_world-of-pyqt5">Hello_world of PyQt5</a></li>
+</ul>
+</li>
+</ul>
+
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="http://127.0.0.1:8080/post/tip-vscode-python-pylintno-name-in-module/">
+              <h3 class="post-title">
+                Tip-VScode Python pylint(no-name-in-module)
+              </h3>
+            </a>
+          </div>
+        
+
+        
+
+        <div class="site-footer">
+  
+  <a class="rss" href="http://127.0.0.1:8080/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>

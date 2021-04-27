@@ -1,0 +1,918 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Database-SQL | Reticence</title>
+<link rel="shortcut icon" href="http://127.0.0.1:8080/favicon.ico?v=1619508275369">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="http://127.0.0.1:8080/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="Database-SQL | Reticence - Atom Feed" href="http://127.0.0.1:8080/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-90HNEFFE0M"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-90HNEFFE0M');
+</script>
+
+
+    <meta name="description" content="SQL基础和进阶教程
+
+基础SQL
+
+一、一些概念
+二、数据类型和约束条件
+三、SQL命令
+
+DDL(data definition language)
+
+CREATE
+DROP
+ALTER
+
+
+DML(Data Manipulation ..." />
+    <meta name="keywords" content="Database,Web,Tools" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="http://127.0.0.1:8080">
+  <img class="avatar" src="http://127.0.0.1:8080/images/avatar.png?v=1619508275369" alt="">
+  </a>
+  <h1 class="site-title">
+    Reticence
+  </h1>
+  <p class="site-description">
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          Index
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          Classification
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          Archives
+        </a>
+      
+    
+      
+        <a href="/navigator.html" class="menu">
+          Navigator
+        </a>
+      
+    
+      
+        <a href="/post/book-list" class="menu">
+          Booklist
+        </a>
+      
+    
+      
+        <a href="/post/fei-md-ge-shi-bi-ji-hui-zong" class="menu">
+          Notes
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          About
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+        <a href="https://github.com/reticenceji" target="_blank">
+          <i class="ri-github-line"></i>
+        </a>
+      
+    
+      
+    
+      
+    
+      
+        <a href="https://www.zhihu.com/people/reticenceji" target="_blank">
+          <i class="ri-zhihu-line"></i>
+        </a>
+      
+    
+      
+    
+  </div>
+  <script>
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
+    var s = document.getElementsByTagName("script")[0]; 
+    s.parentNode.insertBefore(hm, s);
+  })();
+  </script>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              Database-SQL
+            </h2>
+            <div class="post-info">
+              <span>
+                2020-07-29
+              </span>
+              <span>
+                24 min read
+              </span>
+              
+                <a href="http://127.0.0.1:8080/tag/uXp2zQxRH/" class="post-tag">
+                  # Database
+                </a>
+              
+                <a href="http://127.0.0.1:8080/tag/FsPAOTRN-/" class="post-tag">
+                  # Web
+                </a>
+              
+                <a href="http://127.0.0.1:8080/tag/nL6gwIN_5/" class="post-tag">
+                  # Tools
+                </a>
+              
+            </div>
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <p>SQL基础和进阶教程<br>
+<ul class="markdownIt-TOC">
+<li><a href="#%E5%9F%BA%E7%A1%80sql">基础SQL</a>
+<ul>
+<li><a href="#%E4%B8%80-%E4%B8%80%E4%BA%9B%E6%A6%82%E5%BF%B5">一、一些概念</a></li>
+<li><a href="#%E4%BA%8C-%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E5%92%8C%E7%BA%A6%E6%9D%9F%E6%9D%A1%E4%BB%B6">二、数据类型和约束条件</a></li>
+<li><a href="#%E4%B8%89-sql%E5%91%BD%E4%BB%A4">三、SQL命令</a>
+<ul>
+<li><a href="#ddldata-definition-language">DDL(data definition language)</a>
+<ul>
+<li><a href="#create">CREATE</a></li>
+<li><a href="#drop">DROP</a></li>
+<li><a href="#alter">ALTER</a></li>
+</ul>
+</li>
+<li><a href="#dmldata-manipulation-language">DML(Data Manipulation language)</a>
+<ul>
+<li><a href="#select">SELECT</a></li>
+<li><a href="#where">WHERE</a></li>
+<li><a href="#insert">Insert</a></li>
+</ul>
+</li>
+<li><a href="#dcldata-control-language">DCL(Data control language)</a>
+<ul>
+<li><a href="#delete">DELETE</a></li>
+<li><a href="#update">UPDATE</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#%E5%9B%9B-%E8%81%9A%E5%90%88%E5%87%BD%E6%95%B0">四、聚合函数</a>
+<ul>
+<li><a href="#distinct">DISTINCT</a></li>
+<li><a href="#group-by">GROUP BY</a></li>
+<li><a href="#order-by">ORDER BY</a></li>
+</ul>
+</li>
+<li><a href="#%E4%BA%94-%E8%A7%86%E5%9B%BE-%E5%AD%90%E6%9F%A5%E8%AF%A2-%E6%A0%87%E9%87%8F%E5%AD%90%E6%9F%A5%E8%AF%A2">五、视图 子查询 标量子查询</a></li>
+<li><a href="#%E5%85%AD-%E9%9B%86%E5%90%88%E8%BF%90%E7%AE%97">六、集合运算</a></li>
+<li><a href="#%E4%B8%83-%E8%BF%9E%E6%8E%A5-join">七、连接 Join</a></li>
+<li><a href="#%E5%85%AB-%E4%BA%8B%E5%8A%A1">八、事务</a></li>
+<li><a href="#%E4%B9%9D-%E8%B0%93%E8%AF%8D%E8%BF%94%E5%9B%9E%E7%9C%9F%E5%80%BC">九、谓词(返回真值)</a>
+<ul>
+<li><a href="#like%E6%A8%A1%E7%B3%8A%E6%9F%A5%E6%89%BE">LIKE模糊查找</a></li>
+<li><a href="#between%E8%8C%83%E5%9B%B4">BETWEEN范围</a></li>
+</ul>
+</li>
+<li><a href="#%E5%85%B3%E4%BA%8E%E5%AD%97%E7%AC%A6%E4%B8%B2">*关于字符串</a></li>
+<li><a href="#%E5%87%BD%E6%95%B0">*函数</a></li>
+<li><a href="#case">*CASE</a></li>
+<li><a href="#%E4%B8%80%E4%BA%9Bsql%E6%B3%A8%E5%85%A5%E4%B8%AD%E5%B8%B8%E7%94%A8%E7%9A%84%E5%87%BD%E6%95%B0">*一些SQL注入中常用的函数</a></li>
+<li><a href="#%E5%85%B3%E4%BA%8Esqlmap">*关于sqlmap</a></li>
+</ul>
+</li>
+<li><a href="#%E9%AB%98%E7%BA%A7sql">高级SQL</a>
+<ul>
+<li><a href="#%E4%B8%80-sql%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B">一、SQL数据类型</a></li>
+<li><a href="#%E4%BA%8C-integrity-constraints">二、Integrity Constraints</a>
+<ul>
+<li><a href="#reference-integrity-constraints">Reference Integrity Constraints</a></li>
+<li><a href="#check">Check</a></li>
+<li><a href="#assertion">Assertion</a></li>
+<li><a href="#triggers-%E8%A7%A6%E5%8F%91%E5%99%A8">Triggers 触发器</a></li>
+</ul>
+</li>
+<li><a href="#%E4%B8%89-authorization-%E6%8E%88%E6%9D%83-%E4%BB%A5postgresql%E4%B8%BA%E4%BE%8B">三、Authorization 授权-以POSTGRESQL为例</a></li>
+<li><a href="#%E5%9B%9B-audit-trail">四、Audit trail</a></li>
+<li><a href="#%E4%BA%94-%E5%9C%A8%E5%88%AB%E7%9A%84%E8%AF%AD%E8%A8%80%E4%B8%AD%E4%BD%BF%E7%94%A8-sql">五、在别的语言中使用 SQL</a>
+<ul>
+<li><a href="#odbc">ODBC</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</p>
+<!-- SQL Server2012，部署在10.214.6.33。
+分配到user755，db75。-->
+<h1 id="基础sql">基础SQL</h1>
+<h2 id="一-一些概念">一、一些概念</h2>
+<p>行称为<strong>记录</strong>。列称为<strong>字段</strong>。<br>
+关键词不区分大小写。最后记得加分号，换行没用。<br>
+日期（如”2019-12-5“）字符串用<code>‘’</code>括起来。数字直接写。<br>
+一个单元格只能有一个数据。<br>
+“-- “(两横杠一空格) 或者 <code>/* */</code>” 注释。</p>
+<h2 id="二-数据类型和约束条件">二、数据类型和约束条件</h2>
+<ul>
+<li>数字类型：
+<ul>
+<li>INTEGER</li>
+</ul>
+</li>
+<li>字符串：
+<ul>
+<li>CHAR</li>
+<li>VARCHAR</li>
+</ul>
+</li>
+<li>时间日期：
+<ul>
+<li>DATE</li>
+</ul>
+</li>
+</ul>
+<p>约束条件，常见的有：</p>
+<ul>
+<li>NOT NULL 非空，必须输入</li>
+<li>primary key		主键，唯一索引</li>
+<li>default 0			默认值</li>
+</ul>
+<h2 id="三-sql命令">三、SQL命令</h2>
+<p>最常用的命令：<code>select 你要的字段 from 数据表 where 行筛选条件 group by 分组字段 having 组筛选条件 order by 排序字段</code><br>
+执行顺序：<code>From-&gt;where-&gt;group(aggregate)-&gt;having-&gt;select-&gt;order by</code></p>
+<h3 id="ddldata-definition-language">DDL(data definition language)</h3>
+<h4 id="create">CREATE</h4>
+<p>创建数据库：</p>
+<pre><code class="language-sql">CREATE database shop;	
+</code></pre>
+<p>创建数据表</p>
+<pre><code class="language-sql">CREATE table 表名（
+字段名1 类型 约束条件，
+字段名2 类型 约束条件，
+字段名3 类型 约束条件，
+该表的约束条件1，该表的约束条件2，该表的约束条件3）;
+
+CREATE table food (
+food_name VARCHAR(20) ,
+);
+</code></pre>
+<h4 id="drop">DROP</h4>
+<p>删除数据库：</p>
+<pre><code class="language-sql">DROP database shop;
+</code></pre>
+<p><strong>删除数据表：</strong></p>
+<pre><code class="language-sql">DROP table food;
+</code></pre>
+<h4 id="alter">ALTER</h4>
+<p><strong>更新数据表：</strong><br>
+其实alter开头的指令非常多。</p>
+<pre><code class="language-sql">ALTER table food add column birthdate DATE;				--添加列
+ALTER table math_teacher drop column birthdate; 		--删除列
+ALTER table math_teacher rename to english_teacher;		--重命名表
+ALTER table branch add primary key (branch_name);       --添加主键约束
+ALTER table card add check(type in ('T','G','U','O','K'));      --添加检查check
+ALTER table card drop constraint card_type_check ;          --删除检查check
+</code></pre>
+<h3 id="dmldata-manipulation-language">DML(Data Manipulation language)</h3>
+<h4 id="select">SELECT</h4>
+<p>query，查询数据表中的数据，最重要的语句。SELECT语句。</p>
+<pre><code class="language-sql">select * from math_t;							--从表中查询所有字段
+select A,B,C from TableName;					--从表中查询A、B、C字段
+select birth_date as d from Table;				--设置别名
+select birth_date as &quot;birthday&quot; from Table;		--设置别名，中文要用双引号括起来
+select 0 as &quot;chufen&quot;,name as &quot;name&quot; from math_t;--添加常数字段
+select distinct birth_date from math_t;			--去重,重复的记录只显示一次,distinct应该在第一个字段之前
+</code></pre>
+<h4 id="where">WHERE</h4>
+<p>where的常见用法。无论如何，WHERE里不可能出现聚合函数。</p>
+<pre><code class="language-sql">select * from math_t where birth_date&gt;'2001-10-01';	--where后面加上筛选条件
+select bno,count(*) into book_count from borrow where borrow_date between '2019-1-1' and '2019-12-21' group by bno;     --属于某个时间段内
+select number+1 from math_t;						--算数运算符+-*/()
+select * from math_t where name&lt;&gt;'';	        --不等号
+select bno,count(*) as bor from borrow where return_date is null group by bno;select * from math_t where number is not null;
+--is not null表示不是NULL,is null表示是null
+--null的真值是不确定,SQL的真值有三个(真的SB),短路原则适用.
+</code></pre>
+<p>比较运算符有<code>&lt;&gt;,=,&gt;,&lt;,&gt;=,&lt;=</code><br>
+字符串按照字典序进行比较<br>
+时间可以比较大小，Between A and B<br>
+逻辑运算符<code>not and or ()</code><br>
+要注意的是，SQL的真值中还有一个叫不确定：<br>
+<img src="http://127.0.0.1:8080/post-images/1615554797028.jpg" alt="" loading="lazy"></p>
+<h4 id="insert">Insert</h4>
+<pre><code class="language-sql">insert into TableName values (‘Ji Gaoqiang’,’2001-10-07’);			--全部字段添加值
+insert into TableName values (‘Ji Gaoqiang’,’2001-10-07’,default);	--显式添加默认值
+insert into TableName (list) values (value);						--部分字段添加值
+insert INTO tableA select * from tableB;							--表的复制,不用
+</code></pre>
+<h3 id="dcldata-control-language">DCL(Data control language)</h3>
+<h4 id="delete">DELETE</h4>
+<pre><code class="language-sql">delete from TableName;							--删除表中的全部数据
+delete from math_t where birth_date is null;	--根据条件删除表中的数据
+</code></pre>
+<h4 id="update">UPDATE</h4>
+<pre><code class="language-sql">update TableName set number = 1;					--全部数据的更新
+update TableName set number = 1 where name=’Ji GQ’;	--指定数据的更新
+</code></pre>
+<h2 id="四-聚合函数">四、聚合函数</h2>
+<p>count是唯一一个把NULL算进去的聚合函数。</p>
+<pre><code class="language-sql">select count(*) from math_t;				--count()数记录数,*包括NULL
+select count(number),count(birth from math_t from math_t;	--count()数记录数,其他不包括NULL
+select sum(number) from math_t;				--一列的和,忽略NULL
+select sum(distinct number) from math_t; 	--一列去重之后的和
+select AVG(number) from math_t;				--一列的平均值,忽略NULL
+select max(number) from math_t;				--一列的最大值,忽略NULL
+select min(number) from math_t;				--一列的最小值,忽略NULL
+</code></pre>
+<h3 id="distinct">DISTINCT</h3>
+<p>在聚合函数的参数中使用DISTINCT，可以删除重复数据。</p>
+<h3 id="group-by">GROUP BY</h3>
+<p>GROUP BY可以把表再进行切分。select字句中只能出现<strong>聚合函数、或者GROUP BY中指定的列名，常数</strong>。另外不要再GROUP BY字句中使用别名。</p>
+<pre><code class="language-sql">select birth_date,count(*) from math_t group by birth_date ;
+--select子句只能出现Group By 的依据(聚合键)/聚合函数/常数,写别的字段名会出错
+--去重切割,所有的NULL也会被聚合到一起
+--Group by的分组结果是无序的
+select birth_date,count(*) from math_t group by birth_date having cout(*)=1;
+--having对聚合结果进行筛选,where不行
+--having子句里只能出现 常数/聚合函数/聚合键
+</code></pre>
+<h3 id="order-by">ORDER BY</h3>
+<p>使用order by对查询结果进行排序。默认升序，如果需要降序排序，在最后加上desc。</p>
+<pre><code class="language-sql">select * from math_t order BY birth_date ;
+--按照count关键字生序排序,如果想降序后面跟desc. 有NULL的话会在开头或末尾
+select number,count(*) from math_t group by number order by count(*);
+--多关键字,优先左边的排序; 可以跟聚合函数排序
+</code></pre>
+<h2 id="五-视图-子查询-标量子查询">五、视图 子查询 标量子查询</h2>
+<p>视图存储的是select语句而不是表，虽然看起来就是表，有点脚本的味道。<br>
+这样就可以不让用户直接操作表了，提高了安全性。还可以定制用户想得到的表，提高易用性。<br>
+存储View还有一个特点，就是如果定义View的实际Relation发生了改变，View也会跟着修改。这样的视图叫做materialized view<br>
+对视图进行的SELECT查询操作和表用起来差不多，但是在插入和删除的时候就感觉有点奇怪了。因为我们要把对View的修改翻译成对数据库中实际Relation的修改。<strong>一般情况下</strong>我们不能修改视图。</p>
+<pre><code class="language-sql">create view 视图名称 (视图列名1 ,视图列名2,...) as
+select 语句
+
+create view viewexample (&quot;name&quot;,&quot;birth&quot;)	--视图列名
+as											--不能省略
+select name,number from math_t ;			--创建视图
+--然后就可以用 select * form viewexample 查看视图了
+--创建视图的select语句不能有order by,因为视图和表一样,是无序的
+drop view viewexample ;						--删除视图
+</code></pre>
+<p>子查询的特点概括起来就是一张一次性视图。视图并不是用来保存数据的，而是通过保存读取数据的SELECT 语句的方法来为用户提供便利。类似的，子查询就是将用来定义视图的SELECT语句需要一张表的地方。</p>
+<p>进一步的，来自外层查询的相关名称可以用在<strong>WHERE字句的子查询</strong>中。使用了来自外层查询相关名称的子查询被称为<strong>相关子查询correlated subquery</strong>。</p>
+<ul>
+<li>集合成员资格 ：连接词<strong>IN</strong>测试元组是否是集合中的成员。类似的还有NOT IN。<code>XXX IN 子查询</code></li>
+<li>集合的比较： <strong>SOME</strong>可以表示“集合中的某个”的意思。 <code>XXX IN 子查询</code>等价于<code>XXX = SOME(子查询)</code>。<code>XXX&gt;SOME(子查询)</code>表示XXX比（至少）集合中的某个要大。类似的还有<strong>ALL</strong>表示“集合中的每个”的意思。<code>XXX NOT IN(子查询)</code>等价于<code>XXX &lt;&gt; ALL(子查询)</code>，<code>XXX&gt;ALL(子查询)</code>表示XXX比集合中的每个都大。</li>
+<li>空关系测试：<code>EXIST(子查询)</code>在子查询非空的时候，<strong>EXIST</strong>结构返回True。</li>
+<li>重复元组存在性测试：<code>UNIQUE(子查询)</code>如果子查询中没有重复的元素，<strong>UNIQUE</strong>结构返回TRUE。</li>
+<li>from子句中的子查询</li>
+<li>with子句：提供了定义临时关系的办法。<code>WITH 临时表名 (列名1,列名2) AS (子查询)</code>，这句写在最前面，后面的select语句就可以用这个临时表了。</li>
+</ul>
+<pre><code class="language-sql">SELECT product_type, cnt_product
+FROM ( SELECT product_type, COUNT(*) AS cnt_product
+FROM Product
+GROUP BY product_type ) AS ProductSum;
+</code></pre>
+<p>返回的值只有一行一列(就是一个值啦)就是<strong>标量子查询</strong>。标量子查询的书写位置并不仅仅局限于 WHERE 子句中，通常任何可以使用单一值的位置都可以使用。也就是说，能够使用常数或者列名的地方，无论是 SELECT 子句、GROUP BY 子句、HAVING 子句，还是ORDER BY 子句，几乎所有的地方都可以使用。</p>
+<pre><code class="language-sql">select * from math_t where number &gt; (select avg(number) from math_t );
+--要注意where的条件中不能出现聚合函数,划线部分为标量子查询.
+--标量子查询在需要一个值的地方几乎都能使用
+</code></pre>
+<h2 id="六-集合运算">六、集合运算</h2>
+<p>集合运算要求列数一致,每一列的类型一致。别的操作往往默认保留重复，但是<strong>集合运算必须加上关键词ALL才会保留重复</strong>。</p>
+<pre><code class="language-sql">select * from math_bak 
+union all						--并集,允许重复的项
+select * from math_t;			--要求两个表/视图中列的类型一致,字段名倒不要求
+
+select * from math_bak 
+union 							--并集,合并重复的项
+select * from math_t			--要求两个表/视图中列的类型一致,字段名倒不要求
+order by number;				--排序只能在最后出现
+
+select * from math_bak 
+intersect 						--交集,前后两个表重复的部分,同样的如果保留重复行加ALL
+select * from math_t			--要求两个表/视图中列的类型一致,字段名倒不要求
+order by number;				--排序只能在最后出现
+
+select * from math_bak 
+except 							--差集
+select * from math_t			--要求两个表/视图中列的类型一致,字段名倒不要求
+order by number;				--排序只能在最后出现
+</code></pre>
+<h2 id="七-连接-join">七、连接 Join</h2>
+<p>集合运算是添加或减少行,联结则是改变列。</p>
+<p>inner：左边和右边无法匹配的记录，都不会保留。一般来说这样的语句可以简单的用select where代替。<br>
+full outer：左边和右边无法匹配的记录，都会保留。那些无法匹配的记录的值会用null填充。<br>
+left outer：左边无法匹配的记录会保留。那些无法匹配的记录的值会用null填充。<br>
+写法（inner和outer是可以省略的，不影响含义）：</p>
+<ul>
+<li>自然连接<code>R natural {inner join,left outer join,right outer join,full outer join} S using &lt;A1,A2...&gt;</code></li>
+<li>非自然连接<code>R {inner join,left outer join,right outer join,full outer join} S on {condition} using &lt;A1,A2...&gt;</code></li>
+</ul>
+<pre><code class="language-sql">select I.id, T.name, T.birth_date 
+from math_i as I inner join math_t as T		--inner join内联结,用别名书写方便
+on I.number = T.number;					
+--设置联结键,不一定是主键.其实只要是逻辑表达式就可以,但是一般用等号居多.只要逻辑表达式的结果为True就会联结,不一定是一对一
+
+select I.id, T.name, T.birth_date 
+from math_i as I left outer join math_t as t			
+--outer join外联结,用别名书写方便,left表示指定左边的表为主表
+using number
+--设置联结键,不一定是主键.其实只要是逻辑表达式就可以,但是一般用等号居多.只要逻辑表达式的结果为True就会联结.而且主表中的数据一定会出现.
+</code></pre>
+<h2 id="八-事务">八、事务</h2>
+<p>A <strong>transaction</strong> is a <strong>sequence of queries and data update statements executed as a single logical unit</strong>.<br>
+事务具有如下特性：</p>
+<ul>
+<li>atomicity 原子性：一个事务要么发生，要么不发生</li>
+<li>consistence 一致性</li>
+<li>isolation 隔离性</li>
+<li>durability 持久性：一旦执行成功就会永久保存</li>
+</ul>
+<p>将一系列DML语句整合成一个<strong>事务Transaction</strong></p>
+<pre><code class="language-sql">Begin Transaction;		--开始语句,不同的软件不一样,比如MySQL是start transaction
+update TableName set number = 1;
+... ...
+End Transaction;
+-- Begin Transaction = Begin
+-- End Transaction = COMMIT。提交修改,改了就不能反悔了
+-- 你可以用ROLLBACK代替COMMIT，表示回滚，前面的修改都不生效。
+</code></pre>
+<h2 id="九-谓词返回真值">九、谓词(返回真值)</h2>
+<h3 id="like模糊查找">LIKE模糊查找</h3>
+<pre><code class="language-sql">select * from math_t where name LIKE 'Zhang%';			#百分号表示匹配任意多字符
+select * from math_t where name LIKE '_hang%';			#_表示匹配一个字符
+</code></pre>
+<h3 id="between范围">BETWEEN范围</h3>
+<p>NULL的算数运算得到底还是NULL，NULL得逻辑运算会得到UNKNOWN。所以我们也有is unknow这种东西。</p>
+<pre><code class="language-sql">select * from math_t where number BETWEEN 1 and 5; 	--筛选1~5之间
+select * from math_t where number is null;			--为空
+select * from math_t where number is not null;		--非空
+select * from math_t where number in (1,2,3);		--在()之中
+</code></pre>
+<p>SQL还有一个特性可测试一个<strong>子查询</strong>的结果中是否存在元组。exists结构在作为参数的子查询为空时返回true值。</p>
+<h2 id="关于字符串">*关于字符串</h2>
+<p>模糊查找，和正则表达式符号不同，可做参照。在WHERE字句中和LIKE连用：</p>
+<ul>
+<li><code>%</code> matches any substring.  (like * in file system)</li>
+<li><code>_</code>  matches any character. (like ? In file system)<br>
+字符串函数 <code>upper</code>， <code>lower</code>， <code>||</code>（串联）</li>
+</ul>
+<h2 id="函数">*函数</h2>
+<p>https://www.postgresql.org/docs/9.4/functions.html</p>
+<p>ABS()							绝对值<br>
+MOD(被除数,除数)					求余<br>
+ROUND(目标数,保留小数位数)			四舍五入</p>
+<p>str1 || strr2 或 concat(str1,str2)		拼接<br>
+length(str)						求长<br>
+lower()	upper()					大小写转换<br>
+replace(对象,替换前,替换后)			替换<br>
+substring(对象from 开始位置 for 截取长度)		截取</p>
+<p>current_date						当前日期<br>
+current_time						当前时间<br>
+current_timestamp					当前日期时间<br>
+extract(日期元素 From 日期)			提取日期元素(month,year)</p>
+<p>cast(转换前的值 as 转换类型)			类型转换<br>
+coalesce(1,2,3,...)					返回第一个不是NULL的值</p>
+<h2 id="case">*CASE</h2>
+<pre><code class="language-sql">select name ,case
+when birth_date&gt;'2001-12-31' then 'adult' 
+when birth_date&lt;='2001-12-31' then 'children'
+else NULL						--其实case就是返回一个值,这里相当于default
+end as age 						--设置该字段名
+from math_t ;	
+
+/*
+case 
+when 条件 then 表达式
+when 条件 then 表达式
+else 表达式
+end
+*/
+</code></pre>
+<h2 id="一些sql注入中常用的函数">*一些SQL注入中常用的函数</h2>
+<p>updatexml	一百度全都是讲注入的笑死了<br>
+UPDATEXML (XML_document, XPath_string, new_value); <br>
+第一个参数： XML_document是String格式，为XML文档对象的名称，文中为Doc <br>
+第二个参数：XPath_string (Xpath格式的字符串) ，如果不了解Xpath语法，可以在网上查找教程。 <br>
+第三个参数：new_value，String格式，替换查找到的符合条件的数据</p>
+<h2 id="关于sqlmap">*关于sqlmap</h2>
+<p>sqlmap被我安装在 ~/AAA/sqlmap-dev里。<br>
+python sqlmap.py [option] 启动</p>
+<p>-h输出帮助信息	-hh输出更详细的帮助信息<br>
+-u URL(记得加上注入点)<br>
+Enumeration里头表示你希望获取(retrieve)的后台的(back-end)信息</p>
+<pre><code class="language-shell">-a, --all           Retrieve everything
+-b, --banner        Retrieve DBMS banner
+--current-user      Retrieve DBMS current user
+--current-db        Retrieve DBMS current database
+--passwords         Enumerate DBMS users password hashes
+--tables            Enumerate DBMS database tables
+--columns           Enumerate DBMS database table columns
+--schema            Enumerate DBMS schema
+--dump              Dump DBMS database table entries
+--dump-all          Dump all DBMS databases tables entries
+-D DB               DBMS database to enumerate
+-T TBL              DBMS database table(s) to enumerate
+-C COL              DBMS database table column(s) to enumerate File system access里头的参数可以让你读写文件。
+</code></pre>
+<h1 id="高级sql">高级SQL</h1>
+<h2 id="一-sql数据类型">一、SQL数据类型</h2>
+<p>Domain可以添加constrain；Domain不是强类型，如果底层的数据类型相同的话（比如下面的dollar和pounds）不同的Domain可以相互赋值。</p>
+<pre><code class="language-sql">create type Dollars as numeric(12,2) ;      --创建数据类型
+create domain Dollars as numeric(12, 2) not null;           --创建Domain
+create domain Pounds as numeric(12,2);
+</code></pre>
+<p>Large-Object Types：对于大的对象，我们返回他的指针。</p>
+<ul>
+<li>blob: binary large object</li>
+<li>clob: character large object</li>
+</ul>
+<h2 id="二-integrity-constraints">二、Integrity Constraints</h2>
+<p>完整性约束包括：域完整性、实体完整性（主键的约束）、参照完整性（外键的约束）和用户定义的完整性约束。常见的比如<code>not null</code>,<code>primary key</code>,<code>unique</code>。</p>
+<h3 id="reference-integrity-constraints">Reference Integrity Constraints</h3>
+<p>删除一个forgein key，怎么删？（比如删除计算机系，学生怎么办？）</p>
+<ol>
+<li>不让删（默认行为）</li>
+<li>把相关的记录连带着删除了。但是这可能会导致多米诺骨牌效应，如果中间有一个是不让删除的，那么整个删除就失败了。</li>
+</ol>
+<p>这种连带行为的约束，用<strong>cascade</strong></p>
+<pre><code class="language-sql">create table students(
+    ...
+    foreign key(dept_name) references department [on delete/update   cascade]
+);
+</code></pre>
+<h3 id="check">Check</h3>
+<p>对于一般的条件检查，我们可以用check。</p>
+<pre><code class="language-sql">create table SB (
+    name varchar(4) not null,
+    age integer check(age&gt;0) 
+);
+</code></pre>
+<h3 id="assertion">Assertion</h3>
+<p>对于一些复杂的约束条件（往往可能和别的表、别的字段相关），我们无法把他简单的写在Check语句中，我们就需要assertion。这个特性并没有被广泛的支持。<br>
+过度的使用assertion会造成数据库效率的降低，因为每一次的插入都要执行一次判断。</p>
+<pre><code class="language-sql">create assertion credits_earned_constraint check
+    (not exists (select ID
+    from student
+    where tot_cred &lt;&gt; (select sum(credits)
+        from takes natural join course
+        where student.ID= takes.ID and grade is not null and grade &lt;&gt; ’F’);
+</code></pre>
+<h3 id="triggers-触发器">Triggers 触发器</h3>
+<p>A trigger is a statement that is <strong>executed automatically</strong> by the system as <strong>a side-effect of a modification</strong> to the database.<br>
+我们需要设置触发条件和触发行为。</p>
+<pre><code class="language-sql">CREATE  TRIGGER trigger_name [BEFORE|AFTER|INSTEAD OF] event_name
+ON table_name
+[
+ -- 触发器逻辑....
+];
+</code></pre>
+<p>虽然触发器语法是SQL标准的一部分，但是大多数数据库系统用非标准的语法来说明触发器。比如postgresql，触发器的定义不包含执行内容，而是对每一行调用一个过程，使用<code>old</code>和<code>new</code>来访问包含该行的旧值和新的变量。触发器不进行rollback，而是发出一个异常。查阅手册，发现以下内容：</p>
+<p>当一个PL/pgSQL函数当做触发器调用时，在顶层块会自动创建一些特殊变量。它们是：</p>
+<ul>
+<li>
+<p><code>NEW</code></p>
+<p>数据类型是<code>RECORD</code>；该变量为<strong>行级触发器</strong>中的<code>INSERT</code>/<code>UPDATE</code>操作保持新数据行。在语句级别的触发器以及<code>DELETE</code>操作，这个变量是null。</p>
+</li>
+<li>
+<p><code>OLD</code></p>
+<p>数据类型是<code>RECORD</code>；该变量为<strong>行级触发器</strong>中的<code>UPDATE</code>/<code>DELETE</code>操作保持新数据行。在语句级别的触发器以及<code>INSERT</code>操作，这个变量是null。</p>
+</li>
+<li>
+<p><code>TG_NAME</code></p>
+<p>数据类型是<code>name</code>；该变量包含实际触发的触发器名。</p>
+</li>
+<li>
+<p><code>TG_WHEN</code></p>
+<p>数据类型是<code>text</code>；是值为<code>BEFORE</code>、<code>AFTER</code>或<code>INSTEAD OF</code>的一个字符串，取决于触发器的定义。</p>
+</li>
+<li>
+<p><code>TG_LEVEL</code></p>
+<p>数据类型是<code>text</code>；是值为<code>ROW</code>或<code>STATEMENT</code>的一个字符串，取决于触发器的定义。</p>
+</li>
+<li>
+<p><code>TG_OP</code></p>
+<p>数据类型是<code>text</code>；是值为<code>INSERT</code>、<code>UPDATE</code>、<code>DELETE</code>或<code>TRUNCATE</code>的一个字符串，它说明触发器是为哪个操作引发。</p>
+</li>
+<li>
+<p><code>TG_RELID</code></p>
+<p>数据类型是<code>oid</code>；是导致触发器调用的表的对象 ID。</p>
+</li>
+<li>
+<p><code>TG_RELNAME</code></p>
+<p>数据类型是<code>name</code>；是导致触发器调用的表的名称。现在已经被废弃，并且可能在未来的一个发行中消失。使用<code>TG_TABLE_NAME</code>替代。</p>
+</li>
+<li>
+<p><code>TG_TABLE_NAME</code></p>
+<p>数据类型是<code>name</code>；是导致触发器调用的表的名称。</p>
+</li>
+<li>
+<p><code>TG_TABLE_SCHEMA</code></p>
+<p>数据类型是<code>name</code>；是导致触发器调用的表所在的模式名。</p>
+</li>
+<li>
+<p><code>TG_NARGS</code></p>
+<p>数据类型是<code>integer</code>；在<code>CREATE TRIGGER</code>语句中给触发器函数的参数数量。</p>
+</li>
+<li>
+<p><code>TG_ARGV[]</code></p>
+<p>数据类型是<code>text</code>数组；来自<code>CREATE TRIGGER</code>语句的参数。索引从 0 开始记数。非法索引（小于 0 或者大于等于<code>tg_nargs</code>）会导致返回一个空值。</p>
+<p>所以我们要创建触发器，还要编写对应的函数，如下例：</p>
+<pre><code class="language-sql">-- 创建触发器
+create trigger TRIGGER_NAME [before insert]
+on TABLE_NAME [for each row]
+execute procedure borrow_no_morell();
+
+-- 创建函数
+create function borrow_no_morell() returns trigger as $borrow_no_morell$
+begin
+    if (select count(*) from borrow where cno=new.cno)&gt;2 then
+    raise exception 'cannot borrow more than 3';
+    end if;
+    RETURN NEW;
+end
+$borrow_no_morell$ LANGUAGE plpgsql;
+</code></pre>
+<p>这里给两个书上的例子，如果考试考的话可能要书写这样格式的trigger。</p>
+<figure data-type="image" tabindex="1"><img src="http://127.0.0.1:8080/post-images/image-20210403141347067.png" alt="image-20210403141347067" loading="lazy"></figure>
+</li>
+</ul>
+<h2 id="三-authorization-授权-以postgresql为例">三、Authorization 授权-以POSTGRESQL为例</h2>
+<ul>
+<li>Forms of authorization on parts of  the database:
+<ul>
+<li>Read authorization - allows reading, but not modification of data.</li>
+<li>Insert authorization - allows insertion of new data, but not modification of existing data.</li>
+<li>Update authorization - allows modification, but not deletion of data.</li>
+<li>Delete authorization - allows deletion of data</li>
+</ul>
+</li>
+<li>Forms of authorization to modify  the database schema:
+<ul>
+<li>Index authorization - allows creation and deletion of indices.</li>
+<li>Resources authorization - allows creation of new relations.</li>
+<li>Alteration authorization - allows addition or modifying of attributes in a relation.</li>
+<li>Drop authorization - allows deletion of relations.</li>
+</ul>
+</li>
+</ul>
+<p>我们可以利用View，把View的权限给用户，而不把relation的权限给用户。这样还可以简化用户操作。<br>
+<img src="http://127.0.0.1:8080/post-images/1616644577045.png" alt="" loading="lazy"><br>
+所有的权限都来自于DBA（比如postgres），我们要让DBA把权限<strong>GRANT</strong>给其他用户，可以用<strong>REVOKE</strong>收回权限。</p>
+<pre><code class="language-sql">GRANT &lt;privilege list&gt; on &lt;relation name or view name&gt; to &lt;user name&gt; [with grant option]     --能不能再把权限分发
+REVOKE&lt;privilege list&gt; ON &lt;relation name or view name&gt;	 FROM &lt;user list&gt;  [ restrict | cascade ]       --cascade，把分发出去的权限也收回来
+grant select, insert on instructor to U1, U2, U3;       --To grant users U1, U2, and U3 select and insert authorization on the instructor relation:
+grant all privileges on instructor to reticence;		--授予所有权限.
+revoke select on instructor from reticence;				--收回select权限
+</code></pre>
+<p>privilege list包括：（下面的所有权限都是对relation数据的操作，DML和DCL，不包括DDL（除了reference））</p>
+<ul>
+<li>select: allows read access to relation, or the ability to query using the view</li>
+<li>insert: the ability to insert tuples.</li>
+<li>update: the ability  to update using the SQL update statement.</li>
+<li>delete: the ability to delete tuples.</li>
+<li><strong>references</strong>: ability to declare foreign keys when creating relations.</li>
+<li><strong>all privileges</strong>: used as a short form for all the allowable privileges.</li>
+<li>DBMS没有实现更细粒度的权限管理，比如relation中的tuple权限。这个要由应用去管理。而我们甚至通常把所有的权限都交给应用程序，然后把权限都交给应用程序管理，</li>
+</ul>
+<p>ROLE：把权限赋给一个抽象的role，然后给具体的user指定一个role。</p>
+<pre><code class="language-sql">create role instructor;     --创建role
+grant select on takes to instructor;    --像给user授权一样给role授权
+grant instructor to Amy;    --让user Amy拥有instructor的权限
+</code></pre>
+<p>数据库</p>
+<pre><code class="language-sql">alter database third owner to reticence;
+</code></pre>
+<h2 id="四-audit-trail">四、Audit trail</h2>
+<p>审计跟踪（audit trail）是关于应用程序数据的所有更改（插入/删除/更新）的日志，以及一些信息，如哪个用户执行了更改和什么时候执行的更改。</p>
+<h2 id="五-在别的语言中使用-sql">五、在别的语言中使用 SQL</h2>
+<p>在别的语言中使用SQL。有三种形式：</p>
+<ul>
+<li>
+<p>嵌入式SQL：程序在编译前必须由一个特殊的预处理器进行处理。每一种语言的嵌入式SQL不同。由于不好用，所以用的很少。</p>
+</li>
+<li>
+<p>动态SQL，比如开放数据库互连（Open DataBase Connectivity，ODBC），一般是用于基础设施的建设。</p>
+<ul>
+<li>用于应用程序与数据库服务通信的标准。所以每一个DB厂商都会提供。</li>
+<li>标准定义了一个API
+<ol>
+<li>建立一个和服务器的连接</li>
+<li>发送查询、更新请求等</li>
+<li>获取返回结果</li>
+</ol>
+</li>
+<li>Python有<a href="https://pypi.org/project/pyodbc/">pyodbc</a>，Rust有<a href="https://docs.rs/odbc-api/0.17.0/odbc_api/">odbc_api</a>。</li>
+</ul>
+</li>
+<li>
+<p>还有更高级的接口，让我们可以更方便的连接数据库。也是使用最广泛的。</p>
+</li>
+</ul>
+<h3 id="odbc">ODBC</h3>
+<figure data-type="image" tabindex="2"><img src="http://127.0.0.1:8080/post-images/image-20210401101615755.png" alt="image-20210401101615755" loading="lazy"></figure>
+<p>ODBC规定了三种句柄： environment handle, connect handle, statement handle.</p>
+<figure data-type="image" tabindex="3"><img src="http://127.0.0.1:8080/post-images/image-20210401102128728.png" alt="image-20210401102128728" loading="lazy"></figure>
+<pre><code class="language-c">//查询结果和自定义变量进行绑定
+SQLBindCol ()
+SQLFetch()
+</code></pre>
+
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li><a href="#%E5%9F%BA%E7%A1%80sql">基础SQL</a>
+<ul>
+<li><a href="#%E4%B8%80-%E4%B8%80%E4%BA%9B%E6%A6%82%E5%BF%B5">一、一些概念</a></li>
+<li><a href="#%E4%BA%8C-%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E5%92%8C%E7%BA%A6%E6%9D%9F%E6%9D%A1%E4%BB%B6">二、数据类型和约束条件</a></li>
+<li><a href="#%E4%B8%89-sql%E5%91%BD%E4%BB%A4">三、SQL命令</a>
+<ul>
+<li><a href="#ddldata-definition-language">DDL(data definition language)</a>
+<ul>
+<li><a href="#create">CREATE</a></li>
+<li><a href="#drop">DROP</a></li>
+<li><a href="#alter">ALTER</a></li>
+</ul>
+</li>
+<li><a href="#dmldata-manipulation-language">DML(Data Manipulation language)</a>
+<ul>
+<li><a href="#select">SELECT</a></li>
+<li><a href="#where">WHERE</a></li>
+<li><a href="#insert">Insert</a></li>
+</ul>
+</li>
+<li><a href="#dcldata-control-language">DCL(Data control language)</a>
+<ul>
+<li><a href="#delete">DELETE</a></li>
+<li><a href="#update">UPDATE</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#%E5%9B%9B-%E8%81%9A%E5%90%88%E5%87%BD%E6%95%B0">四、聚合函数</a>
+<ul>
+<li><a href="#distinct">DISTINCT</a></li>
+<li><a href="#group-by">GROUP BY</a></li>
+<li><a href="#order-by">ORDER BY</a></li>
+</ul>
+</li>
+<li><a href="#%E4%BA%94-%E8%A7%86%E5%9B%BE-%E5%AD%90%E6%9F%A5%E8%AF%A2-%E6%A0%87%E9%87%8F%E5%AD%90%E6%9F%A5%E8%AF%A2">五、视图 子查询 标量子查询</a></li>
+<li><a href="#%E5%85%AD-%E9%9B%86%E5%90%88%E8%BF%90%E7%AE%97">六、集合运算</a></li>
+<li><a href="#%E4%B8%83-%E8%BF%9E%E6%8E%A5-join">七、连接 Join</a></li>
+<li><a href="#%E5%85%AB-%E4%BA%8B%E5%8A%A1">八、事务</a></li>
+<li><a href="#%E4%B9%9D-%E8%B0%93%E8%AF%8D%E8%BF%94%E5%9B%9E%E7%9C%9F%E5%80%BC">九、谓词(返回真值)</a>
+<ul>
+<li><a href="#like%E6%A8%A1%E7%B3%8A%E6%9F%A5%E6%89%BE">LIKE模糊查找</a></li>
+<li><a href="#between%E8%8C%83%E5%9B%B4">BETWEEN范围</a></li>
+</ul>
+</li>
+<li><a href="#%E5%85%B3%E4%BA%8E%E5%AD%97%E7%AC%A6%E4%B8%B2">*关于字符串</a></li>
+<li><a href="#%E5%87%BD%E6%95%B0">*函数</a></li>
+<li><a href="#case">*CASE</a></li>
+<li><a href="#%E4%B8%80%E4%BA%9Bsql%E6%B3%A8%E5%85%A5%E4%B8%AD%E5%B8%B8%E7%94%A8%E7%9A%84%E5%87%BD%E6%95%B0">*一些SQL注入中常用的函数</a></li>
+<li><a href="#%E5%85%B3%E4%BA%8Esqlmap">*关于sqlmap</a></li>
+</ul>
+</li>
+<li><a href="#%E9%AB%98%E7%BA%A7sql">高级SQL</a>
+<ul>
+<li><a href="#%E4%B8%80-sql%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B">一、SQL数据类型</a></li>
+<li><a href="#%E4%BA%8C-integrity-constraints">二、Integrity Constraints</a>
+<ul>
+<li><a href="#reference-integrity-constraints">Reference Integrity Constraints</a></li>
+<li><a href="#check">Check</a></li>
+<li><a href="#assertion">Assertion</a></li>
+<li><a href="#triggers-%E8%A7%A6%E5%8F%91%E5%99%A8">Triggers 触发器</a></li>
+</ul>
+</li>
+<li><a href="#%E4%B8%89-authorization-%E6%8E%88%E6%9D%83-%E4%BB%A5postgresql%E4%B8%BA%E4%BE%8B">三、Authorization 授权-以POSTGRESQL为例</a></li>
+<li><a href="#%E5%9B%9B-audit-trail">四、Audit trail</a></li>
+<li><a href="#%E4%BA%94-%E5%9C%A8%E5%88%AB%E7%9A%84%E8%AF%AD%E8%A8%80%E4%B8%AD%E4%BD%BF%E7%94%A8-sql">五、在别的语言中使用 SQL</a>
+<ul>
+<li><a href="#odbc">ODBC</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="http://127.0.0.1:8080/post/qian-duan-zhi-shi-bi-ji/">
+              <h3 class="post-title">
+                前端知识笔记-html,js,css
+              </h3>
+            </a>
+          </div>
+        
+
+        
+
+        <div class="site-footer">
+  
+  <a class="rss" href="http://127.0.0.1:8080/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>

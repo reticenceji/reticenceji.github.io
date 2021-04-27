@@ -1,0 +1,287 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>在K210运行裸机程序 | Reticence</title>
+<link rel="shortcut icon" href="http://127.0.0.1:8080/favicon.ico?v=1619508275369">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="http://127.0.0.1:8080/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="在K210运行裸机程序 | Reticence - Atom Feed" href="http://127.0.0.1:8080/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-90HNEFFE0M"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-90HNEFFE0M');
+</script>
+
+
+    <meta name="description" content="背景知识
+串口：串行接口简称串口，也称串行通信接口或串行通讯接口（通常指COM接口），是采用串行通信方式的扩展接口。串行接口 （Serial Interface）是指数据一位一位地顺序传送。其特点是通信线路简单，只要一对传输线就可以实现双向..." />
+    <meta name="keywords" content="" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="http://127.0.0.1:8080">
+  <img class="avatar" src="http://127.0.0.1:8080/images/avatar.png?v=1619508275369" alt="">
+  </a>
+  <h1 class="site-title">
+    Reticence
+  </h1>
+  <p class="site-description">
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          Index
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          Classification
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          Archives
+        </a>
+      
+    
+      
+        <a href="/navigator.html" class="menu">
+          Navigator
+        </a>
+      
+    
+      
+        <a href="/post/book-list" class="menu">
+          Booklist
+        </a>
+      
+    
+      
+        <a href="/post/fei-md-ge-shi-bi-ji-hui-zong" class="menu">
+          Notes
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          About
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+        <a href="https://github.com/reticenceji" target="_blank">
+          <i class="ri-github-line"></i>
+        </a>
+      
+    
+      
+    
+      
+    
+      
+        <a href="https://www.zhihu.com/people/reticenceji" target="_blank">
+          <i class="ri-zhihu-line"></i>
+        </a>
+      
+    
+      
+    
+  </div>
+  <script>
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
+    var s = document.getElementsByTagName("script")[0]; 
+    s.parentNode.insertBefore(hm, s);
+  })();
+  </script>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              在K210运行裸机程序
+            </h2>
+            <div class="post-info">
+              <span>
+                2021-03-31
+              </span>
+              <span>
+                3 min read
+              </span>
+              
+            </div>
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <h2 id="背景知识">背景知识</h2>
+<p><strong>串口</strong>：串行接口简称串口，也称串行通信接口或串行通讯接口（通常指COM接口），是采用串行通信方式的扩展接口。串行接口 （Serial Interface）是指数据一位一位地顺序传送。其特点是通信线路简单，只要一对传输线就可以实现双向通信（可以直接利用电话线作为传输线），从而大大降低了成本，特别适用于远距离通信，但传送速度较慢。<br>
+<strong>固件</strong>：firmware一般存储于设备中的电可擦除只读存储器EEPROM(Electrically Erasable Programmable ROM)或FLASH芯片中，一般可由用户通过特定的刷新程序进行升级的程序。一般来说，担任着一个数码产品最基础、最底层工作的软件才可以称之为固件，比如计算机主板上的基本输入/输出系统BIOS（Basic Input/output System)，在以前其实更多的专业人士叫它固件。对于我们的实验，我们可以认为我们需要得到一个<strong>纯二进制文件</strong>，烧到flask中作为firmware。</p>
+<h2 id="环境搭建">环境搭建</h2>
+<p>可以直接使用我的docker Image<br>
+<code>docker run -it --device ttyUSB0 python</code></p>
+<p>工具：</p>
+<table>
+<thead>
+<tr>
+<th>工具</th>
+<th>安装</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>qemu-system-riscv64</td>
+<td></td>
+<td>riscv硬件模拟器</td>
+</tr>
+<tr>
+<td>riscv-GNU工具链</td>
+<td>https://github.com/riscv/riscv-gnu-toolchain</td>
+<td>一套完整的可以生成riscv平台可执行文件的跨平台工具链</td>
+</tr>
+<tr>
+<td>kflash</td>
+<td><code>pip3 install kflash</code></td>
+<td>用来把firmware烧进去的</td>
+</tr>
+<tr>
+<td>(sudo)minicom</td>
+<td><code>sudo apt-get install minicom</code></td>
+<td>串口工具，方便调试</td>
+</tr>
+</tbody>
+</table>
+<p>编译出来的ELF文件，如何到板子上执行呢？当然，并不是随便一个ELF就可以执行了。<br>
+<code>objcopy KERNEL_ELF --strip-all -O binary os_firmware.bin</code><br>
+我们把ELF文件的<code>.text</code>,<code>.data</code>,<code>.rodata</code>都复制到了os_firmware.bin中。更准确的说，是纯二进制数据的复制。其他段的信息被丢弃。<br>
+<code>kflash -b 3000000 -B dan -t os_firmware.bin -p /dev/ttyUSB0 # Open a Serial Terminal After Finish</code></p>
+<h2 id="k210正确运行">K210正确运行</h2>
+<p>从一个及其简单的角度看，程序的运行无非就是从内存中取指令-CPU执行指令的简单过程。<br>
+CPU能执行什么指令？我们只需要交给编译器来帮我们翻译就行了。不过具体的CPU可能不支持某些特殊的指令或支持某些特殊的指令。<br>
+内存的布局也是不同的板子不同的。<a href="https://github.com/laanwj/k210-sdk-stuff/blob/master/doc/memory_map.md">K210的内存布局</a>，我们能用的RAM从<code>0x80000000~0x807fffff</code>。然后一些外设的映射地址可以参考链接的说明。</p>
+<p>启动过程：</p>
+<blockquote>
+<p>ROMCPU (0x00001000) seems to be the initial boot vector, from there, there's a jump to the beginning of the main ROM (0x88000000). This ROM implements loading of the flash to memory at 0x80000000 and jumping to it, as well as &quot;ISP&quot; mode for directly uploading a program from the serial port (this is used by kflash.py for flashing).</p>
+</blockquote>
+<p>也就是说，我们的程序从0x80000000开始执行。我们代码的第一条指令从这里开始。</p>
+
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#%E8%83%8C%E6%99%AF%E7%9F%A5%E8%AF%86">背景知识</a></li>
+<li><a href="#%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA">环境搭建</a></li>
+<li><a href="#k210%E6%AD%A3%E7%A1%AE%E8%BF%90%E8%A1%8C">K210正确运行</a></li>
+</ul>
+</li>
+</ul>
+
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="http://127.0.0.1:8080/post/ds-binomial-queue/">
+              <h3 class="post-title">
+                ADS-Binomial Queue
+              </h3>
+            </a>
+          </div>
+        
+
+        
+
+        <div class="site-footer">
+  
+  <a class="rss" href="http://127.0.0.1:8080/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>

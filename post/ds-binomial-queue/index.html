@@ -1,0 +1,612 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>ADS-Binomial Queue | Reticence</title>
+<link rel="shortcut icon" href="http://127.0.0.1:8080/favicon.ico?v=1619508275369">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="http://127.0.0.1:8080/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="ADS-Binomial Queue | Reticence - Atom Feed" href="http://127.0.0.1:8080/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-90HNEFFE0M"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-90HNEFFE0M');
+</script>
+
+
+    <meta name="description" content="二项堆
+二项堆 H 由一组满足下面的二项堆性质的二项树组成。
+
+H 中的每个二项树遵循最小堆性质：节点的关键字大于或等于其父节点的关键字
+对任意非负整数k，在 H 中至多有一颗二项树的根具有度数 k。第二个性质决定了如何判断一个包含 n 个..." />
+    <meta name="keywords" content="DS" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="http://127.0.0.1:8080">
+  <img class="avatar" src="http://127.0.0.1:8080/images/avatar.png?v=1619508275369" alt="">
+  </a>
+  <h1 class="site-title">
+    Reticence
+  </h1>
+  <p class="site-description">
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          Index
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          Classification
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          Archives
+        </a>
+      
+    
+      
+        <a href="/navigator.html" class="menu">
+          Navigator
+        </a>
+      
+    
+      
+        <a href="/post/book-list" class="menu">
+          Booklist
+        </a>
+      
+    
+      
+        <a href="/post/fei-md-ge-shi-bi-ji-hui-zong" class="menu">
+          Notes
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          About
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+        <a href="https://github.com/reticenceji" target="_blank">
+          <i class="ri-github-line"></i>
+        </a>
+      
+    
+      
+    
+      
+    
+      
+        <a href="https://www.zhihu.com/people/reticenceji" target="_blank">
+          <i class="ri-zhihu-line"></i>
+        </a>
+      
+    
+      
+    
+  </div>
+  <script>
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
+    var s = document.getElementsByTagName("script")[0]; 
+    s.parentNode.insertBefore(hm, s);
+  })();
+  </script>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              ADS-Binomial Queue
+            </h2>
+            <div class="post-info">
+              <span>
+                2021-03-29
+              </span>
+              <span>
+                10 min read
+              </span>
+              
+                <a href="http://127.0.0.1:8080/tag/0AqTQfzSL/" class="post-tag">
+                  # DS
+                </a>
+              
+            </div>
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <h2 id="二项堆">二项堆</h2>
+<p>二项堆 H 由一组满足下面的二项堆性质的二项树组成。</p>
+<ol>
+<li>H 中的每个二项树遵循最小堆性质：节点的关键字大于或等于其父节点的关键字</li>
+<li>对任意非负整数k，在 H 中至多有一颗二项树的根具有度数 k。第二个性质决定了如何判断一个包含 n 个元素的二项堆由哪几个二项树构成呢？将 n 写成二进制形式，哪一位为 1，那一位对应的二项树就应该存在。<br>
+比如，一个有42(0b101010)个结点的堆，就是由2、8、32个结点的树构成的森林。</li>
+</ol>
+<h2 id="算法分析">算法分析</h2>
+<table>
+<thead>
+<tr>
+<th>过程</th>
+<th>二项堆(最坏)</th>
+<th>斐波那契堆(摊还)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>MAKE_HEAP</td>
+<td>Θ(1)</td>
+<td>Θ(1)</td>
+</tr>
+<tr>
+<td>INSERT</td>
+<td>Ω(lgn)</td>
+<td>Θ(1)</td>
+</tr>
+<tr>
+<td>MINIMUM</td>
+<td>Ω(lgn)</td>
+<td>Θ(1)</td>
+</tr>
+<tr>
+<td>EXTRACT-MIN</td>
+<td>Θ(lgn)</td>
+<td>O(lgn)</td>
+</tr>
+<tr>
+<td>UNION</td>
+<td>Θ(lgn)</td>
+<td>Θ(1)</td>
+</tr>
+<tr>
+<td>DECREASE-KEY</td>
+<td>Θ(lgn)</td>
+<td>Θ(1)</td>
+</tr>
+<tr>
+<td>DELETE</td>
+<td>Θ(lgn)</td>
+<td>O(lgn)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="adt">ADT</h2>
+<p><a href="https://www.geeksforgeeks.org/binomial-heap-2/">参考链接-讲解</a>. <a href="">参考链接-实现</a></p>
+<p>The main operation in Binomial Heap is <code>union()</code>, all other operations mainly use this operation. The union() operation is to combine two Binomial Heaps into one. Let us first discuss other operations, we will discuss union later.</p>
+<ol>
+<li><code>insert(H, k)</code>: Inserts a key ‘k’ to Binomial Heap ‘H’. This operation first creates a Binomial Heap with single key ‘k’, then calls union on H and the new Binomial heap. 插入的摊还复杂度是<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mn>2</mn><mo>)</mo></mrow><annotation encoding="application/x-tex">O(2)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord">2</span><span class="mclose">)</span></span></span></span></li>
+<li><code>getMin(H)</code>: A simple way to <code>getMin()</code> is to traverse the list of root of Binomial Trees and return the minimum key. This implementation requires <strong>O(Log N)</strong> time. It can be optimized to O(1) by maintaining a pointer to minimum key root.</li>
+<li><code>extractMin(H)</code>: This operation also uses union(). We first call getMin() to find the minimum key Binomial Tree, then we remove the node and create a new Binomial Heap by connecting all subtrees of the removed minimum node. Finally, we call <code>union()</code> on H and the newly created Binomial Heap. This operation requires <strong>O(Log N)</strong> time.</li>
+<li><code>delete(H)</code>: Like Binary Heap, delete operation first reduces the key to minus infinite, then calls extractMin().</li>
+<li><code>decreaseKey(H)</code>: decreaseKey() is also similar to Binary Heap. We compare the decreases key with it parent and if parent’s key is more, we swap keys and recur for the parent. We stop when we either reach a node whose parent has a smaller key or we hit the root node. Time complexity of decreaseKey() is <strong>O(Log N)</strong>.</li>
+<li><code>union(H1,H2)</code>⭐️
+<ol>
+<li>The first step is to simply merge the two Heaps in <strong>non-decreasing order of degrees</strong> 按照结点的度数排序O(Log N).</li>
+<li>After the simple merge, we need to make sure that there is at most one Binomial Tree of any order. To do this, we need to combine Binomial Trees of the same order. We traverse the list of merged roots, we keep track of three-pointers, prev, x and next-x. There can be following 4 cases when we traverse the list of roots.
+<ul>
+<li>Case 1: Orders of x and next-x are not same, we simply move ahead.</li>
+<li>In following 3 cases orders of x and next-x are same.
+<ul>
+<li>Case 2: If the order of next-next-x is also same, move ahead. (当出现三个一样的时候，我们其实可以有合并其中任意两个。这里选择合并后面两个)</li>
+<li>Case 3: If the key of x is smaller than or equal to the key of next-x, then make next-x as a child of x by linking it with x.</li>
+<li>Case 4: If the key of x is greater, then make x as the child of next.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+</li>
+</ol>
+<figure data-type="image" tabindex="1"><img src="http://127.0.0.1:8080/post-images/Bionomial_tree_2.png" alt="img" loading="lazy"></figure>
+<h2 id="实现">实现</h2>
+<p>union：</p>
+<pre><code class="language-cpp">// This function perform union operation on two
+// binomial heap i.e. l1 &amp; l2
+list&lt;Node*&gt; unionBionomialHeap(list&lt;Node*&gt; l1,list&lt;Node*&gt; l2)
+{
+	// _new to another binomial heap which contain
+	// new heap after merging l1 &amp; l2
+	list&lt;Node*&gt; _new;
+	list&lt;Node*&gt;::iterator it = l1.begin();
+	list&lt;Node*&gt;::iterator ot = l2.begin();
+// 第一步，首先不降序排序
+	while (it!=l1.end() &amp;&amp; ot!=l2.end())
+	{
+		// if D(l1) &lt;= D(l2)
+		if((*it)-&gt;degree &lt;= (*ot)-&gt;degree)
+		{
+			_new.push_back(*it);
+			it++;
+		}
+		// if D(l1) &gt; D(l2)
+		else
+		{
+			_new.push_back(*ot);
+			ot++;
+		}
+	}
+	// if there remains some elements in l1 binomial heap
+	while (it != l1.end())
+	{
+		_new.push_back(*it);
+		it++;
+	}
+
+	// if there remains some elements in l2 binomial heap
+	while (ot!=l2.end())
+	{
+		_new.push_back(*ot);
+		ot++;
+	}
+	return _new;
+}
+
+list&lt;Node*&gt; adjust(list&lt;Node*&gt; _heap)
+{
+	if (_heap.size() &lt;= 1)
+		return _heap;
+	list&lt;Node*&gt; new_heap;
+	list&lt;Node*&gt;::iterator it1,it2,it3;
+	it1 = it2 = it3 = _heap.begin();
+
+	if (_heap.size() == 2)
+	{
+		it2 = it1;
+		it2++;
+		it3 = _heap.end();
+	}
+	else
+	{
+		it2++;
+		it3=it2;
+		it3++;
+	}
+	while (it1 != _heap.end())
+	{
+		// if only one element remains to be processed
+		if (it2 == _heap.end())
+			it1++;
+
+		// If D(it1) &lt; D(it2) i.e. merging of Binomial
+		// Tree pointed by it1 &amp; it2 is not possible
+		// then move next in heap
+		else if ((*it1)-&gt;degree &lt; (*it2)-&gt;degree)
+		{
+			it1++;
+			it2++;
+			if(it3!=_heap.end())
+				it3++;
+		}
+
+		// if D(it1),D(it2) &amp; D(it3) are same i.e.
+		// degree of three consecutive Binomial Tree are same
+		// in heap
+		else if (it3!=_heap.end() &amp;&amp;
+				(*it1)-&gt;degree == (*it2)-&gt;degree &amp;&amp;
+				(*it1)-&gt;degree == (*it3)-&gt;degree)
+		{
+			it1++;
+			it2++;
+			it3++;
+		}
+
+		// if degree of two Binomial Tree are same in heap
+		else if ((*it1)-&gt;degree == (*it2)-&gt;degree)
+		{
+			Node *temp;
+			*it1 = mergeBinomialTrees(*it1,*it2);
+			it2 = _heap.erase(it2);
+			if(it3 != _heap.end())
+				it3++;
+		}
+	}
+	return _heap;
+}
+</code></pre>
+<pre><code class="language-cpp">// C++ program to implement different operations
+// on Binomial Heap
+#include&lt;bits/stdc++.h&gt;
+using namespace std;
+
+// A Binomial Tree node.
+struct Node
+{
+	int data, degree;
+	Node *child, *sibling, *parent;
+};
+
+Node* newNode(int key)
+{
+	Node *temp = new Node;
+	temp-&gt;data = key;
+	temp-&gt;degree = 0;
+	temp-&gt;child = temp-&gt;parent = temp-&gt;sibling = NULL;
+	return temp;
+}
+
+// This function merge two Binomial Trees.
+Node* mergeBinomialTrees(Node *b1, Node *b2)
+{
+	// Make sure b1 is smaller
+	if (b1-&gt;data &gt; b2-&gt;data)
+		swap(b1, b2);
+
+	// We basically make larger valued tree
+	// a child of smaller valued tree
+	b2-&gt;parent = b1;
+	b2-&gt;sibling = b1-&gt;child;
+	b1-&gt;child = b2;
+	b1-&gt;degree++;
+
+	return b1;
+}
+
+// adjust function rearranges the heap so that
+// heap is in increasing order of degree and
+// no two binomial trees have same degree in this heap
+
+
+// inserting a Binomial Tree into binomial heap
+list&lt;Node*&gt; insertATreeInHeap(list&lt;Node*&gt; _heap,
+							Node *tree)
+{
+	// creating a new heap i.e temp
+	list&lt;Node*&gt; temp;
+
+	// inserting Binomial Tree into heap
+	temp.push_back(tree);
+
+	// perform union operation to finally insert
+	// Binomial Tree in original heap
+	temp = unionBionomialHeap(_heap,temp);
+
+	return adjust(temp);
+}
+
+// removing minimum key element from binomial heap
+// this function take Binomial Tree as input and return
+// binomial heap after
+// removing head of that tree i.e. minimum element
+list&lt;Node*&gt; removeMinFromTreeReturnBHeap(Node *tree)
+{
+	list&lt;Node*&gt; heap;
+	Node *temp = tree-&gt;child;
+	Node *lo;
+
+	// making a binomial heap from Binomial Tree
+	while (temp)
+	{
+		lo = temp;
+		temp = temp-&gt;sibling;
+		lo-&gt;sibling = NULL;
+		heap.push_front(lo);
+	}
+	return heap;
+}
+
+// inserting a key into the binomial heap
+list&lt;Node*&gt; insert(list&lt;Node*&gt; _head, int key)
+{
+	Node *temp = newNode(key);
+	return insertATreeInHeap(_head,temp);
+}
+
+// return pointer of minimum value Node
+// present in the binomial heap
+Node* getMin(list&lt;Node*&gt; _heap)
+{
+	list&lt;Node*&gt;::iterator it = _heap.begin();
+	Node *temp = *it;
+	while (it != _heap.end())
+	{
+		if ((*it)-&gt;data &lt; temp-&gt;data)
+			temp = *it;
+		it++;
+	}
+	return temp;
+}
+
+list&lt;Node*&gt; extractMin(list&lt;Node*&gt; _heap)
+{
+	list&lt;Node*&gt; new_heap,lo;
+	Node *temp;
+
+	// temp contains the pointer of minimum value
+	// element in heap
+	temp = getMin(_heap);
+	list&lt;Node*&gt;::iterator it;
+	it = _heap.begin();
+	while (it != _heap.end())
+	{
+		if (*it != temp)
+		{
+			// inserting all Binomial Tree into new
+			// binomial heap except the Binomial Tree
+			// contains minimum element
+			new_heap.push_back(*it);
+		}
+		it++;
+	}
+	lo = removeMinFromTreeReturnBHeap(temp);
+	new_heap = unionBionomialHeap(new_heap,lo);
+	new_heap = adjust(new_heap);
+	return new_heap;
+}
+
+// print function for Binomial Tree
+void printTree(Node *h)
+{
+	while (h)
+	{
+		cout &lt;&lt; h-&gt;data &lt;&lt; &quot; &quot;;
+		printTree(h-&gt;child);
+		h = h-&gt;sibling;
+	}
+}
+
+// print function for binomial heap
+void printHeap(list&lt;Node*&gt; _heap)
+{
+	list&lt;Node*&gt; ::iterator it;
+	it = _heap.begin();
+	while (it != _heap.end())
+	{
+		printTree(*it);
+		it++;
+	}
+}
+
+
+// Driver program to test above functions
+int main()
+{
+	int ch,key;
+	list&lt;Node*&gt; _heap;
+
+	// Insert data in the heap
+	_heap = insert(_heap,10);
+	_heap = insert(_heap,20);
+	_heap = insert(_heap,30);
+
+	cout &lt;&lt; &quot;Heap elements after insertion:\n&quot;;
+	printHeap(_heap);
+
+	Node *temp = getMin(_heap);
+	cout &lt;&lt; &quot;\nMinimum element of heap &quot;
+		&lt;&lt; temp-&gt;data &lt;&lt; &quot;\n&quot;;
+
+	// Delete minimum element of heap
+	_heap = extractMin(_heap);
+	cout &lt;&lt; &quot;Heap after deletion of minimum element\n&quot;;
+	printHeap(_heap);
+
+	return 0;
+}
+
+</code></pre>
+
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#%E4%BA%8C%E9%A1%B9%E5%A0%86">二项堆</a></li>
+<li><a href="#%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90">算法分析</a></li>
+<li><a href="#adt">ADT</a></li>
+<li><a href="#%E5%AE%9E%E7%8E%B0">实现</a></li>
+</ul>
+</li>
+</ul>
+
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="http://127.0.0.1:8080/post/riscv-sbi/">
+              <h3 class="post-title">
+                RISCV-SBI
+              </h3>
+            </a>
+          </div>
+        
+
+        
+
+        <div class="site-footer">
+  
+  <a class="rss" href="http://127.0.0.1:8080/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>

@@ -1,0 +1,346 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Git和Github | Reticence</title>
+<link rel="shortcut icon" href="http://127.0.0.1:8080/favicon.ico?v=1619508275369">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="http://127.0.0.1:8080/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="Git和Github | Reticence - Atom Feed" href="http://127.0.0.1:8080/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-90HNEFFE0M"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-90HNEFFE0M');
+</script>
+
+
+    <meta name="description" content="参考链接：https://www.cnblogs.com/flora5/p/7152556.html
+(未完待续，持续更新)
+需求一：如何在本地创建一个仓库，然后和远程联动？
+
+
+创建公钥：  ssh-keygen -t rsa -C &q..." />
+    <meta name="keywords" content="OS" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="http://127.0.0.1:8080">
+  <img class="avatar" src="http://127.0.0.1:8080/images/avatar.png?v=1619508275369" alt="">
+  </a>
+  <h1 class="site-title">
+    Reticence
+  </h1>
+  <p class="site-description">
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          Index
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          Classification
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          Archives
+        </a>
+      
+    
+      
+        <a href="/navigator.html" class="menu">
+          Navigator
+        </a>
+      
+    
+      
+        <a href="/post/book-list" class="menu">
+          Booklist
+        </a>
+      
+    
+      
+        <a href="/post/fei-md-ge-shi-bi-ji-hui-zong" class="menu">
+          Notes
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          About
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+        <a href="https://github.com/reticenceji" target="_blank">
+          <i class="ri-github-line"></i>
+        </a>
+      
+    
+      
+    
+      
+    
+      
+        <a href="https://www.zhihu.com/people/reticenceji" target="_blank">
+          <i class="ri-zhihu-line"></i>
+        </a>
+      
+    
+      
+    
+  </div>
+  <script>
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
+    var s = document.getElementsByTagName("script")[0]; 
+    s.parentNode.insertBefore(hm, s);
+  })();
+  </script>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              Git和Github
+            </h2>
+            <div class="post-info">
+              <span>
+                2020-10-03
+              </span>
+              <span>
+                5 min read
+              </span>
+              
+                <a href="http://127.0.0.1:8080/tag/nfABdWVsa/" class="post-tag">
+                  # OS
+                </a>
+              
+            </div>
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <p>参考链接：https://www.cnblogs.com/flora5/p/7152556.html<br>
+(未完待续，持续更新)</p>
+<h3 id="需求一如何在本地创建一个仓库然后和远程联动">需求一：如何在本地创建一个仓库，然后和远程联动？</h3>
+<ol>
+<li>
+<p>创建公钥：  <code>ssh-keygen -t rsa -C &quot;your_email@example.com&quot;</code><br>
+然后查看公钥：<code>cat ~/.ssh/id_rsa.pub</code>，复制其中的内容，添加到Github的SSH中，名字随意。<br>
+<img src="http://127.0.0.1:8080/post-images/1608269366372.png" alt="" loading="lazy"><br>
+然后相当于添加了一个身份认证。在本地填上自己的email和name，就可以和远程仓库联动了。</p>
+</li>
+<li>
+<p>创建文件夹，<code>git init</code></p>
+</li>
+<li>
+<p>添加Origin远程仓库：<code>git remote add origin git@github.com:reticenceji/oslab.git</code>(注意不要添加Https开头的那个远程仓库的地址，选SSH的)。添加后，远程库的名字就是<code>origin</code>，这是Git默认的叫法，也可以改成别的，但是<code>origin</code>这个名字一看就知道是远程库。</p>
+</li>
+<li>
+<p>如果远程仓库是空的，你需要初始化一下（也就是第一次上传时）<code>git push --set-upstream origin master</code></p>
+</li>
+</ol>
+<ul>
+<li>2,3,4是你自己创建库，如果是已经存在的库，直接git clone就好了。</li>
+<li><code>git remote -v</code> 查看origin</li>
+</ul>
+<ol start="4">
+<li>查看信息<pre><code>git remote -v     #查看远程仓库信息
+git config --global -l   #列出本地个人信息，建议把email和github设成一样
+</code></pre>
+</li>
+</ol>
+<h3 id="需求二上传-下载的基本操作">需求二：上传、下载的基本操作</h3>
+<ol>
+<li>关于上传的基本操作</li>
+</ol>
+<pre><code class="language-shell">git status     #查看当前工作区的状态
+git add filename1,filename2	#保存到暂存区stage
+git add .	#保存全部文件到stage
+git commit -m &quot;提交说明&quot;	#保存到repository，提交说明尽可能的详细。
+git push -u origin master	#第一次提交到远程仓库
+git push origin master	#之后提交到远程仓库
+</code></pre>
+<ol start="2">
+<li>关于回退的基本操作</li>
+</ol>
+<pre><code class="language-shell">git log		#查看提交历史，以便确定要回退到哪个版本。
+git reflog	#查看命令历史，以便确定要回到未来的哪个版本。
+git reset --hard HEAD^	#返回到上一个版本
+</code></pre>
+<p>3 <code>git pull origin</code>从远程拉取最新版本。</p>
+<h3 id="需求三本地代码和远程代码有冲突的时候pull失败push失败">需求三：本地代码和远程代码有冲突的时候，pull失败/push失败</h3>
+<p>当本地代码和远程代码有冲突的时候，执行git pull操作的时候，会提示有冲突，然后直接终止本次pull。<br>
+以下pull失败为例子。我在本地和远程分别编辑了README导致了冲突。<br>
+<img src="http://127.0.0.1:8080/post-images/1601820199395.png" alt="" loading="lazy"><br>
+以下push为例子。我在本地和远程分别编辑了README导致了冲突。<br>
+<img src="http://127.0.0.1:8080/post-images/1601820828236.png" alt="" loading="lazy"></p>
+<p>这个有问题高级的方式解决，但是比较繁琐。建议在别的地方备份一下，然后强制合并：</p>
+<pre><code>   git fetch --all      #从远程下载最新的，而不尝试合并或rebase任何东西。
+   git reset --hard origin/master   #将主分支重置为您刚刚获取的内容
+</code></pre>
+<p>然后你手动观察一下哪里不太一样，手动merge再push。</p>
+<ul>
+<li>这个问题最好避免。避免方法为在写之前先pull一下更新到最新版本，写完之后add-commit-push三连直接上传。其实pull所做的操作就是fetch+merge，push也是有merge；所以不要你在写的时候正好别人也在写同样的文件提交了，一般不会出问题。</li>
+<li>强制pull(慎用)，加个<code>-f</code>选项</li>
+<li>origin可以认为是指向某个repository的指针，master是branch名字（主分支）。origin/master就是那个远程repo的主分支。我们输入的<code>git push origin master</code>是<code>git push origin master:master</code>的简写实际上是把本地的master推送到远程的master</li>
+</ul>
+<h3 id="需求四不用命令行使用git">需求四：不用命令行使用git</h3>
+<p>建议使用VSCode.</p>
+<ul>
+<li>他会列出所有的Changes,点击Changes旁边的<code>+</code>号保存changes到stage，相当于add。</li>
+<li>最上方的✔️是commit</li>
+<li></li>
+</ul>
+<h3 id="需求五版本的推进">需求五：版本的推进</h3>
+<p>使用git的tag功能<br>
+方法一：使用github<br>
+可以在github里添加tag<br>
+然后<code>git pull origin #不能 git pull origin master</code>，在本地就会有tag了。</p>
+<p>方法二：使用git<br>
+创建一个标签：<code>git tag -a v1.0 -m &quot;lab1的最终版本&quot;</code><br>
+列出所有的标签：<code>git tag</code></p>
+<p>然后如果你想返回到之前的版本：<code>git checkout v1.0</code>，然后你可以查看当时的成果。不过你想做出修改，也不会改到现在的版本。你先应该<code>git checkout master</code>回到当前的主分支，然后继续工作。</p>
+<h3 id="需求六commit之后后悔了想要撤回">需求六：commit之后后悔了，想要撤回</h3>
+<p>执行<code>git reset --soft HEAD^</code>，就是回到上一个版本。你的代码还在的。</p>
+<h3 id="需求六想做一个小改动覆盖上一次的提交">需求六：想做一个小改动，覆盖上一次的提交</h3>
+<p>本地覆盖记录<br>
+<code>git commit --amend -m &quot;xxxx&quot;</code><br>
+线上覆盖提交，-f 表示强制push,远程的最新的一次commit被删除<br>
+<code>git push origin 分支名称:分支名称 -f</code></p>
+<h3 id="需求七查看版本之间的区别">需求七：查看版本之间的区别</h3>
+<p><code>git diff</code>命令可以查看区别，主要使用如下：<br>
+<code>git diff</code>查看当前没有add的内容修改。(这个vscode可以直接显示)<br>
+<code>git diff --cached</code>查看已经add没有commit的修改。<br>
+<code>git diff 版本号1 版本号2</code>查看版本之间的区别，举个例子，比如我刚刚pull了一个版本，我想查看他和上一个版本的区别，可以用<code>git diff HEAD^ HEAD</code>。</p>
+
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li>
+<ul>
+<li><a href="#%E9%9C%80%E6%B1%82%E4%B8%80%E5%A6%82%E4%BD%95%E5%9C%A8%E6%9C%AC%E5%9C%B0%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA%E4%BB%93%E5%BA%93%E7%84%B6%E5%90%8E%E5%92%8C%E8%BF%9C%E7%A8%8B%E8%81%94%E5%8A%A8">需求一：如何在本地创建一个仓库，然后和远程联动？</a></li>
+<li><a href="#%E9%9C%80%E6%B1%82%E4%BA%8C%E4%B8%8A%E4%BC%A0-%E4%B8%8B%E8%BD%BD%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C">需求二：上传、下载的基本操作</a></li>
+<li><a href="#%E9%9C%80%E6%B1%82%E4%B8%89%E6%9C%AC%E5%9C%B0%E4%BB%A3%E7%A0%81%E5%92%8C%E8%BF%9C%E7%A8%8B%E4%BB%A3%E7%A0%81%E6%9C%89%E5%86%B2%E7%AA%81%E7%9A%84%E6%97%B6%E5%80%99pull%E5%A4%B1%E8%B4%A5push%E5%A4%B1%E8%B4%A5">需求三：本地代码和远程代码有冲突的时候，pull失败/push失败</a></li>
+<li><a href="#%E9%9C%80%E6%B1%82%E5%9B%9B%E4%B8%8D%E7%94%A8%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%BD%BF%E7%94%A8git">需求四：不用命令行使用git</a></li>
+<li><a href="#%E9%9C%80%E6%B1%82%E4%BA%94%E7%89%88%E6%9C%AC%E7%9A%84%E6%8E%A8%E8%BF%9B">需求五：版本的推进</a></li>
+<li><a href="#%E9%9C%80%E6%B1%82%E5%85%ADcommit%E4%B9%8B%E5%90%8E%E5%90%8E%E6%82%94%E4%BA%86%E6%83%B3%E8%A6%81%E6%92%A4%E5%9B%9E">需求六：commit之后后悔了，想要撤回</a></li>
+<li><a href="#%E9%9C%80%E6%B1%82%E5%85%AD%E6%83%B3%E5%81%9A%E4%B8%80%E4%B8%AA%E5%B0%8F%E6%94%B9%E5%8A%A8%E8%A6%86%E7%9B%96%E4%B8%8A%E4%B8%80%E6%AC%A1%E7%9A%84%E6%8F%90%E4%BA%A4">需求六：想做一个小改动，覆盖上一次的提交</a></li>
+<li><a href="#%E9%9C%80%E6%B1%82%E4%B8%83%E6%9F%A5%E7%9C%8B%E7%89%88%E6%9C%AC%E4%B9%8B%E9%97%B4%E7%9A%84%E5%8C%BA%E5%88%AB">需求七：查看版本之间的区别</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="http://127.0.0.1:8080/post/elf-wen-jian-ge-shi-xiang-jie/">
+              <h3 class="post-title">
+                ELF文件格式详解(一)
+              </h3>
+            </a>
+          </div>
+        
+
+        
+
+        <div class="site-footer">
+  
+  <a class="rss" href="http://127.0.0.1:8080/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>

@@ -1,0 +1,313 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>reverse02-弹窗-xdbg | Reticence</title>
+<link rel="shortcut icon" href="http://127.0.0.1:8080/favicon.ico?v=1619508275369">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="http://127.0.0.1:8080/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="reverse02-弹窗-xdbg | Reticence - Atom Feed" href="http://127.0.0.1:8080/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-90HNEFFE0M"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-90HNEFFE0M');
+</script>
+
+
+    <meta name="description" content="reverse02
+用OD会加载半天不出来，用x32dbg可以秒开，好奇这是出于什么样的原因。
+用destroywindow断住，回溯3个函数之后可以直接看到明文的flag。。。
+弹窗有关的API-win32
+
+
+
+
+
+
+
+
+
+Messag..." />
+    <meta name="keywords" content="Reverse,WriteUps" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="http://127.0.0.1:8080">
+  <img class="avatar" src="http://127.0.0.1:8080/images/avatar.png?v=1619508275369" alt="">
+  </a>
+  <h1 class="site-title">
+    Reticence
+  </h1>
+  <p class="site-description">
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          Index
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          Classification
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          Archives
+        </a>
+      
+    
+      
+        <a href="/navigator.html" class="menu">
+          Navigator
+        </a>
+      
+    
+      
+        <a href="/post/book-list" class="menu">
+          Booklist
+        </a>
+      
+    
+      
+        <a href="/post/fei-md-ge-shi-bi-ji-hui-zong" class="menu">
+          Notes
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          About
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+        <a href="https://github.com/reticenceji" target="_blank">
+          <i class="ri-github-line"></i>
+        </a>
+      
+    
+      
+    
+      
+    
+      
+        <a href="https://www.zhihu.com/people/reticenceji" target="_blank">
+          <i class="ri-zhihu-line"></i>
+        </a>
+      
+    
+      
+    
+  </div>
+  <script>
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
+    var s = document.getElementsByTagName("script")[0]; 
+    s.parentNode.insertBefore(hm, s);
+  })();
+  </script>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              reverse02-弹窗-xdbg
+            </h2>
+            <div class="post-info">
+              <span>
+                2020-11-02
+              </span>
+              <span>
+                2 min read
+              </span>
+              
+                <a href="http://127.0.0.1:8080/tag/DhIxrI5Uq/" class="post-tag">
+                  # Reverse
+                </a>
+              
+                <a href="http://127.0.0.1:8080/tag/4n7nIsyFy/" class="post-tag">
+                  # WriteUps
+                </a>
+              
+            </div>
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <h2 id="reverse02">reverse02</h2>
+<p>用OD会加载半天不出来，用x32dbg可以秒开，好奇这是出于什么样的原因。<br>
+用<code>destroywindow</code>断住，回溯3个函数之后可以直接看到明文的flag。。。</p>
+<h2 id="弹窗有关的api-win32">弹窗有关的API-win32</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-messagebox">MessageBox</a></td>
+<td>弹框，还有很多诸如MessageA，MessageW的函数。MessageBox是DialogBox的一种简单情况。</td>
+</tr>
+<tr>
+<td><a href="https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-destroywindow">DestroyWindow</a></td>
+<td>销毁一个窗口。The function sends <a href="https://docs.microsoft.com/en-us/windows/desktop/winmsg/wm-destroy">WM_DESTROY</a> and <a href="https://docs.microsoft.com/en-us/windows/desktop/winmsg/wm-ncdestroy">WM_NCDESTROY</a> messages to the window to deactivate it and remove the keyboard focus from it.</td>
+</tr>
+<tr>
+<td><a href="https://docs.microsoft.com/en-us/windows/win32/dlgbox/dialog-boxes">DialogBox</a></td>
+<td>弹出一个获得用户输入的对话框。A dialog box is a temporary window an application creates to retrieve user input.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="dialog-box-message">Dialog Box Message</h3>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://docs.microsoft.com/en-us/windows/win32/dlgbox/dm-getdefid"><strong>DM_GETDEFID</strong></a></td>
+<td>Retrieves the identifier of the default push button control for a dialog box.</td>
+</tr>
+<tr>
+<td><a href="https://docs.microsoft.com/en-us/windows/win32/dlgbox/dm-reposition"><strong>DM_REPOSITION</strong></a></td>
+<td>Repositions a top-level dialog box so that it fits within the desktop area. An application can send this message to a dialog box after resizing it to ensure that the entire dialog box remains visible.</td>
+</tr>
+<tr>
+<td><a href="https://docs.microsoft.com/en-us/windows/win32/dlgbox/dm-setdefid"><strong>DM_SETDEFID</strong></a></td>
+<td>Changes the identifier of the default push button for a dialog box.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="x64dbg">x64dbg</h2>
+<p>是一个<strong>开源</strong>的x64/x32 debugger。和Ollydbg还是十分相似的，感觉功能也不相上下，甚至可以说更强了。</p>
+<p>布局也很清晰。<a href="https://help.x64dbg.com/en/latest/">HELP</a></p>
+<figure data-type="image" tabindex="1"><img src="http://127.0.0.1:8080/post-images/1604277814345.png" alt="界面" loading="lazy"></figure>
+
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#reverse02">reverse02</a></li>
+<li><a href="#%E5%BC%B9%E7%AA%97%E6%9C%89%E5%85%B3%E7%9A%84api-win32">弹窗有关的API-win32</a>
+<ul>
+<li><a href="#dialog-box-message">Dialog Box Message</a></li>
+</ul>
+</li>
+<li><a href="#x64dbg">x64dbg</a></li>
+</ul>
+</li>
+</ul>
+
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="http://127.0.0.1:8080/post/gdb-shi-yong-xin-de/">
+              <h3 class="post-title">
+                GDB-Release调试
+              </h3>
+            </a>
+          </div>
+        
+
+        
+
+        <div class="site-footer">
+  
+  <a class="rss" href="http://127.0.0.1:8080/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>

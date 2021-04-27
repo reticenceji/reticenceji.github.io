@@ -1,0 +1,376 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Rust-数据结构标准库 | Reticence</title>
+<link rel="shortcut icon" href="http://127.0.0.1:8080/favicon.ico?v=1619508275369">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="http://127.0.0.1:8080/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="Rust-数据结构标准库 | Reticence - Atom Feed" href="http://127.0.0.1:8080/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-90HNEFFE0M"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-90HNEFFE0M');
+</script>
+
+
+    <meta name="description" content="还有语言提供的数据结构，比如数组，元组。注意那些方法传入的参数是self还是&amp;self。
+数组
+数组在创建之后大小就不能再改变。
+let a: [i32; 5] = [1, 2, 3, 4, 5];声明一个长度为5的数组。
+然后我们..." />
+    <meta name="keywords" content="Rust" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="http://127.0.0.1:8080">
+  <img class="avatar" src="http://127.0.0.1:8080/images/avatar.png?v=1619508275369" alt="">
+  </a>
+  <h1 class="site-title">
+    Reticence
+  </h1>
+  <p class="site-description">
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          Index
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          Classification
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          Archives
+        </a>
+      
+    
+      
+        <a href="/navigator.html" class="menu">
+          Navigator
+        </a>
+      
+    
+      
+        <a href="/post/book-list" class="menu">
+          Booklist
+        </a>
+      
+    
+      
+        <a href="/post/fei-md-ge-shi-bi-ji-hui-zong" class="menu">
+          Notes
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          About
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+        <a href="https://github.com/reticenceji" target="_blank">
+          <i class="ri-github-line"></i>
+        </a>
+      
+    
+      
+    
+      
+    
+      
+        <a href="https://www.zhihu.com/people/reticenceji" target="_blank">
+          <i class="ri-zhihu-line"></i>
+        </a>
+      
+    
+      
+    
+  </div>
+  <script>
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
+    var s = document.getElementsByTagName("script")[0]; 
+    s.parentNode.insertBefore(hm, s);
+  })();
+  </script>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              Rust-数据结构标准库
+            </h2>
+            <div class="post-info">
+              <span>
+                2021-03-20
+              </span>
+              <span>
+                6 min read
+              </span>
+              
+                <a href="http://127.0.0.1:8080/tag/3Sdf--wHm/" class="post-tag">
+                  # Rust
+                </a>
+              
+            </div>
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <p>还有语言提供的数据结构，比如数组，元组。注意那些方法传入的参数是<code>self</code>还是<code>&amp;self</code>。</p>
+<h2 id="数组">数组</h2>
+<p>数组在创建之后大小就不能再改变。<br>
+<code>let a: [i32; 5] = [1, 2, 3, 4, 5];</code>声明一个长度为5的数组。<br>
+然后我们可以用下标来索引他。</p>
+<h2 id="元组">元组</h2>
+<p>元组就像是一个结构。</p>
+<pre><code class="language-rust">fn main() {
+    let tup: (i32, f64, u8) = (500, 6.4, 1);
+}
+</code></pre>
+<h2 id="枚举">枚举</h2>
+<p>下面是很常用的枚举，当你的函数可能无法返回有效的值的时候（比如pop,如果栈空呢？）甚至产生一个错误，就返回一个Option类型/Result类型。</p>
+<pre><code class="language-rust">enum Option&lt;T&gt; {
+    Some(T),
+    None,
+}
+// pub fn expect(self, msg: &amp;str) -&gt; T`
+// 返回Some包含的内容，如果是None就Panic。这样就不用编写复杂的match语句了。
+enum Result&lt;T, E&gt; {
+    Ok(T),
+    Err(E),
+}
+</code></pre>
+<p>常常和<strong>match</strong>语句一起使用，match匹配要求枚举是穷尽的。<code>_</code>可以当做default。</p>
+<pre><code class="language-rust">match map_b.get(key){
+    Some(num) =&gt; a = a + f64::from(value * num),
+    None =&gt; a=a + 0.0
+}
+</code></pre>
+<h2 id="vector">Vector</h2>
+<p><code>Vec&lt;T&gt;</code>，也叫Vector。允许我们在一个单独的数据结构中存储<strong>多于一个的</strong>、<strong>相同类型的</strong>、在<strong>内存中彼此相邻排列的</strong>值。换句话说，是一个<strong>大小可变的数组</strong>。可以实现数组、队列、栈等线性表数据结构。</p>
+<pre><code class="language-rust">//创建一个数组
+let v: Vec&lt;i32&gt; = Vec::new();
+//创建一个带有初值的数组
+let v = vec![1,2,3];
+let mut tit: Vec&lt;String&gt; = vec![String::new();100];
+//向数组中添加新的元素，但是这样意味着v是可变的。
+//类似的，可以用pop返回并移除最后一个元素
+let mut v = Vec::new();
+v.push(4);
+//获取数组中元素的值，第一种方法如果下标越界会产生panic
+let third:i32 = &amp;v[2];
+match v.get(2) {
+    Some(third) =&gt; ...,
+    None =&gt; ...,
+}
+//遍历，为了修改可变引用指向的值，必须先使用解引用运算符获取i中的值
+for i in &amp;mut v{
+    *i += 50;
+}
+</code></pre>
+<p><code>~/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/share/doc/rust/html/std/vec/struct.Vec.html</code></p>
+<p>查看Push的源代码：<code>pub fn push(&amp;mut self, value: T) {...}</code>，传递了自己的一个可变引用。而Rust不允许同时出现一个可变引用和其他任何引用，所以要小心了。</p>
+<h2 id="string">String</h2>
+<p>Rust 的核心语言中只有一种字符串类型：<code>str</code>，也就是字符串slice，它通常以被借用的形式出现<code>&amp;str</code>。称作 String 的类型是由标准库提供的，而没有写进核心语言部分，它是可增长的、可变的、有所有权的、UTF-8 编码的字符串类型。Rust 标准库中还包含一系列其他字符串类型，比如 <code>OsString</code>、<code>OsStr</code>、<code>CString</code> 和 <code>CStr</code>。<br>
+(也就是说在进行不能使用标准库的系统编程时，你的选择就只有str了)</p>
+<pre><code class="language-rust">//创建一个字符串，看源代码的话他们的实现是一模一样的。
+let mut s = String::from(&quot;lo&quot;);
+let mut s = &quot;lo&quot;.to_string();   
+//可以通过 push_str 方法来附加字符串 slice，从而使 String 变长。
+let mut s = String::from(&quot;foo&quot;);
+s.push_str(&quot;bar&quot;);
+//拼接字符串
+let s1 = String::from(&quot;Hello, &quot;);
+let s2 = String::from(&quot;world!&quot;);
+let s3 = s1 + &amp;s2; // 注意 s1 被移动了，不能继续使用
+let s = format!(&quot;{}-{}*{}&quot;, s1, s2, s3);    //更好的字符串拼接办法
+//遍历字符串的办法，字符串是不能直接索引的。
+for c in &quot;नमस्ते&quot;.chars() {
+    println!(&quot;{}&quot;, c);
+}
+</code></pre>
+<p>String还有很多常用的方法<br>
+<code>std::str</code><a href="https://doc.rust-lang.org/std/primitive.str.html">标准库</a>：</p>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>介绍</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>pub fn split_ascii_whitespace(&amp;self) -&gt; SplitAsciiWhitespace&lt;'_&gt;</code></td>
+<td>返回一个可以迭代的东西，把原来的字符串按空白符分割</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="map">Map</h2>
+<p><code>HashMap&lt;K, V&gt;</code> 类型储存了一个键类型 K 对应一个值类型 V 的映射。<br>
+map 可以用于需要任何类型作为键来寻找数据的情况，而不是像 vector 那样通过索引。</p>
+<pre><code class="language-rust">//创建一个hashmap
+use std::collections::HashMap;
+let mut scores = HashMap::new();
+//插入键值对
+scores.insert(String::from(&quot;Blue&quot;), 10);
+scores.insert(String::from(&quot;Yellow&quot;), 50);
+//遍历
+for (key, value) in &amp;scores {
+    println!(&quot;{}: {}&quot;, key, value);
+}
+//只在没有对应内容的时候插入键值对
+scores.entry(String::from(&quot;Yellow&quot;)).or_insert(50);
+scores.entry(String::from(&quot;Blue&quot;)).or_insert(50);
+</code></pre>
+<p>取值：<br>
+get方法返回的事Option，里面的内容是引用，没有所有权。</p>
+<pre><code class="language-rust">pub fn get&lt;Q: ?Sized&gt;(&amp;self, k: &amp;Q) -&gt; Option&lt;&amp;V&gt;
+where
+    K: Borrow&lt;Q&gt;,
+    Q: Hash + Eq, 
+</code></pre>
+<h2 id="box">Box</h2>
+<p>为了构建链表，我们需要Box类型。Rust需要在编译的时候确定类型的大小。</p>
+<pre><code class="language-rust">//如果你直接把Box&lt;List&gt;换成List，Rust将无法确定类型的大小，编译失败。
+enum List&lt;T&gt;{
+    Cons(T, Box&lt;List&lt;T&gt;&gt;),
+    Nil,
+}
+</code></pre>
+<h2 id="other">Other</h2>
+<p><code>pub fn collect&lt;B&gt;(self) -&gt; B</code>：Transforms an iterator into a collection.<br>
+https://users.rust-lang.org/t/split-a-string-and-store-it-in-a-hashmap/36895?u=reticenceji</p>
+
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#%E6%95%B0%E7%BB%84">数组</a></li>
+<li><a href="#%E5%85%83%E7%BB%84">元组</a></li>
+<li><a href="#%E6%9E%9A%E4%B8%BE">枚举</a></li>
+<li><a href="#vector">Vector</a></li>
+<li><a href="#string">String</a></li>
+<li><a href="#map">Map</a></li>
+<li><a href="#box">Box</a></li>
+<li><a href="#other">Other</a></li>
+</ul>
+</li>
+</ul>
+
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="http://127.0.0.1:8080/post/postgresql/">
+              <h3 class="post-title">
+                Database-PostgreSQL
+              </h3>
+            </a>
+          </div>
+        
+
+        
+
+        <div class="site-footer">
+  
+  <a class="rss" href="http://127.0.0.1:8080/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>

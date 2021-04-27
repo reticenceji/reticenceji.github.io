@@ -1,0 +1,614 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Python-Flask之图书管理系统 | Reticence</title>
+<link rel="shortcut icon" href="http://127.0.0.1:8080/favicon.ico?v=1619508275369">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="http://127.0.0.1:8080/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="Python-Flask之图书管理系统 | Reticence - Atom Feed" href="http://127.0.0.1:8080/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-90HNEFFE0M"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-90HNEFFE0M');
+</script>
+
+
+    <meta name="description" content="这是一篇解决问题的记录。
+
+终于差不多完成了。虽然现在工程比较混乱，也没有测试过。
+
+
+
+Python相关
+
+Flask调试
+
+
+数据库相关
+
+docker网络交互主机
+如何连接已有数据库
+增删改差
+多次查询
+命名问题
+二进制数据
+
+
+后端..." />
+    <meta name="keywords" content="Web,Python" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="http://127.0.0.1:8080">
+  <img class="avatar" src="http://127.0.0.1:8080/images/avatar.png?v=1619508275369" alt="">
+  </a>
+  <h1 class="site-title">
+    Reticence
+  </h1>
+  <p class="site-description">
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          Index
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          Classification
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          Archives
+        </a>
+      
+    
+      
+        <a href="/navigator.html" class="menu">
+          Navigator
+        </a>
+      
+    
+      
+        <a href="/post/book-list" class="menu">
+          Booklist
+        </a>
+      
+    
+      
+        <a href="/post/fei-md-ge-shi-bi-ji-hui-zong" class="menu">
+          Notes
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          About
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+        <a href="https://github.com/reticenceji" target="_blank">
+          <i class="ri-github-line"></i>
+        </a>
+      
+    
+      
+    
+      
+    
+      
+        <a href="https://www.zhihu.com/people/reticenceji" target="_blank">
+          <i class="ri-zhihu-line"></i>
+        </a>
+      
+    
+      
+    
+  </div>
+  <script>
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
+    var s = document.getElementsByTagName("script")[0]; 
+    s.parentNode.insertBefore(hm, s);
+  })();
+  </script>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              Python-Flask之图书管理系统
+            </h2>
+            <div class="post-info">
+              <span>
+                2021-04-16
+              </span>
+              <span>
+                9 min read
+              </span>
+              
+                <a href="http://127.0.0.1:8080/tag/FsPAOTRN-/" class="post-tag">
+                  # Web
+                </a>
+              
+                <a href="http://127.0.0.1:8080/tag/aTiVQxwll/" class="post-tag">
+                  # Python
+                </a>
+              
+            </div>
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <p>这是一篇解决问题的记录。</p>
+<!-- more -->
+<p>终于差不多完成了。虽然现在工程比较混乱，也没有测试过。<br>
+<ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#python%E7%9B%B8%E5%85%B3">Python相关</a>
+<ul>
+<li><a href="#flask%E8%B0%83%E8%AF%95">Flask调试</a></li>
+</ul>
+</li>
+<li><a href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9B%B8%E5%85%B3">数据库相关</a>
+<ul>
+<li><a href="#docker%E7%BD%91%E7%BB%9C%E4%BA%A4%E4%BA%92%E4%B8%BB%E6%9C%BA">docker网络交互主机</a></li>
+<li><a href="#%E5%A6%82%E4%BD%95%E8%BF%9E%E6%8E%A5%E5%B7%B2%E6%9C%89%E6%95%B0%E6%8D%AE%E5%BA%93">如何连接已有数据库</a></li>
+<li><a href="#%E5%A2%9E%E5%88%A0%E6%94%B9%E5%B7%AE">增删改差</a></li>
+<li><a href="#%E5%A4%9A%E6%AC%A1%E6%9F%A5%E8%AF%A2">多次查询</a></li>
+<li><a href="#%E5%91%BD%E5%90%8D%E9%97%AE%E9%A2%98">命名问题</a></li>
+<li><a href="#%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%95%B0%E6%8D%AE">二进制数据</a></li>
+</ul>
+</li>
+<li><a href="#%E5%90%8E%E7%AB%AF%E7%9B%B8%E5%85%B3">后端相关</a>
+<ul>
+<li><a href="#%E5%A6%82%E4%BD%95%E7%99%BB%E5%BD%95">如何登录</a></li>
+<li><a href="#%E4%B8%8D%E5%90%8C%E7%B1%BB%E5%9E%8B%E7%9A%84%E8%A1%A8%E5%8D%95">不同类型的表单</a></li>
+<li><a href="#%E8%A1%A8%E5%8D%95%E5%A4%84%E7%90%86">表单处理</a></li>
+<li><a href="#%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0">文件上传</a></li>
+</ul>
+</li>
+<li><a href="#%E5%89%8D%E7%AB%AF%E7%9B%B8%E5%85%B3">前端相关</a>
+<ul>
+<li><a href="#%E8%A1%A8%E5%8D%95%E6%B8%B2%E6%9F%93">表单渲染</a></li>
+<li><a href="#jinja2%E6%B3%A8%E9%87%8A">jinja2注释</a></li>
+<li><a href="#%E6%98%BE%E7%A4%BAflash%E6%B6%88%E6%81%AF">显示Flash消息</a></li>
+<li><a href="#%E6%9B%BF%E6%8D%A2quick_form%E7%9A%84%E9%BB%98%E8%AE%A4%E6%A0%B7%E5%BC%8F">替换quick_form的默认样式</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</p>
+<h2 id="python相关">Python相关</h2>
+<h3 id="flask调试">Flask调试</h3>
+<p>可以点击右边的那个console图标，然后输入给的PIN，进行交互式调试。<br>
+你可能好奇为什么要PIN，这是为了安全考虑。<br>
+不过，即使如此，也不要开着Debug到开发环境。</p>
+<h2 id="数据库相关">数据库相关</h2>
+<p><code>from flask_sqlalchemy import SQLAlchemy</code></p>
+<h3 id="docker网络交互主机">docker网络交互主机</h3>
+<p>主机访问docker</p>
+<ol>
+<li>可以在docker中用ifconfig查看docker ip</li>
+<li>可以端口转发出来，<code>-p</code></li>
+</ol>
+<p>docker访问主机<br>
+ifconfig，查看那个docker0的虚拟网卡</p>
+<h3 id="如何连接已有数据库">如何连接已有数据库</h3>
+<p>用反射。</p>
+<pre><code class="language-python">app = Flask(__name__)
+db = SQLAlchemy(app)
+db.reflect()
+#所有的数据表
+all_table = {table_obj.name: table_obj for table_obj in db.get_tables_for_bind()}   
+
+# 数据表使用，比如查询
+booktable = all_table['book']
+db.session.query(booktable).filter_by(isbn=form.isbn.data)
+</code></pre>
+<h3 id="增删改差">增删改差</h3>
+<p>我们上面得到的booktable的类型是<code>&lt;class 'sqlalchemy.sql.schema.Table'&gt;</code>。查看他的<a href="https://docs.sqlalchemy.org/en/13/core/metadata.html#sqlalchemy.schema.Table">方法</a>：</p>
+<p>其实有一些规则：<br>
+引用一个字段：<code>table.c.字段名</code></p>
+<p>排序：<code>book = db.session.query(borrowtable).filter_by(isbn = bookid).order_by(borrowtable.c.return_date).first()</code></p>
+<p><strong>Delete</strong></p>
+<pre><code class="language-python">#先找到对应的字段
+result =db.session.query(cardtable).filter_by(id=form_del.id.data)   
+    #这里是判断能不能删除
+    if (result.first() is not None):
+        borrowinfo = db.session.query(borrowtable).filter_by(card_id = form_del.id.data).all()
+        can_be_delete = True
+        for i in borrowinfo:
+            if (i['return_date'] is None):
+                can_be_delete = False
+                break
+        if can_be_delete:
+            result.delete()     #删除
+            db.session.commit()     #commit
+            flash(&quot;删除成功&quot;)            
+        else:
+            flash(&quot;这张卡还存在未还的书籍，禁止删除&quot;)    
+</code></pre>
+<p><strong>Insert:</strong></p>
+<pre><code class="language-python">insert = all_table['book'].insert().values(
+            isbn = form_add.isbn.data,
+            classify = form_add.classify.data,
+            name = form_add.name.data,
+            number = form_add.number.data,
+            stock = form_add.number.data,
+            press = form_add.press.data,
+            year = form_add.year.data,
+            author = form_add.author.data,
+            price = form_add.price.data
+        )
+        db.session.execute(insert)
+</code></pre>
+<p><strong>Update:</strong></p>
+<pre><code class="language-python"># Table.update().where().values()
+update = booktable.update().where(
+        booktable.c.isbn == form_add.isbn.data
+    ).values(
+        number = result.first()['number']+form_add.number.data,
+        stock = result.first()['stock']+form_add.number.data
+    )
+db.session.execute(update)
+</code></pre>
+<h3 id="多次查询">多次查询</h3>
+<p>我发现query和filter之后返回的是同一个类。所以我可以反复调用filter。</p>
+<pre><code class="language-python">filt = db.session.query(booktable)
+if (form.isbn.data):
+    filt = filt.filter_by(isbn=form.isbn.data)
+if (form.classify.data):
+    filt = filt.filter_by(classify=form.classify.data)
+if (form.name.data):
+    filt = filt.filter_by(name=form.name.data)
+if (form.press.data):
+    filt = filt.filter_by(press=form.press.data)
+if (form.year.data):
+    filt = filt.filter_by(year=form.year.data)
+if (form.author.data):
+    filt = filt.filter_by(author=form.author.data)
+result = filt.all()
+</code></pre>
+<h3 id="命名问题">命名问题</h3>
+<p>千万不要让你的字段名字和python关键字冲突，比如<code>class</code></p>
+<h3 id="二进制数据">二进制数据</h3>
+<p>可以用 <a href="http://www.postgres.cn/docs/12/datatype-binary.html">bytea数据类型</a>。<br>
+另外调整字段类型：<br>
+<code>alter table admin alter password type bytea using password::bytea;</code><br>
+怎样在SQL中写入二进制数据呢？答案很简单，把每一个字节转换成对应的三位十进制数字的八进制数字符串表示，以双斜线做为前缀，即0x00表示为\000、0x2C表示为\02C、0xFF表示为\377，并按照bytea类型的要求在字符串前端的单引号外注明E。举例如下：</p>
+<h2 id="后端相关">后端相关</h2>
+<h3 id="如何登录">如何登录</h3>
+<p>我们需要实现我们自己的<a href="http://www.pythondoc.com/flask-login/#id3">User Class</a>。<br>
+官方的要求如上。但是就我自己实现来看，首先继承UserMixin，然后我们只需要让我们的类中有id这个属性就好。<br>
+其次，由于我们还要实现load_user这个函数，所以我下面又写了一个get方法。这可能不是最佳实现，但是够用。</p>
+<pre><code class="language-python">class User(UserMixin):
+    users = []
+
+    def __init__(self,row):
+        self.id = row['id']
+        self.password = row['password']
+        self.name = row['name']
+        self.phone = row['phone']
+        User.users.append(self)
+
+    @classmethod
+    def get(cls,id):
+        for u in cls.users:
+            if u.id == id:
+                return u
+        return None
+</code></pre>
+<pre><code class="language-python">@login_manager.user_loader
+def load_user(userid):
+    return User.get(userid)
+</code></pre>
+<p>然后的话，我们的login和logout就只需要简单的调用函数<code>login_user</code>, <code>logout_user</code>就可以了：</p>
+<pre><code class="language-python">@app.route('/login',methods=['GET', 'POST'])
+def login():
+    form = forms.LoginForm()
+    if form.validate_on_submit():
+        admintable = all_table['admin']
+        user = db.session.query(admintable).filter_by(id=form.id.data).first()
+        if user is not None:
+            user = User(user._mapping)
+        if user.password == md5(form.password.data.encode('ascii')).digest():
+            login_user(user)
+            return redirect(url_for('index'))
+        flash('用户名或密码不正确')
+    
+    return render_template('login.html', form=form)
+
+@app.route('/logout')
+@login_required
+def logout():
+    logout_user()
+    flash('你已经退出')
+    return redirect(url_for('index'))
+</code></pre>
+<p><code>from flask_login import current_user</code><br>
+current_user表示当前登录的用户</p>
+<h3 id="不同类型的表单">不同类型的表单</h3>
+<p><a href="(https://wtforms.readthedocs.io/en/2.3.x/fields/)">flask-wtf中的表单类型</a></p>
+<p>创建一个表单类的基本方法：<br>
+继承的基类以前叫Form，新版本改名叫FlaskForm了</p>
+<pre><code class="language-python">from flask_wtf import FlaskForm
+from wtforms import BooleanField,StringField,IntegerField,DecimalField,SubmitField\
+    ,RadioField,DateField,SelectField,PasswordField
+from wtforms.validators import Required,AnyOf,Optional
+
+class BookAddForm(FlaskForm):
+    isbn = StringField('ISBN',validators=[Required()])
+    classify = SelectField('分类',choices = ['A','B','C','D','E'],validators=[Required(),AnyOf(['A','B','C','D','E'])])
+    name = StringField('书名',validators=[Required()])
+    number = IntegerField('数量',validators=[Required()])
+    
+    press = StringField('出版社')
+    year = StringField('出版日期 Y-M-D',validators=[Optional()])
+    author = DateField('作者')
+    price = DecimalField('价格')
+    
+    submit = SubmitField(&quot;添加&quot;)
+</code></pre>
+<h3 id="表单处理">表单处理</h3>
+<pre><code class="language-python">@app.route('/booksearch',methods=['GET','POST'])            #要绑定POST方法
+def booksearch():
+    form = forms.BookSearchForm()       #实例化一个表单类
+    booktable = all_table['book']
+    
+    result = []
+    if form.validate_on_submit():       #如果表单通过了验证就会来到这个逻辑
+        # 查找，并返回找到的结果
+        conditions = {}
+        filt = db.session.query(booktable)
+        if (form.isbn.data):
+            filt = filt.filter_by(isbn=form.isbn.data)      #获取表单的内容，form.xxx.data
+        if (form.classify.data):
+            filt = filt.filter_by(classify=form.classify.data)
+        if (form.name.data):
+            filt = filt.filter_by(name=form.name.data)
+        if (form.press.data):
+            filt = filt.filter_by(press=form.press.data)
+        if (form.year.data):
+            filt = filt.filter_by(year=form.year.data)
+        if (form.author.data):
+            filt = filt.filter_by(author=form.author.data)
+        result = filt.all()
+    # 渲染jinja，返回给前端
+    return render_template('booksearch.html',form=form,list=result)
+</code></pre>
+<p>有一个基础的表单使用总结：</p>
+<ol>
+<li>
+<p>编写forms.py文件， 定义一个关于表单的类;(***注意： 一定要有提交的按钮);</p>
+</li>
+<li>
+<p>业务逻辑文件app.py中，</p>
+<ul>
+<li>实例化表单类;  <code>form = RegisterForm()</code></li>
+<li>验证表单内容是否提交成功?  <code>form.validate_on_submit()</code>:</li>
+<li>获取表单里面的内容(两种方法):
+<ul>
+<li>通过request对象获取: <code>request.form['key值']</code></li>
+<li>通过form对象获取: <code>form.key.data</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>表现逻辑文件wtf.html中:</p>
+<ul>
+<li>导入wtf模块: <code>{% import &quot;bootstrap/wtf.html&quot; as wtf %}</code></li>
+<li>自动生成表单对应的html：  <code>{{ wtf.quick_form(form) }}</code></li>
+</ul>
+</li>
+</ol>
+<h3 id="文件上传">文件上传</h3>
+<p>文件上传也有对应的表单类型：FileField</p>
+<pre><code class="language-python">class BatchForm(FlaskForm):
+    file = FileField(&quot;批量上传脚本&quot;,validators=[Required()])
+
+    submit = SubmitField(&quot;上传&quot;)
+</code></pre>
+<p>保存文件</p>
+<pre><code class="language-python">if form.validate_on_submit():
+    batch_file = form.file.data
+    batch_file.save(os.path.join(app.config['UPLOAD_PATH'],&quot;batch.txt&quot;))
+</code></pre>
+<h2 id="前端相关">前端相关</h2>
+<h3 id="表单渲染">表单渲染</h3>
+<p>这是最简单的表单渲染办法：Bootstrap会引入一些模板<br>
+后端：</p>
+<pre><code>from flask_bootstrap import Bootstrap
+return render_template('booksearch.html',form=form,list=result)
+</code></pre>
+<p>前端：</p>
+<pre><code>- 导入wtf模块: {% import &quot;bootstrap/wtf.html&quot; as wtf %}
+- 自动生成表单对应的html：  {{ wtf.quick_form(form) }}
+</code></pre>
+<h3 id="jinja2注释">jinja2注释</h3>
+<p><code>&lt;!-- --&gt;</code>只是html的注释，注释不掉JInja语句的。<br>
+<code>{# #}</code>才是Jinja语句的注释。</p>
+<h3 id="显示flash消息">显示Flash消息</h3>
+<p>后端：</p>
+<pre><code class="language-python">from flask import flash
+# 需要产生消息的时候
+flash('用户名或密码不正确')
+</code></pre>
+<p>前端：添加这一段代码在body里。</p>
+<pre><code>{% block content %}
+&lt;div class=&quot;container&quot;&gt;
+    {% for message in get_flashed_messages() %}
+    &lt;div class=&quot;alert alert-warning&quot;&gt;
+        &lt;button type=&quot;button&quot; class=&quot;close&quot; data-dismiss=&quot;alert&quot;&gt;&amp;times;&lt;/button&gt;
+        {{ message }}
+    &lt;/div&gt;
+    {% endfor %}
+    {% block page_content %}{% endblock %}
+&lt;/div&gt;
+{% endblock %}
+</code></pre>
+<h3 id="替换quick_form的默认样式">替换quick_form的默认样式</h3>
+<p>通过CSS的覆盖，待测试<br>
+同时两个选择器给同一个元素设置相同的属性，那么最终设置为哪个呢？这就要按照优先级来了</p>
+<ul>
+<li>内连样式 优先级 1000</li>
+<li>id 选择器 优先级 100</li>
+<li>类选择器 优先级 10</li>
+<li>元素选择器 优先级 1</li>
+<li>统配选择器 优先级 0</li>
+<li>继承的样式优先级没有</li>
+</ul>
+<p>以上的优先级先满足高的。如果是两种相同优先级 为同一个元素 同一个属性设置 的话，是哪个写在代码靠后 最终就按那个的样式</p>
+
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#python%E7%9B%B8%E5%85%B3">Python相关</a>
+<ul>
+<li><a href="#flask%E8%B0%83%E8%AF%95">Flask调试</a></li>
+</ul>
+</li>
+<li><a href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9B%B8%E5%85%B3">数据库相关</a>
+<ul>
+<li><a href="#docker%E7%BD%91%E7%BB%9C%E4%BA%A4%E4%BA%92%E4%B8%BB%E6%9C%BA">docker网络交互主机</a></li>
+<li><a href="#%E5%A6%82%E4%BD%95%E8%BF%9E%E6%8E%A5%E5%B7%B2%E6%9C%89%E6%95%B0%E6%8D%AE%E5%BA%93">如何连接已有数据库</a></li>
+<li><a href="#%E5%A2%9E%E5%88%A0%E6%94%B9%E5%B7%AE">增删改差</a></li>
+<li><a href="#%E5%A4%9A%E6%AC%A1%E6%9F%A5%E8%AF%A2">多次查询</a></li>
+<li><a href="#%E5%91%BD%E5%90%8D%E9%97%AE%E9%A2%98">命名问题</a></li>
+<li><a href="#%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%95%B0%E6%8D%AE">二进制数据</a></li>
+</ul>
+</li>
+<li><a href="#%E5%90%8E%E7%AB%AF%E7%9B%B8%E5%85%B3">后端相关</a>
+<ul>
+<li><a href="#%E5%A6%82%E4%BD%95%E7%99%BB%E5%BD%95">如何登录</a></li>
+<li><a href="#%E4%B8%8D%E5%90%8C%E7%B1%BB%E5%9E%8B%E7%9A%84%E8%A1%A8%E5%8D%95">不同类型的表单</a></li>
+<li><a href="#%E8%A1%A8%E5%8D%95%E5%A4%84%E7%90%86">表单处理</a></li>
+<li><a href="#%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0">文件上传</a></li>
+</ul>
+</li>
+<li><a href="#%E5%89%8D%E7%AB%AF%E7%9B%B8%E5%85%B3">前端相关</a>
+<ul>
+<li><a href="#%E8%A1%A8%E5%8D%95%E6%B8%B2%E6%9F%93">表单渲染</a></li>
+<li><a href="#jinja2%E6%B3%A8%E9%87%8A">jinja2注释</a></li>
+<li><a href="#%E6%98%BE%E7%A4%BAflash%E6%B6%88%E6%81%AF">显示Flash消息</a></li>
+<li><a href="#%E6%9B%BF%E6%8D%A2quick_form%E7%9A%84%E9%BB%98%E8%AE%A4%E6%A0%B7%E5%BC%8F">替换quick_form的默认样式</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="http://127.0.0.1:8080/post/database-object-based-databases/">
+              <h3 class="post-title">
+                Database-Object-Based Databases
+              </h3>
+            </a>
+          </div>
+        
+
+        
+
+        <div class="site-footer">
+  
+  <a class="rss" href="http://127.0.0.1:8080/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>

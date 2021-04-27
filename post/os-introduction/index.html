@@ -1,0 +1,263 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>OS-Introduction | Reticence</title>
+<link rel="shortcut icon" href="http://127.0.0.1:8080/favicon.ico?v=1619508275369">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="http://127.0.0.1:8080/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="OS-Introduction | Reticence - Atom Feed" href="http://127.0.0.1:8080/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-90HNEFFE0M"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-90HNEFFE0M');
+</script>
+
+
+    <meta name="description" content="什么是操作系统
+
+Resource abstractor and a resource allocator
+Software layer between the applications and the hardware because t..." />
+    <meta name="keywords" content="OS" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="http://127.0.0.1:8080">
+  <img class="avatar" src="http://127.0.0.1:8080/images/avatar.png?v=1619508275369" alt="">
+  </a>
+  <h1 class="site-title">
+    Reticence
+  </h1>
+  <p class="site-description">
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          Index
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          Classification
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          Archives
+        </a>
+      
+    
+      
+        <a href="/navigator.html" class="menu">
+          Navigator
+        </a>
+      
+    
+      
+        <a href="/post/book-list" class="menu">
+          Booklist
+        </a>
+      
+    
+      
+        <a href="/post/fei-md-ge-shi-bi-ji-hui-zong" class="menu">
+          Notes
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          About
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+        <a href="https://github.com/reticenceji" target="_blank">
+          <i class="ri-github-line"></i>
+        </a>
+      
+    
+      
+    
+      
+    
+      
+        <a href="https://www.zhihu.com/people/reticenceji" target="_blank">
+          <i class="ri-zhihu-line"></i>
+        </a>
+      
+    
+      
+    
+  </div>
+  <script>
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
+    var s = document.getElementsByTagName("script")[0]; 
+    s.parentNode.insertBefore(hm, s);
+  })();
+  </script>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              OS-Introduction
+            </h2>
+            <div class="post-info">
+              <span>
+                2021-01-18
+              </span>
+              <span>
+                3 min read
+              </span>
+              
+                <a href="http://127.0.0.1:8080/tag/nfABdWVsa/" class="post-tag">
+                  # OS
+                </a>
+              
+            </div>
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <h2 id="什么是操作系统">什么是操作系统</h2>
+<ul>
+<li>Resource abstractor and a resource allocator</li>
+<li>Software layer between the applications and the hardware because the hardware would be too difficult for users to use</li>
+</ul>
+<h2 id="操作系统的启动">操作系统的启动</h2>
+<p>操作系统的启动，就是把操作系统的代码（数据）从Disk加载到内存中，并开始执行。这个工作是被一个称为<a href="https://reticenceji.github.io/post/os_bootloader/">BootLoader</a>的程序完成的。<br>
+加载完成之后，操作系统就开始运行了。<br>
+Kernel不是一个正在运行的job。<!-- how to understand it？--></p>
+<h2 id="俯瞰">俯瞰</h2>
+<p>Kernel里面是没有什么内存保护的，kernel自己负责处理内存错误，所以编程的时候需要万分小心。</p>
+<p>Kernel可以执行privileged指令（准确来说，这是硬件架构赋予Kernel的权利，我们让Kernel运行在硬件架构的Privileged模式，让用户运行在硬件架构的User模式。现在的架构至少支持两个模式，古老的Intel 8086就只有一个模式，所以我们可以随意修改DOS的代码、随意修改中断向量、直接执行IO指令），这样Kernel就可以把IO、内存管理、特殊寄存器统统封装起来防止用户篡改了。</p>
+<p>用户需要调用操作系统的某些功能（或者说用户程序本来也可以自己完成，但是因为有了操作系统所以必须通过操作系统来完成），所以我们有中断和异常，可以把他们当作从User到Kernel的<strong>入口Entry</strong>。</p>
+<p>操作系统主要提供的服务，以及我们在Lab中的简单实现：</p>
+<ul>
+<li>Process Management：通过<strong>time interrupt</strong>来调度，通过<strong>system call</strong>来fork、exec、exit等。联想进程图状态切换。还有进程之间的同步、通信。</li>
+<li>Memory Management。非常宏大，一个是执行用户程序，要把用户程序<strong>装载到物理内存上</strong>，还有可能需要为他<strong>动态的分配空间</strong>，还要让他可以<strong>访问到Kernel</strong>（指执行）。中间有分配的算法。</li>
+<li>Storage Management：这个也属于IO的一部分。不过我们用<strong>文件系统</strong>来把Storage抽象成一系列接口，然后用<strong>虚拟文件系统VFS</strong>再把文件系统抽象成统一的接口。利用这些接口管理Storage。物理内存上的内容被我们抽象成为文件。</li>
+<li>I/O Management：每一个硬件都有不同的处理方式，我们需要<strong>驱动程序</strong>来直接处理硬件，同时也要把他们抽象成文件来统一处理。</li>
+<li>Protection and Security：这又是另一个故事了。</li>
+</ul>
+
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#%E4%BB%80%E4%B9%88%E6%98%AF%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F">什么是操作系统</a></li>
+<li><a href="#%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%90%AF%E5%8A%A8">操作系统的启动</a></li>
+<li><a href="#%E4%BF%AF%E7%9E%B0">俯瞰</a></li>
+</ul>
+</li>
+</ul>
+
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="http://127.0.0.1:8080/post/zui-xiao-er-cheng-fa/">
+              <h3 class="post-title">
+                最小二乘法
+              </h3>
+            </a>
+          </div>
+        
+
+        
+
+        <div class="site-footer">
+  
+  <a class="rss" href="http://127.0.0.1:8080/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>

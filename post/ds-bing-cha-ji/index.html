@@ -1,0 +1,361 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>DS-Disjoint Set | Reticence</title>
+<link rel="shortcut icon" href="http://127.0.0.1:8080/favicon.ico?v=1619508275369">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="http://127.0.0.1:8080/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="DS-Disjoint Set | Reticence - Atom Feed" href="http://127.0.0.1:8080/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-90HNEFFE0M"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-90HNEFFE0M');
+</script>
+
+
+    <meta name="description" content="参考资料：《数据结构与算法 C语言版》，https://www.cnblogs.com/morui/p/10791044.html（注意在链接中给的根的定义是find(A)==A，而不是下面所说的find(A)=0）
+等价关系
+等价关系是自..." />
+    <meta name="keywords" content="DS" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="http://127.0.0.1:8080">
+  <img class="avatar" src="http://127.0.0.1:8080/images/avatar.png?v=1619508275369" alt="">
+  </a>
+  <h1 class="site-title">
+    Reticence
+  </h1>
+  <p class="site-description">
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          Index
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          Classification
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          Archives
+        </a>
+      
+    
+      
+        <a href="/navigator.html" class="menu">
+          Navigator
+        </a>
+      
+    
+      
+        <a href="/post/book-list" class="menu">
+          Booklist
+        </a>
+      
+    
+      
+        <a href="/post/fei-md-ge-shi-bi-ji-hui-zong" class="menu">
+          Notes
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          About
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+        <a href="https://github.com/reticenceji" target="_blank">
+          <i class="ri-github-line"></i>
+        </a>
+      
+    
+      
+    
+      
+    
+      
+        <a href="https://www.zhihu.com/people/reticenceji" target="_blank">
+          <i class="ri-zhihu-line"></i>
+        </a>
+      
+    
+      
+    
+  </div>
+  <script>
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
+    var s = document.getElementsByTagName("script")[0]; 
+    s.parentNode.insertBefore(hm, s);
+  })();
+  </script>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              DS-Disjoint Set
+            </h2>
+            <div class="post-info">
+              <span>
+                2020-11-12
+              </span>
+              <span>
+                3 min read
+              </span>
+              
+                <a href="http://127.0.0.1:8080/tag/0AqTQfzSL/" class="post-tag">
+                  # DS
+                </a>
+              
+            </div>
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <p>参考资料：《数据结构与算法 C语言版》，https://www.cnblogs.com/morui/p/10791044.html（注意在链接中给的根的定义是find(A)==A，而不是下面所说的find(A)=0）</p>
+<h2 id="等价关系">等价关系</h2>
+<p>等价关系是自反，传递，对称的。等价关系确定等价类。</p>
+<p>并查集，也叫做不相交集，Disjoint set。</p>
+<h2 id="定义">定义</h2>
+<pre><code>typedef int DisjSet[NumSets+1];		
+typedef int SetType;	//集合的代表
+typedef int ElementType;	//元素
+
+void Initilialize(DisjSet S);	
+void Union(DisjSet S,SetType Root1, SetType Root2);		//合并Root1和Root2代表的集合
+SetType Find(ElementType X,DisjSet S);		//寻找元素X所在的集合的代表
+</code></pre>
+<h2 id="operations">Operations</h2>
+<h3 id="union">Union</h3>
+<table>
+<thead>
+<tr>
+<th>Union</th>
+<th>N Union+M Find时间复杂度</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Arbitrary Union</td>
+<td>最差一条链表，O(N+MN)</td>
+</tr>
+<tr>
+<td>Union-by-Size</td>
+<td>最深的节点不会超过log N，所以O(N+Mlog N)</td>
+</tr>
+<tr>
+<td>Union-by-Height</td>
+<td>最深的节点不会超过log N，所以O(N+Mlog N)</td>
+</tr>
+</tbody>
+</table>
+<ol>
+<li>数组实现1(最简单的方法O(1))：</li>
+</ol>
+<pre><code>void Union(DisjSet S,SetType Rt1,SetType Rt2)
+{
+	S[Rt2] = Rt1;
+}
+</code></pre>
+<ol start="2">
+<li>数组实现2(union-by-size)：<br>
+对于这种实现方法，我们要让<code>S[root] = -size</code>，换句话说我们把这个树的大小以绝对值的形式存储在树根。然后，我么总是让较小的树成为较大的树的子树。</li>
+</ol>
+<pre><code>void Union(DisjSet S,SetType Rt1,SetType Rt2)
+{
+//	Rt1 = Find(Rt1);
+//	Rt2 = Find(Rt2);	如果我们以root(Find(A))作为参数，则不需要这条语句
+	if (S[Rt1]&lt;S[Rt2])	//|S[Rt1]| &gt; |S[Rt2]| 
+		{
+            S[Rt1] += S[Rt2];   //更新size
+            S[Rt2] = Rt1;   //更新root
+	else
+		{
+            S{Rt2} += S[Rt1];
+            S[Rt1] = Rt2;
+        }
+}
+</code></pre>
+<ol start="3">
+<li>数组实现3(union-by-height)：<br>
+类似的，我们让深度（高度）较小的树成为高度较大的树的子树。</li>
+</ol>
+<pre><code>void Union(DisjSet S,SetType Root1,SetType Root2)
+{
+	if (S[Root2] &lt; S[Root1])
+		S[Root1] = Root2;
+	else
+	{
+		if (S[Root1] == S[Root2])
+			S[Root1]--;
+		S[Root2] = Root1;
+	}
+}
+</code></pre>
+<h3 id="find">Find</h3>
+<p>Find要求返回一个元素所在集合的代表(root)。其实唯一的要求是<strong>如果a,b属于同一集合，那么<code>Find(a)==Find(b)</code>。</strong><br>
+数组实现(对于上面三个求Union的方法，分别会给Find不同的时间复杂度)：</p>
+<pre><code>SetType Find(ElementType X,DisSet)
+{
+	while (S[X]&gt;0) X=S[X];
+	return X;
+}
+</code></pre>
+<p>数组实现(路径压缩)：</p>
+<pre><code class="language-c">SetType Find(ElementType X,DisSet S)
+{
+	  return x&lt;0 ? x : (root[x]=Find(root[x]));
+}
+</code></pre>
+<h1 id="rootxx">root[x]=x</h1>
+<p>我们来看另一种并查集的表示方式<br>
+<code>root[i]==i;</code>表示根节点</p>
+<h2 id="find-2">Find</h2>
+<p>路径压缩算法：</p>
+<pre><code class="language-c">    return x == root[x] ? x : (root[x]=Find(root[x]));
+</code></pre>
+<p>路径压缩算法和Union-By-Size和任意的Union是兼容的，压缩之后并不会改变Size。但是对Union-by-height来说就不是这样了。</p>
+<h2 id="union-2">Union</h2>
+<pre><code>void Union(x,y)
+{
+    root[Find(x)] = Find(y);
+}
+</code></pre>
+
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#%E7%AD%89%E4%BB%B7%E5%85%B3%E7%B3%BB">等价关系</a></li>
+<li><a href="#%E5%AE%9A%E4%B9%89">定义</a></li>
+<li><a href="#operations">Operations</a>
+<ul>
+<li><a href="#union">Union</a></li>
+<li><a href="#find">Find</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#rootxx">root[x]=x</a>
+<ul>
+<li><a href="#find-2">Find</a></li>
+<li><a href="#union-2">Union</a></li>
+</ul>
+</li>
+</ul>
+
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="http://127.0.0.1:8080/post/ruan-jian-bao-hu-seh/">
+              <h3 class="post-title">
+                软件保护-SEH
+              </h3>
+            </a>
+          </div>
+        
+
+        
+
+        <div class="site-footer">
+  
+  <a class="rss" href="http://127.0.0.1:8080/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>

@@ -1,0 +1,337 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Thread | Reticence</title>
+<link rel="shortcut icon" href="http://127.0.0.1:8080/favicon.ico?v=1619508275369">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="http://127.0.0.1:8080/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="Thread | Reticence - Atom Feed" href="http://127.0.0.1:8080/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-90HNEFFE0M"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-90HNEFFE0M');
+</script>
+
+
+    <meta name="description" content="参考链接：https://computing.llnl.gov/tutorials/pthreads/。
+Linux-pthread
+Linux中提供一个clone()函数，他和fork类似，但是可以选择共享父进程的一些内存空间（没错，这和..." />
+    <meta name="keywords" content="OS" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="http://127.0.0.1:8080">
+  <img class="avatar" src="http://127.0.0.1:8080/images/avatar.png?v=1619508275369" alt="">
+  </a>
+  <h1 class="site-title">
+    Reticence
+  </h1>
+  <p class="site-description">
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          Index
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          Classification
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          Archives
+        </a>
+      
+    
+      
+        <a href="/navigator.html" class="menu">
+          Navigator
+        </a>
+      
+    
+      
+        <a href="/post/book-list" class="menu">
+          Booklist
+        </a>
+      
+    
+      
+        <a href="/post/fei-md-ge-shi-bi-ji-hui-zong" class="menu">
+          Notes
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          About
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+        <a href="https://github.com/reticenceji" target="_blank">
+          <i class="ri-github-line"></i>
+        </a>
+      
+    
+      
+    
+      
+    
+      
+        <a href="https://www.zhihu.com/people/reticenceji" target="_blank">
+          <i class="ri-zhihu-line"></i>
+        </a>
+      
+    
+      
+    
+  </div>
+  <script>
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
+    var s = document.getElementsByTagName("script")[0]; 
+    s.parentNode.insertBefore(hm, s);
+  })();
+  </script>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              Thread
+            </h2>
+            <div class="post-info">
+              <span>
+                2020-10-21
+              </span>
+              <span>
+                5 min read
+              </span>
+              
+                <a href="http://127.0.0.1:8080/tag/nfABdWVsa/" class="post-tag">
+                  # OS
+                </a>
+              
+            </div>
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <p>参考链接：https://computing.llnl.gov/tutorials/pthreads/。</p>
+<h2 id="linux-pthread">Linux-pthread</h2>
+<p>Linux中提供一个<code>clone()</code>函数，他和fork类似，但是可以选择共享父进程的一些内存空间（没错，这和创建线程很像；事实上，在Linux中这就是线程）</p>
+<pre><code class="language-c">int clone(int (*fn)(void *), void *child_stack,int flags, void *arg, ...)
+//我们创建一个子进程调用fn(arg)函数；当fn函数return的时候，子进程terminate，exit code = return value，flag指定了一些空间共享的属性和termination signal sent to parent
+</code></pre>
+<p>Pthreads允许程序创建、杀死、回收线程，对等线程安全的共享数据，通知对等线程系统状态的变化。</p>
+<p>API：（更详细的可以查看Manual手册）</p>
+<pre><code class="language-c">#include &lt;pthread.h&gt;
+#include &lt;sys/syscall.h&gt;
+//创建线程
+int pthread_create(pthread_t *thread, const pthread_attr_t *attr, void *(*start_routine) (void *), void *arg);//创建线程
+pthread_t pthread_self(void);	//返回当前线程ID，但这个不是TID，是POSIX定义的。
+syscall(SYS_gettid);	//返回线程TID的一种方法，在编程中TID没什么用啦
+//终止线程
+当thread routine 执行完毕后会 inplicit terminate
+pthread_exit();		//explicit terminate 当前线程
+pthread_cancel(tid);	//向thread提出一个终止的请求，但是实际的终止取决于目标进程如何处理这个请求
+如果有某个thread调用了 exit()函数，那么该process中所有的threads都会被终止。注意，leading thread执行完了会隐式的调用 exit().
+//回收已经终止的线程资源
+int pthread_join(pthread_t thread, void **retval);	//这个是block的，会等待回收的完成
+</code></pre>
+<p>例程：</p>
+<pre><code class="language-c">#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;pthread.h&gt;
+
+int counter = 0; //全局变量，被所有进程共享
+static int loops = 1e6;
+pthread_mutex_t pmutex = PTHREAD_MUTEX_INITIALIZER; 
+
+void *worker(void *arg) {
+    int i;
+    printf(&quot;%s: begin\n&quot;, (char*)arg);
+    for(i = 0; i &lt; loops; i++) {
+	pthread_mutex_lock(&amp;pmutex);
+        counter++;
+	pthread_mutex_unlock(&amp;pmutex);
+    }
+    printf(&quot;%s: done\n&quot;, (char *)arg);
+    return NULL;
+}
+
+int main() {
+    pthread_t p1, p2;
+
+    printf(&quot;main: begin (counter =  %d)\n&quot;, counter);
+    pthread_create(&amp;p1, NULL, worker, &quot;A&quot;);
+    pthread_create(&amp;p2, NULL, worker, &quot;B&quot;);
+    pthread_join(p1, NULL);
+    pthread_join(p2, NULL);
+    printf(&quot;main: done with both (counter : %d)\n&quot;, counter);
+    return 0;
+}
+
+</code></pre>
+<h2 id="python的多线程">Python的多线程</h2>
+<p>Python中有挺多支持并行的库，这里介绍基于线程的并行库threading。还有一个低级的库thread，但是一般我们不使用，threading是对Thread的封装。Python的多线程不支持多核并行。</p>
+<pre><code class="language-python">import threading
+threading.Thread(group=None, target=None, name=None, args=(), kwargs={}, *, daemon=None)	//创建一个进程，构造函数。target 是用于 run() 方法调用的可调用对象。arg和kwargs是传递给target的参数
+t = threading.Thread(target=hello)
+t.setDaemon(True)	//将t设置为守护线程,在start之前设置
+t.start()		//开始执行
+t.join()		//等待线程结束
+
+e=threading.Event()	//创建一个事件对象，可以用于进程间的简单通信
+e.set()	e.clear()	//把Event内部的标志位置true/false
+e.wait()	//block until flag==true
+
+timer = threading.Timer(interval=1,function=hello)
+timer.start()	//定时器，经过interval秒之后执行function
+
+lock=threading.Lock()	//创建一个锁
+lock.acquire()		//开始锁
+lock.release()		//释放锁，开始和释放之间的操作是原子化的。
+</code></pre>
+<h2 id="java的多线程">Java的多线程</h2>
+<p>学艺不精，略了。。</p>
+<h2 id="线程池">线程池</h2>
+<p>大意：</p>
+<ul>
+<li>首先我们创建N个线程，加到池中等待工作。</li>
+<li>当server收到请求的时候，唤醒一个可用线程，将服务传递给他。</li>
+<li>完成了服务的线程再次回到池中。</li>
+<li>如果池内没有可用线程，server等待直到出现可用线程为之。</li>
+</ul>
+<h2 id="kernel-thread-user-thread可能不对">kernel thread &amp; user thread(可能不对！！)</h2>
+<p>[!] 误区kernel thread在这里指的不是运行在kernel mode下的thread!<br>
+<a href="https://stackoverflow.com/questions/15983872/difference-between-user-level-and-kernel-supported-threads#:~:text=A%20User%20thread%20is%20one,with%20a%20user%2Dspace%20process.">解释</a>   <a href="https://www.geeksforgeeks.org/difference-between-user-level-thread-and-kernel-level-thread/">二者优劣</a> <a href="https://www.tutorialspoint.com/operating_system/os_multi_threading.htm">一篇好文</a></p>
+<p>大致的理解是，对于操作系统来说，他关注的是native thread，或者说他只知道native thread。</p>
+<p>我们编写的多线程程序，可以被翻译成由一个kernel thread对应一个user thread（多对一），在这种情况下Kernel帮助我们调度thread。这样子可以支持多核并行。</p>
+<p>也可以被翻译成其实其实只有一个kernel thread，但是有多个user thread（一对一）。这样子的话，我们需要自己调度Thread。优点是context switch可以更加高效，问题是一个thread如果block了整个process也就block了。</p>
+<p>但是这个理解的话，那和不同的model和操作系统有什么关系？感觉都是库函数的原因？</p>
+<p>在Linux中，thread也叫LWP，light weight process，也用task_struct管理thread。</p>
+
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#linux-pthread">Linux-pthread</a></li>
+<li><a href="#python%E7%9A%84%E5%A4%9A%E7%BA%BF%E7%A8%8B">Python的多线程</a></li>
+<li><a href="#java%E7%9A%84%E5%A4%9A%E7%BA%BF%E7%A8%8B">Java的多线程</a></li>
+<li><a href="#%E7%BA%BF%E7%A8%8B%E6%B1%A0">线程池</a></li>
+<li><a href="#kernel-thread-user-thread%E5%8F%AF%E8%83%BD%E4%B8%8D%E5%AF%B9">kernel thread &amp; user thread(可能不对！！)</a></li>
+</ul>
+</li>
+</ul>
+
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="http://127.0.0.1:8080/post/xun-zhi-xue-xi/">
+              <h3 class="post-title">
+                寻址学习-地址空间(一)
+              </h3>
+            </a>
+          </div>
+        
+
+        
+
+        <div class="site-footer">
+  
+  <a class="rss" href="http://127.0.0.1:8080/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>

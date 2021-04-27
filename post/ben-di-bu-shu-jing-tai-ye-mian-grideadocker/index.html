@@ -1,0 +1,280 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>本地部署静态页面 Gridea+Docker | Reticence</title>
+<link rel="shortcut icon" href="http://127.0.0.1:8080/favicon.ico?v=1619508275369">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="http://127.0.0.1:8080/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="本地部署静态页面 Gridea+Docker | Reticence - Atom Feed" href="http://127.0.0.1:8080/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-90HNEFFE0M"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-90HNEFFE0M');
+</script>
+
+
+    <meta name="description" content="红黑树不会，浪费时间搭建server blog。
+基本配置准备工作
+
+首先，先从库中Pull ubuntu. docker pull ubuntu
+然后，先从Image产生container，把80端口和22端口映射出来（80作为http访..." />
+    <meta name="keywords" content="Others" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="http://127.0.0.1:8080">
+  <img class="avatar" src="http://127.0.0.1:8080/images/avatar.png?v=1619508275369" alt="">
+  </a>
+  <h1 class="site-title">
+    Reticence
+  </h1>
+  <p class="site-description">
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          Index
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          Classification
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          Archives
+        </a>
+      
+    
+      
+        <a href="/navigator.html" class="menu">
+          Navigator
+        </a>
+      
+    
+      
+        <a href="/post/book-list" class="menu">
+          Booklist
+        </a>
+      
+    
+      
+        <a href="/post/fei-md-ge-shi-bi-ji-hui-zong" class="menu">
+          Notes
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          About
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+        <a href="https://github.com/reticenceji" target="_blank">
+          <i class="ri-github-line"></i>
+        </a>
+      
+    
+      
+    
+      
+    
+      
+        <a href="https://www.zhihu.com/people/reticenceji" target="_blank">
+          <i class="ri-zhihu-line"></i>
+        </a>
+      
+    
+      
+    
+  </div>
+  <script>
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
+    var s = document.getElementsByTagName("script")[0]; 
+    s.parentNode.insertBefore(hm, s);
+  })();
+  </script>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              本地部署静态页面 Gridea+Docker
+            </h2>
+            <div class="post-info">
+              <span>
+                2021-03-14
+              </span>
+              <span>
+                2 min read
+              </span>
+              
+                <a href="http://127.0.0.1:8080/tag/F7-18Ec_H/" class="post-tag">
+                  # Others
+                </a>
+              
+            </div>
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <p>红黑树不会，浪费时间搭建server blog。</p>
+<h2 id="基本配置准备工作">基本配置准备工作</h2>
+<ol>
+<li>首先，先从库中Pull ubuntu. <code>docker pull ubuntu</code></li>
+<li>然后，先从Image产生container，把80端口和22端口映射出来（80作为http访问的端口，22作为ssh的端口）。<code>docker run -it -p 8080:80 -p 2222:22 --name ubuntu_web ubuntu</code></li>
+<li>对ubuntu进行基本配置
+<ol>
+<li>换成国内的源，比如清华tuna。这个问题不大。<br>
+<code>cp /etc/apt/sources.list /etc/apt/sources.list.bak #备份</code><br>
+<code>vim /etc/apt/sources.list #修改</code><br>
+<code>apt-get update #更新列表</code></li>
+<li>安装常用的包<br>
+<code>apt-get install vim git sudo net-tools python3 python3-pip</code></li>
+<li>修改系统的一些配置<br>
+passwd 修改密码<br>
+useradd 添加用户</li>
+<li>安装ssh并调整配置
+<ol>
+<li><code>apt-get install ssh</code> 安装。</li>
+<li><code>vim /etc/ssh/sshd_config</code> 修改配置。</li>
+<li>把本机上isa.pub的内容复制到~/.ssh/authorized_keys上。</li>
+<li><code>/etc/init.d/ssh start</code> 启动服务。</li>
+<li>然后我们就可以通过ssh来访问我们的docker了。测试一下<code>ssh -p 2222 username@127.0.0.1</code></li>
+</ol>
+</li>
+</ol>
+</li>
+<li>调整Gridea的配置：reticence-&gt;username<br>
+<img src="http://127.0.0.1:8080/post-images/1615687012167.jpg" alt="" loading="lazy"></li>
+<li>然后test测试一下，成功的话就保存，然后同步。</li>
+</ol>
+<h2 id="部署-via-python">部署 via Python</h2>
+<p>至此，我们已经把静态文件都保存到了我们的docker中，怎么部署他们呢？<br>
+当然可以用nginx，不过还有一个更简单的方法，就是python。<br>
+在静态文件目录<code>/home/username/www</code>下，执行<code>python3 -m http.server 80</code>，创建http服务在80端口，然后再主机上就映射到了8080端口。打开浏览器，访问<a href="http://127.0.0.1:8080">http://127.0.0.1:8080</a>。看到你的页面，就大功告成了。<br>
+可以把之前的命令做成脚本，然后实现一键部署。</p>
+<h2 id="部署-via-nginx">部署 via nginx</h2>
+
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#%E5%9F%BA%E6%9C%AC%E9%85%8D%E7%BD%AE%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C">基本配置准备工作</a></li>
+<li><a href="#%E9%83%A8%E7%BD%B2-via-python">部署 via Python</a></li>
+<li><a href="#%E9%83%A8%E7%BD%B2-via-nginx">部署 via nginx</a></li>
+</ul>
+</li>
+</ul>
+
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="http://127.0.0.1:8080/post/ads-rb-treeandb-tree/">
+              <h3 class="post-title">
+                ADS-RB Tree&amp;B+ Tree
+              </h3>
+            </a>
+          </div>
+        
+
+        
+
+        <div class="site-footer">
+  
+  <a class="rss" href="http://127.0.0.1:8080/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>

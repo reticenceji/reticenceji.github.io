@@ -1,0 +1,352 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Networking-物理层 | Reticence</title>
+<link rel="shortcut icon" href="http://127.0.0.1:8080/favicon.ico?v=1619508275369">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="http://127.0.0.1:8080/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="Networking-物理层 | Reticence - Atom Feed" href="http://127.0.0.1:8080/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-90HNEFFE0M"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-90HNEFFE0M');
+</script>
+
+
+    <meta name="description" content="
+物理层解决如何在传输媒体上传输数据比特流。
+确定与传输媒体接口有关的一些特性：
+
+机械特性 如接口形状、引线数目、引脚数量
+电气特性 如电压范围、阻抗匹配、距离限制
+功能特性
+规程特性 定义各条物理线路的工作规程和时序的关系。
+
+通信基础..." />
+    <meta name="keywords" content="Networking" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="http://127.0.0.1:8080">
+  <img class="avatar" src="http://127.0.0.1:8080/images/avatar.png?v=1619508275369" alt="">
+  </a>
+  <h1 class="site-title">
+    Reticence
+  </h1>
+  <p class="site-description">
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          Index
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          Classification
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          Archives
+        </a>
+      
+    
+      
+        <a href="/navigator.html" class="menu">
+          Navigator
+        </a>
+      
+    
+      
+        <a href="/post/book-list" class="menu">
+          Booklist
+        </a>
+      
+    
+      
+        <a href="/post/fei-md-ge-shi-bi-ji-hui-zong" class="menu">
+          Notes
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          About
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+        <a href="https://github.com/reticenceji" target="_blank">
+          <i class="ri-github-line"></i>
+        </a>
+      
+    
+      
+    
+      
+    
+      
+        <a href="https://www.zhihu.com/people/reticenceji" target="_blank">
+          <i class="ri-zhihu-line"></i>
+        </a>
+      
+    
+      
+    
+  </div>
+  <script>
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
+    var s = document.getElementsByTagName("script")[0]; 
+    s.parentNode.insertBefore(hm, s);
+  })();
+  </script>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              Networking-物理层
+            </h2>
+            <div class="post-info">
+              <span>
+                2021-02-28
+              </span>
+              <span>
+                5 min read
+              </span>
+              
+                <a href="http://127.0.0.1:8080/tag/GLCgJ5F7H/" class="post-tag">
+                  # Networking
+                </a>
+              
+            </div>
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <p><img src="http://127.0.0.1:8080/post-images/1615105504394.jpg" alt="" loading="lazy"><br>
+物理层解决如何在<strong>传输媒体</strong>上传输数据比特流。<br>
+确定与传输媒体接口有关的一些特性：</p>
+<ol>
+<li>机械特性 如接口形状、引线数目、引脚数量</li>
+<li>电气特性 如电压范围、阻抗匹配、距离限制</li>
+<li>功能特性</li>
+<li>规程特性 定义各条物理线路的工作规程和时序的关系。</li>
+</ol>
+<h2 id="通信基础">通信基础</h2>
+<p>传输方式有串行传输和并行传输。</p>
+<ul>
+<li>串行传输 速度慢，费用低，适合远距离</li>
+<li>并行传输 速度快，费用高，适合近距离 计算机内部多用<br>
+<img src="http://127.0.0.1:8080/post-images/1614496936599.jpg" alt="" loading="lazy"></li>
+</ul>
+<p>三种通信方式：</p>
+<ol>
+<li>单工通信：只有一个方向的通信，只需要一条信道。</li>
+<li>半双工通信：通信的双方都可以发送或接收信息，但是不能同时发送。需要两条信道。</li>
+<li>全双工通信：通信的双方都可以发送或接收信息，允许同时发送。</li>
+</ol>
+<ul>
+<li>码元：一个固定时长的信号波形。代表不同离散数值的基本波形，是数字通信中数字信号的基本传输单位。通常都是二进制码元，有0和1。</li>
+<li>速率：指数据的传输速率，表示单位时间内传输的数据量。可以用码元传输速率和信息传输速率表示。
+<ul>
+<li>信息传输速率指的是1秒能传输多少bit（二进制码元），单位是b/s。</li>
+</ul>
+</li>
+<li>带宽：单位时间内某一点到另一点所能通过的 <strong>最高数据率</strong>，理想的速率。</li>
+</ul>
+<h2 id="两个公式">两个公式</h2>
+<ul>
+<li>信道带宽：信道能够通过的最高频率和最低频率之差。</li>
+<li>码间串扰：接收端接收到的信号波形失去了码元间清晰界限的现象。所以频率越高越容易发生码间串扰。</li>
+<li><strong>奈氏准则</strong>：在理想低通（带宽受限，无噪声）条件下，为了避免码间串扰，极限码元传输速率为2W Baud，W是信道带宽，单位是Hz。</li>
+</ul>
+<p>所以<em>极限数据传输速率</em><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>=</mo><mn>2</mn><mi>W</mi><mi>l</mi><mi>o</mi><msub><mi>g</mi><mn>2</mn></msub><mi>V</mi><mtext> </mtext><mo>(</mo><mi>b</mi><mi mathvariant="normal">/</mi><mi>s</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">=2Wlog_{2}V\ (b/s)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.36687em;vertical-align:0em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">2</span><span class="mord mathdefault" style="margin-right:0.13889em;">W</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">o</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord mathdefault" style="margin-right:0.22222em;">V</span><span class="mspace"> </span><span class="mopen">(</span><span class="mord mathdefault">b</span><span class="mord">/</span><span class="mord mathdefault">s</span><span class="mclose">)</span></span></span></span>，V是码元的离散电平数目。所以，要想提高数据的传输速率，可以提高每个码元携带的信息量。</p>
+<ul>
+<li>S/N = 信号的平均功率S/噪声的平均功率N。</li>
+<li>*信噪比（dB） *<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>=</mo><mn>10</mn><mi>l</mi><mi>o</mi><msub><mi>g</mi><mn>10</mn></msub><mo>(</mo><mi>S</mi><mi mathvariant="normal">/</mi><mi>N</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">=10log_{10}(S/N)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.36687em;vertical-align:0em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mord">0</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">o</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span><span class="mord mtight">0</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mord">/</span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="mclose">)</span></span></span></span></li>
+<li><strong>香农定理</strong>：信道的<em>极限数据传输速率</em><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>=</mo><mi>W</mi><mi>l</mi><mi>o</mi><msub><mi>g</mi><mn>2</mn></msub><mo>(</mo><mn>1</mn><mo>+</mo><mi>S</mi><mi mathvariant="normal">/</mi><mi>N</mi><mo>)</mo><mtext> </mtext><mo>(</mo><mi>b</mi><mi mathvariant="normal">/</mi><mi>s</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">=Wlog_2(1+S/N)\ (b/s)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.36687em;vertical-align:0em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">W</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">o</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mord">/</span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="mclose">)</span><span class="mspace"> </span><span class="mopen">(</span><span class="mord mathdefault">b</span><span class="mord">/</span><span class="mord mathdefault">s</span><span class="mclose">)</span></span></span></span></li>
+</ul>
+<p>所以，对于一定的传输带宽和一定的信噪比，信息传输速率上限就确定了。</p>
+<h2 id="编码与调制">编码与调制</h2>
+<ul>
+<li>数据：传送信息的实体，通常是有意义的符号序列。</li>
+<li>信号：数据的电气、电磁表现
+<ul>
+<li>数字信号：参数取值离散</li>
+<li>模拟信号：参数取值连续</li>
+</ul>
+</li>
+<li>信源：产生和发送数据的源头</li>
+<li>信宿：接收数据的终点。</li>
+<li>信道：信号灯传输媒介。一般用来表示<strong>向某一个方向</strong>传送信息的介质。
+<ul>
+<li>根据传输介质分为 无线信道和有限信道</li>
+<li>根据传输信号不同分为 模拟信道和数据信道</li>
+</ul>
+</li>
+</ul>
+<p><img src="http://127.0.0.1:8080/post-images/1614516554288.jpg" alt="" loading="lazy"><br>
+把数据变成数字信号，称为<strong>编码</strong>。<br>
+把数据变成模拟信号，称为<strong>调试</strong>。</p>
+<h3 id="数字数据编码为数字信号">数字数据编码为数字信号</h3>
+<p><img src="http://127.0.0.1:8080/post-images/1614518528896.jpg" alt="" loading="lazy"><br>
+曼彻斯特编码：前高后低是0。2个码元对应1个bit，所以码元传输速率是数据传输速率的两倍。<br>
+差分曼彻斯特编码：若码元为1,则前半个码元的电平与上一个码元的后半个码元的电平相同，若为0则相反。</p>
+<h3 id="数字数据调制为模拟信号">数字数据调制为模拟信号</h3>
+<figure data-type="image" tabindex="1"><img src="http://127.0.0.1:8080/post-images/1614521712748.jpg" alt="" loading="lazy"></figure>
+<h3 id="模拟数据编码为数字信号">模拟数据编码为数字信号</h3>
+<p>抽样-量化-编码。<br>
+抽样的频率应该比数据的频率大两倍以上才能得到可靠的信号。</p>
+<h3 id="模拟数据调制为模拟信号">模拟数据调制为模拟信号</h3>
+<h2 id="传输介质">传输介质</h2>
+<p><img src="http://127.0.0.1:8080/post-images/1615104897835.jpg" alt="" loading="lazy"><br>
+传输介质不属于物理层。<br>
+导向性传输介质：</p>
+<ul>
+<li>双绞线-价格便宜，局域网中常用。通信距离一般为几到数十公里。</li>
+<li>同轴电缆：分为基带同轴电缆，常用于局域网；和宽带同轴电缆，常用于有线电视系统。抗干扰性更好，传输距离更远，价格更贵。</li>
+<li>光纤：通过光脉冲来通信，带宽非常大。体积小重量轻。价格高。<br>
+非导向性传输介质：</li>
+<li>无线电波：信号向所有方向传播。穿透能力强，可传远距离。</li>
+<li>微波：信号沿着固定方向传播。通信频率高，波段范围宽，所以数据率高。 卫星通信。</li>
+<li>红外线和激光：信号沿着固定方向传播。</li>
+</ul>
+<h2 id="物理层设备">物理层设备</h2>
+<p>中继器：对信号进行再生和还原，对衰减的信号放大。<br>
+两端的网络部分是网段而不是子网，适用于完全相同的两类网络的互连。<br>
+他制作用于信号灯电气部分，不管数据是否发生错误等问题。<br>
+5-4-3规则。</p>
+<p>集线器（多口中继器）：<br>
+<img src="http://127.0.0.1:8080/post-images/1615105339708.jpg" alt="" loading="lazy"></p>
+
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#%E9%80%9A%E4%BF%A1%E5%9F%BA%E7%A1%80">通信基础</a></li>
+<li><a href="#%E4%B8%A4%E4%B8%AA%E5%85%AC%E5%BC%8F">两个公式</a></li>
+<li><a href="#%E7%BC%96%E7%A0%81%E4%B8%8E%E8%B0%83%E5%88%B6">编码与调制</a>
+<ul>
+<li><a href="#%E6%95%B0%E5%AD%97%E6%95%B0%E6%8D%AE%E7%BC%96%E7%A0%81%E4%B8%BA%E6%95%B0%E5%AD%97%E4%BF%A1%E5%8F%B7">数字数据编码为数字信号</a></li>
+<li><a href="#%E6%95%B0%E5%AD%97%E6%95%B0%E6%8D%AE%E8%B0%83%E5%88%B6%E4%B8%BA%E6%A8%A1%E6%8B%9F%E4%BF%A1%E5%8F%B7">数字数据调制为模拟信号</a></li>
+<li><a href="#%E6%A8%A1%E6%8B%9F%E6%95%B0%E6%8D%AE%E7%BC%96%E7%A0%81%E4%B8%BA%E6%95%B0%E5%AD%97%E4%BF%A1%E5%8F%B7">模拟数据编码为数字信号</a></li>
+<li><a href="#%E6%A8%A1%E6%8B%9F%E6%95%B0%E6%8D%AE%E8%B0%83%E5%88%B6%E4%B8%BA%E6%A8%A1%E6%8B%9F%E4%BF%A1%E5%8F%B7">模拟数据调制为模拟信号</a></li>
+</ul>
+</li>
+<li><a href="#%E4%BC%A0%E8%BE%93%E4%BB%8B%E8%B4%A8">传输介质</a></li>
+<li><a href="#%E7%89%A9%E7%90%86%E5%B1%82%E8%AE%BE%E5%A4%87">物理层设备</a></li>
+</ul>
+</li>
+</ul>
+
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="http://127.0.0.1:8080/post/networking-nat/">
+              <h3 class="post-title">
+                Networking-NAT
+              </h3>
+            </a>
+          </div>
+        
+
+        
+
+        <div class="site-footer">
+  
+  <a class="rss" href="http://127.0.0.1:8080/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>

@@ -1,0 +1,295 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Make与Makefile | Reticence</title>
+<link rel="shortcut icon" href="http://127.0.0.1:8080/favicon.ico?v=1619508275369">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="http://127.0.0.1:8080/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="Make与Makefile | Reticence - Atom Feed" href="http://127.0.0.1:8080/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-90HNEFFE0M"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-90HNEFFE0M');
+</script>
+
+
+    <meta name="description" content="参考链接：
+阮一峰的Make讲解
+GNU Make手册
+老外的Makefile教程
+跟我学写Makefile
+我不想详细的去讲解Makefile的规则。只想记录一下过程中遇到的问题和对应的解决办法。
+头文件的位置
+gcc -I可以指定头文件..." />
+    <meta name="keywords" content="Tools" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="http://127.0.0.1:8080">
+  <img class="avatar" src="http://127.0.0.1:8080/images/avatar.png?v=1619508275369" alt="">
+  </a>
+  <h1 class="site-title">
+    Reticence
+  </h1>
+  <p class="site-description">
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          Index
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          Classification
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          Archives
+        </a>
+      
+    
+      
+        <a href="/navigator.html" class="menu">
+          Navigator
+        </a>
+      
+    
+      
+        <a href="/post/book-list" class="menu">
+          Booklist
+        </a>
+      
+    
+      
+        <a href="/post/fei-md-ge-shi-bi-ji-hui-zong" class="menu">
+          Notes
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          About
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+        <a href="https://github.com/reticenceji" target="_blank">
+          <i class="ri-github-line"></i>
+        </a>
+      
+    
+      
+    
+      
+    
+      
+        <a href="https://www.zhihu.com/people/reticenceji" target="_blank">
+          <i class="ri-zhihu-line"></i>
+        </a>
+      
+    
+      
+    
+  </div>
+  <script>
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
+    var s = document.getElementsByTagName("script")[0]; 
+    s.parentNode.insertBefore(hm, s);
+  })();
+  </script>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              Make与Makefile
+            </h2>
+            <div class="post-info">
+              <span>
+                2020-09-29
+              </span>
+              <span>
+                3 min read
+              </span>
+              
+                <a href="http://127.0.0.1:8080/tag/nL6gwIN_5/" class="post-tag">
+                  # Tools
+                </a>
+              
+            </div>
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <p>参考链接：<br>
+<a href="http://www.ruanyifeng.com/blog/2015/02/make.html">阮一峰的Make讲解</a><br>
+<a href="https://www.gnu.org/software/make/manual/make.html">GNU Make手册</a><br>
+<a href="https://gist.github.com/isaacs/62a2d1825d04437c6f08">老外的Makefile教程</a><br>
+<a href="https://seisman.github.io/how-to-write-makefile/index.html">跟我学写Makefile</a><br>
+我不想详细的去讲解Makefile的规则。只想记录一下过程中遇到的问题和对应的解决办法。</p>
+<h2 id="头文件的位置">头文件的位置</h2>
+<p><code>gcc -I</code>可以指定头文件的寻找位置。所以可以通过修改CFLAG来修改寻找头文件的目录。</p>
+<h2 id="变量的传递">变量的传递</h2>
+<p>这是最上层的Makefile定义的一些变量，以及编译子文件夹的命令（节选）：</p>
+<pre><code class="language-makefile">export
+INCLUDE = -I ../include
+CF = -O0 -march=$(ISA) -mabi=$(ABI) -mcmodel=medany -ffunction-sections -fdata-sections -nostartfiles -nostdlib -nostdinc -static -lgcc -Wl,--nmagic -Wl,--gc-sections -g3
+CFLAG = ${CF} ${INCLUDE} -DPRIORITY
+
+（第一个编译目标）
+subsystem:
+	$(MAKE) -C lib
+	$(MAKE) -C init
+	$(MAKE) -C arch/riscv
+</code></pre>
+<blockquote>
+<p>Variable values of the top-level <code>make</code> can be passed to the sub-<code>make</code> through the environment by explicit request. These variables are defined in the sub-<code>make</code> as defaults, but they do not override variables defined in the makefile used by the sub-<code>make</code> unless you use the ‘-e’ switch (see <a href="https://www.gnu.org/software/make/manual/make.html#Options-Summary">Summary of Options</a>).</p>
+<p>If you want to export specific variables to a sub-<code>make</code>, use the <code>export</code> directive, like this:</p>
+<pre><code>export variable …
+</code></pre>
+<p>If you want to <em>prevent</em> a variable from being exported, use the <code>unexport</code> directive, like this:</p>
+<pre><code>unexport variable …
+</code></pre>
+<p>If you want all variables to be exported by default, you can use <code>export</code> by itself:</p>
+<pre><code>export
+</code></pre>
+</blockquote>
+<p>除了<code>MAKEFLAGS</code>以外的变量默认是不向子目录传递的，除非用了export指令。虽然没有在文档中找到，但是传递到子目录之后的变量就是一整个了，比如我在子目录Makefile中修改了INCLUDE不会对CFLAG造成影响。</p>
+<p><code>$(MAKE) -C subdir</code> 等价于 <code>cd subdir &amp;&amp; $(MAKE)</code></p>
+<h2 id="赋值">赋值</h2>
+<p>Makefile中一共有4种赋值符号。</p>
+<ul>
+<li><code>=</code>：make会将整个makefile展开后，再决定变量的值。也就是说，变量的值将会是整个makefile中最后被指定的值。看例子，在下例中，y的值将会是 xyz bar ，而不是 foo bar 。：</li>
+</ul>
+<pre><code>x = foo
+y = $(x) bar
+x = xyz
+</code></pre>
+<ul>
+<li><code>:=</code>：表示变量的值决定于它在makefile中的位置，而不是整个makefile展开后的最终值。如果吧上面的<code>=</code>换成<code>:=</code>，那么y的值将会是foo bar。</li>
+<li><code>?=</code>：是如果没有被赋值过就赋予等号后面的值</li>
+<li><code>+=</code>：是添加等号后面的值</li>
+</ul>
+
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#%E5%A4%B4%E6%96%87%E4%BB%B6%E7%9A%84%E4%BD%8D%E7%BD%AE">头文件的位置</a></li>
+<li><a href="#%E5%8F%98%E9%87%8F%E7%9A%84%E4%BC%A0%E9%80%92">变量的传递</a></li>
+<li><a href="#%E8%B5%8B%E5%80%BC">赋值</a></li>
+</ul>
+</li>
+</ul>
+
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="http://127.0.0.1:8080/post/za-ji-2020-09-24/">
+              <h3 class="post-title">
+                杂记-2020-09-24
+              </h3>
+            </a>
+          </div>
+        
+
+        
+
+        <div class="site-footer">
+  
+  <a class="rss" href="http://127.0.0.1:8080/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>

@@ -1,0 +1,696 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Database-PostgreSQL | Reticence</title>
+<link rel="shortcut icon" href="http://127.0.0.1:8080/favicon.ico?v=1619508275369">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="http://127.0.0.1:8080/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="Database-PostgreSQL | Reticence - Atom Feed" href="http://127.0.0.1:8080/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-90HNEFFE0M"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-90HNEFFE0M');
+</script>
+
+
+    <meta name="description" content="中文手册
+软件简介
+在数据库术语里，PostgreSQL使用一种客户端/服务器的模型。一次PostgreSQL会话由下列相关的进程（程序）组成：
+
+一个服务器进程，它管理数据库文件、接受来自客户端应用与数据库的联接并且代表客户端在数据库上执..." />
+    <meta name="keywords" content="Database" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="http://127.0.0.1:8080">
+  <img class="avatar" src="http://127.0.0.1:8080/images/avatar.png?v=1619508275369" alt="">
+  </a>
+  <h1 class="site-title">
+    Reticence
+  </h1>
+  <p class="site-description">
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          Index
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          Classification
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          Archives
+        </a>
+      
+    
+      
+        <a href="/navigator.html" class="menu">
+          Navigator
+        </a>
+      
+    
+      
+        <a href="/post/book-list" class="menu">
+          Booklist
+        </a>
+      
+    
+      
+        <a href="/post/fei-md-ge-shi-bi-ji-hui-zong" class="menu">
+          Notes
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          About
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+        <a href="https://github.com/reticenceji" target="_blank">
+          <i class="ri-github-line"></i>
+        </a>
+      
+    
+      
+    
+      
+    
+      
+        <a href="https://www.zhihu.com/people/reticenceji" target="_blank">
+          <i class="ri-zhihu-line"></i>
+        </a>
+      
+    
+      
+    
+  </div>
+  <script>
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
+    var s = document.getElementsByTagName("script")[0]; 
+    s.parentNode.insertBefore(hm, s);
+  })();
+  </script>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              Database-PostgreSQL
+            </h2>
+            <div class="post-info">
+              <span>
+                2021-03-18
+              </span>
+              <span>
+                6 min read
+              </span>
+              
+                <a href="http://127.0.0.1:8080/tag/uXp2zQxRH/" class="post-tag">
+                  # Database
+                </a>
+              
+            </div>
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <p><a href="http://www.postgres.cn/docs/12/index.html">中文手册</a></p>
+<h2 id="软件简介">软件简介</h2>
+<p>在数据库术语里，PostgreSQL使用一种客户端/服务器的模型。一次PostgreSQL会话由下列相关的进程（程序）组成：</p>
+<ul>
+<li>一个服务器进程，它管理数据库文件、接受来自客户端应用与数据库的联接并且代表客户端在数据库上执行操作。 该<strong>数据库服务器程序叫做postgres</strong>。</li>
+<li>那些需要执行数据库操作的用户的客户端（前端）应用。 客户端应用可能本身就是多种多样的：可以是一个面向文本的工具， 也可以是一个图形界面的应用，或者是一个通过访问数据库来显示网页的网页服务器，或者是一个特制的数据库管理工具。 一些客户端应用是和 PostgreSQL发布一起提供的，但绝大部分是用户开发的。</li>
+</ul>
+<p>一旦你创建了数据库，你就可以通过以下方式访问它：</p>
+<ul>
+<li>运行PostgreSQL的<strong>交互式客户端终端程序，它被称为psql</strong>， 它允许你交互地输入、编辑和执行SQL命令。  <code>psql [选项]... [数据库名称 [用户名称]]</code></li>
+<li>使用一种已有的图形化前端工具，比如pgAdmin或者带ODBC或JDBC支持的办公套件来创建和管理数据库。这种方法在这份教程中没有介绍。</li>
+<li>用多种绑定发行的语言中的一种写一个自定义的应用。<code>postgresql://username:password@hostname/database</code></li>
+</ul>
+<h3 id="psql软件使用">PSQL软件使用</h3>
+<pre><code>sudo -i -u postgres					#登录postgres管理员用户
+然后再输入 psql进入					#打开软件
+可以直接用默认用户postgres登录，密码××××××××××
+</code></pre>
+<p>PSQL的一些常用命令：</p>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>\l</td>
+<td>列出所有数据库</td>
+</tr>
+<tr>
+<td>\du</td>
+<td>列出所有用户</td>
+</tr>
+<tr>
+<td>\c DatabaseName</td>
+<td>切换数据库</td>
+</tr>
+<tr>
+<td>\d</td>
+<td>列出数据表</td>
+</tr>
+<tr>
+<td>\q</td>
+<td>退出</td>
+</tr>
+<tr>
+<td>\i</td>
+<td>执行sql脚本</td>
+</tr>
+<tr>
+<td>?</td>
+<td>查看psql命令帮助</td>
+</tr>
+<tr>
+<td>help</td>
+<td>查看sql指令帮助</td>
+</tr>
+</tbody>
+</table>
+<p>创建用户：</p>
+<pre><code class="language-plsql">CREATE USER testUser WITH PASSWORD '*****';
+#将数据库 testDB 权限授权于 testUser
+GRANT ALL PRIVILEGES ON DATABASE testDB TO testUser;
+#但此时用户还是没有读写权限，需要继续授权表
+GRANT ALL PRIVILEGES ON all tables in schema public TO testUser;
+</code></pre>
+<h2 id="数据类型">数据类型</h2>
+<p><strong>数字类型</strong></p>
+<table>
+<thead>
+<tr>
+<th>名字</th>
+<th>存储尺寸</th>
+<th>描述</th>
+<th>范围</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>smallint</code></td>
+<td>2字节</td>
+<td>小范围整数</td>
+<td>-32768 to +32767</td>
+</tr>
+<tr>
+<td><code>integer</code></td>
+<td>4字节</td>
+<td>整数的典型选择</td>
+<td>-2147483648 to +2147483647</td>
+</tr>
+<tr>
+<td><code>bigint</code></td>
+<td>8字节</td>
+<td>大范围整数</td>
+<td>-9223372036854775808 to +9223372036854775807</td>
+</tr>
+<tr>
+<td><code>decimal</code></td>
+<td>可变</td>
+<td>用户指定精度，精确</td>
+<td>最高小数点前131072位，以及小数点后16383位</td>
+</tr>
+<tr>
+<td><code>numeric</code></td>
+<td>可变</td>
+<td>用户指定精度，精确</td>
+<td>最高小数点前131072位，以及小数点后16383位</td>
+</tr>
+<tr>
+<td><code>real</code></td>
+<td>4字节</td>
+<td>可变精度，不精确</td>
+<td>6位十进制精度</td>
+</tr>
+<tr>
+<td><code>double precision</code></td>
+<td>8字节</td>
+<td>可变精度，不精确</td>
+<td>15位十进制精度</td>
+</tr>
+<tr>
+<td><code>smallserial</code></td>
+<td>2字节</td>
+<td>自动增加的小整数</td>
+<td>1到32767</td>
+</tr>
+<tr>
+<td><code>serial</code></td>
+<td>4字节</td>
+<td>自动增加的整数</td>
+<td>1到2147483647</td>
+</tr>
+<tr>
+<td><code>bigserial</code></td>
+<td>8字节</td>
+<td>自动增长的大整数</td>
+<td>1到9223372036854775807</td>
+</tr>
+</tbody>
+</table>
+<p><strong>时间/日期类型</strong></p>
+<table>
+<thead>
+<tr>
+<th>名字</th>
+<th>存储尺寸</th>
+<th>描述</th>
+<th>最小值</th>
+<th>最大值</th>
+<th>解析度</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>timestamp [ (*</code>p<code>*) ] [ without time zone ]</code></td>
+<td>8字节</td>
+<td>包括日期和时间（无时区）</td>
+<td>4713 BC</td>
+<td>294276 AD</td>
+<td>1微秒</td>
+</tr>
+<tr>
+<td><code>timestamp [ (*</code>p<code>*) ] with time zone</code></td>
+<td>8字节</td>
+<td>包括日期和时间，有时区</td>
+<td>4713 BC</td>
+<td>294276 AD</td>
+<td>1微秒</td>
+</tr>
+<tr>
+<td><code>date</code></td>
+<td>4字节</td>
+<td>日期（没有一天中的时间）</td>
+<td>4713 BC</td>
+<td>5874897 AD</td>
+<td>1日</td>
+</tr>
+<tr>
+<td><code>time [ (*</code>p<code>*) ] [ without time zone ]</code></td>
+<td>8字节</td>
+<td>一天中的时间（无日期）</td>
+<td>00:00:00</td>
+<td>24:00:00</td>
+<td>1微秒</td>
+</tr>
+<tr>
+<td><code>time [ (*</code>p<code>*) ] with time zone</code></td>
+<td>12字节</td>
+<td>仅仅是一天中的时间（没有日期），带有时区</td>
+<td>00:00:00+1459</td>
+<td>24:00:00-1459</td>
+<td>1微秒</td>
+</tr>
+<tr>
+<td><code>interval [ *</code>fields<code>* ] [ (*</code>p<code>*) ]</code></td>
+<td>16字节</td>
+<td>时间间隔</td>
+<td>-178000000年</td>
+<td>178000000年</td>
+<td>1微秒</td>
+</tr>
+</tbody>
+</table>
+<p><strong>字符类型</strong></p>
+<table>
+<thead>
+<tr>
+<th>名字</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>character varying(*</code>n<code>*)</code>, <code>varchar(*</code>n<code>*)</code></td>
+<td>有限制的变长</td>
+</tr>
+<tr>
+<td><code>character(*</code>n<code>*)</code>, <code>char(*</code>n<code>*)</code></td>
+<td>定长，空格填充</td>
+</tr>
+<tr>
+<td><code>text</code></td>
+<td>无限变长</td>
+</tr>
+</tbody>
+</table>
+<p><strong>所有数据类型-速查</strong></p>
+<table>
+<thead>
+<tr>
+<th>名字</th>
+<th>别名</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>bigint</code></td>
+<td><code>int8</code></td>
+<td>有符号的8字节整数</td>
+</tr>
+<tr>
+<td><code>bigserial</code></td>
+<td><code>serial8</code></td>
+<td>自动增长的8字节整数</td>
+</tr>
+<tr>
+<td><code>bit [ (*</code>n<code>*) ]</code></td>
+<td></td>
+<td>定长位串</td>
+</tr>
+<tr>
+<td><code>bit varying [ (*</code>n<code>*) ]</code></td>
+<td><code>varbit [ (*</code>n<code>*) ]</code></td>
+<td>变长位串</td>
+</tr>
+<tr>
+<td><code>boolean</code></td>
+<td><code>bool</code></td>
+<td>逻辑布尔值（真/假）</td>
+</tr>
+<tr>
+<td><code>box</code></td>
+<td></td>
+<td>平面上的普通方框</td>
+</tr>
+<tr>
+<td><code>bytea</code></td>
+<td></td>
+<td>二进制数据（“字节数组”）</td>
+</tr>
+<tr>
+<td><code>character [ (*</code>n<code>*) ]</code></td>
+<td><code>char [ (*</code>n<code>*) ]</code></td>
+<td>定长字符串</td>
+</tr>
+<tr>
+<td><code>character varying [ (*</code>n<code>*) ]</code></td>
+<td><code>varchar [ (*</code>n<code>*) ]</code></td>
+<td>变长字符串</td>
+</tr>
+<tr>
+<td><code>cidr</code></td>
+<td></td>
+<td>IPv4或IPv6网络地址</td>
+</tr>
+<tr>
+<td><code>circle</code></td>
+<td></td>
+<td>平面上的圆</td>
+</tr>
+<tr>
+<td><code>date</code></td>
+<td></td>
+<td>日历日期（年、月、日）</td>
+</tr>
+<tr>
+<td><code>double precision</code></td>
+<td><code>float8</code></td>
+<td>双精度浮点数（8字节）</td>
+</tr>
+<tr>
+<td><code>inet</code></td>
+<td></td>
+<td>IPv4或IPv6主机地址</td>
+</tr>
+<tr>
+<td><code>integer</code></td>
+<td><code>int</code>, <code>int4</code></td>
+<td>有符号4字节整数</td>
+</tr>
+<tr>
+<td><code>interval [ *</code>fields<code>* ] [ (*</code>p<code>*) ]</code></td>
+<td></td>
+<td>时间段</td>
+</tr>
+<tr>
+<td><code>json</code></td>
+<td></td>
+<td>文本 JSON 数据</td>
+</tr>
+<tr>
+<td><code>jsonb</code></td>
+<td></td>
+<td>二进制 JSON 数据，已分解</td>
+</tr>
+<tr>
+<td><code>line</code></td>
+<td></td>
+<td>平面上的无限长的线</td>
+</tr>
+<tr>
+<td><code>lseg</code></td>
+<td></td>
+<td>平面上的线段</td>
+</tr>
+<tr>
+<td><code>macaddr</code></td>
+<td></td>
+<td>MAC（Media Access Control）地址</td>
+</tr>
+<tr>
+<td><code>macaddr8</code></td>
+<td></td>
+<td>MAC（Media Access Control）地址（EUI-64格式）</td>
+</tr>
+<tr>
+<td><code>money</code></td>
+<td></td>
+<td>货币数量</td>
+</tr>
+<tr>
+<td><code>numeric [ (*</code>p<code>*, *</code>s<code>*) ]</code></td>
+<td><code>decimal [ (*</code>p<code>*, *</code>s<code>*) ]</code></td>
+<td>可选择精度的精确数字</td>
+</tr>
+<tr>
+<td><code>path</code></td>
+<td></td>
+<td>平面上的几何路径</td>
+</tr>
+<tr>
+<td><code>pg_lsn</code></td>
+<td></td>
+<td>PostgreSQL日志序列号</td>
+</tr>
+<tr>
+<td><code>point</code></td>
+<td></td>
+<td>平面上的几何点</td>
+</tr>
+<tr>
+<td><code>polygon</code></td>
+<td></td>
+<td>平面上的封闭几何路径</td>
+</tr>
+<tr>
+<td><code>real</code></td>
+<td><code>float4</code></td>
+<td>单精度浮点数（4字节）</td>
+</tr>
+<tr>
+<td><code>smallint</code></td>
+<td><code>int2</code></td>
+<td>有符号2字节整数</td>
+</tr>
+<tr>
+<td><code>smallserial</code></td>
+<td><code>serial2</code></td>
+<td>自动增长的2字节整数</td>
+</tr>
+<tr>
+<td><code>serial</code></td>
+<td><code>serial4</code></td>
+<td>自动增长的4字节整数</td>
+</tr>
+<tr>
+<td><code>text</code></td>
+<td></td>
+<td>变长字符串</td>
+</tr>
+<tr>
+<td><code>time [ (*</code>p<code>*) ] [ without time zone ]</code></td>
+<td></td>
+<td>一天中的时间（无时区）</td>
+</tr>
+<tr>
+<td><code>time [ (*</code>p<code>*) ] with time zone</code></td>
+<td><code>timetz</code></td>
+<td>一天中的时间，包括时区</td>
+</tr>
+<tr>
+<td><code>timestamp [ (*</code>p<code>*) ] [ without time zone ]</code></td>
+<td></td>
+<td>日期和时间（无时区）</td>
+</tr>
+<tr>
+<td><code>timestamp [ (*</code>p<code>*) ] with time zone</code></td>
+<td><code>timestamptz</code></td>
+<td>日期和时间，包括时区</td>
+</tr>
+<tr>
+<td><code>tsquery</code></td>
+<td></td>
+<td>文本搜索查询</td>
+</tr>
+<tr>
+<td><code>tsvector</code></td>
+<td></td>
+<td>文本搜索文档</td>
+</tr>
+<tr>
+<td><code>txid_snapshot</code></td>
+<td></td>
+<td>用户级别事务ID快照</td>
+</tr>
+<tr>
+<td><code>uuid</code></td>
+<td></td>
+<td>通用唯一标识码</td>
+</tr>
+<tr>
+<td><code>xml</code></td>
+<td></td>
+<td>XML数据</td>
+</tr>
+</tbody>
+</table>
+
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#%E8%BD%AF%E4%BB%B6%E7%AE%80%E4%BB%8B">软件简介</a>
+<ul>
+<li><a href="#psql%E8%BD%AF%E4%BB%B6%E4%BD%BF%E7%94%A8">PSQL软件使用</a></li>
+</ul>
+</li>
+<li><a href="#%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B">数据类型</a></li>
+</ul>
+</li>
+</ul>
+
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="http://127.0.0.1:8080/post/c-vector/">
+              <h3 class="post-title">
+                C++ 标准库
+              </h3>
+            </a>
+          </div>
+        
+
+        
+
+        <div class="site-footer">
+  
+  <a class="rss" href="http://127.0.0.1:8080/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>

@@ -1,0 +1,395 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>OS-Process | Reticence</title>
+<link rel="shortcut icon" href="http://127.0.0.1:8080/favicon.ico?v=1619508275369">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="http://127.0.0.1:8080/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="OS-Process | Reticence - Atom Feed" href="http://127.0.0.1:8080/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-90HNEFFE0M"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-90HNEFFE0M');
+</script>
+
+
+    <meta name="description" content="
+非常重要的一张图
+（单核）一次有一个程序在running，有一个Ready Queue的进程随时准备Running，有很多不同原因的Waiting Queue的进程在等待完成之后进入Ready Queue。一个新创建的进程进入Ready ..." />
+    <meta name="keywords" content="OS" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="http://127.0.0.1:8080">
+  <img class="avatar" src="http://127.0.0.1:8080/images/avatar.png?v=1619508275369" alt="">
+  </a>
+  <h1 class="site-title">
+    Reticence
+  </h1>
+  <p class="site-description">
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          Index
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          Classification
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          Archives
+        </a>
+      
+    
+      
+        <a href="/navigator.html" class="menu">
+          Navigator
+        </a>
+      
+    
+      
+        <a href="/post/book-list" class="menu">
+          Booklist
+        </a>
+      
+    
+      
+        <a href="/post/fei-md-ge-shi-bi-ji-hui-zong" class="menu">
+          Notes
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          About
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+        <a href="https://github.com/reticenceji" target="_blank">
+          <i class="ri-github-line"></i>
+        </a>
+      
+    
+      
+    
+      
+    
+      
+        <a href="https://www.zhihu.com/people/reticenceji" target="_blank">
+          <i class="ri-zhihu-line"></i>
+        </a>
+      
+    
+      
+    
+  </div>
+  <script>
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
+    var s = document.getElementsByTagName("script")[0]; 
+    s.parentNode.insertBefore(hm, s);
+  })();
+  </script>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              OS-Process
+            </h2>
+            <div class="post-info">
+              <span>
+                2020-12-16
+              </span>
+              <span>
+                10 min read
+              </span>
+              
+                <a href="http://127.0.0.1:8080/tag/nfABdWVsa/" class="post-tag">
+                  # OS
+                </a>
+              
+            </div>
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <p><img src="http://127.0.0.1:8080/post-images/1610293423278.png" alt="" loading="lazy"><br>
+非常重要的一张图</p>
+<p>（单核）一次有一个程序在running，有一个Ready Queue的进程随时准备Running，有很多不同原因的Waiting Queue的进程在等待完成之后进入Ready Queue。一个新创建的进程进入Ready Queue，一个运行的进程调用exit终止。</p>
+<h2 id="进程">进程</h2>
+<p>进程是</p>
+<p>Process = Code+Runtime Stack+Data+Heap+Program Counter+Registers。同时Process的metadata存储在<strong>PCB(Process Control Block)<strong>中，在Linux里这个结构叫</strong>task_struct</strong>。</p>
+<p>Activation records：一个Function能正常的运行需要的信息包括<strong>返回地址、传入的参数、临时本地变量、返回值</strong>，以及寄存器的保存。</p>
+<h3 id="pcb">PCB</h3>
+<p>我们来看PCB应该包括些什么，比如Linux0.12的task_struct：</p>
+<pre><code class="language-c">struct task_struct {
+	/* these are hardcoded - don't touch */
+	// 下面这几个字段是硬编码字段
+	long state;							// 任务的运行状态(-1 不可运行,0 可运行(就绪), &gt;0 已停止)
+	long counter;						// 任务运行时间计数(递减)(滴答数),运行时间片
+	long priority;						// 优先数.任务开始运行时counter=priority,越大运行越长
+	long signal;						// 信号位图,每个比特位代表一种信号,信号值=位偏移值+1
+	struct sigaction sigaction[32];		// 信号执行属性结构,对应信号将要执行的操作和标志信息
+	long blocked;						// 进程信号屏蔽码(对应信号位图)
+
+	/* various fields */
+	int exit_code;						// 任务执行停止的退出码,其父进程会取.
+	unsigned long start_code;			// 代码段地址
+	unsigned long end_code;				// 代码长度(字节数)
+	unsigned long end_data;				// 代码长度+数据长度(字节数)
+	unsigned long brk;					// 总长度(字节数)
+	unsigned long start_stack;			// 堆栈段地址
+	long pid;							// 进程标识号(进程号)
+	long pgrp;							// 进程组号
+	long session;						// 会话号
+	long leader;						// 会话首领
+	int	groups[NGROUPS];				// 进程所属组号.一个进程可属于多个组
+	/*
+	 * pointers to parent process, youngest child, younger sibling,
+	 * older sibling, respectively.  (p-&gt;father can be replaced with
+	 * p-&gt;p_pptr-&gt;pid)
+	 */
+	struct task_struct *p_pptr;			// 指向父进程的指针
+	struct task_struct *p_cptr;			// 指向最新子进程的指针
+	struct task_struct *p_ysptr;		// 指向比自己后创建的相邻进程的指针
+	struct task_struct *p_osptr;		// 指向比自己早创建的相邻进程的指针
+	unsigned short uid;					// 用户标识号(用户id)
+	unsigned short euid;				// 有效用户id
+	unsigned short suid;				// 保存的用户id
+	unsigned short gid;					// 组标识号(级id)
+	unsigned short egid;				// 有效级id
+	unsigned short sgid;				// 保存的组id
+	unsigned long timeout;				// 内核定时超时值
+	unsigned long alarm;				// 报警定时值(滴答数)
+	long utime;							// 用户态运行时间(滴答数)
+	long stime;							// 系统态运行时间(滴答数)
+	long cutime;						// 子进程用户态运行时间
+	long cstime;						// 子进程系统态运行时间
+	long start_time;					// 进程开始运行时刻.
+	struct rlimit rlim[RLIM_NLIMITS];	// 进程资源使用统计数组.
+	/* per process flags, defined below */
+	unsigned int flags;					// 各进程的标志
+	unsigned short used_math;			// 标志:是否使用了协处理器.
+	
+	/* file system info */
+	/* -1 if no tty, so it must be signed */
+	int tty;							// 进程使用tty终端的子设备号.-1表示没有使用
+	unsigned short umask;				// 文件创建属性屏蔽位
+	struct m_inode * pwd;				// 当前工作目录i节点结构指针
+	struct m_inode * root;				// 根目录i节点结构指针
+	struct m_inode * executable;		// 执行文件i节点结构指针
+	struct m_inode * library;			// 被加载库文件i节点结构指针
+	unsigned long close_on_exec;		// 执行时关闭文件句柄位图标志.(include/fcntl.h)
+	struct file * filp[NR_OPEN];		// 文件结构指针表,最多32项.表项号即是文件描述符的值
+	/* ldt for this task 0 - zero 1 - cs 2 - ds&amp;ss */
+	struct desc_struct ldt[3];			// 局部描述符表, 0 - 空,1 - 代码段cs,2 - 数据和堆栈段ds&amp;ss
+	/* tss for this task */
+	struct tss_struct tss;				// 进程的任务状态段信息结构
+};
+</code></pre>
+<h3 id="进程的创建-forkexec">进程的创建 Fork+Exec</h3>
+<p>Fork：子进程会复制父进程的所有信息。当然这个“复制”是可以有很多不同的实现的。比如“Copy on write”写时复制。</p>
+<p>Exec：让子进程执行新的任务。通常的Fork后面都会紧接着Exec。</p>
+<h3 id="进程的终止">进程的终止</h3>
+<p>Wait：等待子进程的结束。因为如果父进程结束了而子进程没有结束那么子进程就变成<strong>孤儿Orphan</strong>了。孤儿的回收由 <code>init</code>进程完成，所以孤儿进程一般不会有什么危害。</p>
+<p>在进程自己调用exit()系统调用后，系统会回收进程的资源，包括物理和虚拟内存、打开的文件、IO缓冲区等。但是释放的资源不包括PCB，因为在PCB中进程有terminate状态，也就是说进程表中它依然存在，我们称之为<strong>僵尸Zombie</strong>进程。PCB的释放在父进程调用wait的时候发生，调用wait之后PCB被释放。</p>
+<p>一个小问题是，进程只有在running的时候才能被终止吗？比如我kill一个sleep的进程会发生什么？</p>
+<p><a href="http://zyearn.com/blog/2015/03/22/what-happens-when-you-kill-a-process/">kill的时候发生了什么</a>？当进程每次被调度的时候，会先检查一遍没有被处理的信号，signal是同步处理而不是异步处理的。所以上面的表述没有问题。详细一点说，<strong>当内核把进程p从kernel mode切换到user mode的时候，他会检查进程p的没有被block的待处理信号集合（bitmap，<code>pending &amp; ~blocked</code>）。如果这个集合为空<code>==0</code>，那么我们将继续执行p的下一条指令；如果这个集合非空，那么我们将选择集合中的某个信号K并强制执行。</strong></p>
+<p>我们可以看到上面的PCB里有<code>sigaction</code>这个数组，他存储的就是进程用的处理signal的程序的函数指针（还有别的一些信息），还有<code>block</code>这个bitmap存储屏蔽的信号。<br>
+我们是可以修改<strong>某些signal</strong>的处理函数的或者阻塞<strong>某些signal</strong>的，SIGKILL和SIGSTOP是不能修改不可阻塞的。</p>
+<p>修改处理信号函数：<code>sighandler_t signal(int sugnum,sighandler_t handler);</code></p>
+<p>阻塞信号：<code>int sigprocmask(int how,const sigset_t *set,sigset_t *oldset);</code></p>
+<h2 id="进程间通信-ipc">进程间通信 IPC</h2>
+<p>进程之间是相互独立的，但是可能需要合作。所以需要在进程之间通信。</p>
+<p><strong>Signal</strong>就是进程之间通信的办法。但是我们一共只有32个Signal，而且不能传输数据。</p>
+<p><strong>Shared Memory</strong>：我们通过虚拟内存的概念可以把两个进程的某一块虚拟地址映射到同一块物理地址，当然具体的实现还要考虑数据冲突问题更复杂。但是这个是有风险的，我们要保证我们的读写操作是线程安全的。</p>
+<p><strong>Message Passing</strong>：允许进程不必通过共享地址空间来实现通信和同步。有两个基本操作<code>send</code>和<code>recv</code>用来发送和接受Message。<!--Socket是不是也属于Message Passing --></p>
+<p>根据同步可以分成：</p>
+<ul>
+<li>Blocking Send：发送进程阻塞，知道Message被接收。</li>
+<li>Non-Blocking Send：进程发送消息后继续执行。</li>
+<li>Blocking Recieve：接收进程阻塞，直到有消息可以用。</li>
+<li>Non-Blocking Recieve：接收进程收到一个有效消息或空消息。</li>
+</ul>
+<p>我们还可以使用间接的或者直接的通信：</p>
+<ul>
+<li>Direct Communication：进程必须明确的指定Message的接收者或发送者。</li>
+<li>Indirect Communication：通过**MailBox(Port)**发送和接收Message。这样若干个共享一个Mailbox的进程就可以通信了，具体的实现可以限制为两个或多个。</li>
+</ul>
+<p>缓存机制，通信交换的信息总是驻留在临时队列中，这个队列可以是：</p>
+<ul>
+<li>零容量：不能有任何消息处于等待状态。</li>
+<li>有限容量：最多有n个消息驻留</li>
+<li>无限容量：发送者永不阻塞。</li>
+</ul>
+<h2 id="调度算法重点">调度算法(重点)</h2>
+<p>虽然说，我们经常说调度进程，但是实际上调度的是线程，她才是执行单元。</p>
+<p>我们有两个衡量调度算法的标准</p>
+<ul>
+<li>Average waiting time：进程在Ready Queue的等待时间。</li>
+<li>Average turn-around time：进程被创建的时间到进程完成的时间。<br>
+除此之外调度算法还应该要尽可能的</li>
+<li>Minimize Response Time：让响应速度更快</li>
+<li>Maximize Throughput：让CPU执行有用工作的比例更高</li>
+<li>Maximize CPU Utilization：最大化CPU利用率</li>
+</ul>
+<h3 id="first-come-first-serve">First come first serve</h3>
+<p>可以通过队列方便的实现。先到（准确的说先请求CPU）的进程先服务，直到该进程结束切换到下一个进程。<br>
+这是一个<strong>非抢占Non-preemptive</strong>算法，抢占指的是CPU能不能在进程还没有执行完成的时候把它suspend去执行别的进程。这是必要而复杂的。</p>
+<h3 id="sjf-最短作业优先">SJF 最短作业优先</h3>
+<p>这是最理想的CPU调度算法，但是因为需要预先知道进程的运行时间，所以是不可能真正实现的。<br>
+如果是抢占的实现，对于每次有新进程到来，我们都要重新调度上<strong>剩余时间最短的进程</strong>。<br>
+对于非抢占的实现，那么我们只用在每次进程执行完成的时候调度时间最短的进程就好了。</p>
+<h3 id="priority-scheduling">Priority Scheduling</h3>
+<p>每个进程都有一个优先级和他关联。<br>
+同样的优先级调度也有抢占和非抢占的实现。<br>
+如果是抢占的实现，对于每次有新进程到来，我们都要重新调度上<strong>优先级最高的进程</strong>。<br>
+对于非抢占的实现，那么我们只用在每次进程执行完成的时候调度优先级的进程就好了。<br>
+优先级算法的一个问题是可能造成<strong>饥饿starvation</strong>，低优先级的进程被一直阻塞得不到执行。SJF也是优先级算法的一种，也是存在starvation的问题的。<br>
+一个解决办法是Aging，提高等待时间长的进程的优先级。</p>
+<h3 id="round-robin">Round-Robin</h3>
+<p>Round-Robin是一种为分时系统设计的调度算法。他一定是抢占的。<br>
+我们把一个较小的时间单元定义成一个<strong>time slice</strong>，将Ready进程建立一个FIFO队列。<br>
+我们每次从队列中调度第一个进程，在执行完它的time slice或者执行完成之后它被切换走放在队列的末尾，队列中的下一个进程被调度。<br>
+Round-Robin需要考虑的一个问题是time slice的大小。太小的话context switch的overhead太大，太大的话就变成了FIFC。</p>
+<h3 id="multilevel-queue-scheduling">Multilevel Queue Scheduling</h3>
+
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#%E8%BF%9B%E7%A8%8B">进程</a>
+<ul>
+<li><a href="#pcb">PCB</a></li>
+<li><a href="#%E8%BF%9B%E7%A8%8B%E7%9A%84%E5%88%9B%E5%BB%BA-forkexec">进程的创建 Fork+Exec</a></li>
+<li><a href="#%E8%BF%9B%E7%A8%8B%E7%9A%84%E7%BB%88%E6%AD%A2">进程的终止</a></li>
+</ul>
+</li>
+<li><a href="#%E8%BF%9B%E7%A8%8B%E9%97%B4%E9%80%9A%E4%BF%A1-ipc">进程间通信 IPC</a></li>
+<li><a href="#%E8%B0%83%E5%BA%A6%E7%AE%97%E6%B3%95%E9%87%8D%E7%82%B9">调度算法(重点)</a>
+<ul>
+<li><a href="#first-come-first-serve">First come first serve</a></li>
+<li><a href="#sjf-%E6%9C%80%E7%9F%AD%E4%BD%9C%E4%B8%9A%E4%BC%98%E5%85%88">SJF 最短作业优先</a></li>
+<li><a href="#priority-scheduling">Priority Scheduling</a></li>
+<li><a href="#round-robin">Round-Robin</a></li>
+<li><a href="#multilevel-queue-scheduling">Multilevel Queue Scheduling</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="http://127.0.0.1:8080/post/ds-pai-xu/">
+              <h3 class="post-title">
+                DS-Sort
+              </h3>
+            </a>
+          </div>
+        
+
+        
+
+        <div class="site-footer">
+  
+  <a class="rss" href="http://127.0.0.1:8080/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>

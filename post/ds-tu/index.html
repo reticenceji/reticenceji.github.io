@@ -1,0 +1,626 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>DS-Graph | Reticence</title>
+<link rel="shortcut icon" href="http://127.0.0.1:8080/favicon.ico?v=1619508275369">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="http://127.0.0.1:8080/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="DS-Graph | Reticence - Atom Feed" href="http://127.0.0.1:8080/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-90HNEFFE0M"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-90HNEFFE0M');
+</script>
+
+
+    <meta name="description" content="图的基本概念在离散数学里讲过了。图G是点V和边E共同构成的。
+有向图和无向图。
+
+树：树是一个connected and acyclic（连接且非循环）的图。
+
+图的表示方法
+邻接矩阵Adjacency Matrix，N×N的矩阵。
+Mat..." />
+    <meta name="keywords" content="DS" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="http://127.0.0.1:8080">
+  <img class="avatar" src="http://127.0.0.1:8080/images/avatar.png?v=1619508275369" alt="">
+  </a>
+  <h1 class="site-title">
+    Reticence
+  </h1>
+  <p class="site-description">
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          Index
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          Classification
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          Archives
+        </a>
+      
+    
+      
+        <a href="/navigator.html" class="menu">
+          Navigator
+        </a>
+      
+    
+      
+        <a href="/post/book-list" class="menu">
+          Booklist
+        </a>
+      
+    
+      
+        <a href="/post/fei-md-ge-shi-bi-ji-hui-zong" class="menu">
+          Notes
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          About
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+        <a href="https://github.com/reticenceji" target="_blank">
+          <i class="ri-github-line"></i>
+        </a>
+      
+    
+      
+    
+      
+    
+      
+        <a href="https://www.zhihu.com/people/reticenceji" target="_blank">
+          <i class="ri-zhihu-line"></i>
+        </a>
+      
+    
+      
+    
+  </div>
+  <script>
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
+    var s = document.getElementsByTagName("script")[0]; 
+    s.parentNode.insertBefore(hm, s);
+  })();
+  </script>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              DS-Graph
+            </h2>
+            <div class="post-info">
+              <span>
+                2020-11-24
+              </span>
+              <span>
+                16 min read
+              </span>
+              
+                <a href="http://127.0.0.1:8080/tag/0AqTQfzSL/" class="post-tag">
+                  # DS
+                </a>
+              
+            </div>
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <p>图的基本概念在离散数学里讲过了。<strong>图G</strong>是<strong>点V</strong>和<strong>边E</strong>共同构成的。<br>
+有向图和无向图。</p>
+<ul>
+<li>树：树是一个connected and acyclic（连接且非循环）的图。</li>
+</ul>
+<h2 id="图的表示方法">图的表示方法</h2>
+<p><strong>邻接矩阵</strong>Adjacency Matrix，N×N的矩阵。<br>
+<code>Matrix[x][y]==1</code>表示连接(也可以表示权)，<code>Matrix[x][y]==0</code>表示不连接。<br>
+方便于快速确定两个点之间的相邻关系。<br>
+<strong>邻接表</strong><br>
+方便对点之间相邻关系的遍历。</p>
+<pre><code class="language-c">//这是老师给的，非常复杂
+typedef struct AdjVNode *PtrToAdjVNode; 
+//邻接表的节点定义
+struct AdjVNode{
+    Vertex AdjV;        //相邻节点的值
+    int weight;			//边的权重
+    PtrToAdjVNode Next;     //指向下一个节点的指针
+};  //一个节点所连边的链表
+
+typedef struct Vnode{
+    PtrToAdjVNode FirstEdge;    //一个节点所连边的链表
+} AdjList[MaxVertexNum];    //邻接表
+
+typedef struct GNode *PtrToGNode;
+struct GNode{  
+    int Nv;     //总节点数量
+    int Ne;     //总边数量
+    AdjList G;  //邻接表
+};
+typedef PtrToGNode LGraph;  //定义了一个邻接表
+</code></pre>
+<h2 id="拓扑排序">拓扑排序</h2>
+<p>Topological sorts.适用于不循环(acyclic)的图。不过也可以通过拓扑排序判断图是否循环。拓扑排序的结果不一定是唯一的。</p>
+<p>拓扑排序的思想是</p>
+<ol>
+<li>初始化一个入度为0的点的队列（队列或堆栈）。</li>
+<li>如果队列为空，那么结束。</li>
+<li>从队列中出队vertex V，并给V的后继indegree-1。</li>
+<li>寻找入度为0的点的入队。<br>
+如果最后不存在入度为0的节点，那就说明有环，无解。</li>
+</ol>
+<pre><code class="language-c">Topsort(Graph G)
+{
+	Queue Q;	//queue的操作就当已经实现
+    int inDegree[G.Nv];		//入度数组 
+    int Count = 0;
+    Vertex V,W;
+    
+    Initialize(inDegree,G);		//假装初始化好了入度数组
+    for (int i=0;i&lt;G.Nv;i++)
+        if (inDegree[i]==0) Enqueue(Q,G.G[i]);
+    while (!empty(Q))
+    {
+        V = Dequeue(Q);
+        print(V);       //反正标记到他了
+        for i in V.next:		//开始瞎写了
+        	Enqueue(Q,i);
+    }
+}
+</code></pre>
+<h2 id="aoe-network">AOE network</h2>
+<p>用顶点表示事件，<strong>用边表示活动</strong>，权值表示活动的持续时间。<br>
+只有在某顶点代表的事件发生后，从该顶点出发的各活动才能开始。只有在进入某顶点的各活动都已经结束，该顶点代表的事件才能发生。<br>
+因此在 AOE 网中，只有一个入度为 0 的点表示工程的开始，即<strong>源点</strong>，也只有一个出度为 0 的点表示工程的结束，即<strong>汇点</strong>。是无环图。</p>
+<h3 id="关键路径的计算">关键路径的计算</h3>
+<p>在 AOE 网上，从源点到汇点的具<strong>最大路径长度（该路径上行各活动持续时间的和）<strong>的路径称为</strong>关键路径</strong>，关键路径上的活动称为<strong>关键活动</strong>。<br>
+有两个概念，一个是最早开始时间(EC)，最晚开始时间(LC).对于关键路径上的事件，<code>EC==LC</code>。</p>
+<ul>
+<li>可以用类似于拓扑排序的方法求最早开始时间：<code>EC[v] = Max{v前继的EC}+self</code>（所以要记录每个点的最早开始时间）。</li>
+<li>算完之后，再反过来求最晚开始时间：</li>
+</ul>
+<h2 id="最短路">最短路</h2>
+<h3 id="宽度优先搜索">宽度优先搜索</h3>
+<p>对于每条路都是无权的情况下（每条路等价），我们只用简单的宽度优先搜索。</p>
+<h3 id="dijkstra">Dijkstra</h3>
+<p><strong>Dijkstra</strong> 是单源最短路算法，不能处理带负边权的情况，用邻接矩阵或邻接表存图。是一种贪心算法。<br>
+这个<a href="https://visualgo.net/en/sssp">链接</a>可以图解。<br>
+unkown优先队列：把未曾经过的点组成一个最小堆。这样对稀疏图高，否则要遍历找最小。</p>
+<pre><code>初始化一个distance数组，标记起点为0,其他的点为INF。初始化一个unknown优先队列，把起点入队。
+从unknown中pop出一个vertex,遍历vertex的邻点：
+	如果邻点known(就是从unknown队列中pop出来过，可以存储一下)，则不做操作
+	否则
+		判断从该vertex出发到它邻点的距离，是否能更新distance数组。
+		将邻点入unknown优先队列（有的点可能被重复入队，其实是要改变他的位置）
+如果unknown空了，就结束了
+</code></pre>
+<h3 id="floyd算法">Floyd算法</h3>
+<p>计算所有点到所有点的最短距离。时间复杂度为O(N^3)。可以看出用<strong>邻接表</strong>最好。</p>
+<pre><code>/* 初始化 */
+for (v=0;v&lt;G.Nv;v++)
+    for (w=0;w&lt;G.Nv;w++)
+    {
+        D[v][w] = G.matrix[v][w];   //D[v][w]就是v到w的最短路
+        P[v][w] = w;    //P存储着路径的前驱
+    }
+
+for (k=0;k&lt;G.Nv;k++)
+    for (v=0;v&lt;G.Nv;v++)
+        for (w=0;w&lt;G.Nv;w++)
+            if (D[v][w]&gt;D[v][k]+D[k][w])
+            {
+                D[v][w] =D[v][k]+D[k][w];
+                P[v][w] = P[v][k];
+            }
+</code></pre>
+<h2 id="最大流">最大流</h2>
+<p><strong>最大流问题</strong>：在一个单源点、单汇点的<a href="https://zh.wiki.sxisa.org/wiki/%E7%BD%91%E7%BB%9C%E6%B5%81">网络流</a>中找到一条最大的可行流。</p>
+<p>有向图称为网络。<a href="https://zh.wiki.sxisa.org/wiki/%E9%A1%B6%E7%82%B9_(%E5%9B%BE%E8%AE%BA)">顶点</a>称为<strong>节点</strong>（Node）而边称为<strong>弧</strong>（Arc）。一道<strong>流</strong>必須符合一個节点的进出的流量相同的限制，除非這是一個<strong>源</strong>（Source）──有较多向外的流，或是一個<strong>汇</strong>（Sink）──有较多向內的流。</p>
+<blockquote>
+<p>在<a href="https://zh.wiki.sxisa.org/wiki/%E7%BD%91%E7%BB%9C%E6%B5%81#%E7%BD%91%E7%BB%9C%E6%B5%81%E5%9B%BE">容量网络</a>中满足以下条件的<a href="https://zh.wiki.sxisa.org/wiki/%E7%BD%91%E7%BB%9C%E6%B5%81#%E7%BD%91%E7%BB%9C%E6%B5%81">网络流</a>称为<strong>可行流</strong>:</p>
+<ul>
+<li><strong>容量限制（Capacity Constraints）</strong>: <img src="https://wikimedia.org/api/rest_v1/media/math/render/svg/03bf4a130c925e9fcb3474e5c5b911212d47c414" alt="{\displaystyle f(u,v)\leq c(u,v)}" loading="lazy">.</li>
+<li><strong>流守恒（Flow Conservation）</strong>: 除非 <img src="https://wikimedia.org/api/rest_v1/media/math/render/svg/4917c88a09cecda7fbc7d0d0229ff5828dcffbf6" alt="u = s" loading="lazy"> 或 <img src="https://wikimedia.org/api/rest_v1/media/math/render/svg/946fd946b2740532b441aa05282f36fef50267bd" alt="u = t" loading="lazy">，否则 <img src="https://wikimedia.org/api/rest_v1/media/math/render/svg/6713a112980b1a09c450707ad177caf540a91117" alt="{\displaystyle \sum _{w\in V}f(u,w)=0}" loading="lazy"> 。一结点的净流是零，除了“制造”流的源点和“消耗”流的汇点。</li>
+</ul>
+<p>最大流就是最大的可行流。</p>
+</blockquote>
+<p>这个问题的算法有很多很多。只了解一种。Edmonds–Karp算法：<a href="https://visualgo.net/en/maxflow">可视化参考链接</a></p>
+<h3 id="edmondskarp算法">Edmonds–Karp算法</h3>
+<p>时间复杂度为<code>O(VE^2)</code>。当我实际编程的时候，有这些感悟：</p>
+<ol>
+<li>因为涉及查找，所以最好用邻接表而不是邻接矩阵</li>
+<li>难点在于增广路的查找和存储。</li>
+</ol>
+<pre><code>initMaxFlow
+while there is an augmenting path
+    find an augmenting path using BFS
+    for each edge u-&gt;v in the path
+        decrease capacity u-&gt;v by bottleneck
+        increase capacity v-&gt;u by bottleneck
+    increase maxflow by bottleneck
+</code></pre>
+<p>功能：用广度优先搜索查找增广路<br>
+参数：source和destination指定源和汇，grpah-&gt;matrix是邻接矩阵，结果存储在ADT stack中。下面是伪代码：</p>
+<pre><code>int find_argument(int source,int destination, Lgraph* graph,Stack* stack)
+{
+    //初始化，visited表示是否已经访问过
+    for (i=1;i&lt;=graph-&gt;Nv;i++)
+        visited[i] = 0;
+    visited[source] = 1;
+  
+    i = 1;
+    while (1)
+    {
+         //没有访问过并且有路，就是下一个目标
+        if (graph-&gt;matrix[source][i]&gt;0 &amp;&amp; visited[i]==0)       
+        {
+           stack.push( (source,i) )
+            visited[i] = 1;
+            if (i==destination) return True;   
+            source = i;
+            i=1;
+            continue;
+        }
+        i++;   
+        // 说明没找到
+        if (i&gt;graph-&gt;Nv) 
+        {
+            if (stack.isEmpty() ) return false; //如果栈空了说明没有路，否则退回上一步
+            source,i = stack.pop()
+            visited[i] = 0;
+            i++;
+        }
+    }
+}
+</code></pre>
+<h2 id="最小生成树-minimum-spanning-tree">最小生成树 Minimum spanning tree</h2>
+<p>Minimum spanning tree。连通图都有最小生成树。找n-1条边把图联通，让边之和最小。<br>
+参考链接<a href="https://zhuanlan.zhihu.com/p/34922624">知乎</a>。Prim算法以点为中心，一个点一个点的扩展，和Dijkstra算法非常相似。Kruskal算法是并查集。</p>
+<h3 id="prim算法">Prim算法</h3>
+<blockquote>
+<p>1）以某一个点开始，寻找当前该点可以访问的所有的边；<br>
+2）在已经寻找的边中发现<strong>最小边</strong>^1，这个边必须有一个点还没有访问过，将还<strong>没有访问的点</strong>加入我们的集合，记录添加的边；<br>
+3）寻找当前集合可以访问的所有边，重复2的过程，直到没有新的点可以加入；<br>
+4）此时由所有边构成的树即为最小生成树。</p>
+</blockquote>
+<ol>
+<li>发现最小边：最好用堆</li>
+<li>标记没有访问的点：可以用一个数组</li>
+</ol>
+<h3 id="kruskal-算法">Kruskal 算法</h3>
+<p>时间复杂度貌似取决于排序算法。</p>
+<blockquote>
+<p>现在我们假设一个图有m个节点，n条边。<br>
+首先，我们需要把m个节点看成m个独立的生成树，并且把n条边按照从小到大的数据进行排列。<br>
+在n条边中，我们依次取出其中的每一条边，如果发现边的<strong>两个节点分别位于两棵树上</strong>【2】，那么<strong>把两棵树合并成为一颗树</strong>【3】；如果树的两个节点位于同一棵树上，那么忽略这条边，继续运行。<br>
+等到所有的边都遍历结束之后【4】，如果所有的生成树可以<strong>合并成一条生成树</strong>【1】，那么它就是我们需要寻找的最小生成树，反之则没有最小生成树。</p>
+</blockquote>
+<ol>
+<li>是否合并成一棵树：利用并查集，看有几个集合。</li>
+<li>两个节点分别位于两棵树上：并查集Find</li>
+<li>把两棵树合并成为一颗树：并查集Union，如果需要的话要记录连接的边。</li>
+<li>如果找到Nv-1条边也可以提前结束</li>
+</ol>
+<h3 id="图的遍历">图的遍历</h3>
+<p>可以找一个图的所有生成树（没必要最小），然后遍历树。</p>
+<pre><code class="language-c">//深度优先搜索。最好用邻接表，这样时间复杂度是`T(E+V)`
+void DFS(Vertex V)
+{
+	visited[V] = true;
+    /* 要做点事情的吧 */
+	for (each W adjacent to V)
+		if (!visited[W])
+			DFS(W);
+}
+void BFS(Vertex V)
+{
+    visited[V] = true; Enqueue(V);
+    while (NotEnpty())
+    {
+        Dequeue(V);
+         /* 要做点事情的吧 */
+        for (each W adjacent to V)
+			if (!visited[W])
+				Enqueue(W);
+    }
+}
+//如果是连通图，那么找一个点DFS就够了。如果不是，遍历所有的树
+void (Graph G)
+{
+    for (each V in G)
+        if (!visited[V])
+            DFS(V);
+}
+</code></pre>
+<h2 id="双连通图-biconnection">双连通图 Biconnection</h2>
+<p><strong>点双连通</strong>：在无向连通图中，如果删除该图的任何一个<strong>结点</strong>都不能改变该图的连通性，则该图为双连通的无向图。<br>
+类似的有<strong>边双连通</strong>：在无向连通图中，如果删除该图的任何一个<strong>边</strong>都不能改变该图的连通性，则该图为双连通的无向图。<br>
+割点：在一个无向图中，如果有一个顶点集合，删除这个顶点集合以及这个集合中所有顶点相关联的边以后，图的连通分量增多，就称这个点集为割点集合。<strong>如果割点集合只有一个点，那么就叫割点/断点(cut/articulation point)。</strong></p>
+<h3 id="tarjan算法">Tarjan算法</h3>
+<p>Tarjan算法是是Tarjan发明的算法的统称。一般来说指下面求解下面三个问题的算法</p>
+<ol>
+<li>有向图的强连通分量。</li>
+<li>无向图的双联通分量。下面讲这个。</li>
+<li>最近公共祖先问题。</li>
+</ol>
+<p>假设我们有一个连通的无向图G。<br>
+首先，用DFS获得G的<strong>生成树spinning tree</strong>。<br>
+然后寻找图G的articulation point，具体方法如下：</p>
+<ul>
+<li>root是割点 等价于 他有两个children</li>
+<li>其他的点是割点 等价于 他至少有一个孩子，并且他不能通过它的孩子跳到它的祖先。</li>
+</ul>
+<p>实现：<br>
+用DFS获得图G的生成树，根据访问顺序我们给每一个节点v一个<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>N</mi><mi>u</mi><mi>m</mi><mo>[</mo><mi>v</mi><mo>]</mo></mrow><annotation encoding="application/x-tex">Num[v]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="mord mathdefault">u</span><span class="mord mathdefault">m</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.03588em;">v</span><span class="mclose">]</span></span></span></span>，也就是生成树的preorder遍历顺序。<br>
+然后我们再维护一个<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>L</mi><mi>o</mi><mi>w</mi><mo>[</mo><mi>u</mi><mo>]</mo><mo>=</mo><mi>m</mi><mi>i</mi><mi>n</mi><mo>(</mo><mi>N</mi><mi>u</mi><mi>m</mi><mo>[</mo><mi>u</mi><mo>]</mo><mo separator="true">,</mo><mi>m</mi><mi>i</mi><mi>n</mi><mo>(</mo><mi>L</mi><mi>o</mi><mi>w</mi><mo>[</mo><mi>w</mi><mo>]</mo><mi mathvariant="normal">∣</mi><mi>w</mi><mtext> </mtext><mi>i</mi><mi>s</mi><mtext> </mtext><mi>a</mi><mtext> </mtext><mi>c</mi><mi>h</mi><mi>i</mi><mi>l</mi><mi>d</mi><mtext> </mtext><mi>o</mi><mi>f</mi><mtext> </mtext><mi>u</mi><mo>)</mo><mo separator="true">,</mo><mi>m</mi><mi>i</mi><mi>n</mi><mo>(</mo><mi>N</mi><mi>u</mi><mi>m</mi><mo>[</mo><mi>w</mi><mo>]</mo><mi mathvariant="normal">∣</mi><mo>(</mo><mi>u</mi><mo separator="true">,</mo><mi>w</mi><mo>)</mo><mi>i</mi><mi>s</mi><mtext> </mtext><mi>a</mi><mtext> </mtext><mi>b</mi><mi>a</mi><mi>c</mi><mi>k</mi><mtext> </mtext><mi>e</mi><mi>d</mi><mi>g</mi><mi>e</mi><mo>)</mo><mo>)</mo></mrow><annotation encoding="application/x-tex">Low[u] = min( Num[u], min( Low[w] | w\ is\ a\ child\ of\ u), min(Num[w] | (u,w) is\ a\ back\ edge))</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">L</span><span class="mord mathdefault">o</span><span class="mord mathdefault" style="margin-right:0.02691em;">w</span><span class="mopen">[</span><span class="mord mathdefault">u</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">m</span><span class="mord mathdefault">i</span><span class="mord mathdefault">n</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="mord mathdefault">u</span><span class="mord mathdefault">m</span><span class="mopen">[</span><span class="mord mathdefault">u</span><span class="mclose">]</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">m</span><span class="mord mathdefault">i</span><span class="mord mathdefault">n</span><span class="mopen">(</span><span class="mord mathdefault">L</span><span class="mord mathdefault">o</span><span class="mord mathdefault" style="margin-right:0.02691em;">w</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.02691em;">w</span><span class="mclose">]</span><span class="mord">∣</span><span class="mord mathdefault" style="margin-right:0.02691em;">w</span><span class="mspace"> </span><span class="mord mathdefault">i</span><span class="mord mathdefault">s</span><span class="mspace"> </span><span class="mord mathdefault">a</span><span class="mspace"> </span><span class="mord mathdefault">c</span><span class="mord mathdefault">h</span><span class="mord mathdefault">i</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">d</span><span class="mspace"> </span><span class="mord mathdefault">o</span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mspace"> </span><span class="mord mathdefault">u</span><span class="mclose">)</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">m</span><span class="mord mathdefault">i</span><span class="mord mathdefault">n</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="mord mathdefault">u</span><span class="mord mathdefault">m</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.02691em;">w</span><span class="mclose">]</span><span class="mord">∣</span><span class="mopen">(</span><span class="mord mathdefault">u</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.02691em;">w</span><span class="mclose">)</span><span class="mord mathdefault">i</span><span class="mord mathdefault">s</span><span class="mspace"> </span><span class="mord mathdefault">a</span><span class="mspace"> </span><span class="mord mathdefault">b</span><span class="mord mathdefault">a</span><span class="mord mathdefault">c</span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span><span class="mspace"> </span><span class="mord mathdefault">e</span><span class="mord mathdefault">d</span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="mord mathdefault">e</span><span class="mclose">)</span><span class="mclose">)</span></span></span></span>，<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>L</mi><mi>o</mi><mi>w</mi><mo>[</mo><mi>u</mi><mo>]</mo></mrow><annotation encoding="application/x-tex">Low[u]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">L</span><span class="mord mathdefault">o</span><span class="mord mathdefault" style="margin-right:0.02691em;">w</span><span class="mopen">[</span><span class="mord mathdefault">u</span><span class="mclose">]</span></span></span></span>的意思是u可以通过它的孩子、它的<strong>背向边back edge</strong>到达的最小的点。<br>
+那么图G的articulation point v，满足：</p>
+<ul>
+<li>v=root and v have 2 child。</li>
+<li>v!=root and v至少有一个孩子w满足<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi><mi>u</mi><mi>m</mi><mo>[</mo><mi>v</mi><mo>]</mo><mo>≤</mo><mi>l</mi><mi>o</mi><mi>w</mi><mo>[</mo><mi>w</mi><mo>]</mo></mrow><annotation encoding="application/x-tex">num[v] \le low[w]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">n</span><span class="mord mathdefault">u</span><span class="mord mathdefault">m</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.03588em;">v</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">o</span><span class="mord mathdefault" style="margin-right:0.02691em;">w</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.02691em;">w</span><span class="mclose">]</span></span></span></span>。</li>
+</ul>
+<h2 id="强连通">强连通</h2>
+<p>强连通：在有向图G中，如果两个顶点vi,vj间（vi&gt;vj）有一条从vi到vj的有向路径，同时还有一条从vj到vi的有向路径，则称两个顶点强连通(strongly connected)。<br>
+强连通图：如果有向图G的每两个顶点都强连通，称G是一个强连通图。<br>
+强连通分量：有向图的极大强连通子图，称为强连通分量(strongly connected components)，也就是说是图G的一些特殊子集。</p>
+<p>强连通性也是一种顶点之间等价关系，因为它有着以下性质。</p>
+<ul>
+<li>自反性：任意顶点v和自己都是强连通的。</li>
+<li>对称性：如果v和w是强连通的，那么w和v也是强连通的。</li>
+<li>传递性：如果v和w是强连通的，且w和x也是强连通的，那么v和x也是强连通的。</li>
+</ul>
+<h3 id="korasaju算法">Korasaju算法</h3>
+<p>我们可以通过执行两次DFS找出图的strongly connected components。</p>
+<blockquote>
+<p>第一步：拿到当前图G的反向图G-。（转置）<br>
+第二步：对G-进行深度优先遍历(DFS)，拿到<strong>G-的reversePost</strong>（G的伪拓扑排序）。<br>
+第三步：根据reversePost中节点的顺序，对当前图G进行深度优先遍历（DFS），即可得到强连通分量的数量。</p>
+</blockquote>
+<p>我们看个例子图G：<br>
+<img src="http://127.0.0.1:8080/post-images/1608361787942.webp" alt="" loading="lazy"><br>
+应用算法：<br>
+<img src="http://127.0.0.1:8080/post-images/1608361751302.jpg" alt="" loading="lazy"><br>
+这个算法为什么是对的？<br>
+首先，G-和G的强连通分量是一致的。<br>
+本来I可能会遍历到E的，但是通过reversePost，我们让E先于I被访问。对于这种单向连通的情况，我们让儿子先于父亲被访问了，就不会被访问了。<br>
+给出<strong>伪代码</strong>：</p>
+<pre><code class="language-c">int DFS1(int  v) /* visitedthevnode */
+{
+    visited[v] = 1;
+    for (int i = 1;i &lt;= N;i++)
+        if (!visited[i] &amp;&amp; maxtrx[i][v])    //注意这里是矩阵的转置，所以是v,i。如果你觉得这样locality很差的话也可以新建一个matrix
+            DFS1( i );
+    S.push( v );
+    return 0;
+}
+ 
+int DFS2( int v )
+{
+    visited[v] = 1;
+    for (int i = 1;i &lt;= N;i++)
+        if ( !visited[i] &amp;&amp; nmap[v][i] )
+            DFS2( i );
+    /* 在同一次遍历到的节点就在同一个强连通分量了 
+     * 你可以把他们存下来或者做别的操作 
+     */
+    return 0;
+}
+
+void korasaju()
+{
+    for (i=0;i&lt;N;i++)
+        if (!visited[i]) DFS(i);        //通过第一次DFS得到一个Stack，由此得到reversePost
+    visited = {0};
+    for (i=0;i&lt;N;i++){
+        t = S.pop();
+        if (!visited[t]) DFS(t);
+    }  
+}
+</code></pre>
+<h2 id="欧拉图">欧拉图</h2>
+<p>如果存在一条路经过图上的每条<strong>边edge</strong>有且仅有一次，那么称这条路是欧拉路，如果这条路是回路，那么称作欧拉回路。</p>
+<ul>
+<li>如果一个图上的<strong>节点vertex</strong>的<strong>度degree</strong>都是<strong>偶数even</strong>或有且仅有两个<strong>奇数odd</strong>，那么我们可以找到一条<strong>欧拉路Euler path</strong>。</li>
+<li>如果一个图上每个vertex的degree都是偶数，那么我们可以找到一个<strong>欧拉回路Euler circuit</strong>。</li>
+</ul>
+<h2 id="最大独立集">最大独立集</h2>
+<blockquote>
+<p>独立集就是，就是一个点集，点集中的各点没有关系。<br>
+最大独立集就是，点的个数最多的独立集。</p>
+<p>最大独立集 == 点的总数 - 最小点覆盖。<br>
+这是为什么呢？</p>
+<p>简单证明：<br>
+最大独立集合的定义 是 最大无关系点的集合。</p>
+<p>而最小点覆盖的定义是，二分图中每个边至少一个端点在该点集中 的 最小点集。</p>
+<p>如果去掉这些点， 相应的关系（边）也都没有了。剩下的点之间就相互没有关系，变成了独立集。</p>
+<p>因为去掉的是 最少的点的集合， 所以剩下的就是最大独立集合。</p>
+<p>最大独立集 就可以通过匈牙利算法来做。</p>
+<p>————————————————<br>
+版权声明：本文为CSDN博主「Probie Tao」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。<br>
+原文链接：https://blog.csdn.net/qq_43824791/article/details/93224408</p>
+</blockquote>
+<p>Bron–Kerbosch算法求一般图最大团/最大独立集。</p>
+<p>找到包含R中所有顶点，P中的部分顶点，不再X中的顶点的最大独立集。一开始，将R和X设为空，P设为图的顶点集。</p>
+<pre><code class="language-text">R := {}
+P := node set of G 
+X := {}
+
+BronKerbosch1(R, P, X):
+    if P and X are both empty:
+        report R as a maximal clique
+    for each vertex v in P:
+        BronKerbosch1(R ⋃ {v}, P ⋂ N(v), X ⋂ N(v))
+        P := P \ {v}
+        X := X ⋃ {v}
+</code></pre>
+
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#%E5%9B%BE%E7%9A%84%E8%A1%A8%E7%A4%BA%E6%96%B9%E6%B3%95">图的表示方法</a></li>
+<li><a href="#%E6%8B%93%E6%89%91%E6%8E%92%E5%BA%8F">拓扑排序</a></li>
+<li><a href="#aoe-network">AOE network</a>
+<ul>
+<li><a href="#%E5%85%B3%E9%94%AE%E8%B7%AF%E5%BE%84%E7%9A%84%E8%AE%A1%E7%AE%97">关键路径的计算</a></li>
+</ul>
+</li>
+<li><a href="#%E6%9C%80%E7%9F%AD%E8%B7%AF">最短路</a>
+<ul>
+<li><a href="#%E5%AE%BD%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2">宽度优先搜索</a></li>
+<li><a href="#dijkstra">Dijkstra</a></li>
+<li><a href="#floyd%E7%AE%97%E6%B3%95">Floyd算法</a></li>
+</ul>
+</li>
+<li><a href="#%E6%9C%80%E5%A4%A7%E6%B5%81">最大流</a>
+<ul>
+<li><a href="#edmondskarp%E7%AE%97%E6%B3%95">Edmonds–Karp算法</a></li>
+</ul>
+</li>
+<li><a href="#%E6%9C%80%E5%B0%8F%E7%94%9F%E6%88%90%E6%A0%91-minimum-spanning-tree">最小生成树 Minimum spanning tree</a>
+<ul>
+<li><a href="#prim%E7%AE%97%E6%B3%95">Prim算法</a></li>
+<li><a href="#kruskal-%E7%AE%97%E6%B3%95">Kruskal 算法</a></li>
+<li><a href="#%E5%9B%BE%E7%9A%84%E9%81%8D%E5%8E%86">图的遍历</a></li>
+</ul>
+</li>
+<li><a href="#%E5%8F%8C%E8%BF%9E%E9%80%9A%E5%9B%BE-biconnection">双连通图 Biconnection</a>
+<ul>
+<li><a href="#tarjan%E7%AE%97%E6%B3%95">Tarjan算法</a></li>
+</ul>
+</li>
+<li><a href="#%E5%BC%BA%E8%BF%9E%E9%80%9A">强连通</a>
+<ul>
+<li><a href="#korasaju%E7%AE%97%E6%B3%95">Korasaju算法</a></li>
+</ul>
+</li>
+<li><a href="#%E6%AC%A7%E6%8B%89%E5%9B%BE">欧拉图</a></li>
+<li><a href="#%E6%9C%80%E5%A4%A7%E7%8B%AC%E7%AB%8B%E9%9B%86">最大独立集</a></li>
+</ul>
+</li>
+</ul>
+
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="http://127.0.0.1:8080/post/yi-ge-jin-cheng-shi-zen-me-kai-shi-de/">
+              <h3 class="post-title">
+                一个进程是怎么开始的
+              </h3>
+            </a>
+          </div>
+        
+
+        
+
+        <div class="site-footer">
+  
+  <a class="rss" href="http://127.0.0.1:8080/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>

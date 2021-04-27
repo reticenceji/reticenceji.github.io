@@ -1,0 +1,313 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>GCC-可变参数的使用和原理 | Reticence</title>
+<link rel="shortcut icon" href="http://127.0.0.1:8080/favicon.ico?v=1619508275369">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="http://127.0.0.1:8080/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="GCC-可变参数的使用和原理 | Reticence - Atom Feed" href="http://127.0.0.1:8080/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-90HNEFFE0M"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-90HNEFFE0M');
+</script>
+
+
+    <meta name="description" content="其实知道C语言参数传递的原理的话，就知道可变参数的原理其实并不困难。我们传入的参数从右到左压栈，也就是说最左边的参数会在栈的顶部（除了返回地址）。
+我们根据第一个参数确定可变参数的个数。
+使用
+我们需要#include &lt;stdarg..." />
+    <meta name="keywords" content="C" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="http://127.0.0.1:8080">
+  <img class="avatar" src="http://127.0.0.1:8080/images/avatar.png?v=1619508275369" alt="">
+  </a>
+  <h1 class="site-title">
+    Reticence
+  </h1>
+  <p class="site-description">
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          Index
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          Classification
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          Archives
+        </a>
+      
+    
+      
+        <a href="/navigator.html" class="menu">
+          Navigator
+        </a>
+      
+    
+      
+        <a href="/post/book-list" class="menu">
+          Booklist
+        </a>
+      
+    
+      
+        <a href="/post/fei-md-ge-shi-bi-ji-hui-zong" class="menu">
+          Notes
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          About
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+        <a href="https://github.com/reticenceji" target="_blank">
+          <i class="ri-github-line"></i>
+        </a>
+      
+    
+      
+    
+      
+    
+      
+        <a href="https://www.zhihu.com/people/reticenceji" target="_blank">
+          <i class="ri-zhihu-line"></i>
+        </a>
+      
+    
+      
+    
+  </div>
+  <script>
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
+    var s = document.getElementsByTagName("script")[0]; 
+    s.parentNode.insertBefore(hm, s);
+  })();
+  </script>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              GCC-可变参数的使用和原理
+            </h2>
+            <div class="post-info">
+              <span>
+                2020-11-06
+              </span>
+              <span>
+                3 min read
+              </span>
+              
+                <a href="http://127.0.0.1:8080/tag/1N1qlBrCX/" class="post-tag">
+                  # C
+                </a>
+              
+            </div>
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <p>其实知道C语言参数传递的原理的话，就知道可变参数的原理其实并不困难。我们传入的参数从右到左压栈，也就是说最左边的参数会在栈的顶部（除了返回地址）。<br>
+我们根据第一个参数确定可变参数的个数。</p>
+<h2 id="使用">使用</h2>
+<p>我们需要<code>#include &lt;stdarg&gt;</code>，然后里面有关键的三个宏函数：</p>
+<p>Following are the macros defined in the header stdarg.h：</p>
+<table>
+<thead>
+<tr>
+<th>Sr.No.</th>
+<th>Macro &amp; Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><a href="https://www.tutorialspoint.com/c_standard_library/c_macro_va_start.htm">void va_start(va_list ap, last_arg)</a>This macro initializes <strong>ap</strong> variable to be used with the <strong>va_arg</strong> and <strong>va_end</strong> macros. The <strong>last_arg</strong> is the last known fixed argument being passed to the function i.e. the argument before the ellipsis.</td>
+</tr>
+<tr>
+<td>2</td>
+<td><a href="https://www.tutorialspoint.com/c_standard_library/c_macro_va_arg.htm">type va_arg(va_list ap, type)</a>This macro retrieves the next argument in the parameter list of the function with type <strong>type</strong>.</td>
+</tr>
+<tr>
+<td>3</td>
+<td><a href="https://www.tutorialspoint.com/c_standard_library/c_macro_va_end.htm">void va_end(va_list ap)</a>This macro allows a function with variable arguments which used the <strong>va_start</strong> macro to return. If <strong>va_end</strong> is not called before returning from the function, the result is undefined.</td>
+</tr>
+</tbody>
+</table>
+<p>了解了三个宏之后，我们来看一个demo</p>
+<pre><code class="language-c">//这是简化版的printf
+#include &lt;stdio.h&gt;
+#include &lt;stdarg.h&gt;
+void print(char *fmt, ...)
+{
+    va_list ap;		
+    int d;
+    char c, *s;
+    va_start(ap, fmt);	//首先我们确定第一个可变参数的位置
+    while (*fmt)
+	{
+		if (*fmt=='%')
+		{
+		switch(*++fmt)
+			{
+				case 's': /* 字符串 */
+					s = va_arg(ap, char *);		//取出下一个参数
+					puts(s);
+					break;
+				case 'd': /* 整数 */
+					d = va_arg(ap, int);
+					printf(&quot;%d&quot;, d);
+					break;
+				case 'c': /* 字符 */
+					c = (char)va_arg(ap, int);	//好像是因为对齐
+					putchar(c);
+				break;
+			}
+		}
+		else
+			putchar(*fmt);
+		fmt++;
+	}
+    va_end(ap);	//在返回之前调用
+}
+</code></pre>
+<p>有时候你可能有特殊的需求不想include stdarg，我们可以这样代替。注意，是gcc。</p>
+<pre><code class="language-c">typedef __builtin_va_list va_list;
+#define va_start(v,l)	__builtin_va_start(v,l)
+#define va_end(v)	__builtin_va_end(v)
+#define va_arg(v,l)	__builtin_va_arg(v,l)
+</code></pre>
+<h2 id="原理">原理</h2>
+<p>最基本的原理就是传参的方式。但是，对于64位的Linux来说，参数传递的方式很复杂。是寄存器和栈的结合，对于老的32位机器来说，参数都在栈上传递，我们只需要分析偏移就好。我也没找到宏的定义。这个坑估计填不上了。</p>
+
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#%E4%BD%BF%E7%94%A8">使用</a></li>
+<li><a href="#%E5%8E%9F%E7%90%86">原理</a></li>
+</ul>
+</li>
+</ul>
+
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="http://127.0.0.1:8080/post/linux012s-scheduling/">
+              <h3 class="post-title">
+                Context Switch In Linux Scheduling 
+              </h3>
+            </a>
+          </div>
+        
+
+        
+
+        <div class="site-footer">
+  
+  <a class="rss" href="http://127.0.0.1:8080/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>

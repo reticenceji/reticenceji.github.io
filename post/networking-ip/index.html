@@ -1,0 +1,399 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Networking-网络层-IP | Reticence</title>
+<link rel="shortcut icon" href="http://127.0.0.1:8080/favicon.ico?v=1619508275369">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="http://127.0.0.1:8080/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="Networking-网络层-IP | Reticence - Atom Feed" href="http://127.0.0.1:8080/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-90HNEFFE0M"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-90HNEFFE0M');
+</script>
+
+
+    <meta name="description" content="
+
+IP是使用Internet的细腰，Network层只能使用IP。
+IP
+IP是Internet Protocol的缩写，只要想通过Internet进行连接就必须使用IP协议。IP datagrams由header和data组成。IP协议..." />
+    <meta name="keywords" content="Networking" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="http://127.0.0.1:8080">
+  <img class="avatar" src="http://127.0.0.1:8080/images/avatar.png?v=1619508275369" alt="">
+  </a>
+  <h1 class="site-title">
+    Reticence
+  </h1>
+  <p class="site-description">
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          Index
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          Classification
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          Archives
+        </a>
+      
+    
+      
+        <a href="/navigator.html" class="menu">
+          Navigator
+        </a>
+      
+    
+      
+        <a href="/post/book-list" class="menu">
+          Booklist
+        </a>
+      
+    
+      
+        <a href="/post/fei-md-ge-shi-bi-ji-hui-zong" class="menu">
+          Notes
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          About
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+        <a href="https://github.com/reticenceji" target="_blank">
+          <i class="ri-github-line"></i>
+        </a>
+      
+    
+      
+    
+      
+    
+      
+        <a href="https://www.zhihu.com/people/reticenceji" target="_blank">
+          <i class="ri-zhihu-line"></i>
+        </a>
+      
+    
+      
+    
+  </div>
+  <script>
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
+    var s = document.getElementsByTagName("script")[0]; 
+    s.parentNode.insertBefore(hm, s);
+  })();
+  </script>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              Networking-网络层-IP
+            </h2>
+            <div class="post-info">
+              <span>
+                2021-02-05
+              </span>
+              <span>
+                5 min read
+              </span>
+              
+                <a href="http://127.0.0.1:8080/tag/GLCgJ5F7H/" class="post-tag">
+                  # Networking
+                </a>
+              
+            </div>
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <p><img src="http://127.0.0.1:8080/post-images/1612670851620.jpg" alt="" loading="lazy"><br>
+<img src="http://127.0.0.1:8080/post-images/1612670869134.jpg" alt="" loading="lazy"><br>
+IP是使用<strong>Internet</strong>的细腰，Network层只能使用IP。</p>
+<h2 id="ip">IP</h2>
+<p>IP是Internet Protocol的缩写，只要想通过Internet进行连接就<strong>必须使用IP协议</strong>。IP datagrams由header和data组成。IP协议是一个简单的协议，也是最重要的协议。</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Behavior</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Datagram</td>
+<td>传递的是互相独立的Datagram，SA DA Data</td>
+</tr>
+<tr>
+<td>Unreliable</td>
+<td>Packet有可能丢失</td>
+</tr>
+<tr>
+<td>Best effort</td>
+<td>尽最大的努力完成Packet的传递，但是不做任何保证，不会检测错误</td>
+</tr>
+<tr>
+<td>Connectionless</td>
+<td>无连接，不保证Packet的顺序</td>
+</tr>
+</tbody>
+</table>
+<p>End-to-end原则：只要能在端点实现的功能，就在端点实现。所以我们不让IP成为一个可靠的服务，而是让TCP成为可靠的服务，当然这是原因之一。</p>
+<h2 id="ip提供的服务">IP提供的服务</h2>
+<ol>
+<li>防止packet死循环。</li>
+<li>将把太长的Packet分段（比如，下一层只能一次传输1500byte，但是一个Packet超过了这个大小）。这也意味着我们需要把它正确的按顺序重组。</li>
+<li>我们有对Header进行检验的Checksum，减少数据包传递到错误地方的可能性。</li>
+<li>有IPv4和IPv6。</li>
+<li>IP允许添加新的字段到Header。</li>
+</ol>
+<h2 id="ipv4-datagram">IPv4 Datagram</h2>
+<figure data-type="image" tabindex="1"><img src="http://127.0.0.1:8080/post-images/1612533521772.png" alt="" loading="lazy"></figure>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Field</th>
+<th style="text-align:center">Size (bit)</th>
+<th style="text-align:center">Comment</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">Version number</td>
+<td style="text-align:center">4</td>
+<td style="text-align:center">指定协议版本（v4 or v6），路由依据版本解析 IP 数据包</td>
+</tr>
+<tr>
+<td style="text-align:center">Header length</td>
+<td style="text-align:center">4</td>
+<td style="text-align:center">指定了 header 的长度(32bit为单位)，通常 options field 是空所以 header 长度一般是 20 bytes，也就是 5 words</td>
+</tr>
+<tr>
+<td style="text-align:center">Type of service</td>
+<td style="text-align:center">8</td>
+<td style="text-align:center">用于区分不同类型的数据包，例如，来自实时服务的和非实时服务的。</td>
+</tr>
+<tr>
+<td style="text-align:center">Datagram length</td>
+<td style="text-align:center">16</td>
+<td style="text-align:center">IP 数据包的最大长度（以字节计），虽然它支持最大 65535 bytes，但是由于链路层 Ethernet 只允许最大 1500，所以设置为 1500 以内，即最大传输单元 MTU</td>
+</tr>
+<tr>
+<td style="text-align:center">Identifier</td>
+<td style="text-align:center">16</td>
+<td style="text-align:center">分片和重组</td>
+</tr>
+<tr>
+<td style="text-align:center">Flags</td>
+<td style="text-align:center">3</td>
+<td style="text-align:center">分片和重组</td>
+</tr>
+<tr>
+<td style="text-align:center">Fragmentation offset</td>
+<td style="text-align:center">13</td>
+<td style="text-align:center">分片和重组</td>
+</tr>
+<tr>
+<td style="text-align:center"><strong>Time-to-live</strong></td>
+<td style="text-align:center">8</td>
+<td style="text-align:center">保证数据包不永远在网络中游荡，TTL 每经过一次路由就减1，减少至0就会被丢弃</td>
+</tr>
+<tr>
+<td style="text-align:center"><strong>Upper-layer-protocol</strong></td>
+<td style="text-align:center">8</td>
+<td style="text-align:center">在到达目的主机时使用，指定了应该将数据包交给哪个传输层协议。例如，6 表示给 TCP，17 表示给 UDP。port 是传输层和应用层之间的分用-复用，而这是网络层和传输层的</td>
+</tr>
+<tr>
+<td style="text-align:center">Header checksum</td>
+<td style="text-align:center">16</td>
+<td style="text-align:center">检测 bit error，路由器如果发现问题就会丢弃这个数据包</td>
+</tr>
+<tr>
+<td style="text-align:center"><strong>Source IP Address</strong></td>
+<td style="text-align:center">32</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center"><strong>Destination IP Address</strong></td>
+<td style="text-align:center">32</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">Data</td>
+<td style="text-align:center">?</td>
+<td style="text-align:center">网络层需要发送的内容，即传输层的数据包。也可以传输其他信息，如 ICMP 消息</td>
+</tr>
+</tbody>
+</table>
+<h2 id="packet-switching">Packet switching</h2>
+<p>Flow：A collection of datagrams belonging to the same end-to-end communication. e.g. a TCP connection.</p>
+<p><strong>统计多路复用Statical Multiplexing</strong>。</p>
+<p>每一个节点只需要知道Destination，然后根据路由表选择下一个节点。</p>
+<p>封装Encapsulation</p>
+<p>三种延迟：</p>
+<ul>
+<li>Propagation delay</li>
+<li>Queueing delay</li>
+<li>Packetization delay</li>
+</ul>
+<h2 id="ipv4地址">IPv4地址</h2>
+<p>netmask：告诉我们哪些IP address是Local address。比如两个IP address A 和 B，<code>if (A &amp; mask == B &amp; mask) then same network</code>。在同一个网络里，就可以直接发送Packet了。比如：</p>
+<ul>
+<li>255.255.255.0 means first 24 bits match。</li>
+<li>255.128.0.0 means first 9 bits match。</li>
+<li>所以越小的netmask代表了一个越大的network。</li>
+</ul>
+<p>我们可以用<code>ifconfig</code>查看我们的netmask。</p>
+<h2 id="longest-prefix-match">Longest Prefix Match</h2>
+<p><img src="http://127.0.0.1:8080/post-images/1612621609705.jpg" alt="" loading="lazy"><br>
+首先，每一个<strong>路由器route</strong>有一个forward table，就是右边的那张表所展示的。每一个项代表了一个网络。通常forward table都有一个默认路由，他和所有的IP地址匹配，就是表中的第一项。<br>
+我们来看图中的IP地址为什么要如此匹配。<br>
+比如A项，默认路由和最后一项都匹配，但是最后一项匹配了30 bit，更长。<br>
+比如B项，<code>0.0.0.0/0</code>、<code>171.0.0.0/8</code>、<code>171.0.0.0/10</code>都是匹配的，但是<code>171.0.0.0/10</code>更长有10 bit，所以是他。</p>
+<h2 id="address-resolution-protocalarp">Address Resolution Protocal(ARP)</h2>
+<p>ARP的用途：Network layer can discover the <strong>link address</strong> associated with a <strong>network address</strong> it’s directly connected to.或者说，可以用来解决这样一个问题：我有一个IP packet，接下来我要把他转发到这个IP address，但是他的link address是什么呢？</p>
+<p>回顾一下之前的内容，网络是分层的，IP所在的network lawyer下面是link lawyer。他们用的不同的地址。network层基本都是IP协议，都是IP地址。link层，比如说常用的Ethernet，用的是一个48 bit address，也叫Mac地址。</p>
+<p>一个基本的ARP过程：</p>
+<ol>
+<li>我Boardcast在整个子网内一个request，谁是IP地址xxx.xxx.xxx.xxx啊？</li>
+<li>拥有对应IP的，单独发送reply（事实上也可以Boardcast，方便刷新局域网内所有的cache）给我，告诉我他的Link address</li>
+<li>我在ARP表内缓存IP address和Link address的对应关系。</li>
+</ol>
+
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#ip">IP</a></li>
+<li><a href="#ip%E6%8F%90%E4%BE%9B%E7%9A%84%E6%9C%8D%E5%8A%A1">IP提供的服务</a></li>
+<li><a href="#ipv4-datagram">IPv4 Datagram</a></li>
+<li><a href="#packet-switching">Packet switching</a></li>
+<li><a href="#ipv4%E5%9C%B0%E5%9D%80">IPv4地址</a></li>
+<li><a href="#longest-prefix-match">Longest Prefix Match</a></li>
+<li><a href="#address-resolution-protocalarp">Address Resolution Protocal(ARP)</a></li>
+</ul>
+</li>
+</ul>
+
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="http://127.0.0.1:8080/post/python-zhuang-shi-qi/">
+              <h3 class="post-title">
+                Python-装饰器
+              </h3>
+            </a>
+          </div>
+        
+
+        
+
+        <div class="site-footer">
+  
+  <a class="rss" href="http://127.0.0.1:8080/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>
