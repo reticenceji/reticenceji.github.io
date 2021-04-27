@@ -3,10 +3,10 @@
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Format String bug-Easy Writeup | Reticence</title>
-<link rel="shortcut icon" href="http://127.0.0.1:8080/favicon.ico?v=1619508275369">
+<link rel="shortcut icon" href="https://reticenceji.github.io/favicon.ico?v=1619509412636">
 <link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
-<link rel="stylesheet" href="http://127.0.0.1:8080/styles/main.css">
-<link rel="alternate" type="application/atom+xml" title="Format String bug-Easy Writeup | Reticence - Atom Feed" href="http://127.0.0.1:8080/atom.xml">
+<link rel="stylesheet" href="https://reticenceji.github.io/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="Format String bug-Easy Writeup | Reticence - Atom Feed" href="https://reticenceji.github.io/atom.xml">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
 
 <script>
@@ -41,8 +41,8 @@ https://www.cn..." />
     <div class="main">
       <div class="main-content">
         <div class="site-header">
-  <a href="http://127.0.0.1:8080">
-  <img class="avatar" src="http://127.0.0.1:8080/images/avatar.png?v=1619508275369" alt="">
+  <a href="https://reticenceji.github.io">
+  <img class="avatar" src="https://reticenceji.github.io/images/avatar.png?v=1619509412636" alt="">
   </a>
   <h1 class="site-title">
     Reticence
@@ -148,7 +148,7 @@ var _hmt = _hmt || [];
                 10 min read
               </span>
               
-                <a href="http://127.0.0.1:8080/tag/4n7nIsyFy/" class="post-tag">
+                <a href="https://reticenceji.github.io/tag/4n7nIsyFy/" class="post-tag">
                   # WriteUps
                 </a>
               
@@ -160,11 +160,11 @@ var _hmt = _hmt || [];
 https://blog.csdn.net/iteye_3619/article/details/81337202<br>
 https://www.cnblogs.com/ichunqiu/p/9329387.html</p>
 <h1 id="linux函数参数传递">Linux函数参数传递</h1>
-<figure data-type="image" tabindex="1"><img src="http://127.0.0.1:8080/post-images/1596605549811.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="1"><img src="https://reticenceji.github.io/post-images/1596605549811.png" alt="" loading="lazy"></figure>
 <center>函数调用约定</center>
-<figure data-type="image" tabindex="2"><img src="http://127.0.0.1:8080/post-images/1596605563030.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="2"><img src="https://reticenceji.github.io/post-images/1596605563030.png" alt="" loading="lazy"></figure>
 <center>内核接口调用约定</center>
-<figure data-type="image" tabindex="3"><img src="http://127.0.0.1:8080/post-images/1596605574284.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="3"><img src="https://reticenceji.github.io/post-images/1596605574284.png" alt="" loading="lazy"></figure>
 <center>用户接口调用约定</center>
 <h1 id="c语言基础">C语言基础</h1>
 <p>%s：用于输出字符串。其本质上是读取对应的参数，并作为指针解析，获取到对应地址的字符串输出。<br>
@@ -176,7 +176,7 @@ https://www.cnblogs.com/ichunqiu/p/9329387.html</p>
 <h3 id="任意读和这道题目关系不大">任意读（和这道题目关系不大）</h3>
 <p><strong>由于此时我们可以通过输入来操控栈，我们可以输入一个地址，再让%s正好对应到这个地址，从而输出地址指向的字符串，实现任意地址读。</strong><br>
 <code>&gt;&gt;AAAA%08x.%08x.%08x.%08x.%08x.%08x.%08x.%08x.%08x.%08x.</code>发现是第四个参数<br>
-<img src="http://127.0.0.1:8080/post-images/1596608733032.png" alt="" loading="lazy"><br>
+<img src="https://reticenceji.github.io/post-images/1596608733032.png" alt="" loading="lazy"><br>
 结合这张图，就知道为什么是第四个了。<br>
 addr里头可能会出现不可写的字符，需要用别的技巧输入。</p>
 <h3 id="任意写">任意写</h3>
@@ -187,8 +187,8 @@ addr里头可能会出现不可写的字符，需要用别的技巧输入。</p>
 发现getshell函数，位于 0x0804861f 处。要让控制流到这里。<br>
 修改GOT表，让控制流导向这个地方。<br>
 gdb调试，找到要修改的GOT表的位置，<br>
-<img src="http://127.0.0.1:8080/post-images/1596631727569.png" alt="" loading="lazy"><br>
-<img src="http://127.0.0.1:8080/post-images/1596631827661.png" alt="" loading="lazy"><br>
+<img src="https://reticenceji.github.io/post-images/1596631727569.png" alt="" loading="lazy"><br>
+<img src="https://reticenceji.github.io/post-images/1596631827661.png" alt="" loading="lazy"><br>
 先在本地用gdb修改尝试，发现拿到shell。<br>
 然后构造payload。</p>
 <h1 id="回顾总结">回顾总结</h1>
@@ -376,7 +376,7 @@ c.interactive()
         
           <div class="next-post">
             <div class="next">下一篇</div>
-            <a href="http://127.0.0.1:8080/post/linklist-writeup/">
+            <a href="https://reticenceji.github.io/post/linklist-writeup/">
               <h3 class="post-title">
                 linklist Writeup
               </h3>
@@ -388,7 +388,7 @@ c.interactive()
 
         <div class="site-footer">
   
-  <a class="rss" href="http://127.0.0.1:8080/atom.xml" target="_blank">
+  <a class="rss" href="https://reticenceji.github.io/atom.xml" target="_blank">
     <i class="ri-rss-line"></i> RSS
   </a>
 </div>

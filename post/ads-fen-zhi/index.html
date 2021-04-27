@@ -3,10 +3,10 @@
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>ADS-分治 | Reticence</title>
-<link rel="shortcut icon" href="http://127.0.0.1:8080/favicon.ico?v=1619508275369">
+<link rel="shortcut icon" href="https://reticenceji.github.io/favicon.ico?v=1619509412636">
 <link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
-<link rel="stylesheet" href="http://127.0.0.1:8080/styles/main.css">
-<link rel="alternate" type="application/atom+xml" title="ADS-分治 | Reticence - Atom Feed" href="http://127.0.0.1:8080/atom.xml">
+<link rel="stylesheet" href="https://reticenceji.github.io/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="ADS-分治 | Reticence - Atom Feed" href="https://reticenceji.github.io/atom.xml">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
 
 <script>
@@ -41,8 +41,8 @@ Substitution meth..." />
     <div class="main">
       <div class="main-content">
         <div class="site-header">
-  <a href="http://127.0.0.1:8080">
-  <img class="avatar" src="http://127.0.0.1:8080/images/avatar.png?v=1619508275369" alt="">
+  <a href="https://reticenceji.github.io">
+  <img class="avatar" src="https://reticenceji.github.io/images/avatar.png?v=1619509412636" alt="">
   </a>
   <h1 class="site-title">
     Reticence
@@ -158,10 +158,10 @@ var _hmt = _hmt || [];
 <p>猜测，然后用数学归纳法验证。就像高中做数列题一样。先找到递归式，求Sum的上限。</p>
 <h2 id="recursion-tree-method">Recursion-tree method</h2>
 <p>通过递归树来求解。比较直观。下面这个例子是一颗平衡树，比较简单。计算复杂度，就是所有节点的和。</p>
-<figure data-type="image" tabindex="1"><img src="http://127.0.0.1:8080/post-images/image-20210412233054302.png" alt="image-20210412233054302" loading="lazy"></figure>
+<figure data-type="image" tabindex="1"><img src="https://reticenceji.github.io/post-images/image-20210412233054302.png" alt="image-20210412233054302" loading="lazy"></figure>
 <h2 id="master-method">Master method</h2>
 <p>基于下面的理论，来自算法导论。把式子对号入座就行了。</p>
-<figure data-type="image" tabindex="2"><img src="http://127.0.0.1:8080/post-images/image-20210413122029845.png" alt="image-20210413122029845" loading="lazy"></figure>
+<figure data-type="image" tabindex="2"><img src="https://reticenceji.github.io/post-images/image-20210413122029845.png" alt="image-20210413122029845" loading="lazy"></figure>
 <p>你可以简单的理解伪把<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>f</mi><mo>(</mo><mi>n</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">f(n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span>和<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mi>n</mi><mrow><mi>l</mi><mi>o</mi><msub><mi>g</mi><mi>b</mi></msub><mo>(</mo><mi>a</mi><mo>)</mo></mrow></msup></mrow><annotation encoding="application/x-tex">n^{log_b(a)}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8879999999999999em;vertical-align:0em;"></span><span class="mord"><span class="mord mathdefault">n</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8879999999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.01968em;">l</span><span class="mord mathdefault mtight">o</span><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.03588em;">g</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3448em;"><span style="top:-2.3487714285714287em;margin-left:-0.03588em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mathdefault mtight">b</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15122857142857138em;"><span></span></span></span></span></span></span><span class="mopen mtight">(</span><span class="mord mathdefault mtight">a</span><span class="mclose mtight">)</span></span></span></span></span></span></span></span></span></span></span></span>进行大小比较。</p>
 <ul>
 <li>如果<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>f</mi><mo>(</mo><mi>n</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">f(n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span>小就是第一种。但是需要注意的是，这里的“小”是多项式意义上的小，比如<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mi>n</mi><mn>1</mn></msup><mo>&lt;</mo><msup><mi>n</mi><mn>1.1</mn></msup></mrow><annotation encoding="application/x-tex">n^1&lt;n^{1.1}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.853208em;vertical-align:-0.0391em;"></span><span class="mord"><span class="mord mathdefault">n</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">&lt;</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord"><span class="mord mathdefault">n</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span><span class="mord mtight">.</span><span class="mord mtight">1</span></span></span></span></span></span></span></span></span></span></span></span>是多项式意义上的小，但是<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi><mo>&lt;</mo><mi>n</mi><mi>l</mi><mi>o</mi><mi>g</mi><mo>(</mo><mi>n</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">n&lt;nlog(n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5782em;vertical-align:-0.0391em;"></span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">&lt;</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">n</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">o</span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span>不是多项式意义上的小。</li>
@@ -170,11 +170,11 @@ var _hmt = _hmt || [];
 </ul>
 <p>因为可能出现小于而不是多项式小于、大于而不是多项式大于的情况，所以并不是对所有的情况都适用的。</p>
 <p>我们可以利用递归树来<strong>证明</strong>主方法。</p>
-<figure data-type="image" tabindex="3"><img src="http://127.0.0.1:8080/post-images/image-20210413124407961.png" alt="image-20210413124407961" loading="lazy"></figure>
+<figure data-type="image" tabindex="3"><img src="https://reticenceji.github.io/post-images/image-20210413124407961.png" alt="image-20210413124407961" loading="lazy"></figure>
 <p>把<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>f</mi></mrow><annotation encoding="application/x-tex">f</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span></span></span></span>换掉，利用数列的知识。</p>
 <p>还有两种主方法：</p>
-<figure data-type="image" tabindex="4"><img src="http://127.0.0.1:8080/post-images/2021-04-13_15-51.png" alt="img" loading="lazy"></figure>
-<figure data-type="image" tabindex="5"><img src="http://127.0.0.1:8080/post-images/image-20210413155226811.png" alt="image-20210413155226811" loading="lazy"></figure>
+<figure data-type="image" tabindex="4"><img src="https://reticenceji.github.io/post-images/2021-04-13_15-51.png" alt="img" loading="lazy"></figure>
+<figure data-type="image" tabindex="5"><img src="https://reticenceji.github.io/post-images/image-20210413155226811.png" alt="image-20210413155226811" loading="lazy"></figure>
 
               </div>
               <div class="toc-container">
@@ -196,7 +196,7 @@ var _hmt = _hmt || [];
         
           <div class="next-post">
             <div class="next">下一篇</div>
-            <a href="http://127.0.0.1:8080/post/ads-jian-zhi/">
+            <a href="https://reticenceji.github.io/post/ads-jian-zhi/">
               <h3 class="post-title">
                 ADS-剪枝
               </h3>
@@ -208,7 +208,7 @@ var _hmt = _hmt || [];
 
         <div class="site-footer">
   
-  <a class="rss" href="http://127.0.0.1:8080/atom.xml" target="_blank">
+  <a class="rss" href="https://reticenceji.github.io/atom.xml" target="_blank">
     <i class="ri-rss-line"></i> RSS
   </a>
 </div>

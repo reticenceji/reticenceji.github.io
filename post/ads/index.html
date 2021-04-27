@@ -3,10 +3,10 @@
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>ADS-AVL Tree &amp; Amortized Analysis | Reticence</title>
-<link rel="shortcut icon" href="http://127.0.0.1:8080/favicon.ico?v=1619508275369">
+<link rel="shortcut icon" href="https://reticenceji.github.io/favicon.ico?v=1619509412636">
 <link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
-<link rel="stylesheet" href="http://127.0.0.1:8080/styles/main.css">
-<link rel="alternate" type="application/atom+xml" title="ADS-AVL Tree &amp; Amortized Analysis | Reticence - Atom Feed" href="http://127.0.0.1:8080/atom.xml">
+<link rel="stylesheet" href="https://reticenceji.github.io/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="ADS-AVL Tree &amp; Amortized Analysis | Reticence - Atom Feed" href="https://reticenceji.github.io/atom.xml">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
 
 <script>
@@ -42,8 +42,8 @@ AVL Tree是会自己保持平衡的二叉树。不过AVL Tree有他自己的平�
     <div class="main">
       <div class="main-content">
         <div class="site-header">
-  <a href="http://127.0.0.1:8080">
-  <img class="avatar" src="http://127.0.0.1:8080/images/avatar.png?v=1619508275369" alt="">
+  <a href="https://reticenceji.github.io">
+  <img class="avatar" src="https://reticenceji.github.io/images/avatar.png?v=1619509412636" alt="">
   </a>
   <h1 class="site-title">
     Reticence
@@ -149,7 +149,7 @@ var _hmt = _hmt || [];
                 8 min read
               </span>
               
-                <a href="http://127.0.0.1:8080/tag/0AqTQfzSL/" class="post-tag">
+                <a href="https://reticenceji.github.io/tag/0AqTQfzSL/" class="post-tag">
                   # DS
                 </a>
               
@@ -171,11 +171,11 @@ var _hmt = _hmt || [];
 插入操作：树的插入，不同于一般的二叉树。我们在插入时，要检测树是否平衡。如果不平衡，需要对树的<strong>局部</strong>进行旋转。</p>
 <ul>
 <li>双旋：<br>
-<img src="http://127.0.0.1:8080/post-images/1614668070738.jpg" alt="" loading="lazy"><br>
-<img src="http://127.0.0.1:8080/post-images/1614668074970.jpg" alt="" loading="lazy"></li>
+<img src="https://reticenceji.github.io/post-images/1614668070738.jpg" alt="" loading="lazy"><br>
+<img src="https://reticenceji.github.io/post-images/1614668074970.jpg" alt="" loading="lazy"></li>
 <li>单旋：<br>
-<img src="http://127.0.0.1:8080/post-images/1614668078573.jpg" alt="" loading="lazy"><br>
-<img src="http://127.0.0.1:8080/post-images/1614673153658.jpeg" alt="" loading="lazy"></li>
+<img src="https://reticenceji.github.io/post-images/1614668078573.jpg" alt="" loading="lazy"><br>
+<img src="https://reticenceji.github.io/post-images/1614673153658.jpeg" alt="" loading="lazy"></li>
 </ul>
 <h3 id="例程">例程</h3>
 <p>代码要点：<br>
@@ -280,7 +280,7 @@ AvlTree Insert(Elementtype X, AvlTree T)
 <h2 id="splay-tree">Splay Tree</h2>
 <p>他保证从空树开始任意连续M次对树的操作最多花费<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mi>M</mi><mi>l</mi><mi>o</mi><mi>g</mi><mi>N</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">O(Mlog N)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.10903em;">M</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">o</span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="mclose">)</span></span></span></span>的时间。但是不排除任意一次操作花费<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mi>N</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">O(N)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="mclose">)</span></span></span></span>的可能。splay tree的基本想法是，当一个节点被访问之后<br>
 For any nonroot node X , denote its parent by P and grandparent by G :<br>
-<img src="http://127.0.0.1:8080/post-images/1614683154880.jpg" alt="" loading="lazy"></p>
+<img src="https://reticenceji.github.io/post-images/1614683154880.jpg" alt="" loading="lazy"></p>
 <ul>
 <li>zig-zag：就是上面的RotationRL和RotationLR</li>
 <li>zig-zig：这里进行了两次RotationLL或RotationRR。比如上面的图，先旋转PG，再旋转XP。需要注意的点是两个旋转的顺序，是先上后下。</li>
@@ -324,7 +324,7 @@ For any nonroot node X , denote its parent by P and grandparent by G :<br>
         
           <div class="next-post">
             <div class="next">下一篇</div>
-            <a href="http://127.0.0.1:8080/post/cke-cheng-bi-ji/">
+            <a href="https://reticenceji.github.io/post/cke-cheng-bi-ji/">
               <h3 class="post-title">
                 C++课程笔记
               </h3>
@@ -336,7 +336,7 @@ For any nonroot node X , denote its parent by P and grandparent by G :<br>
 
         <div class="site-footer">
   
-  <a class="rss" href="http://127.0.0.1:8080/atom.xml" target="_blank">
+  <a class="rss" href="https://reticenceji.github.io/atom.xml" target="_blank">
     <i class="ri-rss-line"></i> RSS
   </a>
 </div>
