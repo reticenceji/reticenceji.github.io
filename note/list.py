@@ -3,7 +3,7 @@ import os
 import os.path
 import urllib.parse
 
-url = "https://reticenceji.github.io/note/"
+url = "https://127.0.0.1:8080/note/"
 work_dir = "."
 for entry in os.scandir(work_dir):
     if entry.is_file() and entry.name!='list.py':

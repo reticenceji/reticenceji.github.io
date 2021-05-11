@@ -3,7 +3,7 @@
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>VSCode使用技巧 | Reticence</title>
-<link rel="shortcut icon" href="https://reticenceji.github.io/favicon.ico?v=1619509412636">
+<link rel="shortcut icon" href="https://reticenceji.github.io/favicon.ico?v=1620698420281">
 <link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
 <link rel="stylesheet" href="https://reticenceji.github.io/styles/main.css">
 <link rel="alternate" type="application/atom+xml" title="VSCode使用技巧 | Reticence - Atom Feed" href="https://reticenceji.github.io/atom.xml">
@@ -59,7 +59,7 @@ Doxygen Documentation Generatorcschlosser
       <div class="main-content">
         <div class="site-header">
   <a href="https://reticenceji.github.io">
-  <img class="avatar" src="https://reticenceji.github.io/images/avatar.png?v=1619509412636" alt="">
+  <img class="avatar" src="https://reticenceji.github.io/images/avatar.png?v=1620698420281" alt="">
   </a>
   <h1 class="site-title">
     Reticence
@@ -98,12 +98,6 @@ var _hmt = _hmt || [];
       
         <a href="/navigator.html" class="menu">
           Navigator
-        </a>
-      
-    
-      
-        <a href="/post/book-list" class="menu">
-          Booklist
         </a>
       
     
@@ -162,7 +156,7 @@ var _hmt = _hmt || [];
                 2021-04-21
               </span>
               <span>
-                8 min read
+                9 min read
               </span>
               
                 <a href="https://reticenceji.github.io/tag/nL6gwIN_5/" class="post-tag">
@@ -219,6 +213,11 @@ var _hmt = _hmt || [];
 <td>C++ Snippets</td>
 <td>代码自动提示补全</td>
 <td>-</td>
+</tr>
+<tr>
+<td>LinkerScript</td>
+<td>Lds高亮</td>
+<td></td>
 </tr>
 </tbody>
 </table>
@@ -609,7 +608,7 @@ var _hmt = _hmt || [];
 <li><code>!bs-cdn-css</code></li>
 </ul>
 <h2 id="rust">Rust</h2>
-<p>这个的插件还比较少。</p>
+<p>这个的插件还比较少。不过cargo本身就提供了一系列很强大的功能命令。我还是要学习一个。</p>
 <table>
 <thead>
 <tr>
@@ -630,9 +629,24 @@ var _hmt = _hmt || [];
 <td></td>
 </tr>
 <tr>
-<td>Better TOML</td>
+<td>Even Better TOML</td>
 <td>TOML高亮和语法检测</td>
 <td>-</td>
+</tr>
+<tr>
+<td>Rust Doc Viewer</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Rustfmt</td>
+<td>格式化.rs</td>
+<td><code>Ctrl+Shift+I</code>不支持nightly</td>
+</tr>
+<tr>
+<td>Cargo</td>
+<td></td>
+<td></td>
 </tr>
 </tbody>
 </table>
@@ -700,7 +714,7 @@ var _hmt = _hmt || [];
 </tbody>
 </table>
 <h1 id="debug还是gdb好用">Debug（还是GDB好用）</h1>
-<p>Debug的配置由<code>.vscode/launch.json</code>(准确的说，这个JSON是被VSCode扩展的JSON)文件管理。如果你的工作目录下没有，点击调试之后会默认生成一个。以<a href="https://code.visualstudio.com/docs/cpp/launch-json-reference">C++</a>为例：</p>
+<p>Debug的配置由<code>.vscode/launch.json</code>(准确的说，这个JSON是被VSCode扩展的JSON)文件管理。当你打开调试面板的时候，可以选择<code>launch.json</code>里面不同的config进行调试。下面是我的两个，分别是gdb和C/C++插件提供的。如果你的工作目录下没有这个文件，点击调试之后会默认生成一个。以<a href="https://code.visualstudio.com/docs/cpp/launch-json-reference">C++</a>为例：</p>
 <pre><code class="language-json">{
     // Use IntelliSense to learn about possible attributes.
     // Hover to view descriptions of existing attributes.
@@ -708,29 +722,38 @@ var _hmt = _hmt || [];
     &quot;version&quot;: &quot;0.2.0&quot;,
     &quot;configurations&quot;: [
         {
-            &quot;name&quot;: &quot;(gdb) Launch&quot;,		//名字，下拉菜单中显示的内容
-            &quot;type&quot;: &quot;cppdbg&quot;,			//类型，不用改
-            &quot;request&quot;: &quot;launch&quot;,		//launch/attach，我们用launch
-            &quot;program&quot;: &quot;enter program name, for example ${workspaceFolder}/a.out&quot;,				//编译后目标的路径
-            &quot;args&quot;: [],					//命令行参数
-            &quot;stopAtEntry&quot;: false,		//相当于GDB的start
-            &quot;cwd&quot;: &quot;${workspaceFolder}&quot;,//程序的工作目录
-            &quot;environment&quot;: [],			//环境变量
-            &quot;externalConsole&quot;: false,	//When set to true, it will notify VS Code to spawn an external console. When set to false, it will use VS Code's integratedTerminal.
-            &quot;MIMode&quot;: &quot;gdb&quot;,			//VScode要连接的调试器
-            &quot;setupCommands&quot;: [			//传递给GDB的命令
+            &quot;type&quot;: &quot;by-gdb&quot;,
+            &quot;request&quot;: &quot;attach&quot;,
+            &quot;name&quot;: &quot;Attach(gdb)&quot;,
+            &quot;program&quot;: &quot;a.out&quot;,
+            &quot;cwd&quot;: &quot;${workspaceRoot}&quot;,
+            &quot;processId&quot;: 1234
+        },
+        {
+            &quot;name&quot;: &quot;gcc - 生成和调试活动文件&quot;,
+            &quot;type&quot;: &quot;cppdbg&quot;,
+            &quot;request&quot;: &quot;launch&quot;,
+            &quot;program&quot;: &quot;${fileDirname}/${fileBasenameNoExtension}&quot;,
+            &quot;args&quot;: [],
+            &quot;stopAtEntry&quot;: false,
+            &quot;cwd&quot;: &quot;${workspaceFolder}&quot;,
+            &quot;environment&quot;: [],
+            &quot;externalConsole&quot;: false,
+            &quot;MIMode&quot;: &quot;gdb&quot;,
+            &quot;setupCommands&quot;: [
                 {
-                    &quot;description&quot;: &quot;Enable pretty-printing for gdb&quot;,
+                    &quot;description&quot;: &quot;为 gdb 启用整齐打印&quot;,
                     &quot;text&quot;: &quot;-enable-pretty-printing&quot;,
                     &quot;ignoreFailures&quot;: true
                 }
-            ]
+            ],
+            &quot;preLaunchTask&quot;: &quot;C/C++: gcc 生成活动文件&quot;,
+            &quot;miDebuggerPath&quot;: &quot;/usr/bin/gdb&quot;
         }
     ]
 }
 </code></pre>
-<p>右击行号，可以设置Log Breakpoint、Condition Breakpoint、Breakpoint。还有单步跳过、进入、继续。</p>
-<p>在Debug Console中输入<code>-exec</code>之后就可以输入GDB命令了，不过这个不好用，没有补全。</p>
+<p>不过我感觉vscode的调试还是不如直接使用gdb来的方便。另外，debug不方便和gef插件共用。Debug Terminal不能显示非ASCII字符。不知道怎么解决，还是用GDB吧。</p>
 <h1 id="vscode-命令">VSCode 命令</h1>
 <p><code>Ctrl+P</code>可以调出命令窗口。然后命令的不同前缀有不同的含义。前面两个比较重要。</p>
 <table>
@@ -851,7 +874,7 @@ var _hmt = _hmt || [];
             <div class="next">下一篇</div>
             <a href="https://reticenceji.github.io/post/ads-dong-tai-gui-hua-dynamic-programming/">
               <h3 class="post-title">
-                ADS-动态规划 Dynamic Programming
+                ADS-Dynamic Programming
               </h3>
             </a>
           </div>

@@ -1,0 +1,365 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Database-底层 | Reticence</title>
+<link rel="shortcut icon" href="https://reticenceji.github.io/favicon.ico?v=1620698420281">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://reticenceji.github.io/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="Database-底层 | Reticence - Atom Feed" href="https://reticenceji.github.io/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-90HNEFFE0M"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-90HNEFFE0M');
+</script>
+
+
+    <meta name="description" content="数据库管理系统主要有两个部分，一个是查询，一个是存储。
+
+Query processor
+
+Parsing and translation
+Optimization
+Evaluation (Execution)
+
+
+Storage mana..." />
+    <meta name="keywords" content="Database" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://reticenceji.github.io">
+  <img class="avatar" src="https://reticenceji.github.io/images/avatar.png?v=1620698420281" alt="">
+  </a>
+  <h1 class="site-title">
+    Reticence
+  </h1>
+  <p class="site-description">
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          Index
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          Classification
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          Archives
+        </a>
+      
+    
+      
+        <a href="/navigator.html" class="menu">
+          Navigator
+        </a>
+      
+    
+      
+        <a href="/post/fei-md-ge-shi-bi-ji-hui-zong" class="menu">
+          Notes
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          About
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+        <a href="https://github.com/reticenceji" target="_blank">
+          <i class="ri-github-line"></i>
+        </a>
+      
+    
+      
+    
+      
+    
+      
+        <a href="https://www.zhihu.com/people/reticenceji" target="_blank">
+          <i class="ri-zhihu-line"></i>
+        </a>
+      
+    
+      
+    
+  </div>
+  <script>
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
+    var s = document.getElementsByTagName("script")[0]; 
+    s.parentNode.insertBefore(hm, s);
+  })();
+  </script>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              Database-底层
+            </h2>
+            <div class="post-info">
+              <span>
+                2021-05-06
+              </span>
+              <span>
+                7 min read
+              </span>
+              
+                <a href="https://reticenceji.github.io/tag/uXp2zQxRH/" class="post-tag">
+                  # Database
+                </a>
+              
+            </div>
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <p>数据库管理系统主要有两个部分，一个是查询，一个是存储。</p>
+<ul>
+<li>Query processor
+<ul>
+<li>Parsing and translation</li>
+<li>Optimization</li>
+<li>Evaluation (Execution)</li>
+</ul>
+</li>
+<li>Storage manager
+<ul>
+<li>File manager</li>
+<li>Buffer manager</li>
+<li>Transaction manager</li>
+<li>Authorization and integrity manager</li>
+</ul>
+</li>
+</ul>
+<figure data-type="image" tabindex="1"><img src="https://reticenceji.github.io/post-images/image-20210506100011441.png" alt="image-20210506100011441" loading="lazy"></figure>
+<h2 id="存储设备">存储设备</h2>
+<p>volatile storage: 比如 SDR DDR</p>
+<p>non-volatile storage：比如我们的磁盘、SSD，还有一种带电池的main-memory</p>
+<p>速度/大小： Cache =&gt; Main memory =&gt; Flash disk(固态硬盘)=&gt; Magnetic disk =&gt; Optical storage(光盘) =&gt; Tape storage</p>
+<p>前面两个是primary storage，中间两个是online storage，后面两个一般都是用来备份的，称为offline storage。</p>
+<h3 id="disk">Disk</h3>
+<p>磁盘的物理结构不介绍了，看书吧。</p>
+<p><strong>Disk Controller</strong> ：是计算机系统和实际的磁盘驱动器硬件之间的接口。他结构高层次的读写扇区的命令，然后开始操作物理设备比如移动磁头。还有一个任务是<strong>remapping of bad sector</strong>把坏扇区在逻辑上映射到另一个物理位置。</p>
+<p>磁盘通过一个高速互连通道连接到计算机系统。常用的接口有</p>
+<ol>
+<li>SATA(Serial ATA)。</li>
+<li>SCSI(Small computer system interconnect)</li>
+<li>SAS(Serial attached SCSI)</li>
+</ol>
+<p><strong>衡量指标：</strong></p>
+<p>access time = seek time + rorational latency time.</p>
+<p>data-tansfer rate 数据传输率</p>
+<p>一个很重要的指标是MTTF(Mean time to failure，平均故障时间)一般是3到5年。</p>
+<p><strong>有以下优化的方式</strong>：</p>
+<ol>
+<li>block。增大block的大小，一次多读一点</li>
+<li>调度算法。</li>
+<li>磁盘碎片整理。让文件最好集中在一起。</li>
+<li>buffer。通过增加一层non-volatile RAM或者flash memory。</li>
+<li>Log disk。针对数据库系统需要频繁的写日志，所以专门分配一块写日志的磁盘。平时都是sequential write。</li>
+</ol>
+<h3 id="raid">RAID*</h3>
+<p>操作系统学过。</p>
+<h2 id="文件管理">文件管理</h2>
+<h3 id="fixed-length-records">fixed-length records</h3>
+<p>一个一个记录顺序排列下来。这样非常简单。</p>
+<p>一个问题是，如果block大小和记录大小没有倍数关系的话，那么我们不能让记录横跨两个block，最后不足以容纳一个记录的时候要存到下一个Block中。</p>
+<p>查找很方便，但是插入删除就不一定了。</p>
+<p>删除可以把最后一条记录覆盖被删除的记录，但是你的内容如果是<strong>有序的排列</strong>的话，就不好使了。插入也是类似的对有序内容效率低下。</p>
+<p>删除可以还使用“惰性删除”的办法，用一个free list指向被删除的记录，之后插入的时候在把它用了。</p>
+<p>如果是有序排列的话，可以定期的重新排列一次。</p>
+<h3 id="variable-length-records">Variable-Length Records</h3>
+<p>比如变长数组，变长字符串，二进制文件。</p>
+<p>一个简单的办法是记录metadata{location, size}，用来指向真正的Records内容。</p>
+<p>删除的话还是要移动Records，让Free Space连续。</p>
+<figure data-type="image" tabindex="2"><img src="https://reticenceji.github.io/post-images/image-20210506110601916.png" alt="image-20210506110601916" loading="lazy"></figure>
+<h3 id="relation">Relation</h3>
+<p>Relation是很多Record的集合。Relation怎么组织：</p>
+<ul>
+<li>Heap file (堆文件, 流水文件) – a record can be placed anywhere in the file where there is space</li>
+<li>Sequential file (顺序文件) – store records in sequential order, based on the value of a <strong>search key</strong> of each record</li>
+<li>Hashing file (散列文件) – a hash function computed on some attribute of each record; the result specifies in which block of the file the record should be placed</li>
+<li>Clustering file organization (聚集文件组织) – records of several different relations can be stored in the same file<br>
+Motivation: store related records in different relations on the same block to minimize I/O</li>
+</ul>
+<p>metadata存在哪里（比如User信息，Relation信息）。一个办法就是存在表里，和普通数据一样。</p>
+<p>buffer</p>
+<blockquote>
+<p>If the block is already in the buffer, the requesting program is given the address of the block in main memory<br>
+If the block is not in the buffer,</p>
+<ol>
+<li>The buffer manager allocates free space in the buffer for the block, replacing (throwing out) some old pages, if no free spaces, to make space for the new block. (在buffer中为新页分配空间)</li>
+<li>The block that is thrown out is written back to disk only if it was modified since the most recent time that it was written to/fetched from the disk. (将被覆盖的旧块若已被修改过，则写回磁盘)</li>
+<li>Once space is allocated in the buffer, the buffer manager reads the block from the disk to the buffer, and passes the address of the block in main memory to requester. (从磁盘读入新块放buffer)</li>
+</ol>
+</blockquote>
+<p>Buffer-Replacement Policies: LRU (最近最少使用), MRU (最近最常使用)</p>
+<h2 id="索引index">索引Index</h2>
+<p>索引能极大的加速访问。一般有两种</p>
+<ul>
+<li>Ordered indices (顺序索引):  search keys (index entries) are stored in sorted order</li>
+<li>Hash indices (散列索引):  search keys (index entries) are distributed uniformly across “buckets” using a “hash function”.</li>
+</ul>
+<p>衡量索引性能的指标：</p>
+<ul>
+<li>Access Type：能够有效支持的访问类型，包括找到具有特定属性值的记录，以及找到属性值落在每个特定范围内的记录。</li>
+<li>Access time：使用索引找到特定数据的时间</li>
+<li>Insertion time：插入一个新数据的时间</li>
+<li>Deletion time：删除一个数据的时间</li>
+<li>Space overhead (空间开销)：索引结构占用的额外的存储空间</li>
+</ul>
+<h3 id="顺序索引">顺序索引</h3>
+<p><strong>Primary index</strong>：如果关系是按照某个<strong>search key</strong>排列的（有序），那么这个search key对应的index就是primary index。search-key通常是<strong>primary key</strong>，但没必要。（注意这里的三个单词）</p>
+<p><strong>Secondary index</strong>： index对应的search-key和文件中记录的物理顺序没啥关系，也就是说无序。因为是无序的，所以即使对于两个相同的项目我们也需要两个指针指向他（比如80000）不像primary key记录第一个顺序往下扫描就好。故对于不是primary key的search key我们需要在中间加上一层指针。secondary index对于<strong>顺序扫描不友好</strong>，还不如直接扫描。</p>
+<figure data-type="image" tabindex="3"><img src="https://reticenceji.github.io/post-images/image-20210506114940369.png" alt="image-20210506114940369" loading="lazy"></figure>
+<p><strong>Dense index</strong>稠密索引：稠密索引中，真正数据文件的每一个search-key都会有对应的index entry。比如这个例子中的search key就不是primary key。</p>
+<figure data-type="image" tabindex="4"><img src="https://reticenceji.github.io/post-images/image-20210506114513678.png" alt="image-20210506114513678" loading="lazy"></figure>
+<p><strong>Sparse index</strong>稀疏索引：只有当关系按照search-key顺序排列才能使用（换句话说，一定是primary index）。比如下面的例子可以看出。这个稀疏的index是怎么确定的？往往是让index指向某个Block的起始位置。相比于稠密索引，稀疏索引占用的空间更小，更新的代价更小（不是每次都需要更新），不过查找的速度更慢。索引的更新很容易想清楚。</p>
+<figure data-type="image" tabindex="5"><img src="https://reticenceji.github.io/post-images/image-20210506114501239.png" alt="image-20210506114501239" loading="lazy"></figure>
+<p><strong>Multilevel index</strong>当你的数据库过大的时候，你的索引文件可能也会太大，这个时候你就需要“索引的索引”。有几个注意的地方，一个是外层的索引项肯定是稀疏的（不然多级有个锤子用？），所以内层索引项肯定是有序的（不然外层怎么稀疏）。</p>
+<figure data-type="image" tabindex="6"><img src="https://reticenceji.github.io/post-images/image-20210506160158185.png" alt="image-20210506160158185" loading="lazy"></figure>
+<h3 id="b-treestar">B+ Tree⭐️</h3>
+<p>这个是重点。</p>
+
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#%E5%AD%98%E5%82%A8%E8%AE%BE%E5%A4%87">存储设备</a>
+<ul>
+<li><a href="#disk">Disk</a></li>
+<li><a href="#raid">RAID*</a></li>
+</ul>
+</li>
+<li><a href="#%E6%96%87%E4%BB%B6%E7%AE%A1%E7%90%86">文件管理</a>
+<ul>
+<li><a href="#fixed-length-records">fixed-length records</a></li>
+<li><a href="#variable-length-records">Variable-Length Records</a></li>
+<li><a href="#relation">Relation</a></li>
+</ul>
+</li>
+<li><a href="#%E7%B4%A2%E5%BC%95index">索引Index</a>
+<ul>
+<li><a href="#%E9%A1%BA%E5%BA%8F%E7%B4%A2%E5%BC%95">顺序索引</a></li>
+<li><a href="#b-treestar">B+ Tree:star:</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://reticenceji.github.io/post/pyqt5/">
+              <h3 class="post-title">
+                PyQt5
+              </h3>
+            </a>
+          </div>
+        
+
+        
+
+        <div class="site-footer">
+  
+  <a class="rss" href="https://reticenceji.github.io/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>

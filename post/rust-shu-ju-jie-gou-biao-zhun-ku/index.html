@@ -2,11 +2,11 @@
   <head>
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Rust-数据结构标准库 | Reticence</title>
-<link rel="shortcut icon" href="https://reticenceji.github.io/favicon.ico?v=1619509412636">
+<title>Rust-标准库 | Reticence</title>
+<link rel="shortcut icon" href="https://reticenceji.github.io/favicon.ico?v=1620698420281">
 <link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
 <link rel="stylesheet" href="https://reticenceji.github.io/styles/main.css">
-<link rel="alternate" type="application/atom+xml" title="Rust-数据结构标准库 | Reticence - Atom Feed" href="https://reticenceji.github.io/atom.xml">
+<link rel="alternate" type="application/atom+xml" title="Rust-标准库 | Reticence - Atom Feed" href="https://reticenceji.github.io/atom.xml">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
 
 <script>
@@ -30,11 +30,19 @@ var _hmt = _hmt || [];
 </script>
 
 
-    <meta name="description" content="还有语言提供的数据结构，比如数组，元组。注意那些方法传入的参数是self还是&amp;self。
-数组
-数组在创建之后大小就不能再改变。
-let a: [i32; 5] = [1, 2, 3, 4, 5];声明一个长度为5的数组。
-然后我们..." />
+    <meta name="description" content="Rust提供了强大的标准库。掌握了他们既可以加深对Rust的了解，还可以写出更好的代码。就我目前阅读而来，有下面这些重要的标准库类型：
+
+
+enum
+
+Result
+Option
+Cow Clone on write
+
+
+智能指针
+
+Box..." />
     <meta name="keywords" content="Rust" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
     <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
@@ -44,7 +52,7 @@ let a: [i32; 5] = [1, 2, 3, 4, 5];声明一个长度为5的数组。
       <div class="main-content">
         <div class="site-header">
   <a href="https://reticenceji.github.io">
-  <img class="avatar" src="https://reticenceji.github.io/images/avatar.png?v=1619509412636" alt="">
+  <img class="avatar" src="https://reticenceji.github.io/images/avatar.png?v=1620698420281" alt="">
   </a>
   <h1 class="site-title">
     Reticence
@@ -83,12 +91,6 @@ var _hmt = _hmt || [];
       
         <a href="/navigator.html" class="menu">
           Navigator
-        </a>
-      
-    
-      
-        <a href="/post/book-list" class="menu">
-          Booklist
         </a>
       
     
@@ -140,7 +142,7 @@ var _hmt = _hmt || [];
         <div class="post-detail">
           <article class="post">
             <h2 class="post-title">
-              Rust-数据结构标准库
+              Rust-标准库
             </h2>
             <div class="post-info">
               <span>
@@ -158,26 +160,56 @@ var _hmt = _hmt || [];
             
             <div class="post-content-wrapper">
               <div class="post-content">
-                <p>还有语言提供的数据结构，比如数组，元组。注意那些方法传入的参数是<code>self</code>还是<code>&amp;self</code>。</p>
-<h2 id="数组">数组</h2>
-<p>数组在创建之后大小就不能再改变。<br>
-<code>let a: [i32; 5] = [1, 2, 3, 4, 5];</code>声明一个长度为5的数组。<br>
-然后我们可以用下标来索引他。</p>
-<h2 id="元组">元组</h2>
-<p>元组就像是一个结构。</p>
-<pre><code class="language-rust">fn main() {
-    let tup: (i32, f64, u8) = (500, 6.4, 1);
-}
-</code></pre>
-<h2 id="枚举">枚举</h2>
-<p>下面是很常用的枚举，当你的函数可能无法返回有效的值的时候（比如pop,如果栈空呢？）甚至产生一个错误，就返回一个Option类型/Result类型。</p>
+                <p>Rust提供了强大的标准库。掌握了他们既可以加深对Rust的了解，还可以写出更好的代码。就我目前阅读而来，有下面这些重要的标准库类型：</p>
+<!-- more -->
+<ul>
+<li>enum
+<ul>
+<li>Result</li>
+<li>Option</li>
+<li>Cow Clone on write</li>
+</ul>
+</li>
+<li>智能指针
+<ul>
+<li>Box 拥有所有权的指针</li>
+<li>Rc 引用计数指针</li>
+<li>Arc 并发安全计数指针</li>
+</ul>
+</li>
+<li>数据结构
+<ul>
+<li>String</li>
+<li>Vec</li>
+<li>HashMap</li>
+<li>BTreeMap</li>
+</ul>
+</li>
+<li>内部可变性
+<ul>
+<li>Cell</li>
+<li>RefCell</li>
+</ul>
+</li>
+<li>I/O</li>
+<li>类型转换
+<ul>
+<li>AsRef/AsMut</li>
+<li>Borrow/BorrowMut</li>
+<li>From/Into</li>
+<li>ToOwned</li>
+<li>ToString/FromStr</li>
+</ul>
+</li>
+</ul>
+<h2 id="option">Option</h2>
 <pre><code class="language-rust">enum Option&lt;T&gt; {
     Some(T),
     None,
 }
-// pub fn expect(self, msg: &amp;str) -&gt; T`
-// 返回Some包含的内容，如果是None就Panic。这样就不用编写复杂的match语句了。
-enum Result&lt;T, E&gt; {
+</code></pre>
+<h2 id="result">Result</h2>
+<pre><code>enum Result&lt;T, E&gt; {
     Ok(T),
     Err(E),
 }
@@ -292,9 +324,8 @@ https://users.rust-lang.org/t/split-a-string-and-store-it-in-a-hashmap/36895?u=r
                 <ul class="markdownIt-TOC">
 <li>
 <ul>
-<li><a href="#%E6%95%B0%E7%BB%84">数组</a></li>
-<li><a href="#%E5%85%83%E7%BB%84">元组</a></li>
-<li><a href="#%E6%9E%9A%E4%B8%BE">枚举</a></li>
+<li><a href="#option">Option</a></li>
+<li><a href="#result">Result</a></li>
 <li><a href="#vector">Vector</a></li>
 <li><a href="#string">String</a></li>
 <li><a href="#map">Map</a></li>

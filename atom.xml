@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://reticenceji.github.io</id>
     <title>Reticence</title>
-    <updated>2021-04-27T07:43:34.472Z</updated>
+    <updated>2021-05-11T02:00:26.603Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://reticenceji.github.io"/>
     <link rel="self" href="https://reticenceji.github.io/atom.xml"/>
@@ -18,6 +18,27 @@ var _hmt = _hmt || [];
     <logo>https://reticenceji.github.io/images/avatar.png</logo>
     <icon>https://reticenceji.github.io/favicon.ico</icon>
     <rights>All rights reserved 2021, Reticence</rights>
+    <entry>
+        <title type="html"><![CDATA[Rust工具链]]></title>
+        <id>https://reticenceji.github.io/post/rust-gong-ju-lian/</id>
+        <link href="https://reticenceji.github.io/post/rust-gong-ju-lian/">
+        </link>
+        <updated>2021-05-06T13:08:22.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[数据安全与隐私保护]]></title>
+        <id>https://reticenceji.github.io/post/shu-ju-an-quan-yu-yin-si-bao-hu/</id>
+        <link href="https://reticenceji.github.io/post/shu-ju-an-quan-yu-yin-si-bao-hu/">
+        </link>
+        <updated>2021-05-06T10:05:53.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Database-底层]]></title>
+        <id>https://reticenceji.github.io/post/database-di-ceng/</id>
+        <link href="https://reticenceji.github.io/post/database-di-ceng/">
+        </link>
+        <updated>2021-05-06T01:47:41.000Z</updated>
+    </entry>
     <entry>
         <title type="html"><![CDATA[PyQt5]]></title>
         <id>https://reticenceji.github.io/post/pyqt5/</id>
@@ -61,35 +82,10 @@ var _hmt = _hmt || [];
         <updated>2021-04-21T02:04:26.000Z</updated>
     </entry>
     <entry>
-        <title type="html"><![CDATA[ADS-动态规划 Dynamic Programming]]></title>
+        <title type="html"><![CDATA[ADS-Dynamic Programming]]></title>
         <id>https://reticenceji.github.io/post/ads-dong-tai-gui-hua-dynamic-programming/</id>
         <link href="https://reticenceji.github.io/post/ads-dong-tai-gui-hua-dynamic-programming/">
         </link>
         <updated>2021-04-20T04:33:31.000Z</updated>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[OS-调试]]></title>
-        <id>https://reticenceji.github.io/post/os-diao-shi/</id>
-        <link href="https://reticenceji.github.io/post/os-diao-shi/">
-        </link>
-        <updated>2021-04-18T06:21:32.000Z</updated>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Python-Flask之图书管理系统]]></title>
-        <id>https://reticenceji.github.io/post/python-flash-zhi-tu-shu-guan-li-xi-tong/</id>
-        <link href="https://reticenceji.github.io/post/python-flash-zhi-tu-shu-guan-li-xi-tong/">
-        </link>
-        <updated>2021-04-16T13:38:14.000Z</updated>
-        <summary type="html"><![CDATA[<p>这是一篇解决问题的记录。</p>
-]]></summary>
-        <content type="html"><![CDATA[<p>这是一篇解决问题的记录。</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Database-Object-Based Databases]]></title>
-        <id>https://reticenceji.github.io/post/database-object-based-databases/</id>
-        <link href="https://reticenceji.github.io/post/database-object-based-databases/">
-        </link>
-        <updated>2021-04-15T03:04:11.000Z</updated>
     </entry>
 </feed>

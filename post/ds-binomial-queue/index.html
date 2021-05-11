@@ -3,7 +3,7 @@
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>ADS-Binomial Queue | Reticence</title>
-<link rel="shortcut icon" href="https://reticenceji.github.io/favicon.ico?v=1619509412636">
+<link rel="shortcut icon" href="https://reticenceji.github.io/favicon.ico?v=1620698420281">
 <link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
 <link rel="stylesheet" href="https://reticenceji.github.io/styles/main.css">
 <link rel="alternate" type="application/atom+xml" title="ADS-Binomial Queue | Reticence - Atom Feed" href="https://reticenceji.github.io/atom.xml">
@@ -31,7 +31,7 @@ var _hmt = _hmt || [];
 
 
     <meta name="description" content="二项堆
-二项堆 H 由一组满足下面的二项堆性质的二项树组成。
+二项堆 H 由一组满足下面的二叉堆性质的二项树组成。
 
 H 中的每个二项树遵循最小堆性质：节点的关键字大于或等于其父节点的关键字
 对任意非负整数k，在 H 中至多有一颗二项树的根具有度数 k。第二个性质决定了如何判断一个包含 n 个..." />
@@ -44,7 +44,7 @@ H 中的每个二项树遵循最小堆性质：节点的关键字大于或等于
       <div class="main-content">
         <div class="site-header">
   <a href="https://reticenceji.github.io">
-  <img class="avatar" src="https://reticenceji.github.io/images/avatar.png?v=1619509412636" alt="">
+  <img class="avatar" src="https://reticenceji.github.io/images/avatar.png?v=1620698420281" alt="">
   </a>
   <h1 class="site-title">
     Reticence
@@ -83,12 +83,6 @@ var _hmt = _hmt || [];
       
         <a href="/navigator.html" class="menu">
           Navigator
-        </a>
-      
-    
-      
-        <a href="/post/book-list" class="menu">
-          Booklist
         </a>
       
     
@@ -147,7 +141,7 @@ var _hmt = _hmt || [];
                 2021-03-29
               </span>
               <span>
-                10 min read
+                11 min read
               </span>
               
                 <a href="https://reticenceji.github.io/tag/0AqTQfzSL/" class="post-tag">
@@ -159,62 +153,62 @@ var _hmt = _hmt || [];
             <div class="post-content-wrapper">
               <div class="post-content">
                 <h2 id="二项堆">二项堆</h2>
-<p>二项堆 H 由一组满足下面的二项堆性质的二项树组成。</p>
+<p>二项堆 H 由一组满足下面的二叉堆性质的二项树组成。</p>
 <ol>
 <li>H 中的每个二项树遵循最小堆性质：节点的关键字大于或等于其父节点的关键字</li>
 <li>对任意非负整数k，在 H 中至多有一颗二项树的根具有度数 k。第二个性质决定了如何判断一个包含 n 个元素的二项堆由哪几个二项树构成呢？将 n 写成二进制形式，哪一位为 1，那一位对应的二项树就应该存在。<br>
 比如，一个有42(0b101010)个结点的堆，就是由2、8、32个结点的树构成的森林。</li>
 </ol>
-<h2 id="算法分析">算法分析</h2>
+<h2 id="复杂度分析">复杂度分析</h2>
 <table>
 <thead>
 <tr>
 <th>过程</th>
 <th>二项堆(最坏)</th>
-<th>斐波那契堆(摊还)</th>
+<th>摊还分析</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>MAKE_HEAP</td>
 <td>Θ(1)</td>
-<td>Θ(1)</td>
+<td></td>
 </tr>
 <tr>
 <td>INSERT</td>
-<td>Ω(lgn)</td>
-<td>Θ(1)</td>
+<td>Ω(lg n)</td>
+<td>O(1)</td>
 </tr>
 <tr>
 <td>MINIMUM</td>
-<td>Ω(lgn)</td>
-<td>Θ(1)</td>
+<td>Ω(lg n)<br />这个是特殊的，因为每一个Root都可能是最小</td>
+<td></td>
 </tr>
 <tr>
 <td>EXTRACT-MIN</td>
-<td>Θ(lgn)</td>
-<td>O(lgn)</td>
+<td>Θ(lg n)</td>
+<td></td>
 </tr>
 <tr>
 <td>UNION</td>
-<td>Θ(lgn)</td>
-<td>Θ(1)</td>
+<td>Θ(lg n)</td>
+<td></td>
 </tr>
 <tr>
 <td>DECREASE-KEY</td>
-<td>Θ(lgn)</td>
-<td>Θ(1)</td>
+<td>Θ(lg n)</td>
+<td></td>
 </tr>
 <tr>
 <td>DELETE</td>
-<td>Θ(lgn)</td>
-<td>O(lgn)</td>
+<td>Θ(lg n)</td>
+<td></td>
 </tr>
 </tbody>
 </table>
 <h2 id="adt">ADT</h2>
 <p><a href="https://www.geeksforgeeks.org/binomial-heap-2/">参考链接-讲解</a>. <a href="">参考链接-实现</a></p>
-<p>The main operation in Binomial Heap is <code>union()</code>, all other operations mainly use this operation. The union() operation is to combine two Binomial Heaps into one. Let us first discuss other operations, we will discuss union later.</p>
+<p><strong>The main operation in Binomial Heap is <code>union()</code>, all other operations mainly use this operation.</strong> The union() operation is to combine two Binomial Heaps into one. Let us first discuss other operations, we will discuss union later.</p>
 <ol>
 <li><code>insert(H, k)</code>: Inserts a key ‘k’ to Binomial Heap ‘H’. This operation first creates a Binomial Heap with single key ‘k’, then calls union on H and the new Binomial heap. 插入的摊还复杂度是<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mn>2</mn><mo>)</mo></mrow><annotation encoding="application/x-tex">O(2)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord">2</span><span class="mclose">)</span></span></span></span></li>
 <li><code>getMin(H)</code>: A simple way to <code>getMin()</code> is to traverse the list of root of Binomial Trees and return the minimum key. This implementation requires <strong>O(Log N)</strong> time. It can be optimized to O(1) by maintaining a pointer to minimum key root.</li>
@@ -224,14 +218,14 @@ var _hmt = _hmt || [];
 <li><code>union(H1,H2)</code>⭐️
 <ol>
 <li>The first step is to simply merge the two Heaps in <strong>non-decreasing order of degrees</strong> 按照结点的度数排序O(Log N).</li>
-<li>After the simple merge, we need to make sure that there is at most one Binomial Tree of any order. To do this, we need to combine Binomial Trees of the same order. We traverse the list of merged roots, we keep track of three-pointers, prev, x and next-x. There can be following 4 cases when we traverse the list of roots.
+<li>After the simple merge, we need to make sure that there is at most one Binomial Tree of any order. To do this, we need to combine Binomial Trees of the same order. We traverse the list of merged roots, we keep track of three-pointers, <code>prev-x</code>, <code>x</code> and <code>next-x</code>. There can be following 4 cases when we traverse the list of roots.
 <ul>
 <li>Case 1: Orders of x and next-x are not same, we simply move ahead.</li>
 <li>In following 3 cases orders of x and next-x are same.
 <ul>
-<li>Case 2: If the order of next-next-x is also same, move ahead. (当出现三个一样的时候，我们其实可以有合并其中任意两个。这里选择合并后面两个)</li>
+<li>Case 2: If the order of next-next-x is also same, move ahead. (当出现三个一样的时候，我们其实可以有合并其中任意两个。这里选择合并后面两个，所以就直接往后移动指针了。如果考试考到了，这个点是需要注意的，其实有<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msubsup><mi>C</mi><mn>3</mn><mn>2</mn></msubsup><mo>=</mo><mn>3</mn></mrow><annotation encoding="application/x-tex">C_3^2=3</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.0622159999999998em;vertical-align:-0.24810799999999997em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.07153em;">C</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-2.4518920000000004em;margin-left:-0.07153em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.24810799999999997em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">3</span></span></span></span>种可能性)</li>
 <li>Case 3: If the key of x is smaller than or equal to the key of next-x, then make next-x as a child of x by linking it with x.</li>
-<li>Case 4: If the key of x is greater, then make x as the child of next.</li>
+<li>Case 4: If the key of x is greater, then make x as the child of next. 三和四的区别就在于谁当root.</li>
 </ul>
 </li>
 </ul>
@@ -241,6 +235,24 @@ var _hmt = _hmt || [];
 </ol>
 <figure data-type="image" tabindex="1"><img src="https://reticenceji.github.io/post-images/Bionomial_tree_2.png" alt="img" loading="lazy"></figure>
 <h2 id="实现">实现</h2>
+<p>陈越老师课件的数据结构：</p>
+<pre><code class="language-c">typedef struct BinNode *Position;
+typedef struct Collection *BinQueue;
+typedef struct BinNode *BinTree; 
+
+struct BinNode 
+{ 
+    ElementType	    Element;
+    Position	    LeftChild;		
+    Position 	    NextSibling;	/* 注意这个Sibling是从个数多到个数少排序的，就像上面的图一样.Root是没有的 */
+} ;
+
+struct Collection 
+{ 
+    int	    		CurrentSize;	/* total number of nodes */
+    BinTree			TheTrees[ MaxTrees ];
+} ;
+</code></pre>
 <p>union：</p>
 <pre><code class="language-cpp">// This function perform union operation on two
 // binomial heap i.e. l1 &amp; l2
@@ -533,7 +545,7 @@ int main()
 <li>
 <ul>
 <li><a href="#%E4%BA%8C%E9%A1%B9%E5%A0%86">二项堆</a></li>
-<li><a href="#%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90">算法分析</a></li>
+<li><a href="#%E5%A4%8D%E6%9D%82%E5%BA%A6%E5%88%86%E6%9E%90">复杂度分析</a></li>
 <li><a href="#adt">ADT</a></li>
 <li><a href="#%E5%AE%9E%E7%8E%B0">实现</a></li>
 </ul>

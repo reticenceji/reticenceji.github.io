@@ -2,11 +2,11 @@
   <head>
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>ADS-分治 | Reticence</title>
-<link rel="shortcut icon" href="https://reticenceji.github.io/favicon.ico?v=1619509412636">
+<title>ADS-Divide and Conquer | Reticence</title>
+<link rel="shortcut icon" href="https://reticenceji.github.io/favicon.ico?v=1620698420281">
 <link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
 <link rel="stylesheet" href="https://reticenceji.github.io/styles/main.css">
-<link rel="alternate" type="application/atom+xml" title="ADS-分治 | Reticence - Atom Feed" href="https://reticenceji.github.io/atom.xml">
+<link rel="alternate" type="application/atom+xml" title="ADS-Divide and Conquer | Reticence - Atom Feed" href="https://reticenceji.github.io/atom.xml">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
 
 <script>
@@ -33,7 +33,7 @@ var _hmt = _hmt || [];
     <meta name="description" content="一个好的分治往往是是T(N)=aT(N/b)+f(N)T(N) = aT(N/b)+f(N)T(N)=aT(N/b)+f(N)。这个f(N)的意思是把分开的几部分合并起来的时间复杂度。
 求解递归式的办法：
 Substitution meth..." />
-    <meta name="keywords" content="" />
+    <meta name="keywords" content="DS" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
     <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
   </head>
@@ -42,7 +42,7 @@ Substitution meth..." />
       <div class="main-content">
         <div class="site-header">
   <a href="https://reticenceji.github.io">
-  <img class="avatar" src="https://reticenceji.github.io/images/avatar.png?v=1619509412636" alt="">
+  <img class="avatar" src="https://reticenceji.github.io/images/avatar.png?v=1620698420281" alt="">
   </a>
   <h1 class="site-title">
     Reticence
@@ -81,12 +81,6 @@ var _hmt = _hmt || [];
       
         <a href="/navigator.html" class="menu">
           Navigator
-        </a>
-      
-    
-      
-        <a href="/post/book-list" class="menu">
-          Booklist
         </a>
       
     
@@ -138,15 +132,19 @@ var _hmt = _hmt || [];
         <div class="post-detail">
           <article class="post">
             <h2 class="post-title">
-              ADS-分治
+              ADS-Divide and Conquer
             </h2>
             <div class="post-info">
               <span>
                 2021-04-12
               </span>
               <span>
-                2 min read
+                3 min read
               </span>
+              
+                <a href="https://reticenceji.github.io/tag/0AqTQfzSL/" class="post-tag">
+                  # DS
+                </a>
               
             </div>
             
@@ -172,9 +170,14 @@ var _hmt = _hmt || [];
 <p>我们可以利用递归树来<strong>证明</strong>主方法。</p>
 <figure data-type="image" tabindex="3"><img src="https://reticenceji.github.io/post-images/image-20210413124407961.png" alt="image-20210413124407961" loading="lazy"></figure>
 <p>把<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>f</mi></mrow><annotation encoding="application/x-tex">f</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span></span></span></span>换掉，利用数列的知识。</p>
-<p>还有两种主方法：</p>
+<p>还有两种主方法： 对<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>T</mi><mo>(</mo><mi>N</mi><mo>)</mo><mo>=</mo><mi>a</mi><mi>T</mi><mo>(</mo><mi>N</mi><mi mathvariant="normal">/</mi><mi>b</mi><mo>)</mo><mo>+</mo><mo>(</mo><msup><mi>N</mi><mi>k</mi></msup><mi>l</mi><mi>o</mi><msup><mi>g</mi><mi>p</mi></msup><mi>N</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">T(N) = a T(N / b) + (N^k log^p N )</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">a</span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="mord">/</span><span class="mord mathdefault">b</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1.099108em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.849108em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.03148em;">k</span></span></span></span></span></span></span></span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">o</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.664392em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">p</span></span></span></span></span></span></span></span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="mclose">)</span></span></span></span> 。第一个和第三个就是上面的主方法，关注第二个，是上面“大于但不是多项式大于”的情况，</p>
 <figure data-type="image" tabindex="4"><img src="https://reticenceji.github.io/post-images/2021-04-13_15-51.png" alt="img" loading="lazy"></figure>
 <figure data-type="image" tabindex="5"><img src="https://reticenceji.github.io/post-images/image-20210413155226811.png" alt="image-20210413155226811" loading="lazy"></figure>
+<h2 id="例题">例题</h2>
+<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>T</mi><mo>(</mo><mi>n</mi><mo>)</mo><mo>=</mo><mn>2</mn><mi>T</mi><mo>(</mo><mi mathvariant="normal">√</mi><mi>n</mi><mo>)</mo><mo>+</mo><mi>l</mi><mi>o</mi><mi>g</mi><mo>(</mo><mi>n</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">T(n)=2T(√n)+log(n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.05em;vertical-align:-0.25em;"></span><span class="mord">2</span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="mopen">(</span><span class="mord">√</span><span class="mord mathdefault">n</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">o</span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span>，求T(n)的lowest upper bound。</p>
+<p>首先进行换元<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi><mo>=</mo><msup><mn>2</mn><mi>m</mi></msup></mrow><annotation encoding="application/x-tex">n = 2^m</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.664392em;vertical-align:0em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.664392em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">m</span></span></span></span></span></span></span></span></span></span></span>。原式变成<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>T</mi><mo>(</mo><msup><mn>2</mn><mi>m</mi></msup><mo>)</mo><mo>=</mo><mn>2</mn><mi>T</mi><mo>(</mo><msup><mn>2</mn><mrow><mi>m</mi><mi mathvariant="normal">/</mi><mn>2</mn></mrow></msup><mo>)</mo><mo>+</mo><mi>m</mi></mrow><annotation encoding="application/x-tex">T(2^m) = 2T(2^{m/2})+m</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="mopen">(</span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.664392em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">m</span></span></span></span></span></span></span></span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.138em;vertical-align:-0.25em;"></span><span class="mord">2</span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="mopen">(</span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8879999999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">m</span><span class="mord mtight">/</span><span class="mord mtight">2</span></span></span></span></span></span></span></span></span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">m</span></span></span></span>。再令<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>G</mi><mo>(</mo><mi>m</mi><mo>)</mo><mo>=</mo><mi>T</mi><mo>(</mo><msup><mn>2</mn><mi>m</mi></msup><mo>)</mo></mrow><annotation encoding="application/x-tex">G(m) = T(2^m)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">G</span><span class="mopen">(</span><span class="mord mathdefault">m</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="mopen">(</span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.664392em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">m</span></span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span>得到  <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>G</mi><mo>(</mo><mi>m</mi><mo>)</mo><mo>=</mo><mn>2</mn><mi>G</mi><mo>(</mo><mi>m</mi><mi mathvariant="normal">/</mi><mn>2</mn><mo>)</mo><mo>+</mo><mi>m</mi></mrow><annotation encoding="application/x-tex">G(m)=2G(m/2)+m</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">G</span><span class="mopen">(</span><span class="mord mathdefault">m</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">2</span><span class="mord mathdefault">G</span><span class="mopen">(</span><span class="mord mathdefault">m</span><span class="mord">/</span><span class="mord">2</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">m</span></span></span></span>。</p>
+<p>那么根据主方法，对应第二种情况，<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>G</mi><mo>(</mo><mi>m</mi><mo>)</mo><mo>=</mo><mi mathvariant="normal">Θ</mi><mo>(</mo><mi>m</mi><mi>l</mi><mi>g</mi><mo>(</mo><mi>m</mi><mo>)</mo><mo>)</mo></mrow><annotation encoding="application/x-tex">G(m) = \Theta (mlg(m))</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">G</span><span class="mopen">(</span><span class="mord mathdefault">m</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">Θ</span><span class="mopen">(</span><span class="mord mathdefault">m</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="mopen">(</span><span class="mord mathdefault">m</span><span class="mclose">)</span><span class="mclose">)</span></span></span></span></p>
+<p>或者画一个递归树也可以得到一样的结论，G(m) = m+mlg(m) = mlg(m)</p>
 
               </div>
               <div class="toc-container">
@@ -184,6 +187,7 @@ var _hmt = _hmt || [];
 <li><a href="#substitution-method">Substitution method</a></li>
 <li><a href="#recursion-tree-method">Recursion-tree method</a></li>
 <li><a href="#master-method">Master method</a></li>
+<li><a href="#%E4%BE%8B%E9%A2%98">例题</a></li>
 </ul>
 </li>
 </ul>
@@ -198,7 +202,7 @@ var _hmt = _hmt || [];
             <div class="next">下一篇</div>
             <a href="https://reticenceji.github.io/post/ads-jian-zhi/">
               <h3 class="post-title">
-                ADS-剪枝
+                ADS-Backtracking
               </h3>
             </a>
           </div>

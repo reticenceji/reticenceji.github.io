@@ -2,11 +2,11 @@
   <head>
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>ADS-RB Tree&amp;B+ Tree | Reticence</title>
-<link rel="shortcut icon" href="https://reticenceji.github.io/favicon.ico?v=1619509412636">
+<title>ADS-RB Tree and B+ Tree | Reticence</title>
+<link rel="shortcut icon" href="https://reticenceji.github.io/favicon.ico?v=1620698420281">
 <link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
 <link rel="stylesheet" href="https://reticenceji.github.io/styles/main.css">
-<link rel="alternate" type="application/atom+xml" title="ADS-RB Tree&amp;B+ Tree | Reticence - Atom Feed" href="https://reticenceji.github.io/atom.xml">
+<link rel="alternate" type="application/atom+xml" title="ADS-RB Tree and B+ Tree | Reticence - Atom Feed" href="https://reticenceji.github.io/atom.xml">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
 
 <script>
@@ -30,13 +30,12 @@ var _hmt = _hmt || [];
 </script>
 
 
-    <meta name="description" content="根据对平衡的不同定义，我们还有红黑树和B+树。
-Red-Black Tree
+    <meta name="description" content="根据对平衡的不同定义，我们还有红黑树和B+树。只能说他们又难又强大。他们的目标都是加速搜索，而且B+树更进一步对大数据的搜索更友好，可以说是面向计算机体系结构的数据结构了。
 
-Target：加速动态搜索的平衡树。
-定义：
+Red-Black Tree⭐️
+红黑树节点的数据结构：
 
-A red-black tree is a binary search tree that satisfies ..." />
+红黑..." />
     <meta name="keywords" content="DS" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
     <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
@@ -46,7 +45,7 @@ A red-black tree is a binary search tree that satisfies ..." />
       <div class="main-content">
         <div class="site-header">
   <a href="https://reticenceji.github.io">
-  <img class="avatar" src="https://reticenceji.github.io/images/avatar.png?v=1619509412636" alt="">
+  <img class="avatar" src="https://reticenceji.github.io/images/avatar.png?v=1620698420281" alt="">
   </a>
   <h1 class="site-title">
     Reticence
@@ -85,12 +84,6 @@ var _hmt = _hmt || [];
       
         <a href="/navigator.html" class="menu">
           Navigator
-        </a>
-      
-    
-      
-        <a href="/post/book-list" class="menu">
-          Booklist
         </a>
       
     
@@ -142,14 +135,14 @@ var _hmt = _hmt || [];
         <div class="post-detail">
           <article class="post">
             <h2 class="post-title">
-              ADS-RB Tree&amp;B+ Tree
+              ADS-RB Tree and B+ Tree
             </h2>
             <div class="post-info">
               <span>
                 2021-03-08
               </span>
               <span>
-                5 min read
+                7 min read
               </span>
               
                 <a href="https://reticenceji.github.io/tag/0AqTQfzSL/" class="post-tag">
@@ -160,46 +153,105 @@ var _hmt = _hmt || [];
             
             <div class="post-content-wrapper">
               <div class="post-content">
-                <p>根据对平衡的不同定义，我们还有红黑树和B+树。</p>
-<h2 id="red-black-tree">Red-Black Tree</h2>
-<p><img src="https://reticenceji.github.io/post-images/1615191307420.jpg" alt="" loading="lazy"><br>
-Target：加速动态搜索的平衡树。<br>
-定义：</p>
+                <p>根据对平衡的不同定义，我们还有红黑树和B+树。只能说他们又难又强大。他们的目标都是加速搜索，而且B+树更进一步对大数据的搜索更友好，可以说是面向计算机体系结构的数据结构了。</p>
+<!-- more -->
+<h2 id="red-black-treestar">Red-Black Tree⭐️</h2>
+<p>红黑树节点的数据结构：</p>
+<p><img src="https://reticenceji.github.io/post-images/image-20210509113119326.png" alt="image-20210509113119326" loading="lazy"><br>
+红黑树的定义：</p>
 <blockquote>
 <p>A red-black tree is a binary search tree that satisfies the following red-black properties:<br>
-(1) Every node is either red or black.<br>
+(1) Every node is either red or black. （染色）<br>
 (2) The root is black.<br>
-(3) Every leaf (NIL) is black.<br>
-(4) If a node is red, then both its children are black.(平衡)<br>
+(3) Every leaf (NIL) is black.   （注意这里的leaf指的是空节点，或者说是NIL节点）<br>
+(4) <strong>If a node is red, then both its children are black.</strong><br>
 (5) For each node, all simple paths from the node to descendant leaves contain the <strong>same number of black nodes.</strong>(平衡条件)<br>
-一些概念：</p>
-<ul>
-<li><strong>black-height</strong>：The black-height of any node x, denoted by bh(x), is the number of black nodes on any simple path from x (x not included) down to a leaf.  bh(Tree) = bh(root).</li>
-</ul>
+在这些条件保证下：</p>
 </blockquote>
+<ol>
+<li>一颗有n个内部节点的红黑树的高度至多为<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>2</mn><mi>l</mi><mi>o</mi><mi>g</mi><mo>(</mo><mi>n</mi><mo>+</mo><mn>1</mn><mo>)</mo></mrow><annotation encoding="application/x-tex">2 log(n+1)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">2</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">o</span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mclose">)</span></span></span></span>。</li>
+<li>红黑树能保证在最坏情况下，执行所有操作的时间复杂度都是O(lg N)</li>
+</ol>
 <ul>
-<li>internal node：可以认为是非NULL结点。</li>
-<li>external node：NULL结点。</li>
+<li>internal node: 可以认为是非NULL结点。</li>
+<li>external node: NULL结点。</li>
+<li>black height: 从节点x出发（不含）到一个叶节点的任意一条简单路径上的黑色节点个数，记为<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>b</mi><mi>h</mi><mo>(</mo><mi>x</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">bh(x)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">b</span><span class="mord mathdefault">h</span><span class="mopen">(</span><span class="mord mathdefault">x</span><span class="mclose">)</span></span></span></span></li>
 </ul>
-<h3 id="操作">操作</h3>
-<p>Rotate：左旋和右旋是基本的旋转操作，和AVL Tree中类似。<img src="https://reticenceji.github.io/post-images/1615369541135.jpg" alt="rotate" loading="lazy"></p>
-<p>Insert：红黑树的插入操作最多有2次旋转。<br>
-我们把插入的点（4）染成红色，然后考虑：</p>
+<p>相比于AVL Tree，红黑树插入和删除的旋转操作更少，不过没有AVL Tree平衡。所以对于插入删除频繁的场景可以用红黑树，</p>
+<h3 id="复杂度分析">复杂度分析</h3>
+<table>
+<thead>
+<tr>
+<th>算法</th>
+<th><strong>平均</strong></th>
+<th><strong>最差</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>空间</td>
+<td>O(n)</td>
+<td>O(n)</td>
+</tr>
+<tr>
+<td>搜索</td>
+<td>O(log n)</td>
+<td>O(log n)</td>
+</tr>
+<tr>
+<td>插入</td>
+<td>O(log n)</td>
+<td>O(log n)</td>
+</tr>
+<tr>
+<td>删除</td>
+<td>O(log n)</td>
+<td>O(log n)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="插入">插入</h3>
+<p>首先，我们默认把插入的点染成红色。</p>
 <ol>
-<li>如果parent是黑色，那么插入成功。</li>
-<li>如果parent是红色：
+<li>
+<p>第一种情况，如果parent是黑色，则插入成功。</p>
+</li>
+<li>
+<p>如果parent是黑色，那么我们要考虑uncle的颜色，如果uncle是红色，那么就是下面的情况：</p>
+<figure data-type="image" tabindex="1"><img src="https://reticenceji.github.io/post-images/output243.png" alt="img" loading="lazy"></figure>
+</li>
+<li>
+<p>如果uncle是红色，那么有4种情况：</p>
 <ol>
-<li>如果parent的cousin是红色，执行case1的操作。不过要注意的是，这个操作可能会带来新的问题，看到顶部的结点变成红色了。(如果顶部结点变红了，再把他变成黑的)</li>
-<li>如果parent的cousin是黑色：
-<ol>
-<li>如果是RL型或LR型，执行case2的操作，转换成case3。</li>
-<li>如果是RR型或LL型，执行case3的操作。<br>
-<img src="https://reticenceji.github.io/post-images/1615194006560.jpg" alt="" loading="lazy"></li>
+<li><img src="https://reticenceji.github.io/post-images/output244.png" alt="img" loading="lazy"></li>
+<li><img src="https://reticenceji.github.io/post-images/output245.png" alt="img" loading="lazy"></li>
+<li><img src="https://reticenceji.github.io/post-images/output246.png" alt="img" loading="lazy"></li>
+<li><img src="https://reticenceji.github.io/post-images/output247.png" alt="img" loading="lazy"></li>
 </ol>
 </li>
 </ol>
-</li>
-</ol>
+<p>Perform standard BST insertion and make the colour of newly inserted nodes as <strong>RED</strong>.<br>
+If x is the root, change the colour of x as <strong>BLACK</strong> (Black height of complete tree increases by 1).<br>
+Do the following if the color of x’s parent is not <strong>BLACK</strong> and x is not the root.<br>
+a) If x’s uncle is <strong>RED</strong> (Grandparent must have been black from property 4)<br>
+(i) Change the colour of parent and uncle as <strong>BLACK</strong>.<br>
+(ii) Colour of a grandparent as RED.<br>
+(iii) Change x = x’s grandparent, repeat steps 2 and 3 for new x.<br>
+b) If x’s uncle is <strong>BLACK</strong>, then there can be four configurations for x, x’s parent (p) and x’s grandparent (g) (This is similar to AVL Tree)<br>
+(i) Left Left Case (p is left child of g and x is left child of p)<br>
+(ii) Left Right Case (p is left child of g and x is the right child of p)<br>
+(iii) Right Right Case (Mirror of case i)<br>
+(iv) Right Left Case (Mirror of case ii)</p>
+<h3 id="删除">删除</h3>
+<p>类似插入，我们首先也要进行一个普通的删除过程。</p>
+<p>Let v be the node to be deleted and u be the child that replaces v (Note that u is NULL when v is a leaf and color of NULL is considered as Black).</p>
+<ul>
+<li>0度节点：Reset its parent link to NULL.很简单，删了就好，让他的父亲指向NIL，不会带来不平衡。</li>
+<li>1度节点：Replace the node by its single child。把它的孩子当作它。如果这个一度节点是红色或者孩子是红色，那么没什么问题，但是如果都是黑色，删除就意味着bh-1。</li>
+<li>2度节点：Replace the node by the <strong>largest one in its left subtree</strong> or the <strong>smallest one in its right subtree</strong>. Then Delete the replacing node from the subtree. 因为是最大或者最小，那么他最多是1度。问题转移到了1度节点。</li>
+</ul>
+<p>所以问题的关键是1度黑节点的删除，下面假设要删除的节点是N，他的父亲是P，兄弟是S：</p>
+<figure data-type="image" tabindex="6"><img src="https://reticenceji.github.io/post-images/image-20210510215401523.png" alt="image-20210510215401523" loading="lazy"></figure>
 <pre><code class="language-c">insert_fixup(T, z)
 {
     while (z-&gt;parent-&gt;color == RED) //如果是黑色就完成了
@@ -232,25 +284,19 @@ Target：加速动态搜索的平衡树。<br>
 }
 
 </code></pre>
-<p>Delete：红黑树的删除操作最多有3次旋转，<strong>麻烦的不行</strong>。<a href="https://zhuanlan.zhihu.com/p/22800206">参考链接</a><br>
-回顾一个普通的二叉树的删除过程</p>
-<ul>
-<li>0度节点：Reset its parent link to NULL.很简单，删了就好。</li>
-<li>1度节点：Replace the node by its single child.也比较简单，把它的孩子当作它。</li>
-<li>2度节点：Replace the node by the <strong>largest one in its left subtree</strong> or the <strong>smallest one in its right subtree</strong>. Then Delete the replacing node from the subtree.</li>
-</ul>
-<p>所以我们看到最简单的操作是删掉一个red leaf。<strong>所以删除的解决办法保证从上到下删除期间树叶是红的</strong>。<br>
-在整个讨论中，令X为当前结点，T是他的sbling，P是他的parent。<strong>如果X就是我们要删除的结点，我们把他和X左子树上最大的结点或右子树上最小的结点交换。</strong><br>
-当我们沿着树向下遍历的时候，<strong>我们保证X是红色的</strong>。我们首先把root染成红色（最后再染回黑色，也可以忽略它，我不是很明白这个的意义是什么）。当我们到达一个新的结点的时候，我们就知道P是红的（就是之前的X），并且X和T是黑的（不能有两个连续的红色）。</p>
 <h2 id="b-tree">B+ Tree</h2>
-<p>B+树不是一个二叉树，但是是搜索树。适用于超大规模的数，迎合硬件存储机制。</p>
+<p>B+树不是一个二叉树，但是是搜索树。适用于超大规模的数，迎合硬件存储机制。定义如下：</p>
 <blockquote>
-<p>A B+ tree of order <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>M</mi></mrow><annotation encoding="application/x-tex">M</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.10903em;">M</span></span></span></span> is a tree with the following structural properties:<br>
+<p>A <strong>B+ tree</strong> of order <strong>M</strong> is a tree with the following structural properties:<br>
 (1)  The root is either a leaf or has between <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>2</mn></mrow><annotation encoding="application/x-tex">2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span></span></span></span> and <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>M</mi></mrow><annotation encoding="application/x-tex">M</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.10903em;">M</span></span></span></span> children.<br>
 (2)  All nonleaf nodes (except the root) have between <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>⌈</mo><mi>M</mi><mi mathvariant="normal">/</mi><mn>2</mn><mo>⌉</mo></mrow><annotation encoding="application/x-tex">\lceil M/2\rceil</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">⌈</span><span class="mord mathdefault" style="margin-right:0.10903em;">M</span><span class="mord">/</span><span class="mord">2</span><span class="mclose">⌉</span></span></span></span> and <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>M</mi></mrow><annotation encoding="application/x-tex">M</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.10903em;">M</span></span></span></span> children.<br>
 (3)  All leaves are at the same depth.</p>
 </blockquote>
-<p><a href="https://www.geeksforgeeks.org/introduction-of-b-tree-2/?ref=leftbar-rightbar">https://www.geeksforgeeks.org/introduction-of-b-tree-2/?ref=leftbar-rightbar</a></p>
+<figure data-type="image" tabindex="7"><img src="https://reticenceji.github.io/post-images/image-20210510123640238.png" alt="image-20210510123640238" loading="lazy"></figure>
+<p>这里的叶子节点，包含了M个数据。</p>
+<p>non-leaf节点，包含了M-1个数据和M个指针。通常这个数据会取下一个Block中最小的那个，看上面标红的。</p>
+<p>对于查找的操作来说，和普通的搜索树是类似的。</p>
+<p><a href="https://www.geeksforgeeks.org/introduction-of-b-tree/">https://www.geeksforgeeks.org/introduction-of-b-tree-2/?ref=leftbar-rightbar</a></p>
 <table>
 <thead>
 <tr>
@@ -277,15 +323,30 @@ Target：加速动态搜索的平衡树。<br>
 </tr>
 </tbody>
 </table>
+<p>考试常考的是2-3-4 Tree（也就是M=4的B+ Tree）或2-3 Tree（M=3），虽然实际用途似乎并不会这么小。</p>
+<pre><code class="language-c">Btree  Insert ( ElementType X,  Btree T ) 
+{ 
+	Search from root to leaf for X and find the proper leaf node;
+	Insert X;
+	while ( this node has M+1 keys ) {
+    		split it into 2 nodes with (M+1)/2 and (M+1)/2  keys, respectively;
+    		if (this node is the root)
+        		create a new root with two children;
+    		check its parent;
+	}
+} 
+</code></pre>
 
               </div>
               <div class="toc-container">
                 <ul class="markdownIt-TOC">
 <li>
 <ul>
-<li><a href="#red-black-tree">Red-Black Tree</a>
+<li><a href="#red-black-treestar">Red-Black Tree:star:</a>
 <ul>
-<li><a href="#%E6%93%8D%E4%BD%9C">操作</a></li>
+<li><a href="#%E5%A4%8D%E6%9D%82%E5%BA%A6%E5%88%86%E6%9E%90">复杂度分析</a></li>
+<li><a href="#%E6%8F%92%E5%85%A5">插入</a></li>
+<li><a href="#%E5%88%A0%E9%99%A4">删除</a></li>
 </ul>
 </li>
 <li><a href="#b-tree">B+ Tree</a></li>

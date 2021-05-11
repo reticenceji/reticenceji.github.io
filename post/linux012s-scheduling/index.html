@@ -2,11 +2,11 @@
   <head>
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Context Switch In Linux Scheduling  | Reticence</title>
-<link rel="shortcut icon" href="https://reticenceji.github.io/favicon.ico?v=1619509412636">
+<title>Linux进程调度时的context switch | Reticence</title>
+<link rel="shortcut icon" href="https://reticenceji.github.io/favicon.ico?v=1620698420281">
 <link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
 <link rel="stylesheet" href="https://reticenceji.github.io/styles/main.css">
-<link rel="alternate" type="application/atom+xml" title="Context Switch In Linux Scheduling  | Reticence - Atom Feed" href="https://reticenceji.github.io/atom.xml">
+<link rel="alternate" type="application/atom+xml" title="Linux进程调度时的context switch | Reticence - Atom Feed" href="https://reticenceji.github.io/atom.xml">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
 
 <script>
@@ -42,7 +42,7 @@ var _hmt = _hmt || [];
       <div class="main-content">
         <div class="site-header">
   <a href="https://reticenceji.github.io">
-  <img class="avatar" src="https://reticenceji.github.io/images/avatar.png?v=1619509412636" alt="">
+  <img class="avatar" src="https://reticenceji.github.io/images/avatar.png?v=1620698420281" alt="">
   </a>
   <h1 class="site-title">
     Reticence
@@ -81,12 +81,6 @@ var _hmt = _hmt || [];
       
         <a href="/navigator.html" class="menu">
           Navigator
-        </a>
-      
-    
-      
-        <a href="/post/book-list" class="menu">
-          Booklist
         </a>
       
     
@@ -138,7 +132,7 @@ var _hmt = _hmt || [];
         <div class="post-detail">
           <article class="post">
             <h2 class="post-title">
-              Context Switch In Linux Scheduling 
+              Linux进程调度时的context switch
             </h2>
             <div class="post-info">
               <span>
@@ -327,235 +321,235 @@ void start_thread(struct pt_regs *regs, unsigned long pc,
 <figure data-type="image" tabindex="1"><img src="https://reticenceji.github.io/post-images/1604565709562.png" alt="" loading="lazy"></figure>
 <p>对应的源代码：</p>
 <ol start="0">
-<li>
-<p>保存所有的可能被修改的寄存器，包括所有的通用寄存器和一些CSR</p>
-<pre><code class="language-asm">ENTRY(handle_exception)
-	/*
-	 * If coming from userspace, preserve the user thread pointer and load
-	 * the kernel thread pointer.  If we came from the kernel, the scratch
-	 * register will contain 0, and we should continue on the current TP.
-	 */
-	csrrw tp, CSR_SCRATCH, tp
-	bnez tp, _save_context
+<li>保存所有的可能被修改的寄存器，包括所有的通用寄存器和一些CSR</li>
+</ol>
+<pre><code>ENTRY(handle_exception)
+    /*
+        * If coming from userspace, preserve the user thread pointer and load
+        * the kernel thread pointer.  If we came from the kernel, the scratch
+        * register will contain 0, and we should continue on the current TP.
+        */
+    csrrw tp, CSR_SCRATCH, tp
+    bnez tp, _save_context
 
 _restore_kernel_tpsp:
-	csrr tp, CSR_SCRATCH
-	REG_S sp, TASK_TI_KERNEL_SP(tp)
+    csrr tp, CSR_SCRATCH
+    REG_S sp, TASK_TI_KERNEL_SP(tp)
 _save_context:
-	REG_S sp, TASK_TI_USER_SP(tp)
-	REG_L sp, TASK_TI_KERNEL_SP(tp)
-	addi sp, sp, -(PT_SIZE_ON_STACK)
-	REG_S x1,  PT_RA(sp)
-	REG_S x3,  PT_GP(sp)
-	REG_S x5,  PT_T0(sp)
-	REG_S x6,  PT_T1(sp)
-	REG_S x7,  PT_T2(sp)
-	REG_S x8,  PT_S0(sp)
-	REG_S x9,  PT_S1(sp)
-	REG_S x10, PT_A0(sp)
-	REG_S x11, PT_A1(sp)
-	REG_S x12, PT_A2(sp)
-	REG_S x13, PT_A3(sp)
-	REG_S x14, PT_A4(sp)
-	REG_S x15, PT_A5(sp)
-	REG_S x16, PT_A6(sp)
-	REG_S x17, PT_A7(sp)
-	REG_S x18, PT_S2(sp)
-	REG_S x19, PT_S3(sp)
-	REG_S x20, PT_S4(sp)
-	REG_S x21, PT_S5(sp)
-	REG_S x22, PT_S6(sp)
-	REG_S x23, PT_S7(sp)
-	REG_S x24, PT_S8(sp)
-	REG_S x25, PT_S9(sp)
-	REG_S x26, PT_S10(sp)
-	REG_S x27, PT_S11(sp)
-	REG_S x28, PT_T3(sp)
-	REG_S x29, PT_T4(sp)
-	REG_S x30, PT_T5(sp)
-	REG_S x31, PT_T6(sp)
+    REG_S sp, TASK_TI_USER_SP(tp)
+    REG_L sp, TASK_TI_KERNEL_SP(tp)
+    addi sp, sp, -(PT_SIZE_ON_STACK)
+    REG_S x1,  PT_RA(sp)
+    REG_S x3,  PT_GP(sp)
+    REG_S x5,  PT_T0(sp)
+    REG_S x6,  PT_T1(sp)
+    REG_S x7,  PT_T2(sp)
+    REG_S x8,  PT_S0(sp)
+    REG_S x9,  PT_S1(sp)
+    REG_S x10, PT_A0(sp)
+    REG_S x11, PT_A1(sp)
+    REG_S x12, PT_A2(sp)
+    REG_S x13, PT_A3(sp)
+    REG_S x14, PT_A4(sp)
+    REG_S x15, PT_A5(sp)
+    REG_S x16, PT_A6(sp)
+    REG_S x17, PT_A7(sp)
+    REG_S x18, PT_S2(sp)
+    REG_S x19, PT_S3(sp)
+    REG_S x20, PT_S4(sp)
+    REG_S x21, PT_S5(sp)
+    REG_S x22, PT_S6(sp)
+    REG_S x23, PT_S7(sp)
+    REG_S x24, PT_S8(sp)
+    REG_S x25, PT_S9(sp)
+    REG_S x26, PT_S10(sp)
+    REG_S x27, PT_S11(sp)
+    REG_S x28, PT_T3(sp)
+    REG_S x29, PT_T4(sp)
+    REG_S x30, PT_T5(sp)
+    REG_S x31, PT_T6(sp)
 </code></pre>
-</li>
-<li>
-<p>是否要schedule选择，有一个变量task_struct中有一个变量<strong>need_reshced</strong>，我们根据他的值判断是否要进行调度，关注“need——resched”</p>
-<pre><code class="language-asm">;entry.S 329行
+<ol>
+<li>是否要schedule选择，有一个变量task_struct中有一个变量<strong>need_reshced</strong>，我们根据他的值判断是否要进行调度，关注“need——resched”</li>
+</ol>
+<pre><code>;entry.S 329行
 #if IS_ENABLED(CONFIG_PREEMPTION)
 resume_kernel:
-	REG_L s0, TASK_TI_PREEMPT_COUNT(tp)
-	bnez s0, restore_all
-	REG_L s0, TASK_TI_FLAGS(tp)
-	andi s0, s0, _TIF_NEED_RESCHED
-	beqz s0, restore_all
-	call preempt_schedule_irq
-	j restore_all
+REG_L s0, TASK_TI_PREEMPT_COUNT(tp)
+bnez s0, restore_all
+REG_L s0, TASK_TI_FLAGS(tp)
+andi s0, s0, _TIF_NEED_RESCHED
+beqz s0, restore_all
+call preempt_schedule_irq
+j restore_all
 #endif
 
 work_pending:
-	/* Enter slow path for supplementary processing */
-	la ra, ret_from_exception
-	andi s1, s0, _TIF_NEED_RESCHED
-	bnez s1, work_resched
+/* Enter slow path for supplementary processing */
+la ra, ret_from_exception
+andi s1, s0, _TIF_NEED_RESCHED
+bnez s1, work_resched
 work_notifysig:
-	/* Handle pending signals and notify-resume requests */
-	csrs CSR_STATUS, SR_IE /* Enable interrupts for do_notify_resume() */
-	move a0, sp /* pt_regs */
-	move a1, s0 /* current_thread_info-&gt;flags */
-	tail do_notify_resume
+/* Handle pending signals and notify-resume requests */
+csrs CSR_STATUS, SR_IE /* Enable interrupts for do_notify_resume() */
+move a0, sp /* pt_regs */
+move a1, s0 /* current_thread_info-&gt;flags */
+tail do_notify_resume
 work_resched:
-	tail schedule
+tail schedule
 
 </code></pre>
-</li>
-<li>
-<p>switch其实是一个宏定义，真正的内容在entry.S。我们会恢复我们在中断处理过程中的上下文，例如sp会切换我们的栈，ra让我们能返回到上次中断处理后的返回部分。</p>
-<pre><code class="language-asm">;/arch/riscv/kernel/entry.S 第389行
+<ol start="2">
+<li>switch其实是一个宏定义，真正的内容在entry.S。我们会恢复我们在中断处理过程中的上下文，例如sp会切换我们的栈，ra让我们能返回到上次中断处理后的返回部分。</li>
+</ol>
+<pre><code>;/arch/riscv/kernel/entry.S 第389行
 /*
- * Integer register context switch
- * The callee-saved registers must be saved and restored.
- *
- *   a0: previous task_struct (must be preserved across the switch)
- *   a1: next task_struct
- *
- * The value of a0 and a1 must be preserved by this function, as that's how
- * arguments are passed to schedule_tail.
- */
+* Integer register context switch
+* The callee-saved registers must be saved and restored.
+*
+*   a0: previous task_struct (must be preserved across the switch)
+*   a1: next task_struct
+*
+* The value of a0 and a1 must be preserved by this function, as that's how
+* arguments are passed to schedule_tail.
+*/
 ENTRY(__switch_to)
-	/* Save context into prev-&gt;thread */
-	li    a4,  TASK_THREAD_RA
-	add   a3, a0, a4
-	add   a4, a1, a4
-	REG_S ra,  TASK_THREAD_RA_RA(a3)
-	REG_S sp,  TASK_THREAD_SP_RA(a3)
-	REG_S s0,  TASK_THREAD_S0_RA(a3)
-	REG_S s1,  TASK_THREAD_S1_RA(a3)
-	REG_S s2,  TASK_THREAD_S2_RA(a3)
-	REG_S s3,  TASK_THREAD_S3_RA(a3)
-	REG_S s4,  TASK_THREAD_S4_RA(a3)
-	REG_S s5,  TASK_THREAD_S5_RA(a3)
-	REG_S s6,  TASK_THREAD_S6_RA(a3)
-	REG_S s7,  TASK_THREAD_S7_RA(a3)
-	REG_S s8,  TASK_THREAD_S8_RA(a3)
-	REG_S s9,  TASK_THREAD_S9_RA(a3)
-	REG_S s10, TASK_THREAD_S10_RA(a3)
-	REG_S s11, TASK_THREAD_S11_RA(a3)
-	/* Restore context from next-&gt;thread */
-	REG_L ra,  TASK_THREAD_RA_RA(a4)
-	REG_L sp,  TASK_THREAD_SP_RA(a4)
-	REG_L s0,  TASK_THREAD_S0_RA(a4)
-	REG_L s1,  TASK_THREAD_S1_RA(a4)
-	REG_L s2,  TASK_THREAD_S2_RA(a4)
-	REG_L s3,  TASK_THREAD_S3_RA(a4)
-	REG_L s4,  TASK_THREAD_S4_RA(a4)
-	REG_L s5,  TASK_THREAD_S5_RA(a4)
-	REG_L s6,  TASK_THREAD_S6_RA(a4)
-	REG_L s7,  TASK_THREAD_S7_RA(a4)
-	REG_L s8,  TASK_THREAD_S8_RA(a4)
-	REG_L s9,  TASK_THREAD_S9_RA(a4)
-	REG_L s10, TASK_THREAD_S10_RA(a4)
-	REG_L s11, TASK_THREAD_S11_RA(a4)
-	/* Swap the CPU entry around. */
-	lw a3, TASK_TI_CPU(a0)
-	lw a4, TASK_TI_CPU(a1)
-	sw a3, TASK_TI_CPU(a1)
-	sw a4, TASK_TI_CPU(a0)
-	/* The offset of thread_info in task_struct is zero. */
-	move tp, a1
-	ret
+/* Save context into prev-&gt;thread */
+li    a4,  TASK_THREAD_RA
+add   a3, a0, a4
+add   a4, a1, a4
+REG_S ra,  TASK_THREAD_RA_RA(a3)
+REG_S sp,  TASK_THREAD_SP_RA(a3)
+REG_S s0,  TASK_THREAD_S0_RA(a3)
+REG_S s1,  TASK_THREAD_S1_RA(a3)
+REG_S s2,  TASK_THREAD_S2_RA(a3)
+REG_S s3,  TASK_THREAD_S3_RA(a3)
+REG_S s4,  TASK_THREAD_S4_RA(a3)
+REG_S s5,  TASK_THREAD_S5_RA(a3)
+REG_S s6,  TASK_THREAD_S6_RA(a3)
+REG_S s7,  TASK_THREAD_S7_RA(a3)
+REG_S s8,  TASK_THREAD_S8_RA(a3)
+REG_S s9,  TASK_THREAD_S9_RA(a3)
+REG_S s10, TASK_THREAD_S10_RA(a3)
+REG_S s11, TASK_THREAD_S11_RA(a3)
+/* Restore context from next-&gt;thread */
+REG_L ra,  TASK_THREAD_RA_RA(a4)
+REG_L sp,  TASK_THREAD_SP_RA(a4)
+REG_L s0,  TASK_THREAD_S0_RA(a4)
+REG_L s1,  TASK_THREAD_S1_RA(a4)
+REG_L s2,  TASK_THREAD_S2_RA(a4)
+REG_L s3,  TASK_THREAD_S3_RA(a4)
+REG_L s4,  TASK_THREAD_S4_RA(a4)
+REG_L s5,  TASK_THREAD_S5_RA(a4)
+REG_L s6,  TASK_THREAD_S6_RA(a4)
+REG_L s7,  TASK_THREAD_S7_RA(a4)
+REG_L s8,  TASK_THREAD_S8_RA(a4)
+REG_L s9,  TASK_THREAD_S9_RA(a4)
+REG_L s10, TASK_THREAD_S10_RA(a4)
+REG_L s11, TASK_THREAD_S11_RA(a4)
+/* Swap the CPU entry around. */
+lw a3, TASK_TI_CPU(a0)
+lw a4, TASK_TI_CPU(a1)
+sw a3, TASK_TI_CPU(a1)
+sw a4, TASK_TI_CPU(a0)
+/* The offset of thread_info in task_struct is zero. */
+move tp, a1
+ret
 ENDPROC(__switch_to)
 
 /* switch_to宏
- * 有趣的是这里有三个参数
+* 有趣的是这里有三个参数
 #define switch_to(prev, next, last)			\
 do {							\
-	struct task_struct *__prev = (prev);		\
-	struct task_struct *__next = (next);		\
-	if (has_fpu)					\
-		__switch_to_aux(__prev, __next);	\
-	((last) = __switch_to(__prev, __next));		\
+struct task_struct *__prev = (prev);		\
+struct task_struct *__next = (next);		\
+if (has_fpu)					\
+    __switch_to_aux(__prev, __next);	\
+((last) = __switch_to(__prev, __next));		\
 } while (0)
 </code></pre>
-</li>
-<li>
-<p>恢复所有的寄存器</p>
-<pre><code class="language-asm">;/arch/riscv/kernel/entry.S 第254行
+<ol start="3">
+<li>恢复所有的寄存器</li>
+</ol>
+<pre><code>;/arch/riscv/kernel/entry.S 第254行
 restore_all:
 #ifdef CONFIG_TRACE_IRQFLAGS
-	REG_L s1, PT_STATUS(sp)
-	andi t0, s1, SR_PIE
-	beqz t0, 1f
-	call trace_hardirqs_on
-	j 2f
+REG_L s1, PT_STATUS(sp)
+andi t0, s1, SR_PIE
+beqz t0, 1f
+call trace_hardirqs_on
+j 2f
 1:
-	call trace_hardirqs_off
+call trace_hardirqs_off
 2:
 #endif
-	REG_L a0, PT_STATUS(sp)
-	/*
-	 * The current load reservation is effectively part of the processor's
-	 * state, in the sense that load reservations cannot be shared between
-	 * different hart contexts.  We can't actually save and restore a load
-	 * reservation, so instead here we clear any existing reservation --
-	 * it's always legal for implementations to clear load reservations at
-	 * any point (as long as the forward progress guarantee is kept, but
-	 * we'll ignore that here).
-	 *
-	 * Dangling load reservations can be the result of taking a trap in the
-	 * middle of an LR/SC sequence, but can also be the result of a taken
-	 * forward branch around an SC -- which is how we implement CAS.  As a
-	 * result we need to clear reservations between the last CAS and the
-	 * jump back to the new context.  While it is unlikely the store
-	 * completes, implementations are allowed to expand reservations to be
-	 * arbitrarily large.
-	 */
-	REG_L  a2, PT_EPC(sp)
-	REG_SC x0, a2, PT_EPC(sp)
+REG_L a0, PT_STATUS(sp)
+/*
+    * The current load reservation is effectively part of the processor's
+    * state, in the sense that load reservations cannot be shared between
+    * different hart contexts.  We can't actually save and restore a load
+    * reservation, so instead here we clear any existing reservation --
+    * it's always legal for implementations to clear load reservations at
+    * any point (as long as the forward progress guarantee is kept, but
+    * we'll ignore that here).
+    *
+    * Dangling load reservations can be the result of taking a trap in the
+    * middle of an LR/SC sequence, but can also be the result of a taken
+    * forward branch around an SC -- which is how we implement CAS.  As a
+    * result we need to clear reservations between the last CAS and the
+    * jump back to the new context.  While it is unlikely the store
+    * completes, implementations are allowed to expand reservations to be
+    * arbitrarily large.
+    */
+REG_L  a2, PT_EPC(sp)
+REG_SC x0, a2, PT_EPC(sp)
 
-	csrw CSR_STATUS, a0
-	csrw CSR_EPC, a2
+csrw CSR_STATUS, a0
+csrw CSR_EPC, a2
 
-	REG_L x1,  PT_RA(sp)
-	REG_L x3,  PT_GP(sp)
-	REG_L x4,  PT_TP(sp)
-	REG_L x5,  PT_T0(sp)
-	REG_L x6,  PT_T1(sp)
-	REG_L x7,  PT_T2(sp)
-	REG_L x8,  PT_S0(sp)
-	REG_L x9,  PT_S1(sp)
-	REG_L x10, PT_A0(sp)
-	REG_L x11, PT_A1(sp)
-	REG_L x12, PT_A2(sp)
-	REG_L x13, PT_A3(sp)
-	REG_L x14, PT_A4(sp)
-	REG_L x15, PT_A5(sp)
-	REG_L x16, PT_A6(sp)
-	REG_L x17, PT_A7(sp)
-	REG_L x18, PT_S2(sp)
-	REG_L x19, PT_S3(sp)
-	REG_L x20, PT_S4(sp)
-	REG_L x21, PT_S5(sp)
-	REG_L x22, PT_S6(sp)
-	REG_L x23, PT_S7(sp)
-	REG_L x24, PT_S8(sp)
-	REG_L x25, PT_S9(sp)
-	REG_L x26, PT_S10(sp)
-	REG_L x27, PT_S11(sp)
-	REG_L x28, PT_T3(sp)
-	REG_L x29, PT_T4(sp)
-	REG_L x30, PT_T5(sp)
-	REG_L x31, PT_T6(sp)
+REG_L x1,  PT_RA(sp)
+REG_L x3,  PT_GP(sp)
+REG_L x4,  PT_TP(sp)
+REG_L x5,  PT_T0(sp)
+REG_L x6,  PT_T1(sp)
+REG_L x7,  PT_T2(sp)
+REG_L x8,  PT_S0(sp)
+REG_L x9,  PT_S1(sp)
+REG_L x10, PT_A0(sp)
+REG_L x11, PT_A1(sp)
+REG_L x12, PT_A2(sp)
+REG_L x13, PT_A3(sp)
+REG_L x14, PT_A4(sp)
+REG_L x15, PT_A5(sp)
+REG_L x16, PT_A6(sp)
+REG_L x17, PT_A7(sp)
+REG_L x18, PT_S2(sp)
+REG_L x19, PT_S3(sp)
+REG_L x20, PT_S4(sp)
+REG_L x21, PT_S5(sp)
+REG_L x22, PT_S6(sp)
+REG_L x23, PT_S7(sp)
+REG_L x24, PT_S8(sp)
+REG_L x25, PT_S9(sp)
+REG_L x26, PT_S10(sp)
+REG_L x27, PT_S11(sp)
+REG_L x28, PT_T3(sp)
+REG_L x29, PT_T4(sp)
+REG_L x30, PT_T5(sp)
+REG_L x31, PT_T6(sp)
 
-	REG_L x2,  PT_SP(sp)
+REG_L x2,  PT_SP(sp)
 
 #ifdef CONFIG_RISCV_M_MODE
-	mret
+mret
 #else
-	sret
+sret
 #endif
 </code></pre>
-</li>
-<li>
-<p>首先，每一个process都对应有一个kernel stack和user stack，在RISCV中没有辅助的硬件帮我们切换。所以我们每次都在kernel stack中保存两套寄存器，进入的时候拿出来kernel sp，保存user sp。</p>
-<pre><code class="language-asm">;arch/riscv/kernel/entry.S，第29行
+<ol start="4">
+<li>首先，每一个process都对应有一个kernel stack和user stack，在RISCV中没有辅助的硬件帮我们切换。所以我们每次都在kernel stack中保存两套寄存器，进入的时候拿出来kernel sp，保存user sp。</li>
+</ol>
+<pre><code>;arch/riscv/kernel/entry.S，第29行
 _restore_kernel_tpsp:
     csrr tp, CSR_SCRATCH
     REG_S sp, TASK_TI_KERNEL_SP(tp)
@@ -563,8 +557,6 @@ _save_context:
     REG_S sp, TASK_TI_USER_SP(tp)
     REG_L sp, TASK_TI_KERNEL_SP(tp)
 </code></pre>
-</li>
-</ol>
 <p>最后我们回答这个问题：因为不需要。寄存器其实保存在系统栈里了。</p>
 <h4 id="kernel-thread的被动调度">Kernel Thread的被动调度</h4>
 <p>明确一点的是，kernel thread的切换属于单纯的context switch，不涉及mode的切换。和user mode差不多。</p>

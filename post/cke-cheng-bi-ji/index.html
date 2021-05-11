@@ -3,7 +3,7 @@
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>C++课程笔记 | Reticence</title>
-<link rel="shortcut icon" href="https://reticenceji.github.io/favicon.ico?v=1619509412636">
+<link rel="shortcut icon" href="https://reticenceji.github.io/favicon.ico?v=1620698420281">
 <link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
 <link rel="stylesheet" href="https://reticenceji.github.io/styles/main.css">
 <link rel="alternate" type="application/atom+xml" title="C++课程笔记 | Reticence - Atom Feed" href="https://reticenceji.github.io/atom.xml">
@@ -56,7 +56,7 @@ const ✔️
       <div class="main-content">
         <div class="site-header">
   <a href="https://reticenceji.github.io">
-  <img class="avatar" src="https://reticenceji.github.io/images/avatar.png?v=1619509412636" alt="">
+  <img class="avatar" src="https://reticenceji.github.io/images/avatar.png?v=1620698420281" alt="">
   </a>
   <h1 class="site-title">
     Reticence
@@ -95,12 +95,6 @@ var _hmt = _hmt || [];
       
         <a href="/navigator.html" class="menu">
           Navigator
-        </a>
-      
-    
-      
-        <a href="/post/book-list" class="menu">
-          Booklist
         </a>
       
     
@@ -159,7 +153,7 @@ var _hmt = _hmt || [];
                 2021-03-02
               </span>
               <span>
-                21 min read
+                24 min read
               </span>
               
                 <a href="https://reticenceji.github.io/tag/Hm6SgxCYQ/" class="post-tag">
@@ -263,6 +257,11 @@ int main()
     }
 }
 </code></pre>
+<h3 id="static">static</h3>
+<p>对于全局变量，局部变量，全局函数，和C语言是一样的。需要注意的是，函数的局部变量在语义上只会初始化一次。至于具体是怎么实现的？</p>
+<p>对于class的成员变量来说，Shared by all instance。要注意的是，定义一个静态变量应该是<code>int A::data</code>，前面不用加上static，放在class的外面。静态成员的定义应该放在cpp文件中。静态成员变量不能在初始化列表中初始化，因为他不是普通的成员变量。不过也没有人会在这里初始化吧，直接在定义的地方初始化就好了。</p>
+<p>类似的，如果data是private的话，外部也是不能访问的。令人迷惑的是，如果外部可以访问，（实例）<code>a.data</code>和（类）<code>A::data</code>都是合法的用法，但是显然第二个好。</p>
+<p>对于class的方法来说，也是Shared by all instance，但是只能访问全局变量，因为参数中没有默认的self指针。</p>
 <h2 id="reference">Reference</h2>
 <p>引用是C语言里不存在的概念。<br>
 引用变量是一个<strong>别名</strong>，也就是说，它是某个已存在变量的另一个名字。一旦把引用初始化为某个变量，就可以使用该引用名称或变量名称来指向变量。<br>
@@ -409,11 +408,11 @@ public:
 <li>As a function return value</li>
 <li>As an exception</li>
 </ul>
-<p><a href="https://stackoverflow.com/questions/19919434/assignment-of-objects-in-c">参考链接-深拷贝和浅拷贝</a>。类对象默认的copy是浅拷贝，对于一些简单的类，这是没有什么问题的。但是对于内部存在指针的类，问题就大了。<br>
+<p><a href="https://stackoverflow.com/questions/19919434/assignment-of-objects-in-c">参考链接-深拷贝和浅拷贝</a>。类对象默认的copy是浅拷贝，对于一些简单的类，这是没有什么问题的。但是对于<strong>内部存在指针</strong>的类，问题就大了。如果内部有别的对象，通过组合的方式结合在一起，其实我们不用为此写一个copy constructor，默认的行为是正确的。<br>
 类对象的拷贝操作可以通过两个成员来定义<strong>拷贝构造函数( copy constructor )<strong>与</strong>拷贝赋值运算符( copy assìgnment )</strong>。<br>
 <code>Vector::Vector(const Vector&amp; a)</code> : copy constructor<br>
-<code>Vector&amp; Vector::operator=(const Vector&amp; a)</code> : copy assignment<br>
-把这两个函数重载成你需要的拷贝方法，比如deep copy。</p>
+<code>Vector&amp; Vector::operator=(const Vector&amp; a)</code> : copy assignment</p>
+<p>把这两个函数重载成你需要的拷贝方法，比如deep copy。</p>
 <p>你写了构造函数，不过其实编译器会扩展构造函数做更多的事情，顺序如下：</p>
 <ol>
 <li>所有的 virtual base class constructors 必须被调用，从左到右，从深到浅。并同时设置好 virtual base class 所需要使用的各种机制。</li>
@@ -654,6 +653,103 @@ Derive*=&gt;Base*
 <p>动态绑定和静态绑定</p>
 <p>关于继承和虚函数的底层实现内存布局，在我的另一篇Blog《C++Q&amp;A》中有解释。</p>
 <h2 id="operator-overloading">operator overloading</h2>
+<p>可以重载的运算符。不过优先级是无法改变的，<strong>操作数个数</strong>(如果是member function要算上this)也是无法改变的。也就是说我们应该尽量维持他们的语义。如果C++中本身不存在的运算符也是无法添加的。</p>
+<table>
+<thead>
+<tr>
+<th>+</th>
+<th>-</th>
+<th>*</th>
+<th>/</th>
+<th>%</th>
+<th>^</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>&amp;</td>
+<td>|</td>
+<td>~</td>
+<td>!</td>
+<td>,</td>
+<td>=</td>
+</tr>
+<tr>
+<td>&lt;</td>
+<td>&gt;</td>
+<td>&lt;=</td>
+<td>&gt;=</td>
+<td>++</td>
+<td>--</td>
+</tr>
+<tr>
+<td>&lt;&lt;</td>
+<td>&gt;&gt;</td>
+<td>==</td>
+<td>!=</td>
+<td>&amp;&amp;</td>
+<td>||</td>
+</tr>
+<tr>
+<td>+=</td>
+<td>-=</td>
+<td>/=</td>
+<td>%=</td>
+<td>^=</td>
+<td>&amp;=</td>
+</tr>
+<tr>
+<td>|=</td>
+<td>*=</td>
+<td>&lt;&lt;=</td>
+<td>&gt;&gt;=</td>
+<td>[]</td>
+<td>()</td>
+</tr>
+<tr>
+<td>-&gt;</td>
+<td>-&gt;*</td>
+<td>new</td>
+<td>new []</td>
+<td>delete</td>
+<td>delete []</td>
+</tr>
+</tbody>
+</table>
+<p>运算符重载的本质就是函数重载，<code>operator运算符()</code>。</p>
+<pre><code class="language-cpp">// 第一种写法，写成member function。
+// 推荐单目运算符使用，[] () = 必须用
+// 后面的const表示函数是一个常量函数，不会更改this的状态
+Complex operator+ (Complex const &amp;obj) const{
+    Complex res;
+    res.real = this-&gt;real + obj.real;
+    res.imag = this-&gt;imag + obj.imag;
+    return res;
+}
+语义： x+y ===&gt; x.operator+(y)
+    
+// 第二种写法，写成global function
+// 推荐双目运算符使用，看起来清楚一点
+// 要访问类内部的数据，所以用上了friend
+class Complex {
+private:
+    int real, imag;
+public:
+    Complex(int r = 0, int i =0)  {real = r;   imag = i;}
+    friend Complex operator+ (Complex const &amp;, Complex const &amp;);
+}
+Complex operator+ (Complex const &amp;c1, Complex const &amp;c2)
+{
+    return Complex(c1.real + c2.real, c1.imag + c2.imag);
+}
+语义： x+y ===&gt; operator+(x,y)
+</code></pre>
+<p>注意：</p>
+<ul>
+<li><code>E&amp; T::operator[] (int index)</code>返回的是引用</li>
+<li><code>++</code>和<code>--</code>让人迷惑。<code>T&amp; operator++()</code>是prefix++，<code>T operator++(int)</code> 是postfox++。这个int是一个占位符。</li>
+<li>运算符之间往往是联系很大的，你要合理的重用他们避免代码重复。比如<code>!=</code>和<code>==</code>，<code>&gt;</code>和<code>&lt;=</code>，<code>&lt;</code>和<code>&gt;=</code>；<code>+=</code>和<code>++</code></li>
+</ul>
 <h2 id="stream">stream</h2>
 <h2 id="composition">composition</h2>
 <p>表示“has a”的关系。比如car has a engin/windows<br>
@@ -677,7 +773,11 @@ Derive*=&gt;Base*
                 <ul class="markdownIt-TOC">
 <li><a href="#c%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80">C++语言基础</a>
 <ul>
-<li><a href="#better-c">Better C</a></li>
+<li><a href="#better-c">Better C</a>
+<ul>
+<li><a href="#static">static</a></li>
+</ul>
+</li>
 <li><a href="#reference">Reference</a></li>
 <li><a href="#inline">Inline</a></li>
 <li><a href="#const">Const</a></li>
