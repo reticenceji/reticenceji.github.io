@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://reticenceji.github.io/</id>
     <title>Reticence</title>
-    <updated>2021-06-06T13:47:29.760Z</updated>
+    <updated>2021-06-06T13:54:36.219Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://reticenceji.github.io/"/>
     <link rel="self" href="https://reticenceji.github.io/atom.xml"/>
@@ -31,13 +31,6 @@ var _hmt = _hmt || [];
         <link href="https://reticenceji.github.io/post/chai-fen-yin-si/">
         </link>
         <updated>2021-06-03T11:17:27.000Z</updated>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[回忆录]]></title>
-        <id>https://reticenceji.github.io/post/hui-yi-lu/</id>
-        <link href="https://reticenceji.github.io/post/hui-yi-lu/">
-        </link>
-        <updated>2021-06-02T06:27:57.000Z</updated>
     </entry>
     <entry>
         <title type="html"><![CDATA[ADS-approximation algorithm]]></title>
@@ -87,5 +80,12 @@ var _hmt = _hmt || [];
         <link href="https://reticenceji.github.io/post/ads-greedy-method/">
         </link>
         <updated>2021-05-18T03:59:55.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Rust-开发背景知识]]></title>
+        <id>https://reticenceji.github.io/post/rust-gong-ju-lian/</id>
+        <link href="https://reticenceji.github.io/post/rust-gong-ju-lian/">
+        </link>
+        <updated>2021-05-06T13:08:22.000Z</updated>
     </entry>
 </feed>
