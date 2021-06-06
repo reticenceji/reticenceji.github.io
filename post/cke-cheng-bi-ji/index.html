@@ -3,10 +3,10 @@
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>C++课程笔记 | Reticence</title>
-<link rel="shortcut icon" href="https://reticenceji.github.io/favicon.ico?v=1620698420281">
+<link rel="shortcut icon" href="https://reticenceji.github.io//favicon.ico?v=1622987247116">
 <link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
-<link rel="stylesheet" href="https://reticenceji.github.io/styles/main.css">
-<link rel="alternate" type="application/atom+xml" title="C++课程笔记 | Reticence - Atom Feed" href="https://reticenceji.github.io/atom.xml">
+<link rel="stylesheet" href="https://reticenceji.github.io//styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="C++课程笔记 | Reticence - Atom Feed" href="https://reticenceji.github.io//atom.xml">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
 
 <script>
@@ -55,8 +55,8 @@ const ✔️
     <div class="main">
       <div class="main-content">
         <div class="site-header">
-  <a href="https://reticenceji.github.io">
-  <img class="avatar" src="https://reticenceji.github.io/images/avatar.png?v=1620698420281" alt="">
+  <a href="https://reticenceji.github.io/">
+  <img class="avatar" src="https://reticenceji.github.io//images/avatar.png?v=1622987247116" alt="">
   </a>
   <h1 class="site-title">
     Reticence
@@ -153,7 +153,7 @@ var _hmt = _hmt || [];
                 2021-03-02
               </span>
               <span>
-                24 min read
+                30 min read
               </span>
               
                 <a href="https://reticenceji.github.io/tag/Hm6SgxCYQ/" class="post-tag">
@@ -449,7 +449,7 @@ new会开辟一块内存，delete会释放一块内存。<br>
     delete []pstr;      //没有把16传递进去，怎么知道要清理几次呢？
 }
 </code></pre>
-<figure data-type="image" tabindex="1"><img src="https://reticenceji.github.io/post-images/1615198175254.jpeg" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="1"><img src="https://reticenceji.github.io//post-images/1615198175254.jpeg" alt="" loading="lazy"></figure>
 <center>在64位系统中前面开辟8字节</center>
 <p>所以我们有两种方式创建一个Object：一个是new，另一个是用RAII（资源获取即初始化）。他们的区别在于：</p>
 <ol>
@@ -748,9 +748,96 @@ Complex operator+ (Complex const &amp;c1, Complex const &amp;c2)
 <ul>
 <li><code>E&amp; T::operator[] (int index)</code>返回的是引用</li>
 <li><code>++</code>和<code>--</code>让人迷惑。<code>T&amp; operator++()</code>是prefix++，<code>T operator++(int)</code> 是postfox++。这个int是一个占位符。</li>
-<li>运算符之间往往是联系很大的，你要合理的重用他们避免代码重复。比如<code>!=</code>和<code>==</code>，<code>&gt;</code>和<code>&lt;=</code>，<code>&lt;</code>和<code>&gt;=</code>；<code>+=</code>和<code>++</code></li>
+<li>运算符之间往往是联系很大的，你要合理的重用他们避免代码重复。比如<code>!=</code>和<code>==</code>，<code>&gt;</code>和<code>&lt;=</code>，<code>&lt;</code>和<code>&gt;=</code>；<code>+=</code>和<code>++</code>。</li>
+<li>类型强制转换运算符是单目运算符，也可以被重载，但只能重载为成员函数，不能重载为全局函数。<code>operator double();</code>这是一个对double强制类型转换的重载。</li>
+<li>赋值运算符<code>=</code>，Be sure to assign to all data members: pointers... Checkfor <strong>self-assignment</strong><code>if (this!= &amp;rhs)</code>.</li>
 </ul>
 <h2 id="stream">stream</h2>
+<p>C语言其实已经有完善的I/O了，那么我们为什么还需要stream呢？</p>
+<ol>
+<li>stream是类型安全的。</li>
+<li>可以对自己定义的类，重载流输入输出符号。可扩展性高。</li>
+<li>更加面向对象。</li>
+</ol>
+<p>但是对格式化输出不友好(std::format comes back in C++20,但是还没有编译器支持；有很多第三方库也支持格式化输出)。流可能会更慢。</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Input</th>
+<th>Output</th>
+<th>Header</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Generic</td>
+<td>istream</td>
+<td>ostream</td>
+<td>iostream</td>
+</tr>
+<tr>
+<td>File</td>
+<td>ifstream</td>
+<td>ofstream</td>
+<td>ifstream</td>
+</tr>
+<tr>
+<td>C string</td>
+<td>istrstream</td>
+<td>ostrstream</td>
+<td>strstream</td>
+</tr>
+<tr>
+<td>C++ string</td>
+<td>istringstream</td>
+<td>ostringstream</td>
+<td>sstream</td>
+</tr>
+</tbody>
+</table>
+<p>Extractor<code>&gt;&gt;</code>, Inserter<code>&lt;&lt;</code>, <strong>Manipulator</strong>.</p>
+<p><code>&lt;&lt;</code>：对于基本类型都已经定义好了。默认是忽略前导的whitespace的。我们可以为我们的类型自己重载这个运算符。<code>&gt;&gt;</code>也是。</p>
+<pre><code class="language-cpp">// 声明
+friend std::ostream &amp;operator&lt;&lt;(std::ostream &amp;output, const Fraction &amp;D);
+friend std::istream &amp;operator&gt;&gt;(std::istream &amp;input, Fraction &amp;D);
+// 定义
+std::istream &amp;operator&gt;&gt;(std::istream &amp;input, Fraction &amp;D)
+{
+    input &gt;&gt; D.numerator &gt;&gt; D.denominator;
+    return input;
+}
+
+std::ostream &amp;operator&lt;&lt;(std::ostream &amp;output, const Fraction &amp;D)
+{
+    output &lt;&lt; D.to_string();
+    return output;
+}
+
+// 自定义Manipulator的例子
+ostream&amp; tab(ostream&amp; out){
+    return out &lt;&lt; '\t';
+}
+</code></pre>
+<p>除了流，我们还有更精细的对输入的控制：</p>
+<ul>
+<li>其他的函数
+<ul>
+<li><code>get()</code></li>
+<li>``getline()`</li>
+<li>cout.flash()`：刷新缓冲区，会把缓存中的东西都写出去。</li>
+</ul>
+</li>
+<li>manipulator可以控制流的状态。我们也可以自定义manipulator。
+<ul>
+<li>endl：换行，刷新缓冲区</li>
+<li>hex：</li>
+<li>setprecision(2)：控制输出的精度</li>
+<li>setw(20)：</li>
+</ul>
+</li>
+<li>stream flag</li>
+</ul>
 <h2 id="composition">composition</h2>
 <p>表示“has a”的关系。比如car has a engin/windows<br>
 一个优秀的composition应该满足</p>
@@ -767,6 +854,118 @@ Complex operator+ (Complex const &amp;c1, Complex const &amp;c2)
 </ol>
 <h3 id="抽象类型">抽象类型</h3>
 <p>抽象类型( abstract type ) 则把使用者与类的实现细节完全隔离开来。</p>
+<h2 id="类型转换">类型转换</h2>
+<p>对于单参数的构造函数，可能会做隐式类型转换。<code>A a = b</code>被转换成<code>A a=A(b)</code>。想要避免这个现象，可以在<strong>单参数构造函数</strong>前加上<code>explicit</code>关键字。</p>
+<p>内置的隐式类型转换：</p>
+<pre><code>char=&gt;short=&gt;int=&gt;float=&gt;double
+           =&gt;int=&gt;long
+T=&gt;T&amp;
+T&amp;=&gt;T
+T*=&gt;void*
+T[]=&gt;T*
+T*=&gt;T[]
+T=&gt;const T
+</code></pre>
+<p>可以自己重载类型转换。<code>X::operator T()</code>，Compiler will use it as a type conversion from X=&gt;T.</p>
+<h2 id="template">Template</h2>
+<p>泛型编程的基础。广泛的的在标准库中使用。有点以类型作为参数的感觉，和重载有时能完成同样的事情。或者说，通过模板编译器能帮我们自动生成重载的函数。</p>
+<ul>
+<li>Function template <code>sort</code>...</li>
+<li>Class template <code>stack</code>,<code>list</code>,...</li>
+</ul>
+<p>Demo: Function template</p>
+<pre><code class="language-cpp">// 交换函数，只能是Int
+void my_swap(int&amp; x,int&amp; y){
+        int temp = x;
+        x = y;
+        y = temp;
+}
+void my_swap(string&amp; x,string&amp; y){
+        string temp = x;
+        x = y;
+        y = temp;
+}
+
+// 这样子就可以为所有的类型做swap
+// 当我们实际上用int类型调用的时候，编译器会帮我们生成和上面第一种一样的代码 swap(int,int)
+// 但是如果你调用swap(double,int)就不行，编译器不会做默认的隐式转换 除非你显式的调用swap&lt;double&gt;(double, int)
+template &lt;typename T&gt;
+void my_swap(T&amp; x,T&amp; y){
+        T temp = x;
+        x = y;
+        y = temp;
+}
+
+// 如果编译器无法在传入参数和返回值中判断出类型，你需要显式的调用模板函数my_fun&lt;double&gt;()
+template &lt;typename T&gt;
+void my_fun(){
+    T ...
+}
+</code></pre>
+<p>模板和普通函数是可以共存的，并且在参数匹配的时候会优先选择普通函数。当然我觉得这个一般是没啥用的。</p>
+<p>Overload rules：</p>
+<ol>
+<li>参数完全匹配的普通函数</li>
+<li>参数完全匹配的模板函数</li>
+<li>可以通过隐式转换匹配的普通函数</li>
+</ol>
+<p>Demo: class template</p>
+<pre><code class="language-cpp">template &lt;class T&gt;
+class Vector {
+    Vector(int size);
+    ...
+}
+
+Vector&lt;T&gt;::Vector(int size) :m_size(size){
+    m_element = new T[m_size];
+}
+...
+    
+int main(){
+    	vector&lt;int&gt; x = vector&lt;int&gt;(100);
+}
+
+// Template可以有多个泛型
+template &lt;class Key,class Value&gt;
+class HashTable{
+    ...
+}
+
+// template还可以带参数，不过参数一定要在编译期就能确定值。
+template &lt;class T,int N&gt;
+class Array{
+    private T my_arr[N];
+    ...
+}
+Array&lt;int ,3&gt;a;
+</code></pre>
+<p>[!] 其实我们写了一个模板T，<strong>并不是放之四海而皆能编译</strong>的。因为可能对泛型T是有要求的。看一个rust的例子：</p>
+<pre><code>pub fn sort(&amp;mut self)
+where
+    T: Ord,				//如果要排序的话，T要是实现了Ord Trait的。偏序比较。
+</code></pre>
+<p>对应C++，可能就是要重载<code>&lt;</code>号之类的比较符号。这个错误在C++是非常隐晦的，C++20提出了和上面的Rust类似的解决方案。</p>
+<p>[!] 歧义递归模板</p>
+<h2 id="stl-standard-template-library">STL (standard template library)</h2>
+<p>已经写好的数据结构，robust，portable，easy。泛型编程。</p>
+<ul>
+<li>Containers: pair,vector,deque,list,set,map</li>
+<li>Algotithm: sort() copy()</li>
+<li>Iterators: begin() end() 不要对无效的迭代器进行任何操作！<code>li=L.erase(li)</code></li>
+</ul>
+<p>最常用的三个数据结构：map，vector，list</p>
+<figure data-type="image" tabindex="2"><img src="https://reticenceji.github.io//post-images/image-20210605203121551.png" alt="image-20210605203121551" loading="lazy"></figure>
+<figure data-type="image" tabindex="3"><img src="https://reticenceji.github.io//post-images/image-20210605203530117.png" alt="image-20210605203530117" loading="lazy"></figure>
+<p>然后因为这些东西加上泛型比较冗长，所以我们一般会用：</p>
+<ol>
+<li>typedef <code>typedefPBmap&lt;Name,list&lt;PhoneNum&gt;&gt;</code></li>
+<li>auto 来自动推导类型（C++11）</li>
+</ol>
+<h2 id="iterators">Iterators</h2>
+<p>要理解泛型编程，一定要理解的是泛型和迭代器。</p>
+<p>迭代器是容器和算法之间的粘合剂。模板让算法独立于存储的数据类型，迭代器让算法独立于使用的容器类型。迭代器提供了一个和底层实现无关的。</p>
+<p>STL为每个容器类型都实现了迭代器，无论他们底层是如何实现的，都有类似的基本接口。我觉得迭代器就像一个<strong>有额外metadata的指针</strong>，能用在指针上面的操作基本都能用在迭代器上，比如<code>*</code>,<code>++ --</code>,<code>[]</code>,<code>==</code>等。不过迭代器有的是单向（不支持<code>--</code>和<code>[]</code>）的，有的是双向的，有的是支持随机访问（支持<code>[]</code>）的。（这个也好理解，比如单向链表如果要逆向访问代价就很大了；如果内存中连续的话随机访问问题也不大）。</p>
+<p>除此之外还有<strong>输入迭代器</strong>和<strong>输出迭代器</strong>的区别，输入迭代器可以让我们解引用<code>*</code>但是我们不能修改内容。输出迭代器只能让我们写容器的值而不能读取。比如cout就是输出迭代器。</p>
 
               </div>
               <div class="toc-container">
@@ -799,6 +998,10 @@ Complex operator+ (Complex const &amp;c1, Complex const &amp;c2)
 <li><a href="#%E6%8A%BD%E8%B1%A1%E7%B1%BB%E5%9E%8B">抽象类型</a></li>
 </ul>
 </li>
+<li><a href="#%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2">类型转换</a></li>
+<li><a href="#template">Template</a></li>
+<li><a href="#stl-standard-template-library">STL (standard template library)</a></li>
+<li><a href="#iterators">Iterators</a></li>
 </ul>
 </li>
 </ul>
@@ -823,7 +1026,7 @@ Complex operator+ (Complex const &amp;c1, Complex const &amp;c2)
 
         <div class="site-footer">
   
-  <a class="rss" href="https://reticenceji.github.io/atom.xml" target="_blank">
+  <a class="rss" href="https://reticenceji.github.io//atom.xml" target="_blank">
     <i class="ri-rss-line"></i> RSS
   </a>
 </div>

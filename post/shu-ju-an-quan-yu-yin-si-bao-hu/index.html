@@ -3,10 +3,10 @@
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>数据安全与隐私保护 | Reticence</title>
-<link rel="shortcut icon" href="https://reticenceji.github.io/favicon.ico?v=1620698420281">
+<link rel="shortcut icon" href="https://reticenceji.github.io//favicon.ico?v=1622987247116">
 <link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
-<link rel="stylesheet" href="https://reticenceji.github.io/styles/main.css">
-<link rel="alternate" type="application/atom+xml" title="数据安全与隐私保护 | Reticence - Atom Feed" href="https://reticenceji.github.io/atom.xml">
+<link rel="stylesheet" href="https://reticenceji.github.io//styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="数据安全与隐私保护 | Reticence - Atom Feed" href="https://reticenceji.github.io//atom.xml">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
 
 <script>
@@ -35,7 +35,8 @@ var _hmt = _hmt || [];
 
 Access control
 
-Unix 访问控制
+Unix 访问控制 -- wall and door
+安全多方计算
 
 
 Using crypto for data protection
@@ -45,7 +46,7 @@ Data privacy
 
 
 秦湛
-Security = sustain desirable propert..." />
+Security = s..." />
     <meta name="keywords" content="Notes" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
     <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
@@ -54,8 +55,8 @@ Security = sustain desirable propert..." />
     <div class="main">
       <div class="main-content">
         <div class="site-header">
-  <a href="https://reticenceji.github.io">
-  <img class="avatar" src="https://reticenceji.github.io/images/avatar.png?v=1620698420281" alt="">
+  <a href="https://reticenceji.github.io/">
+  <img class="avatar" src="https://reticenceji.github.io//images/avatar.png?v=1622987247116" alt="">
   </a>
   <h1 class="site-title">
     Reticence
@@ -152,7 +153,7 @@ var _hmt = _hmt || [];
                 2021-05-06
               </span>
               <span>
-                1 min read
+                2 min read
               </span>
               
                 <a href="https://reticenceji.github.io/tag/Gq2mdKppx/" class="post-tag">
@@ -168,7 +169,8 @@ var _hmt = _hmt || [];
 <ul>
 <li><a href="#access-control">Access control</a>
 <ul>
-<li><a href="#unix-%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6">Unix 访问控制</a></li>
+<li><a href="#unix-%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6-wall-and-door">Unix 访问控制 -- wall and door</a></li>
+<li><a href="#%E5%AE%89%E5%85%A8%E5%A4%9A%E6%96%B9%E8%AE%A1%E7%AE%97">安全多方计算</a></li>
 </ul>
 </li>
 <li><a href="#using-crypto-for-data-protection">Using crypto for data protection</a></li>
@@ -180,6 +182,9 @@ var _hmt = _hmt || [];
 <p>秦湛</p>
 <p>Security = sustain <strong>desirable</strong> properties under intelligent <strong>adversaries</strong>. 需要定义对手能力和自身需求</p>
 <p><strong>desirable</strong> properties: confidentiality, integrity, availability</p>
+<p>priciple : user</p>
+<p>subject : process</p>
+<p>object : program file directory</p>
 <h2 id="access-control">Access control</h2>
 <p>homomorphic encryption 同态加密。 可以在不解密数据的情况下对数据进行加工</p>
 <p>安全多方计算 “百万富翁问题”</p>
@@ -190,17 +195,65 @@ var _hmt = _hmt || [];
 <li>Open design 保密的不是实现，安全性不依赖于实现的保密</li>
 </ul>
 <p>给最少的权限，权限粒度越细越好。</p>
-<h3 id="unix-访问控制">Unix 访问控制</h3>
+<h3 id="unix-访问控制-wall-and-door">Unix 访问控制 -- wall and door</h3>
+<p>一开始，我们的目标：</p>
 <ul>
-<li>Memory protection</li>
-<li>Processor modes</li>
-<li>User authentication</li>
-<li>File access control</li>
+<li>
+<p>Memory protection</p>
+</li>
+<li>
+<p>Processor modes</p>
+</li>
+<li>
+<p>User authentication</p>
+</li>
+<li>
+<p>File access control</p>
+<p>现在我们的目标更多的是网络连接的防护：</p>
+</li>
+<li>
+<p>Logging &amp; Auditing</p>
+</li>
+<li>
+<p>Secure Communication</p>
+</li>
+<li>
+<p>Recovery</p>
+</li>
+<li>
+<p>Intrusion Prevention and Detection</p>
+</li>
 </ul>
+<p>Memory Protection：</p>
+<ul>
+<li>fence</li>
+<li>relocation</li>
+<li>base/bound register</li>
+<li>segmentation</li>
+<li>paging</li>
+</ul>
+<p>SUID, EUID</p>
+<p>DAC(Data Access Control) =&gt; MAX (Mand Access Control)</p>
+<p>DAC的缺点：</p>
+<p>Confused deputy problem. <a href="https://en.wikipedia.org/wiki/Capability-based_security">Capability systems</a> protect against the confused deputy problem, whereas <a href="https://en.wikipedia.org/wiki/Access_control_list">access control list</a>-based systems do not. (ACL+MAC)</p>
+<p>Trojan horse</p>
+<h3 id="安全多方计算">安全多方计算</h3>
+<p>互不信任的参与方，在协同进行计算的时候同时保护各自的数据隐私。</p>
+<p>同态加密 全同态加密</p>
+<p>半同态加密</p>
 <h2 id="using-crypto-for-data-protection">Using crypto for data protection</h2>
 <p>Intel® Software Guard Extensions (Intel® SGX)保护选定的代码和数据不被泄露和修改。</p>
 <h2 id="data-privacy">Data privacy</h2>
+<p>差分隐私：保护用户隐私的同时，实现数据分析。引入随机噪声保护数据隐私。适用于聚合数据的统计查询，不适合单一样本的确切信息查询。</p>
+<p>联邦学习：具备数据隐私保护的分布式机器学习技术</p>
+<p>隐私保护</p>
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/K-anonymity">ķ-anonymity</a></li>
+<li><a href="https://en.wikipedia.org/wiki/L-diversity">L-diversity</a></li>
+<li><a href="https://en.wikipedia.org/wiki/T-closeness">t-closeness</a></li>
+</ul>
 <p>差分隐私</p>
+<p>分布式差分隐私：差分隐私要求一个可信的中心知道真实的数据内容。</p>
 
               </div>
               <div class="toc-container">
@@ -209,7 +262,8 @@ var _hmt = _hmt || [];
 <ul>
 <li><a href="#access-control">Access control</a>
 <ul>
-<li><a href="#unix-%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6">Unix 访问控制</a></li>
+<li><a href="#unix-%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6-wall-and-door">Unix 访问控制 -- wall and door</a></li>
+<li><a href="#%E5%AE%89%E5%85%A8%E5%A4%9A%E6%96%B9%E8%AE%A1%E7%AE%97">安全多方计算</a></li>
 </ul>
 </li>
 <li><a href="#using-crypto-for-data-protection">Using crypto for data protection</a></li>
@@ -238,7 +292,7 @@ var _hmt = _hmt || [];
 
         <div class="site-footer">
   
-  <a class="rss" href="https://reticenceji.github.io/atom.xml" target="_blank">
+  <a class="rss" href="https://reticenceji.github.io//atom.xml" target="_blank">
     <i class="ri-rss-line"></i> RSS
   </a>
 </div>

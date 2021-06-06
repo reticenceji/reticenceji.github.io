@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <id>https://reticenceji.github.io</id>
+    <id>https://reticenceji.github.io/</id>
     <title>Reticence</title>
-    <updated>2021-05-11T02:00:26.603Z</updated>
+    <updated>2021-06-06T13:47:29.760Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
-    <link rel="alternate" href="https://reticenceji.github.io"/>
+    <link rel="alternate" href="https://reticenceji.github.io/"/>
     <link rel="self" href="https://reticenceji.github.io/atom.xml"/>
     <subtitle>&lt;script&gt;
 var _hmt = _hmt || [];
@@ -19,73 +19,73 @@ var _hmt = _hmt || [];
     <icon>https://reticenceji.github.io/favicon.ico</icon>
     <rights>All rights reserved 2021, Reticence</rights>
     <entry>
-        <title type="html"><![CDATA[Rust工具链]]></title>
-        <id>https://reticenceji.github.io/post/rust-gong-ju-lian/</id>
-        <link href="https://reticenceji.github.io/post/rust-gong-ju-lian/">
+        <title type="html"><![CDATA[ADS-local search]]></title>
+        <id>https://reticenceji.github.io/post/ads-local-search/</id>
+        <link href="https://reticenceji.github.io/post/ads-local-search/">
         </link>
-        <updated>2021-05-06T13:08:22.000Z</updated>
+        <updated>2021-06-06T07:02:17.000Z</updated>
     </entry>
     <entry>
-        <title type="html"><![CDATA[数据安全与隐私保护]]></title>
-        <id>https://reticenceji.github.io/post/shu-ju-an-quan-yu-yin-si-bao-hu/</id>
-        <link href="https://reticenceji.github.io/post/shu-ju-an-quan-yu-yin-si-bao-hu/">
+        <title type="html"><![CDATA[差分隐私]]></title>
+        <id>https://reticenceji.github.io/post/chai-fen-yin-si/</id>
+        <link href="https://reticenceji.github.io/post/chai-fen-yin-si/">
         </link>
-        <updated>2021-05-06T10:05:53.000Z</updated>
+        <updated>2021-06-03T11:17:27.000Z</updated>
     </entry>
     <entry>
-        <title type="html"><![CDATA[Database-底层]]></title>
-        <id>https://reticenceji.github.io/post/database-di-ceng/</id>
-        <link href="https://reticenceji.github.io/post/database-di-ceng/">
+        <title type="html"><![CDATA[回忆录]]></title>
+        <id>https://reticenceji.github.io/post/hui-yi-lu/</id>
+        <link href="https://reticenceji.github.io/post/hui-yi-lu/">
         </link>
-        <updated>2021-05-06T01:47:41.000Z</updated>
+        <updated>2021-06-02T06:27:57.000Z</updated>
     </entry>
     <entry>
-        <title type="html"><![CDATA[PyQt5]]></title>
-        <id>https://reticenceji.github.io/post/pyqt5/</id>
-        <link href="https://reticenceji.github.io/post/pyqt5/">
+        <title type="html"><![CDATA[ADS-approximation algorithm]]></title>
+        <id>https://reticenceji.github.io/post/ads-approximation-algorithm/</id>
+        <link href="https://reticenceji.github.io/post/ads-approximation-algorithm/">
         </link>
-        <updated>2021-04-27T04:40:05.000Z</updated>
+        <updated>2021-05-29T09:05:32.000Z</updated>
     </entry>
     <entry>
-        <title type="html"><![CDATA[Linux 桌面应用开发]]></title>
-        <id>https://reticenceji.github.io/post/linux-zhuo-mian-ying-yong-kai-fa/</id>
-        <link href="https://reticenceji.github.io/post/linux-zhuo-mian-ying-yong-kai-fa/">
+        <title type="html"><![CDATA[安全多方计算]]></title>
+        <id>https://reticenceji.github.io/post/an-quan-duo-fang-ji-suan/</id>
+        <link href="https://reticenceji.github.io/post/an-quan-duo-fang-ji-suan/">
         </link>
-        <updated>2021-04-25T10:55:51.000Z</updated>
+        <updated>2021-05-28T02:45:20.000Z</updated>
     </entry>
     <entry>
-        <title type="html"><![CDATA[Tip-VScode Python pylint(no-name-in-module)]]></title>
-        <id>https://reticenceji.github.io/post/tip-vscode-python-pylintno-name-in-module/</id>
-        <link href="https://reticenceji.github.io/post/tip-vscode-python-pylintno-name-in-module/">
+        <title type="html"><![CDATA[Database-Transaction]]></title>
+        <id>https://reticenceji.github.io/post/database-transaction/</id>
+        <link href="https://reticenceji.github.io/post/database-transaction/">
         </link>
-        <updated>2021-04-25T10:38:27.000Z</updated>
+        <updated>2021-05-27T02:56:20.000Z</updated>
     </entry>
     <entry>
-        <title type="html"><![CDATA[C++ Q&A]]></title>
-        <id>https://reticenceji.github.io/post/c-qanda/</id>
-        <link href="https://reticenceji.github.io/post/c-qanda/">
+        <title type="html"><![CDATA[Rust-FFI]]></title>
+        <id>https://reticenceji.github.io/post/rust-ffi/</id>
+        <link href="https://reticenceji.github.io/post/rust-ffi/">
         </link>
-        <updated>2021-04-23T03:05:43.000Z</updated>
+        <updated>2021-05-26T03:19:07.000Z</updated>
     </entry>
     <entry>
-        <title type="html"><![CDATA[XML]]></title>
-        <id>https://reticenceji.github.io/post/xml/</id>
-        <link href="https://reticenceji.github.io/post/xml/">
+        <title type="html"><![CDATA[ADS-NP问题]]></title>
+        <id>https://reticenceji.github.io/post/ads-np-wen-ti/</id>
+        <link href="https://reticenceji.github.io/post/ads-np-wen-ti/">
         </link>
-        <updated>2021-04-22T01:42:20.000Z</updated>
+        <updated>2021-05-25T15:40:33.000Z</updated>
     </entry>
     <entry>
-        <title type="html"><![CDATA[VSCode使用技巧]]></title>
-        <id>https://reticenceji.github.io/post/vscode-shi-yong-ji-qiao/</id>
-        <link href="https://reticenceji.github.io/post/vscode-shi-yong-ji-qiao/">
+        <title type="html"><![CDATA[Rust-协程与线程]]></title>
+        <id>https://reticenceji.github.io/post/rust-xie-cheng/</id>
+        <link href="https://reticenceji.github.io/post/rust-xie-cheng/">
         </link>
-        <updated>2021-04-21T02:04:26.000Z</updated>
+        <updated>2021-05-21T12:41:58.000Z</updated>
     </entry>
     <entry>
-        <title type="html"><![CDATA[ADS-Dynamic Programming]]></title>
-        <id>https://reticenceji.github.io/post/ads-dong-tai-gui-hua-dynamic-programming/</id>
-        <link href="https://reticenceji.github.io/post/ads-dong-tai-gui-hua-dynamic-programming/">
+        <title type="html"><![CDATA[ADS-Greedy method]]></title>
+        <id>https://reticenceji.github.io/post/ads-greedy-method/</id>
+        <link href="https://reticenceji.github.io/post/ads-greedy-method/">
         </link>
-        <updated>2021-04-20T04:33:31.000Z</updated>
+        <updated>2021-05-18T03:59:55.000Z</updated>
     </entry>
 </feed>

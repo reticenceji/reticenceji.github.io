@@ -2,11 +2,11 @@
   <head>
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>PyQt5 | Reticence</title>
-<link rel="shortcut icon" href="https://reticenceji.github.io/favicon.ico?v=1620698420281">
+<title>ADS-NP问题 | Reticence</title>
+<link rel="shortcut icon" href="https://reticenceji.github.io//favicon.ico?v=1622987247116">
 <link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
-<link rel="stylesheet" href="https://reticenceji.github.io/styles/main.css">
-<link rel="alternate" type="application/atom+xml" title="PyQt5 | Reticence - Atom Feed" href="https://reticenceji.github.io/atom.xml">
+<link rel="stylesheet" href="https://reticenceji.github.io//styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="ADS-NP问题 | Reticence - Atom Feed" href="https://reticenceji.github.io//atom.xml">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
 
 <script>
@@ -30,10 +30,11 @@ var _hmt = _hmt || [];
 </script>
 
 
-    <meta name="description" content="最终还是决定用PyQt5，毕竟作为学习用途，他上手简单资料多。找了很久GTK的资料，都太老了。国内用户太少。
+    <meta name="description" content="四个概念：
 
-" />
-    <meta name="keywords" content="Python" />
+P：存在多项式时间算法的问题。(P：polynominal，多项式)。
+NP：能在多项式时间内验证得出一个正确解的问题。(NP:Nondeterministic polynominal，非确定性多项式)。这里可以清楚的看出P类..." />
+    <meta name="keywords" content="" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
     <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
   </head>
@@ -41,8 +42,8 @@ var _hmt = _hmt || [];
     <div class="main">
       <div class="main-content">
         <div class="site-header">
-  <a href="https://reticenceji.github.io">
-  <img class="avatar" src="https://reticenceji.github.io/images/avatar.png?v=1620698420281" alt="">
+  <a href="https://reticenceji.github.io/">
+  <img class="avatar" src="https://reticenceji.github.io//images/avatar.png?v=1622987247116" alt="">
   </a>
   <h1 class="site-title">
     Reticence
@@ -132,37 +133,48 @@ var _hmt = _hmt || [];
         <div class="post-detail">
           <article class="post">
             <h2 class="post-title">
-              PyQt5
+              ADS-NP问题
             </h2>
             <div class="post-info">
               <span>
-                2021-04-27
+                2021-05-25
               </span>
               <span>
-                1 min read
+                2 min read
               </span>
-              
-                <a href="https://reticenceji.github.io/tag/aTiVQxwll/" class="post-tag">
-                  # Python
-                </a>
               
             </div>
             
             <div class="post-content-wrapper">
               <div class="post-content">
-                <p>最终还是决定用PyQt5，毕竟作为学习用途，他上手简单资料多。找了很久GTK的资料，都太老了。国内用户太少。</p>
-<h2 id=""></h2>
+                <p>四个概念：</p>
+<ul>
+<li>P：存在多项式时间算法的问题。(P：polynominal，多项式)。</li>
+<li>NP：能在多项式时间内<strong>验证得出一个正确解</strong>的问题。(NP:Nondeterministic polynominal，非确定性多项式)。这里可以清楚的看出P类问题是NP类问题的子集（即存在多项式时间算法的问题，总能在多项式时间内验证它）。但是我们<strong>不知道这个问题存不存在一个多项式时间的算法non-deterministic</strong>（是不知道而不是不存在）。</li>
+<li>NPC：NP complete NP完全。<strong>所有的NP问题都可以约化成它的NP问题</strong>。要证明npc问题的思路就是： 先证明它至少是一个NP问题，再证明其中一个已知的NPC问题能约化到它。</li>
+<li>NP Hard：即所有的NP问题都能约化到它，但是它<strong>不一定是一个NP问题</strong>。</li>
+</ul>
+<p>然后P=NP是否成立在现在还没有定论，大部分人认为是不等的。如果等的话那很多问题都可以很方便的解决了。</p>
+<figure data-type="image" tabindex="1"><img src="https://pic2.zhimg.com/v2-1a4f4cfd668c28c1b47c266c7fe85199_b.jpg" alt="" loading="lazy"></figure>
+<p><strong>决定性问题</strong>(Decision problem)是一个在某些<a href="https://baike.baidu.com/item/%E5%BD%A2%E5%BC%8F%E7%B3%BB%E7%BB%9F/1534121">形式系统</a>回答<strong>是或否</strong>的问题。比如我们验证一条路是否是Hamiltonian Path是一个决定性问题，并且我们只需要多项式时间就可以解决。<strong>停机问题halting problem</strong>是undecidable decision problem。</p>
+<p>已知的NPC问题：</p>
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Boolean_satisfiability_problem">Boolean satisfiability problem (SAT) </a></li>
+<li><a href="https://en.wikipedia.org/wiki/Knapsack_problem">Knapsack problem</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Hamiltonian_path_problem">Hamiltonian path problem</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Travelling_salesman_problem">Travelling salesman problem</a> (decision version)</li>
+<li><a href="https://en.wikipedia.org/wiki/Subgraph_isomorphism_problem">Subgraph isomorphism problem</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Subset_sum_problem">Subset sum problem</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Clique_problem">Clique problem</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Vertex_cover_problem">Vertex cover problem</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Independent_set_problem">Independent set problem</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Dominating_set_problem">Dominating set problem</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Graph_coloring_problem">Graph coloring problem</a></li>
+</ul>
 
               </div>
               <div class="toc-container">
-                <ul class="markdownIt-TOC">
-<li>
-<ul>
-<li></li>
-</ul>
-</li>
-</ul>
-
+                
               </div>
             </div>
           </article>
@@ -171,9 +183,9 @@ var _hmt = _hmt || [];
         
           <div class="next-post">
             <div class="next">下一篇</div>
-            <a href="https://reticenceji.github.io/post/linux-zhuo-mian-ying-yong-kai-fa/">
+            <a href="https://reticenceji.github.io/post/rust-xie-cheng/">
               <h3 class="post-title">
-                Linux 桌面应用开发
+                Rust-协程与线程
               </h3>
             </a>
           </div>
@@ -183,7 +195,7 @@ var _hmt = _hmt || [];
 
         <div class="site-footer">
   
-  <a class="rss" href="https://reticenceji.github.io/atom.xml" target="_blank">
+  <a class="rss" href="https://reticenceji.github.io//atom.xml" target="_blank">
     <i class="ri-rss-line"></i> RSS
   </a>
 </div>

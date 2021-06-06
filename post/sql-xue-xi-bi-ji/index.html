@@ -3,10 +3,10 @@
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Database-SQL | Reticence</title>
-<link rel="shortcut icon" href="https://reticenceji.github.io/favicon.ico?v=1620698420281">
+<link rel="shortcut icon" href="https://reticenceji.github.io//favicon.ico?v=1622987247116">
 <link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
-<link rel="stylesheet" href="https://reticenceji.github.io/styles/main.css">
-<link rel="alternate" type="application/atom+xml" title="Database-SQL | Reticence - Atom Feed" href="https://reticenceji.github.io/atom.xml">
+<link rel="stylesheet" href="https://reticenceji.github.io//styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="Database-SQL | Reticence - Atom Feed" href="https://reticenceji.github.io//atom.xml">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
 
 <script>
@@ -54,8 +54,8 @@ DML(Data Manipulation ..." />
     <div class="main">
       <div class="main-content">
         <div class="site-header">
-  <a href="https://reticenceji.github.io">
-  <img class="avatar" src="https://reticenceji.github.io/images/avatar.png?v=1620698420281" alt="">
+  <a href="https://reticenceji.github.io/">
+  <img class="avatar" src="https://reticenceji.github.io//images/avatar.png?v=1622987247116" alt="">
   </a>
   <h1 class="site-title">
     Reticence
@@ -342,7 +342,7 @@ select bno,count(*) as bor from borrow where return_date is null group by bno;se
 时间可以比较大小，Between A and B<br>
 逻辑运算符<code>not and or ()</code><br>
 要注意的是，SQL的真值中还有一个叫不确定：<br>
-<img src="https://reticenceji.github.io/post-images/1615554797028.jpg" alt="" loading="lazy"></p>
+<img src="https://reticenceji.github.io//post-images/1615554797028.jpg" alt="" loading="lazy"></p>
 <h4 id="insert">Insert</h4>
 <pre><code class="language-sql">insert into TableName values (‘Ji Gaoqiang’,’2001-10-07’);			--全部字段添加值
 insert into TableName values (‘Ji Gaoqiang’,’2001-10-07’,default);	--显式添加默认值
@@ -679,7 +679,7 @@ end
 $borrow_no_morell$ LANGUAGE plpgsql;
 </code></pre>
 <p>这里给两个书上的例子，如果考试考的话可能要书写这样格式的trigger。</p>
-<figure data-type="image" tabindex="1"><img src="https://reticenceji.github.io/post-images/image-20210403141347067.png" alt="image-20210403141347067" loading="lazy"></figure>
+<figure data-type="image" tabindex="1"><img src="https://reticenceji.github.io//post-images/image-20210403141347067.png" alt="image-20210403141347067" loading="lazy"></figure>
 </li>
 </ul>
 <h2 id="三-authorization-授权-以postgresql为例">三、Authorization 授权-以POSTGRESQL为例</h2>
@@ -702,7 +702,7 @@ $borrow_no_morell$ LANGUAGE plpgsql;
 </li>
 </ul>
 <p>我们可以利用View，把View的权限给用户，而不把relation的权限给用户。这样还可以简化用户操作。<br>
-<img src="https://reticenceji.github.io/post-images/1616644577045.png" alt="" loading="lazy"><br>
+<img src="https://reticenceji.github.io//post-images/1616644577045.png" alt="" loading="lazy"><br>
 所有的权限都来自于DBA（比如postgres），我们要让DBA把权限<strong>GRANT</strong>给其他用户，可以用<strong>REVOKE</strong>收回权限。</p>
 <pre><code class="language-sql">GRANT &lt;privilege list&gt; on &lt;relation name or view name&gt; to &lt;user name&gt; [with grant option]     --能不能再把权限分发
 REVOKE&lt;privilege list&gt; ON &lt;relation name or view name&gt;	 FROM &lt;user list&gt;  [ restrict | cascade ]       --cascade，把分发出去的权限也收回来
@@ -755,9 +755,9 @@ grant instructor to Amy;    --让user Amy拥有instructor的权限
 </li>
 </ul>
 <h3 id="odbc">ODBC</h3>
-<figure data-type="image" tabindex="2"><img src="https://reticenceji.github.io/post-images/image-20210401101615755.png" alt="image-20210401101615755" loading="lazy"></figure>
+<figure data-type="image" tabindex="2"><img src="https://reticenceji.github.io//post-images/image-20210401101615755.png" alt="image-20210401101615755" loading="lazy"></figure>
 <p>ODBC规定了三种句柄： environment handle, connect handle, statement handle.</p>
-<figure data-type="image" tabindex="3"><img src="https://reticenceji.github.io/post-images/image-20210401102128728.png" alt="image-20210401102128728" loading="lazy"></figure>
+<figure data-type="image" tabindex="3"><img src="https://reticenceji.github.io//post-images/image-20210401102128728.png" alt="image-20210401102128728" loading="lazy"></figure>
 <pre><code class="language-c">//查询结果和自定义变量进行绑定
 SQLBindCol ()
 SQLFetch()
@@ -860,7 +860,7 @@ SQLFetch()
 
         <div class="site-footer">
   
-  <a class="rss" href="https://reticenceji.github.io/atom.xml" target="_blank">
+  <a class="rss" href="https://reticenceji.github.io//atom.xml" target="_blank">
     <i class="ri-rss-line"></i> RSS
   </a>
 </div>

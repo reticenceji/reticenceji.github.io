@@ -2,11 +2,11 @@
   <head>
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Rust工具链 | Reticence</title>
-<link rel="shortcut icon" href="https://reticenceji.github.io/favicon.ico?v=1620698420281">
+<title>Rust-开发背景知识 | Reticence</title>
+<link rel="shortcut icon" href="https://reticenceji.github.io//favicon.ico?v=1622987247116">
 <link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
-<link rel="stylesheet" href="https://reticenceji.github.io/styles/main.css">
-<link rel="alternate" type="application/atom+xml" title="Rust工具链 | Reticence - Atom Feed" href="https://reticenceji.github.io/atom.xml">
+<link rel="stylesheet" href="https://reticenceji.github.io//styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="Rust-开发背景知识 | Reticence - Atom Feed" href="https://reticenceji.github.io//atom.xml">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
 
 <script>
@@ -30,10 +30,10 @@ var _hmt = _hmt || [];
 </script>
 
 
-    <meta name="description" content="安装 Rust 的主要方式是通过 Rustup 这一工具，它既是一个 Rust 安装器又是一个版本管理工具。
-curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-Ru..." />
-    <meta name="keywords" content="Rust" />
+    <meta name="description" content="工具链
+安装 Rust 的主要方式是通过 Rustup 这一工具，它既是一个 Rust 安装器又是一个版本管理工具。
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | s..." />
+    <meta name="keywords" content="Rust,Tools" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
     <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
   </head>
@@ -41,8 +41,8 @@ Ru..." />
     <div class="main">
       <div class="main-content">
         <div class="site-header">
-  <a href="https://reticenceji.github.io">
-  <img class="avatar" src="https://reticenceji.github.io/images/avatar.png?v=1620698420281" alt="">
+  <a href="https://reticenceji.github.io/">
+  <img class="avatar" src="https://reticenceji.github.io//images/avatar.png?v=1622987247116" alt="">
   </a>
   <h1 class="site-title">
     Reticence
@@ -132,25 +132,30 @@ var _hmt = _hmt || [];
         <div class="post-detail">
           <article class="post">
             <h2 class="post-title">
-              Rust工具链
+              Rust-开发背景知识
             </h2>
             <div class="post-info">
               <span>
                 2021-05-06
               </span>
               <span>
-                2 min read
+                3 min read
               </span>
               
                 <a href="https://reticenceji.github.io/tag/3Sdf--wHm/" class="post-tag">
                   # Rust
                 </a>
               
+                <a href="https://reticenceji.github.io/tag/nL6gwIN_5/" class="post-tag">
+                  # Tools
+                </a>
+              
             </div>
             
             <div class="post-content-wrapper">
               <div class="post-content">
-                <p>安装 Rust 的主要方式是通过 <code>Rustup</code> 这一工具，它既是一个 Rust 安装器又是一个版本管理工具。<br>
+                <h1 id="工具链">工具链</h1>
+<p>安装 Rust 的主要方式是通过 <code>Rustup</code> 这一工具，它既是一个 Rust 安装器又是一个版本管理工具。<br>
 <code>curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh</code><br>
 Rust采用多版本发布的方式，所以一般会同时有nightly和stable等多个版本。我们一般都是用的nightly版本，因为他的特性更丰富。Rust的工具链由一个3-tuple定义</p>
 <pre><code> Standard release channel toolchain names have the following form:
@@ -170,11 +175,40 @@ Rust采用多版本发布的方式，所以一般会同时有nightly和stable等
 <li>rust-analysis</li>
 <li>clippy 是lint工具，静态分析。</li>
 </ul>
-<p>rust-gdb 貌似就是gdb，rust-lldb也就是lldb，加了一层不知道是什么的封装。</p>
+<p>rust-gdb就是gdb，rust-lldb也就是lldb，加了一层不知道是什么的封装。</p>
+<p>Cargo的常用命令：</p>
+<ul>
+<li>new 创建工程。</li>
+<li>build 编译工程，其实最后还是用rustc来完成真正的编译工作。</li>
+<li>run 编译并执行工程。</li>
+<li>check命令可以只检查编译错误，而不做代码优化以及生成可执行程序，非常适合在开发过程中快速检查语法、类型错误。</li>
+<li>clean清理以前的编译结果</li>
+<li>doc生成该项目的文档。</li>
+<li>test执行单元测试。</li>
+<li>bench执行benchmark性能测试。</li>
+<li>update升级所有依赖项的版本，重新生成Cargo.lock文件。</li>
+<li>install安装可执行程序。</li>
+</ul>
+<h1 id="编译">编译</h1>
+<p>在rust中，crate是一个完整的编译单元，而不是基于某个单个的.rs或者mod来执行编译的。</p>
+<h1 id="工程组织">工程组织</h1>
+<p>mod crate</p>
+<h1 id="注释">注释</h1>
+<p>普通注释：<code>//</code>或 <code>/* */</code></p>
+<p>特殊注释：支持Markdown格式<br>
+<code>///</code>和<code>/** */</code>：给他后面的元素做说明。<br>
+<code>//!</code>和<code>/*! */</code>：给包含这块注释的元素做说明。</p>
+<p>单独的Markdown注释</p>
 
               </div>
               <div class="toc-container">
-                
+                <ul class="markdownIt-TOC">
+<li><a href="#%E5%B7%A5%E5%85%B7%E9%93%BE">工具链</a></li>
+<li><a href="#%E7%BC%96%E8%AF%91">编译</a></li>
+<li><a href="#%E5%B7%A5%E7%A8%8B%E7%BB%84%E7%BB%87">工程组织</a></li>
+<li><a href="#%E6%B3%A8%E9%87%8A">注释</a></li>
+</ul>
+
               </div>
             </div>
           </article>
@@ -195,7 +229,7 @@ Rust采用多版本发布的方式，所以一般会同时有nightly和stable等
 
         <div class="site-footer">
   
-  <a class="rss" href="https://reticenceji.github.io/atom.xml" target="_blank">
+  <a class="rss" href="https://reticenceji.github.io//atom.xml" target="_blank">
     <i class="ri-rss-line"></i> RSS
   </a>
 </div>

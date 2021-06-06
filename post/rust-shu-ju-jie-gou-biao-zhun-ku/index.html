@@ -3,10 +3,10 @@
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Rust-标准库 | Reticence</title>
-<link rel="shortcut icon" href="https://reticenceji.github.io/favicon.ico?v=1620698420281">
+<link rel="shortcut icon" href="https://reticenceji.github.io//favicon.ico?v=1622987247116">
 <link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
-<link rel="stylesheet" href="https://reticenceji.github.io/styles/main.css">
-<link rel="alternate" type="application/atom+xml" title="Rust-标准库 | Reticence - Atom Feed" href="https://reticenceji.github.io/atom.xml">
+<link rel="stylesheet" href="https://reticenceji.github.io//styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="Rust-标准库 | Reticence - Atom Feed" href="https://reticenceji.github.io//atom.xml">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
 
 <script>
@@ -51,8 +51,8 @@ Box..." />
     <div class="main">
       <div class="main-content">
         <div class="site-header">
-  <a href="https://reticenceji.github.io">
-  <img class="avatar" src="https://reticenceji.github.io/images/avatar.png?v=1620698420281" alt="">
+  <a href="https://reticenceji.github.io/">
+  <img class="avatar" src="https://reticenceji.github.io//images/avatar.png?v=1622987247116" alt="">
   </a>
   <h1 class="site-title">
     Reticence
@@ -149,7 +149,7 @@ var _hmt = _hmt || [];
                 2021-03-20
               </span>
               <span>
-                6 min read
+                10 min read
               </span>
               
                 <a href="https://reticenceji.github.io/tag/3Sdf--wHm/" class="post-tag">
@@ -177,7 +177,7 @@ var _hmt = _hmt || [];
 <li>Arc 并发安全计数指针</li>
 </ul>
 </li>
-<li>数据结构
+<li>容器与迭代器
 <ul>
 <li>String</li>
 <li>Vec</li>
@@ -191,7 +191,12 @@ var _hmt = _hmt || [];
 <li>RefCell</li>
 </ul>
 </li>
-<li>I/O</li>
+<li>I/O
+<ul>
+<li>stdio</li>
+<li>fmt</li>
+</ul>
+</li>
 <li>类型转换
 <ul>
 <li>AsRef/AsMut</li>
@@ -202,52 +207,114 @@ var _hmt = _hmt || [];
 </ul>
 </li>
 </ul>
-<h2 id="option">Option</h2>
-<pre><code class="language-rust">enum Option&lt;T&gt; {
-    Some(T),
-    None,
-}
-</code></pre>
-<h2 id="result">Result</h2>
+<h2 id="enum">Enum</h2>
+<h3 id="resultstar">Result⭐️</h3>
 <pre><code>enum Result&lt;T, E&gt; {
     Ok(T),
     Err(E),
 }
 </code></pre>
-<p>常常和<strong>match</strong>语句一起使用，match匹配要求枚举是穷尽的。<code>_</code>可以当做default。</p>
-<pre><code class="language-rust">match map_b.get(key){
+<h3 id="optionstar">Option⭐️</h3>
+<pre><code>enum Option&lt;T&gt; {
+    Some(T),
+    None,
+}
+</code></pre>
+<p>感觉Option和Result在Rust中是最常见的元素了，可以用他们来解决错误处理等问题。常常和<strong>match</strong>语句一起使用，match匹配要求枚举是穷尽的。<code>_</code>可以当做default。match是最通用的匹配方法，但是因为比较繁琐，所以Rust提供了很多的语法糖和方法。</p>
+<pre><code>match map_b.get(key){
     Some(num) =&gt; a = a + f64::from(value * num),
     None =&gt; a=a + 0.0
 }
+if let Some(x)=optVal{
+    doSomethingWith(x);
+}
 </code></pre>
-<h2 id="vector">Vector</h2>
-<p><code>Vec&lt;T&gt;</code>，也叫Vector。允许我们在一个单独的数据结构中存储<strong>多于一个的</strong>、<strong>相同类型的</strong>、在<strong>内存中彼此相邻排列的</strong>值。换句话说，是一个<strong>大小可变的数组</strong>。可以实现数组、队列、栈等线性表数据结构。</p>
-<pre><code class="language-rust">//创建一个数组
-let v: Vec&lt;i32&gt; = Vec::new();
-//创建一个带有初值的数组
-let v = vec![1,2,3];
-let mut tit: Vec&lt;String&gt; = vec![String::new();100];
-//向数组中添加新的元素，但是这样意味着v是可变的。
-//类似的，可以用pop返回并移除最后一个元素
-let mut v = Vec::new();
-v.push(4);
-//获取数组中元素的值，第一种方法如果下标越界会产生panic
-let third:i32 = &amp;v[2];
+<h3 id="cow-clone-on-write">Cow Clone on write</h3>
+<h2 id="智能指针">智能指针</h2>
+<h2 id="容器">容器</h2>
+<h3 id="vec">Vec</h3>
+<p><code>Vec&lt;T&gt;</code>，对应于C++中的Vector。允许我们在一个单独的数据结构中存储<strong>多于一个的</strong>、<strong>相同类型的</strong>、在<strong>内存中彼此相邻排列的</strong>值。换句话说，是一个<strong>大小可变的数组</strong>。可以实现数组、队列、栈等线性表数据结构。</p>
+<p><strong>重载了Index运算符</strong>，所以可以直接用<code>[]</code>取下标的形式访问内部成员。还<strong>重载了Deref/DerefMut运算符</strong>，所以可以自动的被解引用成为数组切片。</p>
+<pre><code>// 创建
+let v1: Vec&lt;i32&gt; = Vec::&lt;i32&gt;::new();				// 构造一个空的vector
+let v2: Vec&lt;String&gt; = Vec::with_capacity(1000);		// 预先分配空间，减小运行时扩容的开销
+let v3 = vec![1,2,3];								// 利用宏来创建vector
+let mut v: Vec&lt;i32&gt; = vec![0;100];					// 可变
+
+// 插入数据
+v.push(4);							// 插在最后面
+v.extend_from_slice(&amp;[1,2,3]);		// 批量插在最后面
+v.insert(2,100);					// 指定位置的插入，index的范围是[0,len]
+v[2] = 100;							// index的范围是[0,len)
+
+// 访问数据
+let third:i32 = &amp;v[2];				// 如果下标越界会产生panic
 match v.get(2) {
     Some(third) =&gt; ...,
     None =&gt; ...,
+}									// get 返回Option，配合模式匹配
+if let Some(i) = v4.get(6){
+    ...
 }
+
 //遍历，为了修改可变引用指向的值，必须先使用解引用运算符获取i中的值
 for i in &amp;mut v{
     *i += 50;
 }
 </code></pre>
-<p><code>~/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/share/doc/rust/html/std/vec/struct.Vec.html</code></p>
-<p>查看Push的源代码：<code>pub fn push(&amp;mut self, value: T) {...}</code>，传递了自己的一个可变引用。而Rust不允许同时出现一个可变引用和其他任何引用，所以要小心了。</p>
+<p>查看Push的源代码：<code>pub fn push(&amp;mut self, value: T) {...}</code>，传递了自己的一个可变引用。然后value的类型是T，也就是说所有权也移动进来了。小心了。</p>
+<h3 id="vecdeque">VecDeque</h3>
+<p>双向队列。在使用上相比Vec主要多了<code>pop_front()</code>和<code>push_front()</code>等方法。</p>
+<h3 id="hashmap">HashMap</h3>
+<p><code>HashMap&lt;K, V, S&gt;</code>是基于Hash算法的存储一组键值对的容器。K是键，V是值，S是哈希算法的类型，一般采用默认值。K要求实现了<code>Eq</code>和<code>Hash</code>两个Trait。</p>
+<p>如果我们采用自己的类型作为K，就要实现者两个trait。<code>Eq</code>就是离散中的等价关系，一般用自动推导<code>#[derive(PartialEq, Eq, Hash)]</code>，<code>Hash</code>一般采用自动推导<code>#[derice(Hash)]</code>。</p>
+<p><code>HashMap&lt;K, V&gt;</code> 类型储存了一个键类型 K 对应一个值类型 V 的映射。<br>
+map 可以用于需要任何类型作为键来寻找数据的情况，而不是像 vector 那样通过索引。</p>
+<pre><code>use std::collections::HashMap;
+// 创建
+let mut scores = HashMap::new();
+
+// 插入
+scores.insert(String::from(&quot;Blue&quot;), 10);
+scores.entry(String::from(&quot;Yellow&quot;)).or_insert(50);	// 在没有的情况下才插入
+
+// 取值
+let n :i32 = 1;
+println!(&quot;{:?}&quot;,scores.get(&amp;n));		// get方法返回的是Option，里面的内容是引用，没有所有权。
+
+// 删除
+scores.remove(&amp;p);
+
+// 遍历
+for (key, value) in &amp;scores {
+    println!(&quot;{}: {}&quot;, key, value);
+}
+</code></pre>
+<h3 id="btreemap">BTreeMap</h3>
+<p><code>BTreeMap&lt;K，V&gt;</code>是基于B树数据结构的存储一组键值 key-value-pair的容器。BTreeMap对key的要求是满足Ord约束，即具备“全序”特征。</p>
+<p>BTreeMap和HashMap的接口很像。不过正如B Tree的结构决定的，它可以实现范围查找。</p>
+<pre><code>for (k, v) in map.range(2..6) {
+	println!(&quot;{} : {}&quot;, k, v);
+}
+</code></pre>
+<h3 id="iterator">Iterator</h3>
+<p>迭代器是Rust的一项重要功能。Rust的迭代器是指实现了Iterator<br>
+trait的类型。它最主要的一个方法就是<code>next()</code>，返回一个<code>Option&lt;Item&gt;</code>，所以迭代器一定要有一个成员需要存储上次返回的情况。一般情况<code>next()</code>返回<code>Some(Item)</code>；如果迭代完成，就返回<code>None</code>。</p>
+<p>Rust标准库有一个命名规范，从容器创造出迭代器一般有三种方法：</p>
+<ul>
+<li><code>iter()</code>: 创造一个Item是&amp;T类型的迭代器；</li>
+<li><code>iter_mut()</code>: 创造一个Item是&amp;mut T类型的迭代器</li>
+<li><code>into_iter()</code>: 创造一个Item是T类型的迭代器。</li>
+</ul>
+<p><code>for item in container {}</code></p>
+<blockquote>
+<p>Rust的for<item>in<container>{<body>}语法结构就是一个语法糖。这个语法的原理其实就是调用<container>.into_iter()方法来获得迭代器，然后不断循环调用迭代器的next()方法，将返回值解包，赋值给<item>，然后调用<body>语句块。</p>
+</blockquote>
+<p>类似的还有<code>for item in &amp;container {}</code>和<code>for item in &amp;mut container {}</code></p>
 <h2 id="string">String</h2>
 <p>Rust 的核心语言中只有一种字符串类型：<code>str</code>，也就是字符串slice，它通常以被借用的形式出现<code>&amp;str</code>。称作 String 的类型是由标准库提供的，而没有写进核心语言部分，它是可增长的、可变的、有所有权的、UTF-8 编码的字符串类型。Rust 标准库中还包含一系列其他字符串类型，比如 <code>OsString</code>、<code>OsStr</code>、<code>CString</code> 和 <code>CStr</code>。<br>
 (也就是说在进行不能使用标准库的系统编程时，你的选择就只有str了)</p>
-<pre><code class="language-rust">//创建一个字符串，看源代码的话他们的实现是一模一样的。
+<pre><code>//创建一个字符串，看源代码的话他们的实现是一模一样的。
 let mut s = String::from(&quot;lo&quot;);
 let mut s = &quot;lo&quot;.to_string();   
 //可以通过 push_str 方法来附加字符串 slice，从而使 String 变长。
@@ -283,33 +350,9 @@ for c in &quot;नमस्ते&quot;.chars() {
 </tr>
 </tbody>
 </table>
-<h2 id="map">Map</h2>
-<p><code>HashMap&lt;K, V&gt;</code> 类型储存了一个键类型 K 对应一个值类型 V 的映射。<br>
-map 可以用于需要任何类型作为键来寻找数据的情况，而不是像 vector 那样通过索引。</p>
-<pre><code class="language-rust">//创建一个hashmap
-use std::collections::HashMap;
-let mut scores = HashMap::new();
-//插入键值对
-scores.insert(String::from(&quot;Blue&quot;), 10);
-scores.insert(String::from(&quot;Yellow&quot;), 50);
-//遍历
-for (key, value) in &amp;scores {
-    println!(&quot;{}: {}&quot;, key, value);
-}
-//只在没有对应内容的时候插入键值对
-scores.entry(String::from(&quot;Yellow&quot;)).or_insert(50);
-scores.entry(String::from(&quot;Blue&quot;)).or_insert(50);
-</code></pre>
-<p>取值：<br>
-get方法返回的事Option，里面的内容是引用，没有所有权。</p>
-<pre><code class="language-rust">pub fn get&lt;Q: ?Sized&gt;(&amp;self, k: &amp;Q) -&gt; Option&lt;&amp;V&gt;
-where
-    K: Borrow&lt;Q&gt;,
-    Q: Hash + Eq, 
-</code></pre>
 <h2 id="box">Box</h2>
 <p>为了构建链表，我们需要Box类型。Rust需要在编译的时候确定类型的大小。</p>
-<pre><code class="language-rust">//如果你直接把Box&lt;List&gt;换成List，Rust将无法确定类型的大小，编译失败。
+<pre><code>//如果你直接把Box&lt;List&gt;换成List，Rust将无法确定类型的大小，编译失败。
 enum List&lt;T&gt;{
     Cons(T, Box&lt;List&lt;T&gt;&gt;),
     Nil,
@@ -318,19 +361,76 @@ enum List&lt;T&gt;{
 <h2 id="other">Other</h2>
 <p><code>pub fn collect&lt;B&gt;(self) -&gt; B</code>：Transforms an iterator into a collection.<br>
 https://users.rust-lang.org/t/split-a-string-and-store-it-in-a-hashmap/36895?u=reticenceji</p>
+<h2 id="fmt">fmt</h2>
+<p><code>std::fmt</code></p>
+<pre><code>format!(&quot;Hello&quot;);                 // =&gt; &quot;Hello&quot;
+format!(&quot;Hello, {}!&quot;, &quot;world&quot;);   // =&gt; &quot;Hello, world!&quot;
+format!(&quot;The number is {}&quot;, 1);   // =&gt; &quot;The number is 1&quot;
+format!(&quot;{:?}&quot;, (3, 4));          // =&gt; &quot;(3, 4)&quot;
+format!(&quot;{value}&quot;, value=4);      // 命名参数
+format!(&quot;{1} {0}&quot;, 1, 2);           // 位置参数
+format!(&quot;{:04}&quot;, 42);             // =&gt; &quot;0042&quot; with leading zeros
+format!(&quot;{:.4},3.14159&quot;);        // 保留小数
+format!(&quot;{:.2$},3.14159,2&quot;);        // 保留小数，使用第二个参数作为保留标准
+</code></pre>
+<p>对齐和填充<code>[fill]&lt;/&gt;/^</code></p>
+<pre><code>println!(&quot;Hello {:0&lt;5}!&quot;,&quot;X&quot;);  //左对齐，填0
+println!(&quot;Hello {:-^5}!&quot;,&quot;X&quot;);  //居中，填-
+println!(&quot;Hello {:*&gt;2$}!&quot;,&quot;X&quot;,5);  //右对齐，填*。使用第二个参数作为填充标准。
+</code></pre>
+<h2 id="io">I/O</h2>
+<h3 id="stdfs和stdio">std::fs和std::io</h3>
+<p>在C++里面，标准输入输出流cin、cout是全局变量。在Rust中，基<br>
+于线程安全的考虑，获取标准输入输出的实例需要调用函数，分别为<br>
+<code>std::io::stdin()</code>和<code>std::io::stdout()</code>。</p>
+<p><code>stdin()</code>函数返回的类型是<code>Stdin</code>结构体。这个结构体本身已经实现了Read trait，所以，可以直接在其上调用各种读取方法。但是这样做效率比较低，因为为了线程安全考虑，每次读取的时候，它的内部都需要上锁。提高执行效率的办法是手动调用<code>lock()</code>方法，在这个锁的期间内多次调用读取操作，来避免多次上锁。</p>
+<h3 id="env">env</h3>
+<p>在Rust中，进程启动参数是调用独立的函数<code>std::env::args()</code>来得到的，或者使用<code>std::env::args_os()</code>来得到，进程返回值也是调用独立函数<code>std::process::exit()</code>来指定的。</p>
+<h2 id="类型转换">类型转换</h2>
+<h3 id="asrefasmut">AsRef/AsMut</h3>
+<h3 id="borrowborrowmut">Borrow/BorrowMut</h3>
+<h3 id="frominto">From/Into</h3>
+<p>从任意类型T到U的类型转换。</p>
 
               </div>
               <div class="toc-container">
                 <ul class="markdownIt-TOC">
 <li>
 <ul>
-<li><a href="#option">Option</a></li>
-<li><a href="#result">Result</a></li>
-<li><a href="#vector">Vector</a></li>
+<li><a href="#enum">Enum</a>
+<ul>
+<li><a href="#resultstar">Result:star:</a></li>
+<li><a href="#optionstar">Option:star:</a></li>
+<li><a href="#cow-clone-on-write">Cow Clone on write</a></li>
+</ul>
+</li>
+<li><a href="#%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88">智能指针</a></li>
+<li><a href="#%E5%AE%B9%E5%99%A8">容器</a>
+<ul>
+<li><a href="#vec">Vec</a></li>
+<li><a href="#vecdeque">VecDeque</a></li>
+<li><a href="#hashmap">HashMap</a></li>
+<li><a href="#btreemap">BTreeMap</a></li>
+<li><a href="#iterator">Iterator</a></li>
+</ul>
+</li>
 <li><a href="#string">String</a></li>
-<li><a href="#map">Map</a></li>
 <li><a href="#box">Box</a></li>
 <li><a href="#other">Other</a></li>
+<li><a href="#fmt">fmt</a></li>
+<li><a href="#io">I/O</a>
+<ul>
+<li><a href="#stdfs%E5%92%8Cstdio">std::fs和std::io</a></li>
+<li><a href="#env">env</a></li>
+</ul>
+</li>
+<li><a href="#%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2">类型转换</a>
+<ul>
+<li><a href="#asrefasmut">AsRef/AsMut</a></li>
+<li><a href="#borrowborrowmut">Borrow/BorrowMut</a></li>
+<li><a href="#frominto">From/Into</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -355,7 +455,7 @@ https://users.rust-lang.org/t/split-a-string-and-store-it-in-a-hashmap/36895?u=r
 
         <div class="site-footer">
   
-  <a class="rss" href="https://reticenceji.github.io/atom.xml" target="_blank">
+  <a class="rss" href="https://reticenceji.github.io//atom.xml" target="_blank">
     <i class="ri-rss-line"></i> RSS
   </a>
 </div>

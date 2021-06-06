@@ -1,0 +1,329 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Rust-FFI | Reticence</title>
+<link rel="shortcut icon" href="https://reticenceji.github.io//favicon.ico?v=1622987247116">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://reticenceji.github.io//styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="Rust-FFI | Reticence - Atom Feed" href="https://reticenceji.github.io//atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-90HNEFFE0M"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-90HNEFFE0M');
+</script>
+
+
+    <meta name="description" content="用Rust编写C库
+参考链接：
+
+https://stevenbai.top/rustbook/book/interoperability/rust-with-c.html
+
+动态链接库
+首先cargo new --lib创建一个新的lib..." />
+    <meta name="keywords" content="" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://reticenceji.github.io/">
+  <img class="avatar" src="https://reticenceji.github.io//images/avatar.png?v=1622987247116" alt="">
+  </a>
+  <h1 class="site-title">
+    Reticence
+  </h1>
+  <p class="site-description">
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          Index
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          Classification
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          Archives
+        </a>
+      
+    
+      
+        <a href="/navigator.html" class="menu">
+          Navigator
+        </a>
+      
+    
+      
+        <a href="/post/fei-md-ge-shi-bi-ji-hui-zong" class="menu">
+          Notes
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          About
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+        <a href="https://github.com/reticenceji" target="_blank">
+          <i class="ri-github-line"></i>
+        </a>
+      
+    
+      
+    
+      
+    
+      
+        <a href="https://www.zhihu.com/people/reticenceji" target="_blank">
+          <i class="ri-zhihu-line"></i>
+        </a>
+      
+    
+      
+    
+  </div>
+  <script>
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
+    var s = document.getElementsByTagName("script")[0]; 
+    s.parentNode.insertBefore(hm, s);
+  })();
+  </script>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              Rust-FFI
+            </h2>
+            <div class="post-info">
+              <span>
+                2021-05-26
+              </span>
+              <span>
+                3 min read
+              </span>
+              
+            </div>
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <h1 id="用rust编写c库">用Rust编写C库</h1>
+<p>参考链接：</p>
+<ul>
+<li><a href="https://stevenbai.top/rustbook/book/interoperability/rust-with-c.html">https://stevenbai.top/rustbook/book/interoperability/rust-with-c.html</a></li>
+</ul>
+<h2 id="动态链接库">动态链接库</h2>
+<p>首先<code>cargo new --lib</code>创建一个新的lib工程。<br>
+修改Cargo.toml配置文件，添加以下内容，表明我们需要生成的文件是动态链接库。默认生成类型是对应平台的，所以我会生成<code>.so</code>文件。</p>
+<pre><code>[lib]
+crate-type = [&quot;cdylib&quot;]
+</code></pre>
+<p>还是最简单的没有参数没有返回值的代码作为demo(lib.rs)，这个<a href="https://stevenbai.top/rustbook/book/interoperability/rust-with-c.html">例子的解释</a>：</p>
+<pre><code>pub extern &quot;C&quot; fn rust_function() {
+    println!(&quot;hello world&quot;);
+}
+</code></pre>
+<p>然后<code>cargo build</code>，我们在<code>target/debug</code>目录下可以看到我们生成的.so动态链接库。</p>
+<p>然后怎么使用.so呢？首先是要头文件，然后要链接。<br>
+头文件有工具cbindgen可以生成。</p>
+<ol>
+<li>首先在工程目录下创建<code>cbindgen.toml</code>，输入<a href="https://github.com/eqrion/cbindgen/blob/master/template.toml">官方模板内容</a>。</li>
+<li>把language替换成你的目标，比如说C。</li>
+<li>执行<code>cbindgen --config cbindgen.toml --crate my_rust_library --output my_header.h</code>，然后得到一个头文件。</li>
+</ol>
+<p>通过下面的方式链接我们的库文件。</p>
+<ul>
+<li>最简单的方式<code>gcc xxx.c mylib.so</code>。</li>
+<li><code>gcc xxx.c -L. mylib.so</code></li>
+</ul>
+<p>注意真正动态链接是需要操作系统的协助的，所以我们需要用下面的环境变量设置指明寻找动态链接库的位置。</p>
+<pre><code>export LD_LIBRARY_PATH=`pwd`
+</code></pre>
+<p>至此，才可以使用。</p>
+<h2 id="静态链接库">静态链接库</h2>
+<p>我一开始尝试静态链接库。但是失败了。<br>
+和上面类似的，但是Cargo.toml要设置成</p>
+<pre><code>[lib]
+crate-type = [&quot;staticlib&quot;]
+</code></pre>
+<p>生成的是.a文件。但是我把它和C程序链接的时候，报了一大堆链接错误。看<a href="https://www.reddit.com/r/rust/comments/ihiiom/problem_with_creating_and_linking_static_library/">网上的提示</a>说还需要链接别的库，但是我找不到那几个库。总之没有成功。</p>
+<h2 id="参数和返回值">参数和返回值</h2>
+<p>一个一般的函数肯定是要有参数和返回值的。是要用Rust和C都认识的类型才可以，然后调用规范遵循C的。<br>
+因此Rust提供了一些两边都认识的类型：</p>
+<ul>
+<li><a href="https://doc.rust-lang.org/std/ffi/index.html">std::ffi</a></li>
+<li><a href="https://docs.rs/libc/0.2.95/libc/#types">libc</a></li>
+</ul>
+<h3 id="基本类型">基本类型</h3>
+<pre><code>// libc提供的简单类型，不用解释也知道是什么意思
+c_char	
+c_double	
+c_float	
+c_int	
+c_long	
+c_longlong	
+c_schar	
+c_short	
+c_uchar	
+c_uint	
+c_ulong	
+c_ulonglong	
+c_ushort
+
+size_t
+</code></pre>
+<h3 id="字符串">字符串</h3>
+<p>我们知道Rust和C中的字符串存储格式是完全不同的。<code>std::ffi</code>提供的：</p>
+<pre><code>// CString and CStr 他们之间的关系和 String和&amp;str类似，内部的存储和C语言是兼容的。
+Rust					C
+String 	&lt;=&gt; CString &lt;=&gt; *mut u8 
+&amp;str	&lt;=&gt; CStr 	&lt;=&gt; *const u8
+
+方法依次有(日后用到再来补充)
+1. =&gt; CString::new();
+1. &lt;= into_string
+2. 
+3. 
+4. &lt;= from_ptr
+4. =&gt; as_ptr
+</code></pre>
+<p><code>std::ffi</code>还提供了对可变长参数列表的支持。这个还是nightly。</p>
+<h3 id="复杂类型">复杂类型</h3>
+<p>这个可能较少的用到。</p>
+<pre><code>#[repr(C)]
+pub struct CoolStruct { ... }
+</code></pre>
+<h1 id="用rust调用c库">用Rust调用C库</h1>
+
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li><a href="#%E7%94%A8rust%E7%BC%96%E5%86%99c%E5%BA%93">用Rust编写C库</a>
+<ul>
+<li><a href="#%E5%8A%A8%E6%80%81%E9%93%BE%E6%8E%A5%E5%BA%93">动态链接库</a></li>
+<li><a href="#%E9%9D%99%E6%80%81%E9%93%BE%E6%8E%A5%E5%BA%93">静态链接库</a></li>
+<li><a href="#%E5%8F%82%E6%95%B0%E5%92%8C%E8%BF%94%E5%9B%9E%E5%80%BC">参数和返回值</a>
+<ul>
+<li><a href="#%E5%9F%BA%E6%9C%AC%E7%B1%BB%E5%9E%8B">基本类型</a></li>
+<li><a href="#%E5%AD%97%E7%AC%A6%E4%B8%B2">字符串</a></li>
+<li><a href="#%E5%A4%8D%E6%9D%82%E7%B1%BB%E5%9E%8B">复杂类型</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#%E7%94%A8rust%E8%B0%83%E7%94%A8c%E5%BA%93">用Rust调用C库</a></li>
+</ul>
+
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://reticenceji.github.io/post/ads-np-wen-ti/">
+              <h3 class="post-title">
+                ADS-NP问题
+              </h3>
+            </a>
+          </div>
+        
+
+        
+
+        <div class="site-footer">
+  
+  <a class="rss" href="https://reticenceji.github.io//atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>
