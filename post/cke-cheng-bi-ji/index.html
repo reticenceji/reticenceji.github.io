@@ -3,10 +3,10 @@
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>C++课程笔记 | Reticence</title>
-<link rel="shortcut icon" href="https://reticenceji.github.io//favicon.ico?v=1622987673764">
+<link rel="shortcut icon" href="https://reticenceji.github.io/favicon.ico?v=1623895992470">
 <link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
-<link rel="stylesheet" href="https://reticenceji.github.io//styles/main.css">
-<link rel="alternate" type="application/atom+xml" title="C++课程笔记 | Reticence - Atom Feed" href="https://reticenceji.github.io//atom.xml">
+<link rel="stylesheet" href="https://reticenceji.github.io/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="C++课程笔记 | Reticence - Atom Feed" href="https://reticenceji.github.io/atom.xml">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
 
 <script>
@@ -30,7 +30,10 @@ var _hmt = _hmt || [];
 </script>
 
 
-    <meta name="description" content="
+    <meta name="description" content="C++是一个强大的语言，其中包含的很多程序设计的思想值得学习。请千万不要在程序里出现裸new，用智能指针包裹他们！
+
+
+
 
 C++语言基础   8学时
 
@@ -39,14 +42,7 @@ const ✔️
 引用 ✔️
 函数原型
 内联函数 ✔️
-缺省自变量 ✔️
-重载 ✔️
-类和封装 ✔️
-私有、保护和公共 ✔️
-构造函数和析构函数 ✔️
-友元 ✔️
-类中的运算符和函数重载
-派..." />
+缺省自变量 ✔..." />
     <meta name="keywords" content="C++,Notes" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
     <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
@@ -55,8 +51,8 @@ const ✔️
     <div class="main">
       <div class="main-content">
         <div class="site-header">
-  <a href="https://reticenceji.github.io/">
-  <img class="avatar" src="https://reticenceji.github.io//images/avatar.png?v=1622987673764" alt="">
+  <a href="https://reticenceji.github.io">
+  <img class="avatar" src="https://reticenceji.github.io/images/avatar.png?v=1623895992470" alt="">
   </a>
   <h1 class="site-title">
     Reticence
@@ -153,7 +149,7 @@ var _hmt = _hmt || [];
                 2021-03-02
               </span>
               <span>
-                30 min read
+                33 min read
               </span>
               
                 <a href="https://reticenceji.github.io/tag/Hm6SgxCYQ/" class="post-tag">
@@ -168,12 +164,15 @@ var _hmt = _hmt || [];
             
             <div class="post-content-wrapper">
               <div class="post-content">
-                <!-- 陈翔 CAD&CG Lab xchencs@zju.edu.cn
+                <p>C++是一个强大的语言，其中包含的很多程序设计的思想值得学习。请千万不要在程序里出现裸new，用智能指针包裹他们！</p>
+<!-- more -->
+<!-- 陈翔 CAD&CG Lab xchencs@zju.edu.cn
 [C++参考](https://zh.cppreference.com/)
 评分：一半作业一半考试。最后有一个大作业。PTA机考。
 助教的邮箱：yuexiakuangxiao@163.com -->
 <ul>
-<li>C++语言基础   8学时
+<li>
+<p>C++语言基础   8学时</p>
 <ul>
 <li>更好的C ✔️</li>
 <li>const ✔️</li>
@@ -189,10 +188,11 @@ var _hmt = _hmt || [];
 <li>类中的运算符和函数重载</li>
 <li>派生 ✔️</li>
 <li>虚函数和多态性 ✔️</li>
-<li>流</li>
+<li>流​ ✔️</li>
 </ul>
 </li>
-<li>第三部分 面向对象的软件开发  6学时
+<li>
+<p>第三部分 面向对象的软件开发  6学时</p>
 <ul>
 <li>传统的软件开发方法</li>
 <li>面向对象模型</li>
@@ -200,7 +200,8 @@ var _hmt = _hmt || [];
 <li>典例实例剖析</li>
 </ul>
 </li>
-<li>第四部分C++的高级论题   10学时
+<li>
+<p>第四部分C++的高级论题   10学时</p>
 <ul>
 <li>模板和异常处理</li>
 <li>拷贝构造函数与参数传递</li>
@@ -212,7 +213,6 @@ var _hmt = _hmt || [];
 </ul>
 </li>
 </ul>
-<hr>
 <h1 id="c语言基础">C++语言基础</h1>
 <h2 id="better-c">Better C</h2>
 <p>很久之前C++是C的超集，不过经过十几年的发展现在从C++已经不能完全兼容C了。</p>
@@ -381,7 +381,7 @@ int main()
 <p>在 C++ 中，每一个对象都能通过 this 指针来访问自己的地址。<strong>this 指针是所有成员函数的隐含参数（第一个参数，在这一点上和Rust是类似的）</strong>。因此，在成员函数内部，它可以用来指向调用对象。<br>
 对于我们来说，this 形参是隐式定义的。实际上，任何自定义名为 this 的参数或变量的行为都是非法的。我们可以在成员函数体内部使用 this，因此尽管没有必要（如果局部变量、函数参数隐藏了类变量就有必要了）。</p>
 <h2 id="constructordestructor">Constructor&amp;Destructor</h2>
-<p>和内存存在着千丝万缕联系的函数，书写的时候要非常小心：</p>
+<p>和内存存在着千丝万缕联系的函数，书写的时候要非常小心。如果里面有裸<code>new</code>和裸<code>delete</code>，建议把默认的函数全部禁止了：</p>
 <ul>
 <li>构造函数：对象会有一个默认的构造函数，是没有参数的。
 <ul>
@@ -449,7 +449,7 @@ new会开辟一块内存，delete会释放一块内存。<br>
     delete []pstr;      //没有把16传递进去，怎么知道要清理几次呢？
 }
 </code></pre>
-<figure data-type="image" tabindex="1"><img src="https://reticenceji.github.io//post-images/1615198175254.jpeg" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="1"><img src="https://reticenceji.github.io/post-images/1615198175254.jpeg" alt="" loading="lazy"></figure>
 <center>在64位系统中前面开辟8字节</center>
 <p>所以我们有两种方式创建一个Object：一个是new，另一个是用RAII（资源获取即初始化）。他们的区别在于：</p>
 <ol>
@@ -474,6 +474,31 @@ int main()
     return 0;
 }
 </code></pre>
+<p>看Allocator代码才知道new还有别的用法：</p>
+<ol>
+<li>
+<p>基本的new：<code>A *obj = new A();</code>  使用 new 创建对象，分配了空间并调用了构造函数。其实 C++ 规定 new 的这两个功能分开实现：</p>
+<ol>
+<li>分配空间： 调用函数 operator new 来实现。</li>
+<li>调用构造函数： 调用 placement new 来实现。</li>
+</ol>
+</li>
+<li>
+<p>operator new 如<code>::operator new(sizeof(T)*n)</code>，这个就是单纯的分配空间</p>
+</li>
+<li>
+<p>placement new 的功能就是 在一个 <strong>已经分配好的空间上</strong>，调用构造函数，创建一个类。</p>
+<pre><code class="language-cpp">void *buf = // 在这里为buf分配内存
+Class *pc = new (buf) Class(); 
+</code></pre>
+</li>
+</ol>
+<p>与之对应的也有不同的delete</p>
+<ol>
+<li>基本的delete，先调用析构函数然后释放空间</li>
+<li>operator delete，和operator new对应，释放分配的空间<code>::operator delete(buffer)</code></li>
+<li>不需要和placement new对应的delete，直接调用析构函数就行了</li>
+</ol>
 <h2 id="default-arguments">Default Arguments</h2>
 <p>默认参数，在<strong>函数原型</strong>的时候为形参分配默认参数。如<code>void showArea(double length = 20.0, double width = 10.0);</code>。编译器如果发现你提供的参数少了，就会帮你把默认参数传进去。所以在<strong>函数定义</strong>的时候不需要说默认参数。另外，默认参数的位置必须在右边。默认参数是<strong>不推荐使用</strong>的，最佳的工程实践应该是用函数重载来实现这个功能。</p>
 <h2 id="overload">Overload</h2>
@@ -946,16 +971,47 @@ where
 </code></pre>
 <p>对应C++，可能就是要重载<code>&lt;</code>号之类的比较符号。这个错误在C++是非常隐晦的，C++20提出了和上面的Rust类似的解决方案。</p>
 <p>[!] 歧义递归模板</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th><a href="http://www.cnblogs.com/ider/archive/2011/06/30/what_is_in_cpp_header_and_implementation_file.html#none_template_type">非模板类型(none-template)</a></th>
+<th><a href="http://www.cnblogs.com/ider/archive/2011/06/30/what_is_in_cpp_header_and_implementation_file.html#none_template_type">模板类型(template)</a></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="http://www.cnblogs.com/ider/archive/2011/06/30/what_is_in_cpp_header_and_implementation_file.html#header_file">头文件(.h)</a></td>
+<td>全局变量申明（带extern限定符）全局函数的申明带<a href="http://www.cnblogs.com/ider/archive/2011/06/30/what_is_in_cpp_header_and_implementation_file.html#inline_qualifier">inline限定符</a>的全局函数的定义</td>
+<td>带<a href="http://www.cnblogs.com/ider/archive/2011/06/30/what_is_in_cpp_header_and_implementation_file.html#inline_qualifier">inline限定符</a>的全局模板函数的申明和定义</td>
+</tr>
+<tr>
+<td>类的定义类函数成员和数据成员的申明（在类内部）类定义内的函数定义（相当于inline）带<a href="http://www.cnblogs.com/ider/archive/2011/06/30/what_is_in_cpp_header_and_implementation_file.html#static_const_qualifier">static const限定符</a>的数据成员在<strong>类内部</strong>的初始化带<a href="http://www.cnblogs.com/ider/archive/2011/06/30/what_is_in_cpp_header_and_implementation_file.html#inline_qualifier">inline限定符</a>的类定义外的函数定义</td>
+<td>模板类的定义模板类成员的申明和定义（定义可以放在类内或者类外，类外不需要写inline）</td>
+<td></td>
+</tr>
+<tr>
+<td>实现文件(.cpp)</td>
+<td>全局变量的定义（及初始化）全局函数的定义</td>
+<td>(无)</td>
+</tr>
+<tr>
+<td>类函数成员的定义类带static限定符的数据成员的初始化</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
 <h2 id="stl-standard-template-library">STL (standard template library)</h2>
 <p>已经写好的数据结构，robust，portable，easy。泛型编程。</p>
 <ul>
 <li>Containers: pair,vector,deque,list,set,map</li>
-<li>Algotithm: sort() copy()</li>
+<li>Algotithm: sort() copy() find()</li>
 <li>Iterators: begin() end() 不要对无效的迭代器进行任何操作！<code>li=L.erase(li)</code></li>
 </ul>
 <p>最常用的三个数据结构：map，vector，list</p>
-<figure data-type="image" tabindex="2"><img src="https://reticenceji.github.io//post-images/image-20210605203121551.png" alt="image-20210605203121551" loading="lazy"></figure>
-<figure data-type="image" tabindex="3"><img src="https://reticenceji.github.io//post-images/image-20210605203530117.png" alt="image-20210605203530117" loading="lazy"></figure>
+<figure data-type="image" tabindex="2"><img src="https://reticenceji.github.io/post-images/image-20210605203121551.png" alt="image-20210605203121551" loading="lazy"></figure>
+<figure data-type="image" tabindex="3"><img src="https://reticenceji.github.io/post-images/image-20210605203530117.png" alt="image-20210605203530117" loading="lazy"></figure>
 <p>然后因为这些东西加上泛型比较冗长，所以我们一般会用：</p>
 <ol>
 <li>typedef <code>typedefPBmap&lt;Name,list&lt;PhoneNum&gt;&gt;</code></li>
@@ -963,9 +1019,22 @@ where
 </ol>
 <h2 id="iterators">Iterators</h2>
 <p>要理解泛型编程，一定要理解的是泛型和迭代器。</p>
-<p>迭代器是容器和算法之间的粘合剂。模板让算法独立于存储的数据类型，迭代器让算法独立于使用的容器类型。迭代器提供了一个和底层实现无关的。</p>
-<p>STL为每个容器类型都实现了迭代器，无论他们底层是如何实现的，都有类似的基本接口。我觉得迭代器就像一个<strong>有额外metadata的指针</strong>，能用在指针上面的操作基本都能用在迭代器上，比如<code>*</code>,<code>++ --</code>,<code>[]</code>,<code>==</code>等。不过迭代器有的是单向（不支持<code>--</code>和<code>[]</code>）的，有的是双向的，有的是支持随机访问（支持<code>[]</code>）的。（这个也好理解，比如单向链表如果要逆向访问代价就很大了；如果内存中连续的话随机访问问题也不大）。</p>
-<p>除此之外还有<strong>输入迭代器</strong>和<strong>输出迭代器</strong>的区别，输入迭代器可以让我们解引用<code>*</code>但是我们不能修改内容。输出迭代器只能让我们写容器的值而不能读取。比如cout就是输出迭代器。</p>
+<p>迭代器是<strong>容器和算法</strong>之间的粘合剂。模板让算法独立于存储的数据类型，迭代器让算法独立于使用的容器类型。迭代器提供了一个和底层实现无关的。</p>
+<p>STL为每个容器类型都实现了迭代器，无论他们底层是如何实现的，都有类似的基本接口。我觉得迭代器就像一个<strong>有额外metadata的指针</strong>，能用在指针上面的操作基本都能用在迭代器上，比如<code>*</code>,<code>++ --</code>,<code>[]</code>,<code>==</code>等。不过迭代器有的是<strong>单向</strong>（不支持<code>--</code>和<code>[]</code>）的，有的是<strong>双向</strong>（支持<code>++</code>和<code>--</code>）的，有的是支持<strong>随机访问RandomAccessIterator</strong>（支持<code>[]</code>）的。（这个也好理解，比如单向链表如果要逆向访问代价就很大了；如果内存中连续的话，随机访问问题也不大）。指针变量可以理解为数组的迭代器。</p>
+<p>除此之外还有<strong>输入迭代器InputIterator</strong>和<strong>输出迭代器</strong>的区别，输入迭代器可以让我们解引用<code>*</code>但是我们不能修改内容。输出迭代器只能让我们写容器的值而不能读取。比如cout就是输出迭代器。</p>
+<p>遍历<code>for (auto it = con.begin(); it!=con.end(); it++){}</code>。不过++得到的结果和底层的实现有关，比如<code>set</code>的底层实现是红黑树，所以<code>set</code>内部的元素是有序的，<code>++</code>会获得中序遍历的下一个值（也就是从小到大）；<code>vector</code>在内存中是有序的，<code>++</code>就会获得内存中相邻的下一个元素。</p>
+<p>迭代器至少要重载<code>*</code>，<code>-&gt;</code>，<code>==</code>操作吧。可能<code>++</code>等算数符号至少也要实现一个的。这些接口定义好了，就可以用算法库了。</p>
+<p>迭代器里面往往会定义一些类型信息，方便外部的使用</p>
+<pre><code class="language-cpp">template &lt;class T&gt;
+struct myIter{
+	typedef T value_type;    
+    
+    T* ptr;
+    ...
+}
+
+</code></pre>
+<h2 id="exception">Exception</h2>
 
               </div>
               <div class="toc-container">
@@ -1002,6 +1071,7 @@ where
 <li><a href="#template">Template</a></li>
 <li><a href="#stl-standard-template-library">STL (standard template library)</a></li>
 <li><a href="#iterators">Iterators</a></li>
+<li><a href="#exception">Exception</a></li>
 </ul>
 </li>
 </ul>
@@ -1026,7 +1096,7 @@ where
 
         <div class="site-footer">
   
-  <a class="rss" href="https://reticenceji.github.io//atom.xml" target="_blank">
+  <a class="rss" href="https://reticenceji.github.io/atom.xml" target="_blank">
     <i class="ri-rss-line"></i> RSS
   </a>
 </div>

@@ -3,10 +3,10 @@
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>OS-I/O | Reticence</title>
-<link rel="shortcut icon" href="https://reticenceji.github.io//favicon.ico?v=1622987673764">
+<link rel="shortcut icon" href="https://reticenceji.github.io/favicon.ico?v=1623895992470">
 <link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
-<link rel="stylesheet" href="https://reticenceji.github.io//styles/main.css">
-<link rel="alternate" type="application/atom+xml" title="OS-I/O | Reticence - Atom Feed" href="https://reticenceji.github.io//atom.xml">
+<link rel="stylesheet" href="https://reticenceji.github.io/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="OS-I/O | Reticence - Atom Feed" href="https://reticenceji.github.io/atom.xml">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
 
 <script>
@@ -49,8 +49,8 @@ HDD*
     <div class="main">
       <div class="main-content">
         <div class="site-header">
-  <a href="https://reticenceji.github.io/">
-  <img class="avatar" src="https://reticenceji.github.io//images/avatar.png?v=1622987673764" alt="">
+  <a href="https://reticenceji.github.io">
+  <img class="avatar" src="https://reticenceji.github.io/images/avatar.png?v=1623895992470" alt="">
   </a>
   <h1 class="site-title">
     Reticence
@@ -167,7 +167,7 @@ var _hmt = _hmt || [];
 唯一的优点是便宜。</p>
 <h4 id="hdd">HDD*</h4>
 <p>磁盘可能都要被淘汰了。。<br>
-<img src="https://reticenceji.github.io//post-images/1608951186211.png" alt="" loading="lazy"><br>
+<img src="https://reticenceji.github.io/post-images/1608951186211.png" alt="" loading="lazy"><br>
 挪动磁头的时间：seek time<br>
 转动磁盘的时间：rotational latency<br>
 为了减少磁头挪动的时间，我们要合理的<strong>调度*：</strong></p>
@@ -233,6 +233,8 @@ var _hmt = _hmt || [];
 </tr>
 </tbody>
 </table>
+<p>RAID3的问题是读取一个内容需要读取所有的磁盘，读效率较低。（写反而不需要）<br>
+RAID4解决了RAID3的问题，按照块来组织数据，读取可以并行。但是对于小块内容的写入效率较低，而且总是要访问校验磁盘频率过高影响寿命。</p>
 <p>对上面出现的纠错方式的解释，以4bit的数据<code>1101</code>为例，他会变成 <code>110_1__</code></p>
 <p>Hamming code：</p>
 <ol>
@@ -259,7 +261,7 @@ var _hmt = _hmt || [];
 </ol>
 <h2 id="io设备">IO设备</h2>
 <p>IO device多种多样，有不同的方式去控制他们。我们不可能让操作系统去为每一种IO设备专门写一段代码，没有问题是多加一层抽象解决不了的。</p>
-<figure data-type="image" tabindex="1"><img src="https://reticenceji.github.io//post-images/1608951259015.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="1"><img src="https://reticenceji.github.io/post-images/1608951259015.png" alt="" loading="lazy"></figure>
 <h3 id="io-access">IO access</h3>
 <p>一些CPU有专门的IO指令，比如x86的<code>in</code>，<code>out</code>。<br>
 另一种是Memory Mapped IO，把这些设备的控制寄存器map到内存的某个部分，然后用和操作内存一样的指令操作IO。</p>
@@ -340,7 +342,7 @@ DMA（Direct Memory Access）：直接把数据从硬盘传输到内存，不经
 
         <div class="site-footer">
   
-  <a class="rss" href="https://reticenceji.github.io//atom.xml" target="_blank">
+  <a class="rss" href="https://reticenceji.github.io/atom.xml" target="_blank">
     <i class="ri-rss-line"></i> RSS
   </a>
 </div>

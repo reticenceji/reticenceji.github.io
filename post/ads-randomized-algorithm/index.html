@@ -2,11 +2,11 @@
   <head>
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>安全多方计算 | Reticence</title>
-<link rel="shortcut icon" href="https://reticenceji.github.io//favicon.ico?v=1622987673764">
+<title>ADS-Randomized Algorithm | Reticence</title>
+<link rel="shortcut icon" href="https://reticenceji.github.io/favicon.ico?v=1623895992470">
 <link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
-<link rel="stylesheet" href="https://reticenceji.github.io//styles/main.css">
-<link rel="alternate" type="application/atom+xml" title="安全多方计算 | Reticence - Atom Feed" href="https://reticenceji.github.io//atom.xml">
+<link rel="stylesheet" href="https://reticenceji.github.io/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="ADS-Randomized Algorithm | Reticence - Atom Feed" href="https://reticenceji.github.io/atom.xml">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
 
 <script>
@@ -30,12 +30,14 @@ var _hmt = _hmt || [];
 </script>
 
 
-    <meta name="description" content="Oblivious Transfer
-不经意传输。他是一个协议，可以实现以下目标
+    <meta name="description" content="随机化算法介绍
 
-Sender has n messages, and the receiver has an index i.
-Receiver wishes to rec..." />
-    <meta name="keywords" content="Crypto" />
+
+拉斯维加斯算法：这个算法总是能产生正确的结果，否则就不会返回结果。采样越多，越有机会找到最优解。
+
+
+蒙特卡罗算法：总是会返回结果，但是结果不一定是正确的。但是出现不正确的答案的几率可以非常非常低，而且我们可以多次运行，..." />
+    <meta name="keywords" content="DS" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
     <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
   </head>
@@ -43,8 +45,8 @@ Receiver wishes to rec..." />
     <div class="main">
       <div class="main-content">
         <div class="site-header">
-  <a href="https://reticenceji.github.io/">
-  <img class="avatar" src="https://reticenceji.github.io//images/avatar.png?v=1622987673764" alt="">
+  <a href="https://reticenceji.github.io">
+  <img class="avatar" src="https://reticenceji.github.io/images/avatar.png?v=1623895992470" alt="">
   </a>
   <h1 class="site-title">
     Reticence
@@ -134,54 +136,44 @@ var _hmt = _hmt || [];
         <div class="post-detail">
           <article class="post">
             <h2 class="post-title">
-              安全多方计算
+              ADS-Randomized Algorithm
             </h2>
             <div class="post-info">
               <span>
-                2021-05-28
+                2021-06-15
               </span>
               <span>
                 2 min read
               </span>
               
-                <a href="https://reticenceji.github.io/tag/5zlWjp3Lz/" class="post-tag">
-                  # Crypto
+                <a href="https://reticenceji.github.io/tag/0AqTQfzSL/" class="post-tag">
+                  # DS
                 </a>
               
             </div>
             
             <div class="post-content-wrapper">
               <div class="post-content">
-                <h2 id="oblivious-transfer">Oblivious Transfer</h2>
-<p>不经意传输。他是一个协议，可以实现以下目标</p>
-<blockquote>
-<p>Sender has n messages, and the receiver has an index i.<br>
-Receiver wishes to receive the i-th among the sender's messages, without the sender learning i.<br>
-Sender wants to ensure that the receiver receive only one of the n messages.</p>
-</blockquote>
-<p>以1-n 不经意传输，表明如何实现上面的目标</p>
+                <p><a href="https://blog.csdn.net/kenden23/article/details/14558231">随机化算法介绍</a></p>
+<ul>
+<li>
+<p>拉斯维加斯算法：这个算法总是能产生正确的结果，否则就不会返回结果。<strong>采样越多，越有机会找到最优解。</strong></p>
+</li>
+<li>
+<p>蒙特卡罗算法：总是会返回结果，但是结果不一定是正确的。但是出现不正确的答案的几率可以非常非常低，而且我们可以多次运行，每次做不同的随机选择，那么几率就更加低了。<strong>采样越多，越近似最优解。</strong></p>
+</li>
+</ul>
+<p>这两类随机算法之间的选择，往往受到问题的局限。如果问题要求在有限采样内，必须给出一个解，但不要求是最优解，那就要用蒙特卡罗算法。反之，如果问题要求必须给出最优解，但对采样没有限制，那就要用拉斯维加斯算法。</p>
+<p><a href="https://zhuanlan.zhihu.com/p/81670606">随机化快排</a>。随机化快排的“随机”，指的是Pivot 位置的随机。随机化快排有两种办法</p>
 <ol>
-<li>Sender 拥有n个<code>(public key, private key)</code>，他拥有的message记做<code>M1~Mn</code>。</li>
-<li>Receiver 产生一个随机数<code>R</code>，用<code>public key i</code>加密这个随机数<code>R</code>，然后将加密的结果<code>R'</code>发送给Sender。</li>
-<li>Sender 用 <code>private key</code>解密<code>R'</code>，得到n个数字<code>K1~Kn</code>。由于他不知道i，所以他会得到一个有意义的结果和n-1个无意义的结果，当然对Sender来说他们都是随机数。Sender依次用<code>M xor K</code>，得到<code>E</code>，将<code>E</code>发送给Receiver。</li>
-<li>Receiver用<code>Ei xor R</code>就可以知道获得真正的信息<code>Mi</code>了。如果他用R异或别的E，得到的将是没有意义的内容。</li>
+<li>the pivot that divides the set so that each side contains at least n/4. The expected number of iterations needed until we find a central splitter is at most 2.</li>
+<li>随机产生一个pivot，下面证明他的比较次数的期望是<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mi>n</mi><mi>l</mi><mi>o</mi><mi>g</mi><mo>(</mo><mi>n</mi><mo>)</mo><mo>)</mo></mrow><annotation encoding="application/x-tex">O(n log(n))</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">o</span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mclose">)</span><span class="mclose">)</span></span></span></span></li>
 </ol>
-<p>至此，我们实现了上述的目标。</p>
-<h2 id="garbled-circuit">Garbled Circuit</h2>
-<h2 id="zero-knowledge-proof">zero-knowledge proof</h2>
+<figure data-type="image" tabindex="1"><img src="https://reticenceji.github.io/post-images/QQ%E5%9B%BE%E7%89%8720210616160452.jpg" alt="QQ图片20210616160452" loading="lazy"></figure>
 
               </div>
               <div class="toc-container">
-                <ul class="markdownIt-TOC">
-<li>
-<ul>
-<li><a href="#oblivious-transfer">Oblivious Transfer</a></li>
-<li><a href="#garbled-circuit">Garbled Circuit</a></li>
-<li><a href="#zero-knowledge-proof">zero-knowledge proof</a></li>
-</ul>
-</li>
-</ul>
-
+                
               </div>
             </div>
           </article>
@@ -190,9 +182,9 @@ Sender wants to ensure that the receiver receive only one of the n messages.</p>
         
           <div class="next-post">
             <div class="next">下一篇</div>
-            <a href="https://reticenceji.github.io/post/database-transaction/">
+            <a href="https://reticenceji.github.io/post/ads-local-search/">
               <h3 class="post-title">
-                Database-Transaction
+                ADS-local search
               </h3>
             </a>
           </div>
@@ -202,7 +194,7 @@ Sender wants to ensure that the receiver receive only one of the n messages.</p>
 
         <div class="site-footer">
   
-  <a class="rss" href="https://reticenceji.github.io//atom.xml" target="_blank">
+  <a class="rss" href="https://reticenceji.github.io/atom.xml" target="_blank">
     <i class="ri-rss-line"></i> RSS
   </a>
 </div>

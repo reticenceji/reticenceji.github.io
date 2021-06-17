@@ -3,10 +3,10 @@
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>ADS-NP问题 | Reticence</title>
-<link rel="shortcut icon" href="https://reticenceji.github.io//favicon.ico?v=1622987673764">
+<link rel="shortcut icon" href="https://reticenceji.github.io/favicon.ico?v=1623895992470">
 <link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
-<link rel="stylesheet" href="https://reticenceji.github.io//styles/main.css">
-<link rel="alternate" type="application/atom+xml" title="ADS-NP问题 | Reticence - Atom Feed" href="https://reticenceji.github.io//atom.xml">
+<link rel="stylesheet" href="https://reticenceji.github.io/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="ADS-NP问题 | Reticence - Atom Feed" href="https://reticenceji.github.io/atom.xml">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
 
 <script>
@@ -30,11 +30,12 @@ var _hmt = _hmt || [];
 </script>
 
 
-    <meta name="description" content="四个概念：
+    <meta name="description" content="NP问题
+四个概念：
 
 P：存在多项式时间算法的问题。(P：polynominal，多项式)。
-NP：能在多项式时间内验证得出一个正确解的问题。(NP:Nondeterministic polynominal，非确定性多项式)。这里可以清楚的看出P类..." />
-    <meta name="keywords" content="" />
+NP：能在多项式时间内验证得出一个正确解的问题。(NP:Nondeterministic polynominal，非确定性多项式)。这里可以清楚..." />
+    <meta name="keywords" content="DS" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
     <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
   </head>
@@ -42,8 +43,8 @@ NP：能在多项式时间内验证得出一个正确解的问题。(NP:Nondeter
     <div class="main">
       <div class="main-content">
         <div class="site-header">
-  <a href="https://reticenceji.github.io/">
-  <img class="avatar" src="https://reticenceji.github.io//images/avatar.png?v=1622987673764" alt="">
+  <a href="https://reticenceji.github.io">
+  <img class="avatar" src="https://reticenceji.github.io/images/avatar.png?v=1623895992470" alt="">
   </a>
   <h1 class="site-title">
     Reticence
@@ -140,21 +141,26 @@ var _hmt = _hmt || [];
                 2021-05-25
               </span>
               <span>
-                2 min read
+                5 min read
               </span>
+              
+                <a href="https://reticenceji.github.io/tag/0AqTQfzSL/" class="post-tag">
+                  # DS
+                </a>
               
             </div>
             
             <div class="post-content-wrapper">
               <div class="post-content">
-                <p>四个概念：</p>
+                <h2 id="np问题">NP问题</h2>
+<p>四个概念：</p>
 <ul>
 <li>P：存在多项式时间算法的问题。(P：polynominal，多项式)。</li>
 <li>NP：能在多项式时间内<strong>验证得出一个正确解</strong>的问题。(NP:Nondeterministic polynominal，非确定性多项式)。这里可以清楚的看出P类问题是NP类问题的子集（即存在多项式时间算法的问题，总能在多项式时间内验证它）。但是我们<strong>不知道这个问题存不存在一个多项式时间的算法non-deterministic</strong>（是不知道而不是不存在）。</li>
 <li>NPC：NP complete NP完全。<strong>所有的NP问题都可以约化成它的NP问题</strong>。要证明npc问题的思路就是： 先证明它至少是一个NP问题，再证明其中一个已知的NPC问题能约化到它。</li>
 <li>NP Hard：即所有的NP问题都能约化到它，但是它<strong>不一定是一个NP问题</strong>。</li>
 </ul>
-<p>然后P=NP是否成立在现在还没有定论，大部分人认为是不等的。如果等的话那很多问题都可以很方便的解决了。</p>
+<p>然后<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>P</mi><mo>=</mo><mi>N</mi><mi>P</mi></mrow><annotation encoding="application/x-tex">P=NP</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">P</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="mord mathdefault" style="margin-right:0.13889em;">P</span></span></span></span>是否成立在现在还没有定论，大部分人认为是不等的。如果等的话那很多问题都可以很方便的解决了。</p>
 <figure data-type="image" tabindex="1"><img src="https://pic2.zhimg.com/v2-1a4f4cfd668c28c1b47c266c7fe85199_b.jpg" alt="" loading="lazy"></figure>
 <p><strong>决定性问题</strong>(Decision problem)是一个在某些<a href="https://baike.baidu.com/item/%E5%BD%A2%E5%BC%8F%E7%B3%BB%E7%BB%9F/1534121">形式系统</a>回答<strong>是或否</strong>的问题。比如我们验证一条路是否是Hamiltonian Path是一个决定性问题，并且我们只需要多项式时间就可以解决。<strong>停机问题halting problem</strong>是undecidable decision problem。</p>
 <p>已知的NPC问题：</p>
@@ -171,10 +177,69 @@ var _hmt = _hmt || [];
 <li><a href="https://en.wikipedia.org/wiki/Dominating_set_problem">Dominating set problem</a></li>
 <li><a href="https://en.wikipedia.org/wiki/Graph_coloring_problem">Graph coloring problem</a></li>
 </ul>
+<h2 id="常见npc问题简介">常见NPC问题简介</h2>
+<p>我们后面介绍的 <strong>贪心算法，局部搜索，随机化算法</strong> 在很大程度上都是为了解决NPC问题，或者说求出一个较好的近似解。所以我们介绍一下常见的NPC问题和一些求近似解的方法。</p>
+<h3 id="max-cut-problem">Max cut problem</h3>
+<blockquote>
+<p>最大割问题是 NPC 问题。给定一张图，求一种分割方法，将所有顶点分割成两群，同时使得被切断的边数量最大。</p>
+<p>此问题还有另一个变形的版本：每条边上有各自的权重，要使得被切断的边的权重之和最大。</p>
+</blockquote>
+<p>解法在[Local search]中介绍。</p>
+<h3 id="vertex-cover-problem">Vertex cover problem</h3>
+<blockquote>
+<p>对于图<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>G</mi><mo>=</mo><mo>(</mo><mi>V</mi><mo separator="true">,</mo><mi>E</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">G=(V,E)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault">G</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.22222em;">V</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">E</span><span class="mclose">)</span></span></span></span>，找到一个点集<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mi>V</mi><mo mathvariant="normal">′</mo></msup></mrow><annotation encoding="application/x-tex">V&#x27;</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.751892em;vertical-align:0em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.22222em;">V</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.751892em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">′</span></span></span></span></span></span></span></span></span></span></span></span>使得<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>E</mi></mrow><annotation encoding="application/x-tex">E</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">E</span></span></span></span>中所有的edge至少有一个端点在<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mi>V</mi><mo mathvariant="normal">′</mo></msup></mrow><annotation encoding="application/x-tex">V&#x27;</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.751892em;vertical-align:0em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.22222em;">V</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.751892em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">′</span></span></span></span></span></span></span></span></span></span></span></span>中。这是一个NPC问题。</p>
+</blockquote>
+<p>解法在[Local search]中介绍</p>
+<h3 id="knapsack-problem">Knapsack problem</h3>
+<h3 id="clique-problem">clique problem</h3>
+<blockquote>
+<p>分团问题。the clique problem is the computational problem of finding cliques (subsets of vertices, all adjacent to each other, also called complete subgraphs) in a graph.我们在提到这个问题的时候，一般指的是是找最大的clique；有时候是找固定大小的clique。</p>
+</blockquote>
+<h3 id="sat-problem">SAT problem</h3>
+<blockquote>
+<p>布尔可满足性问题（有时称为命题可满足性问题，缩写为SATISFIABILITY或SAT）。布尔可满足性问题（<strong>Boolean satisfiability problem</strong>；<strong>SAT</strong> ）属于<a href="https://zh.wikipedia.org/wiki/%E6%B1%BA%E5%AE%9A%E6%80%A7%E5%95%8F%E9%A1%8C">决定性问题</a>，也是第一个被证明属于<a href="https://zh.wikipedia.org/wiki/NP%E5%AE%8C%E5%85%A8">NP完全</a>的问题。</p>
+</blockquote>
+<blockquote>
+<p>与任意公式的可满足性问题一样，确定公式的可满足性，其中每个条款限制为最多三个文字的连续正规形式。这个问题被称为3-SAT。他也是NPC问题。举个例子<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>(</mo><mi>x</mi><mo>∨</mo><mi>x</mi><mo>∨</mo><mi>y</mi><mo>)</mo><mo>∧</mo><mo>(</mo><mi mathvariant="normal">¬</mi><mi>x</mi><mo>∨</mo><mi mathvariant="normal">¬</mi><mi>y</mi><mo>∨</mo><mi mathvariant="normal">¬</mi><mi>y</mi><mo>)</mo><mo>∧</mo><mo>(</mo><mi mathvariant="normal">¬</mi><mi>x</mi><mo>∨</mo><mi>y</mi><mo>∨</mo><mi>y</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">(x ∨ x ∨ y) ∧ (¬x ∨ ¬y ∨ ¬y) ∧ (¬x ∨ y ∨ y)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathdefault">x</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∨</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.55556em;vertical-align:0em;"></span><span class="mord mathdefault">x</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∨</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∧</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">¬</span><span class="mord mathdefault">x</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∨</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.75em;vertical-align:-0.19444em;"></span><span class="mord">¬</span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∨</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">¬</span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∧</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">¬</span><span class="mord mathdefault">x</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∨</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.75em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∨</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="mclose">)</span></span></span></span>，当<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>x</mi><mo>=</mo><mn>0</mn><mo separator="true">,</mo><mi>y</mi><mo>=</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">x=0,y=1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">x</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8388800000000001em;vertical-align:-0.19444em;"></span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span>的时候就满足了。</p>
+</blockquote>
+<p>一个Schöning提出的<strong>randomized algorithm</strong> 可以近似解决，下面是定一个简化的办法。以1/2的概率随机给每个变量分配1或0。那么这样子的话，每个clause=1的概率是<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mfrac><mn>7</mn><mn>8</mn></mfrac></mrow><annotation encoding="application/x-tex">\frac {7} {8}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.190108em;vertical-align:-0.345em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.845108em;"><span style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">8</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">7</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span>，对于一共K个clause，会有期望<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>E</mi><mo>=</mo><mfrac><mrow><mn>7</mn><mi>K</mi></mrow><mn>8</mn></mfrac></mrow><annotation encoding="application/x-tex">E=\frac {7K} {8}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">E</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.217331em;vertical-align:-0.345em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.872331em;"><span style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">8</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">7</span><span class="mord mathdefault mtight" style="margin-right:0.07153em;">K</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span>个clause为1。我们要做的就是检查我们的分配是否可以让超过<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mfrac><mrow><mn>7</mn><mi>K</mi></mrow><mn>8</mn></mfrac></mrow><annotation encoding="application/x-tex">\frac {7K} {8}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.217331em;vertical-align:-0.345em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.872331em;"><span style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">8</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">7</span><span class="mord mathdefault mtight" style="margin-right:0.07153em;">K</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span>个clause为1，如果不行的化就再随机一次。</p>
+<p>然后这个随机化算法，一次分配超过<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mfrac><mrow><mn>7</mn><mi>K</mi></mrow><mn>8</mn></mfrac></mrow><annotation encoding="application/x-tex">\frac {7K} {8}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.217331em;vertical-align:-0.345em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.872331em;"><span style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">8</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">7</span><span class="mord mathdefault mtight" style="margin-right:0.07153em;">K</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span>个clause为1的概率至少是<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mfrac><mn>1</mn><mrow><mn>8</mn><mi>k</mi></mrow></mfrac></mrow><annotation encoding="application/x-tex">\frac {1}{8k}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.190108em;vertical-align:-0.345em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.845108em;"><span style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">8</span><span class="mord mathdefault mtight" style="margin-right:0.03148em;">k</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span>。</p>
+<figure data-type="image" tabindex="2"><img src="https://reticenceji.github.io/post-images/v2-f0ab095b4b48005f166fadf88a2de2b7_r.jpg" alt="preview" loading="lazy"></figure>
+<h3 id="bin-packing-problem">Bin packing problem</h3>
+<blockquote>
+<p>Given N items of sizes S1 , S2 , …, SN , such that 0 &lt; Si ≤ 1 for all 1 ≤ i ≤ N . Pack these items in the fewest number of bins, each of which has unit capacity.</p>
+</blockquote>
+<p>在approximation中介绍了几种办法和能达到的近似程度。</p>
+<h3 id="spanning-tree-problem">Spanning Tree problem</h3>
+<p>我不知道他是不是NPC问题啊。。但是挺常考的，一般考最小生成树/最大生成树。</p>
+<pre><code> 从一个解T开始
+ for (图中的每条边e）
+ 	if(加入e不构成环，则T=T+e）
+ 	else e'是环上权重最大的边，T=T+e-e‘
+</code></pre>
+<p>局部搜索也可以找到最小生成树。对于一个最小生成树T，如果我们任意的连接两个点，得到的连线肯定是环中最大的，不然交换之后就可以得到更好的解。</p>
 
               </div>
               <div class="toc-container">
-                
+                <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#np%E9%97%AE%E9%A2%98">NP问题</a></li>
+<li><a href="#%E5%B8%B8%E8%A7%81npc%E9%97%AE%E9%A2%98%E7%AE%80%E4%BB%8B">常见NPC问题简介</a>
+<ul>
+<li><a href="#max-cut-problem">Max cut problem</a></li>
+<li><a href="#vertex-cover-problem">Vertex cover problem</a></li>
+<li><a href="#knapsack-problem">Knapsack problem</a></li>
+<li><a href="#clique-problem">clique problem</a></li>
+<li><a href="#sat-problem">SAT problem</a></li>
+<li><a href="#bin-packing-problem">Bin packing problem</a></li>
+<li><a href="#spanning-tree-problem">Spanning Tree problem</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
               </div>
             </div>
           </article>
@@ -195,7 +260,7 @@ var _hmt = _hmt || [];
 
         <div class="site-footer">
   
-  <a class="rss" href="https://reticenceji.github.io//atom.xml" target="_blank">
+  <a class="rss" href="https://reticenceji.github.io/atom.xml" target="_blank">
     <i class="ri-rss-line"></i> RSS
   </a>
 </div>
