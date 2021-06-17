@@ -3,10 +3,10 @@
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Networking-应用层-HTTP学习 | Reticence</title>
-<link rel="shortcut icon" href="https://reticenceji.github.io/favicon.ico?v=1623895992470">
+<link rel="shortcut icon" href="/favicon.ico?v=1623896452731">
 <link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
-<link rel="stylesheet" href="https://reticenceji.github.io/styles/main.css">
-<link rel="alternate" type="application/atom+xml" title="Networking-应用层-HTTP学习 | Reticence - Atom Feed" href="https://reticenceji.github.io/atom.xml">
+<link rel="stylesheet" href="/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="Networking-应用层-HTTP学习 | Reticence - Atom Feed" href="/atom.xml">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
 
 <script>
@@ -43,8 +43,8 @@ HTTP是工作在应用层上的。下面一层利用TCP协议进行传输。
     <div class="main">
       <div class="main-content">
         <div class="site-header">
-  <a href="https://reticenceji.github.io">
-  <img class="avatar" src="https://reticenceji.github.io/images/avatar.png?v=1623895992470" alt="">
+  <a href="">
+  <img class="avatar" src="/images/avatar.png?v=1623896452731" alt="">
   </a>
   <h1 class="site-title">
     Reticence
@@ -144,11 +144,11 @@ var _hmt = _hmt || [];
                 10 min read
               </span>
               
-                <a href="https://reticenceji.github.io/tag/GLCgJ5F7H/" class="post-tag">
+                <a href="tag/GLCgJ5F7H/" class="post-tag">
                   # Networking
                 </a>
               
-                <a href="https://reticenceji.github.io/tag/FsPAOTRN-/" class="post-tag">
+                <a href="tag/FsPAOTRN-/" class="post-tag">
                   # Web
                 </a>
               
@@ -471,7 +471,7 @@ HTTP<strong>无状态</strong>、使用<strong>统一资源标识符（URI）</s
 <p>上面的介绍相当粗略，其实有很多字段都很有用处。书上讲得很好，我懒了摘抄了，尽量记住吧。</p>
 <h2 id="请求-request">请求 Request</h2>
 <p>客户端的HTTP报文段叫做<strong>请求报文</strong>。<br>
-<img src="https://reticenceji.github.io/post-images/1607595385237.png" alt="请求报文结构" loading="lazy"></p>
+<img src="/post-images/1607595385237.png" alt="请求报文结构" loading="lazy"></p>
 <h3 id="方法-method">方法 Method</h3>
 <p>GET，POST、PUT、DELETE、HEAD、OPTION、TRACE、CONNECT</p>
 <h3 id="持久连接-connect">持久连接 Connect</h3>
@@ -489,11 +489,11 @@ HTTP<strong>无状态</strong>、使用<strong>统一资源标识符（URI）</s
 </ol>
 <h3 id="范围请求-partial-request">范围请求 Partial Request</h3>
 <p>下载指定的实体内容范围可以使用范围请求。<br>
-<img src="https://reticenceji.github.io/post-images/1607603581785.png" alt="" loading="lazy"></p>
+<img src="/post-images/1607603581785.png" alt="" loading="lazy"></p>
 <h3 id="缓存技术-cache">缓存技术 Cache</h3>
-<figure data-type="image" tabindex="1"><img src="https://reticenceji.github.io/post-images/1607604648905.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="1"><img src="/post-images/1607604648905.png" alt="" loading="lazy"></figure>
 <h2 id="响应-response">响应 Response</h2>
-<figure data-type="image" tabindex="2"><img src="https://reticenceji.github.io/post-images/1607595469390.png" alt="响应报文结构" loading="lazy"></figure>
+<figure data-type="image" tabindex="2"><img src="/post-images/1607595469390.png" alt="响应报文结构" loading="lazy"></figure>
 <h3 id="状态码status-code">状态码Status Code</h3>
 <p>状态码分成五类：</p>
 <table>
@@ -612,7 +612,7 @@ HTTP<strong>无状态</strong>、使用<strong>统一资源标识符（URI）</s
 <h3 id="通信数据转发程序">通信数据转发程序</h3>
 <h4 id="代理-proxy">代理 Proxy</h4>
 <p>代理是一种有转发功能的应用程序，它扮演了位于服务器和客户端“中间人”的角色。接收由客户端<em>发送的请求</em>并转发给服务器，同时接收服务器<em>返回的响应</em>给客户端。</p>
-<p><img src="https://reticenceji.github.io/post-images/1607603635756.png" alt="" loading="lazy"><br>
+<p><img src="/post-images/1607603635756.png" alt="" loading="lazy"><br>
 使用代理服务器的理由有：利用缓存技术减少网络带宽的流量，组织内部针对特定网站的访问控制，以获取访问日志为主要目的，等等。</p>
 <ul>
 <li>缓存代理（Caching Proxy）：会预先将资源的副本保存在代理服务器上。</li>
@@ -625,9 +625,9 @@ HTTP<strong>无状态</strong>、使用<strong>统一资源标识符（URI）</s
 <p>隧道：隧道是在相隔甚远的客户端和服务器两者之间进行中转，并保持双方通信连接的应用程序。</p>
 <h2 id="https">HTTPS</h2>
 <p>因为HTTP不能确保消息传输的完整性，无法验证通信方的身份，使用明文进行通信。HTTP并不安全。所以我们引入了HTTPS，HTTP Secure。一般来说，就是在HTTP和TCP之间加入了SSL层，实现加密、证书、完整性验证的功能。<br>
-<img src="https://reticenceji.github.io/post-images/1607664071115.png" alt="" loading="lazy"></p>
+<img src="/post-images/1607664071115.png" alt="" loading="lazy"></p>
 <h3 id="ssl">SSL</h3>
-<figure data-type="image" tabindex="3"><img src="https://reticenceji.github.io/post-images/1607664077405.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="3"><img src="/post-images/1607664077405.png" alt="" loading="lazy"></figure>
 <ol>
 <li>可以确保服务器的公钥是真实的。</li>
 <li>可以在不安全的通道上传输信息，因为私钥不需要传输。</li>
@@ -699,7 +699,7 @@ HTTP<strong>无状态</strong>、使用<strong>统一资源标识符（URI）</s
         
           <div class="next-post">
             <div class="next">下一篇</div>
-            <a href="https://reticenceji.github.io/post/shu-zi-luo-ji-yuan-jian/">
+            <a href="post/shu-zi-luo-ji-yuan-jian/">
               <h3 class="post-title">
                 数字逻辑
               </h3>
@@ -711,7 +711,7 @@ HTTP<strong>无状态</strong>、使用<strong>统一资源标识符（URI）</s
 
         <div class="site-footer">
   
-  <a class="rss" href="https://reticenceji.github.io/atom.xml" target="_blank">
+  <a class="rss" href="/atom.xml" target="_blank">
     <i class="ri-rss-line"></i> RSS
   </a>
 </div>

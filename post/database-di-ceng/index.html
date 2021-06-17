@@ -3,10 +3,10 @@
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Database-存储和查询 | Reticence</title>
-<link rel="shortcut icon" href="https://reticenceji.github.io/favicon.ico?v=1623895992470">
+<link rel="shortcut icon" href="/favicon.ico?v=1623896452731">
 <link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
-<link rel="stylesheet" href="https://reticenceji.github.io/styles/main.css">
-<link rel="alternate" type="application/atom+xml" title="Database-存储和查询 | Reticence - Atom Feed" href="https://reticenceji.github.io/atom.xml">
+<link rel="stylesheet" href="/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="Database-存储和查询 | Reticence - Atom Feed" href="/atom.xml">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
 
 <script>
@@ -48,8 +48,8 @@ Storage mana..." />
     <div class="main">
       <div class="main-content">
         <div class="site-header">
-  <a href="https://reticenceji.github.io">
-  <img class="avatar" src="https://reticenceji.github.io/images/avatar.png?v=1623895992470" alt="">
+  <a href="">
+  <img class="avatar" src="/images/avatar.png?v=1623896452731" alt="">
   </a>
   <h1 class="site-title">
     Reticence
@@ -149,7 +149,7 @@ var _hmt = _hmt || [];
                 22 min read
               </span>
               
-                <a href="https://reticenceji.github.io/tag/uXp2zQxRH/" class="post-tag">
+                <a href="tag/uXp2zQxRH/" class="post-tag">
                   # Database
                 </a>
               
@@ -215,7 +215,7 @@ var _hmt = _hmt || [];
 <p>比如变长数组，变长字符串，二进制文件。</p>
 <p>一个简单的办法是记录metadata{location, size}，用来指向真正的Records内容。</p>
 <p>删除的话还是要移动Records，让Free Space连续。</p>
-<figure data-type="image" tabindex="1"><img src="https://reticenceji.github.io/post-images/image-20210506110601916.png" alt="image-20210506110601916" loading="lazy"></figure>
+<figure data-type="image" tabindex="1"><img src="/post-images/image-20210506110601916.png" alt="image-20210506110601916" loading="lazy"></figure>
 <h3 id="relation">Relation</h3>
 <p>Relation是很多Record的集合。Relation怎么组织：</p>
 <ul>
@@ -254,18 +254,18 @@ If the block is not in the buffer,</p>
 <h3 id="顺序索引">顺序索引</h3>
 <p><strong>Primary index(clustering index)</strong>：如果关系是按照某个<strong>search key</strong>排列的（有序），那么这个search key对应的index就是primary index。search-key通常是<strong>primary key</strong>，但没必要。（注意这里的三个单词）</p>
 <p><strong>Secondary index(nonclustering index)</strong>： index对应的search-key和文件中记录的物理顺序没啥关系，也就是说无序。因为是无序的，所以即使对于两个相同的项目我们也需要两个指针指向他（比如80000）不像primary key记录第一个顺序往下扫描就好。故对于不是primary key的search key我们需要在中间加上一层指针。secondary index对于<strong>顺序扫描不友好</strong>，还不如直接扫描。</p>
-<figure data-type="image" tabindex="2"><img src="https://reticenceji.github.io/post-images/image-20210506114940369.png" alt="image-20210506114940369" loading="lazy"></figure>
+<figure data-type="image" tabindex="2"><img src="/post-images/image-20210506114940369.png" alt="image-20210506114940369" loading="lazy"></figure>
 <p><strong>Dense index</strong>稠密索引：稠密索引中，真正数据文件的每一个search-key都会有对应的index entry。比如这个例子中的search key就不是primary key。</p>
-<figure data-type="image" tabindex="3"><img src="https://reticenceji.github.io/post-images/image-20210506114513678.png" alt="image-20210506114513678" loading="lazy"></figure>
+<figure data-type="image" tabindex="3"><img src="/post-images/image-20210506114513678.png" alt="image-20210506114513678" loading="lazy"></figure>
 <p><strong>Sparse index</strong>稀疏索引：只有当关系按照search-key顺序排列才能使用（换句话说，一定是primary index）。比如下面的例子可以看出。这个稀疏的index是怎么确定的？往往是让index指向某个Block的起始位置。相比于稠密索引，稀疏索引占用的空间更小，更新的代价更小（不是每次都需要更新），不过查找的速度更慢。索引的更新很容易想清楚。</p>
-<figure data-type="image" tabindex="4"><img src="https://reticenceji.github.io/post-images/image-20210506114501239.png" alt="image-20210506114501239" loading="lazy"></figure>
+<figure data-type="image" tabindex="4"><img src="/post-images/image-20210506114501239.png" alt="image-20210506114501239" loading="lazy"></figure>
 <p><strong>Multilevel index</strong>当你的数据库过大的时候，你的索引文件可能也会太大，这个时候你就需要“索引的索引”。有几个注意的地方，一个是外层的索引项肯定是稀疏的（不然多级有个锤子用？），所以内层索引项肯定是有序的（不然外层怎么稀疏）。</p>
-<figure data-type="image" tabindex="5"><img src="https://reticenceji.github.io/post-images/image-20210506160158185.png" alt="image-20210506160158185" loading="lazy"></figure>
+<figure data-type="image" tabindex="5"><img src="/post-images/image-20210506160158185.png" alt="image-20210506160158185" loading="lazy"></figure>
 <h3 id="b-treestar">B+ Tree⭐️</h3>
 <p>B+树构建一个矮树，减少Block IO。关于B+ Tree本身，在数据结构中已经学习了。</p>
 <p>B+ Tree有点像一个多级索引。non-leaf node是稀疏索引。因为leaf node是有序的。</p>
 <p>leaf node指向记录（如果记录重复就是一个记录的“桶”）。leaf node可以是稠密也可以是稀疏，条件和上面的索引是一样的。像下图的leaf 指向 name 是secondary index，所以必须是稠密的。</p>
-<figure data-type="image" tabindex="6"><img src="https://reticenceji.github.io/post-images/image-20210513101650905.png" alt="image-20210513101650905" loading="lazy"></figure>
+<figure data-type="image" tabindex="6"><img src="/post-images/image-20210513101650905.png" alt="image-20210513101650905" loading="lazy"></figure>
 <p>我们要知道删除/查询/插入的过程。</p>
 <p>如果用B+ Tree组织文件的话，也可以在leaf node存放数据的内容。</p>
 <h4 id="查询">查询</h4>
@@ -281,7 +281,7 @@ Eventually reach a leaf node.  If for some i, key Vi = k  follow pointer Pi  to 
 <hr>
 <h2 id="query-processing">Query Processing</h2>
 <p>关系代数比SQL表达式更好的能被系统分析。执行</p>
-<figure data-type="image" tabindex="7"><img src="https://reticenceji.github.io/post-images/image-20210506100011441.png" alt="image-20210506100011441" loading="lazy"></figure>
+<figure data-type="image" tabindex="7"><img src="/post-images/image-20210506100011441.png" alt="image-20210506100011441" loading="lazy"></figure>
 <p>有很多因素影响time cost. time cost = disk accesses + CPU + network communication.通常，disk access是占用时间最长的。所以我们主要考虑它。 我们用<strong>传递磁盘块数</strong>和<strong>搜索磁盘次数</strong>来度量查询计算计划的代价。假设磁盘子系统传输一个块的数据平均消耗<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>t</mi><mi>r</mi></msub></mrow><annotation encoding="application/x-tex">t_r</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.76508em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">t</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.02778em;">r</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>秒，磁盘块平均访问时间为<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>t</mi><mi>s</mi></msub></mrow><annotation encoding="application/x-tex">t_s</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.76508em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">t</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">s</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>秒，那么一次传输b个块和执行S次磁盘搜索的操作将消耗<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>b</mi><mo>∗</mo><msub><mi>t</mi><mi>r</mi></msub><mo>+</mo><mi>S</mi><mo>∗</mo><msub><mi>t</mi><mi>s</mi></msub></mrow><annotation encoding="application/x-tex">b*t_r+S*t_s</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault">b</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.76508em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">t</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.02778em;">r</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.76508em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">t</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">s</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>秒。这是忽略了很多细节的估算。一次block access指的是一次block transfer+一次block seek。</p>
 <h3 id="选择运算">选择运算</h3>
 <ul>
@@ -347,7 +347,7 @@ Eventually reach a leaf node.  If for some i, key Vi = k  follow pointer Pi  to 
 <li>
 <p>Hash Join：同样也是只能用在equal-join 或natural-join上。</p>
 <p>基本思想是，把join Attribute建立hash。那么若tuple_r散列到了i，对应的tuple_s也必然散列到了i。所以只用在相同的散列块中寻找就可以了。</p>
-<figure data-type="image" tabindex="8"><img src="https://reticenceji.github.io/post-images/image-20210520105140903.png" alt="image-20210520105140903" loading="lazy"></figure>
+<figure data-type="image" tabindex="8"><img src="/post-images/image-20210520105140903.png" alt="image-20210520105140903" loading="lazy"></figure>
 </li>
 </ul>
 <p>其实上面只是简要的介绍了一下每个办法的思想，具体的实践操作要考虑Memory大小和Relation大小之间的关系。</p>
@@ -371,7 +371,7 @@ d. Hash join.</p>
 <h3 id="expressions">Expressions</h3>
 <p>Materialized：每一步计算的结果被materialize，然后用于下一步的运算。这种办法总是可用的。比如下面这个例子，选择完了产生一个中间relation，然后在和Instructor连接产生结果。</p>
 <p>Pipeline：每一次操作的结果直接传递到下一步操作。这种办法效率更高，但是不一定可用。比如下面这个例子，department和Instructor做连接并判断是不是Watson。</p>
-<figure data-type="image" tabindex="9"><img src="https://reticenceji.github.io/post-images/image-20210520111806629.png" alt="image-20210520111806629" loading="lazy"></figure>
+<figure data-type="image" tabindex="9"><img src="/post-images/image-20210520111806629.png" alt="image-20210520111806629" loading="lazy"></figure>
 <h2 id="query-optimal">Query Optimal</h2>
 <ol>
 <li>两个关系代数表达式是等价的，但是执行效率可能是不同的</li>
@@ -406,12 +406,12 @@ d. Hash join.</p>
 </li>
 <li>
 <p>The selection operation distributes over the theta-join operation under the following two conditions</p>
-<figure data-type="image" tabindex="10"><img src="https://reticenceji.github.io/post-images/image-20210520135510985.png" alt="image-20210520135510985" loading="lazy"></figure>
-<figure data-type="image" tabindex="11"><img src="https://reticenceji.github.io/post-images/image-20210520135519323.png" alt="image-20210520135519323" loading="lazy"></figure>
+<figure data-type="image" tabindex="10"><img src="/post-images/image-20210520135510985.png" alt="image-20210520135510985" loading="lazy"></figure>
+<figure data-type="image" tabindex="11"><img src="/post-images/image-20210520135519323.png" alt="image-20210520135519323" loading="lazy"></figure>
 </li>
 <li>
 <p>The projection operation distributes over the theta-join operation under the following conditions</p>
-<figure data-type="image" tabindex="12"><img src="https://reticenceji.github.io/post-images/image-20210520135454231.png" alt="image-20210520135454231" loading="lazy"></figure>
+<figure data-type="image" tabindex="12"><img src="/post-images/image-20210520135454231.png" alt="image-20210520135454231" loading="lazy"></figure>
 </li>
 <li>
 <p>The set operations union and intersection are commutative.</p>
@@ -504,7 +504,7 @@ d. Hash join.</p>
         
           <div class="next-post">
             <div class="next">下一篇</div>
-            <a href="https://reticenceji.github.io/post/linux-zhuo-mian-ying-yong-kai-fa/">
+            <a href="post/linux-zhuo-mian-ying-yong-kai-fa/">
               <h3 class="post-title">
                 Linux 桌面应用开发
               </h3>
@@ -516,7 +516,7 @@ d. Hash join.</p>
 
         <div class="site-footer">
   
-  <a class="rss" href="https://reticenceji.github.io/atom.xml" target="_blank">
+  <a class="rss" href="/atom.xml" target="_blank">
     <i class="ri-rss-line"></i> RSS
   </a>
 </div>
