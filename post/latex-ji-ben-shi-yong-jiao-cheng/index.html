@@ -1,0 +1,454 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Latex基本使用教程 | Reticence</title>
+<link rel="shortcut icon" href="https://reticenceji.github.io/favicon.ico?v=1624603058845">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://reticenceji.github.io/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="Latex基本使用教程 | Reticence - Atom Feed" href="https://reticenceji.github.io/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-90HNEFFE0M"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-90HNEFFE0M');
+</script>
+
+
+    <meta name="description" content="因为老师让我们用Latex写一个survey，学一下latex怎么用。
+安装
+LaTeX有很多发型版，TeX Live就是其中一种。TeX Live 是 TUG (TeX User Group) 维护和发布的 TeX 系统，可说是「官方」的..." />
+    <meta name="keywords" content="" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://reticenceji.github.io">
+  <img class="avatar" src="https://reticenceji.github.io/images/avatar.png?v=1624603058845" alt="">
+  </a>
+  <h1 class="site-title">
+    Reticence
+  </h1>
+  <p class="site-description">
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          Index
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          Classification
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          Archives
+        </a>
+      
+    
+      
+        <a href="/navigator.html" class="menu">
+          Navigator
+        </a>
+      
+    
+      
+        <a href="/post/fei-md-ge-shi-bi-ji-hui-zong" class="menu">
+          Notes
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          About
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+        <a href="https://github.com/reticenceji" target="_blank">
+          <i class="ri-github-line"></i>
+        </a>
+      
+    
+      
+    
+      
+    
+      
+        <a href="https://www.zhihu.com/people/reticenceji" target="_blank">
+          <i class="ri-zhihu-line"></i>
+        </a>
+      
+    
+      
+    
+  </div>
+  <script>
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
+    var s = document.getElementsByTagName("script")[0]; 
+    s.parentNode.insertBefore(hm, s);
+  })();
+  </script>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              Latex基本使用教程
+            </h2>
+            <div class="post-info">
+              <span>
+                2021-06-25
+              </span>
+              <span>
+                6 min read
+              </span>
+              
+            </div>
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <p>因为老师让我们用Latex写一个survey，学一下latex怎么用。</p>
+<h2 id="安装">安装</h2>
+<p>LaTeX有很多发型版，TeX Live就是其中一种。TeX Live 是 TUG (TeX User Group) 维护和发布的 TeX 系统，可说是「官方」的 TeX 系统。TeX Live可以保持在跨操作系统平台、跨用户的一致性。安装包如下。<br>
+texlive-latex-base和extra都建议安装一下。<br>
+xetex其实没有安装的必要，不过也可以安装一下。也是latex编译器的一种，但是和下面的模板不适配。<br>
+texlive-fonts-extra如果不安装的话就不能正常使用下面的模板会报错。<br>
+<code>sudo apt-get install texlive-latex-base texlive-latex-extra texlive-xetex texlive-publishers texlive-fonts-extra</code></p>
+<p>在插件中心下载Latex Workshop，修改配置文件（这里的配置文件很丰富，不止对上面的工具链有效）：</p>
+<pre><code>&quot;latex-workshop.latex.tools&quot;: [
+    {
+        &quot;name&quot;: &quot;xelatex&quot;,
+        &quot;command&quot;: &quot;xelatex&quot;,
+        &quot;args&quot;: [
+            &quot;-synctex=1&quot;,
+            &quot;-interaction=nonstopmode&quot;,
+            &quot;-file-line-error&quot;,
+            &quot;%DOC%&quot;
+        ]
+    },
+    {
+        &quot;name&quot;: &quot;xelatex-with-shell-escape&quot;,
+        &quot;command&quot;: &quot;xelatex&quot;,
+        &quot;args&quot;: [
+            &quot;--shell-escape&quot;,
+            &quot;-synctex=1&quot;,
+            &quot;-interaction=nonstopmode&quot;,
+            &quot;-file-line-error&quot;,
+            &quot;%DOC%&quot;
+        ]
+    },
+    {
+        &quot;name&quot;: &quot;xelatex-latexmk&quot;,
+        &quot;command&quot;: &quot;latexmk&quot;,
+        &quot;args&quot;: [
+            &quot;-synctex=1&quot;,
+            &quot;-interaction=nonstopmode&quot;,
+            &quot;-file-line-error&quot;,
+            &quot;-xelatex&quot;,
+            &quot;-outdir=%OUTDIR%&quot;,
+            &quot;%DOC%&quot;
+        ]
+    },
+    {
+        &quot;name&quot;: &quot;xelatex-latexmk-with-shell-escape&quot;,
+        &quot;command&quot;: &quot;latexmk&quot;,
+        &quot;args&quot;: [
+            &quot;--shell-escape&quot;,
+            &quot;-synctex=1&quot;,
+            &quot;-interaction=nonstopmode&quot;,
+            &quot;-file-line-error&quot;,
+            &quot;-xelatex&quot;,
+            &quot;-outdir=%OUTDIR%&quot;,
+            &quot;%DOC%&quot;
+        ]
+    },
+    {
+        &quot;name&quot;: &quot;pdflatex&quot;,
+        &quot;command&quot;: &quot;pdflatex&quot;,
+        &quot;args&quot;: [
+            &quot;-synctex=1&quot;,
+            &quot;-interaction=nonstopmode&quot;,
+            &quot;-file-line-error&quot;,
+            &quot;%DOC%&quot;
+        ]
+    },
+    {
+        &quot;name&quot;: &quot;pdflatex-with-shell-escape&quot;,
+        &quot;command&quot;: &quot;pdflatex&quot;,
+        &quot;args&quot;: [
+            &quot;--shell-escape&quot;,
+            &quot;-synctex=1&quot;,
+            &quot;-interaction=nonstopmode&quot;,
+            &quot;-file-line-error&quot;,
+            &quot;%DOC%&quot;
+        ]
+    },
+    {
+        &quot;name&quot;: &quot;pdflatex-latexmk&quot;,
+        &quot;command&quot;: &quot;latexmk&quot;,
+        &quot;args&quot;: [
+            &quot;-synctex=1&quot;,
+            &quot;-interaction=nonstopmode&quot;,
+            &quot;-file-line-error&quot;,
+            &quot;-pdf&quot;,
+            &quot;-outdir=%OUTDIR%&quot;,
+            &quot;%DOC%&quot;
+        ]
+    },
+    {
+        &quot;name&quot;: &quot;pdflatex-latexmk-with-shell-escape&quot;,
+        &quot;command&quot;: &quot;latexmk&quot;,
+        &quot;args&quot;: [
+            &quot;--shell-escape&quot;,
+            &quot;-synctex=1&quot;,
+            &quot;-interaction=nonstopmode&quot;,
+            &quot;-file-line-error&quot;,
+            &quot;-pdf&quot;,
+            &quot;-outdir=%OUTDIR%&quot;,
+            &quot;%DOC%&quot;
+        ]
+    },
+    {
+        &quot;name&quot;: &quot;latexmk&quot;,
+        &quot;command&quot;: &quot;latexmk&quot;,
+        &quot;args&quot;: [
+            &quot;-synctex=1&quot;,
+            &quot;-interaction=nonstopmode&quot;,
+            &quot;-file-line-error&quot;,
+            &quot;-pdf&quot;,
+            &quot;%DOC%&quot;
+        ]
+    },
+    {
+        &quot;name&quot;: &quot;bibtex&quot;,
+        &quot;command&quot;: &quot;bibtex&quot;,
+        &quot;args&quot;: [
+            &quot;%DOCFILE%&quot;
+        ]
+    },
+    ],
+    &quot;latex-workshop.latex.recipes&quot;: [
+    {
+        &quot;name&quot;: &quot;PDFLaTeX&quot;,
+        &quot;tools&quot;: [
+            &quot;pdflatex&quot;
+         ]
+    },
+    {
+        &quot;name&quot;: &quot;PDFLaTeX with Shell Escape&quot;,
+        &quot;tools&quot;: [
+            &quot;pdflatex-with-shell-escape&quot;
+        ]
+    },
+    {
+        &quot;name&quot;: &quot;PDFLaTeX Auto&quot;,
+        &quot;tools&quot;: [
+            &quot;pdflatex-latexmk&quot;
+        ]
+    },
+    {
+        &quot;name&quot;: &quot;PDFLaTeX Auto with Shell Escape&quot;,
+        &quot;tools&quot;: [
+            &quot;pdflatex-latexmk-with-shell-escape&quot;
+        ]
+    },
+    {
+        &quot;name&quot;: &quot;XeLaTeX&quot;,
+        &quot;tools&quot;: [
+            &quot;xelatex&quot;
+        ]
+    },
+    {
+        &quot;name&quot;: &quot;XeLaTeX with Shell Escape&quot;,
+        &quot;tools&quot;: [
+            &quot;xelatex-with-shell-escape&quot;
+        ]
+    },
+    {
+        &quot;name&quot;: &quot;XeLaTeX Auto&quot;,
+        &quot;tools&quot;: [
+            &quot;xelatex-latexmk&quot;
+        ]
+    },
+    {
+        &quot;name&quot;: &quot;XeLaTeX Auto with Shell Escape&quot;,
+        &quot;tools&quot;: [
+          &quot;xelatex-latexmk-with-shell-escape&quot;
+        ]
+    },
+    {
+        &quot;name&quot;: &quot;PDFLaTeX -&gt; BibTeX -&gt; PDFLaTeX*2&quot;,
+        &quot;tools&quot;: [
+            &quot;pdflatex&quot;,
+            &quot;bibtex&quot;,
+            &quot;pdflatex&quot;,
+            &quot;pdflatex&quot;
+        ]
+    },
+    {
+        &quot;name&quot;: &quot;XeLaTeX -&gt; BibTeX -&gt; XeLaTeX*2&quot;,
+        &quot;tools&quot;: [
+            &quot;xelatex&quot;,
+            &quot;bibtex&quot;,
+            &quot;xelatex&quot;,
+            &quot;xelatex&quot;
+        ]
+    },
+    {
+        &quot;name&quot;: &quot;latexmk&quot;,
+        &quot;tools&quot;: [
+            &quot;latexmk&quot;
+        ]
+    },
+    {
+        &quot;name&quot;: &quot;BibTeX&quot;,
+        &quot;tools&quot;: [
+            &quot;bibtex&quot;
+        ]
+    },
+    ],
+</code></pre>
+<h2 id="hello-world">hello world</h2>
+<p>创建一个hello.tex，输入以下内容</p>
+<pre><code>\documentclass{article}
+% 这里是导言区
+\begin{document}
+Hello, world!
+\end{document}
+</code></pre>
+<p>然后点击TEX中的Build，目录下就会生成PDF文件。</p>
+<h2 id="使用模板">使用模板</h2>
+<p>Git上提供了<a href="https://github.com/acmccs/format.git">ACM CCS模板</a>。他提供的Makefile和我们之前安装的工具链是不匹配的，所以可以无视他，删除Makefile，PDF，README，选择<code>css-template.tex</code>然后编译就行了。<br>
+编译选项要选<code>PDF-&gt;Bib-&gt;PDF*2</code>，因为这个模板只支持pdftex。<br>
+然后正常情况下，我们就看不见警告了。</p>
+<h3 id="参考文献">参考文献</h3>
+<p>Google Scholar里面有Bib选项，直接复制过来到ccs-sample.bib中。</p>
+<h3 id="正文">正文</h3>
+<p>写在cfp.tex</p>
+
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#%E5%AE%89%E8%A3%85">安装</a></li>
+<li><a href="#hello-world">hello world</a></li>
+<li><a href="#%E4%BD%BF%E7%94%A8%E6%A8%A1%E6%9D%BF">使用模板</a>
+<ul>
+<li><a href="#%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE">参考文献</a></li>
+<li><a href="#%E6%AD%A3%E6%96%87">正文</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://reticenceji.github.io/post/ads-external-sorting/">
+              <h3 class="post-title">
+                ADS-external sorting
+              </h3>
+            </a>
+          </div>
+        
+
+        
+
+        <div class="site-footer">
+  
+  <a class="rss" href="https://reticenceji.github.io/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>

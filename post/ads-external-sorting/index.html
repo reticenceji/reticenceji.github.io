@@ -1,0 +1,262 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>ADS-external sorting | Reticence</title>
+<link rel="shortcut icon" href="https://reticenceji.github.io/favicon.ico?v=1624603058845">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://reticenceji.github.io/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="ADS-external sorting | Reticence - Atom Feed" href="https://reticenceji.github.io/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-90HNEFFE0M"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-90HNEFFE0M');
+</script>
+
+
+    <meta name="description" content="主要是为了解决很多数据以至于内存中放不下的情况。我们学过的Merge sort就是一种external sort。
+评价普通的排序只需要考虑时间复杂度，评价externel sort要考虑
+
+seek time O(pass) 从内存中读取..." />
+    <meta name="keywords" content="DS" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://reticenceji.github.io">
+  <img class="avatar" src="https://reticenceji.github.io/images/avatar.png?v=1624603058845" alt="">
+  </a>
+  <h1 class="site-title">
+    Reticence
+  </h1>
+  <p class="site-description">
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          Index
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          Classification
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          Archives
+        </a>
+      
+    
+      
+        <a href="/navigator.html" class="menu">
+          Navigator
+        </a>
+      
+    
+      
+        <a href="/post/fei-md-ge-shi-bi-ji-hui-zong" class="menu">
+          Notes
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          About
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+        <a href="https://github.com/reticenceji" target="_blank">
+          <i class="ri-github-line"></i>
+        </a>
+      
+    
+      
+    
+      
+    
+      
+        <a href="https://www.zhihu.com/people/reticenceji" target="_blank">
+          <i class="ri-zhihu-line"></i>
+        </a>
+      
+    
+      
+    
+  </div>
+  <script>
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
+    var s = document.getElementsByTagName("script")[0]; 
+    s.parentNode.insertBefore(hm, s);
+  })();
+  </script>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              ADS-external sorting
+            </h2>
+            <div class="post-info">
+              <span>
+                2021-06-23
+              </span>
+              <span>
+                2 min read
+              </span>
+              
+                <a href="https://reticenceji.github.io/tag/0AqTQfzSL/" class="post-tag">
+                  # DS
+                </a>
+              
+            </div>
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <p>主要是为了解决很多数据以至于内存中放不下的情况。我们学过的Merge sort就是一种external sort。</p>
+<p>评价普通的排序只需要考虑时间复杂度，评价externel sort要考虑</p>
+<ol>
+<li>seek time O(pass) 从内存中读取数据的次数</li>
+<li>time to read or write one block of records</li>
+<li>internal sort M records</li>
+<li>merge  N records from input buffer to output buffer</li>
+</ol>
+<h3 id="基本的external-sort思想">基本的external sort思想</h3>
+<p>假设我们的内存能容纳M个数据，我们一共有N个数据存储在Tape 1上。</p>
+<ol>
+<li>依次读取M个数据，在主存中进行排序。然后分别写入Tape 2和Tape 3。</li>
+<li>然后合并T2+T3=&gt;T1+T4， T1+T4=&gt;T2+T3。每次我们都可以将块的数量/2</li>
+<li>指导两边块的数量都是1,然后合并到一个Tape上。排序结束。</li>
+</ol>
+<p>比如下面这个例子，Memory里可以容纳2个数据。</p>
+<figure data-type="image" tabindex="1"><img src="https://reticenceji.github.io/post-images/image-20210623233956092.png" alt="image-20210623233956092" loading="lazy"></figure>
+<h3 id="k-way-merge">k-way merge</h3>
+<p>可以减小pass。上面的其实就是2-way merge。对于k-way merge ，</p>
+<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>p</mi><mi>a</mi><mi>s</mi><mi>s</mi><mo>=</mo><mn>1</mn><mo>+</mo><mi>l</mi><mi>o</mi><msub><mi>g</mi><mi>k</mi></msub><mo>(</mo><mi>N</mi><mi mathvariant="normal">/</mi><mi>M</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">pass=1+log_k(N/M)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">p</span><span class="mord mathdefault">a</span><span class="mord mathdefault">s</span><span class="mord mathdefault">s</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">o</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.03148em;">k</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="mord">/</span><span class="mord mathdefault" style="margin-right:0.10903em;">M</span><span class="mclose">)</span></span></span></span></p>
+<h3 id="polyphase-merge">Polyphase Merge</h3>
+<p>1+log_k(N/M)</p>
+
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li>
+<ul>
+<li><a href="#%E5%9F%BA%E6%9C%AC%E7%9A%84external-sort%E6%80%9D%E6%83%B3">基本的external sort思想</a></li>
+<li><a href="#k-way-merge">k-way merge</a></li>
+<li><a href="#polyphase-merge">Polyphase Merge</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://reticenceji.github.io/post/ads-parallel-algorithm/">
+              <h3 class="post-title">
+                ADS-parallel algorithm
+              </h3>
+            </a>
+          </div>
+        
+
+        
+
+        <div class="site-footer">
+  
+  <a class="rss" href="https://reticenceji.github.io/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>

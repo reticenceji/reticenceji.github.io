@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <id></id>
+    <id>https://reticenceji.github.io</id>
     <title>Reticence</title>
-    <updated>2021-06-17T02:21:03.145Z</updated>
+    <updated>2021-06-25T06:37:42.929Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
-    <link rel="self" href="atom.xml"/>
+    <link rel="alternate" href="https://reticenceji.github.io"/>
+    <link rel="self" href="https://reticenceji.github.io/atom.xml"/>
     <subtitle>&lt;script&gt;
 var _hmt = _hmt || [];
 (function() {
@@ -14,41 +15,76 @@ var _hmt = _hmt || [];
   s.parentNode.insertBefore(hm, s);
 })();
 &lt;/script&gt;</subtitle>
-    <logo>images/avatar.png</logo>
-    <icon>favicon.ico</icon>
+    <logo>https://reticenceji.github.io/images/avatar.png</logo>
+    <icon>https://reticenceji.github.io/favicon.ico</icon>
     <rights>All rights reserved 2021, Reticence</rights>
     <entry>
+        <title type="html"><![CDATA[Latex基本使用教程]]></title>
+        <id>https://reticenceji.github.io/post/latex-ji-ben-shi-yong-jiao-cheng/</id>
+        <link href="https://reticenceji.github.io/post/latex-ji-ben-shi-yong-jiao-cheng/">
+        </link>
+        <updated>2021-06-25T03:29:46.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[ADS-external sorting]]></title>
+        <id>https://reticenceji.github.io/post/ads-external-sorting/</id>
+        <link href="https://reticenceji.github.io/post/ads-external-sorting/">
+        </link>
+        <updated>2021-06-23T14:50:58.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[ADS-parallel algorithm]]></title>
+        <id>https://reticenceji.github.io/post/ads-parallel-algorithm/</id>
+        <link href="https://reticenceji.github.io/post/ads-parallel-algorithm/">
+        </link>
+        <updated>2021-06-22T06:07:29.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Vim使用]]></title>
+        <id>https://reticenceji.github.io/post/vim-shi-yong/</id>
+        <link href="https://reticenceji.github.io/post/vim-shi-yong/">
+        </link>
+        <updated>2021-06-21T10:31:03.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[大数定理和中心极限定理]]></title>
+        <id>https://reticenceji.github.io/post/tong-ji-ji-chu/</id>
+        <link href="https://reticenceji.github.io/post/tong-ji-ji-chu/">
+        </link>
+        <updated>2021-06-19T11:45:54.000Z</updated>
+    </entry>
+    <entry>
         <title type="html"><![CDATA[ADS-Randomized Algorithm]]></title>
-        <id>post/ads-randomized-algorithm/</id>
-        <link href="post/ads-randomized-algorithm/">
+        <id>https://reticenceji.github.io/post/ads-randomized-algorithm/</id>
+        <link href="https://reticenceji.github.io/post/ads-randomized-algorithm/">
         </link>
         <updated>2021-06-15T05:22:25.000Z</updated>
     </entry>
     <entry>
         <title type="html"><![CDATA[ADS-local search]]></title>
-        <id>post/ads-local-search/</id>
-        <link href="post/ads-local-search/">
+        <id>https://reticenceji.github.io/post/ads-local-search/</id>
+        <link href="https://reticenceji.github.io/post/ads-local-search/">
         </link>
         <updated>2021-06-06T07:02:17.000Z</updated>
     </entry>
     <entry>
         <title type="html"><![CDATA[差分隐私]]></title>
-        <id>post/chai-fen-yin-si/</id>
-        <link href="post/chai-fen-yin-si/">
+        <id>https://reticenceji.github.io/post/chai-fen-yin-si/</id>
+        <link href="https://reticenceji.github.io/post/chai-fen-yin-si/">
         </link>
         <updated>2021-06-03T11:17:27.000Z</updated>
     </entry>
     <entry>
         <title type="html"><![CDATA[ADS-approximation algorithm]]></title>
-        <id>post/ads-approximation-algorithm/</id>
-        <link href="post/ads-approximation-algorithm/">
+        <id>https://reticenceji.github.io/post/ads-approximation-algorithm/</id>
+        <link href="https://reticenceji.github.io/post/ads-approximation-algorithm/">
         </link>
         <updated>2021-05-29T09:05:32.000Z</updated>
     </entry>
     <entry>
         <title type="html"><![CDATA[Database-事务]]></title>
-        <id>post/database-transaction/</id>
-        <link href="post/database-transaction/">
+        <id>https://reticenceji.github.io/post/database-transaction/</id>
+        <link href="https://reticenceji.github.io/post/database-transaction/">
         </link>
         <updated>2021-05-27T02:56:20.000Z</updated>
         <summary type="html"><![CDATA[<p>DBMS比起文件系统，有下面的优势。这些优势的实现离不开<strong>事务(Transaction)</strong>。或者说这些就是事务的特点：</p>
@@ -59,40 +95,5 @@ var _hmt = _hmt || [];
 <p>并发：<strong>Concurrent executions</strong> of multiple users or multi-programs.<br>
 可恢复：Failures of various kinds, such as hardware failures and system crashes.</p>
 ]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Rust-FFI]]></title>
-        <id>post/rust-ffi/</id>
-        <link href="post/rust-ffi/">
-        </link>
-        <updated>2021-05-26T03:19:07.000Z</updated>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[ADS-NP问题]]></title>
-        <id>post/ads-np-wen-ti/</id>
-        <link href="post/ads-np-wen-ti/">
-        </link>
-        <updated>2021-05-25T15:40:33.000Z</updated>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Rust-协程与线程]]></title>
-        <id>post/rust-xie-cheng/</id>
-        <link href="post/rust-xie-cheng/">
-        </link>
-        <updated>2021-05-21T12:41:58.000Z</updated>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[ADS-Greedy method]]></title>
-        <id>post/ads-greedy-method/</id>
-        <link href="post/ads-greedy-method/">
-        </link>
-        <updated>2021-05-18T03:59:55.000Z</updated>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Rust-开发背景知识]]></title>
-        <id>post/rust-gong-ju-lian/</id>
-        <link href="post/rust-gong-ju-lian/">
-        </link>
-        <updated>2021-05-06T13:08:22.000Z</updated>
     </entry>
 </feed>

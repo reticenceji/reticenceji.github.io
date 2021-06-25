@@ -3,10 +3,10 @@
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>ADS-RB Tree and B+ Tree | Reticence</title>
-<link rel="shortcut icon" href="/favicon.ico?v=1623896452731">
+<link rel="shortcut icon" href="https://reticenceji.github.io/favicon.ico?v=1624603058845">
 <link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
-<link rel="stylesheet" href="/styles/main.css">
-<link rel="alternate" type="application/atom+xml" title="ADS-RB Tree and B+ Tree | Reticence - Atom Feed" href="/atom.xml">
+<link rel="stylesheet" href="https://reticenceji.github.io/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="ADS-RB Tree and B+ Tree | Reticence - Atom Feed" href="https://reticenceji.github.io/atom.xml">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
 
 <script>
@@ -44,8 +44,8 @@ Red-Black Tree⭐️
     <div class="main">
       <div class="main-content">
         <div class="site-header">
-  <a href="">
-  <img class="avatar" src="/images/avatar.png?v=1623896452731" alt="">
+  <a href="https://reticenceji.github.io">
+  <img class="avatar" src="https://reticenceji.github.io/images/avatar.png?v=1624603058845" alt="">
   </a>
   <h1 class="site-title">
     Reticence
@@ -145,7 +145,7 @@ var _hmt = _hmt || [];
                 7 min read
               </span>
               
-                <a href="tag/0AqTQfzSL/" class="post-tag">
+                <a href="https://reticenceji.github.io/tag/0AqTQfzSL/" class="post-tag">
                   # DS
                 </a>
               
@@ -157,7 +157,7 @@ var _hmt = _hmt || [];
 <!-- more -->
 <h2 id="red-black-treestar">Red-Black Tree⭐️</h2>
 <p>红黑树节点的数据结构：</p>
-<p><img src="/post-images/image-20210509113119326.png" alt="image-20210509113119326" loading="lazy"><br>
+<p><img src="https://reticenceji.github.io/post-images/image-20210509113119326.png" alt="image-20210509113119326" loading="lazy"><br>
 红黑树的定义：</p>
 <blockquote>
 <p>A red-black tree is a binary search tree that satisfies the following red-black properties:<br>
@@ -218,15 +218,15 @@ var _hmt = _hmt || [];
 </li>
 <li>
 <p>如果parent是红色，那么我们要考虑uncle的颜色，如果uncle是红色，那么就是下面的情况：</p>
-<figure data-type="image" tabindex="1"><img src="/post-images/output243.png" alt="img" loading="lazy"></figure>
+<figure data-type="image" tabindex="1"><img src="https://reticenceji.github.io/post-images/output243.png" alt="img" loading="lazy"></figure>
 </li>
 <li>
 <p>如果uncle是黑色，那么有4种情况：</p>
 <ol>
-<li><img src="/post-images/output244.png" alt="img" loading="lazy"></li>
-<li><img src="/post-images/output245.png" alt="img" loading="lazy"></li>
-<li><img src="/post-images/output246.png" alt="img" loading="lazy"></li>
-<li><img src="/post-images/output247.png" alt="img" loading="lazy"></li>
+<li><img src="https://reticenceji.github.io/post-images/output244.png" alt="img" loading="lazy"></li>
+<li><img src="https://reticenceji.github.io/post-images/output245.png" alt="img" loading="lazy"></li>
+<li><img src="https://reticenceji.github.io/post-images/output246.png" alt="img" loading="lazy"></li>
+<li><img src="https://reticenceji.github.io/post-images/output247.png" alt="img" loading="lazy"></li>
 </ol>
 </li>
 </ol>
@@ -251,7 +251,7 @@ b) If x’s uncle is <strong>BLACK</strong>, then there can be four configuratio
 <li>2度节点：Replace the node by the <strong>largest one in its left subtree</strong> or the <strong>smallest one in its right subtree</strong>. Then Delete the replacing node from the subtree. 因为是最大或者最小，那么他最多是1度。问题转移到了1度节点。</li>
 </ul>
 <p>所以问题的关键是1度黑节点的删除，下面假设要删除的节点是N，他的父亲是P，兄弟是S：</p>
-<figure data-type="image" tabindex="6"><img src="/post-images/image-20210510215401523.png" alt="image-20210510215401523" loading="lazy"></figure>
+<figure data-type="image" tabindex="6"><img src="https://reticenceji.github.io/post-images/image-20210510215401523.png" alt="image-20210510215401523" loading="lazy"></figure>
 <pre><code class="language-c">insert_fixup(T, z)
 {
     while (z-&gt;parent-&gt;color == RED) //如果是黑色就完成了
@@ -292,7 +292,7 @@ b) If x’s uncle is <strong>BLACK</strong>, then there can be four configuratio
 (2)  All nonleaf nodes (except the root) have between <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>⌈</mo><mi>M</mi><mi mathvariant="normal">/</mi><mn>2</mn><mo>⌉</mo></mrow><annotation encoding="application/x-tex">\lceil M/2\rceil</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">⌈</span><span class="mord mathdefault" style="margin-right:0.10903em;">M</span><span class="mord">/</span><span class="mord">2</span><span class="mclose">⌉</span></span></span></span> and <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>M</mi></mrow><annotation encoding="application/x-tex">M</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.10903em;">M</span></span></span></span> children.<br>
 (3)  All leaves are at the same depth.</p>
 </blockquote>
-<figure data-type="image" tabindex="7"><img src="/post-images/image-20210510123640238.png" alt="image-20210510123640238" loading="lazy"></figure>
+<figure data-type="image" tabindex="7"><img src="https://reticenceji.github.io/post-images/image-20210510123640238.png" alt="image-20210510123640238" loading="lazy"></figure>
 <p>这里的叶子节点，包含了M个数据。</p>
 <p>non-leaf节点，包含了M-1个数据和M个指针。通常这个数据会取下一个Block中最小的那个，看上面标红的。</p>
 <p>对于查找的操作来说，和普通的搜索树是类似的。</p>
@@ -362,7 +362,7 @@ b) If x’s uncle is <strong>BLACK</strong>, then there can be four configuratio
         
           <div class="next-post">
             <div class="next">下一篇</div>
-            <a href="post/tip-ru-he-jie-jue-zai-linux-zhong-an-zhuang-vivado-xun-zhao-bu-dao-she-bei-de-qing-kuang/">
+            <a href="https://reticenceji.github.io/post/tip-ru-he-jie-jue-zai-linux-zhong-an-zhuang-vivado-xun-zhao-bu-dao-she-bei-de-qing-kuang/">
               <h3 class="post-title">
                 Tip-如何解决在Linux中安装Vivado寻找不到设备的情况
               </h3>
@@ -374,7 +374,7 @@ b) If x’s uncle is <strong>BLACK</strong>, then there can be four configuratio
 
         <div class="site-footer">
   
-  <a class="rss" href="/atom.xml" target="_blank">
+  <a class="rss" href="https://reticenceji.github.io/atom.xml" target="_blank">
     <i class="ri-rss-line"></i> RSS
   </a>
 </div>

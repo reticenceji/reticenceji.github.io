@@ -1,0 +1,386 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>ADS-parallel algorithm | Reticence</title>
+<link rel="shortcut icon" href="https://reticenceji.github.io/favicon.ico?v=1624603058845">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://reticenceji.github.io/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="ADS-parallel algorithm | Reticence - Atom Feed" href="https://reticenceji.github.io/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-90HNEFFE0M"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-90HNEFFE0M');
+</script>
+
+
+    <meta name="description" content="PRAM
+Parallel Random Access Machine
+PRAM 它和 RAM 一样，假设在每个单位时间，每一个 processor 可以做一个计算或者访存的操作。一共 P 个核共享一个 shared memory。
+
+这个..." />
+    <meta name="keywords" content="DS" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://reticenceji.github.io">
+  <img class="avatar" src="https://reticenceji.github.io/images/avatar.png?v=1624603058845" alt="">
+  </a>
+  <h1 class="site-title">
+    Reticence
+  </h1>
+  <p class="site-description">
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          Index
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          Classification
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          Archives
+        </a>
+      
+    
+      
+        <a href="/navigator.html" class="menu">
+          Navigator
+        </a>
+      
+    
+      
+        <a href="/post/fei-md-ge-shi-bi-ji-hui-zong" class="menu">
+          Notes
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          About
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+        <a href="https://github.com/reticenceji" target="_blank">
+          <i class="ri-github-line"></i>
+        </a>
+      
+    
+      
+    
+      
+    
+      
+        <a href="https://www.zhihu.com/people/reticenceji" target="_blank">
+          <i class="ri-zhihu-line"></i>
+        </a>
+      
+    
+      
+    
+  </div>
+  <script>
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
+    var s = document.getElementsByTagName("script")[0]; 
+    s.parentNode.insertBefore(hm, s);
+  })();
+  </script>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              ADS-parallel algorithm
+            </h2>
+            <div class="post-info">
+              <span>
+                2021-06-22
+              </span>
+              <span>
+                7 min read
+              </span>
+              
+                <a href="https://reticenceji.github.io/tag/0AqTQfzSL/" class="post-tag">
+                  # DS
+                </a>
+              
+            </div>
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <h2 id="pram">PRAM</h2>
+<p>Parallel Random Access Machine<br>
+PRAM 它和 RAM 一样，假设在每个单位时间，每一个 processor 可以做一个计算或者访存的操作。一共 P 个核共享一个 shared memory。</p>
+<figure data-type="image" tabindex="1"><img src="https://reticenceji.github.io/post-images/v2-dae4751c16d477624f5359dfbb8e3dd6_720w.jpg" alt="img" loading="lazy"></figure>
+<p>这个模型通常来讲有几种模式（Memory的同步模型）：</p>
+<blockquote>
+<p>Exclusive read exclusive write (EREW) — 多个processor不可以同时读或者同时写同一个内存位置</p>
+<p>Concurrent read exclusive write (CREW) — 多个processor 不可以同时写，但是可以同时读同一个内存位置</p>
+<p>Exclusive read concurrent write (ERCW) — 不能同时读但是竟然能同时写，这个没什么意义，所以没人用它</p>
+<p>Concurrent read concurrent write (CRCW) — 两个processor既可以同时读也可以同时写同一位置，花费单位时间。关于这个同时写最后结果是什么，也有许多说法，不过我们的重点不在这个模型上，就不展开了。</p>
+</blockquote>
+<p>然而这个模型不太现实，一个是高度同步的内存不现实，另一个是在PRAM里，一个算法需要几个 processor，这个 P 是固定的。在我们现代的多核电脑里，虽然你知道它有几个 processor，但是实际上，你不知道你能用几个。</p>
+<h2 id="work-depth">Work-depth</h2>
+<p>它的中心思想是说，对于我们所有算法中的操作，根据其依赖关系可以画成一张 DAG（Directed acyclic graph，有向无环图）。其中每一个节点代表一个操作，每一条有向边 A-&gt;B 意味着B这个操作必须等待A操作进行完才可以执行。我们管这张图叫 computation graph 或者computation DAG。</p>
+<figure data-type="image" tabindex="2"><img src="https://reticenceji.github.io/post-images/v2-6a7a277250fed497c896370e14ae4c90_720w.jpg" alt="img" loading="lazy"></figure>
+<p>**一个算法的代价用两个量来衡量，一个叫 work，用 W 表示，也就是这个图总的结点数。它告诉你这个算法如果你只有一个 processor，串行地跑，它的时间复杂度是什么。**比如上图，这个数就是 17。第二就是这个图本身的深度，叫 Depth (D)，也叫 Span (S)，也就是最长的并行依赖链。在上图里，这个数是 8。<strong>这个 depth 告诉你，如果你有无数个 processor，你这个算法需要多少时间</strong>——因为即便你有无数个 processor，这些依赖关系还是要被按顺序一个等一个地执行的。</p>
+<p><strong>可以证明，给定一个 DAG，W 的 work , D 的 depth , p 的 process 你总是可以通过一定的调度算法，在 W/p+O(D) 的时间内给它执行完。</strong></p>
+<h2 id="examples">Examples</h2>
+<h3 id="prefix-sum">Prefix-sum</h3>
+<blockquote>
+<p>input: a1, a2, a3, ..., an</p>
+<p>output: a1, a1+a2, a1+a2+a3, ..., a1+a2+...an</p>
+</blockquote>
+<p>首先我们规定一个符号<img src="https://reticenceji.github.io/post-images/image-20210624130050973.png" alt="image-20210624130050973" loading="lazy">，<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>(</mo><mn>0</mn><mo separator="true">,</mo><mi>α</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">(0,\alpha)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.0037em;">α</span><span class="mclose">)</span></span></span></span>是<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>(</mo><mi>h</mi><mo separator="true">,</mo><mi>i</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">(h,i)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathdefault">h</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">i</span><span class="mclose">)</span></span></span></span>最右边的孩子的prefix-sum。我们要求解的目标其实就是<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>C</mi><mo>(</mo><mn>0</mn><mo separator="true">,</mo><mi>i</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">C(0,i)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.07153em;">C</span><span class="mopen">(</span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">i</span><span class="mclose">)</span></span></span></span>。</p>
+<figure data-type="image" tabindex="3"><img src="https://reticenceji.github.io/post-images/image-20210624130222108.png" alt="image-20210624130222108" loading="lazy"></figure>
+<p>先用Parallel算法求出<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>B</mi><mo>(</mo><mi>h</mi><mo separator="true">,</mo><mi>i</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">B(h,i)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.05017em;">B</span><span class="mopen">(</span><span class="mord mathdefault">h</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">i</span><span class="mclose">)</span></span></span></span>。这是一个自底向上的过程，这个过程很简单。</p>
+<p>然后再用Parallel算法求出<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>C</mi><mo>(</mo><mi>h</mi><mo separator="true">,</mo><mi>i</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">C(h,i)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.07153em;">C</span><span class="mopen">(</span><span class="mord mathdefault">h</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">i</span><span class="mclose">)</span></span></span></span>，这是一个自顶向下的过程。Work = O(n) Time = O(log N)</p>
+<pre><code class="language-c">for (h=log N;h&gt;=0;h--){
+    for (i==1) pardo
+        C[h,i] = B[h,i];
+    for (i%2 == 0) pardo
+        C[h,i] = C[h+1,i/2];	// parent
+    for (i%2 == 1 &amp;&amp; i!=1) pardo
+        C[h,i] = C[h+1,(i-1)/2] + B[h,i];
+}
+</code></pre>
+<h3 id="merging">Merging</h3>
+<blockquote>
+<p>merge two non-decreasing arrays A(1), A(2), …, A(n) and B(1), B(2), …, B(m) into another non-decreasing array C(1), C(2), …, C(n+m)</p>
+</blockquote>
+<p>先定义RANK:</p>
+<pre><code>RANK(j, A) = i,   if A(i) &lt; B(j) &lt; A(i + 1), for 1 &lt; i &lt; n
+RANK(j, A) = 0,  if B(j) &lt; A(1) 
+RANK(j, A) = n,  if B(j) &gt; A(n)
+</code></pre>
+<p>然后我们解决Rank(A,B)，就是知道Rank(i,A) for B和Rank(i,B) for A。</p>
+<p>在解决了Rank(A,B)之后，就可以用O(1)的时间和O(n+m)的work解决merging问题了，看一个例子：</p>
+<pre><code>	A = 1 3 4	B = 2 5 6
+Rank	0 1 1		1 3 3	(Rank in B/A)
+Where	0 1 2		0 1 2	(Position in A/B)
+Result	0 2 3		1 4 5	(Position in C = Rank+Where)
+</code></pre>
+<p>那么我们就把问题转换成了求Rank的问题。</p>
+<ol>
+<li>
+<p>第一个办法：对A中的每个元素，在B中用Binary Search求Rank。Time = O(log n). Work = O(nlog n) （这里就当m=n了）。</p>
+<pre><code class="language-c">// 这两个也是可以并行的
+for 1&lt;= i &lt;= n pardo
+	Rank(i,B) = BinarySearch(A(i),B);	
+for 1 &lt;= i &lt;= m pardo
+	Rank(i,A) = BinarySearch(B(i),A);
+</code></pre>
+</li>
+<li>
+<p>第二个办法：串行。 Time = O(n+m) Work = O(n+m)</p>
+<pre><code class="language-c">i = j = 0; 
+while ( i &lt;= n || j &lt;= m ) {
+    if ( A(i+1) &lt; B(j+1) )
+        RANK(++i, B) = j;
+    else RANK(++j, A) = i;
+}
+</code></pre>
+</li>
+<li>
+<p>第三个办法：并行。比第一个办法好。Time = O(log n), Work = O(n)</p>
+<ol>
+<li>
+<p>先选择部分的(p = n/log n)个元素按照第一个办法进行ranking。那么Time = O(log n), Work = O(n)。选择的元素如下所示：</p>
+<pre><code>A_Select(i) = A(1+(i-1)log n)   for 1 &lt;= i &lt;= p
+B_Select(i) = B(1+(i-1)log n)   for 1 &lt;= i &lt;= p
+</code></pre>
+</li>
+<li>
+<p>把上面的ranking完成之后，剩下最多有2p个子问题（绿色），每一个子问题的size log n级别。我们按照第二个办法进行Rank，Time = O(log n) Work = O(p log n) = O(n)</p>
+</li>
+</ol>
+<figure data-type="image" tabindex="4"><img src="https://reticenceji.github.io/post-images/image-20210624135659887.png" alt="image-20210624135659887" loading="lazy"></figure>
+</li>
+</ol>
+<h3 id="maximum-finding">Maximum Finding</h3>
+<blockquote>
+<p>从n个元素中找到最大的元素</p>
+</blockquote>
+<ol>
+<li>
+<p>方法一，两两比较，简单粗暴。Time = O(1) Work = O(n^2)</p>
+<pre><code>for Pi , 1 &lt;= i &lt;= n  pardo
+    B(i) := 0
+for i and j, 1 &lt;= i,j &lt;= n  pardo
+    if ( (A(i) &lt; A(j)) || ((A(i) = A(j)) &amp;&amp; (i &lt; j)) )
+            B(i) = 1
+    else B(j) = 1
+for Pi , 1 &lt;= i &lt;= n  pardo
+    if B(i) == 0
+       A(i) is a maximum in A
+</code></pre>
+</li>
+<li>
+<p>方法二。把元素分成<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msqrt><mi>n</mi></msqrt></mrow><annotation encoding="application/x-tex">\sqrt{n}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.04em;vertical-align:-0.23972em;"></span><span class="mord sqrt"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8002800000000001em;"><span class="svg-align" style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord" style="padding-left:0.833em;"><span class="mord mathdefault">n</span></span></span><span style="top:-2.76028em;"><span class="pstrut" style="height:3em;"></span><span class="hide-tail" style="min-width:0.853em;height:1.08em;"><svg width='400em' height='1.08em' viewBox='0 0 400000 1080' preserveAspectRatio='xMinYMin slice'><path d='M95,702c-2.7,0,-7.17,-2.7,-13.5,-8c-5.8,-5.3,-9.5,
+-10,-9.5,-14c0,-2,0.3,-3.3,1,-4c1.3,-2.7,23.83,-20.7,67.5,-54c44.2,-33.3,65.8,
+-50.3,66.5,-51c1.3,-1.3,3,-2,5,-2c4.7,0,8.7,3.3,12,10s173,378,173,378c0.7,0,
+35.3,-71,104,-213c68.7,-142,137.5,-285,206.5,-429c69,-144,104.5,-217.7,106.5,
+-221c5.3,-9.3,12,-14,20,-14H400000v40H845.2724s-225.272,467,-225.272,467
+s-235,486,-235,486c-2.7,4.7,-9,7,-19,7c-6,0,-10,-1,-12,-3s-194,-422,-194,-422
+s-65,47,-65,47z M834 80H400000v40H845z'/></svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.23972em;"><span></span></span></span></span></span></span></span></span>份，每份<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msqrt><mi>n</mi></msqrt></mrow><annotation encoding="application/x-tex">\sqrt{n}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.04em;vertical-align:-0.23972em;"></span><span class="mord sqrt"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8002800000000001em;"><span class="svg-align" style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord" style="padding-left:0.833em;"><span class="mord mathdefault">n</span></span></span><span style="top:-2.76028em;"><span class="pstrut" style="height:3em;"></span><span class="hide-tail" style="min-width:0.853em;height:1.08em;"><svg width='400em' height='1.08em' viewBox='0 0 400000 1080' preserveAspectRatio='xMinYMin slice'><path d='M95,702c-2.7,0,-7.17,-2.7,-13.5,-8c-5.8,-5.3,-9.5,
+-10,-9.5,-14c0,-2,0.3,-3.3,1,-4c1.3,-2.7,23.83,-20.7,67.5,-54c44.2,-33.3,65.8,
+-50.3,66.5,-51c1.3,-1.3,3,-2,5,-2c4.7,0,8.7,3.3,12,10s173,378,173,378c0.7,0,
+35.3,-71,104,-213c68.7,-142,137.5,-285,206.5,-429c69,-144,104.5,-217.7,106.5,
+-221c5.3,-9.3,12,-14,20,-14H400000v40H845.2724s-225.272,467,-225.272,467
+s-235,486,-235,486c-2.7,4.7,-9,7,-19,7c-6,0,-10,-1,-12,-3s-194,-422,-194,-422
+s-65,47,-65,47z M834 80H400000v40H845z'/></svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.23972em;"><span></span></span></span></span></span></span></span></span>个元素。用线性扫描的办法找到每一份的最大值。</p>
+<figure data-type="image" tabindex="5"><img src="https://reticenceji.github.io/post-images/image-20210624143121481.png" alt="image-20210624143121481" loading="lazy"></figure>
+<p>然后我们有<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msqrt><mi>n</mi></msqrt></mrow><annotation encoding="application/x-tex">\sqrt{n}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.04em;vertical-align:-0.23972em;"></span><span class="mord sqrt"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8002800000000001em;"><span class="svg-align" style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord" style="padding-left:0.833em;"><span class="mord mathdefault">n</span></span></span><span style="top:-2.76028em;"><span class="pstrut" style="height:3em;"></span><span class="hide-tail" style="min-width:0.853em;height:1.08em;"><svg width='400em' height='1.08em' viewBox='0 0 400000 1080' preserveAspectRatio='xMinYMin slice'><path d='M95,702c-2.7,0,-7.17,-2.7,-13.5,-8c-5.8,-5.3,-9.5,
+-10,-9.5,-14c0,-2,0.3,-3.3,1,-4c1.3,-2.7,23.83,-20.7,67.5,-54c44.2,-33.3,65.8,
+-50.3,66.5,-51c1.3,-1.3,3,-2,5,-2c4.7,0,8.7,3.3,12,10s173,378,173,378c0.7,0,
+35.3,-71,104,-213c68.7,-142,137.5,-285,206.5,-429c69,-144,104.5,-217.7,106.5,
+-221c5.3,-9.3,12,-14,20,-14H400000v40H845.2724s-225.272,467,-225.272,467
+s-235,486,-235,486c-2.7,4.7,-9,7,-19,7c-6,0,-10,-1,-12,-3s-194,-422,-194,-422
+s-65,47,-65,47z M834 80H400000v40H845z'/></svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.23972em;"><span></span></span></span></span></span></span></span></span>个块的最大值，用方法一找到他们中最大的一个就是答案。Time =O(1)  Work = O(n)</p>
+<p>所以两个步骤一共需要时间<img src="https://reticenceji.github.io/post-images/image-20210624143505420.png" alt="image-20210624143444059" loading="lazy"></p>
+<p>。</p>
+</li>
+<li>
+<p>方法三，方法二还是不够好。这一次我们把元素分成每份有<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>l</mi><mi>o</mi><mi>g</mi><mo>(</mo><mi>l</mi><mi>o</mi><mi>g</mi><mo>(</mo><mi>n</mi><mo>)</mo><mo>)</mo></mrow><annotation encoding="application/x-tex">log(log(n))</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">o</span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">o</span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mclose">)</span><span class="mclose">)</span></span></span></span>个元素。</p>
+<figure data-type="image" tabindex="6"><img src="https://reticenceji.github.io/post-images/image-20210624143720382.png" alt="image-20210624143720382" loading="lazy"></figure>
+<p>方法和上次是一样的。Time = O(h+loglog(n/h)) = O(loglog n)</p>
+<p>W(n) = O(h×(n/h) + (n/h)loglog(n/h)) = O(n)</p>
+</li>
+<li>
+<p>方法四，Random版本。</p>
+<figure data-type="image" tabindex="7"><img src="https://reticenceji.github.io/post-images/image-20210624144923337.png" alt="image-20210624144923337" loading="lazy"></figure>
+</li>
+</ol>
+
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#pram">PRAM</a></li>
+<li><a href="#work-depth">Work-depth</a></li>
+<li><a href="#examples">Examples</a>
+<ul>
+<li><a href="#prefix-sum">Prefix-sum</a></li>
+<li><a href="#merging">Merging</a></li>
+<li><a href="#maximum-finding">Maximum Finding</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://reticenceji.github.io/post/vim-shi-yong/">
+              <h3 class="post-title">
+                Vim使用
+              </h3>
+            </a>
+          </div>
+        
+
+        
+
+        <div class="site-footer">
+  
+  <a class="rss" href="https://reticenceji.github.io/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>

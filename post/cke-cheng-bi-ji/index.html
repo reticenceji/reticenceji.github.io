@@ -3,10 +3,10 @@
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>C++课程笔记 | Reticence</title>
-<link rel="shortcut icon" href="/favicon.ico?v=1623896452731">
+<link rel="shortcut icon" href="https://reticenceji.github.io/favicon.ico?v=1624603058845">
 <link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
-<link rel="stylesheet" href="/styles/main.css">
-<link rel="alternate" type="application/atom+xml" title="C++课程笔记 | Reticence - Atom Feed" href="/atom.xml">
+<link rel="stylesheet" href="https://reticenceji.github.io/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="C++课程笔记 | Reticence - Atom Feed" href="https://reticenceji.github.io/atom.xml">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
 
 <script>
@@ -51,8 +51,8 @@ const ✔️
     <div class="main">
       <div class="main-content">
         <div class="site-header">
-  <a href="">
-  <img class="avatar" src="/images/avatar.png?v=1623896452731" alt="">
+  <a href="https://reticenceji.github.io">
+  <img class="avatar" src="https://reticenceji.github.io/images/avatar.png?v=1624603058845" alt="">
   </a>
   <h1 class="site-title">
     Reticence
@@ -149,14 +149,14 @@ var _hmt = _hmt || [];
                 2021-03-02
               </span>
               <span>
-                33 min read
+                39 min read
               </span>
               
-                <a href="tag/Hm6SgxCYQ/" class="post-tag">
+                <a href="https://reticenceji.github.io/tag/Hm6SgxCYQ/" class="post-tag">
                   # C++
                 </a>
               
-                <a href="tag/Gq2mdKppx/" class="post-tag">
+                <a href="https://reticenceji.github.io/tag/Gq2mdKppx/" class="post-tag">
                   # Notes
                 </a>
               
@@ -258,10 +258,29 @@ int main()
 }
 </code></pre>
 <h3 id="static">static</h3>
-<p>对于全局变量，局部变量，全局函数，和C语言是一样的。需要注意的是，函数的局部变量在语义上只会初始化一次。至于具体是怎么实现的？</p>
-<p>对于class的成员变量来说，Shared by all instance。要注意的是，定义一个静态变量应该是<code>int A::data</code>，前面不用加上static，放在class的外面。静态成员的定义应该放在cpp文件中。静态成员变量不能在初始化列表中初始化，因为他不是普通的成员变量。不过也没有人会在这里初始化吧，直接在定义的地方初始化就好了。</p>
-<p>类似的，如果data是private的话，外部也是不能访问的。令人迷惑的是，如果外部可以访问，（实例）<code>a.data</code>和（类）<code>A::data</code>都是合法的用法，但是显然第二个好。</p>
+<p>对于全局变量，局部变量，全局函数，和C语言是一样的。需要注意的是，函数的局部变量在语义上只会初始化一次，全局类的构造函数和析构函数也只会调用一次。至于具体是怎么实现的？</p>
+<p>对于class的成员变量来说，Shared by all instance。静态成员的定义应该放在cpp文件中。静态成员变量不能在初始化列表中初始化，因为他不是普通的成员变量。不过也没有人会在这里初始化吧，直接在定义的地方初始化就好了。</p>
+<p>类似的，如果data是private的话，外部也是不能访问的。令人迷惑的是，如果外部可以访问，（实例）<code>a.data</code>和（类）<code>A::data</code>都是合法的用法，但是显然第二个语义表达的更清楚。</p>
 <p>对于class的方法来说，也是Shared by all instance，但是只能访问全局变量，因为参数中没有默认的self指针。</p>
+<pre><code class="language-cpp">// Demo: 
+// 静态的东西都是属于类而不是属于实例的，整个程序只有一份
+class A
+{
+	static int k;	//静态变量需要在类中定义
+public:
+	static int get_k(){ 	//静态函数
+        //静态函数是没有self的，所以里面使用的变量只能是静态变量，不能是类里面的变量
+		return k;
+	}
+};
+int A::k = 555;		//必须在*外部*显式的初始化
+
+void main(){
+    A a;
+    cout &lt;&lt; a.get_k() &lt;&lt; endl;
+    cout &lt;&lt; A::get_k() &lt;&lt; endl;
+}
+</code></pre>
 <h2 id="reference">Reference</h2>
 <p>引用是C语言里不存在的概念。<br>
 引用变量是一个<strong>别名</strong>，也就是说，它是某个已存在变量的另一个名字。一旦把引用初始化为某个变量，就可以使用该引用名称或变量名称来指向变量。<br>
@@ -334,6 +353,11 @@ char const * p = &quot;ABC&quot;;     //你不能通过p去修改指向的内容
     }   
 }
 </code></pre>
+<p>const还可以用来修饰函数：</p>
+<p>函数前const：普通函数或成员函数（非静态成员函数）前均可加const修饰，表示函数的返回值为const，不可修改。格式为：</p>
+<p><code>const returnType functionName(param list)</code></p>
+<p>函数后加const：只有类的非静态成员函数后可以加const修饰，表示该类的this指针为const类型，不能改变类的成员变量的值，即成员变量为read only，任何改变成员变量的行为均为非法。此类型的函数可称为只读成员函数，格式为：</p>
+<p><code>returnType functionName(param list) const</code></p>
 <h2 id="encapsulation-with-class-star">Encapsulation with Class ⭐️</h2>
 <p>C++的类，我觉得可以用struct来理解。class和struct差别不大（或者说在本质上是一样的）。不过Struct的所有东西都默认是Public的，Class里的所有东西默认是Private的。这个和Python是不同的。Python的object更像是一个指针或者说类的引用，指向真正的内容。而C++的类就是真正的内容，不过类里面可能有指针。<br>
 一个demo：</p>
@@ -449,7 +473,7 @@ new会开辟一块内存，delete会释放一块内存。<br>
     delete []pstr;      //没有把16传递进去，怎么知道要清理几次呢？
 }
 </code></pre>
-<figure data-type="image" tabindex="1"><img src="/post-images/1615198175254.jpeg" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="1"><img src="https://reticenceji.github.io/post-images/1615198175254.jpeg" alt="" loading="lazy"></figure>
 <center>在64位系统中前面开辟8字节</center>
 <p>所以我们有两种方式创建一个Object：一个是new，另一个是用RAII（资源获取即初始化）。他们的区别在于：</p>
 <ol>
@@ -634,15 +658,17 @@ public:
 </tr>
 </tbody>
 </table>
-<h2 id="polymorphisn-virtual-function">Polymorphisn-virtual function</h2>
+<p>多继承：<strong>别用</strong>，除非是全是虚函数的接口。</p>
+<h2 id="polymorphism-virtual-function">Polymorphism-virtual function</h2>
 <p>https://bbs.pediy.com/thread-221160.htm</p>
 <p>通过添加这个<code>virtual</code>，我们可以只用<code>foo</code>方便的调用到每个类型上正确的函数。virtual的意思是：<strong>当通过基类的指针或者引用调用该成员函数时，将根据指针指向的对象类型确定调用的函数，而非指针的类型。</strong></p>
 <p>可以试着把virtual去掉，会发现调用的都是<code>Shape.render()</code>，是一个静态绑定。另外，实际上我们只需要在基类上写上virtual。</p>
 <p>如果一个类有虚函数，编译器会自动为<strong>这个类型的对象在头部增加一个虚表指针（<code>vftable</code>）</strong>，指向虚函数表。虚函数表中存放着一个个的虚函数的地址。每一个类的实例上都多了一个虚表，增加内存代价，然后调用的时候也多了一层，间接调用。</p>
+<p>记住一个点，如果想利用多态性的话，基类的析构函数必须是virtual的。为什么呢？因为否则的话你用基类指针接住子类，调用这个指针指向的析构函数如果没有virtual的帮助的话会调用基类析构函数而不是本来应该调用的子类析构函数。你不要假设类的使用者不会这么做，你会很痛苦的。</p>
 <pre><code class="language-cpp">class Shape{
 public:
     virtual void render() = 0;	//纯虚函数
-    virtual ~Shape() {...}			//基类的析构函数肯定是virtual的。
+    virtual ~Shape() {...}		//基类的析构函数肯定是virtual的。
 }
 class Ellipse : public Shape {
 public:
@@ -892,6 +918,42 @@ T*=&gt;T[]
 T=&gt;const T
 </code></pre>
 <p>可以自己重载类型转换。<code>X::operator T()</code>，Compiler will use it as a type conversion from X=&gt;T.</p>
+<p>另外注意以下C++赋值的<strong>默认语义是copy</strong>而Rust是move，二者是有很大区别的。而这也会带来很多很微妙的问题，比如一个析构函数对应了有 复制构造函数、构造函数，C++11引入了移动构造函数但是我不知道什么时候会被调用。这样的话类里头有指针就很容易出问题，建议用智能指针RAII。</p>
+<p>C++提供了四个有语义的类型转换：</p>
+<ol>
+<li>
+<p><strong>static_cast</strong>: 它用于非多态类型的转换（静态转换），<strong>对应于C中的隐式类型转换</strong>，<strong>但他不能用于两个不相关类型的转换</strong>，如整形和整形指针之间的转换，虽然二者都是四个字节，但他们一个表示数据，一个表示地址，类型不相关，无法进行转换。</p>
+<p>不能在没有派生关系的两个类类型之间转换</p>
+<p>不能去除掉原有类型的类型修饰符，例如<code>const</code>，<code>volatile</code>，<code>__unaligned</code></p>
+<p>转换对象时由于没有动态类型检查，所以由基类对象转换成派生类对象的时候存在安全隐患</p>
+</li>
+<li>
+<p><strong>reinterpret_cast</strong>: 重新解释，可将一种类型转换成另一种不相关类型，<strong>对应C中的强制类型转换</strong>，处理无法进行隐式转换的情况</p>
+</li>
+<li>
+<p><strong>const_cast</strong>: 他的功能就是删除变量的const属性，方便再次赋值。该转换在编译时完成，用于解除const，volatile修饰符，只能转换指针或者引用。</p>
+</li>
+<li>
+<p><strong>dynamic_cast</strong>: 有条件转换，动态类型转换，将一个基类对象指针（或引用）转换到继承类指针，dynamic_cast会根据基类指针是否真正指向继承类指针来做相应处理，运行时检查类型安全（转换失败返回nullptr）：</p>
+<p>1）安全的基类和子类之间的转换。</p>
+<p>2）必须有虚函数。</p>
+<p>3）相同基类不同子类之间的交叉转换，但结果返回nullptr。</p>
+</li>
+</ol>
+<pre><code class="language-cpp">// C++提供了4个有语义的类型转换
+double d = 7.1;
+int a;
+a = d;				// implicit
+a = (int) d;		// explicit
+a = static_cast&lt;int&gt;(d);	
+
+double *pd = reinterpret_cast&lt;double*&gt;(&amp;a);	//并不改变底层的二进制
+const_cast&lt;&gt;();
+
+// 下面假设A是基类，BC继承A
+A* pa = new B;
+C *pc = dynamic_cast&lt;C*&gt;(pa);	// 依赖于虚表，返回nullptr
+</code></pre>
 <h2 id="template">Template</h2>
 <p>泛型编程的基础。广泛的的在标准库中使用。有点以类型作为参数的感觉，和重载有时能完成同样的事情。或者说，通过模板编译器能帮我们自动生成重载的函数。</p>
 <ul>
@@ -1010,8 +1072,8 @@ where
 <li>Iterators: begin() end() 不要对无效的迭代器进行任何操作！<code>li=L.erase(li)</code></li>
 </ul>
 <p>最常用的三个数据结构：map，vector，list</p>
-<figure data-type="image" tabindex="2"><img src="/post-images/image-20210605203121551.png" alt="image-20210605203121551" loading="lazy"></figure>
-<figure data-type="image" tabindex="3"><img src="/post-images/image-20210605203530117.png" alt="image-20210605203530117" loading="lazy"></figure>
+<figure data-type="image" tabindex="2"><img src="https://reticenceji.github.io/post-images/image-20210605203121551.png" alt="image-20210605203121551" loading="lazy"></figure>
+<figure data-type="image" tabindex="3"><img src="https://reticenceji.github.io/post-images/image-20210605203530117.png" alt="image-20210605203530117" loading="lazy"></figure>
 <p>然后因为这些东西加上泛型比较冗长，所以我们一般会用：</p>
 <ol>
 <li>typedef <code>typedefPBmap&lt;Name,list&lt;PhoneNum&gt;&gt;</code></li>
@@ -1035,6 +1097,132 @@ struct myIter{
 
 </code></pre>
 <h2 id="exception">Exception</h2>
+<p>throw try catch</p>
+<p><code>new</code> raise <code>bad_alloc()</code>exception on failure</p>
+<p>如果在<strong>构造函数中发生了异常</strong>，那么析构函数不会执行。所以如果你在构造函数里头有new的话，内存就泄漏了。解决办法是啥呢？智能指针永远的神，或者说用另一个对象Wrapper给他包起来，这就是RAII！总之最好不要有一个裸指针，太难了。</p>
+<pre><code class="language-cpp">// Wrapper就是把指针封装起来，可以是简单的像Rust中Box一样的东西，也可以是其他的智能指针unique_ptr和shared_ptr
+class Wrapper{
+
+}
+
+class A{
+private:
+    Wrapper w;
+    // 或者 unique_ptr&lt;int[]&gt; w;
+public:
+    A() :w(new int[10]){
+        cout &lt;&lt; &quot;A::A()&quot; &lt;&lt; endl;
+        throw 1;	// 为了演示
+    }
+    ~A() {
+        cout &lt;&lt; &quot;A::~A()&quot; &lt;&lt; endl;
+    }
+}
+</code></pre>
+<p>如果在析构函数发生了异常。。那就完了，不要让他抛异常。</p>
+<h3 id="智能指针">智能指针</h3>
+<pre><code class="language-cpp">//  引用计数器类  用于存储指向同一对象的指针数
+template&lt;typename T&gt;
+class Counter
+{
+private:
+	//  数据成员
+	T* ptr;    //  对象指针
+	int cnt;   //  引用计数器
+	//  友元类声明
+	template&lt;typename T&gt;
+	friend class SmartPtr;
+	//  成员函数
+	//  构造函数
+	Counter(T* p)   //  p为指向动态分配对象的指针
+	{
+		ptr = p;
+		cnt = 1;
+	}
+	//  析构函数
+	~Counter()
+	{
+		delete ptr;
+	}
+};
+
+//  智能指针类  
+template&lt;typename T&gt;
+class SmartPtr
+{
+private:
+	//  数据成员
+	T* ptr;
+	Counter&lt;T&gt;* ptr_cnt;
+
+public:
+	//  普通构造函数  初始化计数类
+	SmartPtr(T* p) : ptr(p), ptr_cnt(new Counter&lt;T&gt;(p))
+	{
+	}
+	//  拷贝构造函数
+	SmartPtr(const SmartPtr&amp; other) : ptr(other.ptr), ptr_cnt(other.ptr_cnt)
+	{
+		ptr_cnt-&gt;cnt++;
+	}
+	//  移动构造函数
+	SmartPtr(SmartPtr&amp;&amp; other) : ptr(std::move(other.ptr)), ptr_cnt(std::move(other.ptr_cnt))
+	{
+		other.ptr_cnt = nullptr;
+	}
+
+	//  赋值重载
+	SmartPtr&amp; operator=(const SmartPtr&amp; rhs)
+	{
+		if (ptr_cnt != rhs.ptr_cnt)
+		{
+			if (ptr_cnt != nullptr)
+			{
+				ptr_cnt-&gt;cnt--;
+				if (ptr_cnt-&gt;cnt == 0)
+					delete ptr_cnt;
+			}
+			ptr = rhs.ptr;
+			ptr_cnt = rhs.ptr_cnt;
+			rhs.ptr_cnt-&gt;cnt++;
+
+		}
+		return *this;
+	}
+
+	// 移动赋值重载	
+	SmartPtr&amp; operator=(SmartPtr &amp;&amp; rhs)
+	{
+		if (ptr_cnt != rhs.ptr_cnt)
+		{
+			std::swap(this, rhs);
+		}
+		return *this;
+	}
+
+	//  析构函数
+	~SmartPtr()
+	{
+		if (ptr_cnt != nullptr)
+		{
+			ptr_cnt-&gt;cnt--;
+			if (ptr_cnt-&gt;cnt == 0)
+				delete ptr_cnt;
+		}
+	}
+
+	T&amp; operator*()     const { return *(ptr); }
+	T* operator&amp;()     const { return ptr; }
+	size_t use_count() const { return ptr_cnt-&gt;cnt; }
+	bool unique()      const { return (ptr_cnt-&gt;cnt == 1); }
+	T* get()           const { return ptr; }
+};
+/*
+————————————————
+版权声明：本文为CSDN博主「RaKiRaKiRa」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/RaKiRaKiRa/article/details/94991797
+*/
+</code></pre>
 
               </div>
               <div class="toc-container">
@@ -1059,7 +1247,7 @@ struct myIter{
 <li><a href="#default-arguments">Default Arguments</a></li>
 <li><a href="#overload">Overload</a></li>
 <li><a href="#inheritance-privateprotectpublic">Inheritance-private,protect,public</a></li>
-<li><a href="#polymorphisn-virtual-function">Polymorphisn-virtual function</a></li>
+<li><a href="#polymorphism-virtual-function">Polymorphism-virtual function</a></li>
 <li><a href="#operator-overloading">operator overloading</a></li>
 <li><a href="#stream">stream</a></li>
 <li><a href="#composition">composition</a>
@@ -1071,7 +1259,11 @@ struct myIter{
 <li><a href="#template">Template</a></li>
 <li><a href="#stl-standard-template-library">STL (standard template library)</a></li>
 <li><a href="#iterators">Iterators</a></li>
-<li><a href="#exception">Exception</a></li>
+<li><a href="#exception">Exception</a>
+<ul>
+<li><a href="#%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88">智能指针</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -1084,7 +1276,7 @@ struct myIter{
         
           <div class="next-post">
             <div class="next">下一篇</div>
-            <a href="post/mi-ma-xue/">
+            <a href="https://reticenceji.github.io/post/mi-ma-xue/">
               <h3 class="post-title">
                 密码学
               </h3>
@@ -1096,7 +1288,7 @@ struct myIter{
 
         <div class="site-footer">
   
-  <a class="rss" href="/atom.xml" target="_blank">
+  <a class="rss" href="https://reticenceji.github.io/atom.xml" target="_blank">
     <i class="ri-rss-line"></i> RSS
   </a>
 </div>

@@ -1,0 +1,327 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Vim使用 | Reticence</title>
+<link rel="shortcut icon" href="https://reticenceji.github.io/favicon.ico?v=1624603058845">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://reticenceji.github.io/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="Vim使用 | Reticence - Atom Feed" href="https://reticenceji.github.io/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-90HNEFFE0M"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-90HNEFFE0M');
+</script>
+
+
+    <meta name="description" content="因为Vim的使用技巧实在是太多了。。所以碰到一个问题百度一次记录一次。
+基本概念
+下次从网上找一份。
+基本使用
+i 进入编辑模式  esc返回 :命令输入
+/向后查找 ?向前查找
+:w 保存 :wq 保存并退出  :q! 不保存退出
+复制粘..." />
+    <meta name="keywords" content="Tools" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://reticenceji.github.io">
+  <img class="avatar" src="https://reticenceji.github.io/images/avatar.png?v=1624603058845" alt="">
+  </a>
+  <h1 class="site-title">
+    Reticence
+  </h1>
+  <p class="site-description">
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          Index
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          Classification
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          Archives
+        </a>
+      
+    
+      
+        <a href="/navigator.html" class="menu">
+          Navigator
+        </a>
+      
+    
+      
+        <a href="/post/fei-md-ge-shi-bi-ji-hui-zong" class="menu">
+          Notes
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          About
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+        <a href="https://github.com/reticenceji" target="_blank">
+          <i class="ri-github-line"></i>
+        </a>
+      
+    
+      
+    
+      
+    
+      
+        <a href="https://www.zhihu.com/people/reticenceji" target="_blank">
+          <i class="ri-zhihu-line"></i>
+        </a>
+      
+    
+      
+    
+  </div>
+  <script>
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
+    var s = document.getElementsByTagName("script")[0]; 
+    s.parentNode.insertBefore(hm, s);
+  })();
+  </script>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              Vim使用
+            </h2>
+            <div class="post-info">
+              <span>
+                2021-06-21
+              </span>
+              <span>
+                3 min read
+              </span>
+              
+                <a href="https://reticenceji.github.io/tag/nL6gwIN_5/" class="post-tag">
+                  # Tools
+                </a>
+              
+            </div>
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <p>因为Vim的使用技巧实在是太多了。。所以碰到一个问题百度一次记录一次。</p>
+<h2 id="基本概念">基本概念</h2>
+<p>下次从网上找一份。</p>
+<h2 id="基本使用">基本使用</h2>
+<p><code>i</code> 进入编辑模式  <code>esc</code>返回 <code>:</code>命令输入</p>
+<p><code>/</code>向后查找 <code>?</code>向前查找</p>
+<p><code>:w</code> 保存 <code>:wq</code> 保存并退出  <code>:q!</code> 不保存退出</p>
+<h3 id="复制粘贴">复制粘贴</h3>
+<p>y: copy	p: paste</p>
+<h2 id="字符串的查找替换">字符串的查找替换</h2>
+<p>基本的模板是这样的 <code>:[range]s/from/to/[flags]</code></p>
+<ul>
+<li>
+<p><code>range</code>:搜索范围，如果没有指定范围，则作用于但前行。</p>
+<ol>
+<li><code>:1,10s/from/to/</code> 表示在第1到第10行（包含第1，第10行）之间搜索替换；</li>
+<li><code>:10s/from/to/</code> 表示只在第10行搜索替换；</li>
+<li><code>:%s/from/to/</code> 表示在所有行中搜索替换；</li>
+</ol>
+</li>
+<li>
+<p><code>flags</code> 有如下四个选项：</p>
+<ol>
+<li><code>c</code> confirm，每次替换前询问；</li>
+<li><code>e</code> error， 不显示错误；</li>
+<li><code>g</code> globle，不询问，整行替换。如果不加<code>g</code>选项，则只替换每行的第一个匹配到的字符串；</li>
+<li><code>i</code> ignore，忽略大小写。</li>
+</ol>
+</li>
+<li>
+<p><code>from</code>是用来匹配的字符串，<code>to</code>是用来替换的字符串</p>
+<ul>
+<li><code>from</code>是可以利用正则表达式进行替换的</li>
+<li>在<code>from</code>中以<code>\(</code>和<code>\)</code>括起来的正则表达式，在<code>to</code>使用的时候可以用<code>\1</code>、<code>\2</code>等变量来访问<code>\(</code>和<code>\)</code>中的内容。</li>
+</ul>
+</li>
+</ul>
+<p>例子：</p>
+<ol>
+<li>
+<p>换data10_w,data11_w,data12_w,data_13_w的末尾字母换成d。<code>:%s/1\([0-3]\)_w/1\1_d/g</code></p>
+</li>
+<li>
+<p>把verilog中的输入输出转换成调用约定<code>:%s/\(input\|output\) \(wire\|reg\).* \(\w*\),/.\3(\3),/g</code>，比如：</p>
+<pre><code>input wire clk, // clock
+input wire rst, // reset
+input wire [31:0] data_cpu_write,   // CPU要往内存中写的数据
+input wire [31:0] data_mem_read,    // 从内存中读取的数据
+input wire [31:0] addr_cpu, // cpu addr
+input wire wr_cpu, // cpu write enable
+input wire rd_cpu, // cpu read enable
+input wire ready_mem, // memory ready 因为memory不一定能在一个周期内
+
+output reg wr_mem, // memory write enable
+output reg rd_mem, // memory read enable
+output reg ready_cache, // cache ready
+output reg [31:0] data_mem_write,   // 往内存中写的数据
+output reg [31:0] data_cpu_read,    // CPU读取到的数据
+output reg [31:0] data_mem_addr,     // 往内存中写数据的地址
+
+--&gt; 
+
+.clk(clk) // clock 
+.rst(rst) // reset 
+.data_cpu_write(data_cpu_write)   // CPU要往内存中写的数据
+.data_mem_read(data_mem_read)    // 从内存中读取的数据 
+.addr_cpu(addr_cpu) // cpu addr
+.wr_cpu(wr_cpu) // cpu write enable
+.rd_cpu(rd_cpu) // cpu read enable
+.ready_mem(ready_mem) // memory ready 因为memory不一定能在一个周期内
+
+.wr_mem(wr_mem) // memory write enable
+.rd_mem(rd_mem) // memory read enable   
+.ready_cache(ready_cache) // cache ready
+.data_mem_write(data_mem_write)   // 往内存中写的数据
+.data_cpu_read(data_cpu_read)    // CPU读取到的数据 
+.data_mem_addr(data_mem_addr)     // 往内存中写数据的地址 
+</code></pre>
+</li>
+</ol>
+<h2 id="格式化">格式化</h2>
+<p><code>gg=G</code> gg回到开头，G到结尾，=格式化</p>
+
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5">基本概念</a></li>
+<li><a href="#%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8">基本使用</a>
+<ul>
+<li><a href="#%E5%A4%8D%E5%88%B6%E7%B2%98%E8%B4%B4">复制粘贴</a></li>
+</ul>
+</li>
+<li><a href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E6%9F%A5%E6%89%BE%E6%9B%BF%E6%8D%A2">字符串的查找替换</a></li>
+<li><a href="#%E6%A0%BC%E5%BC%8F%E5%8C%96">格式化</a></li>
+</ul>
+</li>
+</ul>
+
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://reticenceji.github.io/post/tong-ji-ji-chu/">
+              <h3 class="post-title">
+                大数定理和中心极限定理
+              </h3>
+            </a>
+          </div>
+        
+
+        
+
+        <div class="site-footer">
+  
+  <a class="rss" href="https://reticenceji.github.io/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>
