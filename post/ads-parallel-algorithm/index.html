@@ -3,10 +3,10 @@
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>ADS-parallel algorithm | Reticence</title>
-<link rel="shortcut icon" href="https://reticenceji.github.io/favicon.ico?v=1624603058845">
+<link rel="shortcut icon" href="https://reticenceji.github.io//favicon.ico?v=1625191111418">
 <link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
-<link rel="stylesheet" href="https://reticenceji.github.io/styles/main.css">
-<link rel="alternate" type="application/atom+xml" title="ADS-parallel algorithm | Reticence - Atom Feed" href="https://reticenceji.github.io/atom.xml">
+<link rel="stylesheet" href="https://reticenceji.github.io//styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="ADS-parallel algorithm | Reticence - Atom Feed" href="https://reticenceji.github.io//atom.xml">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
 
 <script>
@@ -43,8 +43,8 @@ PRAM 它和 RAM 一样，假设在每个单位时间，每一个 processor 可�
     <div class="main">
       <div class="main-content">
         <div class="site-header">
-  <a href="https://reticenceji.github.io">
-  <img class="avatar" src="https://reticenceji.github.io/images/avatar.png?v=1624603058845" alt="">
+  <a href="https://reticenceji.github.io/">
+  <img class="avatar" src="https://reticenceji.github.io//images/avatar.png?v=1625191111418" alt="">
   </a>
   <h1 class="site-title">
     Reticence
@@ -155,7 +155,7 @@ var _hmt = _hmt || [];
                 <h2 id="pram">PRAM</h2>
 <p>Parallel Random Access Machine<br>
 PRAM 它和 RAM 一样，假设在每个单位时间，每一个 processor 可以做一个计算或者访存的操作。一共 P 个核共享一个 shared memory。</p>
-<figure data-type="image" tabindex="1"><img src="https://reticenceji.github.io/post-images/v2-dae4751c16d477624f5359dfbb8e3dd6_720w.jpg" alt="img" loading="lazy"></figure>
+<figure data-type="image" tabindex="1"><img src="https://reticenceji.github.io//post-images/v2-dae4751c16d477624f5359dfbb8e3dd6_720w.jpg" alt="img" loading="lazy"></figure>
 <p>这个模型通常来讲有几种模式（Memory的同步模型）：</p>
 <blockquote>
 <p>Exclusive read exclusive write (EREW) — 多个processor不可以同时读或者同时写同一个内存位置</p>
@@ -166,7 +166,7 @@ PRAM 它和 RAM 一样，假设在每个单位时间，每一个 processor 可�
 <p>然而这个模型不太现实，一个是高度同步的内存不现实，另一个是在PRAM里，一个算法需要几个 processor，这个 P 是固定的。在我们现代的多核电脑里，虽然你知道它有几个 processor，但是实际上，你不知道你能用几个。</p>
 <h2 id="work-depth">Work-depth</h2>
 <p>它的中心思想是说，对于我们所有算法中的操作，根据其依赖关系可以画成一张 DAG（Directed acyclic graph，有向无环图）。其中每一个节点代表一个操作，每一条有向边 A-&gt;B 意味着B这个操作必须等待A操作进行完才可以执行。我们管这张图叫 computation graph 或者computation DAG。</p>
-<figure data-type="image" tabindex="2"><img src="https://reticenceji.github.io/post-images/v2-6a7a277250fed497c896370e14ae4c90_720w.jpg" alt="img" loading="lazy"></figure>
+<figure data-type="image" tabindex="2"><img src="https://reticenceji.github.io//post-images/v2-6a7a277250fed497c896370e14ae4c90_720w.jpg" alt="img" loading="lazy"></figure>
 <p>**一个算法的代价用两个量来衡量，一个叫 work，用 W 表示，也就是这个图总的结点数。它告诉你这个算法如果你只有一个 processor，串行地跑，它的时间复杂度是什么。**比如上图，这个数就是 17。第二就是这个图本身的深度，叫 Depth (D)，也叫 Span (S)，也就是最长的并行依赖链。在上图里，这个数是 8。<strong>这个 depth 告诉你，如果你有无数个 processor，你这个算法需要多少时间</strong>——因为即便你有无数个 processor，这些依赖关系还是要被按顺序一个等一个地执行的。</p>
 <p><strong>可以证明，给定一个 DAG，W 的 work , D 的 depth , p 的 process 你总是可以通过一定的调度算法，在 W/p+O(D) 的时间内给它执行完。</strong></p>
 <h2 id="examples">Examples</h2>
@@ -175,8 +175,8 @@ PRAM 它和 RAM 一样，假设在每个单位时间，每一个 processor 可�
 <p>input: a1, a2, a3, ..., an</p>
 <p>output: a1, a1+a2, a1+a2+a3, ..., a1+a2+...an</p>
 </blockquote>
-<p>首先我们规定一个符号<img src="https://reticenceji.github.io/post-images/image-20210624130050973.png" alt="image-20210624130050973" loading="lazy">，<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>(</mo><mn>0</mn><mo separator="true">,</mo><mi>α</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">(0,\alpha)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.0037em;">α</span><span class="mclose">)</span></span></span></span>是<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>(</mo><mi>h</mi><mo separator="true">,</mo><mi>i</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">(h,i)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathdefault">h</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">i</span><span class="mclose">)</span></span></span></span>最右边的孩子的prefix-sum。我们要求解的目标其实就是<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>C</mi><mo>(</mo><mn>0</mn><mo separator="true">,</mo><mi>i</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">C(0,i)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.07153em;">C</span><span class="mopen">(</span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">i</span><span class="mclose">)</span></span></span></span>。</p>
-<figure data-type="image" tabindex="3"><img src="https://reticenceji.github.io/post-images/image-20210624130222108.png" alt="image-20210624130222108" loading="lazy"></figure>
+<p>首先我们规定一个符号<img src="https://reticenceji.github.io//post-images/image-20210624130050973.png" alt="image-20210624130050973" loading="lazy">，<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>(</mo><mn>0</mn><mo separator="true">,</mo><mi>α</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">(0,\alpha)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.0037em;">α</span><span class="mclose">)</span></span></span></span>是<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>(</mo><mi>h</mi><mo separator="true">,</mo><mi>i</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">(h,i)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathdefault">h</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">i</span><span class="mclose">)</span></span></span></span>最右边的孩子的prefix-sum。我们要求解的目标其实就是<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>C</mi><mo>(</mo><mn>0</mn><mo separator="true">,</mo><mi>i</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">C(0,i)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.07153em;">C</span><span class="mopen">(</span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">i</span><span class="mclose">)</span></span></span></span>。</p>
+<figure data-type="image" tabindex="3"><img src="https://reticenceji.github.io//post-images/image-20210624130222108.png" alt="image-20210624130222108" loading="lazy"></figure>
 <p>先用Parallel算法求出<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>B</mi><mo>(</mo><mi>h</mi><mo separator="true">,</mo><mi>i</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">B(h,i)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.05017em;">B</span><span class="mopen">(</span><span class="mord mathdefault">h</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">i</span><span class="mclose">)</span></span></span></span>。这是一个自底向上的过程，这个过程很简单。</p>
 <p>然后再用Parallel算法求出<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>C</mi><mo>(</mo><mi>h</mi><mo separator="true">,</mo><mi>i</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">C(h,i)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.07153em;">C</span><span class="mopen">(</span><span class="mord mathdefault">h</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">i</span><span class="mclose">)</span></span></span></span>，这是一个自顶向下的过程。Work = O(n) Time = O(log N)</p>
 <pre><code class="language-c">for (h=log N;h&gt;=0;h--){
@@ -238,7 +238,7 @@ B_Select(i) = B(1+(i-1)log n)   for 1 &lt;= i &lt;= p
 <p>把上面的ranking完成之后，剩下最多有2p个子问题（绿色），每一个子问题的size log n级别。我们按照第二个办法进行Rank，Time = O(log n) Work = O(p log n) = O(n)</p>
 </li>
 </ol>
-<figure data-type="image" tabindex="4"><img src="https://reticenceji.github.io/post-images/image-20210624135659887.png" alt="image-20210624135659887" loading="lazy"></figure>
+<figure data-type="image" tabindex="4"><img src="https://reticenceji.github.io//post-images/image-20210624135659887.png" alt="image-20210624135659887" loading="lazy"></figure>
 </li>
 </ol>
 <h3 id="maximum-finding">Maximum Finding</h3>
@@ -273,7 +273,7 @@ s-65,47,-65,47z M834 80H400000v40H845z'/></svg></span></span></span><span class=
 -221c5.3,-9.3,12,-14,20,-14H400000v40H845.2724s-225.272,467,-225.272,467
 s-235,486,-235,486c-2.7,4.7,-9,7,-19,7c-6,0,-10,-1,-12,-3s-194,-422,-194,-422
 s-65,47,-65,47z M834 80H400000v40H845z'/></svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.23972em;"><span></span></span></span></span></span></span></span></span>个元素。用线性扫描的办法找到每一份的最大值。</p>
-<figure data-type="image" tabindex="5"><img src="https://reticenceji.github.io/post-images/image-20210624143121481.png" alt="image-20210624143121481" loading="lazy"></figure>
+<figure data-type="image" tabindex="5"><img src="https://reticenceji.github.io//post-images/image-20210624143121481.png" alt="image-20210624143121481" loading="lazy"></figure>
 <p>然后我们有<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msqrt><mi>n</mi></msqrt></mrow><annotation encoding="application/x-tex">\sqrt{n}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.04em;vertical-align:-0.23972em;"></span><span class="mord sqrt"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8002800000000001em;"><span class="svg-align" style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord" style="padding-left:0.833em;"><span class="mord mathdefault">n</span></span></span><span style="top:-2.76028em;"><span class="pstrut" style="height:3em;"></span><span class="hide-tail" style="min-width:0.853em;height:1.08em;"><svg width='400em' height='1.08em' viewBox='0 0 400000 1080' preserveAspectRatio='xMinYMin slice'><path d='M95,702c-2.7,0,-7.17,-2.7,-13.5,-8c-5.8,-5.3,-9.5,
 -10,-9.5,-14c0,-2,0.3,-3.3,1,-4c1.3,-2.7,23.83,-20.7,67.5,-54c44.2,-33.3,65.8,
 -50.3,66.5,-51c1.3,-1.3,3,-2,5,-2c4.7,0,8.7,3.3,12,10s173,378,173,378c0.7,0,
@@ -281,18 +281,18 @@ s-65,47,-65,47z M834 80H400000v40H845z'/></svg></span></span></span><span class=
 -221c5.3,-9.3,12,-14,20,-14H400000v40H845.2724s-225.272,467,-225.272,467
 s-235,486,-235,486c-2.7,4.7,-9,7,-19,7c-6,0,-10,-1,-12,-3s-194,-422,-194,-422
 s-65,47,-65,47z M834 80H400000v40H845z'/></svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.23972em;"><span></span></span></span></span></span></span></span></span>个块的最大值，用方法一找到他们中最大的一个就是答案。Time =O(1)  Work = O(n)</p>
-<p>所以两个步骤一共需要时间<img src="https://reticenceji.github.io/post-images/image-20210624143505420.png" alt="image-20210624143444059" loading="lazy"></p>
+<p>所以两个步骤一共需要时间<img src="https://reticenceji.github.io//post-images/image-20210624143505420.png" alt="image-20210624143444059" loading="lazy"></p>
 <p>。</p>
 </li>
 <li>
 <p>方法三，方法二还是不够好。这一次我们把元素分成每份有<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>l</mi><mi>o</mi><mi>g</mi><mo>(</mo><mi>l</mi><mi>o</mi><mi>g</mi><mo>(</mo><mi>n</mi><mo>)</mo><mo>)</mo></mrow><annotation encoding="application/x-tex">log(log(n))</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">o</span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">o</span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mclose">)</span><span class="mclose">)</span></span></span></span>个元素。</p>
-<figure data-type="image" tabindex="6"><img src="https://reticenceji.github.io/post-images/image-20210624143720382.png" alt="image-20210624143720382" loading="lazy"></figure>
+<figure data-type="image" tabindex="6"><img src="https://reticenceji.github.io//post-images/image-20210624143720382.png" alt="image-20210624143720382" loading="lazy"></figure>
 <p>方法和上次是一样的。Time = O(h+loglog(n/h)) = O(loglog n)</p>
 <p>W(n) = O(h×(n/h) + (n/h)loglog(n/h)) = O(n)</p>
 </li>
 <li>
 <p>方法四，Random版本。</p>
-<figure data-type="image" tabindex="7"><img src="https://reticenceji.github.io/post-images/image-20210624144923337.png" alt="image-20210624144923337" loading="lazy"></figure>
+<figure data-type="image" tabindex="7"><img src="https://reticenceji.github.io//post-images/image-20210624144923337.png" alt="image-20210624144923337" loading="lazy"></figure>
 </li>
 </ol>
 
@@ -334,7 +334,7 @@ s-65,47,-65,47z M834 80H400000v40H845z'/></svg></span></span></span><span class=
 
         <div class="site-footer">
   
-  <a class="rss" href="https://reticenceji.github.io/atom.xml" target="_blank">
+  <a class="rss" href="https://reticenceji.github.io//atom.xml" target="_blank">
     <i class="ri-rss-line"></i> RSS
   </a>
 </div>

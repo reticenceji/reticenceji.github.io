@@ -3,10 +3,10 @@
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>ADS-external sorting | Reticence</title>
-<link rel="shortcut icon" href="https://reticenceji.github.io/favicon.ico?v=1624603058845">
+<link rel="shortcut icon" href="https://reticenceji.github.io//favicon.ico?v=1625191111418">
 <link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
-<link rel="stylesheet" href="https://reticenceji.github.io/styles/main.css">
-<link rel="alternate" type="application/atom+xml" title="ADS-external sorting | Reticence - Atom Feed" href="https://reticenceji.github.io/atom.xml">
+<link rel="stylesheet" href="https://reticenceji.github.io//styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="ADS-external sorting | Reticence - Atom Feed" href="https://reticenceji.github.io//atom.xml">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
 
 <script>
@@ -33,7 +33,7 @@ var _hmt = _hmt || [];
     <meta name="description" content="主要是为了解决很多数据以至于内存中放不下的情况。我们学过的Merge sort就是一种external sort。
 评价普通的排序只需要考虑时间复杂度，评价externel sort要考虑
 
-seek time O(pass) 从内存中读取..." />
+seek time O(pass)O(pass)..." />
     <meta name="keywords" content="DS" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
     <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
@@ -42,8 +42,8 @@ seek time O(pass) 从内存中读取..." />
     <div class="main">
       <div class="main-content">
         <div class="site-header">
-  <a href="https://reticenceji.github.io">
-  <img class="avatar" src="https://reticenceji.github.io/images/avatar.png?v=1624603058845" alt="">
+  <a href="https://reticenceji.github.io/">
+  <img class="avatar" src="https://reticenceji.github.io//images/avatar.png?v=1625191111418" alt="">
   </a>
   <h1 class="site-title">
     Reticence
@@ -140,7 +140,7 @@ var _hmt = _hmt || [];
                 2021-06-23
               </span>
               <span>
-                2 min read
+                5 min read
               </span>
               
                 <a href="https://reticenceji.github.io/tag/0AqTQfzSL/" class="post-tag">
@@ -154,7 +154,7 @@ var _hmt = _hmt || [];
                 <p>主要是为了解决很多数据以至于内存中放不下的情况。我们学过的Merge sort就是一种external sort。</p>
 <p>评价普通的排序只需要考虑时间复杂度，评价externel sort要考虑</p>
 <ol>
-<li>seek time O(pass) 从内存中读取数据的次数</li>
+<li>seek time <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mi>p</mi><mi>a</mi><mi>s</mi><mi>s</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">O(pass)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">p</span><span class="mord mathdefault">a</span><span class="mord mathdefault">s</span><span class="mord mathdefault">s</span><span class="mclose">)</span></span></span></span> 从内存中读取数据的次数</li>
 <li>time to read or write one block of records</li>
 <li>internal sort M records</li>
 <li>merge  N records from input buffer to output buffer</li>
@@ -162,17 +162,51 @@ var _hmt = _hmt || [];
 <h3 id="基本的external-sort思想">基本的external sort思想</h3>
 <p>假设我们的内存能容纳M个数据，我们一共有N个数据存储在Tape 1上。</p>
 <ol>
-<li>依次读取M个数据，在主存中进行排序。然后分别写入Tape 2和Tape 3。</li>
+<li>依次读取M个数据，在主存中进行排序。然后分别写入Tape 2和Tape 3。从这时候开始，数据被分成了N/M个有序的<strong>顺串</strong>。</li>
 <li>然后合并T2+T3=&gt;T1+T4， T1+T4=&gt;T2+T3。每次我们都可以将块的数量/2</li>
-<li>指导两边块的数量都是1,然后合并到一个Tape上。排序结束。</li>
+<li>直到两边块的数量都是1,然后合并到一个Tape上。排序结束。</li>
 </ol>
 <p>比如下面这个例子，Memory里可以容纳2个数据。</p>
-<figure data-type="image" tabindex="1"><img src="https://reticenceji.github.io/post-images/image-20210623233956092.png" alt="image-20210623233956092" loading="lazy"></figure>
+<figure data-type="image" tabindex="1"><img src="https://reticenceji.github.io//post-images/image-20210623233956092.png" alt="image-20210623233956092" loading="lazy"></figure>
+<p>所以我们不难发现，pass = <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn><mo>+</mo><mi>l</mi><mi>o</mi><msub><mi>g</mi><mn>2</mn></msub><mo>(</mo><mi>N</mi><mi mathvariant="normal">/</mi><mi>M</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">1+log_2(N/M)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">o</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="mord">/</span><span class="mord mathdefault" style="margin-right:0.10903em;">M</span><span class="mclose">)</span></span></span></span>。1指的是第一次读取全部的数据进行排序，<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>l</mi><mi>o</mi><msub><mi>g</mi><mn>2</mn></msub><mo>(</mo><mi>N</mi><mi mathvariant="normal">/</mi><mi>M</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">log_2(N/M)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">o</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="mord">/</span><span class="mord mathdefault" style="margin-right:0.10903em;">M</span><span class="mclose">)</span></span></span></span>指的是后面归并的过程。</p>
 <h3 id="k-way-merge">k-way merge</h3>
-<p>可以减小pass。上面的其实就是2-way merge。对于k-way merge ，</p>
-<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>p</mi><mi>a</mi><mi>s</mi><mi>s</mi><mo>=</mo><mn>1</mn><mo>+</mo><mi>l</mi><mi>o</mi><msub><mi>g</mi><mi>k</mi></msub><mo>(</mo><mi>N</mi><mi mathvariant="normal">/</mi><mi>M</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">pass=1+log_k(N/M)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">p</span><span class="mord mathdefault">a</span><span class="mord mathdefault">s</span><span class="mord mathdefault">s</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">o</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.03148em;">k</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="mord">/</span><span class="mord mathdefault" style="margin-right:0.10903em;">M</span><span class="mclose">)</span></span></span></span></p>
+<p>可以减小pass，减小seek次数。上面的其实就是2-way merge。对于k-way merge ，<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>p</mi><mi>a</mi><mi>s</mi><mi>s</mi><mo>=</mo><mn>1</mn><mo>+</mo><mi>l</mi><mi>o</mi><msub><mi>g</mi><mi>k</mi></msub><mo>(</mo><mi>N</mi><mi mathvariant="normal">/</mi><mi>M</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">pass=1+log_k(N/M)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">p</span><span class="mord mathdefault">a</span><span class="mord mathdefault">s</span><span class="mord mathdefault">s</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">o</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.03148em;">k</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="mord">/</span><span class="mord mathdefault" style="margin-right:0.10903em;">M</span><span class="mclose">)</span></span></span></span>。</p>
+<p>过程：以3-way 为例，从3个磁盘中读取出一个数，维护一个（我觉得MinHeap也可以？不知道为什么是）<strong>Loser tree</strong>。Tree的根节点一定是最小的元素，把它写出来，读一个新的进去。如此反复。</p>
+<p>In general, for a k-way merge we need <strong>2k</strong> input buffers and <strong>2</strong> output buffers for parallel operations.</p>
+<figure data-type="image" tabindex="2"><img src="https://reticenceji.github.io//post-images/image-20210629172306158.png" alt="image-20210629172306158" loading="lazy"></figure>
 <h3 id="polyphase-merge">Polyphase Merge</h3>
-<p>1+log_k(N/M)</p>
+<p>上面提到的k-way Merge 需要2k个磁带，事实上我们只使用K+1个磁带也可以完成工作。比如下面的2路归并排序，我们只需要三个磁盘，按照斐波那契数列的规则把初始数据分到磁盘上。可以通过填充的方式变成斐波那契数个数据。</p>
+<p>对于一般的k，<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>F</mi><mo>(</mo><mi>k</mi><mo>)</mo><mo>(</mo><mi>n</mi><mo>)</mo><mo>=</mo><mi>F</mi><mo>(</mo><mi>k</mi><mo>)</mo><mo>(</mo><mi>n</mi><mo>−</mo><mn>1</mn><mo>)</mo><mo>+</mo><mi>F</mi><mo>(</mo><mi>k</mi><mo>)</mo><mo>(</mo><mi>n</mi><mo>−</mo><mn>2</mn><mo>)</mo><mo>+</mo><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mo>+</mo><mi>F</mi><mo>(</mo><mi>k</mi><mo>)</mo><mo>(</mo><mi>n</mi><mo>−</mo><mi>k</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">F(k)(n) = F(k)(n - 1) + F(k)(n - 2) + ... + F(k)(n - k)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">F</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span><span class="mclose">)</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">F</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span><span class="mclose">)</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">F</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span><span class="mclose">)</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">2</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord">.</span><span class="mord">.</span><span class="mord">.</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">F</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span><span class="mclose">)</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span><span class="mclose">)</span></span></span></span>, with the appropriate initial conditions <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>F</mi><mo>(</mo><mi>k</mi><mo>)</mo><mo>(</mo><mi>n</mi><mo>)</mo><mo>=</mo><mn>0</mn><mo separator="true">,</mo><mn>0</mn><mo>≤</mo><mi>n</mi><mo>≤</mo><mi>k</mi><mo>−</mo><mn>2</mn><mo separator="true">,</mo><mi>F</mi><mo>(</mo><mi>k</mi><mo>)</mo><mo>(</mo><mi>k</mi><mo>−</mo><mn>1</mn><mo>)</mo><mo>=</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">F(k)(n) = 0, 0\le n\le k - 2, F(k)(k - 1) =1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">F</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span><span class="mclose">)</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8388800000000001em;vertical-align:-0.19444em;"></span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">0</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.7719400000000001em;vertical-align:-0.13597em;"></span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.77777em;vertical-align:-0.08333em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">2</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">F</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span><span class="mclose">)</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span>。</p>
+<pre><code>T1    0       13        5        0       3        1        0        1
+T2   21        8        0        5       2        0        1        0
+T3   13        0        8        3       0        2        1        0
+</code></pre>
+<h3 id="replacement-selection">Replacement selection</h3>
+<p>我们之前构造<strong>顺串</strong>的做法是，读取M个元素，在内存中排好序，输出到磁带。所以我们会得到<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>N</mi><mi mathvariant="normal">/</mi><mi>M</mi></mrow><annotation encoding="application/x-tex">N/M</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="mord">/</span><span class="mord mathdefault" style="margin-right:0.10903em;">M</span></span></span></span>个顺串。但其实这个步骤是可以优化的，每次把一个记录写回磁盘之后，又可以再读入新的数据。</p>
+<pre><code>        H[1]   H[2]     H[3]       OUTPUT          NEXT
+---------------------------------------------------------------
+Run 1    11     94       81          11             96			读入的数据比序列的最后一个小，就有机会写回
+         81     94       96          81             12*			读入的数据比序列的最后一个大，就Dead了
+         94     96       12*         94             35*
+         96     35*      12*         96             17*
+         17*    35*      12*       End of Run.  Rebuild Heap	当Heap中全是Dead，就需要重新一轮构建顺串了
+---------------------------------------------------------------
+Run 2    12     35       17          12             99
+         17     35       99          17             28
+         28     99       35          28             58
+         35     99       58          35             41
+         41     99       58          41             15*
+         58     99       15*         58         end of tape
+         99              15*         99
+                         15*       End of Run.  Rebuild Heap	当然，如果数据读完了，一轮也就结束了
+---------------------------------------------------------------
+Run 3    15                          15
+</code></pre>
+<p>通过这种方式得到的顺串，平均长度是2M。</p>
+<p>这样得到的串的长度就不是相等的了，有什么好办法减小顺串的Merge time呢？答案是Huffman tree。</p>
+<p>Suppose we have 4 runs of length 2, 4, 5, and 15, respectively.    How can we arrange the merging to obtain minimum merge times?</p>
+<figure data-type="image" tabindex="3"><img src="https://reticenceji.github.io//post-images/image-20210629192037397.png" alt="image-20210629192037397" loading="lazy"></figure>
+<p>Total merge time = O ( the weighted external path length )</p>
 
               </div>
               <div class="toc-container">
@@ -184,6 +218,7 @@ var _hmt = _hmt || [];
 <li><a href="#%E5%9F%BA%E6%9C%AC%E7%9A%84external-sort%E6%80%9D%E6%83%B3">基本的external sort思想</a></li>
 <li><a href="#k-way-merge">k-way merge</a></li>
 <li><a href="#polyphase-merge">Polyphase Merge</a></li>
+<li><a href="#replacement-selection">Replacement selection</a></li>
 </ul>
 </li>
 </ul>
@@ -210,7 +245,7 @@ var _hmt = _hmt || [];
 
         <div class="site-footer">
   
-  <a class="rss" href="https://reticenceji.github.io/atom.xml" target="_blank">
+  <a class="rss" href="https://reticenceji.github.io//atom.xml" target="_blank">
     <i class="ri-rss-line"></i> RSS
   </a>
 </div>

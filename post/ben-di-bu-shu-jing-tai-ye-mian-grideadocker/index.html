@@ -3,10 +3,10 @@
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>本地部署静态页面 Gridea+Docker | Reticence</title>
-<link rel="shortcut icon" href="https://reticenceji.github.io/favicon.ico?v=1624603058845">
+<link rel="shortcut icon" href="https://reticenceji.github.io//favicon.ico?v=1625191111418">
 <link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
-<link rel="stylesheet" href="https://reticenceji.github.io/styles/main.css">
-<link rel="alternate" type="application/atom+xml" title="本地部署静态页面 Gridea+Docker | Reticence - Atom Feed" href="https://reticenceji.github.io/atom.xml">
+<link rel="stylesheet" href="https://reticenceji.github.io//styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="本地部署静态页面 Gridea+Docker | Reticence - Atom Feed" href="https://reticenceji.github.io//atom.xml">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
 
 <script>
@@ -43,8 +43,8 @@ var _hmt = _hmt || [];
     <div class="main">
       <div class="main-content">
         <div class="site-header">
-  <a href="https://reticenceji.github.io">
-  <img class="avatar" src="https://reticenceji.github.io/images/avatar.png?v=1624603058845" alt="">
+  <a href="https://reticenceji.github.io/">
+  <img class="avatar" src="https://reticenceji.github.io//images/avatar.png?v=1625191111418" alt="">
   </a>
   <h1 class="site-title">
     Reticence
@@ -141,7 +141,7 @@ var _hmt = _hmt || [];
                 2021-03-14
               </span>
               <span>
-                2 min read
+                3 min read
               </span>
               
                 <a href="https://reticenceji.github.io/tag/F7-18Ec_H/" class="post-tag">
@@ -180,7 +180,7 @@ useradd 添加用户</li>
 </ol>
 </li>
 <li>调整Gridea的配置：reticence-&gt;username<br>
-<img src="https://reticenceji.github.io/post-images/1615687012167.jpg" alt="" loading="lazy"></li>
+<img src="https://reticenceji.github.io//post-images/1615687012167.jpg" alt="" loading="lazy"></li>
 <li>然后test测试一下，成功的话就保存，然后同步。</li>
 </ol>
 <h2 id="部署-via-python">部署 via Python</h2>
@@ -188,7 +188,11 @@ useradd 添加用户</li>
 当然可以用nginx，不过还有一个更简单的方法，就是python。<br>
 在静态文件目录<code>/home/username/www</code>下，执行<code>python3 -m http.server 80</code>，创建http服务在80端口，然后再主机上就映射到了8080端口。打开浏览器，访问<a href="http://127.0.0.1:8080">http://127.0.0.1:8080</a>。看到你的页面，就大功告成了。<br>
 可以把之前的命令做成脚本，然后实现一键部署。</p>
-<h2 id="部署-via-nginx">部署 via nginx</h2>
+<h2 id="gridea使用技巧">Gridea使用技巧</h2>
+<p>Gridea有内置的文章编辑器，但是最好的markdown编辑器肯定是typora啦。<br>
+可以把typora的图片保存路径设置成<code>../post-image</code>，这样图片导入甚至比利用Gridea还方便。<br>
+大部分typora的特性Gridea都是支持的，偶尔可能会有解析错误。<br>
+注意的是公式符号<code>$</code>和代码中间不要有空格，否则Gridea不能正确解析。</p>
 
               </div>
               <div class="toc-container">
@@ -197,7 +201,7 @@ useradd 添加用户</li>
 <ul>
 <li><a href="#%E5%9F%BA%E6%9C%AC%E9%85%8D%E7%BD%AE%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C">基本配置准备工作</a></li>
 <li><a href="#%E9%83%A8%E7%BD%B2-via-python">部署 via Python</a></li>
-<li><a href="#%E9%83%A8%E7%BD%B2-via-nginx">部署 via nginx</a></li>
+<li><a href="#gridea%E4%BD%BF%E7%94%A8%E6%8A%80%E5%B7%A7">Gridea使用技巧</a></li>
 </ul>
 </li>
 </ul>
@@ -222,7 +226,7 @@ useradd 添加用户</li>
 
         <div class="site-footer">
   
-  <a class="rss" href="https://reticenceji.github.io/atom.xml" target="_blank">
+  <a class="rss" href="https://reticenceji.github.io//atom.xml" target="_blank">
     <i class="ri-rss-line"></i> RSS
   </a>
 </div>

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <id>https://reticenceji.github.io</id>
+    <id>https://reticenceji.github.io/</id>
     <title>Reticence</title>
-    <updated>2021-06-25T06:37:42.929Z</updated>
+    <updated>2021-07-02T01:58:42.187Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
-    <link rel="alternate" href="https://reticenceji.github.io"/>
+    <link rel="alternate" href="https://reticenceji.github.io/"/>
     <link rel="self" href="https://reticenceji.github.io/atom.xml"/>
     <subtitle>&lt;script&gt;
 var _hmt = _hmt || [];
@@ -19,11 +19,29 @@ var _hmt = _hmt || [];
     <icon>https://reticenceji.github.io/favicon.ico</icon>
     <rights>All rights reserved 2021, Reticence</rights>
     <entry>
+        <title type="html"><![CDATA[有限自动机介绍]]></title>
+        <id>https://reticenceji.github.io/post/you-xian-zi-dong-ji-jie-shao/</id>
+        <link href="https://reticenceji.github.io/post/you-xian-zi-dong-ji-jie-shao/">
+        </link>
+        <updated>2021-06-28T13:49:41.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[群论简介]]></title>
+        <id>https://reticenceji.github.io/post/qun-lun-jian-jie/</id>
+        <link href="https://reticenceji.github.io/post/qun-lun-jian-jie/">
+        </link>
+        <updated>2021-06-28T13:48:07.000Z</updated>
+    </entry>
+    <entry>
         <title type="html"><![CDATA[Latex基本使用教程]]></title>
         <id>https://reticenceji.github.io/post/latex-ji-ben-shi-yong-jiao-cheng/</id>
         <link href="https://reticenceji.github.io/post/latex-ji-ben-shi-yong-jiao-cheng/">
         </link>
         <updated>2021-06-25T03:29:46.000Z</updated>
+        <summary type="html"><![CDATA[<p>因为老师让我们用Latex写一个survey，学一下latex怎么用。也可以认为是ACM CCS模板的使用简易教程。</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>因为老师让我们用Latex写一个survey，学一下latex怎么用。也可以认为是ACM CCS模板的使用简易教程。</p>
+]]></content>
     </entry>
     <entry>
         <title type="html"><![CDATA[ADS-external sorting]]></title>
@@ -73,27 +91,5 @@ var _hmt = _hmt || [];
         <link href="https://reticenceji.github.io/post/chai-fen-yin-si/">
         </link>
         <updated>2021-06-03T11:17:27.000Z</updated>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[ADS-approximation algorithm]]></title>
-        <id>https://reticenceji.github.io/post/ads-approximation-algorithm/</id>
-        <link href="https://reticenceji.github.io/post/ads-approximation-algorithm/">
-        </link>
-        <updated>2021-05-29T09:05:32.000Z</updated>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Database-事务]]></title>
-        <id>https://reticenceji.github.io/post/database-transaction/</id>
-        <link href="https://reticenceji.github.io/post/database-transaction/">
-        </link>
-        <updated>2021-05-27T02:56:20.000Z</updated>
-        <summary type="html"><![CDATA[<p>DBMS比起文件系统，有下面的优势。这些优势的实现离不开<strong>事务(Transaction)</strong>。或者说这些就是事务的特点：</p>
-<p>并发：<strong>Concurrent executions</strong> of multiple users or multi-programs.<br>
-可恢复：Failures of various kinds, such as hardware failures and system crashes.</p>
-]]></summary>
-        <content type="html"><![CDATA[<p>DBMS比起文件系统，有下面的优势。这些优势的实现离不开<strong>事务(Transaction)</strong>。或者说这些就是事务的特点：</p>
-<p>并发：<strong>Concurrent executions</strong> of multiple users or multi-programs.<br>
-可恢复：Failures of various kinds, such as hardware failures and system crashes.</p>
-]]></content>
     </entry>
 </feed>

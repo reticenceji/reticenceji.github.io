@@ -3,10 +3,10 @@
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Database-事务 | Reticence</title>
-<link rel="shortcut icon" href="https://reticenceji.github.io/favicon.ico?v=1624603058845">
+<link rel="shortcut icon" href="https://reticenceji.github.io//favicon.ico?v=1625191111418">
 <link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
-<link rel="stylesheet" href="https://reticenceji.github.io/styles/main.css">
-<link rel="alternate" type="application/atom+xml" title="Database-事务 | Reticence - Atom Feed" href="https://reticenceji.github.io/atom.xml">
+<link rel="stylesheet" href="https://reticenceji.github.io//styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="Database-事务 | Reticence - Atom Feed" href="https://reticenceji.github.io//atom.xml">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
 
 <script>
@@ -41,8 +41,8 @@ var _hmt = _hmt || [];
     <div class="main">
       <div class="main-content">
         <div class="site-header">
-  <a href="https://reticenceji.github.io">
-  <img class="avatar" src="https://reticenceji.github.io/images/avatar.png?v=1624603058845" alt="">
+  <a href="https://reticenceji.github.io/">
+  <img class="avatar" src="https://reticenceji.github.io//images/avatar.png?v=1625191111418" alt="">
   </a>
   <h1 class="site-title">
     Reticence
@@ -139,7 +139,7 @@ var _hmt = _hmt || [];
                 2021-05-27
               </span>
               <span>
-                17 min read
+                19 min read
               </span>
               
                 <a href="https://reticenceji.github.io/tag/uXp2zQxRH/" class="post-tag">
@@ -181,7 +181,7 @@ var _hmt = _hmt || [];
 <li>Aborted, after the transaction has been rolled back and the <u>database has been restored to its state prior to the start of the transaction.</u></li>
 <li>Committed, after successful completion.</li>
 </ul>
-<figure data-type="image" tabindex="1"><img src="https://reticenceji.github.io/post-images/image-20210527154701853.png" alt="image-20210527154701853" loading="lazy"></figure>
+<figure data-type="image" tabindex="1"><img src="https://reticenceji.github.io//post-images/image-20210527154701853.png" alt="image-20210527154701853" loading="lazy"></figure>
 <h3 id="事务的隔离性">事务的隔离性</h3>
 <p>如果事务<strong>串行serially</strong>发生我们就不用考虑隔离性。但是为了性能考虑事务往往是<strong>并发concurrency</strong>的。</p>
 <p>我们通过调度让并发在某种程度上等价于一个串行调度，叫做可串行化。</p>
@@ -206,13 +206,14 @@ transactions participating in the schedule. The set of edges consists of all edg
 <h3 id="recover">Recover</h3>
 <h2 id="并发系统">并发系统</h2>
 <p>并发导致竞争，产生问题。</p>
-<figure data-type="image" tabindex="2"><img src="https://reticenceji.github.io/post-images/image-20210527110120859.png" alt="image-20210527110120859" loading="lazy"></figure>
+<figure data-type="image" tabindex="2"><img src="https://reticenceji.github.io//post-images/image-20210527110120859.png" alt="image-20210527110120859" loading="lazy"></figure>
 <p>上面介绍了如何判断事务是否可串行化，但是我们不可能枚举每一种情况然后再去判断。我们有以下这些并发控制的方法。</p>
 <p>锁：</p>
 <ol>
 <li>exclusive (X, 排它锁) mode. Data item can be both <strong>read as well as written</strong>. X-lock is requested using  lock-X instruction .</li>
 <li>shared (S, 共享锁) mode. Data item can only be <strong>read</strong>. S-lock is  requested using  lock-S instruction</li>
 </ol>
+<p><strong>只要一个事务还在访问数据项，他就必须拥有该数据项上的锁。</strong></p>
 <h3 id="two-phase-locking-protocol">Two-Phase Locking Protocol</h3>
 <p>每个事务分两个阶段提出加锁和解锁申请</p>
 <ol>
@@ -220,7 +221,7 @@ transactions participating in the schedule. The set of edges consists of all edg
 <li>缩减阶段(shrinking phase)：事务可以释放锁，但不能获得锁。</li>
 </ol>
 <p>我们称最后加锁的位置（增长阶段的结束）为<strong>Lock point</strong>。多个事务根据他们的Lock point进行排序，得到的顺序就是事务的一个可串行化顺序。它可以保证得到的调度是冲突可串的，但是不保证不会产生死锁，需要通过别的方法保证死锁不出现。</p>
-<figure data-type="image" tabindex="3"><img src="https://reticenceji.github.io/post-images/image-20210605200706697.png" alt="两阶段封锁协议冲突可串行化的证明" loading="lazy"></figure>
+<figure data-type="image" tabindex="3"><img src="https://reticenceji.github.io//post-images/image-20210605200706697.png" alt="两阶段封锁协议冲突可串行化的证明" loading="lazy"></figure>
 <p>Strict Two-Phase Locking Protocol: 要求事务的排他锁在事务提交之后才可以释放。这样可以放置出现级联回滚。降低并发性。</p>
 <p>Rigorous Two-Phase Locking Protocol: 要求事务在提交之前不可以释放任何锁。降低并发性。</p>
 <p>一个简单的机制：</p>
@@ -229,7 +230,7 @@ transactions participating in the schedule. The set of edges consists of all edg
 <li>Ti进行<code>write(Q)</code>操作的时候，检测Q上是否已经有Share lock，如果有<code>upgrate(Q); write(Q)</code>。如果没有，产生一个<code>lock-X(Q); write(Q)</code>操作。</li>
 <li>事务提交或者终止之后，释放所有的锁。</li>
 </ol>
-<h3 id="graph-based-protocal">Graph based protocal</h3>
+<h3 id="graph-based-protocol">Graph based protocol</h3>
 <blockquote>
 <p>To acquire such prior knowledge, we impose a partial ordering → on the set D = {d1, d2,..., dh} of all data items. If di → dj , then any transaction accessing both di and dj must access di before accessing dj . Only lock-X</p>
 <ol>
@@ -240,21 +241,40 @@ transactions participating in the schedule. The set of edges consists of all edg
 </ol>
 </blockquote>
 <p>与两阶段封锁协议相比，他不会产生死锁。</p>
+<figure data-type="image" tabindex="4"><img src="https://reticenceji.github.io//post-images/image-20210630211409773.png" alt="image-20210630211409773" loading="lazy"></figure>
 <h3 id="多粒度和意向锁">多粒度和意向锁</h3>
 <p>有时候我们可能需要封锁整个数据表或者数据库，这时候如果我们一个一个数据加锁代价是不能接受的。所以我们出现了允许系统定义Multiple Granularity的锁的机制。我们的锁可以形成一个树形结构：</p>
-<figure data-type="image" tabindex="4"><img src="https://reticenceji.github.io/post-images/image-20210603112314523.png" alt="image-20210603112314523" loading="lazy"></figure>
-<p>这样我们如果要封锁整个数据库，就可以直接在DB上加锁。但是这样我们不是还要遍历整个树看看叶节点有没有加锁吗？代价不能接受！所以我们引入意向锁intention lock。比如如果我们要在Fa加上排他锁X，那么我们应该在A1和DB上都加上意向锁IX。</p>
-<p>X：排他锁，S：共享锁；IX：意向排他锁；IS意向共享锁；SIX：S+IX。锁的兼容性如下：</p>
-<figure data-type="image" tabindex="5"><img src="https://reticenceji.github.io/post-images/image-20210603112835950.png" alt="image-20210603112835950" loading="lazy"></figure>
-<p>这样，加锁需要自顶向下遍历，释放需要自底向上遍历。加锁的时候，发现路径上有不兼容的锁就加锁失败开始等待。</p>
+<figure data-type="image" tabindex="5"><img src="https://reticenceji.github.io//post-images/image-20210603112314523.png" alt="image-20210603112314523" loading="lazy"></figure>
+<p>这样我们如果要封锁整个数据库，就可以直接在DB上加锁。但是这样我们不是还要遍历整个树看看叶节点有没有加锁吗？代价不能接受！所以我们引入<strong>意向锁intention lock</strong>。举个例子，比如如果我们要在Fa加上排他锁X，那么我们应该在A1和DB上都加上意向锁IX。</p>
+<center>X：排他锁，S：共享锁；IX：意向排他锁；IS意向共享锁；SIX：S+IX。锁的兼容性</center>
+<figure data-type="image" tabindex="6"><img src="https://reticenceji.github.io//post-images/image-20210603112835950.png" alt="image-20210603112835950" loading="lazy"></figure>
+<p>这样，加锁需要自顶向下遍历，释放需要自底向上遍历。规则：</p>
+<ol>
+<li>事务T必须遵守上面的锁类型相容函数。</li>
+<li>事务T必须首先封锁树的根节点（DB），并且可以加任意类型的锁。</li>
+<li>仅当T对Q的父节点具有IX或IS锁时，T可以对节点Q加S或IS锁。</li>
+<li>仅当T对Q的父节点具有IX或SIX锁时，T可以对节点加X，SIX，IX锁。</li>
+<li>仅当T未曾对任何节点解锁时，T可以对节点加锁（也就是说T是两阶段的）。</li>
+<li>仅当T当前不持有Q的子节点的锁时，T可以对Q解锁。</li>
+</ol>
 <p>可以很好的减小加锁的代价，书上说还可以提高并发性。</p>
 <h3 id="死锁的处理或避免">死锁的处理或避免</h3>
-<p>wait-for cycle。操作系统里学过，如果等待图出现了环，那么我们发现了死锁。需要选取事务从图中移除（回滚）来取消环。</p>
-<p>防止死锁的一个办法是对数据项强加一个次序（比如树结构中的偏序），要求事务只能按照次序规定的顺序封锁数据项。</p>
-<p>防止死锁的另一个办法可以是利用时间戳。给每一个事务分配一个time stamp（注意下面的办法有点像从死锁中恢复，但是其实下面的情况不一定有死锁产生）</p>
+<p>死锁的处理有两种思路，一种是通过<strong>死锁预防</strong>，另一种是通过<strong>死锁检测和死锁恢复</strong>。</p>
+<p>死锁检测：<strong>wait-for cycle</strong>。操作系统里学过，如果等待图出现了环，那么我们发现了死锁。需要选取事务从图中移除（回滚）来取消环。我们需要周期的检测是否有环的出现。</p>
+<p>死锁恢复：最简单的办法是回滚一个或多个事务。回滚不一定要全部回滚，可以回滚到打破环的状态。另外要注意的是防止出现starve，这个可以通过记录事务的回滚数实现，然后优先选择回滚数较少的事务进行回滚。</p>
+<p>死锁预防：</p>
 <ol>
-<li>wait die。如果Ti申请的数据被Tj持有，那么如果Ti的时间戳小于Tj，允许Ti等待，否则Ti回滚。</li>
-<li>wound wait。如果Ti申请的数据被Tj持有，那么如果Ti的时间戳大于Tj，允许Ti等待，否则Ti回滚。</li>
+<li>
+<p>对加锁请求进行排序，或者要求同时获得所有的锁来保证不会发生循环等待。</p>
+<p>可以对数据项强加一个次序（比如树结构中的偏序），要求事务只能按照次序规定的顺序封锁数据项。</p>
+</li>
+<li>
+<p>使用抢占和事务回滚。利用时间戳，给每一个事务分配一个time stamp（注意下面的办法有点像从死锁中恢复，但是其实下面的情况不一定有死锁产生，所以可能会造成不必要的回滚）</p>
+<ol>
+<li>wait die。如果Ti申请的数据被Tj持有，那么如果Ti的时间戳小于Tj（Ti比Tj老），允许Ti等待，否则Ti回滚。</li>
+<li>wound wait。如果Ti申请的数据被Tj持有，那么如果Ti的时间戳大于Tj（Ti比Tj年轻），允许Ti等待，否则Ti回滚。</li>
+</ol>
+</li>
 </ol>
 <h2 id="恢复系统">恢复系统</h2>
 <p>事务具有原子性，我们要保证提交了的事务做的所有修改都反应在数据库中，如果事务回滚了不对数据库做任何修改。为此，我们在修改数据库本身之前，先向<strong>稳定存储器</strong>输出信息描述要做的修改，这就是所谓<strong>日志Log</strong>。</p>
@@ -319,7 +339,7 @@ transactions participating in the schedule. The set of edges consists of all edg
 </ol>
 </li>
 </ol>
-<figure data-type="image" tabindex="6"><img src="https://reticenceji.github.io/post-images/image-20210610202007987.png" alt="image-20210610202007987" loading="lazy"></figure>
+<figure data-type="image" tabindex="7"><img src="https://reticenceji.github.io//post-images/image-20210610202007987.png" alt="image-20210610202007987" loading="lazy"></figure>
 <p><strong>非易失性存储器损坏</strong>。虽然这个时期发生的概率较小，但是他毕竟不是稳定存储器，我们还是要考虑他丢失的可能性。</p>
 <p>基本的解决办法是周期的将整个数据库的内容dump到稳定存储器。比如一天一次。如果发生故障，先利用dump的数据，然后就只用利用日志恢复还没dump的一部分了。</p>
 <h3 id="逻辑undo">逻辑undo</h3>
@@ -342,7 +362,7 @@ transactions participating in the schedule. The set of edges consists of all edg
 <li>如果遇到一个<code>&lt;operation-abort&gt;</code>，就跳过前面的所有记录直到遇到<code>&lt;Ti,Oj,operation-begin&gt;</code>。</li>
 <li>遇到<code>&lt;Ti,start&gt;</code>回滚事务就完成了，添加一个<code>&lt;Ti,abort&gt;</code>。</li>
 </ol>
-<figure data-type="image" tabindex="7"><img src="https://reticenceji.github.io/post-images/image-20210611124734404.png" alt="image-20210611124734404" loading="lazy"></figure>
+<figure data-type="image" tabindex="8"><img src="https://reticenceji.github.io//post-images/image-20210611124734404.png" alt="image-20210611124734404" loading="lazy"></figure>
 <h3 id="aries算法star">ARIES算法⭐️</h3>
 <p>有实用价值的算法。也比较复杂。论文原文：<a href="https://www.cs.berkeley.edu/~brewer/cs262/Aries.pdf">ARIES: A Transaction Recovery Method Supporting Fine-Granularity Locking and Partial Rollbacks Using Write-Ahead Logging</a>。下面仅是概览</p>
 <h4 id="数据结构">数据结构</h4>
@@ -350,13 +370,31 @@ transactions participating in the schedule. The set of edges consists of all edg
 <p>每个页也维护一个PageLSN。每当一个更新操作发生在某个Page上时，该操作将其日志记录的LSN存储在该Page的PageLSN 域上。在恢复的撤销阶段，<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>L</mi><mi>S</mi><mi>N</mi><mo>≤</mo><mi>P</mi><mi>a</mi><mi>g</mi><mi>e</mi><mi>L</mi><mi>S</mi><mi>N</mi></mrow><annotation encoding="application/x-tex">LSN\le PageLSN</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8193em;vertical-align:-0.13597em;"></span><span class="mord mathdefault">L</span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8777699999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">P</span><span class="mord mathdefault">a</span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="mord mathdefault">e</span><span class="mord mathdefault">L</span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span></span></span></span>的日志记录将不在该页上执行，因为他的动作已经反映在该页上了。</p>
 <p><strong>脏页表 DirtyPageTable</strong>包含一个在数据库缓冲区已更新的页的列表。它为每一个page保存一个PageLSN和一个RecLSN，其中ReCLSN用于标识已经实施于该page的磁盘上的版本的日志记录。</p>
 <p><strong>检查点日志记录CheckPoint log record</strong>包含脏页表和活动事务的列表。检查点日志记录也为每个事务记录他的LastLSN，就是每个事务所写的最后一个日志记录的LSN。</p>
-<figure data-type="image" tabindex="8"><img src="https://reticenceji.github.io/post-images/image-20210612143747598.png" alt="image-20210612143747598" loading="lazy"></figure>
+<figure data-type="image" tabindex="9"><img src="https://reticenceji.github.io//post-images/image-20210612143747598.png" alt="image-20210612143747598" loading="lazy"></figure>
 <h4 id="恢复算法-2">恢复算法</h4>
 <p>ARIES从系统崩溃中的恢复过程经历三个阶段</p>
 <ol>
-<li>analysis pass 这一阶段决定那些事务要撤销，那些页在崩溃时是脏的，重做阶段应该从哪个LSN开始</li>
-<li>redo pass 这一阶段从</li>
+<li>analysis pass 这一阶段决定那些事务要撤销，那些页在崩溃时是脏的，重做阶段应该从哪个LSN开始。</li>
+<li>redo pass 这一阶段从analysis pass决定的位置开始，执行redo，重复历史。</li>
+<li>undo pass 这一阶段回滚在崩溃时发生的不完全的事务。</li>
 </ol>
+<p>analysis pass: 从Check Point开始正向扫描</p>
+<ol>
+<li>找到最后的完整的Check Point，从该记录读入Dirty Page Table</li>
+<li>将<strong>RedoLSN</strong>设置为Dirty Page Table中RecLSN的最小值</li>
+<li>将UndoList设置为日志记录中的事务列表，向后扫描的过程中发现commit/abort等就把事务从UndoList中删除；发现begin就把事务添加入UndoList</li>
+<li>The analysis pass also updates DirtyPageTable whenever it finds a log record<br>
+for an update on a page. If the page is not in DirtyPageTable, the analysis pass<br>
+adds it to DirtyPageTable, and sets the RecLSN of the page to the LSN of the log<br>
+record.</li>
+</ol>
+<p>redo pass: 从RedoLSN开始正向扫描，如果找到更新日志记录才执行操作</p>
+<ol>
+<li>如果该页不再Dirty Page Table中，或者该更新日志记录的LSN小于脏页表中该页的RecLSN，跳过该日志记录。</li>
+<li>否则从磁盘中调出该页，如果该页的PageLSN小于Dirty Page Table中的RecLSN，就重做该日志记录。</li>
+</ol>
+<p>undo pass: 反向扫描，直到Undo list空了为止</p>
+<p>​</p>
 
               </div>
               <div class="toc-container">
@@ -373,7 +411,7 @@ transactions participating in the schedule. The set of edges consists of all edg
 <li><a href="#%E5%B9%B6%E5%8F%91%E7%B3%BB%E7%BB%9F">并发系统</a>
 <ul>
 <li><a href="#two-phase-locking-protocol">Two-Phase Locking Protocol</a></li>
-<li><a href="#graph-based-protocal">Graph based protocal</a></li>
+<li><a href="#graph-based-protocol">Graph based protocol</a></li>
 <li><a href="#%E5%A4%9A%E7%B2%92%E5%BA%A6%E5%92%8C%E6%84%8F%E5%90%91%E9%94%81">多粒度和意向锁</a></li>
 <li><a href="#%E6%AD%BB%E9%94%81%E7%9A%84%E5%A4%84%E7%90%86%E6%88%96%E9%81%BF%E5%85%8D">死锁的处理或避免</a></li>
 </ul>
@@ -417,7 +455,7 @@ transactions participating in the schedule. The set of edges consists of all edg
 
         <div class="site-footer">
   
-  <a class="rss" href="https://reticenceji.github.io/atom.xml" target="_blank">
+  <a class="rss" href="https://reticenceji.github.io//atom.xml" target="_blank">
     <i class="ri-rss-line"></i> RSS
   </a>
 </div>
