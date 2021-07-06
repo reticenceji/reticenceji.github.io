@@ -1,170 +1,37 @@
+<!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>C++课程笔记 | Reticence</title>
-<link rel="shortcut icon" href="https://reticenceji.github.io//favicon.ico?v=1625191111418">
-<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
-<link rel="stylesheet" href="https://reticenceji.github.io//styles/main.css">
-<link rel="alternate" type="application/atom+xml" title="C++课程笔记 | Reticence - Atom Feed" href="https://reticenceji.github.io//atom.xml">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+<head>
+<link rel="shortcut icon" href="https://reticenceji.github.io/favicon.ico" type="image/x-icon" /><meta name="viewport"content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="apple-mobile-web-app-capable"content="yes"/><meta name="apple-mobile-web-app-status-bar-style"content="black"/><meta name="format-detection"content="telephone=no"/><meta name="renderer"content="webkit"><meta name="description"content=""><meta charset="UTF-8"><title>C++课程笔记 | Reticence</title>
+<link href="https://reticenceji.github.io/styles/main.css" type="text/css" rel="stylesheet" /><link href="https://at.alicdn.com/t/font_1621793_zatzzgvf30g.css" type="text/css" rel="stylesheet" /><link rel="stylesheet" href="https://reticenceji.github.io/media/css/katex.css"><script async src="https://cdn.jsdelivr.net/npm/busuanzi@2.3.0/bsz.pure.mini.min.js"></script><script src="https://reticenceji.github.io/media/js/magnify.min.js"></script><script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js"></script><script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body);"></script>
+<script type="text/javascript">function btn_toggle(){document.getElementById("hn").classList.contains("no-js")?document.getElementById("hn").classList.remove("no-js"):document.getElementById("hn").classList.add("no-js")}</script>
 
-<script>
-var _hmt = _hmt || [];
-(function() {
-  var hm = document.createElement("script");
-  hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
-  var s = document.getElementsByTagName("script")[0]; 
-  s.parentNode.insertBefore(hm, s);
-})();
-</script>
+<link rel="canonical" href="https://reticenceji.github.io/post/cke-cheng-bi-ji/" />
+</head>
+<body>
+<div class="progress"></div><style>.progress{background:linear-gradient(to right,#87ceeb var(--scroll),transparent 0);background-repeat:no-repeat;position:fixed;width:100%;height:4px;z-index:1}</style><div class="darkmode-background"></div><div class="darkmode-layer"></div>
+<noscript><p class="warn" >本页面需要浏览器支持（启用）JavaScript</p></noscript><div class="header"><div class="logo_title"><div class="title animated fadeInDown"><a href="https://reticenceji.github.io"><img alt="logo" style="display:inline-block;" src="https://reticenceji.github.io/images/avatar.png"/></a><h1 title="Reticence" class="weaklink"><a  href="/">Reticence</a></h1>
 
+<div class="navbar weaklink">
+<div class="normal_nav">
+<div class="bitcron_nav_container"><div class="bitcron_nav"><div class="bitcron_nav"><div style="display:flex;justify-content:center;"><nav class="mixed_site_nav_wrap site_nav_wrap"><ul class="mixed_site_nav site_nav sm sm-base">	<li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/" class="selected active current nav__item" >Index</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/tags" class="selected active current nav__item" >Tags</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/archives" class="selected active current nav__item" >Archives</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/navigator.html" class="selected active current nav__item" >Navigator</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/post/about" class="selected active current nav__item" >About</a></li></ul></nav>
+<div style="float:right;margin-top:1em"><form id="gridea-search-form" data-update="1578893743252" action="/search/index.html"><input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="Search..."></form></div><div style="margin-left:0.5em;margin-top:1.2em"><input id="switch_default" onclick="mobileBtn()" type="checkbox" class="switch_default"><label for="switch_default" class="toggleBtn"></label></div></div>
+<div class="clear clear_nav_inline_end"></div></div></div><div class="clear clear_nav_end"></div></div></div><div class="hamberger" href="javascript:void(0)" onclick="btn_toggle();"><i class="iconfont icon-category"></i></div></div></div></div>
+<div id="hn" class="no-js hidden_nav animated fadeInDown"><div class="bitcron_nav_container"><div class="bitcron_nav"><nav class="mixed_site_nav_wrap site_nav_wrap"><ul class="mixed_site_nav site_nav sm sm-base">	<li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/" class="selected active current nav__item" >Index</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/tags" class="selected active current nav__item" >Tags</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/archives" class="selected active current nav__item" >Archives</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/navigator.html" class="selected active current nav__item" >Navigator</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/post/about" class="selected active current nav__item" >About</a></li></ul><div class="clear clear_nav_inline_end"></div></nav></div><div class="clear clear_nav_end"></div></div>
+<div style="display:flex;justify-content:center;inline-block;text-align:center;margin-top:7%"><div><form id="gridea-search-form" data-update="1625583395117" action="/search/index.html"><input class="search-input" autocomplete="off" spellcheck="false" name="q"  placeholder="Search..." /></form></div><div style="margin-left:0.5em"><input id="switch_default_h" onclick="mobileBtn()" type="checkbox" class="switch_default"><label for="switch_default" class="toggleBtn"></label></div></div>
+</div></div>
+<script>function enableDarkmode(){document.body.classList.add("darkmode"),document.getElementById("switch_default").checked=1,document.getElementById("switch_default_h").checked=1}function removeDarkmode(){document.body.classList.remove("darkmode"),document.getElementById("switch_default").checked=0,document.getElementById("switch_default_h").checked=0}function getCookie(a){var b,c=new RegExp("(^| )"+a+"=([^;]*)(;|$)");return(b=document.cookie.match(c))?unescape(b[2]):null}cookie=getCookie("darkmode"),"enable"==cookie&&enableDarkmode(),window.matchMedia("(prefers-color-scheme: dark)").matches&&"disable"!==cookie&&(enableDarkmode(),document.cookie="darkmode=enable; path=/");var mobileBtn=function(){1==document.getElementById("switch_default").checked?(enableDarkmode(),document.cookie="darkmode=enable; path=/"):(removeDarkmode(),document.cookie="darkmode=disable; path=/")};</script>
 
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-90HNEFFE0M"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+<div class="main"><div class="main-inner"><div class="content">
+<article class="post">
+<h2 class="post_title sm_margin"><a>C++课程笔记</a></h2>
+<script>function lan(){if(document.getElementById("lan").innerText=="繁"){var s=document.getElementById("tongwenlet_cn");if(s!=null){document.body.removeChild(s)}var s=document.createElement("script");s.language="javascript";s.type="text/javascript";s.src="https://cdn.jsdelivr.net/gh/qyxtim/Static@1.1/bookmarklet_tw.js";s.id="tongwenlet_cn";document.body.appendChild(s);document.getElementById("lan").innerHTML="简"}else{if(document.getElementById("lan").innerText=="簡"){var s=document.getElementById("tongwenlet_cn");if(s!=null){document.body.removeChild(s)}var s=document.createElement("script");s.language="javascript";s.type="text/javascript";s.src="https://cdn.jsdelivr.net/gh/qyxtim/Static@1.1/bookmarklet_cn.js";s.id="tongwenlet_cn";document.body.appendChild(s);document.getElementById("lan").innerHTML="繁"}}};</script>
+<section class="post_details"><i class="iconfont icon-calendar"></i><span style="margin-right:15px"> 2021-03-02</span><i class="iconfont icon-browse"></i><span style="margin-right:15px"> <span id="busuanzi_value_page_pv"></span> Views</span><i class="iconfont icon-category"></i><span class="weaklink" style="margin-right:15px">	<a href="https://reticenceji.github.io/tag/Hm6SgxCYQ/" class="tag">C++</a> | 	<a href="https://reticenceji.github.io/tag/Gq2mdKppx/" class="tag">Notes</a></span><i class="iconfont icon-caret-down"></i><span style="margin-right:15px">10838字</span><i class="iconfont icon-naozhong"></i><span style="margin-right:15px">43 min read</span><a id="lan" href="javascript:void(0);"onclick="lan();"title="调整简繁体" style="margin-right:15px;">繁</a>
+<font color=7D26CD>置顶</font></section>
 
-  gtag('config', 'G-90HNEFFE0M');
-</script>
-
-
-    <meta name="description" content="C++是一个强大的语言，其中包含的很多程序设计的思想值得学习。请千万不要在程序里出现裸new，用智能指针包裹他们！
-
-
-
-
-C++语言基础   8学时
-
-更好的C ✔️
-const ✔️
-引用 ✔️
-函数原型
-内联函数 ✔️
-缺省自变量 ✔..." />
-    <meta name="keywords" content="C++,Notes" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
-    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
-  </head>
-  <body>
-    <div class="main">
-      <div class="main-content">
-        <div class="site-header">
-  <a href="https://reticenceji.github.io/">
-  <img class="avatar" src="https://reticenceji.github.io//images/avatar.png?v=1625191111418" alt="">
-  </a>
-  <h1 class="site-title">
-    Reticence
-  </h1>
-  <p class="site-description">
-    <script>
-var _hmt = _hmt || [];
-(function() {
-  var hm = document.createElement("script");
-  hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
-  var s = document.getElementsByTagName("script")[0]; 
-  s.parentNode.insertBefore(hm, s);
-})();
-</script>
-  </p>
-  <div class="menu-container">
-    
-      
-        <a href="/" class="menu">
-          Index
-        </a>
-      
-    
-      
-        <a href="/tags" class="menu">
-          Classification
-        </a>
-      
-    
-      
-        <a href="/archives" class="menu">
-          Archives
-        </a>
-      
-    
-      
-        <a href="/navigator.html" class="menu">
-          Navigator
-        </a>
-      
-    
-      
-        <a href="/post/fei-md-ge-shi-bi-ji-hui-zong" class="menu">
-          Notes
-        </a>
-      
-    
-      
-        <a href="/post/about" class="menu">
-          About
-        </a>
-      
-    
-  </div>
-  <div class="social-container">
-    
-      
-        <a href="https://github.com/reticenceji" target="_blank">
-          <i class="ri-github-line"></i>
-        </a>
-      
-    
-      
-    
-      
-    
-      
-        <a href="https://www.zhihu.com/people/reticenceji" target="_blank">
-          <i class="ri-zhihu-line"></i>
-        </a>
-      
-    
-      
-    
-  </div>
-  <script>
-  var _hmt = _hmt || [];
-  (function() {
-    var hm = document.createElement("script");
-    hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
-    var s = document.getElementsByTagName("script")[0]; 
-    s.parentNode.insertBefore(hm, s);
-  })();
-  </script>
-</div>
-
-        <div class="post-detail">
-          <article class="post">
-            <h2 class="post-title">
-              C++课程笔记
-            </h2>
-            <div class="post-info">
-              <span>
-                2021-03-02
-              </span>
-              <span>
-                40 min read
-              </span>
-              
-                <a href="https://reticenceji.github.io/tag/Hm6SgxCYQ/" class="post-tag">
-                  # C++
-                </a>
-              
-                <a href="https://reticenceji.github.io/tag/Gq2mdKppx/" class="post-tag">
-                  # Notes
-                </a>
-              
-            </div>
-            
-            <div class="post-content-wrapper">
-              <div class="post-content">
-                <p>C++是一个强大的语言，其中包含的很多程序设计的思想值得学习。请千万不要在程序里出现裸new，用智能指针包裹他们！</p>
+<div style="display:flex">
+<div class="md_block" id="md_block">
+<div class="round-shape-one"></div>
+<p>C++是一个强大的语言，其中包含的很多程序设计的思想值得学习。请千万不要在程序里出现裸new，用智能指针包裹他们！</p>
 <!-- more -->
 <!-- 陈翔 CAD&CG Lab xchencs@zju.edu.cn
 [C++参考](https://zh.cppreference.com/)
@@ -281,12 +148,33 @@ void main(){
     cout &lt;&lt; A::get_k() &lt;&lt; endl;
 }
 </code></pre>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>static修饰</th>
+<th>无static修饰</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>方法</td>
+<td>外部访问性受修饰符影响。<br />实际上全局也只有一个代码。没有默认的this指针，所以不能访问类变量。<br />可以用类或实例访问。</td>
+<td>外部访问性受修饰符影响。<br />实际上全局也只有一个代码。其实第一个参数是隐含的this指针。<br />可以用实例访问。</td>
+</tr>
+<tr>
+<td>变量</td>
+<td>外部访问性受修饰符影响。<br />可以理解为在类命名空间下的静态变量（可以用类实例来访问他）；必须要在外面初始化。全局只有一个。<br />可以用类或实例访问。</td>
+<td>外部访问性受修饰符影响。<br />每一个类的实例都有一个变量。<br />可以用实例访问。</td>
+</tr>
+</tbody>
+</table>
 <h2 id="reference">Reference</h2>
 <p>引用是C语言里不存在的概念。<br>
 引用变量是一个<strong>别名</strong>，也就是说，它是某个已存在变量的另一个名字。一旦把引用初始化为某个变量，就可以使用该引用名称或变量名称来指向变量。<br>
 引用很容易与指针混淆，虽然他们在原理上有相似之处。在使用的时候，它们之间有三个主要的不同：</p>
 <ul>
-<li>不存在空引用。引用必须连接到一块合法的内存。</li>
+<li><strong>不存在空引用</strong>。引用必须连接到一块合法的内存。</li>
 <li>一旦引用被初始化为一个对象，就不能被指向到另一个对象。指针可以在任何时候指向到另一个对象。</li>
 <li>引用必须在创建时被初始化。指针可以在任何时间被初始化。</li>
 <li>没有引用的引用。不可以有指针指向引用。不过指针可以有引用。</li>
@@ -330,7 +218,7 @@ int const *q = x;     //你不能修改q
 const char * p = &quot;ABC&quot;;     //你不能通过p去修改指向的内容
 char const * p = &quot;ABC&quot;;     //你不能通过p去修改指向的内容，和上面一样
 </code></pre>
-<p>简介的传递对象但是不想改动他，可以：</p>
+<p>传递对象但是不想改动他，可以：</p>
 <ol>
 <li>直接传值，但是对大结构不友好，浪费栈空间。</li>
 <li>传指针，用const修饰</li>
@@ -356,10 +244,10 @@ char const * p = &quot;ABC&quot;;     //你不能通过p去修改指向的内容
 <p>const还可以用来修饰函数：</p>
 <p>函数前const：普通函数或成员函数（非静态成员函数）前均可加const修饰，表示函数的返回值为const，不可修改。格式为：</p>
 <p><code>const returnType functionName(param list)</code></p>
-<p>函数后加const：只有类的非静态成员函数后可以加const修饰，表示该类的this指针为const类型，不能改变类的成员变量的值，即成员变量为read only，任何改变成员变量的行为均为非法。此类型的函数可称为只读成员函数，格式为：</p>
+<p>函数后加const：只有类的非静态成员函数后可以加const修饰，表示<strong>该类的this指针为const类型</strong>，不能改变类的成员变量的值，即成员变量为read only，任何改变成员变量的行为均为非法。此类型的函数可称为只读成员函数，格式为：</p>
 <p><code>returnType functionName(param list) const</code></p>
 <h2 id="encapsulation-with-class-star">Encapsulation with Class ⭐️</h2>
-<p>C++的类，我觉得可以用struct来理解。class和struct差别不大（或者说在本质上是一样的）。不过Struct的所有东西都默认是Public的，Class里的所有东西默认是Private的。这个和Python是不同的。Python的object更像是一个指针或者说类的引用，指向真正的内容。而C++的类就是真正的内容，不过类里面可能有指针。<br>
+<p>C++的类，我觉得可以用struct来理解。class和struct差别不大（或者说在本质上是一样的）。不过Struct的所有东西都默认是Public的，Class里的所有东西默认是Private的。这个和Python是不同的。Python的object更像是一个指针或者说类的引用，指向真正的内容。而C++的类就是真正的内容，不过类里面可能有指针指向堆里的数据。<br>
 一个demo：</p>
 <pre><code class="language-cpp">class Vector
 {
@@ -409,7 +297,7 @@ int main()
 <ul>
 <li>构造函数：对象会有一个默认的构造函数，是没有参数的。
 <ul>
-<li>C++有一个Initializer list的语法糖，帮我们简单的书写初始化。并且还有更多的好处，可以给const量、引用赋初值是工程的最佳实践。 <code>CExample(): a(0),b(8.8) { }</code>比如这是一个初始化函数，函数体为空。</li>
+<li>C++有一个Initializer list的语法糖，帮我们简单的书写初始化。并且还有更多的好处，可以给const变量、引用赋初值，是工程的最佳实践。 <code>CExample(): a(0),b(8.8) { }</code>比如这是一个初始化函数，函数体为空。</li>
 </ul>
 </li>
 <li>析构函数：当对象的生存周期结束的时候，对象的析构函数会被调用。编译器会帮你在后面插入析构函数。</li>
@@ -432,6 +320,41 @@ public:
 <li>As a function return value</li>
 <li>As an exception</li>
 </ul>
+<pre><code class="language-cpp">// move语义是新标准的东西，我也不太懂
+// 编译器默认的copy assignment是 bitwise的拷贝，和下面的行为是一致的，也就是说我其实可以不用写
+#include &lt;iostream&gt;
+
+using namespace std;
+class X
+{
+public:
+    int a;
+
+    X(int _a): a(_a) {
+        cout &lt;&lt; &quot;X()&quot; &lt;&lt; endl;
+    };
+    X(const X&amp; x) {
+        cout &lt;&lt; &quot;X(const X&amp;)&quot; &lt;&lt; endl; 
+        this-&gt;a = x.a; 
+    };
+    X&amp; operator=(const X&amp;){
+        cout &lt;&lt; &quot;X&amp; operator=(const X&amp;)&quot; &lt;&lt; endl; 
+        return *this;
+    }
+    ~X(){
+        cout &lt;&lt; &quot;~X()&quot; &lt;&lt; endl;
+    };
+};
+
+
+int main()
+{
+    X x(1),z(1);
+    X y = x;	// copy constructor
+    z = y;		// copy assignment
+    cout &lt;&lt; x.a &lt;&lt; &quot; &quot; &lt;&lt; y.a &lt;&lt; &quot; &quot; &lt;&lt; z.a &lt;&lt; endl;
+}
+</code></pre>
 <p><a href="https://stackoverflow.com/questions/19919434/assignment-of-objects-in-c">参考链接-深拷贝和浅拷贝</a>。类对象默认的copy是浅拷贝，对于一些简单的类，这是没有什么问题的。但是对于<strong>内部存在指针</strong>的类，问题就大了。如果内部有别的对象，通过组合的方式结合在一起，其实我们不用为此写一个copy constructor，默认的行为是正确的。<br>
 类对象的拷贝操作可以通过两个成员来定义<strong>拷贝构造函数( copy constructor )<strong>与</strong>拷贝赋值运算符( copy assìgnment )</strong>。<br>
 <code>Vector::Vector(const Vector&amp; a)</code> : copy constructor<br>
@@ -473,7 +396,7 @@ new会开辟一块内存，delete会释放一块内存。<br>
     delete []pstr;      //没有把16传递进去，怎么知道要清理几次呢？
 }
 </code></pre>
-<figure data-type="image" tabindex="1"><img src="https://reticenceji.github.io//post-images/1615198175254.jpeg" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="1"><img src="https://reticenceji.github.io/post-images/1615198175254.jpeg" alt="" loading="lazy"></figure>
 <center>在64位系统中前面开辟8字节</center>
 <p>所以我们有两种方式创建一个Object：一个是new，另一个是用RAII（资源获取即初始化）。他们的区别在于：</p>
 <ol>
@@ -664,7 +587,8 @@ public:
 <p>通过添加这个<code>virtual</code>，我们可以只用<code>foo</code>方便的调用到每个类型上正确的函数。virtual的意思是：<strong>当通过基类的指针或者引用调用该成员函数时，将根据指针指向的对象类型确定调用的函数，而非指针的类型。</strong></p>
 <p>可以试着把virtual去掉，会发现调用的都是<code>Shape.render()</code>，是一个静态绑定。另外，实际上我们只需要在基类上写上virtual。</p>
 <p>如果一个类有虚函数，编译器会自动为<strong>这个类型的对象在头部增加一个虚表指针（<code>vftable</code>）</strong>，指向虚函数表。虚函数表中存放着一个个的虚函数的地址。每一个类的实例上都多了一个虚表，增加内存代价，然后调用的时候也多了一层，间接调用。</p>
-<p>记住一个点，如果想利用多态性的话，基类的析构函数必须是virtual的。为什么呢？因为否则的话你用基类指针接住子类，调用这个指针指向的析构函数如果没有virtual的帮助的话会调用基类析构函数而不是本来应该调用的子类析构函数。你不要假设类的使用者不会这么做，你会很痛苦的。</p>
+<p>注意，<code>base = derive</code>是合法的，但是这个copy是不会把上面提到的<code>vptr</code>复制过去的，所以<code>base.xxx</code>调用的还是基类的方法。</p>
+<p>记住一个点，如果想利用多态性的话，基类的<strong>析构函数必须是virtual的</strong>。为什么呢？因为否则的话你用基类指针接住子类，调用这个指针指向的析构函数如果没有virtual的帮助的话会调用基类析构函数而不是本来应该调用的子类析构函数。你不要假设类的使用者不会这么做，你会很痛苦的。</p>
 <pre><code class="language-cpp">class Shape{
 public:
     virtual void render() = 0;	//纯虚函数
@@ -702,7 +626,7 @@ Derive&amp;=&gt;Base&amp;
 Derive*=&gt;Base*
 </code></pre>
 <p>动态绑定和静态绑定</p>
-<p>关于继承和虚函数的底层实现内存布局，在我的另一篇Blog《C++Q&amp;A》中有解释。</p>
+<p>关于继承和虚函数的底层实现内存布局，在另一篇<a href="/post/c-qanda/">Blog C++Q&amp;A</a>中有解释。</p>
 <h2 id="operator-overloading">operator overloading</h2>
 <p>可以重载的运算符。不过优先级是无法改变的，<strong>操作数个数</strong>(如果是member function要算上this)也是无法改变的。也就是说我们应该尽量维持他们的语义。如果C++中本身不存在的运算符也是无法添加的。</p>
 <table>
@@ -779,9 +703,10 @@ Complex operator+ (Complex const &amp;obj) const{
 }
 语义： x+y ===&gt; x.operator+(y)
     
-// 第二种写法，写成global function
+// 第二种写法，写成global function，没有了默认的self变量
 // 推荐双目运算符使用，看起来清楚一点
 // 要访问类内部的数据，所以用上了friend
+// 通过friend修饰可以访问私有变量
 class Complex {
 private:
     int real, imag;
@@ -798,7 +723,7 @@ Complex operator+ (Complex const &amp;c1, Complex const &amp;c2)
 <p>注意：</p>
 <ul>
 <li><code>E&amp; T::operator[] (int index)</code>返回的是引用</li>
-<li><code>++</code>和<code>--</code>让人迷惑。<code>T&amp; operator++()</code>是prefix++，<code>T operator++(int)</code> 是postfox++。这个int是一个占位符。</li>
+<li><code>++</code>和<code>--</code>让人迷惑。<code>T&amp; operator++()</code>是prefix++，<code>T operator++(int)</code> 是postfix++。这个int是一个占位符。</li>
 <li>运算符之间往往是联系很大的，你要合理的重用他们避免代码重复。比如<code>!=</code>和<code>==</code>，<code>&gt;</code>和<code>&lt;=</code>，<code>&lt;</code>和<code>&gt;=</code>；<code>+=</code>和<code>++</code>。</li>
 <li>类型强制转换运算符是单目运算符，也可以被重载，但只能重载为成员函数，不能重载为全局函数。<code>operator double();</code>这是一个对double强制类型转换的重载。</li>
 <li>赋值运算符<code>=</code>，Be sure to assign to all data members: pointers... Checkfor <strong>self-assignment</strong><code>if (this!= &amp;rhs)</code>.</li>
@@ -849,10 +774,10 @@ Complex operator+ (Complex const &amp;c1, Complex const &amp;c2)
 </table>
 <p>Extractor<code>&gt;&gt;</code>, Inserter<code>&lt;&lt;</code>, <strong>Manipulator</strong>.</p>
 <p><code>&lt;&lt;</code>：对于基本类型都已经定义好了。默认是忽略前导的whitespace的。我们可以为我们的类型自己重载这个运算符。<code>&gt;&gt;</code>也是。</p>
-<pre><code class="language-cpp">// 声明
+<pre><code class="language-cpp">// 声明 通过friend可以访问私有变量
 friend std::ostream &amp;operator&lt;&lt;(std::ostream &amp;output, const Fraction &amp;D);
 friend std::istream &amp;operator&gt;&gt;(std::istream &amp;input, Fraction &amp;D);
-// 定义
+// 定义，注意这个不是类方法，是没有默认的self变量的
 std::istream &amp;operator&gt;&gt;(std::istream &amp;input, Fraction &amp;D)
 {
     input &gt;&gt; D.numerator &gt;&gt; D.denominator;
@@ -1072,8 +997,8 @@ where
 <li>Iterators: begin() end() 不要对无效的迭代器进行任何操作！<code>li=L.erase(li)</code></li>
 </ul>
 <p>最常用的三个数据结构：map，vector，list</p>
-<figure data-type="image" tabindex="2"><img src="https://reticenceji.github.io//post-images/image-20210605203121551.png" alt="image-20210605203121551" loading="lazy"></figure>
-<figure data-type="image" tabindex="3"><img src="https://reticenceji.github.io//post-images/image-20210605203530117.png" alt="image-20210605203530117" loading="lazy"></figure>
+<figure data-type="image" tabindex="2"><img src="https://reticenceji.github.io/post-images/image-20210605203121551.png" alt="image-20210605203121551" loading="lazy"></figure>
+<figure data-type="image" tabindex="3"><img src="https://reticenceji.github.io/post-images/image-20210605203530117.png" alt="image-20210605203530117" loading="lazy"></figure>
 <p>然后因为这些东西加上泛型比较冗长，所以我们一般会用：</p>
 <ol>
 <li>typedef <code>typedefPBmap&lt;Name,list&lt;PhoneNum&gt;&gt;</code></li>
@@ -1120,6 +1045,32 @@ public:
 }
 </code></pre>
 <p>如果在析构函数发生了异常。。那就完了，不要让他抛异常。</p>
+<pre><code class="language-c++">// 关于执行顺序
+    // 一旦try里面发生了异常，会从上到下依次检查是否有匹配的catch块。
+        // 一旦匹配了，执行catch块的内容
+        // 如果没有匹配
+    // 如果try里面没有发生异常
+        // 继续执行，直到函数return(并没有真正返回，算出了返回值)
+// 执行finally块的内容
+// 函数返回
+int[] arr = new int[5];
+double b = 0;
+
+try{
+    arr[6] = 8;
+}
+catch (ArrayIndexOutOfBoundsException ex){
+    System.out.println(&quot;----&quot;);
+    b = 1/0;
+}catch (Exception e){
+    System.out.println(&quot;****&quot;);
+    e.printStackTrace();
+}finally {
+    arr[4] = 3;
+    System.out.println(arr[4]);
+}
+</code></pre>
+<p>C++ 标准库中有一些类代表异常，这些类都是从 exception 类派生而来的。一般来说我们尽量使用标准库的异常，不要自己定义异常类，虽然我们可以throw任何类实例。更一般来说，尽量不要让程序可能抛出异常。</p>
 <h3 id="智能指针">智能指针</h3>
 <p>C++智能指针，<code>unique_ptr</code>，<code>shared_ptr</code>，<code>weak_ptr</code></p>
 <p>基本的使用方法<code>unique_ptr&lt;A&gt; pa = new(A);</code>，C++11。最好的使用方法：<code>auto pa = make_unique&lt;A&gt;();</code>，括号里可以写A构造函数的参数，不过这个是C++14支持的。 unique_ptr是独占式指针，意味着<code>auto pa2 = pa;</code>等复制语义的语句是不被允许的，编译器会告诉你copy constructor/ copy assignment constructor都被删除了。<code>std::move)()</code>移动语义是被允许的。<code>pa.get()</code>可以把裸指针拿出来，虽然<code>pa</code>的使用和裸指针基本一样。</p>
@@ -1235,9 +1186,10 @@ void passByRawPtr(Resource *mResPtr) {}
 </code></pre>
 <p>一般来说第三个是比较好的传递参数的方式，在函数不需要拥有对象所有权的情况下。</p>
 
-              </div>
-              <div class="toc-container">
-                <ul class="markdownIt-TOC">
+<span id="footnote"></span>
+<div id = "warn"></div>
+</div>
+<div class="toc-container"><ul class="markdownIt-TOC">
 <li><a href="#c%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80">C++语言基础</a>
 <ul>
 <li><a href="#better-c">Better C</a>
@@ -1278,74 +1230,32 @@ void passByRawPtr(Resource *mResPtr) {}
 </ul>
 </li>
 </ul>
-
-              </div>
-            </div>
-          </article>
-        </div>
-
-        
-          <div class="next-post">
-            <div class="next">下一篇</div>
-            <a href="https://reticenceji.github.io/post/mi-ma-xue/">
-              <h3 class="post-title">
-                密码学算法介绍
-              </h3>
-            </a>
-          </div>
-        
-
-        
-
-        <div class="site-footer">
-  
-  <a class="rss" href="https://reticenceji.github.io//atom.xml" target="_blank">
-    <i class="ri-rss-line"></i> RSS
-  </a>
 </div>
+</div>
+<div id="fullPage"><canvas id="canvas"></canvas></div>
+</article>
+<div id="eof"><span>EOF</span></div><div class="round-shape-one"></div>
+<section>
+<div class="doc_comments">
 
-      </div>
-    </div>
-
-    <script>
-      hljs.initHighlightingOnLoad()
-
-      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
-
-      // This should probably be throttled.
-      // Especially because it triggers during smooth scrolling.
-      // https://lodash.com/docs/4.17.10#throttle
-      // You could do like...
-      // window.addEventListener("scroll", () => {
-      //    _.throttle(doThatStuff, 100);
-      // });
-      // Only not doing it here to keep this Pen dependency-free.
-
-      window.addEventListener("scroll", event => {
-        let fromTop = window.scrollY;
-
-        mainNavLinks.forEach((link, index) => {
-          let section = document.getElementById(decodeURI(link.hash).substring(1));
-          let nextSection = null
-          if (mainNavLinks[index + 1]) {
-            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
-          }
-          if (section.offsetTop <= fromTop) {
-            if (nextSection) {
-              if (nextSection.offsetTop > fromTop) {
-                link.classList.add("current");
-              } else {
-                link.classList.remove("current");    
-              }
-            } else {
-              link.classList.add("current");
-            }
-          } else {
-            link.classList.remove("current");
-          }
-        });
-      });
-
-    </script>
-  </body>
+</div></section>
+</div></div></div><script>
+"use strict";!function(){for(var n=document.getElementsByTagName("pre"),e=n.length,s=0;s<e;s++){n[s].innerHTML='<span class="line-number"></span>'+n[s].innerHTML+'<span class="cl"></span>';for(var a=n[s].innerHTML.split(/\n/).length,r=0;r<a-1;r++){n[s].getElementsByTagName("span")[0].innerHTML+="<span>"+(r+1)+"</span>"}}}();
+let mainNavLinks=document.querySelectorAll(".markdownIt-TOC a");window.addEventListener("scroll",event=>{let fromTop=window.scrollY;mainNavLinks.forEach((link,index)=>{let section=document.getElementById(decodeURI(link.hash).substring(1));let nextSection=null
+if(mainNavLinks[index+1]){nextSection=document.getElementById(decodeURI(mainNavLinks[index+1].hash).substring(1));}
+if(section.offsetTop<=fromTop){if(nextSection){if(nextSection.offsetTop>fromTop){link.classList.add("currentToc");}else{link.classList.remove("currentToc");}}else{link.classList.add("currentToc");}}else{link.classList.remove("currentToc");}});});
+var list=document.querySelectorAll(".katex");for(var i=0;i<list.length;i++){list[i].style.display="unset"};
+var h=document.documentElement,b=document.body,st="scrollTop",sh="scrollHeight",progress=document.querySelector(".progress"),scroll;document.addEventListener("scroll",function(){scroll=(h[st]||b[st])/((h[sh]||b[sh])-h.clientHeight)*100;progress.style.setProperty("--scroll",scroll+"%")});
+var wxScale=new WxScale({fullPage:document.querySelector("#fullPage"),canvas:document.querySelector("#canvas")});var imgBox=document.querySelectorAll("#md_block img");for(var i=0;i<imgBox.length;i++){imgBox[i].onclick=function(e){wxScale.start(this)}};
+content="本文最后更新于2021-03-02，已超过 1 年没有更新，涉及的内容可能已经失效！";var date1="2021-03-02 09:46:52";date1=date1.replace("-","/");var date2=new Date();var date3=date2.getTime()-new Date(date1).getTime();var days=Math.floor(date3/(24*3600*1000));if(days>=365){document.getElementById("warn").innerHTML=content};
+</script>
+<style>#magnifyImg{position:fixed;left:0;top:0;text-align:center;width:100%;display:none;z-index:9999}#magnifyImg img{object-fit:contain;background:#eaecef;padding:15px;border-radius:10px;height:auto;width:auto;vertical-align:middle}</style>
+<a id="scrollUp" href="#top" style="position: fixed; z-index: 2147483647; display: block;"></a><div class="footer animated fadeInDown"><div class="site_footer"><div class="mysocials"><div class="my_socials"><a href="https://github.com/reticenceji"title="github"><i class="iconfont icon-github"></i></a><a href="reticenceji@qq.com"title="envelope"><i class="iconfont icon-envelope"></i></a><a href="https://www.zhihu.com/people/reticenceji"title="zhihu"><i class="iconfont icon-zhihu"></i></a></div></div><div class="copyright"id="copyright">Copyright © 2018-2020 <a href="https://reticenceji.github.io" style="margin:0;">Reticence</a>.</div>
+<span style="display: inline;margin-right:15px;">👁<strong><span id="busuanzi_value_site_uv"></span></strong></span><span id="busuanzi_container_page_pv" style="display: inline;"><span>📚<strong>170</strong> posts</span></div></div>
+<script>
+console.log("\n %c \u26a1Theme: Bitcron-pro Author's Blog:https://blog.blinkstar.cn  Writen By Serence  \n\n", "color: #ffffff; background: rgba(49, 49, 49, 0.85); padding:5px 0;border-radius:5px;", );
+</script>
+<script src="https://cdn.jsdelivr.net/npm/instant.page@3.0.0/instantpage.min.js" type="module" defer></script>
+<script type="text/javascript" async src="https://reticenceji.github.io/media/js/prism.js"></script>
+</body>
 </html>

@@ -1,156 +1,37 @@
+<!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Database-事务 | Reticence</title>
-<link rel="shortcut icon" href="https://reticenceji.github.io//favicon.ico?v=1625191111418">
-<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
-<link rel="stylesheet" href="https://reticenceji.github.io//styles/main.css">
-<link rel="alternate" type="application/atom+xml" title="Database-事务 | Reticence - Atom Feed" href="https://reticenceji.github.io//atom.xml">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+<head>
+<link rel="shortcut icon" href="https://reticenceji.github.io/favicon.ico" type="image/x-icon" /><meta name="viewport"content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="apple-mobile-web-app-capable"content="yes"/><meta name="apple-mobile-web-app-status-bar-style"content="black"/><meta name="format-detection"content="telephone=no"/><meta name="renderer"content="webkit"><meta name="description"content=""><meta charset="UTF-8"><title>Database-事务 | Reticence</title>
+<link href="https://reticenceji.github.io/styles/main.css" type="text/css" rel="stylesheet" /><link href="https://at.alicdn.com/t/font_1621793_zatzzgvf30g.css" type="text/css" rel="stylesheet" /><link rel="stylesheet" href="https://reticenceji.github.io/media/css/katex.css"><script async src="https://cdn.jsdelivr.net/npm/busuanzi@2.3.0/bsz.pure.mini.min.js"></script><script src="https://reticenceji.github.io/media/js/magnify.min.js"></script><script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js"></script><script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body);"></script>
+<script type="text/javascript">function btn_toggle(){document.getElementById("hn").classList.contains("no-js")?document.getElementById("hn").classList.remove("no-js"):document.getElementById("hn").classList.add("no-js")}</script>
 
-<script>
-var _hmt = _hmt || [];
-(function() {
-  var hm = document.createElement("script");
-  hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
-  var s = document.getElementsByTagName("script")[0]; 
-  s.parentNode.insertBefore(hm, s);
-})();
-</script>
+<link rel="canonical" href="https://reticenceji.github.io/post/database-transaction/" />
+</head>
+<body>
+<div class="progress"></div><style>.progress{background:linear-gradient(to right,#87ceeb var(--scroll),transparent 0);background-repeat:no-repeat;position:fixed;width:100%;height:4px;z-index:1}</style><div class="darkmode-background"></div><div class="darkmode-layer"></div>
+<noscript><p class="warn" >本页面需要浏览器支持（启用）JavaScript</p></noscript><div class="header"><div class="logo_title"><div class="title animated fadeInDown"><a href="https://reticenceji.github.io"><img alt="logo" style="display:inline-block;" src="https://reticenceji.github.io/images/avatar.png"/></a><h1 title="Reticence" class="weaklink"><a  href="/">Reticence</a></h1>
 
+<div class="navbar weaklink">
+<div class="normal_nav">
+<div class="bitcron_nav_container"><div class="bitcron_nav"><div class="bitcron_nav"><div style="display:flex;justify-content:center;"><nav class="mixed_site_nav_wrap site_nav_wrap"><ul class="mixed_site_nav site_nav sm sm-base">	<li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/" class="selected active current nav__item" >Index</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/tags" class="selected active current nav__item" >Tags</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/archives" class="selected active current nav__item" >Archives</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/navigator.html" class="selected active current nav__item" >Navigator</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/post/about" class="selected active current nav__item" >About</a></li></ul></nav>
+<div style="float:right;margin-top:1em"><form id="gridea-search-form" data-update="1578893743252" action="/search/index.html"><input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="Search..."></form></div><div style="margin-left:0.5em;margin-top:1.2em"><input id="switch_default" onclick="mobileBtn()" type="checkbox" class="switch_default"><label for="switch_default" class="toggleBtn"></label></div></div>
+<div class="clear clear_nav_inline_end"></div></div></div><div class="clear clear_nav_end"></div></div></div><div class="hamberger" href="javascript:void(0)" onclick="btn_toggle();"><i class="iconfont icon-category"></i></div></div></div></div>
+<div id="hn" class="no-js hidden_nav animated fadeInDown"><div class="bitcron_nav_container"><div class="bitcron_nav"><nav class="mixed_site_nav_wrap site_nav_wrap"><ul class="mixed_site_nav site_nav sm sm-base">	<li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/" class="selected active current nav__item" >Index</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/tags" class="selected active current nav__item" >Tags</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/archives" class="selected active current nav__item" >Archives</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/navigator.html" class="selected active current nav__item" >Navigator</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/post/about" class="selected active current nav__item" >About</a></li></ul><div class="clear clear_nav_inline_end"></div></nav></div><div class="clear clear_nav_end"></div></div>
+<div style="display:flex;justify-content:center;inline-block;text-align:center;margin-top:7%"><div><form id="gridea-search-form" data-update="1625583395117" action="/search/index.html"><input class="search-input" autocomplete="off" spellcheck="false" name="q"  placeholder="Search..." /></form></div><div style="margin-left:0.5em"><input id="switch_default_h" onclick="mobileBtn()" type="checkbox" class="switch_default"><label for="switch_default" class="toggleBtn"></label></div></div>
+</div></div>
+<script>function enableDarkmode(){document.body.classList.add("darkmode"),document.getElementById("switch_default").checked=1,document.getElementById("switch_default_h").checked=1}function removeDarkmode(){document.body.classList.remove("darkmode"),document.getElementById("switch_default").checked=0,document.getElementById("switch_default_h").checked=0}function getCookie(a){var b,c=new RegExp("(^| )"+a+"=([^;]*)(;|$)");return(b=document.cookie.match(c))?unescape(b[2]):null}cookie=getCookie("darkmode"),"enable"==cookie&&enableDarkmode(),window.matchMedia("(prefers-color-scheme: dark)").matches&&"disable"!==cookie&&(enableDarkmode(),document.cookie="darkmode=enable; path=/");var mobileBtn=function(){1==document.getElementById("switch_default").checked?(enableDarkmode(),document.cookie="darkmode=enable; path=/"):(removeDarkmode(),document.cookie="darkmode=disable; path=/")};</script>
 
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-90HNEFFE0M"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+<div class="main"><div class="main-inner"><div class="content">
+<article class="post">
+<h2 class="post_title sm_margin"><a>Database-事务</a></h2>
+<script>function lan(){if(document.getElementById("lan").innerText=="繁"){var s=document.getElementById("tongwenlet_cn");if(s!=null){document.body.removeChild(s)}var s=document.createElement("script");s.language="javascript";s.type="text/javascript";s.src="https://cdn.jsdelivr.net/gh/qyxtim/Static@1.1/bookmarklet_tw.js";s.id="tongwenlet_cn";document.body.appendChild(s);document.getElementById("lan").innerHTML="简"}else{if(document.getElementById("lan").innerText=="簡"){var s=document.getElementById("tongwenlet_cn");if(s!=null){document.body.removeChild(s)}var s=document.createElement("script");s.language="javascript";s.type="text/javascript";s.src="https://cdn.jsdelivr.net/gh/qyxtim/Static@1.1/bookmarklet_cn.js";s.id="tongwenlet_cn";document.body.appendChild(s);document.getElementById("lan").innerHTML="繁"}}};</script>
+<section class="post_details"><i class="iconfont icon-calendar"></i><span style="margin-right:15px"> 2021-05-27</span><i class="iconfont icon-browse"></i><span style="margin-right:15px"> <span id="busuanzi_value_page_pv"></span> Views</span><i class="iconfont icon-category"></i><span class="weaklink" style="margin-right:15px">	<a href="https://reticenceji.github.io/tag/uXp2zQxRH/" class="tag">Database</a></span><i class="iconfont icon-caret-down"></i><span style="margin-right:15px">4784字</span><i class="iconfont icon-naozhong"></i><span style="margin-right:15px">19 min read</span><a id="lan" href="javascript:void(0);"onclick="lan();"title="调整简繁体" style="margin-right:15px;">繁</a>
+</section>
 
-  gtag('config', 'G-90HNEFFE0M');
-</script>
-
-
-    <meta name="description" content="DBMS比起文件系统，有下面的优势。这些优势的实现离不开事务(Transaction)。或者说这些就是事务的特点：
-并发：Concurrent executions of multiple users or multi-programs.
-..." />
-    <meta name="keywords" content="Database" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
-    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
-  </head>
-  <body>
-    <div class="main">
-      <div class="main-content">
-        <div class="site-header">
-  <a href="https://reticenceji.github.io/">
-  <img class="avatar" src="https://reticenceji.github.io//images/avatar.png?v=1625191111418" alt="">
-  </a>
-  <h1 class="site-title">
-    Reticence
-  </h1>
-  <p class="site-description">
-    <script>
-var _hmt = _hmt || [];
-(function() {
-  var hm = document.createElement("script");
-  hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
-  var s = document.getElementsByTagName("script")[0]; 
-  s.parentNode.insertBefore(hm, s);
-})();
-</script>
-  </p>
-  <div class="menu-container">
-    
-      
-        <a href="/" class="menu">
-          Index
-        </a>
-      
-    
-      
-        <a href="/tags" class="menu">
-          Classification
-        </a>
-      
-    
-      
-        <a href="/archives" class="menu">
-          Archives
-        </a>
-      
-    
-      
-        <a href="/navigator.html" class="menu">
-          Navigator
-        </a>
-      
-    
-      
-        <a href="/post/fei-md-ge-shi-bi-ji-hui-zong" class="menu">
-          Notes
-        </a>
-      
-    
-      
-        <a href="/post/about" class="menu">
-          About
-        </a>
-      
-    
-  </div>
-  <div class="social-container">
-    
-      
-        <a href="https://github.com/reticenceji" target="_blank">
-          <i class="ri-github-line"></i>
-        </a>
-      
-    
-      
-    
-      
-    
-      
-        <a href="https://www.zhihu.com/people/reticenceji" target="_blank">
-          <i class="ri-zhihu-line"></i>
-        </a>
-      
-    
-      
-    
-  </div>
-  <script>
-  var _hmt = _hmt || [];
-  (function() {
-    var hm = document.createElement("script");
-    hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
-    var s = document.getElementsByTagName("script")[0]; 
-    s.parentNode.insertBefore(hm, s);
-  })();
-  </script>
-</div>
-
-        <div class="post-detail">
-          <article class="post">
-            <h2 class="post-title">
-              Database-事务
-            </h2>
-            <div class="post-info">
-              <span>
-                2021-05-27
-              </span>
-              <span>
-                19 min read
-              </span>
-              
-                <a href="https://reticenceji.github.io/tag/uXp2zQxRH/" class="post-tag">
-                  # Database
-                </a>
-              
-            </div>
-            
-            <div class="post-content-wrapper">
-              <div class="post-content">
-                <p>DBMS比起文件系统，有下面的优势。这些优势的实现离不开<strong>事务(Transaction)</strong>。或者说这些就是事务的特点：</p>
+<div style="display:flex">
+<div class="md_block" id="md_block">
+<div class="round-shape-one"></div>
+<p>DBMS比起文件系统，有下面的优势。这些优势的实现离不开<strong>事务(Transaction)</strong>。或者说这些就是事务的特点：</p>
 <p>并发：<strong>Concurrent executions</strong> of multiple users or multi-programs.<br>
 可恢复：Failures of various kinds, such as hardware failures and system crashes.</p>
 <!-- more -->
@@ -181,7 +62,7 @@ var _hmt = _hmt || [];
 <li>Aborted, after the transaction has been rolled back and the <u>database has been restored to its state prior to the start of the transaction.</u></li>
 <li>Committed, after successful completion.</li>
 </ul>
-<figure data-type="image" tabindex="1"><img src="https://reticenceji.github.io//post-images/image-20210527154701853.png" alt="image-20210527154701853" loading="lazy"></figure>
+<figure data-type="image" tabindex="1"><img src="https://reticenceji.github.io/post-images/image-20210527154701853.png" alt="image-20210527154701853" loading="lazy"></figure>
 <h3 id="事务的隔离性">事务的隔离性</h3>
 <p>如果事务<strong>串行serially</strong>发生我们就不用考虑隔离性。但是为了性能考虑事务往往是<strong>并发concurrency</strong>的。</p>
 <p>我们通过调度让并发在某种程度上等价于一个串行调度，叫做可串行化。</p>
@@ -206,7 +87,7 @@ transactions participating in the schedule. The set of edges consists of all edg
 <h3 id="recover">Recover</h3>
 <h2 id="并发系统">并发系统</h2>
 <p>并发导致竞争，产生问题。</p>
-<figure data-type="image" tabindex="2"><img src="https://reticenceji.github.io//post-images/image-20210527110120859.png" alt="image-20210527110120859" loading="lazy"></figure>
+<figure data-type="image" tabindex="2"><img src="https://reticenceji.github.io/post-images/image-20210527110120859.png" alt="image-20210527110120859" loading="lazy"></figure>
 <p>上面介绍了如何判断事务是否可串行化，但是我们不可能枚举每一种情况然后再去判断。我们有以下这些并发控制的方法。</p>
 <p>锁：</p>
 <ol>
@@ -221,7 +102,7 @@ transactions participating in the schedule. The set of edges consists of all edg
 <li>缩减阶段(shrinking phase)：事务可以释放锁，但不能获得锁。</li>
 </ol>
 <p>我们称最后加锁的位置（增长阶段的结束）为<strong>Lock point</strong>。多个事务根据他们的Lock point进行排序，得到的顺序就是事务的一个可串行化顺序。它可以保证得到的调度是冲突可串的，但是不保证不会产生死锁，需要通过别的方法保证死锁不出现。</p>
-<figure data-type="image" tabindex="3"><img src="https://reticenceji.github.io//post-images/image-20210605200706697.png" alt="两阶段封锁协议冲突可串行化的证明" loading="lazy"></figure>
+<figure data-type="image" tabindex="3"><img src="https://reticenceji.github.io/post-images/image-20210605200706697.png" alt="两阶段封锁协议冲突可串行化的证明" loading="lazy"></figure>
 <p>Strict Two-Phase Locking Protocol: 要求事务的排他锁在事务提交之后才可以释放。这样可以放置出现级联回滚。降低并发性。</p>
 <p>Rigorous Two-Phase Locking Protocol: 要求事务在提交之前不可以释放任何锁。降低并发性。</p>
 <p>一个简单的机制：</p>
@@ -241,13 +122,13 @@ transactions participating in the schedule. The set of edges consists of all edg
 </ol>
 </blockquote>
 <p>与两阶段封锁协议相比，他不会产生死锁。</p>
-<figure data-type="image" tabindex="4"><img src="https://reticenceji.github.io//post-images/image-20210630211409773.png" alt="image-20210630211409773" loading="lazy"></figure>
+<figure data-type="image" tabindex="4"><img src="https://reticenceji.github.io/post-images/image-20210630211409773.png" alt="image-20210630211409773" loading="lazy"></figure>
 <h3 id="多粒度和意向锁">多粒度和意向锁</h3>
 <p>有时候我们可能需要封锁整个数据表或者数据库，这时候如果我们一个一个数据加锁代价是不能接受的。所以我们出现了允许系统定义Multiple Granularity的锁的机制。我们的锁可以形成一个树形结构：</p>
-<figure data-type="image" tabindex="5"><img src="https://reticenceji.github.io//post-images/image-20210603112314523.png" alt="image-20210603112314523" loading="lazy"></figure>
+<figure data-type="image" tabindex="5"><img src="https://reticenceji.github.io/post-images/image-20210603112314523.png" alt="image-20210603112314523" loading="lazy"></figure>
 <p>这样我们如果要封锁整个数据库，就可以直接在DB上加锁。但是这样我们不是还要遍历整个树看看叶节点有没有加锁吗？代价不能接受！所以我们引入<strong>意向锁intention lock</strong>。举个例子，比如如果我们要在Fa加上排他锁X，那么我们应该在A1和DB上都加上意向锁IX。</p>
 <center>X：排他锁，S：共享锁；IX：意向排他锁；IS意向共享锁；SIX：S+IX。锁的兼容性</center>
-<figure data-type="image" tabindex="6"><img src="https://reticenceji.github.io//post-images/image-20210603112835950.png" alt="image-20210603112835950" loading="lazy"></figure>
+<figure data-type="image" tabindex="6"><img src="https://reticenceji.github.io/post-images/image-20210603112835950.png" alt="image-20210603112835950" loading="lazy"></figure>
 <p>这样，加锁需要自顶向下遍历，释放需要自底向上遍历。规则：</p>
 <ol>
 <li>事务T必须遵守上面的锁类型相容函数。</li>
@@ -339,7 +220,7 @@ transactions participating in the schedule. The set of edges consists of all edg
 </ol>
 </li>
 </ol>
-<figure data-type="image" tabindex="7"><img src="https://reticenceji.github.io//post-images/image-20210610202007987.png" alt="image-20210610202007987" loading="lazy"></figure>
+<figure data-type="image" tabindex="7"><img src="https://reticenceji.github.io/post-images/image-20210610202007987.png" alt="image-20210610202007987" loading="lazy"></figure>
 <p><strong>非易失性存储器损坏</strong>。虽然这个时期发生的概率较小，但是他毕竟不是稳定存储器，我们还是要考虑他丢失的可能性。</p>
 <p>基本的解决办法是周期的将整个数据库的内容dump到稳定存储器。比如一天一次。如果发生故障，先利用dump的数据，然后就只用利用日志恢复还没dump的一部分了。</p>
 <h3 id="逻辑undo">逻辑undo</h3>
@@ -362,7 +243,7 @@ transactions participating in the schedule. The set of edges consists of all edg
 <li>如果遇到一个<code>&lt;operation-abort&gt;</code>，就跳过前面的所有记录直到遇到<code>&lt;Ti,Oj,operation-begin&gt;</code>。</li>
 <li>遇到<code>&lt;Ti,start&gt;</code>回滚事务就完成了，添加一个<code>&lt;Ti,abort&gt;</code>。</li>
 </ol>
-<figure data-type="image" tabindex="8"><img src="https://reticenceji.github.io//post-images/image-20210611124734404.png" alt="image-20210611124734404" loading="lazy"></figure>
+<figure data-type="image" tabindex="8"><img src="https://reticenceji.github.io/post-images/image-20210611124734404.png" alt="image-20210611124734404" loading="lazy"></figure>
 <h3 id="aries算法star">ARIES算法⭐️</h3>
 <p>有实用价值的算法。也比较复杂。论文原文：<a href="https://www.cs.berkeley.edu/~brewer/cs262/Aries.pdf">ARIES: A Transaction Recovery Method Supporting Fine-Granularity Locking and Partial Rollbacks Using Write-Ahead Logging</a>。下面仅是概览</p>
 <h4 id="数据结构">数据结构</h4>
@@ -370,7 +251,7 @@ transactions participating in the schedule. The set of edges consists of all edg
 <p>每个页也维护一个PageLSN。每当一个更新操作发生在某个Page上时，该操作将其日志记录的LSN存储在该Page的PageLSN 域上。在恢复的撤销阶段，<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>L</mi><mi>S</mi><mi>N</mi><mo>≤</mo><mi>P</mi><mi>a</mi><mi>g</mi><mi>e</mi><mi>L</mi><mi>S</mi><mi>N</mi></mrow><annotation encoding="application/x-tex">LSN\le PageLSN</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8193em;vertical-align:-0.13597em;"></span><span class="mord mathdefault">L</span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8777699999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">P</span><span class="mord mathdefault">a</span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="mord mathdefault">e</span><span class="mord mathdefault">L</span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span></span></span></span>的日志记录将不在该页上执行，因为他的动作已经反映在该页上了。</p>
 <p><strong>脏页表 DirtyPageTable</strong>包含一个在数据库缓冲区已更新的页的列表。它为每一个page保存一个PageLSN和一个RecLSN，其中ReCLSN用于标识已经实施于该page的磁盘上的版本的日志记录。</p>
 <p><strong>检查点日志记录CheckPoint log record</strong>包含脏页表和活动事务的列表。检查点日志记录也为每个事务记录他的LastLSN，就是每个事务所写的最后一个日志记录的LSN。</p>
-<figure data-type="image" tabindex="9"><img src="https://reticenceji.github.io//post-images/image-20210612143747598.png" alt="image-20210612143747598" loading="lazy"></figure>
+<figure data-type="image" tabindex="9"><img src="https://reticenceji.github.io/post-images/image-20210612143747598.png" alt="image-20210612143747598" loading="lazy"></figure>
 <h4 id="恢复算法-2">恢复算法</h4>
 <p>ARIES从系统崩溃中的恢复过程经历三个阶段</p>
 <ol>
@@ -396,9 +277,10 @@ record.</li>
 <p>undo pass: 反向扫描，直到Undo list空了为止</p>
 <p>​</p>
 
-              </div>
-              <div class="toc-container">
-                <ul class="markdownIt-TOC">
+<span id="footnote"></span>
+<div id = "warn"></div>
+</div>
+<div class="toc-container"><ul class="markdownIt-TOC">
 <li>
 <ul>
 <li><a href="#%E4%BA%8B%E5%8A%A1">事务</a>
@@ -434,74 +316,32 @@ record.</li>
 </ul>
 </li>
 </ul>
-
-              </div>
-            </div>
-          </article>
-        </div>
-
-        
-          <div class="next-post">
-            <div class="next">下一篇</div>
-            <a href="https://reticenceji.github.io/post/rust-ffi/">
-              <h3 class="post-title">
-                Rust-FFI
-              </h3>
-            </a>
-          </div>
-        
-
-        
-
-        <div class="site-footer">
-  
-  <a class="rss" href="https://reticenceji.github.io//atom.xml" target="_blank">
-    <i class="ri-rss-line"></i> RSS
-  </a>
 </div>
+</div>
+<div id="fullPage"><canvas id="canvas"></canvas></div>
+</article>
+<div id="eof"><span>EOF</span></div><div class="round-shape-one"></div>
+<section>
+<div class="doc_comments">
 
-      </div>
-    </div>
-
-    <script>
-      hljs.initHighlightingOnLoad()
-
-      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
-
-      // This should probably be throttled.
-      // Especially because it triggers during smooth scrolling.
-      // https://lodash.com/docs/4.17.10#throttle
-      // You could do like...
-      // window.addEventListener("scroll", () => {
-      //    _.throttle(doThatStuff, 100);
-      // });
-      // Only not doing it here to keep this Pen dependency-free.
-
-      window.addEventListener("scroll", event => {
-        let fromTop = window.scrollY;
-
-        mainNavLinks.forEach((link, index) => {
-          let section = document.getElementById(decodeURI(link.hash).substring(1));
-          let nextSection = null
-          if (mainNavLinks[index + 1]) {
-            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
-          }
-          if (section.offsetTop <= fromTop) {
-            if (nextSection) {
-              if (nextSection.offsetTop > fromTop) {
-                link.classList.add("current");
-              } else {
-                link.classList.remove("current");    
-              }
-            } else {
-              link.classList.add("current");
-            }
-          } else {
-            link.classList.remove("current");
-          }
-        });
-      });
-
-    </script>
-  </body>
+</div></section>
+</div></div></div><script>
+"use strict";!function(){for(var n=document.getElementsByTagName("pre"),e=n.length,s=0;s<e;s++){n[s].innerHTML='<span class="line-number"></span>'+n[s].innerHTML+'<span class="cl"></span>';for(var a=n[s].innerHTML.split(/\n/).length,r=0;r<a-1;r++){n[s].getElementsByTagName("span")[0].innerHTML+="<span>"+(r+1)+"</span>"}}}();
+let mainNavLinks=document.querySelectorAll(".markdownIt-TOC a");window.addEventListener("scroll",event=>{let fromTop=window.scrollY;mainNavLinks.forEach((link,index)=>{let section=document.getElementById(decodeURI(link.hash).substring(1));let nextSection=null
+if(mainNavLinks[index+1]){nextSection=document.getElementById(decodeURI(mainNavLinks[index+1].hash).substring(1));}
+if(section.offsetTop<=fromTop){if(nextSection){if(nextSection.offsetTop>fromTop){link.classList.add("currentToc");}else{link.classList.remove("currentToc");}}else{link.classList.add("currentToc");}}else{link.classList.remove("currentToc");}});});
+var list=document.querySelectorAll(".katex");for(var i=0;i<list.length;i++){list[i].style.display="unset"};
+var h=document.documentElement,b=document.body,st="scrollTop",sh="scrollHeight",progress=document.querySelector(".progress"),scroll;document.addEventListener("scroll",function(){scroll=(h[st]||b[st])/((h[sh]||b[sh])-h.clientHeight)*100;progress.style.setProperty("--scroll",scroll+"%")});
+var wxScale=new WxScale({fullPage:document.querySelector("#fullPage"),canvas:document.querySelector("#canvas")});var imgBox=document.querySelectorAll("#md_block img");for(var i=0;i<imgBox.length;i++){imgBox[i].onclick=function(e){wxScale.start(this)}};
+content="本文最后更新于2021-05-27，已超过 1 年没有更新，涉及的内容可能已经失效！";var date1="2021-05-27 10:56:20";date1=date1.replace("-","/");var date2=new Date();var date3=date2.getTime()-new Date(date1).getTime();var days=Math.floor(date3/(24*3600*1000));if(days>=365){document.getElementById("warn").innerHTML=content};
+</script>
+<style>#magnifyImg{position:fixed;left:0;top:0;text-align:center;width:100%;display:none;z-index:9999}#magnifyImg img{object-fit:contain;background:#eaecef;padding:15px;border-radius:10px;height:auto;width:auto;vertical-align:middle}</style>
+<a id="scrollUp" href="#top" style="position: fixed; z-index: 2147483647; display: block;"></a><div class="footer animated fadeInDown"><div class="site_footer"><div class="mysocials"><div class="my_socials"><a href="https://github.com/reticenceji"title="github"><i class="iconfont icon-github"></i></a><a href="reticenceji@qq.com"title="envelope"><i class="iconfont icon-envelope"></i></a><a href="https://www.zhihu.com/people/reticenceji"title="zhihu"><i class="iconfont icon-zhihu"></i></a></div></div><div class="copyright"id="copyright">Copyright © 2018-2020 <a href="https://reticenceji.github.io" style="margin:0;">Reticence</a>.</div>
+<span style="display: inline;margin-right:15px;">👁<strong><span id="busuanzi_value_site_uv"></span></strong></span><span id="busuanzi_container_page_pv" style="display: inline;"><span>📚<strong>170</strong> posts</span></div></div>
+<script>
+console.log("\n %c \u26a1Theme: Bitcron-pro Author's Blog:https://blog.blinkstar.cn  Writen By Serence  \n\n", "color: #ffffff; background: rgba(49, 49, 49, 0.85); padding:5px 0;border-radius:5px;", );
+</script>
+<script src="https://cdn.jsdelivr.net/npm/instant.page@3.0.0/instantpage.min.js" type="module" defer></script>
+<script type="text/javascript" async src="https://reticenceji.github.io/media/js/prism.js"></script>
+</body>
 </html>

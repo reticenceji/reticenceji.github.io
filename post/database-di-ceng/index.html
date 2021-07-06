@@ -1,163 +1,37 @@
+<!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Database-存储和查询 | Reticence</title>
-<link rel="shortcut icon" href="https://reticenceji.github.io//favicon.ico?v=1625191111418">
-<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
-<link rel="stylesheet" href="https://reticenceji.github.io//styles/main.css">
-<link rel="alternate" type="application/atom+xml" title="Database-存储和查询 | Reticence - Atom Feed" href="https://reticenceji.github.io//atom.xml">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+<head>
+<link rel="shortcut icon" href="https://reticenceji.github.io/favicon.ico" type="image/x-icon" /><meta name="viewport"content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="apple-mobile-web-app-capable"content="yes"/><meta name="apple-mobile-web-app-status-bar-style"content="black"/><meta name="format-detection"content="telephone=no"/><meta name="renderer"content="webkit"><meta name="description"content=""><meta charset="UTF-8"><title>Database-存储和查询 | Reticence</title>
+<link href="https://reticenceji.github.io/styles/main.css" type="text/css" rel="stylesheet" /><link href="https://at.alicdn.com/t/font_1621793_zatzzgvf30g.css" type="text/css" rel="stylesheet" /><link rel="stylesheet" href="https://reticenceji.github.io/media/css/katex.css"><script async src="https://cdn.jsdelivr.net/npm/busuanzi@2.3.0/bsz.pure.mini.min.js"></script><script src="https://reticenceji.github.io/media/js/magnify.min.js"></script><script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js"></script><script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body);"></script>
+<script type="text/javascript">function btn_toggle(){document.getElementById("hn").classList.contains("no-js")?document.getElementById("hn").classList.remove("no-js"):document.getElementById("hn").classList.add("no-js")}</script>
 
-<script>
-var _hmt = _hmt || [];
-(function() {
-  var hm = document.createElement("script");
-  hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
-  var s = document.getElementsByTagName("script")[0]; 
-  s.parentNode.insertBefore(hm, s);
-})();
-</script>
+<link rel="canonical" href="https://reticenceji.github.io/post/database-di-ceng/" />
+</head>
+<body>
+<div class="progress"></div><style>.progress{background:linear-gradient(to right,#87ceeb var(--scroll),transparent 0);background-repeat:no-repeat;position:fixed;width:100%;height:4px;z-index:1}</style><div class="darkmode-background"></div><div class="darkmode-layer"></div>
+<noscript><p class="warn" >本页面需要浏览器支持（启用）JavaScript</p></noscript><div class="header"><div class="logo_title"><div class="title animated fadeInDown"><a href="https://reticenceji.github.io"><img alt="logo" style="display:inline-block;" src="https://reticenceji.github.io/images/avatar.png"/></a><h1 title="Reticence" class="weaklink"><a  href="/">Reticence</a></h1>
 
+<div class="navbar weaklink">
+<div class="normal_nav">
+<div class="bitcron_nav_container"><div class="bitcron_nav"><div class="bitcron_nav"><div style="display:flex;justify-content:center;"><nav class="mixed_site_nav_wrap site_nav_wrap"><ul class="mixed_site_nav site_nav sm sm-base">	<li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/" class="selected active current nav__item" >Index</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/tags" class="selected active current nav__item" >Tags</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/archives" class="selected active current nav__item" >Archives</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/navigator.html" class="selected active current nav__item" >Navigator</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/post/about" class="selected active current nav__item" >About</a></li></ul></nav>
+<div style="float:right;margin-top:1em"><form id="gridea-search-form" data-update="1578893743252" action="/search/index.html"><input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="Search..."></form></div><div style="margin-left:0.5em;margin-top:1.2em"><input id="switch_default" onclick="mobileBtn()" type="checkbox" class="switch_default"><label for="switch_default" class="toggleBtn"></label></div></div>
+<div class="clear clear_nav_inline_end"></div></div></div><div class="clear clear_nav_end"></div></div></div><div class="hamberger" href="javascript:void(0)" onclick="btn_toggle();"><i class="iconfont icon-category"></i></div></div></div></div>
+<div id="hn" class="no-js hidden_nav animated fadeInDown"><div class="bitcron_nav_container"><div class="bitcron_nav"><nav class="mixed_site_nav_wrap site_nav_wrap"><ul class="mixed_site_nav site_nav sm sm-base">	<li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/" class="selected active current nav__item" >Index</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/tags" class="selected active current nav__item" >Tags</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/archives" class="selected active current nav__item" >Archives</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/navigator.html" class="selected active current nav__item" >Navigator</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/post/about" class="selected active current nav__item" >About</a></li></ul><div class="clear clear_nav_inline_end"></div></nav></div><div class="clear clear_nav_end"></div></div>
+<div style="display:flex;justify-content:center;inline-block;text-align:center;margin-top:7%"><div><form id="gridea-search-form" data-update="1625583395117" action="/search/index.html"><input class="search-input" autocomplete="off" spellcheck="false" name="q"  placeholder="Search..." /></form></div><div style="margin-left:0.5em"><input id="switch_default_h" onclick="mobileBtn()" type="checkbox" class="switch_default"><label for="switch_default" class="toggleBtn"></label></div></div>
+</div></div>
+<script>function enableDarkmode(){document.body.classList.add("darkmode"),document.getElementById("switch_default").checked=1,document.getElementById("switch_default_h").checked=1}function removeDarkmode(){document.body.classList.remove("darkmode"),document.getElementById("switch_default").checked=0,document.getElementById("switch_default_h").checked=0}function getCookie(a){var b,c=new RegExp("(^| )"+a+"=([^;]*)(;|$)");return(b=document.cookie.match(c))?unescape(b[2]):null}cookie=getCookie("darkmode"),"enable"==cookie&&enableDarkmode(),window.matchMedia("(prefers-color-scheme: dark)").matches&&"disable"!==cookie&&(enableDarkmode(),document.cookie="darkmode=enable; path=/");var mobileBtn=function(){1==document.getElementById("switch_default").checked?(enableDarkmode(),document.cookie="darkmode=enable; path=/"):(removeDarkmode(),document.cookie="darkmode=disable; path=/")};</script>
 
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-90HNEFFE0M"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+<div class="main"><div class="main-inner"><div class="content">
+<article class="post">
+<h2 class="post_title sm_margin"><a>Database-存储和查询</a></h2>
+<script>function lan(){if(document.getElementById("lan").innerText=="繁"){var s=document.getElementById("tongwenlet_cn");if(s!=null){document.body.removeChild(s)}var s=document.createElement("script");s.language="javascript";s.type="text/javascript";s.src="https://cdn.jsdelivr.net/gh/qyxtim/Static@1.1/bookmarklet_tw.js";s.id="tongwenlet_cn";document.body.appendChild(s);document.getElementById("lan").innerHTML="简"}else{if(document.getElementById("lan").innerText=="簡"){var s=document.getElementById("tongwenlet_cn");if(s!=null){document.body.removeChild(s)}var s=document.createElement("script");s.language="javascript";s.type="text/javascript";s.src="https://cdn.jsdelivr.net/gh/qyxtim/Static@1.1/bookmarklet_cn.js";s.id="tongwenlet_cn";document.body.appendChild(s);document.getElementById("lan").innerHTML="繁"}}};</script>
+<section class="post_details"><i class="iconfont icon-calendar"></i><span style="margin-right:15px"> 2021-05-06</span><i class="iconfont icon-browse"></i><span style="margin-right:15px"> <span id="busuanzi_value_page_pv"></span> Views</span><i class="iconfont icon-category"></i><span class="weaklink" style="margin-right:15px">	<a href="https://reticenceji.github.io/tag/uXp2zQxRH/" class="tag">Database</a></span><i class="iconfont icon-caret-down"></i><span style="margin-right:15px">5029字</span><i class="iconfont icon-naozhong"></i><span style="margin-right:15px">22 min read</span><a id="lan" href="javascript:void(0);"onclick="lan();"title="调整简繁体" style="margin-right:15px;">繁</a>
+</section>
 
-  gtag('config', 'G-90HNEFFE0M');
-</script>
-
-
-    <meta name="description" content="数据库管理系统主要有两个部分，一个是查询，一个是存储。
-
-Query processor
-
-Parsing and translation
-Optimization
-Evaluation (Execution)
-
-
-Storage mana..." />
-    <meta name="keywords" content="Database" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
-    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
-  </head>
-  <body>
-    <div class="main">
-      <div class="main-content">
-        <div class="site-header">
-  <a href="https://reticenceji.github.io/">
-  <img class="avatar" src="https://reticenceji.github.io//images/avatar.png?v=1625191111418" alt="">
-  </a>
-  <h1 class="site-title">
-    Reticence
-  </h1>
-  <p class="site-description">
-    <script>
-var _hmt = _hmt || [];
-(function() {
-  var hm = document.createElement("script");
-  hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
-  var s = document.getElementsByTagName("script")[0]; 
-  s.parentNode.insertBefore(hm, s);
-})();
-</script>
-  </p>
-  <div class="menu-container">
-    
-      
-        <a href="/" class="menu">
-          Index
-        </a>
-      
-    
-      
-        <a href="/tags" class="menu">
-          Classification
-        </a>
-      
-    
-      
-        <a href="/archives" class="menu">
-          Archives
-        </a>
-      
-    
-      
-        <a href="/navigator.html" class="menu">
-          Navigator
-        </a>
-      
-    
-      
-        <a href="/post/fei-md-ge-shi-bi-ji-hui-zong" class="menu">
-          Notes
-        </a>
-      
-    
-      
-        <a href="/post/about" class="menu">
-          About
-        </a>
-      
-    
-  </div>
-  <div class="social-container">
-    
-      
-        <a href="https://github.com/reticenceji" target="_blank">
-          <i class="ri-github-line"></i>
-        </a>
-      
-    
-      
-    
-      
-    
-      
-        <a href="https://www.zhihu.com/people/reticenceji" target="_blank">
-          <i class="ri-zhihu-line"></i>
-        </a>
-      
-    
-      
-    
-  </div>
-  <script>
-  var _hmt = _hmt || [];
-  (function() {
-    var hm = document.createElement("script");
-    hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
-    var s = document.getElementsByTagName("script")[0]; 
-    s.parentNode.insertBefore(hm, s);
-  })();
-  </script>
-</div>
-
-        <div class="post-detail">
-          <article class="post">
-            <h2 class="post-title">
-              Database-存储和查询
-            </h2>
-            <div class="post-info">
-              <span>
-                2021-05-06
-              </span>
-              <span>
-                22 min read
-              </span>
-              
-                <a href="https://reticenceji.github.io/tag/uXp2zQxRH/" class="post-tag">
-                  # Database
-                </a>
-              
-            </div>
-            
-            <div class="post-content-wrapper">
-              <div class="post-content">
-                <p>数据库管理系统主要有两个部分，一个是<strong>查询</strong>，一个是<strong>存储</strong>。</p>
+<div style="display:flex">
+<div class="md_block" id="md_block">
+<div class="round-shape-one"></div>
+<p>数据库管理系统主要有两个部分，一个是<strong>查询</strong>，一个是<strong>存储</strong>。</p>
 <ul>
 <li>Query processor
 <ul>
@@ -215,7 +89,7 @@ var _hmt = _hmt || [];
 <p>比如变长数组，变长字符串，二进制文件。</p>
 <p>一个简单的办法是记录metadata{location, size}，用来指向真正的Records内容。</p>
 <p>删除的话还是要移动Records，让Free Space连续。</p>
-<figure data-type="image" tabindex="1"><img src="https://reticenceji.github.io//post-images/image-20210506110601916.png" alt="image-20210506110601916" loading="lazy"></figure>
+<figure data-type="image" tabindex="1"><img src="https://reticenceji.github.io/post-images/image-20210506110601916.png" alt="image-20210506110601916" loading="lazy"></figure>
 <h3 id="relation">Relation</h3>
 <p>Relation是很多Record的集合。Relation怎么组织：</p>
 <ul>
@@ -254,18 +128,18 @@ If the block is not in the buffer,</p>
 <h3 id="顺序索引">顺序索引</h3>
 <p><strong>Primary index(clustering index)</strong>：如果关系是按照某个<strong>search key</strong>排列的（有序），那么这个search key对应的index就是primary index。search-key通常是<strong>primary key</strong>，但没必要。（注意这里的三个单词）</p>
 <p><strong>Secondary index(nonclustering index)</strong>： index对应的search-key和文件中记录的物理顺序没啥关系，也就是说无序。因为是无序的，所以即使对于两个相同的项目我们也需要两个指针指向他（比如80000）不像primary key记录第一个顺序往下扫描就好。故对于不是primary key的search key我们需要在中间加上一层指针。secondary index对于<strong>顺序扫描不友好</strong>，还不如直接扫描。</p>
-<figure data-type="image" tabindex="2"><img src="https://reticenceji.github.io//post-images/image-20210506114940369.png" alt="image-20210506114940369" loading="lazy"></figure>
+<figure data-type="image" tabindex="2"><img src="https://reticenceji.github.io/post-images/image-20210506114940369.png" alt="image-20210506114940369" loading="lazy"></figure>
 <p><strong>Dense index</strong>稠密索引：稠密索引中，真正数据文件的每一个search-key都会有对应的index entry。比如这个例子中的search key就不是primary key。</p>
-<figure data-type="image" tabindex="3"><img src="https://reticenceji.github.io//post-images/image-20210506114513678.png" alt="image-20210506114513678" loading="lazy"></figure>
+<figure data-type="image" tabindex="3"><img src="https://reticenceji.github.io/post-images/image-20210506114513678.png" alt="image-20210506114513678" loading="lazy"></figure>
 <p><strong>Sparse index</strong>稀疏索引：只有当关系按照search-key顺序排列才能使用（换句话说，一定是primary index）。比如下面的例子可以看出。这个稀疏的index是怎么确定的？往往是让index指向某个Block的起始位置。相比于稠密索引，稀疏索引占用的空间更小，更新的代价更小（不是每次都需要更新），不过查找的速度更慢。索引的更新很容易想清楚。</p>
-<figure data-type="image" tabindex="4"><img src="https://reticenceji.github.io//post-images/image-20210506114501239.png" alt="image-20210506114501239" loading="lazy"></figure>
+<figure data-type="image" tabindex="4"><img src="https://reticenceji.github.io/post-images/image-20210506114501239.png" alt="image-20210506114501239" loading="lazy"></figure>
 <p><strong>Multilevel index</strong>当你的数据库过大的时候，你的索引文件可能也会太大，这个时候你就需要“索引的索引”。有几个注意的地方，一个是外层的索引项肯定是稀疏的（不然多级有个锤子用？），所以内层索引项肯定是有序的（不然外层怎么稀疏）。</p>
-<figure data-type="image" tabindex="5"><img src="https://reticenceji.github.io//post-images/image-20210506160158185.png" alt="image-20210506160158185" loading="lazy"></figure>
+<figure data-type="image" tabindex="5"><img src="https://reticenceji.github.io/post-images/image-20210506160158185.png" alt="image-20210506160158185" loading="lazy"></figure>
 <h3 id="b-treestar">B+ Tree⭐️</h3>
 <p>B+树构建一个矮树，减少Block IO。关于B+ Tree本身，在数据结构中已经学习了。</p>
 <p>B+ Tree有点像一个多级索引。non-leaf node是稀疏索引。因为leaf node是有序的。</p>
 <p>leaf node指向记录（如果记录重复就是一个记录的“桶”）。leaf node可以是稠密也可以是稀疏，条件和上面的索引是一样的。像下图的leaf 指向 name 是secondary index，所以必须是稠密的。</p>
-<figure data-type="image" tabindex="6"><img src="https://reticenceji.github.io//post-images/image-20210513101650905.png" alt="image-20210513101650905" loading="lazy"></figure>
+<figure data-type="image" tabindex="6"><img src="https://reticenceji.github.io/post-images/image-20210513101650905.png" alt="image-20210513101650905" loading="lazy"></figure>
 <p>我们要知道删除/查询/插入的过程。</p>
 <p>如果用B+ Tree组织文件的话，也可以在leaf node存放数据的内容。</p>
 <h4 id="查询">查询</h4>
@@ -278,17 +152,17 @@ Eventually reach a leaf node.  If for some i, key Vi = k  follow pointer Pi  to 
 <h4 id="插入">插入</h4>
 <p>下面的这个B+ Tree，n=4，每一层有3个值和4个指针。</p>
 <p>这里面的插入是比较简单的。就是如果满了然后就分裂。对于叶子节点的分裂就是对半分就好了，需要注意的是非叶节点的分裂。然后还有逐级向上分裂。</p>
-<figure data-type="image" tabindex="7"><img src="https://reticenceji.github.io//post-images/image-20210626151016259.png" alt="image-20210626151016259" loading="lazy"></figure>
+<figure data-type="image" tabindex="7"><img src="https://reticenceji.github.io/post-images/image-20210626151016259.png" alt="image-20210626151016259" loading="lazy"></figure>
 <h4 id="删除">删除</h4>
 <p>如果不够半满了，就和兄弟合并/从兄弟拆分。</p>
-<figure data-type="image" tabindex="8"><img src="https://reticenceji.github.io//post-images/image-20210626151016258.png" alt="image-20210626151016259" loading="lazy"></figure>
+<figure data-type="image" tabindex="8"><img src="https://reticenceji.github.io/post-images/image-20210626151016258.png" alt="image-20210626151016259" loading="lazy"></figure>
 <h3 id="sql-中的索引">SQL 中的索引</h3>
 <p>create index</p>
 <p>drop index</p>
 <hr>
 <h2 id="query-processing">Query Processing</h2>
 <p>关系代数比SQL表达式更好的能被系统分析。执行</p>
-<figure data-type="image" tabindex="9"><img src="https://reticenceji.github.io//post-images/image-20210506100011441.png" alt="image-20210506100011441" loading="lazy"></figure>
+<figure data-type="image" tabindex="9"><img src="https://reticenceji.github.io/post-images/image-20210506100011441.png" alt="image-20210506100011441" loading="lazy"></figure>
 <p>有很多因素影响time cost. time cost = disk accesses + CPU + network communication.通常，disk access是占用时间最长的。所以我们主要考虑它。 我们用<strong>传递磁盘块数</strong>和<strong>搜索磁盘次数</strong>来度量查询计算计划的代价。假设磁盘子系统传输一个块的数据平均消耗<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>t</mi><mi>r</mi></msub></mrow><annotation encoding="application/x-tex">t_r</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.76508em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">t</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.02778em;">r</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>秒，磁盘块平均访问时间为<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>t</mi><mi>s</mi></msub></mrow><annotation encoding="application/x-tex">t_s</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.76508em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">t</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">s</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>秒，那么一次传输b个块和执行S次磁盘搜索的操作将消耗<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>b</mi><mo>∗</mo><msub><mi>t</mi><mi>r</mi></msub><mo>+</mo><mi>S</mi><mo>∗</mo><msub><mi>t</mi><mi>s</mi></msub></mrow><annotation encoding="application/x-tex">b*t_r+S*t_s</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault">b</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.76508em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">t</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.02778em;">r</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.76508em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">t</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">s</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>秒。这是忽略了很多细节的估算。一次block access指的是一次block transfer+一次block seek。</p>
 <h3 id="选择运算">选择运算</h3>
 <ul>
@@ -358,7 +232,7 @@ for block_r in r:
 <h4 id="hash-join">Hash Join</h4>
 <p>同样也是只能用在equal-join 或natural-join上。</p>
 <p>基本思想是，把join Attribute建立hash。那么若tuple_r散列到了i，对应的tuple_s也必然散列到了i。所以只用在相同的散列块中寻找就可以了。</p>
-<figure data-type="image" tabindex="10"><img src="https://reticenceji.github.io//post-images/image-20210520105140903.png" alt="image-20210520105140903" loading="lazy"></figure>
+<figure data-type="image" tabindex="10"><img src="https://reticenceji.github.io/post-images/image-20210520105140903.png" alt="image-20210520105140903" loading="lazy"></figure>
 <pre><code class="language-pascal">/* Partition s */
 for each tuple ts in s do 
 begin
@@ -385,7 +259,7 @@ end
 <h3 id="expressions">Expressions</h3>
 <p>Materialized：每一步计算的结果被materialize，然后用于下一步的运算。这种办法总是可用的。比如下面这个例子，选择完了产生一个中间relation，然后在和Instructor连接产生结果。</p>
 <p>Pipeline：每一次操作的结果直接传递到下一步操作。这种办法效率更高，但是不一定可用。比如下面这个例子，department和Instructor做连接并判断是不是Watson。</p>
-<figure data-type="image" tabindex="11"><img src="https://reticenceji.github.io//post-images/image-20210520111806629.png" alt="image-20210520111806629" loading="lazy"></figure>
+<figure data-type="image" tabindex="11"><img src="https://reticenceji.github.io/post-images/image-20210520111806629.png" alt="image-20210520111806629" loading="lazy"></figure>
 <h2 id="query-optimal">Query Optimal</h2>
 <ol>
 <li>两个关系代数表达式是等价的，但是执行效率可能是不同的</li>
@@ -420,12 +294,12 @@ end
 </li>
 <li>
 <p>The selection operation distributes over the theta-join operation under the following two conditions</p>
-<figure data-type="image" tabindex="12"><img src="https://reticenceji.github.io//post-images/image-20210520135510985.png" alt="image-20210520135510985" loading="lazy"></figure>
-<figure data-type="image" tabindex="13"><img src="https://reticenceji.github.io//post-images/image-20210520135519323.png" alt="image-20210520135519323" loading="lazy"></figure>
+<figure data-type="image" tabindex="12"><img src="https://reticenceji.github.io/post-images/image-20210520135510985.png" alt="image-20210520135510985" loading="lazy"></figure>
+<figure data-type="image" tabindex="13"><img src="https://reticenceji.github.io/post-images/image-20210520135519323.png" alt="image-20210520135519323" loading="lazy"></figure>
 </li>
 <li>
 <p>The projection operation distributes over the theta-join operation under the following conditions</p>
-<figure data-type="image" tabindex="14"><img src="https://reticenceji.github.io//post-images/image-20210520135454231.png" alt="image-20210520135454231" loading="lazy"></figure>
+<figure data-type="image" tabindex="14"><img src="https://reticenceji.github.io/post-images/image-20210520135454231.png" alt="image-20210520135454231" loading="lazy"></figure>
 </li>
 <li>
 <p>The set operations union and intersection are commutative.</p>
@@ -463,9 +337,10 @@ end
 <li>集合运算。R并S 当作 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>n</mi><mi>r</mi></msub><mo>+</mo><msub><mi>n</mi><mi>s</mi></msub></mrow><annotation encoding="application/x-tex">n_r+n_s</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.73333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">n</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.02778em;">r</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.58056em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">n</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">s</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>，R交S 当作 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>m</mi><mi>i</mi><mi>n</mi><mo>(</mo><msub><mi>n</mi><mi>r</mi></msub><mo separator="true">,</mo><msub><mi>n</mi><mi>s</mi></msub><mo>)</mo></mrow><annotation encoding="application/x-tex">min(n_r,n_s)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">m</span><span class="mord mathdefault">i</span><span class="mord mathdefault">n</span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault">n</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.02778em;">r</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault">n</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">s</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span>，R-S 当作 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>n</mi><mi>r</mi></msub></mrow><annotation encoding="application/x-tex">n_r</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.58056em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">n</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.02778em;">r</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>。这些都是上界。</li>
 </ol>
 
-              </div>
-              <div class="toc-container">
-                <ul class="markdownIt-TOC">
+<span id="footnote"></span>
+<div id = "warn"></div>
+</div>
+<div class="toc-container"><ul class="markdownIt-TOC">
 <li>
 <ul>
 <li><a href="#storage">Storage</a>
@@ -519,74 +394,32 @@ end
 </ul>
 </li>
 </ul>
-
-              </div>
-            </div>
-          </article>
-        </div>
-
-        
-          <div class="next-post">
-            <div class="next">下一篇</div>
-            <a href="https://reticenceji.github.io/post/linux-zhuo-mian-ying-yong-kai-fa/">
-              <h3 class="post-title">
-                Linux 桌面应用开发
-              </h3>
-            </a>
-          </div>
-        
-
-        
-
-        <div class="site-footer">
-  
-  <a class="rss" href="https://reticenceji.github.io//atom.xml" target="_blank">
-    <i class="ri-rss-line"></i> RSS
-  </a>
 </div>
+</div>
+<div id="fullPage"><canvas id="canvas"></canvas></div>
+</article>
+<div id="eof"><span>EOF</span></div><div class="round-shape-one"></div>
+<section>
+<div class="doc_comments">
 
-      </div>
-    </div>
-
-    <script>
-      hljs.initHighlightingOnLoad()
-
-      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
-
-      // This should probably be throttled.
-      // Especially because it triggers during smooth scrolling.
-      // https://lodash.com/docs/4.17.10#throttle
-      // You could do like...
-      // window.addEventListener("scroll", () => {
-      //    _.throttle(doThatStuff, 100);
-      // });
-      // Only not doing it here to keep this Pen dependency-free.
-
-      window.addEventListener("scroll", event => {
-        let fromTop = window.scrollY;
-
-        mainNavLinks.forEach((link, index) => {
-          let section = document.getElementById(decodeURI(link.hash).substring(1));
-          let nextSection = null
-          if (mainNavLinks[index + 1]) {
-            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
-          }
-          if (section.offsetTop <= fromTop) {
-            if (nextSection) {
-              if (nextSection.offsetTop > fromTop) {
-                link.classList.add("current");
-              } else {
-                link.classList.remove("current");    
-              }
-            } else {
-              link.classList.add("current");
-            }
-          } else {
-            link.classList.remove("current");
-          }
-        });
-      });
-
-    </script>
-  </body>
+</div></section>
+</div></div></div><script>
+"use strict";!function(){for(var n=document.getElementsByTagName("pre"),e=n.length,s=0;s<e;s++){n[s].innerHTML='<span class="line-number"></span>'+n[s].innerHTML+'<span class="cl"></span>';for(var a=n[s].innerHTML.split(/\n/).length,r=0;r<a-1;r++){n[s].getElementsByTagName("span")[0].innerHTML+="<span>"+(r+1)+"</span>"}}}();
+let mainNavLinks=document.querySelectorAll(".markdownIt-TOC a");window.addEventListener("scroll",event=>{let fromTop=window.scrollY;mainNavLinks.forEach((link,index)=>{let section=document.getElementById(decodeURI(link.hash).substring(1));let nextSection=null
+if(mainNavLinks[index+1]){nextSection=document.getElementById(decodeURI(mainNavLinks[index+1].hash).substring(1));}
+if(section.offsetTop<=fromTop){if(nextSection){if(nextSection.offsetTop>fromTop){link.classList.add("currentToc");}else{link.classList.remove("currentToc");}}else{link.classList.add("currentToc");}}else{link.classList.remove("currentToc");}});});
+var list=document.querySelectorAll(".katex");for(var i=0;i<list.length;i++){list[i].style.display="unset"};
+var h=document.documentElement,b=document.body,st="scrollTop",sh="scrollHeight",progress=document.querySelector(".progress"),scroll;document.addEventListener("scroll",function(){scroll=(h[st]||b[st])/((h[sh]||b[sh])-h.clientHeight)*100;progress.style.setProperty("--scroll",scroll+"%")});
+var wxScale=new WxScale({fullPage:document.querySelector("#fullPage"),canvas:document.querySelector("#canvas")});var imgBox=document.querySelectorAll("#md_block img");for(var i=0;i<imgBox.length;i++){imgBox[i].onclick=function(e){wxScale.start(this)}};
+content="本文最后更新于2021-05-06，已超过 1 年没有更新，涉及的内容可能已经失效！";var date1="2021-05-06 09:47:41";date1=date1.replace("-","/");var date2=new Date();var date3=date2.getTime()-new Date(date1).getTime();var days=Math.floor(date3/(24*3600*1000));if(days>=365){document.getElementById("warn").innerHTML=content};
+</script>
+<style>#magnifyImg{position:fixed;left:0;top:0;text-align:center;width:100%;display:none;z-index:9999}#magnifyImg img{object-fit:contain;background:#eaecef;padding:15px;border-radius:10px;height:auto;width:auto;vertical-align:middle}</style>
+<a id="scrollUp" href="#top" style="position: fixed; z-index: 2147483647; display: block;"></a><div class="footer animated fadeInDown"><div class="site_footer"><div class="mysocials"><div class="my_socials"><a href="https://github.com/reticenceji"title="github"><i class="iconfont icon-github"></i></a><a href="reticenceji@qq.com"title="envelope"><i class="iconfont icon-envelope"></i></a><a href="https://www.zhihu.com/people/reticenceji"title="zhihu"><i class="iconfont icon-zhihu"></i></a></div></div><div class="copyright"id="copyright">Copyright © 2018-2020 <a href="https://reticenceji.github.io" style="margin:0;">Reticence</a>.</div>
+<span style="display: inline;margin-right:15px;">👁<strong><span id="busuanzi_value_site_uv"></span></strong></span><span id="busuanzi_container_page_pv" style="display: inline;"><span>📚<strong>170</strong> posts</span></div></div>
+<script>
+console.log("\n %c \u26a1Theme: Bitcron-pro Author's Blog:https://blog.blinkstar.cn  Writen By Serence  \n\n", "color: #ffffff; background: rgba(49, 49, 49, 0.85); padding:5px 0;border-radius:5px;", );
+</script>
+<script src="https://cdn.jsdelivr.net/npm/instant.page@3.0.0/instantpage.min.js" type="module" defer></script>
+<script type="text/javascript" async src="https://reticenceji.github.io/media/js/prism.js"></script>
+</body>
 </html>

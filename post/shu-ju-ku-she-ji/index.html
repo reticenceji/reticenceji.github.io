@@ -1,161 +1,37 @@
+<!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Database-数据库设计 | Reticence</title>
-<link rel="shortcut icon" href="https://reticenceji.github.io//favicon.ico?v=1625191111418">
-<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
-<link rel="stylesheet" href="https://reticenceji.github.io//styles/main.css">
-<link rel="alternate" type="application/atom+xml" title="Database-数据库设计 | Reticence - Atom Feed" href="https://reticenceji.github.io//atom.xml">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+<head>
+<link rel="shortcut icon" href="https://reticenceji.github.io/favicon.ico" type="image/x-icon" /><meta name="viewport"content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="apple-mobile-web-app-capable"content="yes"/><meta name="apple-mobile-web-app-status-bar-style"content="black"/><meta name="format-detection"content="telephone=no"/><meta name="renderer"content="webkit"><meta name="description"content=""><meta charset="UTF-8"><title>Database-数据库设计 | Reticence</title>
+<link href="https://reticenceji.github.io/styles/main.css" type="text/css" rel="stylesheet" /><link href="https://at.alicdn.com/t/font_1621793_zatzzgvf30g.css" type="text/css" rel="stylesheet" /><link rel="stylesheet" href="https://reticenceji.github.io/media/css/katex.css"><script async src="https://cdn.jsdelivr.net/npm/busuanzi@2.3.0/bsz.pure.mini.min.js"></script><script src="https://reticenceji.github.io/media/js/magnify.min.js"></script><script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js"></script><script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body);"></script>
+<script type="text/javascript">function btn_toggle(){document.getElementById("hn").classList.contains("no-js")?document.getElementById("hn").classList.remove("no-js"):document.getElementById("hn").classList.add("no-js")}</script>
 
-<script>
-var _hmt = _hmt || [];
-(function() {
-  var hm = document.createElement("script");
-  hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
-  var s = document.getElementsByTagName("script")[0]; 
-  s.parentNode.insertBefore(hm, s);
-})();
-</script>
+<link rel="canonical" href="https://reticenceji.github.io/post/shu-ju-ku-she-ji/" />
+</head>
+<body>
+<div class="progress"></div><style>.progress{background:linear-gradient(to right,#87ceeb var(--scroll),transparent 0);background-repeat:no-repeat;position:fixed;width:100%;height:4px;z-index:1}</style><div class="darkmode-background"></div><div class="darkmode-layer"></div>
+<noscript><p class="warn" >本页面需要浏览器支持（启用）JavaScript</p></noscript><div class="header"><div class="logo_title"><div class="title animated fadeInDown"><a href="https://reticenceji.github.io"><img alt="logo" style="display:inline-block;" src="https://reticenceji.github.io/images/avatar.png"/></a><h1 title="Reticence" class="weaklink"><a  href="/">Reticence</a></h1>
 
+<div class="navbar weaklink">
+<div class="normal_nav">
+<div class="bitcron_nav_container"><div class="bitcron_nav"><div class="bitcron_nav"><div style="display:flex;justify-content:center;"><nav class="mixed_site_nav_wrap site_nav_wrap"><ul class="mixed_site_nav site_nav sm sm-base">	<li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/" class="selected active current nav__item" >Index</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/tags" class="selected active current nav__item" >Tags</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/archives" class="selected active current nav__item" >Archives</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/navigator.html" class="selected active current nav__item" >Navigator</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/post/about" class="selected active current nav__item" >About</a></li></ul></nav>
+<div style="float:right;margin-top:1em"><form id="gridea-search-form" data-update="1578893743252" action="/search/index.html"><input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="Search..."></form></div><div style="margin-left:0.5em;margin-top:1.2em"><input id="switch_default" onclick="mobileBtn()" type="checkbox" class="switch_default"><label for="switch_default" class="toggleBtn"></label></div></div>
+<div class="clear clear_nav_inline_end"></div></div></div><div class="clear clear_nav_end"></div></div></div><div class="hamberger" href="javascript:void(0)" onclick="btn_toggle();"><i class="iconfont icon-category"></i></div></div></div></div>
+<div id="hn" class="no-js hidden_nav animated fadeInDown"><div class="bitcron_nav_container"><div class="bitcron_nav"><nav class="mixed_site_nav_wrap site_nav_wrap"><ul class="mixed_site_nav site_nav sm sm-base">	<li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/" class="selected active current nav__item" >Index</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/tags" class="selected active current nav__item" >Tags</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/archives" class="selected active current nav__item" >Archives</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/navigator.html" class="selected active current nav__item" >Navigator</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/post/about" class="selected active current nav__item" >About</a></li></ul><div class="clear clear_nav_inline_end"></div></nav></div><div class="clear clear_nav_end"></div></div>
+<div style="display:flex;justify-content:center;inline-block;text-align:center;margin-top:7%"><div><form id="gridea-search-form" data-update="1625583395117" action="/search/index.html"><input class="search-input" autocomplete="off" spellcheck="false" name="q"  placeholder="Search..." /></form></div><div style="margin-left:0.5em"><input id="switch_default_h" onclick="mobileBtn()" type="checkbox" class="switch_default"><label for="switch_default" class="toggleBtn"></label></div></div>
+</div></div>
+<script>function enableDarkmode(){document.body.classList.add("darkmode"),document.getElementById("switch_default").checked=1,document.getElementById("switch_default_h").checked=1}function removeDarkmode(){document.body.classList.remove("darkmode"),document.getElementById("switch_default").checked=0,document.getElementById("switch_default_h").checked=0}function getCookie(a){var b,c=new RegExp("(^| )"+a+"=([^;]*)(;|$)");return(b=document.cookie.match(c))?unescape(b[2]):null}cookie=getCookie("darkmode"),"enable"==cookie&&enableDarkmode(),window.matchMedia("(prefers-color-scheme: dark)").matches&&"disable"!==cookie&&(enableDarkmode(),document.cookie="darkmode=enable; path=/");var mobileBtn=function(){1==document.getElementById("switch_default").checked?(enableDarkmode(),document.cookie="darkmode=enable; path=/"):(removeDarkmode(),document.cookie="darkmode=disable; path=/")};</script>
 
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-90HNEFFE0M"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+<div class="main"><div class="main-inner"><div class="content">
+<article class="post">
+<h2 class="post_title sm_margin"><a>Database-数据库设计</a></h2>
+<script>function lan(){if(document.getElementById("lan").innerText=="繁"){var s=document.getElementById("tongwenlet_cn");if(s!=null){document.body.removeChild(s)}var s=document.createElement("script");s.language="javascript";s.type="text/javascript";s.src="https://cdn.jsdelivr.net/gh/qyxtim/Static@1.1/bookmarklet_tw.js";s.id="tongwenlet_cn";document.body.appendChild(s);document.getElementById("lan").innerHTML="简"}else{if(document.getElementById("lan").innerText=="簡"){var s=document.getElementById("tongwenlet_cn");if(s!=null){document.body.removeChild(s)}var s=document.createElement("script");s.language="javascript";s.type="text/javascript";s.src="https://cdn.jsdelivr.net/gh/qyxtim/Static@1.1/bookmarklet_cn.js";s.id="tongwenlet_cn";document.body.appendChild(s);document.getElementById("lan").innerHTML="繁"}}};</script>
+<section class="post_details"><i class="iconfont icon-calendar"></i><span style="margin-right:15px"> 2021-04-01</span><i class="iconfont icon-browse"></i><span style="margin-right:15px"> <span id="busuanzi_value_page_pv"></span> Views</span><i class="iconfont icon-category"></i><span class="weaklink" style="margin-right:15px">	<a href="https://reticenceji.github.io/tag/uXp2zQxRH/" class="tag">Database</a></span><i class="iconfont icon-caret-down"></i><span style="margin-right:15px">3464字</span><i class="iconfont icon-naozhong"></i><span style="margin-right:15px">14 min read</span><a id="lan" href="javascript:void(0);"onclick="lan();"title="调整简繁体" style="margin-right:15px;">繁</a>
+</section>
 
-  gtag('config', 'G-90HNEFFE0M');
-</script>
-
-
-    <meta name="description" content="
-
-Requirement analysis
-What data, applications, and operations needed
-
-
-Conceptual database design
-A high-level descript..." />
-    <meta name="keywords" content="Database" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
-    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
-  </head>
-  <body>
-    <div class="main">
-      <div class="main-content">
-        <div class="site-header">
-  <a href="https://reticenceji.github.io/">
-  <img class="avatar" src="https://reticenceji.github.io//images/avatar.png?v=1625191111418" alt="">
-  </a>
-  <h1 class="site-title">
-    Reticence
-  </h1>
-  <p class="site-description">
-    <script>
-var _hmt = _hmt || [];
-(function() {
-  var hm = document.createElement("script");
-  hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
-  var s = document.getElementsByTagName("script")[0]; 
-  s.parentNode.insertBefore(hm, s);
-})();
-</script>
-  </p>
-  <div class="menu-container">
-    
-      
-        <a href="/" class="menu">
-          Index
-        </a>
-      
-    
-      
-        <a href="/tags" class="menu">
-          Classification
-        </a>
-      
-    
-      
-        <a href="/archives" class="menu">
-          Archives
-        </a>
-      
-    
-      
-        <a href="/navigator.html" class="menu">
-          Navigator
-        </a>
-      
-    
-      
-        <a href="/post/fei-md-ge-shi-bi-ji-hui-zong" class="menu">
-          Notes
-        </a>
-      
-    
-      
-        <a href="/post/about" class="menu">
-          About
-        </a>
-      
-    
-  </div>
-  <div class="social-container">
-    
-      
-        <a href="https://github.com/reticenceji" target="_blank">
-          <i class="ri-github-line"></i>
-        </a>
-      
-    
-      
-    
-      
-    
-      
-        <a href="https://www.zhihu.com/people/reticenceji" target="_blank">
-          <i class="ri-zhihu-line"></i>
-        </a>
-      
-    
-      
-    
-  </div>
-  <script>
-  var _hmt = _hmt || [];
-  (function() {
-    var hm = document.createElement("script");
-    hm.src = "https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002";
-    var s = document.getElementsByTagName("script")[0]; 
-    s.parentNode.insertBefore(hm, s);
-  })();
-  </script>
-</div>
-
-        <div class="post-detail">
-          <article class="post">
-            <h2 class="post-title">
-              Database-数据库设计
-            </h2>
-            <div class="post-info">
-              <span>
-                2021-04-01
-              </span>
-              <span>
-                14 min read
-              </span>
-              
-                <a href="https://reticenceji.github.io/tag/uXp2zQxRH/" class="post-tag">
-                  # Database
-                </a>
-              
-            </div>
-            
-            <div class="post-content-wrapper">
-              <div class="post-content">
-                <ol>
+<div style="display:flex">
+<div class="md_block" id="md_block">
+<div class="round-shape-one"></div>
+<ol>
 <li>
 <p>Requirement analysis<br>
 What data, applications, and operations needed</p>
@@ -197,7 +73,7 @@ What data, applications, and operations needed</p>
 </ul>
 <p>我们说entity set<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>E</mi><mn>1</mn></msub><mo separator="true">,</mo><msub><mi>E</mi><mn>2</mn></msub></mrow><annotation encoding="application/x-tex">E_1,E_2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8777699999999999em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.05764em;">E</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.05764em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.05764em;">E</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.05764em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span><strong>参与</strong>relationship set<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>R</mi></mrow><annotation encoding="application/x-tex">R</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.00773em;">R</span></span></span></span>。</p>
 <p>举一个例子。这里有<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>E</mi><mn>1</mn></msub><mo>=</mo><mi>i</mi><mi>n</mi><mi>s</mi><mi>t</mi><mi>r</mi><mi>u</mi><mi>c</mi><mi>t</mi><mi>o</mi><mi>r</mi><mo separator="true">,</mo><msub><mi>E</mi><mn>2</mn></msub><mo>=</mo><mi>s</mi><mi>t</mi><mi>u</mi><mi>d</mi><mi>e</mi><mi>n</mi><mi>t</mi></mrow><annotation encoding="application/x-tex">E_1=instructor, E_2=student</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.05764em;">E</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.05764em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8777699999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">i</span><span class="mord mathdefault">n</span><span class="mord mathdefault">s</span><span class="mord mathdefault">t</span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mord mathdefault">u</span><span class="mord mathdefault">c</span><span class="mord mathdefault">t</span><span class="mord mathdefault">o</span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.05764em;">E</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.05764em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault">s</span><span class="mord mathdefault">t</span><span class="mord mathdefault">u</span><span class="mord mathdefault">d</span><span class="mord mathdefault">e</span><span class="mord mathdefault">n</span><span class="mord mathdefault">t</span></span></span></span>，他们参与了关系<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>R</mi><mo>=</mo><mi>t</mi><mi>a</mi><mi>k</mi><mi>e</mi><mi>s</mi></mrow><annotation encoding="application/x-tex">R=takes</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.00773em;">R</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault">t</span><span class="mord mathdefault">a</span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span><span class="mord mathdefault">e</span><span class="mord mathdefault">s</span></span></span></span>。关系R是联系集，也可以有属性，比如下面的date。只有两个实体的关系（或者说**<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>d</mi><mi>e</mi><mi>g</mi><mi>r</mi><mi>e</mi><mi>e</mi><mo>=</mo><mn>2</mn></mrow><annotation encoding="application/x-tex">degree=2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">d</span><span class="mord mathdefault">e</span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mord mathdefault">e</span><span class="mord mathdefault">e</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span></span></span></span>**）的relationship我们称之为binary relationship，这也是大多数的情况。</p>
-<figure data-type="image" tabindex="1"><img src="https://reticenceji.github.io//post-images/image-20210401125108768.png" alt="image-20210401125108768" loading="lazy"></figure>
+<figure data-type="image" tabindex="1"><img src="https://reticenceji.github.io/post-images/image-20210401125108768.png" alt="image-20210401125108768" loading="lazy"></figure>
 <h3 id="约束">约束</h3>
 <p>ER图是可以反应约束条件的，比如主码，外码等。</p>
 <p><strong>mapping cardinality</strong>映射基数，表示一个entity通过一个relationship能关联的entity的数量。对于一个binary relationship，有下面几种情况：</p>
@@ -210,20 +86,20 @@ What data, applications, and operations needed</p>
 <p><strong>参与约束</strong>：如果entity set <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>E</mi></mrow><annotation encoding="application/x-tex">E</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">E</span></span></span></span> 中的每一个entity都参与到了relationship set <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>R</mi></mrow><annotation encoding="application/x-tex">R</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.00773em;">R</span></span></span></span> 中，那么我们称 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>E</mi></mrow><annotation encoding="application/x-tex">E</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">E</span></span></span></span> 在  <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>R</mi></mrow><annotation encoding="application/x-tex">R</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.00773em;">R</span></span></span></span> 中是<strong>total</strong>。如果只有部分那么称为<strong>partial</strong>。</p>
 <h3 id="构建e-r图">构建E-R图</h3>
 <p>E-R是一个非常好的对现实世界建模的方式，可以很好的应对很多不同的现实情况。</p>
-<figure data-type="image" tabindex="2"><img src="https://reticenceji.github.io//post-images/image-20210401111839425.png" alt="image-20210401111839425" loading="lazy"></figure>
+<figure data-type="image" tabindex="2"><img src="https://reticenceji.github.io/post-images/image-20210401111839425.png" alt="image-20210401111839425" loading="lazy"></figure>
 <p>关系集</p>
-<figure data-type="image" tabindex="3"><img src="https://reticenceji.github.io//post-images/image-20210401111900345.png" alt="image-20210401111900345" loading="lazy"></figure>
+<figure data-type="image" tabindex="3"><img src="https://reticenceji.github.io/post-images/image-20210401111900345.png" alt="image-20210401111900345" loading="lazy"></figure>
 <p>ER图也可以很好的表示非二元关系。</p>
-<figure data-type="image" tabindex="4"><img src="https://reticenceji.github.io//post-images/image-20210403145727770.png" alt="image-20210403145727770" loading="lazy"></figure>
+<figure data-type="image" tabindex="4"><img src="https://reticenceji.github.io/post-images/image-20210403145727770.png" alt="image-20210403145727770" loading="lazy"></figure>
 <p>这是带了<strong>描述性属性</strong>的<strong>relationship</strong> advisor, data表示instructor和students匹配的时间。</p>
-<figure data-type="image" tabindex="5"><img src="https://reticenceji.github.io//post-images/image-20210403145914375.png" alt="image-20210403145914375" loading="lazy"></figure>
+<figure data-type="image" tabindex="5"><img src="https://reticenceji.github.io/post-images/image-20210403145914375.png" alt="image-20210403145914375" loading="lazy"></figure>
 <p>被relationship set连接的两个两个entity set不一定是要不一样的，如果是一样的话，我们可能需要表明他们在关系中扮演的角色<strong>role</strong>。比如下面这个例子，course和course之间的联系，一个课程是另一个课程的预修要求。</p>
-<figure data-type="image" tabindex="6"><img src="https://reticenceji.github.io//post-images/image-20210618160152192.png" alt="image-20210618160152192" loading="lazy"></figure>
+<figure data-type="image" tabindex="6"><img src="https://reticenceji.github.io/post-images/image-20210618160152192.png" alt="image-20210618160152192" loading="lazy"></figure>
 <p><strong>弱实体集</strong>是指没有primary key的entity set。比如这个开课情况关系，要唯一确定section本来应该需要<code>{course_id,sec_id,semester,year}</code>，但是如果section中包含course_id那么就出现了冗余。一个办法是删除sec_course，把section和course的关系隐含到一个属性中，但这不是我们需要的。</p>
 <p>所以我们选择删除section中的<code>course_id</code>属性，但是这样section就没有足够的属性标识一个指定的section了（没有primary key了）为此我们将sec_course视为一个特殊的联系，他为唯一表示section实体提供额外信息，即<code>course_id</code>。</p>
 <p>那么相应的有primary key的entity set就是强实体集。他们之间的relationship set就叫做identifying relationship，是多对一的，并且weak entity set的参与是全部的。identifying relationship不应该有描述性属性，因为都可以放在弱实体集中。</p>
 <p>弱实体集没有主码，但是我们仍然要区分依赖于特定强实体集中某entity的弱实体集中的entity。这就通过分辨符<strong>discriminator</strong>(比如下面的sec_id,semester,year)。</p>
-<figure data-type="image" tabindex="7"><img src="https://reticenceji.github.io//post-images/image-20210618161827474.png" alt="image-20210618161827474" loading="lazy"></figure>
+<figure data-type="image" tabindex="7"><img src="https://reticenceji.github.io/post-images/image-20210618161827474.png" alt="image-20210618161827474" loading="lazy"></figure>
 <h3 id="从er图到逻辑表">从ER图到逻辑表</h3>
 <ul>
 <li>
@@ -269,13 +145,13 @@ What data, applications, and operations needed</p>
 <li>disjoint: 每个entity最多属于一个低层entity set</li>
 <li>overlapping: 一个entity可以属于多个entity set</li>
 </ul>
-<figure data-type="image" tabindex="8"><img src="https://reticenceji.github.io//post-images/image-20210619151246010.png" alt="image-20210619151246010" loading="lazy"></figure>
+<figure data-type="image" tabindex="8"><img src="https://reticenceji.github.io/post-images/image-20210619151246010.png" alt="image-20210619151246010" loading="lazy"></figure>
 <h4 id="aggregate">aggregate</h4>
 <p>因为ER图不能表达关系之间的关系。设想下面这个场景，本来我们有一个三元关系 <code>instructor指导student完成project</code>，然后我们现在要对他进行评价。那么我们就需要把这个三元关系aggregate，然后和<code>evaluation</code>建立联系。</p>
-<figure data-type="image" tabindex="9"><img src="https://reticenceji.github.io//post-images/image-20210619152213134.png" alt="image-20210619152213134" loading="lazy"></figure>
+<figure data-type="image" tabindex="9"><img src="https://reticenceji.github.io/post-images/image-20210619152213134.png" alt="image-20210619152213134" loading="lazy"></figure>
 <h3 id="总结">总结</h3>
 <p>一个大学数据库的例子：</p>
-<figure data-type="image" tabindex="10"><img src="https://reticenceji.github.io//post-images/image-20210619153535444.png" alt="image-20210619153535444" loading="lazy"></figure>
+<figure data-type="image" tabindex="10"><img src="https://reticenceji.github.io/post-images/image-20210619153535444.png" alt="image-20210619153535444" loading="lazy"></figure>
 <h2 id="二-范式">二、范式</h2>
 <p>我们要合理的数据数据库，要避免下面的一些陷阱pitfalls</p>
 <ul>
@@ -299,9 +175,9 @@ What data, applications, and operations needed</p>
 </blockquote>
 <h4 id="闭包">闭包</h4>
 <p>由此，我们可以给出一个<strong>函数依赖集</strong><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>F</mi></mrow><annotation encoding="application/x-tex">F</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">F</span></span></span></span>的closure <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mi>F</mi><mo>+</mo></msup></mrow><annotation encoding="application/x-tex">F^+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.771331em;vertical-align:0em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.13889em;">F</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.771331em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mbin mtight">+</span></span></span></span></span></span></span></span></span></span></span>。<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mi>F</mi><mo>+</mo></msup></mrow><annotation encoding="application/x-tex">F^+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.771331em;vertical-align:0em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.13889em;">F</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.771331em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mbin mtight">+</span></span></span></span></span></span></span></span></span></span></span>是<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>F</mi></mrow><annotation encoding="application/x-tex">F</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">F</span></span></span></span> **能推导出的(或者说逻辑蕴含)**所有函数依赖<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>f</mi></mrow><annotation encoding="application/x-tex">f</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span></span></span></span>的集合。这是求closure的算法1：所以我们判断一个<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>α</mi></mrow><annotation encoding="application/x-tex">\alpha</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.0037em;">α</span></span></span></span>是否是关系R的superkey，就可以判断<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>α</mi></mrow><annotation encoding="application/x-tex">\alpha</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.0037em;">α</span></span></span></span>能不能唯一确定一个tuple，也即是<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mi>α</mi><mo>+</mo></msup><mo>→</mo><mi>R</mi></mrow><annotation encoding="application/x-tex">\alpha^+ \rightarrow R</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.771331em;vertical-align:0em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.0037em;">α</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.771331em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mbin mtight">+</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">→</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.00773em;">R</span></span></span></span>。</p>
-<figure data-type="image" tabindex="11"><img src="https://reticenceji.github.io//post-images/image-20210410160244335.png" alt="image-20210410160244335" loading="lazy"></figure>
+<figure data-type="image" tabindex="11"><img src="https://reticenceji.github.io/post-images/image-20210410160244335.png" alt="image-20210410160244335" loading="lazy"></figure>
 <p>计算属性集合的closure，就是看属性集里面的元素还能推导出什么然后不断的加入就可以了。</p>
-<figure data-type="image" tabindex="12"><img src="https://reticenceji.github.io//post-images/image-20210410161614336.png" alt="image-20210410161614336" loading="lazy"></figure>
+<figure data-type="image" tabindex="12"><img src="https://reticenceji.github.io/post-images/image-20210410161614336.png" alt="image-20210410161614336" loading="lazy"></figure>
 <h4 id="正则覆盖">正则覆盖</h4>
 <p>直观地说，F的正则覆盖（记做<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>F</mi><mi>c</mi></msub></mrow><annotation encoding="application/x-tex">F_c</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.13889em;">F</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">c</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> ）是指与F等价的“极小的”函数依赖集合</p>
 <p>如何计算Fc ：删除多余属性，存在以下三种情况</p>
@@ -320,9 +196,9 @@ F_c = {A\rightarrow  B, B \rightarrow  C,A \rightarrow  D }</annotation></semant
 </li>
 </ul>
 <p>无关属性，分别对应上面提到的后面两个</p>
-<figure data-type="image" tabindex="13"><img src="https://reticenceji.github.io//post-images/image-20210410164307838.png" alt="image-20210410164307838" loading="lazy"></figure>
+<figure data-type="image" tabindex="13"><img src="https://reticenceji.github.io/post-images/image-20210410164307838.png" alt="image-20210410164307838" loading="lazy"></figure>
 <p>计算F的正则覆盖：</p>
-<figure data-type="image" tabindex="14"><img src="https://reticenceji.github.io//post-images/image-20210410164439736.png" alt="iom" loading="lazy"></figure>
+<figure data-type="image" tabindex="14"><img src="https://reticenceji.github.io/post-images/image-20210410164439736.png" alt="iom" loading="lazy"></figure>
 <h4 id="无损分解-保持依赖-boyce-codd范式">无损分解、保持依赖、Boyce-Codd范式</h4>
 <ul>
 <li>
@@ -333,7 +209,7 @@ F_c = {A\rightarrow  B, B \rightarrow  C,A \rightarrow  D }</annotation></semant
 <p><strong>保持依赖</strong>：<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>(</mo><msub><mi>F</mi><mn>1</mn></msub><mo>∪</mo><msub><mi>F</mi><mn>2</mn></msub><mo>∪</mo><msub><mi>F</mi><mn>3</mn></msub><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mo>∪</mo><msub><mi>F</mi><mn>4</mn></msub><msup><mo>)</mo><mo>+</mo></msup><mo>=</mo><msup><mi>F</mi><mo>+</mo></msup></mrow><annotation encoding="application/x-tex">(F_1\cup F_2 \cup F_3...\cup F_4)^+ = F^+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.13889em;">F</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∪</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.13889em;">F</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∪</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.13889em;">F</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord">.</span><span class="mord">.</span><span class="mord">.</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∪</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1.021331em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.13889em;">F</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">4</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.771331em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mbin mtight">+</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.771331em;vertical-align:0em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.13889em;">F</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.771331em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mbin mtight">+</span></span></span></span></span></span></span></span></span></span></span></p>
 <p>如果直接计算<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mi>F</mi><mo>+</mo></msup></mrow><annotation encoding="application/x-tex">F^+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.771331em;vertical-align:0em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.13889em;">F</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.771331em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mbin mtight">+</span></span></span></span></span></span></span></span></span></span></span>，计算量很大。求解办法，对<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>F</mi></mrow><annotation encoding="application/x-tex">F</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">F</span></span></span></span>的<strong>每一个函数依赖<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>α</mi><mo>→</mo><mi>β</mi></mrow><annotation encoding="application/x-tex">\alpha \rightarrow \beta</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.0037em;">α</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">→</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.05278em;">β</span></span></span></span>进行下面的过程：如果result包含<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>β</mi></mrow><annotation encoding="application/x-tex">\beta</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.05278em;">β</span></span></span></span>的话，说明该依赖被保持。如果所有的都满足，那么该分解保持依赖</strong></p>
 <p>其实，这个是在研究属性集合<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>α</mi></mrow><annotation encoding="application/x-tex">\alpha</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.0037em;">α</span></span></span></span>的闭包。</p>
-<figure data-type="image" tabindex="15"><img src="https://reticenceji.github.io//post-images/image-20210420203919897.png" alt="image-20210420203919897" loading="lazy"></figure>
+<figure data-type="image" tabindex="15"><img src="https://reticenceji.github.io/post-images/image-20210420203919897.png" alt="image-20210420203919897" loading="lazy"></figure>
 </li>
 <li>
 <p>关系R具有函数依赖集合F，<strong>R属于BCNF</strong>当且仅当对 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mi>F</mi><mo>+</mo></msup></mrow><annotation encoding="application/x-tex">F^+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.771331em;vertical-align:0em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.13889em;">F</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.771331em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mbin mtight">+</span></span></span></span></span></span></span></span></span></span></span>中所有的函数依赖<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>α</mi><mo>→</mo><mi>β</mi></mrow><annotation encoding="application/x-tex">\alpha \rightarrow \beta</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.0037em;">α</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">→</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.05278em;">β</span></span></span></span>，下面至少有一项成立：</p>
@@ -345,7 +221,7 @@ F_c = {A\rightarrow  B, B \rightarrow  C,A \rightarrow  D }</annotation></semant
 </ul>
 <p>为检查具有函数依赖集合<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>F</mi></mrow><annotation encoding="application/x-tex">F</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">F</span></span></span></span>的关系模式<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>R</mi></mrow><annotation encoding="application/x-tex">R</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.00773em;">R</span></span></span></span>是否属于BCNF，只需检查<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>F</mi></mrow><annotation encoding="application/x-tex">F</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">F</span></span></span></span>中的函数依赖是否违反BCNF即可，而不需检查<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mi>F</mi><mo>+</mo></msup></mrow><annotation encoding="application/x-tex">F^+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.771331em;vertical-align:0em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.13889em;">F</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.771331em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mbin mtight">+</span></span></span></span></span></span></span></span></span></span></span>中的所有函数依赖。可在<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>F</mi></mrow><annotation encoding="application/x-tex">F</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">F</span></span></span></span>下判别R 是否违反BCNF，但须在<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mi>F</mi><mo>+</mo></msup></mrow><annotation encoding="application/x-tex">F
 ^+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.771331em;vertical-align:0em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.13889em;">F</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.771331em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mbin mtight">+</span></span></span></span></span></span></span></span></span></span></span>下判别R的分解式是否违反BCNF。BCNF分解算法：</p>
-<figure data-type="image" tabindex="16"><img src="https://reticenceji.github.io//post-images/image-20210410193603914.png" alt="image-20210410193603914" loading="lazy"></figure>
+<figure data-type="image" tabindex="16"><img src="https://reticenceji.github.io/post-images/image-20210410193603914.png" alt="image-20210410193603914" loading="lazy"></figure>
 <p>BCNF分解<strong>不总是保持依赖</strong>的。所以我们提出了3NF。</p>
 <h4 id="第三范式">第三范式</h4>
 <p>关系R具有函数依赖集合F，R属于3NF当且仅当对 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mi>F</mi><mo>+</mo></msup></mrow><annotation encoding="application/x-tex">F^+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.771331em;vertical-align:0em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.13889em;">F</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.771331em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mbin mtight">+</span></span></span></span></span></span></span></span></span></span></span>中所有的函数依赖<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>α</mi><mo>→</mo><mi>β</mi></mrow><annotation encoding="application/x-tex">\alpha \rightarrow \beta</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.0037em;">α</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">→</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.05278em;">β</span></span></span></span>，下面至少有一项成立：</p>
@@ -356,7 +232,7 @@ F_c = {A\rightarrow  B, B \rightarrow  C,A \rightarrow  D }</annotation></semant
 </ul>
 <p>很明显的看出3NF比BCNF要弱一点，因此存在一定的信息冗余。其实上面说的三条是我们分解的目标，但是因为不能保证同时达成依赖保持和BCNF，所以我们提出了3NF。</p>
 <p>3NF的分解方法：</p>
-<figure data-type="image" tabindex="17"><img src="https://reticenceji.github.io//post-images/image-20210410195854899.png" alt="image-20210410195854899" loading="lazy"></figure>
+<figure data-type="image" tabindex="17"><img src="https://reticenceji.github.io/post-images/image-20210410195854899.png" alt="image-20210410195854899" loading="lazy"></figure>
 <p>检测3NF</p>
 <ul>
 <li>对于每一个<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>α</mi><mo>→</mo><mi>β</mi></mrow><annotation encoding="application/x-tex">\alpha \rightarrow \beta</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.0037em;">α</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">→</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.05278em;">β</span></span></span></span>检测<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>α</mi></mrow><annotation encoding="application/x-tex">\alpha</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.0037em;">α</span></span></span></span>是否是superkey，如果否
@@ -366,13 +242,13 @@ F_c = {A\rightarrow  B, B \rightarrow  C,A \rightarrow  D }</annotation></semant
 </ul>
 </li>
 </ul>
-<figure data-type="image" tabindex="18"><img src="https://reticenceji.github.io//post-images/20200516174600750.jpg" alt="img" loading="lazy"></figure>
+<figure data-type="image" tabindex="18"><img src="https://reticenceji.github.io/post-images/20200516174600750.jpg" alt="img" loading="lazy"></figure>
 <h3 id="第四范式-4nf">第四范式 4NF</h3>
 <h4 id="多值依赖-multivalue-dependencies">多值依赖 Multivalue Dependencies</h4>
 <p>比如，一门课程确定了，那么上这门课的**老师们(是一个集合)**就确定了。</p>
 <h4 id="第四范式">第四范式</h4>
 <p>分解方法：</p>
-<figure data-type="image" tabindex="19"><img src="https://reticenceji.github.io//post-images/image-20210420214753923.png" alt="image-20210420214753923" loading="lazy"></figure>
+<figure data-type="image" tabindex="19"><img src="https://reticenceji.github.io/post-images/image-20210420214753923.png" alt="image-20210420214753923" loading="lazy"></figure>
 <h2 id="总结-2">总结</h2>
 <p>设计方法一：</p>
 <ol>
@@ -385,9 +261,10 @@ F_c = {A\rightarrow  B, B \rightarrow  C,A \rightarrow  D }</annotation></semant
 </ol>
 <p>去除冗余可以节约空间，但是我们不总是要把冗余都去除。而且，也不是所有满足范式的设计都是好的。</p>
 
-              </div>
-              <div class="toc-container">
-                <ul class="markdownIt-TOC">
+<span id="footnote"></span>
+<div id = "warn"></div>
+</div>
+<div class="toc-container"><ul class="markdownIt-TOC">
 <li>
 <ul>
 <li><a href="#%E4%B8%80-conceptual-database-design-e-r-model">一、Conceptual database design &amp; E-R model</a>
@@ -429,74 +306,32 @@ F_c = {A\rightarrow  B, B \rightarrow  C,A \rightarrow  D }</annotation></semant
 </ul>
 </li>
 </ul>
-
-              </div>
-            </div>
-          </article>
-        </div>
-
-        
-          <div class="next-post">
-            <div class="next">下一篇</div>
-            <a href="https://reticenceji.github.io/post/zai-k210-yun-xing-luo-ji-cheng-xu/">
-              <h3 class="post-title">
-                在K210运行裸机程序
-              </h3>
-            </a>
-          </div>
-        
-
-        
-
-        <div class="site-footer">
-  
-  <a class="rss" href="https://reticenceji.github.io//atom.xml" target="_blank">
-    <i class="ri-rss-line"></i> RSS
-  </a>
 </div>
+</div>
+<div id="fullPage"><canvas id="canvas"></canvas></div>
+</article>
+<div id="eof"><span>EOF</span></div><div class="round-shape-one"></div>
+<section>
+<div class="doc_comments">
 
-      </div>
-    </div>
-
-    <script>
-      hljs.initHighlightingOnLoad()
-
-      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
-
-      // This should probably be throttled.
-      // Especially because it triggers during smooth scrolling.
-      // https://lodash.com/docs/4.17.10#throttle
-      // You could do like...
-      // window.addEventListener("scroll", () => {
-      //    _.throttle(doThatStuff, 100);
-      // });
-      // Only not doing it here to keep this Pen dependency-free.
-
-      window.addEventListener("scroll", event => {
-        let fromTop = window.scrollY;
-
-        mainNavLinks.forEach((link, index) => {
-          let section = document.getElementById(decodeURI(link.hash).substring(1));
-          let nextSection = null
-          if (mainNavLinks[index + 1]) {
-            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
-          }
-          if (section.offsetTop <= fromTop) {
-            if (nextSection) {
-              if (nextSection.offsetTop > fromTop) {
-                link.classList.add("current");
-              } else {
-                link.classList.remove("current");    
-              }
-            } else {
-              link.classList.add("current");
-            }
-          } else {
-            link.classList.remove("current");
-          }
-        });
-      });
-
-    </script>
-  </body>
+</div></section>
+</div></div></div><script>
+"use strict";!function(){for(var n=document.getElementsByTagName("pre"),e=n.length,s=0;s<e;s++){n[s].innerHTML='<span class="line-number"></span>'+n[s].innerHTML+'<span class="cl"></span>';for(var a=n[s].innerHTML.split(/\n/).length,r=0;r<a-1;r++){n[s].getElementsByTagName("span")[0].innerHTML+="<span>"+(r+1)+"</span>"}}}();
+let mainNavLinks=document.querySelectorAll(".markdownIt-TOC a");window.addEventListener("scroll",event=>{let fromTop=window.scrollY;mainNavLinks.forEach((link,index)=>{let section=document.getElementById(decodeURI(link.hash).substring(1));let nextSection=null
+if(mainNavLinks[index+1]){nextSection=document.getElementById(decodeURI(mainNavLinks[index+1].hash).substring(1));}
+if(section.offsetTop<=fromTop){if(nextSection){if(nextSection.offsetTop>fromTop){link.classList.add("currentToc");}else{link.classList.remove("currentToc");}}else{link.classList.add("currentToc");}}else{link.classList.remove("currentToc");}});});
+var list=document.querySelectorAll(".katex");for(var i=0;i<list.length;i++){list[i].style.display="unset"};
+var h=document.documentElement,b=document.body,st="scrollTop",sh="scrollHeight",progress=document.querySelector(".progress"),scroll;document.addEventListener("scroll",function(){scroll=(h[st]||b[st])/((h[sh]||b[sh])-h.clientHeight)*100;progress.style.setProperty("--scroll",scroll+"%")});
+var wxScale=new WxScale({fullPage:document.querySelector("#fullPage"),canvas:document.querySelector("#canvas")});var imgBox=document.querySelectorAll("#md_block img");for(var i=0;i<imgBox.length;i++){imgBox[i].onclick=function(e){wxScale.start(this)}};
+content="本文最后更新于2021-04-01，已超过 1 年没有更新，涉及的内容可能已经失效！";var date1="2021-04-01 10:30:42";date1=date1.replace("-","/");var date2=new Date();var date3=date2.getTime()-new Date(date1).getTime();var days=Math.floor(date3/(24*3600*1000));if(days>=365){document.getElementById("warn").innerHTML=content};
+</script>
+<style>#magnifyImg{position:fixed;left:0;top:0;text-align:center;width:100%;display:none;z-index:9999}#magnifyImg img{object-fit:contain;background:#eaecef;padding:15px;border-radius:10px;height:auto;width:auto;vertical-align:middle}</style>
+<a id="scrollUp" href="#top" style="position: fixed; z-index: 2147483647; display: block;"></a><div class="footer animated fadeInDown"><div class="site_footer"><div class="mysocials"><div class="my_socials"><a href="https://github.com/reticenceji"title="github"><i class="iconfont icon-github"></i></a><a href="reticenceji@qq.com"title="envelope"><i class="iconfont icon-envelope"></i></a><a href="https://www.zhihu.com/people/reticenceji"title="zhihu"><i class="iconfont icon-zhihu"></i></a></div></div><div class="copyright"id="copyright">Copyright © 2018-2020 <a href="https://reticenceji.github.io" style="margin:0;">Reticence</a>.</div>
+<span style="display: inline;margin-right:15px;">👁<strong><span id="busuanzi_value_site_uv"></span></strong></span><span id="busuanzi_container_page_pv" style="display: inline;"><span>📚<strong>170</strong> posts</span></div></div>
+<script>
+console.log("\n %c \u26a1Theme: Bitcron-pro Author's Blog:https://blog.blinkstar.cn  Writen By Serence  \n\n", "color: #ffffff; background: rgba(49, 49, 49, 0.85); padding:5px 0;border-radius:5px;", );
+</script>
+<script src="https://cdn.jsdelivr.net/npm/instant.page@3.0.0/instantpage.min.js" type="module" defer></script>
+<script type="text/javascript" async src="https://reticenceji.github.io/media/js/prism.js"></script>
+</body>
 </html>

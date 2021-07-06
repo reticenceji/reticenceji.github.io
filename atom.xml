@@ -1,20 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <id>https://reticenceji.github.io/</id>
+    <id>https://reticenceji.github.io</id>
     <title>Reticence</title>
-    <updated>2021-07-02T01:58:42.187Z</updated>
+    <updated>2021-07-06T14:56:45.273Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
-    <link rel="alternate" href="https://reticenceji.github.io/"/>
+    <link rel="alternate" href="https://reticenceji.github.io"/>
     <link rel="self" href="https://reticenceji.github.io/atom.xml"/>
-    <subtitle>&lt;script&gt;
-var _hmt = _hmt || [];
-(function() {
-  var hm = document.createElement(&quot;script&quot;);
-  hm.src = &quot;https://hm.baidu.com/hm.js?197e96d6e079d4c80f9674c92eb62002&quot;;
-  var s = document.getElementsByTagName(&quot;script&quot;)[0]; 
-  s.parentNode.insertBefore(hm, s);
-})();
-&lt;/script&gt;</subtitle>
     <logo>https://reticenceji.github.io/images/avatar.png</logo>
     <icon>https://reticenceji.github.io/favicon.ico</icon>
     <rights>All rights reserved 2021, Reticence</rights>
