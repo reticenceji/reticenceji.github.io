@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://reticenceji.github.io</id>
     <title>Reticence</title>
-    <updated>2021-07-06T14:56:45.273Z</updated>
+    <updated>2021-07-08T01:41:51.631Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://reticenceji.github.io"/>
     <link rel="self" href="https://reticenceji.github.io/atom.xml"/>
@@ -35,14 +35,14 @@
 ]]></content>
     </entry>
     <entry>
-        <title type="html"><![CDATA[ADS-external sorting]]></title>
+        <title type="html"><![CDATA[ADS-External sorting]]></title>
         <id>https://reticenceji.github.io/post/ads-external-sorting/</id>
         <link href="https://reticenceji.github.io/post/ads-external-sorting/">
         </link>
         <updated>2021-06-23T14:50:58.000Z</updated>
     </entry>
     <entry>
-        <title type="html"><![CDATA[ADS-parallel algorithm]]></title>
+        <title type="html"><![CDATA[ADS-Parallel algorithm]]></title>
         <id>https://reticenceji.github.io/post/ads-parallel-algorithm/</id>
         <link href="https://reticenceji.github.io/post/ads-parallel-algorithm/">
         </link>
@@ -70,7 +70,7 @@
         <updated>2021-06-15T05:22:25.000Z</updated>
     </entry>
     <entry>
-        <title type="html"><![CDATA[ADS-local search]]></title>
+        <title type="html"><![CDATA[ADS-Local search]]></title>
         <id>https://reticenceji.github.io/post/ads-local-search/</id>
         <link href="https://reticenceji.github.io/post/ads-local-search/">
         </link>
