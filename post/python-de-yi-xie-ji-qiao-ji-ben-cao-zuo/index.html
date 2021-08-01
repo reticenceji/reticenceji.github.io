@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="shortcut icon" href="https://reticenceji.github.io/favicon.ico" type="image/x-icon" /><meta name="viewport"content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="apple-mobile-web-app-capable"content="yes"/><meta name="apple-mobile-web-app-status-bar-style"content="black"/><meta name="format-detection"content="telephone=no"/><meta name="renderer"content="webkit"><meta name="description"content=""><meta charset="UTF-8"><title>Python-综述 | Reticence</title>
+<link href="https://reticenceji.github.io/styles/main.css" type="text/css" rel="stylesheet" /><link href="https://at.alicdn.com/t/font_1621793_zatzzgvf30g.css" type="text/css" rel="stylesheet" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css"><script async src="https://cdn.jsdelivr.net/npm/busuanzi@2.3.0/bsz.pure.mini.min.js"></script><script src="https://reticenceji.github.io/media/js/magnify.min.js"></script><script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js"></script>
+<script type="text/javascript">function btn_toggle(){document.getElementById("hn").classList.contains("no-js")?document.getElementById("hn").classList.remove("no-js"):document.getElementById("hn").classList.add("no-js")}</script>
+
+<link rel="canonical" href="https://reticenceji.github.io/post/python-de-yi-xie-ji-qiao-ji-ben-cao-zuo/" />
+</head>
+<body>
+<div class="progress"></div><style>.progress{background:linear-gradient(to right,#87ceeb var(--scroll),transparent 0);background-repeat:no-repeat;position:fixed;width:100%;height:4px;z-index:1}</style><div class="darkmode-background"></div><div class="darkmode-layer"></div>
+<noscript><p class="warn" >本页面需要浏览器支持（启用）JavaScript</p></noscript><div class="header"><div class="logo_title"><div class="title animated fadeInDown"><a href="https://reticenceji.github.io"><img alt="logo" style="display:inline-block;" src="https://reticenceji.github.io/images/avatar.png"/></a><h1 title="Reticence" class="weaklink"><a  href="/">Reticence</a></h1>
+
+<div class="navbar weaklink">
+<div class="normal_nav">
+<div class="bitcron_nav_container"><div class="bitcron_nav"><div class="bitcron_nav"><div style="display:flex;justify-content:center;"><nav class="mixed_site_nav_wrap site_nav_wrap"><ul class="mixed_site_nav site_nav sm sm-base">	<li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/" class="selected active current nav__item" >Index</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/tags" class="selected active current nav__item" >Tags</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/archives" class="selected active current nav__item" >Archives</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/navigator.html" class="selected active current nav__item" >Navigator</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/post/about" class="selected active current nav__item" >About</a></li></ul></nav>
+<div style="float:right;margin-top:1em"><form id="gridea-search-form" data-update="1578893743252" action="/search/index.html"><input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="Search..."></form></div><div style="margin-left:0.5em;margin-top:1.2em"><input id="switch_default" onclick="mobileBtn()" type="checkbox" class="switch_default"><label for="switch_default" class="toggleBtn"></label></div></div>
+<div class="clear clear_nav_inline_end"></div></div></div><div class="clear clear_nav_end"></div></div></div><div class="hamberger" href="javascript:void(0)" onclick="btn_toggle();"><i class="iconfont icon-category"></i></div></div></div></div>
+<div id="hn" class="no-js hidden_nav animated fadeInDown"><div class="bitcron_nav_container"><div class="bitcron_nav"><nav class="mixed_site_nav_wrap site_nav_wrap"><ul class="mixed_site_nav site_nav sm sm-base">	<li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/" class="selected active current nav__item" >Index</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/tags" class="selected active current nav__item" >Tags</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/archives" class="selected active current nav__item" >Archives</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/navigator.html" class="selected active current nav__item" >Navigator</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/post/about" class="selected active current nav__item" >About</a></li></ul><div class="clear clear_nav_inline_end"></div></nav></div><div class="clear clear_nav_end"></div></div>
+<div style="display:flex;justify-content:center;inline-block;text-align:center;margin-top:7%"><div><form id="gridea-search-form" data-update="1627835297708" action="/search/index.html"><input class="search-input" autocomplete="off" spellcheck="false" name="q"  placeholder="Search..." /></form></div><div style="margin-left:0.5em"><input id="switch_default_h" onclick="mobileBtn()" type="checkbox" class="switch_default"><label for="switch_default" class="toggleBtn"></label></div></div>
+</div></div>
+<script>function enableDarkmode(){document.body.classList.add("darkmode"),document.getElementById("switch_default").checked=1,document.getElementById("switch_default_h").checked=1}function removeDarkmode(){document.body.classList.remove("darkmode"),document.getElementById("switch_default").checked=0,document.getElementById("switch_default_h").checked=0}function getCookie(a){var b,c=new RegExp("(^| )"+a+"=([^;]*)(;|$)");return(b=document.cookie.match(c))?unescape(b[2]):null}cookie=getCookie("darkmode"),"enable"==cookie&&enableDarkmode(),window.matchMedia("(prefers-color-scheme: dark)").matches&&"disable"!==cookie&&(enableDarkmode(),document.cookie="darkmode=enable; path=/");var mobileBtn=function(){1==document.getElementById("switch_default").checked?(enableDarkmode(),document.cookie="darkmode=enable; path=/"):(removeDarkmode(),document.cookie="darkmode=disable; path=/")};</script>
+
+<div class="main"><div class="main-inner"><div class="content">
+<article class="post">
+<h2 class="post_title sm_margin"><a>Python-综述</a></h2>
+<script>function lan(){if(document.getElementById("lan").innerText=="繁"){var s=document.getElementById("tongwenlet_cn");if(s!=null){document.body.removeChild(s)}var s=document.createElement("script");s.language="javascript";s.type="text/javascript";s.src="https://cdn.jsdelivr.net/gh/qyxtim/Static@1.1/bookmarklet_tw.js";s.id="tongwenlet_cn";document.body.appendChild(s);document.getElementById("lan").innerHTML="简"}else{if(document.getElementById("lan").innerText=="簡"){var s=document.getElementById("tongwenlet_cn");if(s!=null){document.body.removeChild(s)}var s=document.createElement("script");s.language="javascript";s.type="text/javascript";s.src="https://cdn.jsdelivr.net/gh/qyxtim/Static@1.1/bookmarklet_cn.js";s.id="tongwenlet_cn";document.body.appendChild(s);document.getElementById("lan").innerHTML="繁"}}};</script>
+<section class="post_details"><i class="iconfont icon-calendar"></i><span style="margin-right:15px"> 2020-09-20</span><i class="iconfont icon-browse"></i><span style="margin-right:15px"> <span id="busuanzi_value_page_pv"></span> Views</span><i class="iconfont icon-category"></i><span class="weaklink" style="margin-right:15px">	<a href="https://reticenceji.github.io/tag/aTiVQxwll/" class="tag">Python</a></span><i class="iconfont icon-caret-down"></i><span style="margin-right:15px">4014字</span><i class="iconfont icon-naozhong"></i><span style="margin-right:15px">17 min read</span><a id="lan" href="javascript:void(0);"onclick="lan();"title="调整简繁体" style="margin-right:15px;">繁</a>
+</section>
+
+<div style="display:flex">
+<div class="md_block" id="md_block">
+<div class="round-shape-one"></div>
+<hr>
+<p>标准库：https://docs.python.org/3/<br>
+小型参考：https://www.w3school.com.cn/python/python_reference.asp<br>
+书籍：https://www.jishuchi.com/books/python100day<br>
+脚本：https://github.com/reticenceji/python_script<br>
+源代码讲解：https://realpython.com/cpython-source-code-guide/<br>
+<code>help(classname)</code><br>
+<a href="https://reticenceji.github.io/tag/aTiVQxwll/">其他主题</a></p>
+<h2 id="0-相关知识">0. 相关知识</h2>
+<h3 id="一般的脚本框架">一般的脚本框架</h3>
+<pre><code class="language-python">#!/usr/bin/python
+import &lt;module1&gt;, &lt;module2&gt;
+ 
+def myFunction():
+ 
+def main():
+	myFunction()
+ 
+if __name__==&quot;__main__&quot;:
+	main()
+</code></pre>
+<p>Python是一个强类型(strong)的动态(dynamic)语言。意思是说，在进行<strong>运算的时候</strong>表达式会进行<strong>严格的类型检查</strong>。不过现在两者的界限已经没有那么明显了。<br>
+<img src="https://ss.csdn.net/p?https://mmbiz.qpic.cn/mmbiz_png/tdJziaFLKKeSm8mIibPL2uxqWDshgLSkMaNztakIMS0G62W50ibeWYatzOsLvEyXoO85FkRxctaCUV3yDMmVqBhcw/640?wx_fmt=png" alt="" loading="lazy"></p>
+<h3 id="函数的五类参数位置参数关键字参数默认参数可变位置或关键字参数">函数的五类参数：位置参数，关键字参数，默认参数，可变位置或关键字参数</h3>
+<p>默认参数：</p>
+<pre><code class="language-python">def mypow(num,n=2):
+	return num**n	#n就是默认参数
+
+def enroll(name, gender, age=18, city='Zhejiang'):
+    pass		#这样子只有在和默认参数不同时才需要提供参数。
+</code></pre>
+<p>可变参数：</p>
+<pre><code class="language-python">def calc(*numbers):		#在参数前加一个*
+	sum = 0
+	for num in numbers:		#函数中的number是一个tuple
+		sum+=num
+	return sum
+
+calc(1,2,3)	
+#我可能会这样子把一个列表变成可变参数调用
+nums = [1, 2, 3]
+calc(*nums)		
+</code></pre>
+<p>关键字参数：</p>
+<pre><code class="language-python">def person(name, age, **kw):
+    print('name:', name, 'age:', age)
+    for k in kw:	#在函数中k是一个字典，并且是一份拷贝，对kw的改动不会影响到函数外的传参。k是key
+        print(&quot;the {1} of {0} is {2}&quot;.format(name,k,kw[k]))
+        
+person('张三',19,weight=120,height=164)
+#类似的，我们也可以把字典变成关键字参数
+info_zhangsan = {'weight':120,'height':164}
+person('张三',19,**info_zhangsan)
+</code></pre>
+<p>命名关键字参数：我们注意到上面的关键字参数并没有限制传入的关键字。关键字参数必须出现在可变参数的后面，如果没有可变参数就加一个<code>*</code>。</p>
+<pre><code class="language-python">def person(name, age, *, city=&quot;浙江&quot;, job):	#city，job在此处就是关键字参数，我们一定要指明他。他也可以带默认值
+    print(name, age, city, job)
+    
+person(&quot;赵四&quot;,10,job=&quot;engineer&quot;)
+</code></pre>
+<p>Above all:<code>def func(name,age=18,*award,usedname=None,**otherinfo)</code>排序不能乱。</p>
+<h3 id="变量的作用范围">变量的作用范围</h3>
+<p>在被调用函数内赋值的变元和变量，处于该函数的<strong>局部作用域</strong>。在所有函<br>
+数之外赋值的变量，属于<strong>全局作用域</strong>。<br>
+一个函数被调用时，就创建了一个局部作用域。在这个函数内赋值的所有变量，<br>
+存在于该局部作用域内。该函数返回时，这个局部作用域就被销毁了，这些变量就<br>
+丢失了。下次调用这个函数，局部变量不会记得该函数上次被调用时它们保存的值。<br>
+如果需要在一个函数内<strong>修改</strong>全局变量，就使用 global 语句。如果在函数的顶部<br>
+有 global eggs 这样的代码，它就告诉 Python，“在这个函数中，eggs 指的是全局变<br>
+量，所以不要用这个名字创建一个局部变量。”</p>
+<h2 id="1-data-structure">1. Data Structure</h2>
+<h3 id="1-序列-listtuplerange内置">1. 序列 list,tuple,range（内置）</h3>
+<p>你可以认为tuple是不可变的list，tuple的值应该在定义时确定。str也是序列。</p>
+<table>
+<thead>
+<tr>
+<th>通用序列运算</th>
+<th>结果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>x in s</code></td>
+<td>如果 <em>s</em> 中的某项等于 <em>x</em> 则结果为 <code>True</code>，否则为 <code>False</code></td>
+</tr>
+<tr>
+<td><code>x not in s</code></td>
+<td>如果 <em>s</em> 中的某项等于 <em>x</em> 则结果为 <code>False</code>，否则为 <code>True</code></td>
+</tr>
+<tr>
+<td><code>s + t</code></td>
+<td><em>s</em> 与 <em>t</em> 相拼接</td>
+</tr>
+<tr>
+<td><code>s * n</code> 或 <code>n * s</code></td>
+<td>相当于 <em>s</em> 与自身进行 <em>n</em> 次拼接</td>
+</tr>
+<tr>
+<td><code>s[i]</code></td>
+<td><em>s</em> 的第 <em>i</em> 项，起始为 0</td>
+</tr>
+<tr>
+<td><code>s[i:j]</code></td>
+<td><em>s</em> 从 <em>i</em> 到 <em>j</em> 的切片</td>
+</tr>
+<tr>
+<td><code>s[i:j:k]</code></td>
+<td><em>s</em> 从 <em>i</em> 到 <em>j</em> 步长为 <em>k</em> 的切片</td>
+</tr>
+<tr>
+<td><code>len(s)</code></td>
+<td><em>s</em> 的长度</td>
+</tr>
+<tr>
+<td><code>min(s)</code></td>
+<td><em>s</em> 的最小项</td>
+</tr>
+</tbody>
+</table>
+<pre><code class="language-python">a = [1,2,3,5,4]
+a[0],a[1],a[-1],a[:4],a[0:4],a[0:4:2]	#切片操作，返回列表的一个浅拷贝。想想这些都是什么值。换句话说，修改这些值会改变原来列表的值
+a[i] = 1	#利用浅拷贝特性修改列表的值
+a.append(6)	#添加元素
+a.pop(index)	#删除index位置的元素（也可以负数倒数），默认index=-1
+a.extend()		#将列表元素（或任何可迭代的元素）添加到当前列表的末尾
+a.insert(index,value)	#在指定位置添加元素
+len(a)	#获得a的长度
+a.sort(key=Function)	#列表排序,key指定排序规则
+</code></pre>
+<pre><code class="language-Python">range类型是不可变的数字序列
+range(start,end,step)	#range类型的构造器函数
+</code></pre>
+<p>我们知道python中的列表变量，其实是对列表的一个引用(reference).在下面的例子中，对b的修改同样会对a造成改变。我们可以用copy模块的deepcopy和copy函数避免这一现象。</p>
+<pre><code>    import copy
+    a = [1,2,[3,4]]
+    b = a
+    c = copy.copy(a)        #把引用里的内容都复制一遍，形成一个新的列表
+    d = copy.deepcopy(a)    #deepcopy()函数将同时复制它们内部的列表。递归的把引用里的引用的内容都复制了
+</code></pre>
+<h3 id="2-dict-内置">2. Dict （内置）</h3>
+<p>Python内置了字典：dict的支持，dict全称dictionary，在其他语言中也称为map，使用键-值（key-value）存储，具有极快的查找速度。但需要占用大量的内存。</p>
+<pre><code class="language-python">d = {'URL': 'www.baidu.com', 'Code': 202}	
+d['Body'] = '123'	#添加键值对
+d.get(&quot;URL&quot;)	#返回key对应的value，并且在key不存在时返回None
+d.values(),d.keys()		#顾名思义 
+d.items()	#返回的是所有的键值对tuple
+#上面两个方法返回的都是视图对象view objects.该对象提供字典条目的一个动态视图。
+</code></pre>
+<p>dict的key必须是<strong>不可变对象</strong>，因为dict通过计算key的Hash来确定value的地址。</p>
+<h3 id="3-set-内置">3. set （内置）</h3>
+<p>set是集合，也可以认为是没有value的字典？</p>
+<pre><code class="language-python">s = {1,2,3}	
+s.add(4)
+s.remove(4)	#删除元素，如果不在会报错。先in判断一下
+</code></pre>
+<h3 id="4-其他内置类型">4. <a href="https://docs.python.org/3.8/library/stdtypes.html#other-built-in-types">其他内置类型</a></h3>
+<h3 id="5-arraynumpy-数组">5. array,numpy 数组</h3>
+<p>list可能很像数组。但是没有那么好用。numpy模块提供的数组更加好用。python标准库好像也有array模块。</p>
+<pre><code class="language-python">import numpy as py
+two_d = np.zeros(15).reshape(5,3)	#创建一个5*3的数组
+</code></pre>
+<h3 id="6-heapq-最小堆">6. heapq 最小堆</h3>
+<p><a href="https://docs.python.org/zh-cn/3/library/heapq.html">https://docs.python.org/zh-cn/3/library/heapq.html</a></p>
+<h3 id="examples">Examples</h3>
+<p>字符数组变字符串：<code>''.join(['a','b','c'])</code><br>
+列表去重(a是一个列表)： <code>a=list(set(a))</code><br>
+快速创建字典，用<strong>zip</strong>函数<code>dict(zip(['a','b'],[1,2]))</code>=》<code>{'a': 1, 'b': 2}</code></p>
+<h2 id="2-string-and-bytes">2. String and Bytes</h2>
+<p>这里是第一节DS的延伸。这两个类都有很多很多好用的方法，参考<a href="https://docs.python.org/3.9/library/stdtypes.html?highlight=bytes#bytes">标准库</a>。</p>
+<h3 id="1-内置类型str">1. 内置类型<strong>str</strong></h3>
+<p>str是由 Unicode 码位构成的<strong>不可变序列</strong>。</p>
+<pre><code class="language-python">#注意这里返回的都是原来字符串的副本，原来的字符串并没有被改变。
+str.encode()	#返回原字符串编码为字节串对象的版本。 默认编码为 `'utf-8'`。
+str.format(*args,**kwargs)	#格式化字符串
+str.find(sub)	#返回子字符串 sub 在 s 被找到的最小索引。 可选参数 start 与 end 会被解读为切片表示法。 如果 sub 未被找到则返回 -1。
+str.rfind()	#返回子字符串 sub 在 s 被找到的最大索引。
+'py' in 'python'	#检测是否是子串
+str.upper(),str.lower()	#转大、小写
+str.count(sub[, start[, end]])	#反回子字符串 sub 在 [start, end] 范围内非重叠出现的次数。 可选参数 start 与 end 会被解读为切片表示法。
+str.replace(old,new)	#把str的old子串换成new子串	
+str.split(sep)	#返回一个由字符串内单词组成的列表，使用 sep 作为分隔字符串。这个方法在PTA这种算法题中很常见啊O(∩_∩)O哈哈~
+str.strip(chars)	#返回原字符串的副本，移除其中的前导和末尾字符。 chars 参数为指定要移除字符的字符串。 如果省略或为 None，则 chars 参数默认移除空格符。char可以指定多个character
+</code></pre>
+<p><code>str.format()</code><a href="https://docs.python.org/3.9/library/string.html#formatstrings">的用法</a></p>
+<pre><code>format_spec     ::=  [[fill]align][sign][#][0][width][grouping_option][.precision][type]
+fill            ::=  &lt;any character&gt;
+align           ::=  &quot;&lt;&quot; | &quot;&gt;&quot; | &quot;=&quot; | &quot;^&quot;
+sign            ::=  &quot;+&quot; | &quot;-&quot; | &quot; &quot;
+width           ::=  digit+
+grouping_option ::=  &quot;_&quot; | &quot;,&quot;
+precision       ::=  digit+
+type            ::=  &quot;b&quot; | &quot;c&quot; | &quot;d&quot; | &quot;e&quot; | &quot;E&quot; | &quot;f&quot; | &quot;F&quot; | &quot;g&quot; | &quot;G&quot; | &quot;n&quot; | &quot;o&quot; | &quot;s&quot; | &quot;x&quot; | &quot;X&quot; | &quot;%&quot;
+</code></pre>
+<h3 id="2-内置类型bytes">2. 内置类型<strong>bytes</strong></h3>
+<p>和str一样，bytes也是不可变序列。bytes 对象是由单个字节构成的不可变序列。 str用来操作文本，而bytes用来操作二进制数据。</p>
+<pre><code class="language-Python">x = b'\x30\x31\x32'		#bytes对象的字面量，每个数字大小在0-0xff之间
+x.hex([sep])		#返回一个字符串对象，该对象包含实例中每个字节的两个十六进制数字，用sep分隔。
+x.decode('utf-8')		#解码
+x[0]		#返回一个0-0xff的数字	
+x[0:1]		#返回一个bytes
+
+bytes([source[, encoding[, errors]]])	#一个内置方法，把source转换成bytes类型。
+int.to_bytes()
+int.from_bytes()	#int的static methods,顾名思义是转换成bytes和转换到bytes
+</code></pre>
+<p><a href="https://www.programiz.com/python-programming/methods/built-in/bytes">bytes()函数的优秀参考</a></p>
+<p><strong>bytearray</strong></p>
+<p>bytearray是bytes的可变序列形式。</p>
+<h3 id="examples-2">Examples</h3>
+<ol>
+<li>字符串转数字</li>
+</ol>
+<pre><code>string = '4D'
+print(int(string,base=16),end=' ')
+string = '0x4D'
+print(int(string,base=16))
+</code></pre>
+<ol start="2">
+<li>字符串操作</li>
+</ol>
+<pre><code class="language-python">x = &quot;4D 4D 4D 77 6A 61 75 60 53 5D 5D 53 7D 79 62 53 3F 34 3A 3B 35 3A 3C  34 3C 71 &quot;
+#移除其中的前导和末尾字符,默认是空格
+x = x.strip(' ')
+#根据指定字符分割字符串为列表
+list = x.split(' ')
+print(list)
+#字符串倒序
+print(&quot;}080697683_nuq_qq_3oa1X_amuot{AAA&quot;[::-1])
+
+</code></pre>
+<ol start="3">
+<li>格式化字符串format</li>
+</ol>
+<pre><code class="language-python">print(&quot;binary:{0:b}\noct:{0:o}\n前缀hex:{0:#x}\ndec:{0:d}\n&quot;.format(10))
+#进制转换
+print(&quot;{0:+f}\t{0:-f}\t{0: f}&quot;.format(3.14))
+print(&quot;{0:+f}\t{0:-f}\t{0: f}&quot;.format(-3.14))
+#符号问题
+coord = (3, 5)
+print( 'X: {0[0]};  Y: {0[1]}'.format(coord))
+#访问列表的项
+</code></pre>
+<h2 id="4-builtin-function-常用的内置方法">4. Builtin Function 常用的内置方法</h2>
+<p>https://docs.python.org/3.8/library/functions.html#built-in-functions</p>
+<h3 id="enumerate-列举">enumerate 列举</h3>
+<pre><code class="language-python">#	enumerate(iterable, start=0)
+&gt;&gt;&gt; list(enumerate(seasons))
+[(0, 'Spring'), (1, 'Summer'), (2, 'Fall'), (3, 'Winter')]
+</code></pre>
+<h3 id="evalexec-执行字符串">eval,exec 执行字符串</h3>
+<pre><code class="language-python">eval(expression[, globals[, locals]])	#The arguments are a string and optional globals and locals. If provided, globals must be a dictionary. If provided, locals can be any mapping object.The expression argument is parsed and evaluated as a Python expression (technically speaking, a condition list) using the globals and locals dictionaries as global and local namespace.
+</code></pre>
+<pre><code class="language-python">exec(object[, globals[, locals]])
+#这个函数支持动态执行 Python 代码。object 必须是字符串或者代码对象
+</code></pre>
+<pre><code class="language-python">isinstance(object, classinfo)
+如果参数 object 是参数 classinfo 的实例或者是其 (直接、间接或 虚拟) 子类则返回 True。
+</code></pre>
+<h3 id="">...</h3>
+<p><code>len()</code>获得长度，<code>print()</code>输出，<code>input</code>获得输入。</p>
+<p><code>sum()</code>求和，<code>sorted</code>排序</p>
+<h3 id="open-打开文件">open 打开文件</h3>
+<pre><code class="language-python">open(file, mode='r', buffering=-1, encoding=None, errors=None, newline=None, closefd=True, opener=None)
+#打开 file 并返回对应的 file object。如果该文件不能打开，则触发 OSError。
+#'r' 读取（默认）'w' 写入，并先截断文件'x' 排它性创建，如果文件已存在则失败'a' 写入，如果文件存在则在末尾追加'b' 二进制模式't' 文本模式（默认）'+' 打开用于更新（读取与写入）
+</code></pre>
+<h3 id="filter-过滤器">filter 过滤器</h3>
+<p><code>filter(*function*, *iterable*)</code>比如<code>fil = list(filter(lambda x: x&gt;10,[1,11,2,45,7,6,13]))</code></p>
+<p>Construct an <strong>iterator</strong> from those elements of <em>iterable</em> for which <em>function</em> returns true.在函数中设定过滤条件，迭代元素，保留返回值为 True 的元素。</p>
+<h3 id="round-四舍五入">round 四舍五入</h3>
+<p><code>round(10.0222222, 3)</code>=&gt;10.022</p>
+<h3 id="help-查看帮助">help 查看帮助</h3>
+<h2 id="5-regex-正则表达式">5. RegEx 正则表达式</h2>
+<h3 id="about-re">About RE</h3>
+<p>30分钟入门正则表达式:https://deerchao.cn/tutorials/regex/regex.htm</p>
+<table>
+<thead>
+<tr>
+<th>匹配单个字符</th>
+<th style="text-align:left">内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>.</td>
+<td style="text-align:left">任意字符(除了回车)</td>
+</tr>
+<tr>
+<td>\d</td>
+<td style="text-align:left">数字</td>
+</tr>
+<tr>
+<td>\D</td>
+<td style="text-align:left">非数字</td>
+</tr>
+<tr>
+<td>\s</td>
+<td style="text-align:left">空白字符</td>
+</tr>
+<tr>
+<td>\S</td>
+<td style="text-align:left">非空白字符</td>
+</tr>
+<tr>
+<td>\w</td>
+<td style="text-align:left">单词字符</td>
+</tr>
+<tr>
+<td>\W</td>
+<td style="text-align:left">非单词字符</td>
+</tr>
+<tr>
+<td>\.</td>
+<td style="text-align:left">匹配.号,\是转义字符</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>数量限定字符</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>*</td>
+<td>匹配前一个字符0次或无限次</td>
+</tr>
+<tr>
+<td>+</td>
+<td>匹配前一个字符1次或无限次</td>
+</tr>
+<tr>
+<td>?</td>
+<td>匹配前一个字符0次或1次</td>
+</tr>
+<tr>
+<td>{m}</td>
+<td>匹配前一个字符m次</td>
+</tr>
+<tr>
+<td>{m,n}</td>
+<td>匹配前一个字符m-n次</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>位置限定字符</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>\b</td>
+<td>匹配单词的开始或结束</td>
+</tr>
+<tr>
+<td>^</td>
+<td>匹配字符串的开始</td>
+</tr>
+<tr>
+<td>$</td>
+<td>匹配字符串的结束</td>
+</tr>
+</tbody>
+</table>
+<p>用<code>?</code>修饰数量限定字符,可以变成<strong>非贪婪模式</strong>(默认是贪婪模式).</p>
+<p><code>|</code>表示分支条件-或。左边的表达式或右边的表达式能被匹配</p>
+<p><code>()</code>可以对匹配的字符串进行分组,详见下面的example.</p>
+<table>
+<thead>
+<tr>
+<th>分组字符()</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>(exp)</td>
+<td>匹配exp并捕获到自动命名的组中</td>
+</tr>
+<tr>
+<td>(? <name>exp)</td>
+<td>匹配exp并捕获到名为name的组中</td>
+</tr>
+<tr>
+<td>(?:exp)</td>
+<td>匹配exp但是不捕获匹配的文本</td>
+</tr>
+<tr>
+<td>(?=exp)</td>
+<td>匹配exp前面的位置</td>
+</tr>
+<tr>
+<td>(?&lt;=exp)</td>
+<td>匹配exp后面的位置</td>
+</tr>
+<tr>
+<td>(?!exp)</td>
+<td>匹配后面不是exp的位置</td>
+</tr>
+<tr>
+<td>(?&lt;!exp)</td>
+<td>匹配前面不是exp的位置</td>
+</tr>
+</tbody>
+</table>
+<h3 id="functions">Functions</h3>
+<pre><code class="language-python">import re
+re.compile()
+	#匹配
+pattern.match(string)	#如果 string 开始的0或者多个字符匹配到了正则表达式样式，就返回一个相应的 匹配对象 。 如果没有匹配，就返回 None ；注意它跟零长度匹配是不同的。
+re.fullmatch(pattern, string, flags=0)	# 如果整个 string 匹配到正则表达式样式，就返回一个相应的 匹配对象 。 否则就返回一个 None ；注意这跟零长度匹配是不同的。
+re.search(pattern, string, flags=0)		# 扫描整个 字符串 找到匹配样式的第一个位置，并返回一个相应的 匹配对象。如果没有匹配，就返回一个 None ； 注意这和找到一个零长度匹配是不同的。
+#和match的区别在于Search可以从任一一个位置开始匹配.
+	#查找
+re.findall(pattern, string, flags=0)	# 对 string 返回一个不重复的 pattern 的匹配列表， string 从左到右进行扫描，匹配按找到的顺序返回。如果样式里存在一到多个组，就返回一个组合列表；就是一个元组的列表（如果样式里有超过一个组合的话）。空匹配也会包含在结果里。
+re.finditer(pattern, string, flags=0)
+#pattern 在 string 里所有的非重复匹配，返回为一个迭代器 iterator 保存了 匹配对象 。 string 从左到右扫描，匹配按顺序排列。空匹配也包含在结果里。
+	#修改
+re.split()	#用 pattern 分开 string 。
+re.sub(pattern, repl, string) # 返回通过使用 repl 替换在 string 最左边非重叠出现的 pattern 而获得的字符串。
+</code></pre>
+<h3 id="examples-3">Examples</h3>
+<p>正则表达式主要的功能可以分为两个,<strong>查找Search</strong>和<strong>匹配Match</strong>。</p>
+<p>匹配方法:fullmatch(),match(),search</p>
+<pre><code>import re
+reg = re.compile(&quot;&lt;p&gt;(.*)&lt;/p&gt;&quot;)
+match = reg.match(text)
+if match:
+    print(&quot;match&quot;)
+</code></pre>
+<p>查找主要方法是find(),findall(),finditer()</p>
+<pre><code class="language-python">import re
+text = &quot;&quot;&quot;&lt;p&gt;&lt;strong&gt;说明：&lt;/strong&gt; 如果需要匹配的字符是正则表达式中的特殊字符，那么可以使用\进行转义处理，例如想匹配小数点可以写成\.就可以了，因为直接写.会匹配任意字符；同理，想匹配圆括号必须写成\(和\)，否则圆括号被视为正则表达式中的分组。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&quot;h3-python-&quot;&gt;&lt;a name=&quot;Python对正则表达式的支持&quot; class=&quot;reference-link&quot;&gt;&lt;/a&gt;&lt;span class=&quot;header-link octicon octicon-link&quot;&gt;&lt;/span&gt;Python对正则表达式的支持&lt;/h3&gt;&lt;p&gt;Python提供了re模块来支持正则表达式相关操作，下面是re模块中的核心函数。&lt;/p&gt;&quot;&quot;&quot;
+
+reg = re.compile(&quot;&lt;p&gt;(.*)&lt;/p&gt;&quot;)
+match = reg.findall(text)
+for i in match:
+    print(i)	#findall返回一个元素都是str的列表
+</code></pre>
+<p>修改数据，主要方法是sub(),split()</p>
+<pre><code>text = '''# 搜索引擎的使用
+高级搜索 https://g.luciaz.me/advanced_search?hl=en&amp;fg=1
+综合搜索 https://search.chongbuluo.com/'''
+
+pattern = re.compile(&quot;(.*?) (https?://.*/?)&quot;)
+t = pattern.sub(lambda m: &quot;[{}]({}){}&quot;.format(m.group(1),m.group(2),m.group(2)),text)
+#pattern.sub()，第一个参数是修改方法，第二个参数是目标文本。
+#注意这里的Match对象m，m.group(0)默认是整个，然后index才会根据（）依次向后
+print(t)
+</code></pre>
+<hr>
+<h2 id="6-把python当成计算器">6. 把python当成计算器</h2>
+<p><code>**</code>表示乘方。</p>
+<p><code>1+2j</code>可以简单的表示一个复数。</p>
+<h2 id="7-random">7. random</h2>
+<p><code>random.shuffle(x[, random])</code><br>
+将序列 <em>x</em> 随机打乱位置。</p>
+
+<span id="footnote"></span>
+<div id = "warn"></div>
+</div>
+<div class="toc-container"><ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#0-%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86">0. 相关知识</a>
+<ul>
+<li><a href="#%E4%B8%80%E8%88%AC%E7%9A%84%E8%84%9A%E6%9C%AC%E6%A1%86%E6%9E%B6">一般的脚本框架</a></li>
+<li><a href="#%E5%87%BD%E6%95%B0%E7%9A%84%E4%BA%94%E7%B1%BB%E5%8F%82%E6%95%B0%E4%BD%8D%E7%BD%AE%E5%8F%82%E6%95%B0%E5%85%B3%E9%94%AE%E5%AD%97%E5%8F%82%E6%95%B0%E9%BB%98%E8%AE%A4%E5%8F%82%E6%95%B0%E5%8F%AF%E5%8F%98%E4%BD%8D%E7%BD%AE%E6%88%96%E5%85%B3%E9%94%AE%E5%AD%97%E5%8F%82%E6%95%B0">函数的五类参数：位置参数，关键字参数，默认参数，可变位置或关键字参数</a></li>
+<li><a href="#%E5%8F%98%E9%87%8F%E7%9A%84%E4%BD%9C%E7%94%A8%E8%8C%83%E5%9B%B4">变量的作用范围</a></li>
+</ul>
+</li>
+<li><a href="#1-data-structure">1. Data Structure</a>
+<ul>
+<li><a href="#1-%E5%BA%8F%E5%88%97-listtuplerange%E5%86%85%E7%BD%AE">1. 序列 list,tuple,range（内置）</a></li>
+<li><a href="#2-dict-%E5%86%85%E7%BD%AE">2. Dict （内置）</a></li>
+<li><a href="#3-set-%E5%86%85%E7%BD%AE">3. set （内置）</a></li>
+<li><a href="#4-%E5%85%B6%E4%BB%96%E5%86%85%E7%BD%AE%E7%B1%BB%E5%9E%8B">4. 其他内置类型</a></li>
+<li><a href="#5-arraynumpy-%E6%95%B0%E7%BB%84">5. array,numpy 数组</a></li>
+<li><a href="#6-heapq-%E6%9C%80%E5%B0%8F%E5%A0%86">6. heapq 最小堆</a></li>
+<li><a href="#examples">Examples</a></li>
+</ul>
+</li>
+<li><a href="#2-string-and-bytes">2. String and Bytes</a>
+<ul>
+<li><a href="#1-%E5%86%85%E7%BD%AE%E7%B1%BB%E5%9E%8Bstr">1. 内置类型<strong>str</strong></a></li>
+<li><a href="#2-%E5%86%85%E7%BD%AE%E7%B1%BB%E5%9E%8Bbytes">2. 内置类型<strong>bytes</strong></a></li>
+<li><a href="#examples-2">Examples</a></li>
+</ul>
+</li>
+<li><a href="#4-builtin-function-%E5%B8%B8%E7%94%A8%E7%9A%84%E5%86%85%E7%BD%AE%E6%96%B9%E6%B3%95">4. Builtin Function 常用的内置方法</a>
+<ul>
+<li><a href="#enumerate-%E5%88%97%E4%B8%BE">enumerate 列举</a></li>
+<li><a href="#evalexec-%E6%89%A7%E8%A1%8C%E5%AD%97%E7%AC%A6%E4%B8%B2">eval,exec 执行字符串</a></li>
+<li><a href="#">...</a></li>
+<li><a href="#open-%E6%89%93%E5%BC%80%E6%96%87%E4%BB%B6">open 打开文件</a></li>
+<li><a href="#filter-%E8%BF%87%E6%BB%A4%E5%99%A8">filter 过滤器</a></li>
+<li><a href="#round-%E5%9B%9B%E8%88%8D%E4%BA%94%E5%85%A5">round 四舍五入</a></li>
+<li><a href="#help-%E6%9F%A5%E7%9C%8B%E5%B8%AE%E5%8A%A9">help 查看帮助</a></li>
+</ul>
+</li>
+<li><a href="#5-regex-%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F">5. RegEx 正则表达式</a>
+<ul>
+<li><a href="#about-re">About RE</a></li>
+<li><a href="#functions">Functions</a></li>
+<li><a href="#examples-3">Examples</a></li>
+</ul>
+</li>
+<li><a href="#6-%E6%8A%8Apython%E5%BD%93%E6%88%90%E8%AE%A1%E7%AE%97%E5%99%A8">6. 把python当成计算器</a></li>
+<li><a href="#7-random">7. random</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="fullPage"><canvas id="canvas"></canvas></div>
+</article>
+<div id="eof"><span>EOF</span></div><div class="round-shape-one"></div>
+<section>
+<div class="doc_comments">
+
+</div></section>
+</div></div></div><script>
+"use strict";!function(){for(var n=document.getElementsByTagName("pre"),e=n.length,s=0;s<e;s++){n[s].innerHTML='<span class="line-number"></span>'+n[s].innerHTML+'<span class="cl"></span>';for(var a=n[s].innerHTML.split(/\n/).length,r=0;r<a-1;r++){n[s].getElementsByTagName("span")[0].innerHTML+="<span>"+(r+1)+"</span>"}}}();
+let mainNavLinks=document.querySelectorAll(".markdownIt-TOC a");window.addEventListener("scroll",event=>{let fromTop=window.scrollY;mainNavLinks.forEach((link,index)=>{let section=document.getElementById(decodeURI(link.hash).substring(1));let nextSection=null
+if(mainNavLinks[index+1]){nextSection=document.getElementById(decodeURI(mainNavLinks[index+1].hash).substring(1));}
+if(section.offsetTop<=fromTop){if(nextSection){if(nextSection.offsetTop>fromTop){link.classList.add("currentToc");}else{link.classList.remove("currentToc");}}else{link.classList.add("currentToc");}}else{link.classList.remove("currentToc");}});});
+var h=document.documentElement,b=document.body,st="scrollTop",sh="scrollHeight",progress=document.querySelector(".progress"),scroll;document.addEventListener("scroll",function(){scroll=(h[st]||b[st])/((h[sh]||b[sh])-h.clientHeight)*100;progress.style.setProperty("--scroll",scroll+"%")});
+var wxScale=new WxScale({fullPage:document.querySelector("#fullPage"),canvas:document.querySelector("#canvas")});var imgBox=document.querySelectorAll("#md_block img");for(var i=0;i<imgBox.length;i++){imgBox[i].onclick=function(e){wxScale.start(this)}};
+</script>
+<a id="scrollUp" href="#top" style="position: fixed; z-index: 2147483647; display: block;"></a><div class="footer animated fadeInDown"><div class="site_footer"><div class="mysocials"><div class="my_socials"><a href="https://github.com/reticenceji"title="github"><i class="iconfont icon-github"></i></a><a href="reticenceji@qq.com"title="envelope"><i class="iconfont icon-envelope"></i></a><a href="https://www.zhihu.com/people/reticenceji"title="zhihu"><i class="iconfont icon-zhihu"></i></a></div></div><div class="copyright"id="copyright">Copyright © 2018-2020 <a href="https://reticenceji.github.io" style="margin:0;">Reticence</a>.</div>
+<span style="display: inline;margin-right:15px;">👁<strong><span id="busuanzi_value_site_uv"></span></strong></span><span id="busuanzi_container_page_pv" style="display: inline;"><span>📚<strong>176</strong> posts</span></div></div>
+<script>
+console.log("\n %c \u26a1Theme: Bitcron-pro Author's Blog:https://blog.blinkstar.cn  Writen By Serence  \n\n", "color: #ffffff; background: rgba(49, 49, 49, 0.85); padding:5px 0;border-radius:5px;", );
+</script>
+<script src="https://cdn.jsdelivr.net/npm/instant.page@3.0.0/instantpage.min.js" type="module" defer></script>
+<script type="text/javascript" async src="https://reticenceji.github.io/media/js/prism.js"></script>
+</body>
+</html>

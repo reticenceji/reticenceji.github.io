@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="shortcut icon" href="https://reticenceji.github.io/favicon.ico" type="image/x-icon" /><meta name="viewport"content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="apple-mobile-web-app-capable"content="yes"/><meta name="apple-mobile-web-app-status-bar-style"content="black"/><meta name="format-detection"content="telephone=no"/><meta name="renderer"content="webkit"><meta name="description"content=""><meta charset="UTF-8"><title>lds文件-链接器 | Reticence</title>
+<link href="https://reticenceji.github.io/styles/main.css" type="text/css" rel="stylesheet" /><link href="https://at.alicdn.com/t/font_1621793_zatzzgvf30g.css" type="text/css" rel="stylesheet" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css"><script async src="https://cdn.jsdelivr.net/npm/busuanzi@2.3.0/bsz.pure.mini.min.js"></script><script src="https://reticenceji.github.io/media/js/magnify.min.js"></script><script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js"></script>
+<script type="text/javascript">function btn_toggle(){document.getElementById("hn").classList.contains("no-js")?document.getElementById("hn").classList.remove("no-js"):document.getElementById("hn").classList.add("no-js")}</script>
+
+<link rel="canonical" href="https://reticenceji.github.io/post/lds-wen-jian/" />
+</head>
+<body>
+<div class="progress"></div><style>.progress{background:linear-gradient(to right,#87ceeb var(--scroll),transparent 0);background-repeat:no-repeat;position:fixed;width:100%;height:4px;z-index:1}</style><div class="darkmode-background"></div><div class="darkmode-layer"></div>
+<noscript><p class="warn" >本页面需要浏览器支持（启用）JavaScript</p></noscript><div class="header"><div class="logo_title"><div class="title animated fadeInDown"><a href="https://reticenceji.github.io"><img alt="logo" style="display:inline-block;" src="https://reticenceji.github.io/images/avatar.png"/></a><h1 title="Reticence" class="weaklink"><a  href="/">Reticence</a></h1>
+
+<div class="navbar weaklink">
+<div class="normal_nav">
+<div class="bitcron_nav_container"><div class="bitcron_nav"><div class="bitcron_nav"><div style="display:flex;justify-content:center;"><nav class="mixed_site_nav_wrap site_nav_wrap"><ul class="mixed_site_nav site_nav sm sm-base">	<li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/" class="selected active current nav__item" >Index</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/tags" class="selected active current nav__item" >Tags</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/archives" class="selected active current nav__item" >Archives</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/navigator.html" class="selected active current nav__item" >Navigator</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/post/about" class="selected active current nav__item" >About</a></li></ul></nav>
+<div style="float:right;margin-top:1em"><form id="gridea-search-form" data-update="1578893743252" action="/search/index.html"><input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="Search..."></form></div><div style="margin-left:0.5em;margin-top:1.2em"><input id="switch_default" onclick="mobileBtn()" type="checkbox" class="switch_default"><label for="switch_default" class="toggleBtn"></label></div></div>
+<div class="clear clear_nav_inline_end"></div></div></div><div class="clear clear_nav_end"></div></div></div><div class="hamberger" href="javascript:void(0)" onclick="btn_toggle();"><i class="iconfont icon-category"></i></div></div></div></div>
+<div id="hn" class="no-js hidden_nav animated fadeInDown"><div class="bitcron_nav_container"><div class="bitcron_nav"><nav class="mixed_site_nav_wrap site_nav_wrap"><ul class="mixed_site_nav site_nav sm sm-base">	<li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/" class="selected active current nav__item" >Index</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/tags" class="selected active current nav__item" >Tags</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/archives" class="selected active current nav__item" >Archives</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/navigator.html" class="selected active current nav__item" >Navigator</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/post/about" class="selected active current nav__item" >About</a></li></ul><div class="clear clear_nav_inline_end"></div></nav></div><div class="clear clear_nav_end"></div></div>
+<div style="display:flex;justify-content:center;inline-block;text-align:center;margin-top:7%"><div><form id="gridea-search-form" data-update="1627835297708" action="/search/index.html"><input class="search-input" autocomplete="off" spellcheck="false" name="q"  placeholder="Search..." /></form></div><div style="margin-left:0.5em"><input id="switch_default_h" onclick="mobileBtn()" type="checkbox" class="switch_default"><label for="switch_default" class="toggleBtn"></label></div></div>
+</div></div>
+<script>function enableDarkmode(){document.body.classList.add("darkmode"),document.getElementById("switch_default").checked=1,document.getElementById("switch_default_h").checked=1}function removeDarkmode(){document.body.classList.remove("darkmode"),document.getElementById("switch_default").checked=0,document.getElementById("switch_default_h").checked=0}function getCookie(a){var b,c=new RegExp("(^| )"+a+"=([^;]*)(;|$)");return(b=document.cookie.match(c))?unescape(b[2]):null}cookie=getCookie("darkmode"),"enable"==cookie&&enableDarkmode(),window.matchMedia("(prefers-color-scheme: dark)").matches&&"disable"!==cookie&&(enableDarkmode(),document.cookie="darkmode=enable; path=/");var mobileBtn=function(){1==document.getElementById("switch_default").checked?(enableDarkmode(),document.cookie="darkmode=enable; path=/"):(removeDarkmode(),document.cookie="darkmode=disable; path=/")};</script>
+
+<div class="main"><div class="main-inner"><div class="content">
+<article class="post">
+<h2 class="post_title sm_margin"><a>lds文件-链接器</a></h2>
+<script>function lan(){if(document.getElementById("lan").innerText=="繁"){var s=document.getElementById("tongwenlet_cn");if(s!=null){document.body.removeChild(s)}var s=document.createElement("script");s.language="javascript";s.type="text/javascript";s.src="https://cdn.jsdelivr.net/gh/qyxtim/Static@1.1/bookmarklet_tw.js";s.id="tongwenlet_cn";document.body.appendChild(s);document.getElementById("lan").innerHTML="简"}else{if(document.getElementById("lan").innerText=="簡"){var s=document.getElementById("tongwenlet_cn");if(s!=null){document.body.removeChild(s)}var s=document.createElement("script");s.language="javascript";s.type="text/javascript";s.src="https://cdn.jsdelivr.net/gh/qyxtim/Static@1.1/bookmarklet_cn.js";s.id="tongwenlet_cn";document.body.appendChild(s);document.getElementById("lan").innerHTML="繁"}}};</script>
+<section class="post_details"><i class="iconfont icon-calendar"></i><span style="margin-right:15px"> 2020-10-07</span><i class="iconfont icon-browse"></i><span style="margin-right:15px"> <span id="busuanzi_value_page_pv"></span> Views</span><i class="iconfont icon-category"></i><span class="weaklink" style="margin-right:15px">	<a href="https://reticenceji.github.io/tag/nL6gwIN_5/" class="tag">Tools</a></span><i class="iconfont icon-caret-down"></i><span style="margin-right:15px">749字</span><i class="iconfont icon-naozhong"></i><span style="margin-right:15px">4 min read</span><a id="lan" href="javascript:void(0);"onclick="lan();"title="调整简繁体" style="margin-right:15px;">繁</a>
+</section>
+
+<div style="display:flex">
+<div class="md_block" id="md_block">
+<div class="round-shape-one"></div>
+<h2 id="lds是什么">lds是什么</h2>
+<p>linker script，简单的可以认为是告诉链接器ld怎么去链接的。</p>
+<blockquote>
+<p>The main purpose of the linker script is to describe how the sections in the input files should be mapped into the output file, and to control the memory layout of the output file.<br>
+说明各个section怎么映射到输出的文件，并且规定输出文件的内存布局。<br>
+<a href="https://sourceware.org/binutils/docs/ld/Basic-Script-Concepts.html">基础知识</a></p>
+</blockquote>
+<h2 id="基础lds文件分析">基础lds文件分析</h2>
+<p>以这一段代码为例，要用的话是不能带#后面的东西的。</p>
+<pre><code>OUTPUT_ARCH( &quot;riscv&quot; )      #架构
+ENTRY( _start )         #设置入口点
+BASE_ADDR = 0x80000000;
+SECTIONS
+{
+  . = BASE_ADDR;      
+  #对一个特殊的符号'.'赋值, 这是一个定位计数器.
+  .text : { *(.text) }        
+  #定义一个输出节.text ，节名后面的花括号中，列所有应当被放入到这个输出节中的输入节的名字.
+  #'*'是一个通配符,匹配任何文件名
+  #此时定位计数器 . 的值是'0x10000',连接器会把输出文件中的'.text'节的地址设为'0x10000'.
+  .rodata : { *(.rodata) }  
+  #此时定位计数器的值为 .+text节的长度。
+  #连接器会通过在必要时增加定位计数器的值来保证每一个输出节具有它所需的对齐.
+  .data : { *(.data) }
+  .bss : { *(.bss) }
+  . += 0x8000;
+  stack_top = .;
+  _end = .;
+}
+</code></pre>
+<h2 id="memory">MEMORY</h2>
+<p><a href="https://sourceware.org/binutils/docs/ld/MEMORY.html">参考文档</a><br>
+The MEMORY command describes the location and size of blocks of memory in the target. 给内存分块（origin~origin+length），attr说明属性（读、写、执行、初始化、可分配）</p>
+<pre><code>MEMORY
+  {
+    name [(attr)] : ORIGIN = origin, LENGTH = len
+    …
+  }
+</code></pre>
+<p>显然我们把内存分块之后，是为了要把上面提到的各个section装载进去的。<br>
+一个没有被映射的section，如果和上面提到的attr完全匹配。<br>
+也可以用<code>&gt;name</code>指定section要映射的内存区域。默认是VMA。<br>
+要指定LMA的映射内存区域，The load address is specified by the AT or AT&gt; keywords。The AT keyword takes an expression as an argument. This specifies the exact load address of the section. The AT&gt; keyword takes the name of a memory region as an argument.<br>
+否则的话，LMA就等于VMA了。</p>
+<blockquote>
+<p>The output section address heuristic is as follows:<br>
+If an output memory region is set for the section then it is added to this region and its address will be the next free address in that region.<br>
+If the MEMORY command has been used to create a list of memory regions then the first region which has attributes compatible with the section is selected to contain it. The section’s output address will be the next free address in that region; MEMORY.<br>
+If no memory regions were specified, or none match the section then the output address will be based on the current value of the location counter.</p>
+</blockquote>
+<p>https://sourceware.org/binutils/docs/ld/Output-Section-LMA.html#Output-Section-LMA</p>
+<h2 id="phdrs">PHDRS</h2>
+<p><a href="https://sourceware.org/binutils/docs/ld/PHDRS.html">参考文档</a><br>
+简单的说，这个段用来<strong>显式</strong>的指明要生成的Program Headers。Program headers 说明程序要如何装载入内存。可以用<code>objdump -p</code>打印Program Headers.</p>
+<pre><code>    PHDRS
+    {
+    name type [ FILEHDR ] [ PHDRS ] [ AT ( address ) ]
+            [ FLAGS ( flags ) ] ;
+    }
+</code></pre>
+<p>同样的这个也是要和上面提到的section对应的。我们加入<code>:name</code>指定section对应的Header Entry。</p>
+<h2 id="provide和hidden">PROVIDE和HIDDEN</h2>
+<p>PROVIDE引出一个符号，外部可以使用。<br>
+HIDDEN隐藏符号，对外部不可见。<br>
+要使用符号，正确的做法是取符号的地址。</p>
+<pre><code class="language-c">  extern char start_of_ROM, end_of_ROM, start_of_FLASH;
+  memcpy (&amp; start_of_FLASH, &amp; start_of_ROM, &amp; end_of_ROM - &amp; start_of_ROM);
+</code></pre>
+
+<span id="footnote"></span>
+<div id = "warn"></div>
+</div>
+<div class="toc-container"><ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#lds%E6%98%AF%E4%BB%80%E4%B9%88">lds是什么</a></li>
+<li><a href="#%E5%9F%BA%E7%A1%80lds%E6%96%87%E4%BB%B6%E5%88%86%E6%9E%90">基础lds文件分析</a></li>
+<li><a href="#memory">MEMORY</a></li>
+<li><a href="#phdrs">PHDRS</a></li>
+<li><a href="#provide%E5%92%8Chidden">PROVIDE和HIDDEN</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="fullPage"><canvas id="canvas"></canvas></div>
+</article>
+<div id="eof"><span>EOF</span></div><div class="round-shape-one"></div>
+<section>
+<div class="doc_comments">
+
+</div></section>
+</div></div></div><script>
+"use strict";!function(){for(var n=document.getElementsByTagName("pre"),e=n.length,s=0;s<e;s++){n[s].innerHTML='<span class="line-number"></span>'+n[s].innerHTML+'<span class="cl"></span>';for(var a=n[s].innerHTML.split(/\n/).length,r=0;r<a-1;r++){n[s].getElementsByTagName("span")[0].innerHTML+="<span>"+(r+1)+"</span>"}}}();
+let mainNavLinks=document.querySelectorAll(".markdownIt-TOC a");window.addEventListener("scroll",event=>{let fromTop=window.scrollY;mainNavLinks.forEach((link,index)=>{let section=document.getElementById(decodeURI(link.hash).substring(1));let nextSection=null
+if(mainNavLinks[index+1]){nextSection=document.getElementById(decodeURI(mainNavLinks[index+1].hash).substring(1));}
+if(section.offsetTop<=fromTop){if(nextSection){if(nextSection.offsetTop>fromTop){link.classList.add("currentToc");}else{link.classList.remove("currentToc");}}else{link.classList.add("currentToc");}}else{link.classList.remove("currentToc");}});});
+var h=document.documentElement,b=document.body,st="scrollTop",sh="scrollHeight",progress=document.querySelector(".progress"),scroll;document.addEventListener("scroll",function(){scroll=(h[st]||b[st])/((h[sh]||b[sh])-h.clientHeight)*100;progress.style.setProperty("--scroll",scroll+"%")});
+var wxScale=new WxScale({fullPage:document.querySelector("#fullPage"),canvas:document.querySelector("#canvas")});var imgBox=document.querySelectorAll("#md_block img");for(var i=0;i<imgBox.length;i++){imgBox[i].onclick=function(e){wxScale.start(this)}};
+</script>
+<a id="scrollUp" href="#top" style="position: fixed; z-index: 2147483647; display: block;"></a><div class="footer animated fadeInDown"><div class="site_footer"><div class="mysocials"><div class="my_socials"><a href="https://github.com/reticenceji"title="github"><i class="iconfont icon-github"></i></a><a href="reticenceji@qq.com"title="envelope"><i class="iconfont icon-envelope"></i></a><a href="https://www.zhihu.com/people/reticenceji"title="zhihu"><i class="iconfont icon-zhihu"></i></a></div></div><div class="copyright"id="copyright">Copyright © 2018-2020 <a href="https://reticenceji.github.io" style="margin:0;">Reticence</a>.</div>
+<span style="display: inline;margin-right:15px;">👁<strong><span id="busuanzi_value_site_uv"></span></strong></span><span id="busuanzi_container_page_pv" style="display: inline;"><span>📚<strong>176</strong> posts</span></div></div>
+<script>
+console.log("\n %c \u26a1Theme: Bitcron-pro Author's Blog:https://blog.blinkstar.cn  Writen By Serence  \n\n", "color: #ffffff; background: rgba(49, 49, 49, 0.85); padding:5px 0;border-radius:5px;", );
+</script>
+<script src="https://cdn.jsdelivr.net/npm/instant.page@3.0.0/instantpage.min.js" type="module" defer></script>
+<script type="text/javascript" async src="https://reticenceji.github.io/media/js/prism.js"></script>
+</body>
+</html>

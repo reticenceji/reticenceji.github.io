@@ -1,0 +1,922 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="shortcut icon" href="https://reticenceji.github.io/favicon.ico" type="image/x-icon" /><meta name="viewport"content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="apple-mobile-web-app-capable"content="yes"/><meta name="apple-mobile-web-app-status-bar-style"content="black"/><meta name="format-detection"content="telephone=no"/><meta name="renderer"content="webkit"><meta name="description"content=""><meta charset="UTF-8"><title>Python-Flask | Reticence</title>
+<link href="https://reticenceji.github.io/styles/main.css" type="text/css" rel="stylesheet" /><link href="https://at.alicdn.com/t/font_1621793_zatzzgvf30g.css" type="text/css" rel="stylesheet" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css"><script async src="https://cdn.jsdelivr.net/npm/busuanzi@2.3.0/bsz.pure.mini.min.js"></script><script src="https://reticenceji.github.io/media/js/magnify.min.js"></script><script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js"></script>
+<script type="text/javascript">function btn_toggle(){document.getElementById("hn").classList.contains("no-js")?document.getElementById("hn").classList.remove("no-js"):document.getElementById("hn").classList.add("no-js")}</script>
+
+<link rel="canonical" href="https://reticenceji.github.io/post/flask/" />
+</head>
+<body>
+<div class="progress"></div><style>.progress{background:linear-gradient(to right,#87ceeb var(--scroll),transparent 0);background-repeat:no-repeat;position:fixed;width:100%;height:4px;z-index:1}</style><div class="darkmode-background"></div><div class="darkmode-layer"></div>
+<noscript><p class="warn" >本页面需要浏览器支持（启用）JavaScript</p></noscript><div class="header"><div class="logo_title"><div class="title animated fadeInDown"><a href="https://reticenceji.github.io"><img alt="logo" style="display:inline-block;" src="https://reticenceji.github.io/images/avatar.png"/></a><h1 title="Reticence" class="weaklink"><a  href="/">Reticence</a></h1>
+
+<div class="navbar weaklink">
+<div class="normal_nav">
+<div class="bitcron_nav_container"><div class="bitcron_nav"><div class="bitcron_nav"><div style="display:flex;justify-content:center;"><nav class="mixed_site_nav_wrap site_nav_wrap"><ul class="mixed_site_nav site_nav sm sm-base">	<li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/" class="selected active current nav__item" >Index</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/tags" class="selected active current nav__item" >Tags</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/archives" class="selected active current nav__item" >Archives</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/navigator.html" class="selected active current nav__item" >Navigator</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/post/about" class="selected active current nav__item" >About</a></li></ul></nav>
+<div style="float:right;margin-top:1em"><form id="gridea-search-form" data-update="1578893743252" action="/search/index.html"><input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="Search..."></form></div><div style="margin-left:0.5em;margin-top:1.2em"><input id="switch_default" onclick="mobileBtn()" type="checkbox" class="switch_default"><label for="switch_default" class="toggleBtn"></label></div></div>
+<div class="clear clear_nav_inline_end"></div></div></div><div class="clear clear_nav_end"></div></div></div><div class="hamberger" href="javascript:void(0)" onclick="btn_toggle();"><i class="iconfont icon-category"></i></div></div></div></div>
+<div id="hn" class="no-js hidden_nav animated fadeInDown"><div class="bitcron_nav_container"><div class="bitcron_nav"><nav class="mixed_site_nav_wrap site_nav_wrap"><ul class="mixed_site_nav site_nav sm sm-base">	<li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/" class="selected active current nav__item" >Index</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/tags" class="selected active current nav__item" >Tags</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/archives" class="selected active current nav__item" >Archives</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/navigator.html" class="selected active current nav__item" >Navigator</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/post/about" class="selected active current nav__item" >About</a></li></ul><div class="clear clear_nav_inline_end"></div></nav></div><div class="clear clear_nav_end"></div></div>
+<div style="display:flex;justify-content:center;inline-block;text-align:center;margin-top:7%"><div><form id="gridea-search-form" data-update="1627835297708" action="/search/index.html"><input class="search-input" autocomplete="off" spellcheck="false" name="q"  placeholder="Search..." /></form></div><div style="margin-left:0.5em"><input id="switch_default_h" onclick="mobileBtn()" type="checkbox" class="switch_default"><label for="switch_default" class="toggleBtn"></label></div></div>
+</div></div>
+<script>function enableDarkmode(){document.body.classList.add("darkmode"),document.getElementById("switch_default").checked=1,document.getElementById("switch_default_h").checked=1}function removeDarkmode(){document.body.classList.remove("darkmode"),document.getElementById("switch_default").checked=0,document.getElementById("switch_default_h").checked=0}function getCookie(a){var b,c=new RegExp("(^| )"+a+"=([^;]*)(;|$)");return(b=document.cookie.match(c))?unescape(b[2]):null}cookie=getCookie("darkmode"),"enable"==cookie&&enableDarkmode(),window.matchMedia("(prefers-color-scheme: dark)").matches&&"disable"!==cookie&&(enableDarkmode(),document.cookie="darkmode=enable; path=/");var mobileBtn=function(){1==document.getElementById("switch_default").checked?(enableDarkmode(),document.cookie="darkmode=enable; path=/"):(removeDarkmode(),document.cookie="darkmode=disable; path=/")};</script>
+
+<div class="main"><div class="main-inner"><div class="content">
+<article class="post">
+<h2 class="post_title sm_margin"><a>Python-Flask</a></h2>
+<script>function lan(){if(document.getElementById("lan").innerText=="繁"){var s=document.getElementById("tongwenlet_cn");if(s!=null){document.body.removeChild(s)}var s=document.createElement("script");s.language="javascript";s.type="text/javascript";s.src="https://cdn.jsdelivr.net/gh/qyxtim/Static@1.1/bookmarklet_tw.js";s.id="tongwenlet_cn";document.body.appendChild(s);document.getElementById("lan").innerHTML="简"}else{if(document.getElementById("lan").innerText=="簡"){var s=document.getElementById("tongwenlet_cn");if(s!=null){document.body.removeChild(s)}var s=document.createElement("script");s.language="javascript";s.type="text/javascript";s.src="https://cdn.jsdelivr.net/gh/qyxtim/Static@1.1/bookmarklet_cn.js";s.id="tongwenlet_cn";document.body.appendChild(s);document.getElementById("lan").innerHTML="繁"}}};</script>
+<section class="post_details"><i class="iconfont icon-calendar"></i><span style="margin-right:15px"> 2021-01-27</span><i class="iconfont icon-browse"></i><span style="margin-right:15px"> <span id="busuanzi_value_page_pv"></span> Views</span><i class="iconfont icon-category"></i><span class="weaklink" style="margin-right:15px">	<a href="https://reticenceji.github.io/tag/aTiVQxwll/" class="tag">Python</a></span><i class="iconfont icon-caret-down"></i><span style="margin-right:15px">4609字</span><i class="iconfont icon-naozhong"></i><span style="margin-right:15px">19 min read</span><a id="lan" href="javascript:void(0);"onclick="lan();"title="调整简繁体" style="margin-right:15px;">繁</a>
+</section>
+
+<div style="display:flex">
+<div class="md_block" id="md_block">
+<div class="round-shape-one"></div>
+<p>参考资料：《FlaskWeb开发 基于Python开发的Web》，<a href="https://dormousehole.readthedocs.io/en/latest/">Flask官方文档</a>。</p>
+<h2 id="flask概述">Flask概述</h2>
+<p>Flask是一个用Python编写的Web应用程序框架。 它由 <strong>Armin Ronacher</strong> 开发，他领导一个名为Pocco的国际Python爱好者团队。 Flask基于Werkzeug WSGI工具包和Jinja2模板引擎。两者都是Pocco项目。</p>
+<ul>
+<li>
+<p>Web Application Framework（Web应用程序框架）或简单的Web Framework（Web框架）表示一个库和模块的集合，使Web应用程序开发人员能够编写应用程序，而不必担心协议，线程管理等低级细节。</p>
+</li>
+<li>
+<p>WSGI（Web Server Gateway Interface，Web服务器网关接口）已被用作Python Web应用程序开发的标准。 WSGI是Web服务器和Web应用程序之间通用接口的规范。</p>
+</li>
+<li>
+<p>Werkzeug是一个WSGI工具包，它实现了请求，响应对象和实用函数。 这使得能够在其上构建web框架。 Flask框架使用Werkzeug作为其基础之一。</p>
+</li>
+<li>
+<p>jinja2是Python的一个流行的模板引擎。Web模板系统将模板与特定数据源组合以呈现动态网页。</p>
+</li>
+</ul>
+<h2 id="环境搭建">环境搭建</h2>
+<ul>
+<li>
+<p>我们利用virtualenv搭建一个独立的python环境。首先安装virtualenv：<br>
+<code>sudo apt-get install python-virtualenv</code></p>
+</li>
+<li>
+<p>然后创建一个本地环境，切换到你的工作目录。更多选项可以help：<br>
+<code>virtualenv -p python3 venv</code></p>
+</li>
+<li>
+<p>激活venv环境和取消激活：<br>
+<code>source venv/bin/activate</code>和<code>deactivate</code></p>
+</li>
+<li>
+<p>然后利用pip安装flask。不知道为什么我需要翻墙才行，我的源应该就是国内的。<br>
+<code>pip install flask</code></p>
+</li>
+<li>
+<p>建一个git仓库，如果不想把环境也带进去的话就编辑.gitignore文件<br>
+<code>git init</code><br>
+修改.gitignore，添加/venv/</p>
+</li>
+</ul>
+<p>如果你能正常的<code>import flask</code>，环境就搭建完成了。另外的，推荐使用vscode。当然能用专业版的Pycharm就更香了。</p>
+<h2 id="demo">Demo</h2>
+<pre><code class="language-python">from flask import Flask
+
+app = Flask(__name__)
+
+@app.route('/')
+def index():
+    return &quot;&lt;h1&gt;Hello world&lt;/h1&gt;&quot;
+
+if __name__=='__main__':
+    app.run()
+</code></pre>
+<p><code>app.run(host, port, debug, options)</code>表示运行应用程序，所有的参数都是可选的。</p>
+<p>一些概念：</p>
+<ul>
+<li>上面的<code>index</code>函数称为<strong>视图函数view function</strong>。</li>
+<li>index函数的返回值称为<strong>响应response</strong>。</li>
+<li>处理URL和函数之间关系的程序称为<strong>路由</strong>。我们把<code>/</code>和<code>index</code>函数绑定在了一起。</li>
+</ul>
+<h2 id="知识储备-前端">知识储备-前端</h2>
+<h3 id="css-js-html">CSS JS HTML</h3>
+<p>这三个是前端的基础，尤其是HTML是必须要知道，至少能看懂的。不然就真的瞎了。</p>
+<h3 id="模板-jinja2star">模板 Jinja2⭐️</h3>
+<p>jinja2是一个强大的模板引擎，和flask一起安装。</p>
+<p>首先推荐一个VS code插件<a href="https://marketplace.visualstudio.com/items?itemName=WyattFerguson.jinja2-snippet-kit">Jinja2 Snippet Kit</a>，他可以帮你自动补全，补全规则如下，也涵盖了Jinja模板的几乎所有功能：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Prefix</th>
+<th style="text-align:left">Output</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>jblock</strong></td>
+<td style="text-align:left"><code>{% block *name* %} {% endblock *name* %}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">jif</td>
+<td style="text-align:left"><code>{% if *cond* %} {% endif %}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">jifelse</td>
+<td style="text-align:left"><code>{% if *cond* %} {% else %} {% endif %}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">jextend</td>
+<td style="text-align:left"><code>{% extends '*file*' %}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">jfor</td>
+<td style="text-align:left"><code>{% for *A* in *B* %} {% endfor %}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">jrandom</td>
+<td style="text-align:left"><code>{{ range(*MIN*, *MAX*) | random }}</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>jvar</strong></td>
+<td style="text-align:left"><code>{{ *variable* }}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">jfunc</td>
+<td style="text-align:left"><code>{% *function* %}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">jround</td>
+<td style="text-align:left"><code>{% *float* | round %}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">jjoin</td>
+<td style="text-align:left"><code>{% *list* | join(',') %}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">jset</td>
+<td style="text-align:left"><code>{% set *A* = *B* %}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">jurl</td>
+<td style="text-align:left"><code>{{ url_for('*dir*', filename='*file*') }}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">jcall</td>
+<td style="text-align:left"><code>{% call *func* %} {% endcall %}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">jfilter</td>
+<td style="text-align:left"><code>{% filter *cmd* %} {% endfilter %}</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>jinclude</strong></td>
+<td style="text-align:left"><code>{% include '*file*' %}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">jfrom</td>
+<td style="text-align:left"><code>{% from '*dir*' import *func* %}</code></td>
+</tr>
+<tr>
+<td style="text-align:left">jimg</td>
+<td style="text-align:left"><code>&lt;img src=&quot;{{ url_for('static', filename='A') }}&quot; alt=&quot;B&quot;&gt;</code></td>
+</tr>
+<tr>
+<td style="text-align:left">jhref</td>
+<td style="text-align:left">a href with url_for embed</td>
+</tr>
+</tbody>
+</table>
+<h4 id="demo-2">Demo</h4>
+<p>默认情况下，flask在程序文件夹的templates子文件夹寻找模板。比如，文件的组织是这样的，模板写在index.html和base.html中。</p>
+<pre><code>├── main.py
+├── static
+└── templates
+    ├── base.html
+    └── index.html
+</code></pre>
+<p>main.py：用render_template函数渲染模板。</p>
+<pre><code class="language-python">from flask import Flask,render_template
+
+app = Flask(__name__)
+
+@app.route('/')
+def index():
+    return render_template(&quot;index.html&quot;)
+
+app.run(debug=True)
+</code></pre>
+<h4 id="过滤器">过滤器</h4>
+<p>过滤器就是一个简单的对变量进行修改。使用：<code>{{ name|filter}}</code>。</p>
+<h3 id="网页设计-bootstrap">网页设计 Bootstrap</h3>
+<p>这是一个Twitter开发的前端框架，有了它可以方便的做出漂亮的网页。有两个神仙网站可以帮你：<br>
+<a href="https://www.runoob.com/try/bootstrap/layoutit/#">菜鸟工具，可视化制作页面</a>和<a href="https://how2j.cn/k/boostrap/boostrap-button/477.html#nowhere">组件一览</a>。这样就可以很好的利用bootstrap帮你设计好的组件样式了。当然你如果不满意的话还可以自己再加工。大部分的使用方法就是在class属性中添加上对应的类。<br>
+以及一个很好的代码生成插件<a href="https://marketplace.visualstudio.com/items?itemName=Crozzo.the-powerful-bootstrap">The Powerful Bootstrap</a></p>
+<p>安装：<code>pip install flask-bootstrap</code>。</p>
+<h4 id="demo-3">Demo</h4>
+<p>main.py</p>
+<pre><code class="language-python">from flask import Flask,render_template
+from flask_bootstrap import Bootstrap
+
+app = Flask(__name__)
+Bootstrap(app)
+
+@app.route('/')
+def index():
+    return render_template(&quot;index.html&quot;)
+
+app.run(debug=True)
+</code></pre>
+<p>在模板中，添加一句<code>{% extends &quot;bootstrap/base.html&quot; %}</code>，然后就可以使用Bootstrap的base.html模板了，里面定义的块如下。但是最好不要直接重定义这些块，应该用<code>{{super()}}</code>函数向块中添加新内容。</p>
+<table>
+<thead>
+<tr>
+<th>块</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>doc</td>
+<td>整个HTML文档</td>
+</tr>
+<tr>
+<td>html_sttribs</td>
+<td>html标签的属性</td>
+</tr>
+<tr>
+<td>html</td>
+<td>html标签的内容</td>
+</tr>
+<tr>
+<td>head</td>
+<td>head标签的内容</td>
+</tr>
+<tr>
+<td>title</td>
+<td>title标签的内容</td>
+</tr>
+<tr>
+<td>metas</td>
+<td></td>
+</tr>
+<tr>
+<td>styles</td>
+<td></td>
+</tr>
+<tr>
+<td>body_attribs</td>
+<td>body标签的属性</td>
+</tr>
+<tr>
+<td>body</td>
+<td>body标签的内容</td>
+</tr>
+<tr>
+<td>navbar</td>
+<td>用户定义的导航条</td>
+</tr>
+<tr>
+<td>content</td>
+<td>用户定义的页面内容</td>
+</tr>
+<tr>
+<td>scripts</td>
+<td>文档底部的javascript</td>
+</tr>
+</tbody>
+</table>
+<h3 id="flask中的静态文件">flask中的静态文件</h3>
+<p>动态的 web 应用也需要静态文件，一般是 CSS 和 JavaScript 文件、图片文件。只要在你的包或模块旁边创建一个名为 <code>static</code> 的文件夹就行了。 静态文件位于应用的 <code>/static</code> 中。可以参考上面的文件夹结构。</p>
+<p>使用特定的 <code>'static'</code> 端点就可以生成相应的 URL</p>
+<pre><code class="language-python">url_for('static', filename='style.css')
+#这个静态文件在文件系统中的位置应该是“static/style.css”。
+</code></pre>
+<p>除此以外，<a href="https://dormousehole.readthedocs.io/en/latest/api.html#flask.url_for">url_for</a>还能为视图函数生成地址。详细的API参考点击链接：</p>
+<pre><code>url_for('index')
+</code></pre>
+<h3 id="flask中的时间">flask中的时间</h3>
+<p>安装：<code>pip install flask-moment</code></p>
+<h3 id="表单star">表单⭐️</h3>
+<p>上面讲的知识足够建造一个优秀的静态网站了。但是要做到能和用户进行数据交互，还需要表单和数据库。（当然你可以通过HTTP方法底层直接通信，但是那个太麻烦了）</p>
+<p><code>pip install flask-wtf</code>：<a href="http://www.pythondoc.com/flask-wtf/">flask-WTF</a>是一个优秀的处理Web表单的辅助工具。</p>
+<center>WTForms支持的HTML标准字段，字段构造函数</center>
+<table>
+<thead>
+<tr>
+<th>字段类型</th>
+<th>说 明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>StringField</td>
+<td>文本字段</td>
+</tr>
+<tr>
+<td>TextAreaField</td>
+<td>多行文本字段</td>
+</tr>
+<tr>
+<td>PasswordField</td>
+<td>密码文本字段</td>
+</tr>
+<tr>
+<td>HiddenField</td>
+<td>隐藏文本字段</td>
+</tr>
+<tr>
+<td>DateField</td>
+<td>文本字段，值为 datetime.date 格式</td>
+</tr>
+<tr>
+<td>DateTimeField</td>
+<td>文本字段，值为 datetime.datetime 格式</td>
+</tr>
+<tr>
+<td>IntegerField</td>
+<td>文本字段，值为整数</td>
+</tr>
+<tr>
+<td>DecimalField</td>
+<td>文本字段，值为 decimal.Decimal</td>
+</tr>
+<tr>
+<td>FloatField</td>
+<td>文本字段，值为浮点数</td>
+</tr>
+<tr>
+<td>BooleanField</td>
+<td>复选框，值为 True 和 False</td>
+</tr>
+<tr>
+<td>RadioField</td>
+<td>一组单选框</td>
+</tr>
+<tr>
+<td>SelectField</td>
+<td>下拉列表</td>
+</tr>
+<tr>
+<td>SelectMultipleField</td>
+<td>下拉列表，可选择多个值</td>
+</tr>
+<tr>
+<td>FileField</td>
+<td>文件上传字段</td>
+</tr>
+<tr>
+<td>SubmitField</td>
+<td>表单提交按钮</td>
+</tr>
+<tr>
+<td>FormField</td>
+<td>把表单作为字段嵌入另一个表单</td>
+</tr>
+<tr>
+<td>FieldList</td>
+<td>一组指定类型的字段</td>
+</tr>
+</tbody>
+</table>
+<center>WTForms内置的验证类型，验证函数</center>
+<table>
+<thead>
+<tr>
+<th>验证函数</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Email</td>
+<td>验证电子邮件地址</td>
+</tr>
+<tr>
+<td>EqualTo</td>
+<td>比较两个字段的值；常用于要求输入两次密码进行确认的情况</td>
+</tr>
+<tr>
+<td>IPAddress</td>
+<td>验证 IPv4 网络地址</td>
+</tr>
+<tr>
+<td>Length</td>
+<td>验证输入字符串的长度</td>
+</tr>
+<tr>
+<td>NumberRange</td>
+<td>验证输入的值在数字范围内</td>
+</tr>
+<tr>
+<td>Optional</td>
+<td>无输入值时跳过其他验证函数</td>
+</tr>
+<tr>
+<td>Required</td>
+<td>确保字段中有数据</td>
+</tr>
+<tr>
+<td>Regexp</td>
+<td>使用正则表达式验证输入值</td>
+</tr>
+<tr>
+<td>URL</td>
+<td>验证 URL</td>
+</tr>
+<tr>
+<td>AnyOf</td>
+<td>确保输入值在可选值列表中</td>
+</tr>
+<tr>
+<td>NoneOf</td>
+<td>确保输入值不在可选值列表中</td>
+</tr>
+</tbody>
+</table>
+<h4 id="demo-4">Demo</h4>
+<p>字段构造函数的第一个参数是把表单渲染成 HTML 时使用的标号。可选参数 validators 指定一个由验证函数组成的列表。</p>
+<pre><code class="language-python">from flask_wtf import Form
+from wtforms import StringField, SubmitField
+from wtforms.validators import Required
+
+#创建一个Form类
+class CardForm(Form):
+    text = StringField(&quot;内容&quot;,validators=[Required()])
+    submit = SubmitField(&quot;上传&quot;)
+   
+#表单的上传多以POST方式
+@app.route('/',methods=['GET','POST'])
+def index():
+    form = CardForm()
+    if form.validate_on_submit():
+        session['text'] = form.text.data
+        return redirect(url_for('index'))
+    return render_template(&quot;index.html&quot;,form=form,text = session.get('text'))
+
+#============================
+#bootstrap提供了简单的样式，把wtf的form进行美化。
+{% import &quot;bootstrap/wtf.html&quot; as wtf %}
+{{ wtf.quick_form(form,id=&quot;card&quot;) }}
+</code></pre>
+<h2 id="知识储备-后端">知识储备-后端</h2>
+<h3 id="http">HTTP</h3>
+<p>最基本的，我们的Web服务器要对来自客户的<strong>request</strong>做出<strong>response</strong>。我们来回顾一下request的报文格式，我随便截取了一个请求报文：</p>
+<pre><code>GET / HTTP/1.1
+Host: 127.0.0.1:5000
+Connection: keep-alive
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.96 Safari/537.36
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9
+Sec-Fetch-Site: none
+Sec-Fetch-Mode: navigate
+Sec-Fetch-User: ?1
+Sec-Fetch-Dest: document
+Accept-Encoding: gzip, deflate, br
+Accept-Language: en-US,en;q=0.9,zh-CN;q=0.8,zh;q=0.7
+
+request body
+</code></pre>
+<ul>
+<li>最基本的，我们要对请求的URL<code>http://127.0.0.1:5000/</code>和对应的请求方法<code>GET</code>做出response。</li>
+<li>进一步的，我们可能需要针对请求头的某些字段做出response。</li>
+<li>进一步的，我们可能需要对请求体做出response。</li>
+</ul>
+<p>这是一个简单的例子。事实上在Flask中为我们提供了response和request对象，让我们能更好的控制返回和解析请求。</p>
+<h4 id="关于-response">关于 response</h4>
+<p>简单的demo中，对<code>http://127.0.0.1:5000/</code>和对应的请求方法<code>GET</code>（默认）做出响应，我们的返回值是一段简单的文本，会被转换成response返回。</p>
+<p>视图函数的返回值会自动转换为一个响应对象。如果返回值是一个字符串，那么会被 转换为一个包含作为响应体的字符串、一个 <code>200 OK</code> 出错代码 和一个 <em>text/html</em> 类型的响应对象。如果返回值是一个字典，那么会调用 <code>jsonify()</code> 来产生一个响应。以下是转换的规则：</p>
+<ol>
+<li>如果视图返回的是一个响应对象，那么就直接返回它。</li>
+<li>如果返回的是一个字符串，那么根据这个字符串和缺省参数生成一个用于返回的 响应对象。</li>
+<li>如果返回的是一个字典，那么调用 <code>jsonify</code> 创建一个响应对象。</li>
+<li>如果返回的是一个元组，那么元组中的项目可以提供额外的信息。元组中必须至少 包含一个项目，且项目应当由 <code>(response, status)</code> 、 <code>(response, headers)</code> 或者 <code>(response, status, headers)</code> 组成。 <code>status</code> 的值会重载状态代码， <code>headers</code> 是一个由额外头部值组成的列表 或字典。</li>
+<li>如果以上都不是，那么 Flask 会假定返回值是一个有效的 WSGI 应用并把它转换为 一个响应对象。</li>
+</ol>
+<p>如果想要在视图内部掌控响应对象的结果，那么可以使用 <a href="https://dormousehole.readthedocs.io/en/latest/api.html#flask.make_response"><code>make_response()</code></a> 函数。</p>
+<h4 id="关于-request">关于 request</h4>
+<p>请求对象在 API 一节中有详细说明这里不细谈（参见 <a href="https://dormousehole.readthedocs.io/en/latest/api.html#flask.Request"><code>Request</code></a> ）。 这里简略地谈一下最常见的操作。首先，你必须从 <code>flask</code> 模块导入请求对象:</p>
+<pre><code class="language-python">from flask import request
+</code></pre>
+<p>对于每一个请求，Flask会构建请求上下文。你不用操心并发的请求。</p>
+<p>Doc中的demo：通过使用 <a href="https://dormousehole.readthedocs.io/en/latest/api.html#flask.Request.method"><code>method</code></a> 属性可以操作当前请求方法，通过使用 <a href="https://dormousehole.readthedocs.io/en/latest/api.html#flask.Request.form"><code>form</code></a> 属性处理表单数据（在 <code>POST</code> 或者 <code>PUT</code> 请求 中传输的数据）。以下是使用上述两个属性的例子:</p>
+<pre><code class="language-python">@app.route('/login', methods=['POST', 'GET'])
+def login():
+    error = None
+    if request.method == 'POST':
+        if valid_login(request.form['username'],
+                       request.form['password']):
+            return log_the_user_in(request.form['username'])
+        else:
+            error = 'Invalid username/password'
+    # the code below is executed if the request method
+    # was GET or the credentials were invalid
+    return render_template('login.html', error=error)
+</code></pre>
+<h3 id="数据库star">数据库⭐️</h3>
+<p>Flask的可扩展性可以让你选择多种处理数据库的方式。这里只介绍一种。<a href="http://www.pythondoc.com/flask-sqlalchemy/">flask-sqlalchemy</a></p>
+<p><code>pip install flask-sqlalchemy</code>，SQLAlchemy 提供了高层 ORM（ORM框架的作用就是把数据库表的一行记录与一个对象互相做自动转换），也提供了使用数据库原生 SQL 的低层功能。</p>
+<h4 id="demo-5">Demo</h4>
+<pre><code class="language-python">from flask_sqlalchemy import SQLAlchemy
+basedir = os.path.abspath(os.path.dirname(__file__))
+app = Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI'] ='sqlite:///' + os.path.join(basedir, 'data.sqlite')
+#每次请求结束后都会自动提交数据库中的变动。
+app.config['SQLALCHEMY_COMMIT_ON_TEARDOWN'] = True
+db = SQLAlchemy(app)
+</code></pre>
+<h4 id="连接数据库">连接数据库</h4>
+<p>在这些 URL 中，hostname 表示 MySQL 服务所在的主机，可以是本地主机（localhost），<br>
+也可以是远程服务器。数据库服务器上可以托管多个数据库，因此 database 表示要使用的数据库名。如果数据库需要进行认证，username 和 password 表示数据库用户密令。另外，如果连接的是PostgreSQL的话，需要<code>pip install psycopg2</code>（可以认为psycopg2是连接PostgreSQL的基础，在SQLAlchemy里面会调用）：</p>
+<ul>
+<li>MySQL <code>mysql://username:password@hostname/database</code></li>
+<li>Postgres <code>postgresql://username:password@hostname/database</code></li>
+<li>SQLite（Unix） <code>sqlite:////absolute/path/to/database</code></li>
+<li>SQLite（Windows） <code>sqlite:///c:/absolute/path/to/database</code></li>
+</ul>
+<h4 id="创建数据表">创建数据表</h4>
+<p><code>db.session.execute(&quot;&quot;)</code>：可以执行原始的SQL语句，如果你对SQL比较熟悉的话可以这样。</p>
+<p>当然也有封装好的可以直接使用</p>
+<p>创建数据表，我们需要首先规定好数据库的模型，你可以认为这规定了一张表的结构。<code>__tablename__</code>规定了表的名字，里面的每一个attrbute规定了表的列：</p>
+<pre><code class="language-python">#注意这里的db就是上面的 db = SQLAlchemy(app)
+#db 表示程序使用的数据库，同时还获得了 Flask-SQLAlchemy提供的所有功能。
+class Card(db.Model):
+    __tablename__ = 'cards'
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(64), unique=True)
+    text = db.Column(db.Text)
+    time = db.Column(db.DateTime)
+    good = db.Column(db.Integer)
+    
+    def __repr__(self):
+        return f&quot;&lt;Card {self.name}&gt;&quot;
+    
+ # 创建当前应用中声明的所有模型类对应的数据表，db.drop_all()是删除表
+db.create_all()
+</code></pre>
+<p>我们来看<code>id = db.Column(db.Integer, primary_key=True)</code>，规定了字段数据类型，以及主键。</p>
+<center>字段数据类型</center>
+<table>
+<thead>
+<tr>
+<th>类型名</th>
+<th>Python类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Integer</td>
+<td>int</td>
+<td>普通整数，一般是 32 位</td>
+</tr>
+<tr>
+<td>SmallInteger</td>
+<td>int</td>
+<td>取值范围小的整数，一般是 16 位</td>
+</tr>
+<tr>
+<td>BigInteger</td>
+<td>int</td>
+<td>或 long 不限制精度的整数</td>
+</tr>
+<tr>
+<td>Float</td>
+<td>float</td>
+<td>浮点数</td>
+</tr>
+<tr>
+<td>Numeric</td>
+<td>decimal.Decimal</td>
+<td>定点数</td>
+</tr>
+<tr>
+<td>String</td>
+<td>str</td>
+<td>变长字符串</td>
+</tr>
+<tr>
+<td>Text</td>
+<td>str</td>
+<td>变长字符串，对较长或不限长度的字符串做了优化</td>
+</tr>
+<tr>
+<td>Unicode</td>
+<td>unicode</td>
+<td>变长 Unicode 字符串</td>
+</tr>
+<tr>
+<td>UnicodeText</td>
+<td>unicode</td>
+<td>unicode 变长 Unicode 字符串，对较长或不限长度的字符串做了优化</td>
+</tr>
+<tr>
+<td>Boolean</td>
+<td>bool</td>
+<td>布尔值</td>
+</tr>
+<tr>
+<td>Date</td>
+<td>datetime.date</td>
+<td>日期</td>
+</tr>
+<tr>
+<td>Time</td>
+<td>datetime.time</td>
+<td>时间</td>
+</tr>
+<tr>
+<td>DateTime</td>
+<td>datetime.datetime</td>
+<td>日期和时间</td>
+</tr>
+<tr>
+<td>Interval</td>
+<td>datetime.timedelta</td>
+<td>时间间隔</td>
+</tr>
+<tr>
+<td>Enum</td>
+<td>str</td>
+<td>一组字符串</td>
+</tr>
+<tr>
+<td>PickleType</td>
+<td>任何 Python 对象</td>
+<td>自动使用 Pickle 序列化</td>
+</tr>
+<tr>
+<td>LargeBinary</td>
+<td>str</td>
+<td>二进制文件</td>
+</tr>
+</tbody>
+</table>
+<center>最常用的列选项</center>
+<table>
+<thead>
+<tr>
+<th>选项名</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>primary_key</td>
+<td>如果设为 True，这列就是表的主键</td>
+</tr>
+<tr>
+<td>unique</td>
+<td>如果设为 True，这列不允许出现重复的值</td>
+</tr>
+<tr>
+<td>index</td>
+<td>如果设为 True，为这列创建索引，提升查询效率</td>
+</tr>
+<tr>
+<td>nullable</td>
+<td>如果设为 True，这列允许使用空值；如果设为 False，这列不允许使用空值</td>
+</tr>
+<tr>
+<td>default</td>
+<td>为这列定义默认值</td>
+</tr>
+</tbody>
+</table>
+<h4 id="增删改查">增删改查</h4>
+<p><strong>增删</strong>：首先要知道的是<strong>会话session</strong>。这个是数据库中事务的增强概念。</p>
+<pre><code class="language-python">#假设这里的User是我之前创建的模型，就像Card一样
+&gt;&gt;&gt; me = User('admin', 'admin@example.com')
+#增
+&gt;&gt;&gt; db.session.add(me)
+&gt;&gt;&gt; db.session.add_all([admin_role, mod_role, user_role,user_john, user_susan, user_david])
+#直到commit才真正做了修改
+&gt;&gt;&gt; db.session.commit()
+#删
+&gt;&gt;&gt; db.session.delete(me)
+&gt;&gt;&gt; db.session.commit()
+</code></pre>
+<p><strong>查</strong>：Flask-SQLAlchemy 为每个模型类都提供了 query 对象。最基本的模型查询是取回对应表中的所有记录。下面的查询假设数据库中有如下条目：</p>
+<table>
+<thead>
+<tr>
+<th>id</th>
+<th>username</th>
+<th>email</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>admin</td>
+<td><a href="mailto:admin%40example.com">admin@example.com</a></td>
+</tr>
+<tr>
+<td>2</td>
+<td>peter</td>
+<td><a href="mailto:peter%40example.org">peter@example.org</a></td>
+</tr>
+<tr>
+<td>3</td>
+<td>guest</td>
+<td><a href="mailto:guest%40example.com">guest@example.com</a></td>
+</tr>
+</tbody>
+</table>
+<p>通过用户名查询用户，使用<code>filter_by()</code>作为<strong>过滤器</strong>表User中的记录，指定<code>first()</code>返回查询到的第一个结果:</p>
+<pre><code>&gt;&gt;&gt; peter = User.query.filter_by(username='peter').first()
+&gt;&gt;&gt; peter.id
+1
+&gt;&gt;&gt; peter.email
+u'peter@example.org'
+</code></pre>
+<p>同上但是查询一个不存在的用户名返回 None:</p>
+<pre><code>&gt;&gt;&gt; missing = User.query.filter_by(username='missing').first()
+&gt;&gt;&gt; missing is None
+True
+</code></pre>
+<p>使用更复杂的表达式查询一些用户:</p>
+<pre><code>&gt;&gt;&gt; User.query.filter(User.email.endswith('@example.com')).all()
+[&lt;User u'admin'&gt;, &lt;User u'guest'&gt;]
+</code></pre>
+<p>按某种规则对用户排序:</p>
+<pre><code>&gt;&gt;&gt; User.query.order_by(User.username)
+[&lt;User u'admin'&gt;, &lt;User u'guest'&gt;, &lt;User u'peter'&gt;]
+</code></pre>
+<p>限制返回用户的数量:</p>
+<pre><code>&gt;&gt;&gt; User.query.limit(1).all()
+[&lt;User u'admin'&gt;]
+</code></pre>
+<p>用主键查询用户:</p>
+<pre><code>&gt;&gt;&gt; User.query.get(1)
+&lt;User u'admin'&gt;
+</code></pre>
+<center>常用的SQLAlchemy查询过滤器</center>
+<table>
+<thead>
+<tr>
+<th>过滤器</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>filter()</td>
+<td>把过滤器添加到原查询上，返回一个新查询</td>
+</tr>
+<tr>
+<td>filter_by()</td>
+<td>把等值过滤器添加到原查询上，返回一个新查询</td>
+</tr>
+<tr>
+<td>limit()</td>
+<td>使用指定的值限制原查询返回的结果数量，返回一个新查询</td>
+</tr>
+<tr>
+<td>offset()</td>
+<td>偏移原查询返回的结果，返回一个新查询</td>
+</tr>
+<tr>
+<td>order_by()</td>
+<td>根据指定条件对原查询结果进行排序，返回一个新查询</td>
+</tr>
+<tr>
+<td>group_by()</td>
+<td>根据指定条件对原查询结果进行分组，返回一个新查询</td>
+</tr>
+</tbody>
+</table>
+<center>最常使用的SQLAlchemy查询执行函数</center>
+<table>
+<thead>
+<tr>
+<th>方　法</th>
+<th>说　　明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>all()</td>
+<td>以list形式返回查询的所有结果</td>
+</tr>
+<tr>
+<td>first()</td>
+<td>返回查询的第一个结果，如果没有结果，则返回 None</td>
+</tr>
+<tr>
+<td>first_or_404()</td>
+<td>返回查询的第一个结果，如果没有结果，则终止请求，返回 404 错误响应</td>
+</tr>
+<tr>
+<td>get()</td>
+<td>返回指定主键对应的行，如果没有对应的行，则返回 None</td>
+</tr>
+<tr>
+<td>get_or_404()</td>
+<td>返回指定主键对应的行，如果没找到指定的主键，则终止请求，返回 404 错误响应</td>
+</tr>
+<tr>
+<td>paginate()</td>
+<td>返回一个 Paginate 对象，它包含指定范围内的结果</td>
+</tr>
+<tr>
+<td>count()</td>
+<td>返回查询结果的数量</td>
+</tr>
+</tbody>
+</table>
+<p><strong>改</strong>，也是用add方法，只不过是在已经存在的实例上做修改而不是新建一个实例。</p>
+<h2 id="总结">总结</h2>
+<p>至此，基础知识就全部具备了。不过在具体开发的过程中，需要注意的还有工程的管理。</p>
+<p>做了一个初级的Demo，非常的垃圾。不过还是学到了一些东西。主要是对Web的工作有了更深一点的认识。</p>
+<ol>
+<li>在底层看，无非是Socket的通信罢了。</li>
+<li>在应用层看，是Request和Response的交互。对用户的每一个Request，我都要给出对应的Response。</li>
+<li>在开发的过程中看，分为前端和后端
+<ol>
+<li>前端，要做好页面设计，给用户一个良好的感官体验。</li>
+<li>前端，要向后端发送表单。要设计好让用户填写的表单，通过POST请求发送到后端。</li>
+<li>后端，要对用户的请求做出相应的响应。在请求中最主要的是关注URL，如果是POST请求的话还有Request Body。如果是登录的话可能还有Cookie。所以我们要根据这些参数构造不同的<strong>视图函数</strong>，做出对应的回复。</li>
+<li>后端，要操纵数据库，从数据库中获取相应的信息返回给用户。</li>
+</ol>
+</li>
+</ol>
+<p><img src="https://reticenceji.github.io/post-images/1612364224589.svg" alt="" loading="lazy"><br>
+<img src="https://reticenceji.github.io/post-images/1612362458162.jpg" alt="" loading="lazy"><br>
+<img src="https://reticenceji.github.io/post-images/1612362540277.jpg" alt="" loading="lazy"><br>
+<img src="https://reticenceji.github.io/post-images/1612365246625.jpg" alt="" loading="lazy"><br>
+以后如果有机会的话，再继续深入研究吧。</p>
+
+<span id="footnote"></span>
+<div id = "warn"></div>
+</div>
+<div class="toc-container"><ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#flask%E6%A6%82%E8%BF%B0">Flask概述</a></li>
+<li><a href="#%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA">环境搭建</a></li>
+<li><a href="#demo">Demo</a></li>
+<li><a href="#%E7%9F%A5%E8%AF%86%E5%82%A8%E5%A4%87-%E5%89%8D%E7%AB%AF">知识储备-前端</a>
+<ul>
+<li><a href="#css-js-html">CSS JS HTML</a></li>
+<li><a href="#%E6%A8%A1%E6%9D%BF-jinja2star">模板 Jinja2:star:</a>
+<ul>
+<li><a href="#demo-2">Demo</a></li>
+<li><a href="#%E8%BF%87%E6%BB%A4%E5%99%A8">过滤器</a></li>
+</ul>
+</li>
+<li><a href="#%E7%BD%91%E9%A1%B5%E8%AE%BE%E8%AE%A1-bootstrap">网页设计 Bootstrap</a>
+<ul>
+<li><a href="#demo-3">Demo</a></li>
+</ul>
+</li>
+<li><a href="#flask%E4%B8%AD%E7%9A%84%E9%9D%99%E6%80%81%E6%96%87%E4%BB%B6">flask中的静态文件</a></li>
+<li><a href="#flask%E4%B8%AD%E7%9A%84%E6%97%B6%E9%97%B4">flask中的时间</a></li>
+<li><a href="#%E8%A1%A8%E5%8D%95star">表单:star:</a>
+<ul>
+<li><a href="#demo-4">Demo</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#%E7%9F%A5%E8%AF%86%E5%82%A8%E5%A4%87-%E5%90%8E%E7%AB%AF">知识储备-后端</a>
+<ul>
+<li><a href="#http">HTTP</a>
+<ul>
+<li><a href="#%E5%85%B3%E4%BA%8E-response">关于 response</a></li>
+<li><a href="#%E5%85%B3%E4%BA%8E-request">关于 request</a></li>
+</ul>
+</li>
+<li><a href="#%E6%95%B0%E6%8D%AE%E5%BA%93star">数据库:star:</a>
+<ul>
+<li><a href="#demo-5">Demo</a></li>
+<li><a href="#%E8%BF%9E%E6%8E%A5%E6%95%B0%E6%8D%AE%E5%BA%93">连接数据库</a></li>
+<li><a href="#%E5%88%9B%E5%BB%BA%E6%95%B0%E6%8D%AE%E8%A1%A8">创建数据表</a></li>
+<li><a href="#%E5%A2%9E%E5%88%A0%E6%94%B9%E6%9F%A5">增删改查</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#%E6%80%BB%E7%BB%93">总结</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="fullPage"><canvas id="canvas"></canvas></div>
+</article>
+<div id="eof"><span>EOF</span></div><div class="round-shape-one"></div>
+<section>
+<div class="doc_comments">
+
+</div></section>
+</div></div></div><script>
+"use strict";!function(){for(var n=document.getElementsByTagName("pre"),e=n.length,s=0;s<e;s++){n[s].innerHTML='<span class="line-number"></span>'+n[s].innerHTML+'<span class="cl"></span>';for(var a=n[s].innerHTML.split(/\n/).length,r=0;r<a-1;r++){n[s].getElementsByTagName("span")[0].innerHTML+="<span>"+(r+1)+"</span>"}}}();
+let mainNavLinks=document.querySelectorAll(".markdownIt-TOC a");window.addEventListener("scroll",event=>{let fromTop=window.scrollY;mainNavLinks.forEach((link,index)=>{let section=document.getElementById(decodeURI(link.hash).substring(1));let nextSection=null
+if(mainNavLinks[index+1]){nextSection=document.getElementById(decodeURI(mainNavLinks[index+1].hash).substring(1));}
+if(section.offsetTop<=fromTop){if(nextSection){if(nextSection.offsetTop>fromTop){link.classList.add("currentToc");}else{link.classList.remove("currentToc");}}else{link.classList.add("currentToc");}}else{link.classList.remove("currentToc");}});});
+var h=document.documentElement,b=document.body,st="scrollTop",sh="scrollHeight",progress=document.querySelector(".progress"),scroll;document.addEventListener("scroll",function(){scroll=(h[st]||b[st])/((h[sh]||b[sh])-h.clientHeight)*100;progress.style.setProperty("--scroll",scroll+"%")});
+var wxScale=new WxScale({fullPage:document.querySelector("#fullPage"),canvas:document.querySelector("#canvas")});var imgBox=document.querySelectorAll("#md_block img");for(var i=0;i<imgBox.length;i++){imgBox[i].onclick=function(e){wxScale.start(this)}};
+</script>
+<a id="scrollUp" href="#top" style="position: fixed; z-index: 2147483647; display: block;"></a><div class="footer animated fadeInDown"><div class="site_footer"><div class="mysocials"><div class="my_socials"><a href="https://github.com/reticenceji"title="github"><i class="iconfont icon-github"></i></a><a href="reticenceji@qq.com"title="envelope"><i class="iconfont icon-envelope"></i></a><a href="https://www.zhihu.com/people/reticenceji"title="zhihu"><i class="iconfont icon-zhihu"></i></a></div></div><div class="copyright"id="copyright">Copyright © 2018-2020 <a href="https://reticenceji.github.io" style="margin:0;">Reticence</a>.</div>
+<span style="display: inline;margin-right:15px;">👁<strong><span id="busuanzi_value_site_uv"></span></strong></span><span id="busuanzi_container_page_pv" style="display: inline;"><span>📚<strong>176</strong> posts</span></div></div>
+<script>
+console.log("\n %c \u26a1Theme: Bitcron-pro Author's Blog:https://blog.blinkstar.cn  Writen By Serence  \n\n", "color: #ffffff; background: rgba(49, 49, 49, 0.85); padding:5px 0;border-radius:5px;", );
+</script>
+<script src="https://cdn.jsdelivr.net/npm/instant.page@3.0.0/instantpage.min.js" type="module" defer></script>
+<script type="text/javascript" async src="https://reticenceji.github.io/media/js/prism.js"></script>
+</body>
+</html>

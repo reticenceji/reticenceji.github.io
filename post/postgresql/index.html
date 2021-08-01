@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="shortcut icon" href="https://reticenceji.github.io/favicon.ico" type="image/x-icon" /><meta name="viewport"content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="apple-mobile-web-app-capable"content="yes"/><meta name="apple-mobile-web-app-status-bar-style"content="black"/><meta name="format-detection"content="telephone=no"/><meta name="renderer"content="webkit"><meta name="description"content=""><meta charset="UTF-8"><title>Database-PostgreSQL | Reticence</title>
+<link href="https://reticenceji.github.io/styles/main.css" type="text/css" rel="stylesheet" /><link href="https://at.alicdn.com/t/font_1621793_zatzzgvf30g.css" type="text/css" rel="stylesheet" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css"><script async src="https://cdn.jsdelivr.net/npm/busuanzi@2.3.0/bsz.pure.mini.min.js"></script><script src="https://reticenceji.github.io/media/js/magnify.min.js"></script><script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js"></script>
+<script type="text/javascript">function btn_toggle(){document.getElementById("hn").classList.contains("no-js")?document.getElementById("hn").classList.remove("no-js"):document.getElementById("hn").classList.add("no-js")}</script>
+
+<link rel="canonical" href="https://reticenceji.github.io/post/postgresql/" />
+</head>
+<body>
+<div class="progress"></div><style>.progress{background:linear-gradient(to right,#87ceeb var(--scroll),transparent 0);background-repeat:no-repeat;position:fixed;width:100%;height:4px;z-index:1}</style><div class="darkmode-background"></div><div class="darkmode-layer"></div>
+<noscript><p class="warn" >本页面需要浏览器支持（启用）JavaScript</p></noscript><div class="header"><div class="logo_title"><div class="title animated fadeInDown"><a href="https://reticenceji.github.io"><img alt="logo" style="display:inline-block;" src="https://reticenceji.github.io/images/avatar.png"/></a><h1 title="Reticence" class="weaklink"><a  href="/">Reticence</a></h1>
+
+<div class="navbar weaklink">
+<div class="normal_nav">
+<div class="bitcron_nav_container"><div class="bitcron_nav"><div class="bitcron_nav"><div style="display:flex;justify-content:center;"><nav class="mixed_site_nav_wrap site_nav_wrap"><ul class="mixed_site_nav site_nav sm sm-base">	<li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/" class="selected active current nav__item" >Index</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/tags" class="selected active current nav__item" >Tags</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/archives" class="selected active current nav__item" >Archives</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/navigator.html" class="selected active current nav__item" >Navigator</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/post/about" class="selected active current nav__item" >About</a></li></ul></nav>
+<div style="float:right;margin-top:1em"><form id="gridea-search-form" data-update="1578893743252" action="/search/index.html"><input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="Search..."></form></div><div style="margin-left:0.5em;margin-top:1.2em"><input id="switch_default" onclick="mobileBtn()" type="checkbox" class="switch_default"><label for="switch_default" class="toggleBtn"></label></div></div>
+<div class="clear clear_nav_inline_end"></div></div></div><div class="clear clear_nav_end"></div></div></div><div class="hamberger" href="javascript:void(0)" onclick="btn_toggle();"><i class="iconfont icon-category"></i></div></div></div></div>
+<div id="hn" class="no-js hidden_nav animated fadeInDown"><div class="bitcron_nav_container"><div class="bitcron_nav"><nav class="mixed_site_nav_wrap site_nav_wrap"><ul class="mixed_site_nav site_nav sm sm-base">	<li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/" class="selected active current nav__item" >Index</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/tags" class="selected active current nav__item" >Tags</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/archives" class="selected active current nav__item" >Archives</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/navigator.html" class="selected active current nav__item" >Navigator</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/post/about" class="selected active current nav__item" >About</a></li></ul><div class="clear clear_nav_inline_end"></div></nav></div><div class="clear clear_nav_end"></div></div>
+<div style="display:flex;justify-content:center;inline-block;text-align:center;margin-top:7%"><div><form id="gridea-search-form" data-update="1627835297708" action="/search/index.html"><input class="search-input" autocomplete="off" spellcheck="false" name="q"  placeholder="Search..." /></form></div><div style="margin-left:0.5em"><input id="switch_default_h" onclick="mobileBtn()" type="checkbox" class="switch_default"><label for="switch_default" class="toggleBtn"></label></div></div>
+</div></div>
+<script>function enableDarkmode(){document.body.classList.add("darkmode"),document.getElementById("switch_default").checked=1,document.getElementById("switch_default_h").checked=1}function removeDarkmode(){document.body.classList.remove("darkmode"),document.getElementById("switch_default").checked=0,document.getElementById("switch_default_h").checked=0}function getCookie(a){var b,c=new RegExp("(^| )"+a+"=([^;]*)(;|$)");return(b=document.cookie.match(c))?unescape(b[2]):null}cookie=getCookie("darkmode"),"enable"==cookie&&enableDarkmode(),window.matchMedia("(prefers-color-scheme: dark)").matches&&"disable"!==cookie&&(enableDarkmode(),document.cookie="darkmode=enable; path=/");var mobileBtn=function(){1==document.getElementById("switch_default").checked?(enableDarkmode(),document.cookie="darkmode=enable; path=/"):(removeDarkmode(),document.cookie="darkmode=disable; path=/")};</script>
+
+<div class="main"><div class="main-inner"><div class="content">
+<article class="post">
+<h2 class="post_title sm_margin"><a>Database-PostgreSQL</a></h2>
+<script>function lan(){if(document.getElementById("lan").innerText=="繁"){var s=document.getElementById("tongwenlet_cn");if(s!=null){document.body.removeChild(s)}var s=document.createElement("script");s.language="javascript";s.type="text/javascript";s.src="https://cdn.jsdelivr.net/gh/qyxtim/Static@1.1/bookmarklet_tw.js";s.id="tongwenlet_cn";document.body.appendChild(s);document.getElementById("lan").innerHTML="简"}else{if(document.getElementById("lan").innerText=="簡"){var s=document.getElementById("tongwenlet_cn");if(s!=null){document.body.removeChild(s)}var s=document.createElement("script");s.language="javascript";s.type="text/javascript";s.src="https://cdn.jsdelivr.net/gh/qyxtim/Static@1.1/bookmarklet_cn.js";s.id="tongwenlet_cn";document.body.appendChild(s);document.getElementById("lan").innerHTML="繁"}}};</script>
+<section class="post_details"><i class="iconfont icon-calendar"></i><span style="margin-right:15px"> 2021-03-18</span><i class="iconfont icon-browse"></i><span style="margin-right:15px"> <span id="busuanzi_value_page_pv"></span> Views</span><i class="iconfont icon-category"></i><span class="weaklink" style="margin-right:15px">	<a href="https://reticenceji.github.io/tag/uXp2zQxRH/" class="tag">Database</a></span><i class="iconfont icon-caret-down"></i><span style="margin-right:15px">1351字</span><i class="iconfont icon-naozhong"></i><span style="margin-right:15px">6 min read</span><a id="lan" href="javascript:void(0);"onclick="lan();"title="调整简繁体" style="margin-right:15px;">繁</a>
+</section>
+
+<div style="display:flex">
+<div class="md_block" id="md_block">
+<div class="round-shape-one"></div>
+<p><a href="http://www.postgres.cn/docs/12/index.html">中文手册</a></p>
+<h2 id="软件简介">软件简介</h2>
+<p>在数据库术语里，PostgreSQL使用一种客户端/服务器的模型。一次PostgreSQL会话由下列相关的进程（程序）组成：</p>
+<ul>
+<li>一个服务器进程，它管理数据库文件、接受来自客户端应用与数据库的联接并且代表客户端在数据库上执行操作。 该<strong>数据库服务器程序叫做postgres</strong>。</li>
+<li>那些需要执行数据库操作的用户的客户端（前端）应用。 客户端应用可能本身就是多种多样的：可以是一个面向文本的工具， 也可以是一个图形界面的应用，或者是一个通过访问数据库来显示网页的网页服务器，或者是一个特制的数据库管理工具。 一些客户端应用是和 PostgreSQL发布一起提供的，但绝大部分是用户开发的。</li>
+</ul>
+<p>一旦你创建了数据库，你就可以通过以下方式访问它：</p>
+<ul>
+<li>运行PostgreSQL的<strong>交互式客户端终端程序，它被称为psql</strong>， 它允许你交互地输入、编辑和执行SQL命令。  <code>psql [选项]... [数据库名称 [用户名称]]</code></li>
+<li>使用一种已有的图形化前端工具，比如pgAdmin或者带ODBC或JDBC支持的办公套件来创建和管理数据库。这种方法在这份教程中没有介绍。</li>
+<li>用多种绑定发行的语言中的一种写一个自定义的应用。<code>postgresql://username:password@hostname/database</code></li>
+</ul>
+<h3 id="psql软件使用">PSQL软件使用</h3>
+<pre><code>sudo -i -u postgres					#登录postgres管理员用户
+然后再输入 psql进入					#打开软件
+可以直接用默认用户postgres登录，密码××××××××××
+</code></pre>
+<p>PSQL的一些常用命令：</p>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>\l</td>
+<td>列出所有数据库</td>
+</tr>
+<tr>
+<td>\du</td>
+<td>列出所有用户</td>
+</tr>
+<tr>
+<td>\c DatabaseName</td>
+<td>切换数据库</td>
+</tr>
+<tr>
+<td>\d</td>
+<td>列出数据表</td>
+</tr>
+<tr>
+<td>\q</td>
+<td>退出</td>
+</tr>
+<tr>
+<td>\i</td>
+<td>执行sql脚本</td>
+</tr>
+<tr>
+<td>?</td>
+<td>查看psql命令帮助</td>
+</tr>
+<tr>
+<td>help</td>
+<td>查看sql指令帮助</td>
+</tr>
+</tbody>
+</table>
+<p>创建用户：</p>
+<pre><code class="language-plsql">CREATE USER testUser WITH PASSWORD '*****';
+#将数据库 testDB 权限授权于 testUser
+GRANT ALL PRIVILEGES ON DATABASE testDB TO testUser;
+#但此时用户还是没有读写权限，需要继续授权表
+GRANT ALL PRIVILEGES ON all tables in schema public TO testUser;
+</code></pre>
+<h2 id="数据类型">数据类型</h2>
+<p><strong>数字类型</strong></p>
+<table>
+<thead>
+<tr>
+<th>名字</th>
+<th>存储尺寸</th>
+<th>描述</th>
+<th>范围</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>smallint</code></td>
+<td>2字节</td>
+<td>小范围整数</td>
+<td>-32768 to +32767</td>
+</tr>
+<tr>
+<td><code>integer</code></td>
+<td>4字节</td>
+<td>整数的典型选择</td>
+<td>-2147483648 to +2147483647</td>
+</tr>
+<tr>
+<td><code>bigint</code></td>
+<td>8字节</td>
+<td>大范围整数</td>
+<td>-9223372036854775808 to +9223372036854775807</td>
+</tr>
+<tr>
+<td><code>decimal</code></td>
+<td>可变</td>
+<td>用户指定精度，精确</td>
+<td>最高小数点前131072位，以及小数点后16383位</td>
+</tr>
+<tr>
+<td><code>numeric</code></td>
+<td>可变</td>
+<td>用户指定精度，精确</td>
+<td>最高小数点前131072位，以及小数点后16383位</td>
+</tr>
+<tr>
+<td><code>real</code></td>
+<td>4字节</td>
+<td>可变精度，不精确</td>
+<td>6位十进制精度</td>
+</tr>
+<tr>
+<td><code>double precision</code></td>
+<td>8字节</td>
+<td>可变精度，不精确</td>
+<td>15位十进制精度</td>
+</tr>
+<tr>
+<td><code>smallserial</code></td>
+<td>2字节</td>
+<td>自动增加的小整数</td>
+<td>1到32767</td>
+</tr>
+<tr>
+<td><code>serial</code></td>
+<td>4字节</td>
+<td>自动增加的整数</td>
+<td>1到2147483647</td>
+</tr>
+<tr>
+<td><code>bigserial</code></td>
+<td>8字节</td>
+<td>自动增长的大整数</td>
+<td>1到9223372036854775807</td>
+</tr>
+</tbody>
+</table>
+<p><strong>时间/日期类型</strong></p>
+<table>
+<thead>
+<tr>
+<th>名字</th>
+<th>存储尺寸</th>
+<th>描述</th>
+<th>最小值</th>
+<th>最大值</th>
+<th>解析度</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>timestamp [ (*</code>p<code>*) ] [ without time zone ]</code></td>
+<td>8字节</td>
+<td>包括日期和时间（无时区）</td>
+<td>4713 BC</td>
+<td>294276 AD</td>
+<td>1微秒</td>
+</tr>
+<tr>
+<td><code>timestamp [ (*</code>p<code>*) ] with time zone</code></td>
+<td>8字节</td>
+<td>包括日期和时间，有时区</td>
+<td>4713 BC</td>
+<td>294276 AD</td>
+<td>1微秒</td>
+</tr>
+<tr>
+<td><code>date</code></td>
+<td>4字节</td>
+<td>日期（没有一天中的时间）</td>
+<td>4713 BC</td>
+<td>5874897 AD</td>
+<td>1日</td>
+</tr>
+<tr>
+<td><code>time [ (*</code>p<code>*) ] [ without time zone ]</code></td>
+<td>8字节</td>
+<td>一天中的时间（无日期）</td>
+<td>00:00:00</td>
+<td>24:00:00</td>
+<td>1微秒</td>
+</tr>
+<tr>
+<td><code>time [ (*</code>p<code>*) ] with time zone</code></td>
+<td>12字节</td>
+<td>仅仅是一天中的时间（没有日期），带有时区</td>
+<td>00:00:00+1459</td>
+<td>24:00:00-1459</td>
+<td>1微秒</td>
+</tr>
+<tr>
+<td><code>interval [ *</code>fields<code>* ] [ (*</code>p<code>*) ]</code></td>
+<td>16字节</td>
+<td>时间间隔</td>
+<td>-178000000年</td>
+<td>178000000年</td>
+<td>1微秒</td>
+</tr>
+</tbody>
+</table>
+<p><strong>字符类型</strong></p>
+<table>
+<thead>
+<tr>
+<th>名字</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>character varying(*</code>n<code>*)</code>, <code>varchar(*</code>n<code>*)</code></td>
+<td>有限制的变长</td>
+</tr>
+<tr>
+<td><code>character(*</code>n<code>*)</code>, <code>char(*</code>n<code>*)</code></td>
+<td>定长，空格填充</td>
+</tr>
+<tr>
+<td><code>text</code></td>
+<td>无限变长</td>
+</tr>
+</tbody>
+</table>
+<p><strong>所有数据类型-速查</strong></p>
+<table>
+<thead>
+<tr>
+<th>名字</th>
+<th>别名</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>bigint</code></td>
+<td><code>int8</code></td>
+<td>有符号的8字节整数</td>
+</tr>
+<tr>
+<td><code>bigserial</code></td>
+<td><code>serial8</code></td>
+<td>自动增长的8字节整数</td>
+</tr>
+<tr>
+<td><code>bit [ (*</code>n<code>*) ]</code></td>
+<td></td>
+<td>定长位串</td>
+</tr>
+<tr>
+<td><code>bit varying [ (*</code>n<code>*) ]</code></td>
+<td><code>varbit [ (*</code>n<code>*) ]</code></td>
+<td>变长位串</td>
+</tr>
+<tr>
+<td><code>boolean</code></td>
+<td><code>bool</code></td>
+<td>逻辑布尔值（真/假）</td>
+</tr>
+<tr>
+<td><code>box</code></td>
+<td></td>
+<td>平面上的普通方框</td>
+</tr>
+<tr>
+<td><code>bytea</code></td>
+<td></td>
+<td>二进制数据（“字节数组”）</td>
+</tr>
+<tr>
+<td><code>character [ (*</code>n<code>*) ]</code></td>
+<td><code>char [ (*</code>n<code>*) ]</code></td>
+<td>定长字符串</td>
+</tr>
+<tr>
+<td><code>character varying [ (*</code>n<code>*) ]</code></td>
+<td><code>varchar [ (*</code>n<code>*) ]</code></td>
+<td>变长字符串</td>
+</tr>
+<tr>
+<td><code>cidr</code></td>
+<td></td>
+<td>IPv4或IPv6网络地址</td>
+</tr>
+<tr>
+<td><code>circle</code></td>
+<td></td>
+<td>平面上的圆</td>
+</tr>
+<tr>
+<td><code>date</code></td>
+<td></td>
+<td>日历日期（年、月、日）</td>
+</tr>
+<tr>
+<td><code>double precision</code></td>
+<td><code>float8</code></td>
+<td>双精度浮点数（8字节）</td>
+</tr>
+<tr>
+<td><code>inet</code></td>
+<td></td>
+<td>IPv4或IPv6主机地址</td>
+</tr>
+<tr>
+<td><code>integer</code></td>
+<td><code>int</code>, <code>int4</code></td>
+<td>有符号4字节整数</td>
+</tr>
+<tr>
+<td><code>interval [ *</code>fields<code>* ] [ (*</code>p<code>*) ]</code></td>
+<td></td>
+<td>时间段</td>
+</tr>
+<tr>
+<td><code>json</code></td>
+<td></td>
+<td>文本 JSON 数据</td>
+</tr>
+<tr>
+<td><code>jsonb</code></td>
+<td></td>
+<td>二进制 JSON 数据，已分解</td>
+</tr>
+<tr>
+<td><code>line</code></td>
+<td></td>
+<td>平面上的无限长的线</td>
+</tr>
+<tr>
+<td><code>lseg</code></td>
+<td></td>
+<td>平面上的线段</td>
+</tr>
+<tr>
+<td><code>macaddr</code></td>
+<td></td>
+<td>MAC（Media Access Control）地址</td>
+</tr>
+<tr>
+<td><code>macaddr8</code></td>
+<td></td>
+<td>MAC（Media Access Control）地址（EUI-64格式）</td>
+</tr>
+<tr>
+<td><code>money</code></td>
+<td></td>
+<td>货币数量</td>
+</tr>
+<tr>
+<td><code>numeric [ (*</code>p<code>*, *</code>s<code>*) ]</code></td>
+<td><code>decimal [ (*</code>p<code>*, *</code>s<code>*) ]</code></td>
+<td>可选择精度的精确数字</td>
+</tr>
+<tr>
+<td><code>path</code></td>
+<td></td>
+<td>平面上的几何路径</td>
+</tr>
+<tr>
+<td><code>pg_lsn</code></td>
+<td></td>
+<td>PostgreSQL日志序列号</td>
+</tr>
+<tr>
+<td><code>point</code></td>
+<td></td>
+<td>平面上的几何点</td>
+</tr>
+<tr>
+<td><code>polygon</code></td>
+<td></td>
+<td>平面上的封闭几何路径</td>
+</tr>
+<tr>
+<td><code>real</code></td>
+<td><code>float4</code></td>
+<td>单精度浮点数（4字节）</td>
+</tr>
+<tr>
+<td><code>smallint</code></td>
+<td><code>int2</code></td>
+<td>有符号2字节整数</td>
+</tr>
+<tr>
+<td><code>smallserial</code></td>
+<td><code>serial2</code></td>
+<td>自动增长的2字节整数</td>
+</tr>
+<tr>
+<td><code>serial</code></td>
+<td><code>serial4</code></td>
+<td>自动增长的4字节整数</td>
+</tr>
+<tr>
+<td><code>text</code></td>
+<td></td>
+<td>变长字符串</td>
+</tr>
+<tr>
+<td><code>time [ (*</code>p<code>*) ] [ without time zone ]</code></td>
+<td></td>
+<td>一天中的时间（无时区）</td>
+</tr>
+<tr>
+<td><code>time [ (*</code>p<code>*) ] with time zone</code></td>
+<td><code>timetz</code></td>
+<td>一天中的时间，包括时区</td>
+</tr>
+<tr>
+<td><code>timestamp [ (*</code>p<code>*) ] [ without time zone ]</code></td>
+<td></td>
+<td>日期和时间（无时区）</td>
+</tr>
+<tr>
+<td><code>timestamp [ (*</code>p<code>*) ] with time zone</code></td>
+<td><code>timestamptz</code></td>
+<td>日期和时间，包括时区</td>
+</tr>
+<tr>
+<td><code>tsquery</code></td>
+<td></td>
+<td>文本搜索查询</td>
+</tr>
+<tr>
+<td><code>tsvector</code></td>
+<td></td>
+<td>文本搜索文档</td>
+</tr>
+<tr>
+<td><code>txid_snapshot</code></td>
+<td></td>
+<td>用户级别事务ID快照</td>
+</tr>
+<tr>
+<td><code>uuid</code></td>
+<td></td>
+<td>通用唯一标识码</td>
+</tr>
+<tr>
+<td><code>xml</code></td>
+<td></td>
+<td>XML数据</td>
+</tr>
+</tbody>
+</table>
+
+<span id="footnote"></span>
+<div id = "warn"></div>
+</div>
+<div class="toc-container"><ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#%E8%BD%AF%E4%BB%B6%E7%AE%80%E4%BB%8B">软件简介</a>
+<ul>
+<li><a href="#psql%E8%BD%AF%E4%BB%B6%E4%BD%BF%E7%94%A8">PSQL软件使用</a></li>
+</ul>
+</li>
+<li><a href="#%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B">数据类型</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="fullPage"><canvas id="canvas"></canvas></div>
+</article>
+<div id="eof"><span>EOF</span></div><div class="round-shape-one"></div>
+<section>
+<div class="doc_comments">
+
+</div></section>
+</div></div></div><script>
+"use strict";!function(){for(var n=document.getElementsByTagName("pre"),e=n.length,s=0;s<e;s++){n[s].innerHTML='<span class="line-number"></span>'+n[s].innerHTML+'<span class="cl"></span>';for(var a=n[s].innerHTML.split(/\n/).length,r=0;r<a-1;r++){n[s].getElementsByTagName("span")[0].innerHTML+="<span>"+(r+1)+"</span>"}}}();
+let mainNavLinks=document.querySelectorAll(".markdownIt-TOC a");window.addEventListener("scroll",event=>{let fromTop=window.scrollY;mainNavLinks.forEach((link,index)=>{let section=document.getElementById(decodeURI(link.hash).substring(1));let nextSection=null
+if(mainNavLinks[index+1]){nextSection=document.getElementById(decodeURI(mainNavLinks[index+1].hash).substring(1));}
+if(section.offsetTop<=fromTop){if(nextSection){if(nextSection.offsetTop>fromTop){link.classList.add("currentToc");}else{link.classList.remove("currentToc");}}else{link.classList.add("currentToc");}}else{link.classList.remove("currentToc");}});});
+var h=document.documentElement,b=document.body,st="scrollTop",sh="scrollHeight",progress=document.querySelector(".progress"),scroll;document.addEventListener("scroll",function(){scroll=(h[st]||b[st])/((h[sh]||b[sh])-h.clientHeight)*100;progress.style.setProperty("--scroll",scroll+"%")});
+var wxScale=new WxScale({fullPage:document.querySelector("#fullPage"),canvas:document.querySelector("#canvas")});var imgBox=document.querySelectorAll("#md_block img");for(var i=0;i<imgBox.length;i++){imgBox[i].onclick=function(e){wxScale.start(this)}};
+</script>
+<a id="scrollUp" href="#top" style="position: fixed; z-index: 2147483647; display: block;"></a><div class="footer animated fadeInDown"><div class="site_footer"><div class="mysocials"><div class="my_socials"><a href="https://github.com/reticenceji"title="github"><i class="iconfont icon-github"></i></a><a href="reticenceji@qq.com"title="envelope"><i class="iconfont icon-envelope"></i></a><a href="https://www.zhihu.com/people/reticenceji"title="zhihu"><i class="iconfont icon-zhihu"></i></a></div></div><div class="copyright"id="copyright">Copyright © 2018-2020 <a href="https://reticenceji.github.io" style="margin:0;">Reticence</a>.</div>
+<span style="display: inline;margin-right:15px;">👁<strong><span id="busuanzi_value_site_uv"></span></strong></span><span id="busuanzi_container_page_pv" style="display: inline;"><span>📚<strong>176</strong> posts</span></div></div>
+<script>
+console.log("\n %c \u26a1Theme: Bitcron-pro Author's Blog:https://blog.blinkstar.cn  Writen By Serence  \n\n", "color: #ffffff; background: rgba(49, 49, 49, 0.85); padding:5px 0;border-radius:5px;", );
+</script>
+<script src="https://cdn.jsdelivr.net/npm/instant.page@3.0.0/instantpage.min.js" type="module" defer></script>
+<script type="text/javascript" async src="https://reticenceji.github.io/media/js/prism.js"></script>
+</body>
+</html>

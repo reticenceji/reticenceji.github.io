@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="shortcut icon" href="https://reticenceji.github.io/favicon.ico" type="image/x-icon" /><meta name="viewport"content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="apple-mobile-web-app-capable"content="yes"/><meta name="apple-mobile-web-app-status-bar-style"content="black"/><meta name="format-detection"content="telephone=no"/><meta name="renderer"content="webkit"><meta name="description"content=""><meta charset="UTF-8"><title>OS-Memory Management | Reticence</title>
+<link href="https://reticenceji.github.io/styles/main.css" type="text/css" rel="stylesheet" /><link href="https://at.alicdn.com/t/font_1621793_zatzzgvf30g.css" type="text/css" rel="stylesheet" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css"><script async src="https://cdn.jsdelivr.net/npm/busuanzi@2.3.0/bsz.pure.mini.min.js"></script><script src="https://reticenceji.github.io/media/js/magnify.min.js"></script><script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js"></script>
+<script type="text/javascript">function btn_toggle(){document.getElementById("hn").classList.contains("no-js")?document.getElementById("hn").classList.remove("no-js"):document.getElementById("hn").classList.add("no-js")}</script>
+
+<link rel="canonical" href="https://reticenceji.github.io/post/nei-cun-guan-li/" />
+</head>
+<body>
+<div class="progress"></div><style>.progress{background:linear-gradient(to right,#87ceeb var(--scroll),transparent 0);background-repeat:no-repeat;position:fixed;width:100%;height:4px;z-index:1}</style><div class="darkmode-background"></div><div class="darkmode-layer"></div>
+<noscript><p class="warn" >本页面需要浏览器支持（启用）JavaScript</p></noscript><div class="header"><div class="logo_title"><div class="title animated fadeInDown"><a href="https://reticenceji.github.io"><img alt="logo" style="display:inline-block;" src="https://reticenceji.github.io/images/avatar.png"/></a><h1 title="Reticence" class="weaklink"><a  href="/">Reticence</a></h1>
+
+<div class="navbar weaklink">
+<div class="normal_nav">
+<div class="bitcron_nav_container"><div class="bitcron_nav"><div class="bitcron_nav"><div style="display:flex;justify-content:center;"><nav class="mixed_site_nav_wrap site_nav_wrap"><ul class="mixed_site_nav site_nav sm sm-base">	<li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/" class="selected active current nav__item" >Index</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/tags" class="selected active current nav__item" >Tags</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/archives" class="selected active current nav__item" >Archives</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/navigator.html" class="selected active current nav__item" >Navigator</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/post/about" class="selected active current nav__item" >About</a></li></ul></nav>
+<div style="float:right;margin-top:1em"><form id="gridea-search-form" data-update="1578893743252" action="/search/index.html"><input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="Search..."></form></div><div style="margin-left:0.5em;margin-top:1.2em"><input id="switch_default" onclick="mobileBtn()" type="checkbox" class="switch_default"><label for="switch_default" class="toggleBtn"></label></div></div>
+<div class="clear clear_nav_inline_end"></div></div></div><div class="clear clear_nav_end"></div></div></div><div class="hamberger" href="javascript:void(0)" onclick="btn_toggle();"><i class="iconfont icon-category"></i></div></div></div></div>
+<div id="hn" class="no-js hidden_nav animated fadeInDown"><div class="bitcron_nav_container"><div class="bitcron_nav"><nav class="mixed_site_nav_wrap site_nav_wrap"><ul class="mixed_site_nav site_nav sm sm-base">	<li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/" class="selected active current nav__item" >Index</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/tags" class="selected active current nav__item" >Tags</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/archives" class="selected active current nav__item" >Archives</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/navigator.html" class="selected active current nav__item" >Navigator</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/post/about" class="selected active current nav__item" >About</a></li></ul><div class="clear clear_nav_inline_end"></div></nav></div><div class="clear clear_nav_end"></div></div>
+<div style="display:flex;justify-content:center;inline-block;text-align:center;margin-top:7%"><div><form id="gridea-search-form" data-update="1627835297708" action="/search/index.html"><input class="search-input" autocomplete="off" spellcheck="false" name="q"  placeholder="Search..." /></form></div><div style="margin-left:0.5em"><input id="switch_default_h" onclick="mobileBtn()" type="checkbox" class="switch_default"><label for="switch_default" class="toggleBtn"></label></div></div>
+</div></div>
+<script>function enableDarkmode(){document.body.classList.add("darkmode"),document.getElementById("switch_default").checked=1,document.getElementById("switch_default_h").checked=1}function removeDarkmode(){document.body.classList.remove("darkmode"),document.getElementById("switch_default").checked=0,document.getElementById("switch_default_h").checked=0}function getCookie(a){var b,c=new RegExp("(^| )"+a+"=([^;]*)(;|$)");return(b=document.cookie.match(c))?unescape(b[2]):null}cookie=getCookie("darkmode"),"enable"==cookie&&enableDarkmode(),window.matchMedia("(prefers-color-scheme: dark)").matches&&"disable"!==cookie&&(enableDarkmode(),document.cookie="darkmode=enable; path=/");var mobileBtn=function(){1==document.getElementById("switch_default").checked?(enableDarkmode(),document.cookie="darkmode=enable; path=/"):(removeDarkmode(),document.cookie="darkmode=disable; path=/")};</script>
+
+<div class="main"><div class="main-inner"><div class="content">
+<article class="post">
+<h2 class="post_title sm_margin"><a>OS-Memory Management</a></h2>
+<script>function lan(){if(document.getElementById("lan").innerText=="繁"){var s=document.getElementById("tongwenlet_cn");if(s!=null){document.body.removeChild(s)}var s=document.createElement("script");s.language="javascript";s.type="text/javascript";s.src="https://cdn.jsdelivr.net/gh/qyxtim/Static@1.1/bookmarklet_tw.js";s.id="tongwenlet_cn";document.body.appendChild(s);document.getElementById("lan").innerHTML="简"}else{if(document.getElementById("lan").innerText=="簡"){var s=document.getElementById("tongwenlet_cn");if(s!=null){document.body.removeChild(s)}var s=document.createElement("script");s.language="javascript";s.type="text/javascript";s.src="https://cdn.jsdelivr.net/gh/qyxtim/Static@1.1/bookmarklet_cn.js";s.id="tongwenlet_cn";document.body.appendChild(s);document.getElementById("lan").innerHTML="繁"}}};</script>
+<section class="post_details"><i class="iconfont icon-calendar"></i><span style="margin-right:15px"> 2020-11-27</span><i class="iconfont icon-browse"></i><span style="margin-right:15px"> <span id="busuanzi_value_page_pv"></span> Views</span><i class="iconfont icon-category"></i><span class="weaklink" style="margin-right:15px">	<a href="https://reticenceji.github.io/tag/nfABdWVsa/" class="tag">OS</a></span><i class="iconfont icon-caret-down"></i><span style="margin-right:15px">3174字</span><i class="iconfont icon-naozhong"></i><span style="margin-right:15px">13 min read</span><a id="lan" href="javascript:void(0);"onclick="lan();"title="调整简繁体" style="margin-right:15px;">繁</a>
+</section>
+
+<div style="display:flex">
+<div class="md_block" id="md_block">
+<div class="round-shape-one"></div>
+<p>和厨房的垃圾桶一样，内存无论多大都是稀缺资源——CSAPP</p>
+<h2 id="物理地址">物理地址</h2>
+<p>在计算机刚开始我们直接采用物理寻址<br>
+Variable——Externel Fragmentation。给进程分配可变大小的内存空间。问题是可能两个空间之间的间隙的内存太小，不足以容纳一个进程，造成浪费。<br>
+Fixed——Internel Fragmentaion。给进程分配固定大小的内存空间，问题是如果不能装载过大的进程，并且固定空间剩余没用的部分造成浪费。</p>
+<h2 id="虚拟地址逻辑地址">虚拟地址/逻辑地址</h2>
+<p>CPU生成的地址称为<strong>逻辑地址</strong>，内存单元需要的地址是<strong>物理地址</strong>。他们之间的转换由MMU（Memory Management Unit）完成，也需要操作系统的配合。</p>
+<h3 id="continuous-memory">Continuous memory</h3>
+<p>最容易想到的是把一个进程分配在一个连续的物理内存中，用base和limit两个寄存器。<br>
+我们检查<code>Laddr&lt;=limit</code>，如果是的话<code>Paddr = Laddr + base.</code>。完成简单的保护。</p>
+<h3 id="segment">segment</h3>
+<p>Segmentation的概念，主要是和limit。<br>
+逻辑地址由<code>&lt;segment, offset&gt;</code>组成。比如我们的text, data, rodata等。我们还可以对不同的段应用不同的权限保护。</p>
+<h3 id="paging">Paging</h3>
+<p>Paging的关键是Page Table，说明了从 virtual memory映射到 physical memory的方法，顺便自然而然的完成了权限保护、内存共享。Paging实现的具体细节，可以参考下面的RISCV和Lab。</p>
+<h4 id="tlb">TLB</h4>
+<p>如果每一次访问内存都经过页表，那么我们要有n+1次对内存的访问（访问页表），这是十分低效率的。<br>
+为此我们引入了TLB，可以认为是对Page Table Entry的高速缓存（当然和cache有本质的区别）。<br>
+TLB能起作用，和Locality（局部性原理）是分不开的。</p>
+<hr>
+<h2 id="frame">Frame</h2>
+<h3 id="free-frame的分配">Free Frame的分配</h3>
+<p>我们加载一个进程、malloc的时候，都需要给进程分配空间。<br>
+像Virtual Memory Space的分配，这个比较方便。比如我们malloc就在堆中，加载进程就是那些段，.text，.data什么的。我们要讨论的是Frame的分配。<br>
+我们简单把所有的Frame看成一个Pool，向外界提供的接口是<strong>回收用完的Frame</strong>和<strong>提供Free Frame</strong>。<a href="https://wiki.osdev.org/Page_Frame_Allocation">具体的实现，可以是链表、buddy，bitmap等等</a>。</p>
+<p>我们可以给每一个Process一个frame pool，或者所有的进程一个global frame pool。<br>
+Global replacement – process selects a replacement frame  from the set of all frames; one process can take a frame from another. Local replacement – each process selects from only its own set of allocated frames.<br>
+使用本地替换，分配给进程的页数是固定的，页替换只发生在分配给该进程的页之间。<br>
+在全局替换的情况下，任何页面都可能成为潜在的受害者，无论它当前是否属于寻求自由帧的进程。通常我们使用全局替换。</p>
+<h4 id="reclaiming-pages">Reclaiming Pages</h4>
+<p>对于全局替换，我们引入一个水线的概念。<br>
+对于整个frame pool，我们不等到它空了再回收Frame。而是设置一个警戒水线，当free frame的数量低于水线的时候，就开始回收frame。<br>
+这个策略试图保证我们总是有充足的Free frame来满足请求。</p>
+<h3 id="swap">Swap</h3>
+<p>如果物理Frame都用完了，但是我们还需要给Page分配Frame，这个时候就要<strong>swap</strong>一个物理的Frame到Disk上，然后再把这个Frame分配给Page。<br>
+下面举例，我要从Disk上加载一个Page：</p>
+<ol>
+<li>首先，在Disk上找到要加载的Page。</li>
+<li>在物理内存中找一个Free Frame(当然不是遍历物理内存，操作系统会维护Free Frame)。</li>
+<li>如果找到了，就用它。</li>
+<li><strong>找到一个Victim Frame</strong>。如果victim Frame是Dirty的，需要写回到Disk上。</li>
+<li>现在我们得到了Free Frame。更新Page Table。</li>
+<li>返回发生Trap的指令继续执行。<br>
+那么如何选择这个Victim Frame呢？我们有很多策略。</li>
+</ol>
+<h4 id="fifo简单">FIFO（简单）</h4>
+<p>First in First out。虽然简单但是效果不怎么理想。</p>
+<h4 id="lfu">LFU</h4>
+<p>Least Frequently Used（不实用）</p>
+<h4 id="mfu">MFU</h4>
+<p>Most Frequently Used（不实用）</p>
+<h4 id="optimal-algorithm理想">Optimal Algorithm（理想）</h4>
+<p>假设我们知道哪个Page在未来最后被使用（不用的时间最长），就把这个Page kick out。<br>
+和Shortest Job first一样，虽然最好，但是要求<strong>上帝视角</strong>，所以只是一个理论模型。</p>
+<h4 id="lruleast-recently-used实用">LRU=Least Recently Used（实用）</h4>
+<p>Associate time of last use with each page, select pages with oldest timestamp。选择一个最久没有被使用过的Frame置换。<br>
+问题是，如何确定一个最久没有被使用的Frame呢？具体的实现有：</p>
+<ol>
+<li>Counter Based(不实用)：为每个PT Entry关联一个存储时间的结构。这代价有点高。</li>
+<li>Stack(不实用)：当每个Frame被使用的时候把他移动到Frame堆栈的顶端，这样子最久没有被使用过的Frame就在堆栈的底端。这代价也很高。</li>
+<li><strong>reference bit</strong>的近似：我们在PTE中有一个R bit，可以用来标记Entry是否被Refer了。近似的实现使用时间的标记。
+<ol>
+<li>8 bit的方式：我们用8个bit标记时间。每个时间单元我们都会把entry的R byte右移一位，然后把有使用的Entry的最高位置1。这样，通过把R byte作为一个无符号数进行比较，最小的就是最久没有被使用的。</li>
+<li>第二次机会：我们选择一个页面时，如果R值为0就选择，为1的话置0再继续寻找。</li>
+<li>enhance second chance：我们用Refered bit 和 Modified bit来标记。这两位就像读和写一样。<br>
+(0,0) 最近没有被读也没有被修改，最佳选择<br>
+(1,0)最近被读没有被修改，不用写回但可能很快就要被使用<br>
+(0,1)最近被修改但是没有被读，需要邪回<br>
+(1,1)最近被读写，最不好的选择</li>
+</ol>
+</li>
+</ol>
+<hr>
+<h2 id="linux">Linux</h2>
+<p>申老师十分推荐的一个Blog:<a href="https://manybutfinite.com/post/how-the-kernel-manages-your-memory/">How The Kernel Manages Your Memory</a>.把网页保存到本地就能看到图片了。。</p>
+<h3 id="linux-page-fault">Linux &amp; page fault</h3>
+<p>mm_struct, switch_mm,mm_struct.pgd<br>
+有两个结构，一个是页表，一个是<strong>vm_struct</strong>.<br>
+平时我们通过页表访问，页表的标志位帮我们实现保护。<br>
+<strong>应该好好看看Linux处理page fault的源代码。</strong><br>
+当出现page_fault的时候，我们才会遍历vm_struct(vma在Linux中用红黑树来加速查找)，检查是为什么出现了page_fault。<br>
+如果不是valid的，可能是非法指令、段错误等等。<br>
+如果是valid的，那应该是被swap到Disk里了。</p>
+<h3 id="demand-paging">demand paging</h3>
+<p>我们在把可执行程序从Disk加载到Memory的时候，可以选择整个加载进去。<br>
+但是也可以选择一开始加载一部分到内存，其他的在需要的时候再加载进去（比如错误处理代码）。这就称为Demand Paging。流程如下所示：<br>
+<img src="https://reticenceji.github.io/post-images/1608350206837.png" alt="" loading="lazy"><br>
+[] 有一个问题，我们是怎么知道我们要去Disk的何处Load Frame呢？<br>
+=》可以在Frame管理中把Disk也管理了，把Disk也分成一页一页的编号。</p>
+<h3 id="lasy-allocation">Lasy allocation</h3>
+<p>这个和Demand Paging好像差不多啊。从这个例子中看，都是invalid惹得祸。只不过Lasy allocation只需要分配一个free frame，demand paging需要从Disk中加载内容到一个free frame。<br>
+<img src="https://reticenceji.github.io/post-images/1608252091829.png" alt="" loading="lazy"></p>
+<h3 id="copy-on-writefork">copy on write——fork</h3>
+<p>我们在Fork的时候，需要复制Parent的内存内容，但是大多数情况我们会exec刷掉复制的内容。所以我们引入copy on write技术防止这个复制过程的浪费。<br>
+<img src="https://reticenceji.github.io/post-images/1608348754968.png" alt="" loading="lazy"></p>
+<ol>
+<li>Allowing the parent and child processes initially to share the same<br>
+pages. These shared pages are <strong>marked as copy-on-write pages</strong>, meaning that<br>
+if either process writes to a shared page, a copy of the shared page is created.如果我们试图要写的哪一块的话，再创建一个副本。</li>
+<li>还有vfork系统调用。vfork并不使用copy on write技术，就是单纯的和Parent指向了同样的frame。所以我们要保证之后立即调用exec，不修改父进程的内容，否则就出问题了。</li>
+</ol>
+<h3 id="buddy曾经的linux">Buddy(曾经的Linux)</h3>
+<p>用于Kernel的Frame管理。避免External Fragmentation。</p>
+<figure data-type="image" tabindex="1"><img src="https://reticenceji.github.io/post-images/1608348092207.png" alt="" loading="lazy"></figure>
+<h3 id="slabslobslub">slab,slob,slub</h3>
+<p>用几个物理连续的页，防止Internel Fragmentation。Slab还可以作为一个pool，比如task_struct_slab，统一管理task_struct用的Frame。</p>
+<hr>
+<h2 id="抖动thrashing">抖动thrashing</h2>
+<p>频繁的发生page fault。一个进程没有足够的Frame使用，那么就会频繁的产生Page Fault，在Memory和Disk上反复切换，造成极大的性能问题。并且此时CPU使用率下降，CPU会误以为空闲并增加多进程程度，恶性循环。<br>
+怎么解决抖动问题？</p>
+<h3 id="working-set">working-set</h3>
+<p>引入一个working-set的概念。我们用<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>δ</mi></mrow><annotation encoding="application/x-tex">\delta</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03785em;">δ</span></span></span></span>表示working-set window，最近<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>δ</mi></mrow><annotation encoding="application/x-tex">\delta</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03785em;">δ</span></span></span></span>个页面引用的页面集合称为working-set。我们用working-set来检测Locality。<br>
+<img src="https://reticenceji.github.io/post-images/1608346292096.png" alt="" loading="lazy"><br>
+这样子，如果我们为进程分配的<code>Frame&lt;working-set</code>，我们就给他分配更多的Frame。如果没有更多的Frame了，就只能挂起别的Process了。<br>
+对Locality的检测取决于working-set的大小，太小了不足以包含整个Locality，太大了可能包含多个Locality。</p>
+<h3 id="pffpage-fault-frequency">PFF(Page-Fault Frequency)</h3>
+<p>If the actual page-fault rate exceeds the upper limit, we allocate the process another frame. If the page-fault rate falls below the lower limit, we remove a frame from the process.</p>
+<h3 id="禁止swap">禁止swap</h3>
+<p>这个方法还不好？只要我内存够大，一力降十会。比如我们的智能手机就是这个策略。</p>
+<hr>
+<h2 id="寻址-riscv">寻址 -RISCV</h2>
+<p>RISCV没有段寄存器这种历史遗留的东西了。</p>
+<p>多级页表不要求物理内存是连续的，并且可以节省内存。<br>
+节省内存的原因是，逻辑地址不是连续的。而每一张页表要求物理地址是连续的。<br>
+**TLB: ** cache page table entryd</p>
+<h3 id="satp">satp</h3>
+<p><strong>satp(Supervisor Address Translation and Protection)</strong>： 就是RISCV中的Page Table Base Register。用来索引Page Table的基地址，同时通过置某些位来选择寻址模式。<br>
+<img src="https://reticenceji.github.io/post-images/1606453219113.png" alt="" loading="lazy"><br>
+MODE字段的含义：<br>
+<img src="https://reticenceji.github.io/post-images/1606453327845.png" alt="" loading="lazy"><br>
+PPN字段的含义：<br>
+保存physical page number (PPN) of the <strong>Base Page Table</strong>。一页4kb，也就是说 <code>ppn&lt;&lt;12</code>指示了 <strong>Base Page Table</strong>物理地址</p>
+<h3 id="直接物理寻址">直接物理寻址</h3>
+<p>在Machine Mode下都是直接物理寻址。<br>
+satp没有置位的时候也是直接物理寻址。<br>
+直接物理寻址不需要太多的解释，很简单。非要解释，就是硬件层面了。</p>
+<h3 id="逻辑地址物理地址">逻辑地址=&gt;物理地址</h3>
+<p><img src="https://reticenceji.github.io/post-images/1607041367482.png" alt="" loading="lazy"><br>
+S 模式提供了一种传统的虚拟内存系统，它将内存划分为固定大小的页来进行地址转<br>
+换和对内存内容的保护。上面我们介绍了satp,比如我们开启了Sv39转换。</p>
+<blockquote>
+<p>为什么是39 = 12+9+9+9呢？<br>
+因为1Page = 4Kb，并且我们是64位CPU。这是两大前提。<br>
+VPN是9位，因为64bit = 8byte，那么1Page可以容纳的Entry数量就是512 = 2^9，我们的VPN是用来在page table作为index的，所以就是9位啦。<br>
+最后为啥是12bit？ 4k=2^12。</p>
+</blockquote>
+<blockquote>
+<p>我们的虚拟地址需要39bit，但是我们每一个页表的entry还是64bit。为什么呢？<br>
+首先是为了对齐，我们是按照byte处理的，39不伦不类效率很低。<br>
+那么为什么不是40呢？其实这样子还有一个扩展性的考虑。个人理解。</p>
+</blockquote>
+<blockquote>
+<p>物理地址为啥是这样呢？为啥不和虚拟地址统一呢？<br>
+emmm,我觉得可以，但是没必要。物理地址支持的范围不是多多益善嘛。<br>
+只不过对于某个进程来说，就算你的物理内存空间真的把物理地址填满了，进程也用不了那么多的内存。虚拟地址是上限了。<br>
+当然，这是用户的进程。对于内核来说，他可是可以更改自己虚拟地址的映射的。通过改变page table可是能把所有物理地址都用上。</p>
+</blockquote>
+<p>当我们把satp置位之后，之后的寻址就应该用逻辑地址了。<br>
+我们来看一下从Logical Address=&gt;Physical Address的过程：<br>
+<img src="https://reticenceji.github.io/post-images/1606456442814.png" alt="" loading="lazy"></p>
+<p>从上面，我们看到<strong>物理内存</strong>能寻址的最大范围是2^56 bit.<br>
+对于一个进程（独立的有一套页表）来说，逻辑地址的最大寻址范围是2^39 bit.<br>
+当然，我们可以看到那些Flag可都是有用的。</p>
+<h3 id="page-fault">Page fault</h3>
+<p>在网络上没有找到出现Page fault情况的资料。<br>
+首先invalid的会产生page fault。<br>
+非法指令，比如Umode执行sret，S mode执行mret等都会产生非法指令。</p>
+<h2 id="kernel和user">Kernel和User</h2>
+<p>来看看Linux对内存映射的分布。我们知道，随着进程的切换，页表也要相应的改变，从而给每一个进程一个独立的地址空间。但是Kernel的映射是不变的。<br>
+所以，我们把内存映射（页表决定的逻辑地址的分配）分成两部分，一部分是不变的Kernel，另一部分是变化的User 。<br>
+<img src="https://reticenceji.github.io/post-images/1607048567794.jpg" alt="" loading="lazy"></p>
+
+<span id="footnote"></span>
+<div id = "warn"></div>
+</div>
+<div class="toc-container"><ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#%E7%89%A9%E7%90%86%E5%9C%B0%E5%9D%80">物理地址</a></li>
+<li><a href="#%E8%99%9A%E6%8B%9F%E5%9C%B0%E5%9D%80%E9%80%BB%E8%BE%91%E5%9C%B0%E5%9D%80">虚拟地址/逻辑地址</a>
+<ul>
+<li><a href="#continuous-memory">Continuous memory</a></li>
+<li><a href="#segment">segment</a></li>
+<li><a href="#paging">Paging</a>
+<ul>
+<li><a href="#tlb">TLB</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#frame">Frame</a>
+<ul>
+<li><a href="#free-frame%E7%9A%84%E5%88%86%E9%85%8D">Free Frame的分配</a>
+<ul>
+<li><a href="#reclaiming-pages">Reclaiming Pages</a></li>
+</ul>
+</li>
+<li><a href="#swap">Swap</a>
+<ul>
+<li><a href="#fifo%E7%AE%80%E5%8D%95">FIFO（简单）</a></li>
+<li><a href="#lfu">LFU</a></li>
+<li><a href="#mfu">MFU</a></li>
+<li><a href="#optimal-algorithm%E7%90%86%E6%83%B3">Optimal Algorithm（理想）</a></li>
+<li><a href="#lruleast-recently-used%E5%AE%9E%E7%94%A8">LRU=Least Recently Used（实用）</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#linux">Linux</a>
+<ul>
+<li><a href="#linux-page-fault">Linux &amp; page fault</a></li>
+<li><a href="#demand-paging">demand paging</a></li>
+<li><a href="#lasy-allocation">Lasy allocation</a></li>
+<li><a href="#copy-on-writefork">copy on write——fork</a></li>
+<li><a href="#buddy%E6%9B%BE%E7%BB%8F%E7%9A%84linux">Buddy(曾经的Linux)</a></li>
+<li><a href="#slabslobslub">slab,slob,slub</a></li>
+</ul>
+</li>
+<li><a href="#%E6%8A%96%E5%8A%A8thrashing">抖动thrashing</a>
+<ul>
+<li><a href="#working-set">working-set</a></li>
+<li><a href="#pffpage-fault-frequency">PFF(Page-Fault Frequency)</a></li>
+<li><a href="#%E7%A6%81%E6%AD%A2swap">禁止swap</a></li>
+</ul>
+</li>
+<li><a href="#%E5%AF%BB%E5%9D%80-riscv">寻址 -RISCV</a>
+<ul>
+<li><a href="#satp">satp</a></li>
+<li><a href="#%E7%9B%B4%E6%8E%A5%E7%89%A9%E7%90%86%E5%AF%BB%E5%9D%80">直接物理寻址</a></li>
+<li><a href="#%E9%80%BB%E8%BE%91%E5%9C%B0%E5%9D%80%E7%89%A9%E7%90%86%E5%9C%B0%E5%9D%80">逻辑地址=&gt;物理地址</a></li>
+<li><a href="#page-fault">Page fault</a></li>
+</ul>
+</li>
+<li><a href="#kernel%E5%92%8Cuser">Kernel和User</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="fullPage"><canvas id="canvas"></canvas></div>
+</article>
+<div id="eof"><span>EOF</span></div><div class="round-shape-one"></div>
+<section>
+<div class="doc_comments">
+
+</div></section>
+</div></div></div><script>
+"use strict";!function(){for(var n=document.getElementsByTagName("pre"),e=n.length,s=0;s<e;s++){n[s].innerHTML='<span class="line-number"></span>'+n[s].innerHTML+'<span class="cl"></span>';for(var a=n[s].innerHTML.split(/\n/).length,r=0;r<a-1;r++){n[s].getElementsByTagName("span")[0].innerHTML+="<span>"+(r+1)+"</span>"}}}();
+let mainNavLinks=document.querySelectorAll(".markdownIt-TOC a");window.addEventListener("scroll",event=>{let fromTop=window.scrollY;mainNavLinks.forEach((link,index)=>{let section=document.getElementById(decodeURI(link.hash).substring(1));let nextSection=null
+if(mainNavLinks[index+1]){nextSection=document.getElementById(decodeURI(mainNavLinks[index+1].hash).substring(1));}
+if(section.offsetTop<=fromTop){if(nextSection){if(nextSection.offsetTop>fromTop){link.classList.add("currentToc");}else{link.classList.remove("currentToc");}}else{link.classList.add("currentToc");}}else{link.classList.remove("currentToc");}});});
+var h=document.documentElement,b=document.body,st="scrollTop",sh="scrollHeight",progress=document.querySelector(".progress"),scroll;document.addEventListener("scroll",function(){scroll=(h[st]||b[st])/((h[sh]||b[sh])-h.clientHeight)*100;progress.style.setProperty("--scroll",scroll+"%")});
+var wxScale=new WxScale({fullPage:document.querySelector("#fullPage"),canvas:document.querySelector("#canvas")});var imgBox=document.querySelectorAll("#md_block img");for(var i=0;i<imgBox.length;i++){imgBox[i].onclick=function(e){wxScale.start(this)}};
+</script>
+<a id="scrollUp" href="#top" style="position: fixed; z-index: 2147483647; display: block;"></a><div class="footer animated fadeInDown"><div class="site_footer"><div class="mysocials"><div class="my_socials"><a href="https://github.com/reticenceji"title="github"><i class="iconfont icon-github"></i></a><a href="reticenceji@qq.com"title="envelope"><i class="iconfont icon-envelope"></i></a><a href="https://www.zhihu.com/people/reticenceji"title="zhihu"><i class="iconfont icon-zhihu"></i></a></div></div><div class="copyright"id="copyright">Copyright © 2018-2020 <a href="https://reticenceji.github.io" style="margin:0;">Reticence</a>.</div>
+<span style="display: inline;margin-right:15px;">👁<strong><span id="busuanzi_value_site_uv"></span></strong></span><span id="busuanzi_container_page_pv" style="display: inline;"><span>📚<strong>176</strong> posts</span></div></div>
+<script>
+console.log("\n %c \u26a1Theme: Bitcron-pro Author's Blog:https://blog.blinkstar.cn  Writen By Serence  \n\n", "color: #ffffff; background: rgba(49, 49, 49, 0.85); padding:5px 0;border-radius:5px;", );
+</script>
+<script src="https://cdn.jsdelivr.net/npm/instant.page@3.0.0/instantpage.min.js" type="module" defer></script>
+<script type="text/javascript" async src="https://reticenceji.github.io/media/js/prism.js"></script>
+</body>
+</html>

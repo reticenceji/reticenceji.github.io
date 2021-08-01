@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="shortcut icon" href="https://reticenceji.github.io/favicon.ico" type="image/x-icon" /><meta name="viewport"content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="apple-mobile-web-app-capable"content="yes"/><meta name="apple-mobile-web-app-status-bar-style"content="black"/><meta name="format-detection"content="telephone=no"/><meta name="renderer"content="webkit"><meta name="description"content=""><meta charset="UTF-8"><title>寻址学习-地址空间(一) | Reticence</title>
+<link href="https://reticenceji.github.io/styles/main.css" type="text/css" rel="stylesheet" /><link href="https://at.alicdn.com/t/font_1621793_zatzzgvf30g.css" type="text/css" rel="stylesheet" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css"><script async src="https://cdn.jsdelivr.net/npm/busuanzi@2.3.0/bsz.pure.mini.min.js"></script><script src="https://reticenceji.github.io/media/js/magnify.min.js"></script><script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js"></script>
+<script type="text/javascript">function btn_toggle(){document.getElementById("hn").classList.contains("no-js")?document.getElementById("hn").classList.remove("no-js"):document.getElementById("hn").classList.add("no-js")}</script>
+
+<link rel="canonical" href="https://reticenceji.github.io/post/xun-zhi-xue-xi/" />
+</head>
+<body>
+<div class="progress"></div><style>.progress{background:linear-gradient(to right,#87ceeb var(--scroll),transparent 0);background-repeat:no-repeat;position:fixed;width:100%;height:4px;z-index:1}</style><div class="darkmode-background"></div><div class="darkmode-layer"></div>
+<noscript><p class="warn" >本页面需要浏览器支持（启用）JavaScript</p></noscript><div class="header"><div class="logo_title"><div class="title animated fadeInDown"><a href="https://reticenceji.github.io"><img alt="logo" style="display:inline-block;" src="https://reticenceji.github.io/images/avatar.png"/></a><h1 title="Reticence" class="weaklink"><a  href="/">Reticence</a></h1>
+
+<div class="navbar weaklink">
+<div class="normal_nav">
+<div class="bitcron_nav_container"><div class="bitcron_nav"><div class="bitcron_nav"><div style="display:flex;justify-content:center;"><nav class="mixed_site_nav_wrap site_nav_wrap"><ul class="mixed_site_nav site_nav sm sm-base">	<li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/" class="selected active current nav__item" >Index</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/tags" class="selected active current nav__item" >Tags</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/archives" class="selected active current nav__item" >Archives</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/navigator.html" class="selected active current nav__item" >Navigator</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/post/about" class="selected active current nav__item" >About</a></li></ul></nav>
+<div style="float:right;margin-top:1em"><form id="gridea-search-form" data-update="1578893743252" action="/search/index.html"><input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="Search..."></form></div><div style="margin-left:0.5em;margin-top:1.2em"><input id="switch_default" onclick="mobileBtn()" type="checkbox" class="switch_default"><label for="switch_default" class="toggleBtn"></label></div></div>
+<div class="clear clear_nav_inline_end"></div></div></div><div class="clear clear_nav_end"></div></div></div><div class="hamberger" href="javascript:void(0)" onclick="btn_toggle();"><i class="iconfont icon-category"></i></div></div></div></div>
+<div id="hn" class="no-js hidden_nav animated fadeInDown"><div class="bitcron_nav_container"><div class="bitcron_nav"><nav class="mixed_site_nav_wrap site_nav_wrap"><ul class="mixed_site_nav site_nav sm sm-base">	<li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/" class="selected active current nav__item" >Index</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/tags" class="selected active current nav__item" >Tags</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/archives" class="selected active current nav__item" >Archives</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/navigator.html" class="selected active current nav__item" >Navigator</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/post/about" class="selected active current nav__item" >About</a></li></ul><div class="clear clear_nav_inline_end"></div></nav></div><div class="clear clear_nav_end"></div></div>
+<div style="display:flex;justify-content:center;inline-block;text-align:center;margin-top:7%"><div><form id="gridea-search-form" data-update="1627835297708" action="/search/index.html"><input class="search-input" autocomplete="off" spellcheck="false" name="q"  placeholder="Search..." /></form></div><div style="margin-left:0.5em"><input id="switch_default_h" onclick="mobileBtn()" type="checkbox" class="switch_default"><label for="switch_default" class="toggleBtn"></label></div></div>
+</div></div>
+<script>function enableDarkmode(){document.body.classList.add("darkmode"),document.getElementById("switch_default").checked=1,document.getElementById("switch_default_h").checked=1}function removeDarkmode(){document.body.classList.remove("darkmode"),document.getElementById("switch_default").checked=0,document.getElementById("switch_default_h").checked=0}function getCookie(a){var b,c=new RegExp("(^| )"+a+"=([^;]*)(;|$)");return(b=document.cookie.match(c))?unescape(b[2]):null}cookie=getCookie("darkmode"),"enable"==cookie&&enableDarkmode(),window.matchMedia("(prefers-color-scheme: dark)").matches&&"disable"!==cookie&&(enableDarkmode(),document.cookie="darkmode=enable; path=/");var mobileBtn=function(){1==document.getElementById("switch_default").checked?(enableDarkmode(),document.cookie="darkmode=enable; path=/"):(removeDarkmode(),document.cookie="darkmode=disable; path=/")};</script>
+
+<div class="main"><div class="main-inner"><div class="content">
+<article class="post">
+<h2 class="post_title sm_margin"><a>寻址学习-地址空间(一)</a></h2>
+<script>function lan(){if(document.getElementById("lan").innerText=="繁"){var s=document.getElementById("tongwenlet_cn");if(s!=null){document.body.removeChild(s)}var s=document.createElement("script");s.language="javascript";s.type="text/javascript";s.src="https://cdn.jsdelivr.net/gh/qyxtim/Static@1.1/bookmarklet_tw.js";s.id="tongwenlet_cn";document.body.appendChild(s);document.getElementById("lan").innerHTML="简"}else{if(document.getElementById("lan").innerText=="簡"){var s=document.getElementById("tongwenlet_cn");if(s!=null){document.body.removeChild(s)}var s=document.createElement("script");s.language="javascript";s.type="text/javascript";s.src="https://cdn.jsdelivr.net/gh/qyxtim/Static@1.1/bookmarklet_cn.js";s.id="tongwenlet_cn";document.body.appendChild(s);document.getElementById("lan").innerHTML="繁"}}};</script>
+<section class="post_details"><i class="iconfont icon-calendar"></i><span style="margin-right:15px"> 2020-10-18</span><i class="iconfont icon-browse"></i><span style="margin-right:15px"> <span id="busuanzi_value_page_pv"></span> Views</span><i class="iconfont icon-category"></i><span class="weaklink" style="margin-right:15px">	<a href="https://reticenceji.github.io/tag/nfABdWVsa/" class="tag">OS</a></span><i class="iconfont icon-caret-down"></i><span style="margin-right:15px">891字</span><i class="iconfont icon-naozhong"></i><span style="margin-right:15px">4 min read</span><a id="lan" href="javascript:void(0);"onclick="lan();"title="调整简繁体" style="margin-right:15px;">繁</a>
+</section>
+
+<div style="display:flex">
+<div class="md_block" id="md_block">
+<div class="round-shape-one"></div>
+<p>参考链接：</p>
+<ul>
+<li><a href="https://blog.csdn.net/chen1540524015/article/details/74075397">segement register, segement selector, segement descriptor</a></li>
+<li>《Linux源码剖析》</li>
+<li>《CSAPP》 这本书讲的是Flat memory model，没有segment这么一说。</li>
+<li><a href="https://naotu.baidu.com/file/6fa404fe130b4f2e616c312a7101eeab">思维导图</a>，乱的不行。</li>
+<li><a href="https://blog.csdn.net/jinking01/article/details/105831888/">对LDT和GDT的讲解</a></li>
+</ul>
+<h2 id="基本概念">基本概念</h2>
+<p><strong>Logical address</strong> – generated by the CPU; also referred to as virtual address<br>
+**Physical address <strong>– address seen by the memory unit<br>
+我们（CPU）用的都是Logical，最终要被翻译成（MMU和操作系统合作）Physical给内存用。<br>
+我们要讲述的，就是</strong>Logical address =&gt;Physical address ** ，下面的Linear Address不过是一个中间为了方便说明的东西。</p>
+<p>虚拟地址=逻辑地址、线性地址、物理地址。</p>
+<h3 id="from-logical-addressvirtual-address-to-linear-address">From Logical address(Virtual address) to Linear address</h3>
+<p>我们平时用的都是<strong>Virtual addresses</strong> 。<br>
+在Intel80386中逻辑地址包括一个16-bit <strong>selector</strong> 和一个 32-bit <strong>offset</strong>（段地址和偏移地址组成，注意这个和8086CPU是完全不同的）<br>
+We save <em>selector and some information of description</em> in <strong>segment register</strong>(CS, DS, ES, SS, FS or GS). If the selector is not saved in segment register, we load the information of <strong>description</strong> from GDT or LDT.<br>
+Then we check <em>limit and privilege (some information of descriptor)</em>. 我们检查offset 是否在段的limit内，以及当前特权及是否能符合该段的特权级限制。<br>
+If so , <strong>Linear addr</strong> = <strong>base addr</strong> + <strong>offset</strong><br>
+作为程序员，和我们打交道的从来都只是逻辑地址。</p>
+<ul>
+<li><strong>GDT &amp; LDT</strong><br>
+In Selector, <strong>TI</strong> tell us to find GDT or LDT; <strong>Index</strong> tell us where in XDT to find Descriptor.<br>
+GDT, Global Descriptor Table;<br>
+LDT, Local Descriptor Table;</li>
+</ul>
+<h2 id="from-linear-address-to-physical-address">From Linear address to Physical address</h2>
+<p>If paging(分页机制) is disabled linear address = physical  address.<br>
+否则的话，我们之前的产生的线性地址还要通过<strong>页表</strong>寻址真正的物理地址。<br>
+我们注意到每一个进程都有一个Logical Address，所以每个进程都有一个<strong>Page Table</strong>。<br>
+可以注意到会有多个 Linear address（1 byte addressable）映射到一个 Page（通常4Kb）。给定一个Linear address，部分位（Virtual Page Number）确定一个Virtual Page，剩下的位是VPO（Virtual Page Offset）<br>
+<img src="https://reticenceji.github.io/post-images/1603005345168.png" alt="" loading="lazy"></p>
+<p>不难发现这个可以很轻松的拓展到多级页表，节省内存。上一个Page Table Entry作为下一层页表的Base Address，直到最后一个Page Table Entry指向物理地址。<br>
+<img src="https://reticenceji.github.io/post-images/1603005457197.png" alt="" loading="lazy"></p>
+<p><strong>通过Linear address我们所引导一个Page Table Entry。根据PTE，我们就能寻到Physical Address了。</strong><br>
+<strong>Physical Address = PPN ~ PPO</strong></p>
+<h2 id="paging">Paging</h2>
+<p>操作系统维护一个Page Table（页表），让Virtual Page映射到Physical Page。（有些地方，我们把<strong>Virtual Page称为Page</strong>，<strong>Physical Page称为Frame</strong>）</p>
+<p>页表是一个PTE(Page Table Entry)数组，<br>
+PTE的主要作用就是Virtual Page和Physical Page的对应，一个PTE包括：<br>
+<img src="https://reticenceji.github.io/post-images/1603007197739.png" alt="" loading="lazy"></p>
+<ul>
+<li>PPN：Physical Page Number</li>
+<li>VPO/PPO：Physical Page Offset，由于Virtual Page和Physical Page一样的大小，所以PPO = VPO</li>
+<li>valid bit：表示该Page是否在物理内存中，如果valid bit 是0的话那PPN也没有意义了</li>
+<li>一些权限管理的bit</li>
+<li></li>
+</ul>
+<p>要注意的是，我们寻到一个VPN之后，不代表我们就能用他了。因为我们只能用Main memory里的东西，但是它可能在 secondary storage，这种情况就叫缺页（Page fault），这个时候就会产生缺页异常，然后操作系统要通过异常处理把它Page转移到Physical memory中。</p>
+<h2 id="how-we-addressing">How we addressing</h2>
+<figure data-type="image" tabindex="1"><img src="https://reticenceji.github.io/post-images/1603006866206.png" alt="" loading="lazy"></figure>
+<center>左边的一小块就是Page，右边的一小块就是Frame</center>
+<p><img src="https://reticenceji.github.io/post-images/1603017418853.png" alt="" loading="lazy"><br>
+每个Process都有自己的Virtual address space。最终他们都映射到Physical address space中的一个地方。中间的过程就是本篇文章讨论的。<br>
+<strong>另外，其实段+偏移这种方式已经被淘汰了（但是Intel向前兼容所以还存在），像ARM和RISCV都已经没有段寄存那么一说了。在这种情况下逻辑地址的产生更为方便。</strong></p>
+
+<span id="footnote"></span>
+<div id = "warn"></div>
+</div>
+<div class="toc-container"><ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5">基本概念</a>
+<ul>
+<li><a href="#from-logical-addressvirtual-address-to-linear-address">From Logical address(Virtual address) to Linear address</a></li>
+</ul>
+</li>
+<li><a href="#from-linear-address-to-physical-address">From Linear address to Physical address</a></li>
+<li><a href="#paging">Paging</a></li>
+<li><a href="#how-we-addressing">How we addressing</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="fullPage"><canvas id="canvas"></canvas></div>
+</article>
+<div id="eof"><span>EOF</span></div><div class="round-shape-one"></div>
+<section>
+<div class="doc_comments">
+
+</div></section>
+</div></div></div><script>
+"use strict";!function(){for(var n=document.getElementsByTagName("pre"),e=n.length,s=0;s<e;s++){n[s].innerHTML='<span class="line-number"></span>'+n[s].innerHTML+'<span class="cl"></span>';for(var a=n[s].innerHTML.split(/\n/).length,r=0;r<a-1;r++){n[s].getElementsByTagName("span")[0].innerHTML+="<span>"+(r+1)+"</span>"}}}();
+let mainNavLinks=document.querySelectorAll(".markdownIt-TOC a");window.addEventListener("scroll",event=>{let fromTop=window.scrollY;mainNavLinks.forEach((link,index)=>{let section=document.getElementById(decodeURI(link.hash).substring(1));let nextSection=null
+if(mainNavLinks[index+1]){nextSection=document.getElementById(decodeURI(mainNavLinks[index+1].hash).substring(1));}
+if(section.offsetTop<=fromTop){if(nextSection){if(nextSection.offsetTop>fromTop){link.classList.add("currentToc");}else{link.classList.remove("currentToc");}}else{link.classList.add("currentToc");}}else{link.classList.remove("currentToc");}});});
+var h=document.documentElement,b=document.body,st="scrollTop",sh="scrollHeight",progress=document.querySelector(".progress"),scroll;document.addEventListener("scroll",function(){scroll=(h[st]||b[st])/((h[sh]||b[sh])-h.clientHeight)*100;progress.style.setProperty("--scroll",scroll+"%")});
+var wxScale=new WxScale({fullPage:document.querySelector("#fullPage"),canvas:document.querySelector("#canvas")});var imgBox=document.querySelectorAll("#md_block img");for(var i=0;i<imgBox.length;i++){imgBox[i].onclick=function(e){wxScale.start(this)}};
+</script>
+<a id="scrollUp" href="#top" style="position: fixed; z-index: 2147483647; display: block;"></a><div class="footer animated fadeInDown"><div class="site_footer"><div class="mysocials"><div class="my_socials"><a href="https://github.com/reticenceji"title="github"><i class="iconfont icon-github"></i></a><a href="reticenceji@qq.com"title="envelope"><i class="iconfont icon-envelope"></i></a><a href="https://www.zhihu.com/people/reticenceji"title="zhihu"><i class="iconfont icon-zhihu"></i></a></div></div><div class="copyright"id="copyright">Copyright © 2018-2020 <a href="https://reticenceji.github.io" style="margin:0;">Reticence</a>.</div>
+<span style="display: inline;margin-right:15px;">👁<strong><span id="busuanzi_value_site_uv"></span></strong></span><span id="busuanzi_container_page_pv" style="display: inline;"><span>📚<strong>176</strong> posts</span></div></div>
+<script>
+console.log("\n %c \u26a1Theme: Bitcron-pro Author's Blog:https://blog.blinkstar.cn  Writen By Serence  \n\n", "color: #ffffff; background: rgba(49, 49, 49, 0.85); padding:5px 0;border-radius:5px;", );
+</script>
+<script src="https://cdn.jsdelivr.net/npm/instant.page@3.0.0/instantpage.min.js" type="module" defer></script>
+<script type="text/javascript" async src="https://reticenceji.github.io/media/js/prism.js"></script>
+</body>
+</html>

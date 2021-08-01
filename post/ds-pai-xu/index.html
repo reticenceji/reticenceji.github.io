@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="shortcut icon" href="https://reticenceji.github.io/favicon.ico" type="image/x-icon" /><meta name="viewport"content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="apple-mobile-web-app-capable"content="yes"/><meta name="apple-mobile-web-app-status-bar-style"content="black"/><meta name="format-detection"content="telephone=no"/><meta name="renderer"content="webkit"><meta name="description"content=""><meta charset="UTF-8"><title>DS-Sort | Reticence</title>
+<link href="https://reticenceji.github.io/styles/main.css" type="text/css" rel="stylesheet" /><link href="https://at.alicdn.com/t/font_1621793_zatzzgvf30g.css" type="text/css" rel="stylesheet" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css"><script async src="https://cdn.jsdelivr.net/npm/busuanzi@2.3.0/bsz.pure.mini.min.js"></script><script src="https://reticenceji.github.io/media/js/magnify.min.js"></script><script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js"></script>
+<script type="text/javascript">function btn_toggle(){document.getElementById("hn").classList.contains("no-js")?document.getElementById("hn").classList.remove("no-js"):document.getElementById("hn").classList.add("no-js")}</script>
+
+<link rel="canonical" href="https://reticenceji.github.io/post/ds-pai-xu/" />
+</head>
+<body>
+<div class="progress"></div><style>.progress{background:linear-gradient(to right,#87ceeb var(--scroll),transparent 0);background-repeat:no-repeat;position:fixed;width:100%;height:4px;z-index:1}</style><div class="darkmode-background"></div><div class="darkmode-layer"></div>
+<noscript><p class="warn" >本页面需要浏览器支持（启用）JavaScript</p></noscript><div class="header"><div class="logo_title"><div class="title animated fadeInDown"><a href="https://reticenceji.github.io"><img alt="logo" style="display:inline-block;" src="https://reticenceji.github.io/images/avatar.png"/></a><h1 title="Reticence" class="weaklink"><a  href="/">Reticence</a></h1>
+
+<div class="navbar weaklink">
+<div class="normal_nav">
+<div class="bitcron_nav_container"><div class="bitcron_nav"><div class="bitcron_nav"><div style="display:flex;justify-content:center;"><nav class="mixed_site_nav_wrap site_nav_wrap"><ul class="mixed_site_nav site_nav sm sm-base">	<li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/" class="selected active current nav__item" >Index</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/tags" class="selected active current nav__item" >Tags</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/archives" class="selected active current nav__item" >Archives</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/navigator.html" class="selected active current nav__item" >Navigator</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/post/about" class="selected active current nav__item" >About</a></li></ul></nav>
+<div style="float:right;margin-top:1em"><form id="gridea-search-form" data-update="1578893743252" action="/search/index.html"><input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="Search..."></form></div><div style="margin-left:0.5em;margin-top:1.2em"><input id="switch_default" onclick="mobileBtn()" type="checkbox" class="switch_default"><label for="switch_default" class="toggleBtn"></label></div></div>
+<div class="clear clear_nav_inline_end"></div></div></div><div class="clear clear_nav_end"></div></div></div><div class="hamberger" href="javascript:void(0)" onclick="btn_toggle();"><i class="iconfont icon-category"></i></div></div></div></div>
+<div id="hn" class="no-js hidden_nav animated fadeInDown"><div class="bitcron_nav_container"><div class="bitcron_nav"><nav class="mixed_site_nav_wrap site_nav_wrap"><ul class="mixed_site_nav site_nav sm sm-base">	<li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/" class="selected active current nav__item" >Index</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/tags" class="selected active current nav__item" >Tags</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/archives" class="selected active current nav__item" >Archives</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/navigator.html" class="selected active current nav__item" >Navigator</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/post/about" class="selected active current nav__item" >About</a></li></ul><div class="clear clear_nav_inline_end"></div></nav></div><div class="clear clear_nav_end"></div></div>
+<div style="display:flex;justify-content:center;inline-block;text-align:center;margin-top:7%"><div><form id="gridea-search-form" data-update="1627835297708" action="/search/index.html"><input class="search-input" autocomplete="off" spellcheck="false" name="q"  placeholder="Search..." /></form></div><div style="margin-left:0.5em"><input id="switch_default_h" onclick="mobileBtn()" type="checkbox" class="switch_default"><label for="switch_default" class="toggleBtn"></label></div></div>
+</div></div>
+<script>function enableDarkmode(){document.body.classList.add("darkmode"),document.getElementById("switch_default").checked=1,document.getElementById("switch_default_h").checked=1}function removeDarkmode(){document.body.classList.remove("darkmode"),document.getElementById("switch_default").checked=0,document.getElementById("switch_default_h").checked=0}function getCookie(a){var b,c=new RegExp("(^| )"+a+"=([^;]*)(;|$)");return(b=document.cookie.match(c))?unescape(b[2]):null}cookie=getCookie("darkmode"),"enable"==cookie&&enableDarkmode(),window.matchMedia("(prefers-color-scheme: dark)").matches&&"disable"!==cookie&&(enableDarkmode(),document.cookie="darkmode=enable; path=/");var mobileBtn=function(){1==document.getElementById("switch_default").checked?(enableDarkmode(),document.cookie="darkmode=enable; path=/"):(removeDarkmode(),document.cookie="darkmode=disable; path=/")};</script>
+
+<div class="main"><div class="main-inner"><div class="content">
+<article class="post">
+<h2 class="post_title sm_margin"><a>DS-Sort</a></h2>
+<script>function lan(){if(document.getElementById("lan").innerText=="繁"){var s=document.getElementById("tongwenlet_cn");if(s!=null){document.body.removeChild(s)}var s=document.createElement("script");s.language="javascript";s.type="text/javascript";s.src="https://cdn.jsdelivr.net/gh/qyxtim/Static@1.1/bookmarklet_tw.js";s.id="tongwenlet_cn";document.body.appendChild(s);document.getElementById("lan").innerHTML="简"}else{if(document.getElementById("lan").innerText=="簡"){var s=document.getElementById("tongwenlet_cn");if(s!=null){document.body.removeChild(s)}var s=document.createElement("script");s.language="javascript";s.type="text/javascript";s.src="https://cdn.jsdelivr.net/gh/qyxtim/Static@1.1/bookmarklet_cn.js";s.id="tongwenlet_cn";document.body.appendChild(s);document.getElementById("lan").innerHTML="繁"}}};</script>
+<section class="post_details"><i class="iconfont icon-calendar"></i><span style="margin-right:15px"> 2020-12-15</span><i class="iconfont icon-browse"></i><span style="margin-right:15px"> <span id="busuanzi_value_page_pv"></span> Views</span><i class="iconfont icon-category"></i><span class="weaklink" style="margin-right:15px">	<a href="https://reticenceji.github.io/tag/0AqTQfzSL/" class="tag">DS</a></span><i class="iconfont icon-caret-down"></i><span style="margin-right:15px">1874字</span><i class="iconfont icon-naozhong"></i><span style="margin-right:15px">9 min read</span><a id="lan" href="javascript:void(0);"onclick="lan();"title="调整简繁体" style="margin-right:15px;">繁</a>
+</section>
+
+<div style="display:flex">
+<div class="md_block" id="md_block">
+<div class="round-shape-one"></div>
+<figure data-type="image" tabindex="1"><img src="https://reticenceji.github.io/post-images/1610847873915.png" alt="" loading="lazy"></figure>
+<h1 id="高级排序算法">高级排序算法</h1>
+<p>有很多排序算法。从C库函数qsort可以看出</p>
+<ol>
+<li>我们需要知道排序的元素个数。</li>
+<li>我们要保证两个元素之间是可以比较的，必然存在一个大小关系。</li>
+</ol>
+<p><a href="https://visualgo.net/zh/sorting?slide=1">可视化排序算法</a>。我们没有讲冒泡排序、选择排序。<br>
+基于比较的排序，最好的时间复杂度也是<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mi>N</mi><mi>l</mi><mi>o</mi><mi>g</mi><mi>N</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">O(N log N)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">o</span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="mclose">)</span></span></span></span></p>
+<h2 id="insertion-sort">Insertion Sort</h2>
+<p>比如我们整理扑克牌。</p>
+<pre><code class="language-CQL">void InsertionSort ( ElementType A[ ], int N ) 
+{ 
+    int  j, P; 
+    ElementType  Tmp; 
+
+    for ( P = 1; P &lt; N; P++ ) 
+    { 
+   		Tmp = A[ P ];  /* the next coming card */
+    	for ( j = P; j &gt; 0 &amp;&amp; A[ j - 1 ] &gt; Tmp; j-- ) 
+    		A[ j ] = A[ j - 1 ]; 
+    	/* shift sorted cards to provide a position for the new coming card */
+    	A[ j ] = Tmp;  /* place the new card at the proper position */
+    }  /* end for-P-loop */
+}
+</code></pre>
+<h2 id="shell-sort">Shell Sort</h2>
+<p>是<strong>不稳定</strong>的排序方法，虽然比不上快排，但是代码简单。<br>
+思想是一次消除多个逆序，改进版的Insertion Sort。Define an increment sequence <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>h</mi><mn>1</mn></msub><mo>&lt;</mo><msub><mi>h</mi><mn>2</mn></msub><mo>&lt;</mo><mo>…</mo><mo>&lt;</mo><msub><mi>h</mi><mi>t</mi></msub><mo>(</mo><msub><mi>h</mi><mn>1</mn></msub><mo>=</mo><mn>1</mn><mo>)</mo></mrow><annotation encoding="application/x-tex">h_1 &lt; h_2 &lt; … &lt; h_t  ( h_1 = 1 )</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.84444em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">h</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">&lt;</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.84444em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">h</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">&lt;</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.5782em;vertical-align:-0.0391em;"></span><span class="minner">…</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">&lt;</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathdefault">h</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2805559999999999em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">t</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault">h</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mclose">)</span></span></span></span>，Define an <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>h</mi><mi>k</mi></msub></mrow><annotation encoding="application/x-tex">h_k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.84444em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">h</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.03148em;">k</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>-sort at each phase for k = t, t-1, …, 1。<br>
+通常我们取<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>h</mi><mi>t</mi></msub><mo>=</mo><mo>⌊</mo><mi>N</mi><mi mathvariant="normal">/</mi><mn>2</mn><mo>⌋</mo><mo separator="true">,</mo><msub><mi>h</mi><mi>k</mi></msub><mo>=</mo><mo>⌊</mo><msub><mi>h</mi><mrow><mi>k</mi><mo>+</mo><mn>1</mn></mrow></msub><mo>⌋</mo></mrow><annotation encoding="application/x-tex">h_t=\lfloor N/2 \rfloor, h_k=\lfloor h_{k+1} \rfloor</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.84444em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">h</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2805559999999999em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">t</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">⌊</span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="mord">/</span><span class="mord">2</span><span class="mclose">⌋</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault">h</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.03148em;">k</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">⌊</span><span class="mord"><span class="mord mathdefault">h</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361079999999999em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.03148em;">k</span><span class="mbin mtight">+</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.208331em;"><span></span></span></span></span></span></span><span class="mclose">⌋</span></span></span></span>（被称为希尔增量）但是这不是最高效的增量序列，最差的情况会退化成<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><msup><mi>N</mi><mn>2</mn></msup><mo>)</mo></mrow><annotation encoding="application/x-tex">O(N^2)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.064108em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span>。<br>
+取<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>h</mi><mi>k</mi></msub><mo>=</mo><msup><mn>2</mn><mi>k</mi></msup><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">h_k=2^k-1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.84444em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">h</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.03148em;">k</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.932438em;vertical-align:-0.08333em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.849108em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.03148em;">k</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span>（被称为Hibbard增量）会稍微好一点，最差的情况时间复杂度为<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><msup><mi>N</mi><mfrac><mn>3</mn><mn>2</mn></mfrac></msup><mo>)</mo></mrow><annotation encoding="application/x-tex">O(N^{\frac{3}{2}})</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.20402em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.9540200000000001em;"><span style="top:-3.363em;margin-right:0.05em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mopen nulldelimiter sizing reset-size3 size6"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8443142857142858em;"><span style="top:-2.656em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mtight">2</span></span></span></span><span style="top:-3.2255000000000003em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line mtight" style="border-bottom-width:0.049em;"></span></span><span style="top:-3.384em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mtight">3</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.344em;"><span></span></span></span></span></span><span class="mclose nulldelimiter sizing reset-size3 size6"></span></span></span></span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span>，平均时间为<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><msup><mi>N</mi><mfrac><mn>7</mn><mn>6</mn></mfrac></msup><mo>)</mo></mrow><annotation encoding="application/x-tex">O(N^{\frac{7}{6}})</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.20402em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.9540200000000001em;"><span style="top:-3.363em;margin-right:0.05em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mopen nulldelimiter sizing reset-size3 size6"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8443142857142858em;"><span style="top:-2.656em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mtight">6</span></span></span></span><span style="top:-3.2255000000000003em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line mtight" style="border-bottom-width:0.049em;"></span></span><span style="top:-3.384em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mtight">7</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.344em;"><span></span></span></span></span></span><span class="mclose nulldelimiter sizing reset-size3 size6"></span></span></span></span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span>。</p>
+<pre><code class="language-c">void Shellsort( ElementType A[ ], int N ) 
+{ 
+    int  i, j, Increment; 
+    ElementType  Tmp; 
+    for ( Increment = N / 2; Increment &gt; 0; Increment /= 2 )  
+        /*h sequence */
+        for ( i = Increment; i &lt; N; i++ ) { /* insertion sort */
+            Tmp = A[ i ]; 
+            for ( j = i; j &gt;= Increment; j - = Increment ) 
+                if( Tmp &lt; A[ j - Increment ] ) 
+                    A[ j ] = A[ j - Increment ]; 
+                else 
+                    break; 
+            A[ j ] = Tmp; 
+        } /* end for-I and for-Increment loops */
+}
+
+</code></pre>
+<h2 id="heap-sort">Heap Sort</h2>
+<p>首先我们考虑一种直白的方法：</p>
+<ol>
+<li>把需要排序的元素建一个最小堆（时间复杂度为O(N)）。</li>
+<li>每次把对堆进行DeleteMin操作，把Min存入另一个数组H。</li>
+<li>我们获得了一个排好序的数组H。</li>
+</ol>
+<pre><code class="language-c">Algorithm 1:
+{
+    BuildHeap( H );	/* O(N) */
+    for ( i=0; i&lt;N; i++ ) 
+        TmpH[ i ] = DeleteMin( H );		/* O(lg(N)) */
+    for ( i=0; i&lt;N; i++ ) 
+        H[ i ] = TmpH[ i ];		/* O(1) */
+}
+</code></pre>
+<p>这是改进版的Heap Sort，可以省了额外创建一个数组的空间：</p>
+<ol>
+<li>仍然是把需要排序的元素建一个最小堆。</li>
+<li>注意到其实我们每次DeleteMin都会让堆的规模减一，所以我们把DeleteMin变成和最后一个元素进行交换，然后Percolate Down。</li>
+</ol>
+<pre><code class="language-c">id Heapsort( ElementType A[ ], int N ) 
+{  
+	int i; 
+    for ( i = N / 2; i &gt;= 0; i-- ) /* BuildHeap */ 
+        PercDown( A, i, N ); 
+    for ( i = N - 1; i &gt; 0; i-- ) { 
+        Swap( &amp;A[ 0 ], &amp;A[ i ] ); /* DeleteMax */ 
+        PercDown( A, 0, i ); 
+} 
+</code></pre>
+<h2 id="merge-sort">Merge Sort</h2>
+<p>二分法。对于internal sorting很少使用，但是对external sorting经常使用。<br>
+时间复杂度是<code>O(NlogN)</code>，空间复杂度是<code>O(NlogN)</code>，可以是<strong>稳定</strong>的。</p>
+<p>传统的Merge Sort算法主要是要申请额外的空间这个部分Overhead很大，下面的例程就是为了避免这个问题。</p>
+<pre><code class="language-c">void merge_pass( ElementType list[], ElementType sorted[], int N, const int length )
+{
+    int left=0,mid=length-1,right=2*length-1;	
+    int i,j,k;
+    if (right&gt;=N) right=N-1;
+    while (mid&lt;N)
+    {
+        i=j=k=0;
+        //Merge [left,mid] and [mid+1,right]
+        while (i&lt;length &amp;&amp; j&lt;right-mid)
+            if (list[i+left]&lt;list[j+mid+1]) sorted[left+k++] = list[i++ +left];
+            else sorted[left+k++] = list[j++ +mid+1];
+        while (i&lt;length) sorted[left+k++] = list[i++ +left];
+        while (j&lt;right-mid) sorted[left+k++] = list[j++ +mid+1];
+
+        left+=2*length;
+        mid+=2*length;
+        right+=2*length;
+        if (right&gt;=N) right=N-1;     
+    }
+}
+
+void  merge_sort( ElementType list[],  int N )
+{
+    ElementType extra[MAXN];  /* the extra space required */
+    int  length = 1;  /* current length of sublist being merged */
+    while( length &lt; N ) { 
+        merge_pass( list, extra, N, length ); /* merge list into extra */
+        length *= 2;
+        merge_pass( extra, list, N, length ); /* merge extra back to list */
+        length *= 2;
+    }
+} 
+</code></pre>
+<h2 id="quick-sort">Quick Sort</h2>
+<p>鼎鼎有名的快速排序。最坏情况的时间复杂度是<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><msup><mi>N</mi><mn>2</mn></msup><mo>)</mo></mrow><annotation encoding="application/x-tex">O(N^2)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.064108em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span>，平均情况是<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mi>N</mi><mi>l</mi><mi>o</mi><mi>g</mi><mi>N</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">O(NlogN)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">o</span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="mclose">)</span></span></span></span>。是一种不稳定的算法。</p>
+<pre><code class="language-c">void Quicksort ( ElementType A[ ], int N )
+{
+    if ( N &lt; 2 )  return;
+    pivot = pick any element in A[ ]; 
+    Partition S = { A[ ] \ pivot } into two disjoint sets:
+    	A1={ a BelongTo S | a &lt;= pivot } and A2={ a BelongTo S | a &gt;= pivot };
+    A = Quicksort ( A1, N1) Union { pivot } Union Quicksort ( A2, N2);
+}
+</code></pre>
+<p>具体的实现（从小到大排序）</p>
+<pre><code class="language-c">void  Qsort( ElementType A[ ], int Left, int Right ) 
+{   
+    int  i,  j; 
+	ElementType  Pivot; 
+    if ( Left + Cutoff &lt;= Right ) {  /* if the sequence is not too short */
+        Pivot = Median3( A, Left, Right );  /* select pivot */
+        /* why not set Left+1 and Right-2? Because after we ++i and --j */
+        i = Left;     j = Right–1;  
+        for( ; ; ) { 
+            /* scan from left ,when loop ends, A[i]&gt;=Pivot */
+            while ( A[++i] &lt; Pivot );
+            /* scan from right */
+            while ( A[––j] &gt; Pivot ); 
+            if ( i &lt; j ) 
+                Swap( &amp;A[ i ], &amp;A[ j ] );  /* adjust partition */
+            else     
+                break;  /* partition done */
+        } 
+        Swap( &amp;A[ i ], &amp;A[ Right - 1 ] ); /* restore pivot */ 
+        Qsort( A, Left, i - 1 );      /* recursively sort left part */
+        Qsort( A, i + 1, Right );   /* recursively sort right part */
+    }  /* end if - the sequence is long */
+    else /* do an insertion sort on the short subarray */ 
+        InsertionSort( A + Left, Right - Left + 1 );
+}
+</code></pre>
+<p>运用快排的思想，可以很好的解决找第k大元素的方法。我们每一进行qsort，可以找出第m大的元素，如果<code>m==k</code>，那么就正好找到了；如果<code>m&lt;k</code>继续找后面一部分；如果<code>m&gt;k</code>继续找前面一部分。</p>
+<h2 id="sorting-large">Sorting Large</h2>
+<p>交换大的struct的代价可能很高。我们可以通过间接交换的方法，用一个指针指向我们真正需要排序的元素，然后对指针进行排序。等到排完了在把原来的数组排好。指针也可以是数组下标啦。</p>
+<h2 id="bucket-sort-and-radix-sort">Bucket Sort and Radix Sort</h2>
+<p>桶排序就是把<strong>要排序的元素</strong>按照范围分成一个个区间（一趟扫描<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mi>N</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">O(N)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="mclose">)</span></span></span></span>），然后在对区间内的元素进行排序。如果元素是均匀分布的话效果比较好。</p>
+<p>基数排序有两种：一种是<strong>最低位优先</strong>(Least Significant Digit first)法，简称LSD法，另一种是<strong>最高位优先</strong>(Most Significant Digit first)法，简称MSD法。下面举例（下面是十进制，我觉得2^n进制更好可以除法变移位）说明：</p>
+<blockquote>
+<p>11, 58, 97 ,81, 34, 99, 7, 32 是我们要排序的序列，最多是两位数。</p>
+</blockquote>
+<ul>
+<li>
+<p>LSD：</p>
+<table>
+<thead>
+<tr>
+<th>最低位</th>
+<th>桶里的内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>/</td>
+</tr>
+<tr>
+<td>1</td>
+<td>11, 81</td>
+</tr>
+<tr>
+<td>2</td>
+<td>32</td>
+</tr>
+<tr>
+<td>3</td>
+<td>/</td>
+</tr>
+<tr>
+<td>4</td>
+<td>34</td>
+</tr>
+<tr>
+<td>5</td>
+<td>/</td>
+</tr>
+<tr>
+<td>6</td>
+<td>/</td>
+</tr>
+<tr>
+<td>7</td>
+<td>97, 7</td>
+</tr>
+<tr>
+<td>8</td>
+<td>28</td>
+</tr>
+<tr>
+<td>9</td>
+<td>99</td>
+</tr>
+</tbody>
+</table>
+<p>然后我们得到 <code>11,81,32,34,97,7,28,99</code>这个序列，在对他的高位进行桶排序，直到最高位为止，就可以得到<code>7,11,28,32,34,81,99</code>这个正确排序的序列了。</p>
+</li>
+<li>
+<p>MSD：</p>
+<table>
+<thead>
+<tr>
+<th>最高位</th>
+<th>桶里的内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>7</td>
+</tr>
+<tr>
+<td>1</td>
+<td>11</td>
+</tr>
+<tr>
+<td>2</td>
+<td>/</td>
+</tr>
+<tr>
+<td>3</td>
+<td>34,32</td>
+</tr>
+<tr>
+<td>4</td>
+<td>/</td>
+</tr>
+<tr>
+<td>5</td>
+<td>58</td>
+</tr>
+<tr>
+<td>6</td>
+<td>/</td>
+</tr>
+<tr>
+<td>7</td>
+<td>/</td>
+</tr>
+<tr>
+<td>8</td>
+<td>81</td>
+</tr>
+<tr>
+<td>9</td>
+<td>97</td>
+</tr>
+</tbody>
+</table>
+<p>然后我们要对子桶继续进行桶排序，直到最低位为止。我们就可以得到<code>7,11,28,32,34,81,99</code>这个正确排序的序列了。</p>
+</li>
+</ul>
+<p>这样看来，还是LSD比较方便，不用分类。但是这两个算法在实际运用中哪一个更高效还是取决于数据的情况。</p>
+<p>我们把基数排序扩展一下，一般的，对于有多个关键字，且关键字之间有明确的优先级顺序的序列。我们也可以把序列的每一个条目看成一个基数，高优先级的条目对应高位，低优先级的条目对应低位。</p>
+<blockquote>
+<p>我们有52个元素（一副扑克没有joker）<br>
+黑桃 &gt; 桃花 &gt; 方块 &gt; 梅花<br>
+2 &lt; 3 &lt; 4 &lt; 5 &lt; 6 &lt; 7 &lt; 8 &lt; 9 &lt; 10 &lt; J &lt; Q &lt; K &lt; A</p>
+</blockquote>
+<p>来看LSD怎么排序：</p>
+<ol>
+<li>先用13个桶把各个面值都排序一遍。然后<strong>全部收起来</strong>。</li>
+<li>然后再按照各个花色排一遍。</li>
+</ol>
+
+<span id="footnote"></span>
+<div id = "warn"></div>
+</div>
+<div class="toc-container"><ul class="markdownIt-TOC">
+<li><a href="#%E9%AB%98%E7%BA%A7%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95">高级排序算法</a>
+<ul>
+<li><a href="#insertion-sort">Insertion Sort</a></li>
+<li><a href="#shell-sort">Shell Sort</a></li>
+<li><a href="#heap-sort">Heap Sort</a></li>
+<li><a href="#merge-sort">Merge Sort</a></li>
+<li><a href="#quick-sort">Quick Sort</a></li>
+<li><a href="#sorting-large">Sorting Large</a></li>
+<li><a href="#bucket-sort-and-radix-sort">Bucket Sort and Radix Sort</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="fullPage"><canvas id="canvas"></canvas></div>
+</article>
+<div id="eof"><span>EOF</span></div><div class="round-shape-one"></div>
+<section>
+<div class="doc_comments">
+
+</div></section>
+</div></div></div><script>
+"use strict";!function(){for(var n=document.getElementsByTagName("pre"),e=n.length,s=0;s<e;s++){n[s].innerHTML='<span class="line-number"></span>'+n[s].innerHTML+'<span class="cl"></span>';for(var a=n[s].innerHTML.split(/\n/).length,r=0;r<a-1;r++){n[s].getElementsByTagName("span")[0].innerHTML+="<span>"+(r+1)+"</span>"}}}();
+let mainNavLinks=document.querySelectorAll(".markdownIt-TOC a");window.addEventListener("scroll",event=>{let fromTop=window.scrollY;mainNavLinks.forEach((link,index)=>{let section=document.getElementById(decodeURI(link.hash).substring(1));let nextSection=null
+if(mainNavLinks[index+1]){nextSection=document.getElementById(decodeURI(mainNavLinks[index+1].hash).substring(1));}
+if(section.offsetTop<=fromTop){if(nextSection){if(nextSection.offsetTop>fromTop){link.classList.add("currentToc");}else{link.classList.remove("currentToc");}}else{link.classList.add("currentToc");}}else{link.classList.remove("currentToc");}});});
+var h=document.documentElement,b=document.body,st="scrollTop",sh="scrollHeight",progress=document.querySelector(".progress"),scroll;document.addEventListener("scroll",function(){scroll=(h[st]||b[st])/((h[sh]||b[sh])-h.clientHeight)*100;progress.style.setProperty("--scroll",scroll+"%")});
+var wxScale=new WxScale({fullPage:document.querySelector("#fullPage"),canvas:document.querySelector("#canvas")});var imgBox=document.querySelectorAll("#md_block img");for(var i=0;i<imgBox.length;i++){imgBox[i].onclick=function(e){wxScale.start(this)}};
+</script>
+<a id="scrollUp" href="#top" style="position: fixed; z-index: 2147483647; display: block;"></a><div class="footer animated fadeInDown"><div class="site_footer"><div class="mysocials"><div class="my_socials"><a href="https://github.com/reticenceji"title="github"><i class="iconfont icon-github"></i></a><a href="reticenceji@qq.com"title="envelope"><i class="iconfont icon-envelope"></i></a><a href="https://www.zhihu.com/people/reticenceji"title="zhihu"><i class="iconfont icon-zhihu"></i></a></div></div><div class="copyright"id="copyright">Copyright © 2018-2020 <a href="https://reticenceji.github.io" style="margin:0;">Reticence</a>.</div>
+<span style="display: inline;margin-right:15px;">👁<strong><span id="busuanzi_value_site_uv"></span></strong></span><span id="busuanzi_container_page_pv" style="display: inline;"><span>📚<strong>176</strong> posts</span></div></div>
+<script>
+console.log("\n %c \u26a1Theme: Bitcron-pro Author's Blog:https://blog.blinkstar.cn  Writen By Serence  \n\n", "color: #ffffff; background: rgba(49, 49, 49, 0.85); padding:5px 0;border-radius:5px;", );
+</script>
+<script src="https://cdn.jsdelivr.net/npm/instant.page@3.0.0/instantpage.min.js" type="module" defer></script>
+<script type="text/javascript" async src="https://reticenceji.github.io/media/js/prism.js"></script>
+</body>
+</html>

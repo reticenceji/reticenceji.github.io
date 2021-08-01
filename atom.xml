@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://reticenceji.github.io</id>
+    <title>Reticence</title>
+    <updated>2021-08-01T16:34:05.850Z</updated>
+    <generator>https://github.com/jpmonette/feed</generator>
+    <link rel="alternate" href="https://reticenceji.github.io"/>
+    <link rel="self" href="https://reticenceji.github.io/atom.xml"/>
+    <logo>https://reticenceji.github.io/images/avatar.png</logo>
+    <icon>https://reticenceji.github.io/favicon.ico</icon>
+    <rights>All rights reserved 2021, Reticence</rights>
+    <entry>
+        <title type="html"><![CDATA[Rust中容器的增删改查]]></title>
+        <id>https://reticenceji.github.io/post/rust-zhong-rong-qi-de-zeng-shan-gai-cha/</id>
+        <link href="https://reticenceji.github.io/post/rust-zhong-rong-qi-de-zeng-shan-gai-cha/">
+        </link>
+        <updated>2021-08-01T16:13:50.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[装机必备]]></title>
+        <id>https://reticenceji.github.io/post/zhuang-ji-bi-bei/</id>
+        <link href="https://reticenceji.github.io/post/zhuang-ji-bi-bei/">
+        </link>
+        <updated>2021-07-30T01:49:06.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Rust中的模式匹配]]></title>
+        <id>https://reticenceji.github.io/post/rust-zhong-de-mo-shi-pi-pei/</id>
+        <link href="https://reticenceji.github.io/post/rust-zhong-de-mo-shi-pi-pei/">
+        </link>
+        <updated>2021-07-29T08:10:17.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Rust中的生命周期标记]]></title>
+        <id>https://reticenceji.github.io/post/rust-zhong-de-sheng-ming-zhou-qi-biao-ji/</id>
+        <link href="https://reticenceji.github.io/post/rust-zhong-de-sheng-ming-zhou-qi-biao-ji/">
+        </link>
+        <updated>2021-07-26T14:12:38.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Rust中的函数参数匹配，deref和*]]></title>
+        <id>https://reticenceji.github.io/post/rust-zhong-de-he-deref/</id>
+        <link href="https://reticenceji.github.io/post/rust-zhong-de-he-deref/">
+        </link>
+        <updated>2021-07-26T09:02:32.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[鸿蒙应用开发]]></title>
+        <id>https://reticenceji.github.io/post/hong-meng-ying-yong-kai-fa/</id>
+        <link href="https://reticenceji.github.io/post/hong-meng-ying-yong-kai-fa/">
+        </link>
+        <updated>2021-07-16T06:04:30.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[有限自动机介绍]]></title>
+        <id>https://reticenceji.github.io/post/you-xian-zi-dong-ji-jie-shao/</id>
+        <link href="https://reticenceji.github.io/post/you-xian-zi-dong-ji-jie-shao/">
+        </link>
+        <updated>2021-06-28T13:49:41.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[群论简介]]></title>
+        <id>https://reticenceji.github.io/post/qun-lun-jian-jie/</id>
+        <link href="https://reticenceji.github.io/post/qun-lun-jian-jie/">
+        </link>
+        <updated>2021-06-28T13:48:07.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Latex基本使用教程]]></title>
+        <id>https://reticenceji.github.io/post/latex-ji-ben-shi-yong-jiao-cheng/</id>
+        <link href="https://reticenceji.github.io/post/latex-ji-ben-shi-yong-jiao-cheng/">
+        </link>
+        <updated>2021-06-25T03:29:46.000Z</updated>
+        <summary type="html"><![CDATA[<p>因为老师让我们用Latex写一个survey，学一下latex怎么用。也可以认为是ACM CCS模板的使用简易教程。</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>因为老师让我们用Latex写一个survey，学一下latex怎么用。也可以认为是ACM CCS模板的使用简易教程。</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[ADS-External sorting]]></title>
+        <id>https://reticenceji.github.io/post/ads-external-sorting/</id>
+        <link href="https://reticenceji.github.io/post/ads-external-sorting/">
+        </link>
+        <updated>2021-06-23T14:50:58.000Z</updated>
+    </entry>
+</feed>

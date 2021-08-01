@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" href="dec/img/favicon.ico" type="image/x-icon">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Reticence's navigator</title>
+    <link href="dec/css/style.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+
+<div class="inner-center main">
+  <div class="content-inside">
+    <!-- slogan start -->
+    <div class="logo-box">
+      <div class="logo-left">
+        <a href="/"> <img class="home-icon" src="dec/img/house.png" alt="home"/> </a>
+      </div>
+
+      <div class="logo-right">
+        <span>Reticence's navigator</span>
+      </div>
+    </div>
+    <!-- slogan end -->
+    
+    <!-- 搜索框 start -->
+    <div id="search_form" class="search-section" target="_blank">
+      <div class="search-left">
+        <div id="search_logo" data-type="google" class="search-logo"></div>
+        <div class="input-wrap">
+          <input id="search_keyword"
+                class="search-input"
+                name="keyword"
+                maxlength="100"
+                autocomplete="off"
+                type="text"
+                placeholder="这个可以去Google一下">
+          <div class="clear-keyword" id="clear_keyword" title="清空">x</div>
+        </div>
+        <!--  搜索引擎 start  -->
+        <ul id="search_methods" class="search-methods">
+          <li data-type="google" class="search-item google">Google</li>
+          <li data-type="baidu" class="search-item baidu">Baidu</li>
+          <li data-type="bing" class="search-item bing">Bing</li>
+          <li data-type="so" class="search-item so">360</li>
+          <li data-type="wangpan" class="search-item wangpan">Pan</li>
+          <li data-type="zjugoogle" class="search-item zjugoogle">ZJUGoogle</li>
+        </ul>
+        <!--  搜索引擎 end  -->
+        <!--  搜索结果 start -->
+        <ul id="search_result" class="search-result">
+          <!--<li class="result-item"></li>-->
+        </ul>
+        <!--  搜索结果 end -->
+      </div>
+      <input class="search-submit" value="Search" id="search_submit" type="submit">
+    </div>
+    <!-- 搜索框 end -->
+    
+    <!-- 导航地址 start -->
+    <div class="nav-content">
+      <div class="jj-list">
+        <div class="jj-list-tit">Source</div>
+        <ul class="jj-list-con">
+          <li><a href="https://www.icourse163.org/" class="jj-list-link" target="_blank">MOOC</a></li>
+          <li><a href="https://www.bilibili.com/" class="jj-list-link" target="_blank">Bilibili</a></li>
+          <li><a href="https://www.coursera.org/" class="jj-list-link" target="_blank">Coursa</a></li>
+          <li><a href="http://www.zimuzu.tv/" class="jj-list-link" target="_blank">人人影视</a></li>
+          <li><a href="http://music.ifkdy.com/" class="jj-list-link" target="_blank">疯狂音乐</a></li>  
+          <li><a href="http://www.1ppt.com/" class="jj-list-link" target="_blank">PPT模板</a></li>
+          <li><a href="http://toplinks.cc/s/" class="jj-list-link" target="_blank">淘链客</a></li>
+          <li><a href="https://www.100font.com/" class="jj-list-link" target="_blank">100 Font</a></li>
+          <li><a href="http://libgen.rs/" class="jj-list-link" target="_blank">Libgen</a></li>
+          <li><a href="https://www.jiumodiary.com/" class="jj-list-link" target="_blank">Jiumo</a></li>
+        </ul>
+      </div>
+      <div class="jj-list">
+        <div class="jj-list-tit">Community</div>
+        <ul class="jj-list-con">
+          <li><a href="https://www.52pojie.cn/" class="jj-list-link" target="_blank">52Pojie</a></li>
+          <li><a href="https://bbs.pediy.com/" class="jj-list-link" target="_blank">看雪</a></li>
+          <li><a href="https://github.com/" class="jj-list-link" target="_blank">Github</a></li>
+          <li><a href="https://bbs.deepin.org/" class="jj-list-link" target="_blank">Deepin社区</a></li>
+          <li><a href="https://stackoverflow.com/" class="jj-list-link" target="_blank">StackOverFlow</a></li>
+          <li><a href="https://rustcc.cn/" class="jj-list-link" target="_blank">Rust中文社区</a></li>
+          <li><a href="https://users.rust-lang.org/" class="jj-list-link" target="_blank">Rust社区</a></li>
+        </ul>
+      </div>
+      <div class="jj-list">
+        <div class="jj-list-tit">Tools</div>
+        <ul class="jj-list-con">
+          <li><a href="https://c.runoob.com/" class="jj-list-link" target="_blank">Code Runner</a></li>
+          <li><a href="https://bigjpg.com/" class="jj-list-link" target="_blank">BigJPG</a></li>
+          <li><a href="https://tool.lu/" class="jj-list-link" target="_blank">程序员工具</a></li>
+          <li><a href="https://cli.im/" class="jj-list-link" target="_blank">二维码</a></li>
+          <li><a href="http://www.qinms.com/webapp/barcode/index.aspx" class="jj-list-link" target="_blank">barcode</a></li>
+          <li><a href="https://cmd5.com/" class="jj-list-link" target="_blank">MD5</a></li>
+          <li><a href="https://translate.google.cn/" class="jj-list-link" target="_blank">Translate</a></li>
+          <li><a href="https://www.kdocs.cn/latest" class="jj-list-link" target="_blank">金山文档</a></li>
+          <li><a href="https://godbolt.org/" class="jj-list-link" target="_blank">Compiler</a></li>
+          <li><a href="https://venus.cs61c.org/" class="jj-list-link" target="_blank">RISCV</a></li>
+          <li><a href="https://latexlive.com/" class="jj-list-link" target="_blank">Latex</a></li>
+          <li><a href="https://www.onlinegdb.com/" class="jj-list-link" target="_blank">GDB</a></li>
+          <li><a href="https://tool.oschina.net/regex" class="jj-list-link" target="_blank">Regex</a></li>
+        </ul>
+      </div>
+      <div class="jj-list">
+        <div class="jj-list-tit">Reference</div>
+        <ul class="jj-list-con">
+          <li><a href="https://elixir.bootlin.com/linux/0.12/source" class="jj-list-link" target="_blank">Linux source code</a></li>
+          <li><a href="https://www.kernel.org/" class="jj-list-link" target="_blank">Linux Kernel</a></li>
+          <li><a href="https://www.jishuchi.com/read/linux-command-collection/1102" class="jj-list-link" target="_blank">Linux command</a></li>
+          <li><a href="https://docs.python.org/3.9/" class="jj-list-link" target="_blank">Python DOC</a></li>
+          <li><a href="https://dormousehole.readthedocs.io/en/latest/" class="jj-list-link" target="_blank">Flask DOC</a></li>
+          <li><a href="https://requests.readthedocs.io/zh_CN/latest/" class="jj-list-link" target="_blank">Request DOC</a></li>
+          <li><a href="https://selenium-python.readthedocs.io/" class="jj-list-link" target="_blank">Selenium DOC</a></li>
+          <li><a href="https://doc.rust-lang.org/std/index.html" class="jj-list-link" target="_blank">Rust DOC</a></li>
+          <li><a href="https://www.rust-lang.org/zh-CN/"class="jj-list-link" target="_blank">Rust</a></li>
+          <li><a href="http://www.postgres.cn/docs/12/" class="jj-list-link" target="_blank">PostgreSQL DOC</a></li>
+          <li><a href="https://zh.cppreference.com/" class="jj-list-link" target="_blank">C++ DOC</a></li>
+        </ul>
+      </div>
+      <div class="jj-list">
+        <div class="jj-list-tit">Science</div>
+        <ul class="jj-list-con">
+          <li><a href="https://dl.acm.org/conferences" class="jj-list-link" target="_blank">ACM</a></li>
+          <li><a href="http://fsso.cnki.net/" class="jj-list-link" target="_blank">知网</a></li>
+          <li><a href="https://ieeexplore.ieee.org/Xplore/home.jsp" class="jj-list-link" target="_blank">IEEE</a></li>
+          <li><a href="http://apps.webofknowledge.com/" class="jj-list-link" target="_blank">WOS</a></li>
+          <li><a href="https://scholar.google.com/schhp?hl=zh-CN" class="jj-list-link" target="_blank">谷歌学术</a></li>  
+          <li><a href="http://www.sci-hub.ren/" class="jj-list-link" target="_blank">SCI Hub</a></li>
+        </ul>
+      </div>
+      <div class="jj-list">
+        <div class="jj-list-tit">CTF</div>
+        <ul class="jj-list-con">
+          <li><a href="https://ctf-wiki.github.io/ctf-wiki/index-en/" class="jj-list-link" target="_blank">CTF Wiki</a></li>
+          <li><a href="https://cryptozombies.io/zh/course/" class="jj-list-link" target="_blank">Cryptozombies</a></li>
+          <li><a href="https://www.ctfhub.com/#/index" class="jj-list-link" target="_blank">CTF Hub</a></li>
+        </ul>
+      </div>
+    </div>
+    <!-- 导航地址 end -->
+  </div>
+</div>
+<footer class="inner-center footer">
+</footer>
+<script src="./dec/js/jquery.min.js"></script>
+<script src="./dec/js/keyword.js"></script>
+
+
+</body>
+</html>

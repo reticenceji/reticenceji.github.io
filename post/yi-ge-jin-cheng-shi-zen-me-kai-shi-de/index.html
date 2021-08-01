@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="shortcut icon" href="https://reticenceji.github.io/favicon.ico" type="image/x-icon" /><meta name="viewport"content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="apple-mobile-web-app-capable"content="yes"/><meta name="apple-mobile-web-app-status-bar-style"content="black"/><meta name="format-detection"content="telephone=no"/><meta name="renderer"content="webkit"><meta name="description"content=""><meta charset="UTF-8"><title>一个进程是怎么开始的 | Reticence</title>
+<link href="https://reticenceji.github.io/styles/main.css" type="text/css" rel="stylesheet" /><link href="https://at.alicdn.com/t/font_1621793_zatzzgvf30g.css" type="text/css" rel="stylesheet" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css"><script async src="https://cdn.jsdelivr.net/npm/busuanzi@2.3.0/bsz.pure.mini.min.js"></script><script src="https://reticenceji.github.io/media/js/magnify.min.js"></script><script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js"></script>
+<script type="text/javascript">function btn_toggle(){document.getElementById("hn").classList.contains("no-js")?document.getElementById("hn").classList.remove("no-js"):document.getElementById("hn").classList.add("no-js")}</script>
+
+<link rel="canonical" href="https://reticenceji.github.io/post/yi-ge-jin-cheng-shi-zen-me-kai-shi-de/" />
+</head>
+<body>
+<div class="progress"></div><style>.progress{background:linear-gradient(to right,#87ceeb var(--scroll),transparent 0);background-repeat:no-repeat;position:fixed;width:100%;height:4px;z-index:1}</style><div class="darkmode-background"></div><div class="darkmode-layer"></div>
+<noscript><p class="warn" >本页面需要浏览器支持（启用）JavaScript</p></noscript><div class="header"><div class="logo_title"><div class="title animated fadeInDown"><a href="https://reticenceji.github.io"><img alt="logo" style="display:inline-block;" src="https://reticenceji.github.io/images/avatar.png"/></a><h1 title="Reticence" class="weaklink"><a  href="/">Reticence</a></h1>
+
+<div class="navbar weaklink">
+<div class="normal_nav">
+<div class="bitcron_nav_container"><div class="bitcron_nav"><div class="bitcron_nav"><div style="display:flex;justify-content:center;"><nav class="mixed_site_nav_wrap site_nav_wrap"><ul class="mixed_site_nav site_nav sm sm-base">	<li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/" class="selected active current nav__item" >Index</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/tags" class="selected active current nav__item" >Tags</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/archives" class="selected active current nav__item" >Archives</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/navigator.html" class="selected active current nav__item" >Navigator</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/post/about" class="selected active current nav__item" >About</a></li></ul></nav>
+<div style="float:right;margin-top:1em"><form id="gridea-search-form" data-update="1578893743252" action="/search/index.html"><input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="Search..."></form></div><div style="margin-left:0.5em;margin-top:1.2em"><input id="switch_default" onclick="mobileBtn()" type="checkbox" class="switch_default"><label for="switch_default" class="toggleBtn"></label></div></div>
+<div class="clear clear_nav_inline_end"></div></div></div><div class="clear clear_nav_end"></div></div></div><div class="hamberger" href="javascript:void(0)" onclick="btn_toggle();"><i class="iconfont icon-category"></i></div></div></div></div>
+<div id="hn" class="no-js hidden_nav animated fadeInDown"><div class="bitcron_nav_container"><div class="bitcron_nav"><nav class="mixed_site_nav_wrap site_nav_wrap"><ul class="mixed_site_nav site_nav sm sm-base">	<li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/" class="selected active current nav__item" >Index</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/tags" class="selected active current nav__item" >Tags</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/archives" class="selected active current nav__item" >Archives</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/navigator.html" class="selected active current nav__item" >Navigator</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/post/about" class="selected active current nav__item" >About</a></li></ul><div class="clear clear_nav_inline_end"></div></nav></div><div class="clear clear_nav_end"></div></div>
+<div style="display:flex;justify-content:center;inline-block;text-align:center;margin-top:7%"><div><form id="gridea-search-form" data-update="1627835297708" action="/search/index.html"><input class="search-input" autocomplete="off" spellcheck="false" name="q"  placeholder="Search..." /></form></div><div style="margin-left:0.5em"><input id="switch_default_h" onclick="mobileBtn()" type="checkbox" class="switch_default"><label for="switch_default" class="toggleBtn"></label></div></div>
+</div></div>
+<script>function enableDarkmode(){document.body.classList.add("darkmode"),document.getElementById("switch_default").checked=1,document.getElementById("switch_default_h").checked=1}function removeDarkmode(){document.body.classList.remove("darkmode"),document.getElementById("switch_default").checked=0,document.getElementById("switch_default_h").checked=0}function getCookie(a){var b,c=new RegExp("(^| )"+a+"=([^;]*)(;|$)");return(b=document.cookie.match(c))?unescape(b[2]):null}cookie=getCookie("darkmode"),"enable"==cookie&&enableDarkmode(),window.matchMedia("(prefers-color-scheme: dark)").matches&&"disable"!==cookie&&(enableDarkmode(),document.cookie="darkmode=enable; path=/");var mobileBtn=function(){1==document.getElementById("switch_default").checked?(enableDarkmode(),document.cookie="darkmode=enable; path=/"):(removeDarkmode(),document.cookie="darkmode=disable; path=/")};</script>
+
+<div class="main"><div class="main-inner"><div class="content">
+<article class="post">
+<h2 class="post_title sm_margin"><a>一个进程是怎么开始的</a></h2>
+<script>function lan(){if(document.getElementById("lan").innerText=="繁"){var s=document.getElementById("tongwenlet_cn");if(s!=null){document.body.removeChild(s)}var s=document.createElement("script");s.language="javascript";s.type="text/javascript";s.src="https://cdn.jsdelivr.net/gh/qyxtim/Static@1.1/bookmarklet_tw.js";s.id="tongwenlet_cn";document.body.appendChild(s);document.getElementById("lan").innerHTML="简"}else{if(document.getElementById("lan").innerText=="簡"){var s=document.getElementById("tongwenlet_cn");if(s!=null){document.body.removeChild(s)}var s=document.createElement("script");s.language="javascript";s.type="text/javascript";s.src="https://cdn.jsdelivr.net/gh/qyxtim/Static@1.1/bookmarklet_cn.js";s.id="tongwenlet_cn";document.body.appendChild(s);document.getElementById("lan").innerHTML="繁"}}};</script>
+<section class="post_details"><i class="iconfont icon-calendar"></i><span style="margin-right:15px"> 2020-11-21</span><i class="iconfont icon-browse"></i><span style="margin-right:15px"> <span id="busuanzi_value_page_pv"></span> Views</span><i class="iconfont icon-category"></i><span class="weaklink" style="margin-right:15px">	<a href="https://reticenceji.github.io/tag/DhIxrI5Uq/" class="tag">Reverse</a> | 	<a href="https://reticenceji.github.io/tag/i1ce0_J8S/" class="tag">Linux</a></span><i class="iconfont icon-caret-down"></i><span style="margin-right:15px">896字</span><i class="iconfont icon-naozhong"></i><span style="margin-right:15px">5 min read</span><a id="lan" href="javascript:void(0);"onclick="lan();"title="调整简繁体" style="margin-right:15px;">繁</a>
+</section>
+
+<div style="display:flex">
+<div class="md_block" id="md_block">
+<div class="round-shape-one"></div>
+<h2 id="perface">Perface</h2>
+<p>最开始，我们可能会认为程序是从main开始执行的。<br>
+了解深入之后，以Linux为例，一个进程的开始，往往是先fork，然后exec。在这个过程中，寄存器什么的环境被设置，具体发生了什么呢？<br>
+我们还知道一个ELF文件里面有entry point表示程序的入口地址。通过观察一个程序的反汇编代码，我们知道他指向的并不是main，之前还有别的准备工作。那是什么呢。<br>
+带着这些疑问，开始探索。（未完待续）</p>
+<h2 id="fork和exec">fork和exec</h2>
+<h2 id="user-space部分">User Space部分</h2>
+<p>https://0xax.gitbooks.io/linux-insides/content/Misc/linux-misc-4.html<br>
+观察一个空的C代码，entry point指向了一个<code>_start</code>函数。</p>
+<h3 id="_start">_start</h3>
+<p>来自这个文件<code>crt1.o</code></p>
+<pre><code>0000000000000530 &lt;_start&gt;:
+ 530:	31 ed                	xor    %ebp,%ebp
+ 532:	49 89 d1             	mov    %rdx,%r9
+ 535:	5e                   	pop    %rsi         		#参数个数argc
+ 536:	48 89 e2             	mov    %rsp,%rdx    		#argv，指向参数指针列表位置的指针
+ 539:	48 83 e4 f0          	and    $0xfffffffffffffff0,%rsp     
+ 53d:	50                   	push   %rax
+ 53e:	54                   	push   %rsp
+ 53f:	4c 8d 05 9a 01 00 00 	lea    0x19a(%rip),%r8		# &lt;__libc_csu_fini&gt;
+ 546:	48 8d 0d 23 01 00 00 	lea    0x123(%rip),%rcx		# &lt;__libc_csu_init&gt;
+ 54d:	48 8d 3d 0c 01 00 00 	lea    0x10c(%rip),%rdi		#  main函数的地址
+ 554:	ff 15 7e 0a 20 00    	callq  *0x200a7e(%rip)		# &lt;__libc_start_main@GLIBC_2.2.5&gt;
+ 55a:	f4                   	hlt    
+ 55b:	0f 1f 44 00 00       	nopl   0x0(%rax,%rax,1)
+</code></pre>
+<p>这里的操作都在干什么呢？其实都是在准备<code>__libc_start_main</code>的参数然后<code>call __libc_start_main</code>。至于具体的参数准备，结合下面介绍吧。<br>
+注意一下在我试验的平台（64位Linux）的函数调用规范是：第1到第6个参数rdi，rsi，rdx，rcx，r8，r9，超出6个的参数从右向左放入栈中。<br>
+以及当_start开始时的堆栈情况：<img src="https://reticenceji.github.io/post-images/1605964015326.png" alt="" loading="lazy"></p>
+<h3 id="__libc_start_main">__libc_start_main</h3>
+<p>我们来看他的函数原型。</p>
+<pre><code class="language-c">STATIC int LIBC_START_MAIN (
+    int (*main) (int, char **, char **),
+    int argc,
+    char **argv,
+    __typeof (main) init,
+    void (*fini) (void),
+    void (*rtld_fini) (void),
+    void *stack_end
+)
+</code></pre>
+<p>他是做什么用的呢？call the main function with appropriate arguments, and handle the return from main().</p>
+<h3 id="_init和_fini"><code>_init</code>和<code>_fini</code></h3>
+<p>分别是constructor和destructor。什么意思呢？他们分别是调用动态链接库时的初始化函数和释放函数。具体是怎么工作的我也不是很清楚。</p>
+<p>我们通过readelf可以查看到有这两个名字的段</p>
+<pre><code class="language-asm">  [10] .init             PROGBITS         00000000000004f8  000004f8
+       0000000000000017  0000000000000000  AX       0     0     4
+  [14] .fini             PROGBITS         00000000000006e4  000006e4
+       0000000000000009  0000000000000000  AX       0     0     4
+</code></pre>
+<p>通过objdump查看他们各自的内容</p>
+<pre><code class="language-asm">0000000000000670 &lt;__libc_csu_init&gt;:
+ 670:	41 57                	push   %r15
+ 672:	41 56                	push   %r14
+ 674:	41 89 ff             	mov    %edi,%r15d
+ 677:	41 55                	push   %r13
+ 679:	41 54                	push   %r12
+ 67b:	4c 8d 25 86 07 20 00 	lea    0x200786(%rip),%r12        # 200e08 &lt;__frame_dummy_init_array_entry&gt;
+ 682:	55                   	push   %rbp
+ 683:	48 8d 2d 86 07 20 00 	lea    0x200786(%rip),%rbp        # 200e10 &lt;__init_array_end&gt;
+ 68a:	53                   	push   %rbx
+ 68b:	49 89 f6             	mov    %rsi,%r14
+ 68e:	49 89 d5             	mov    %rdx,%r13
+ 691:	4c 29 e5             	sub    %r12,%rbp
+ 694:	48 83 ec 08          	sub    $0x8,%rsp
+ 698:	48 c1 fd 03          	sar    $0x3,%rbp
+ 69c:	e8 57 fe ff ff       	callq  4f8 &lt;_init&gt;
+ 6a1:	48 85 ed             	test   %rbp,%rbp
+ 6a4:	74 20                	je     6c6 &lt;__libc_csu_init+0x56&gt;
+ 6a6:	31 db                	xor    %ebx,%ebx
+ 6a8:	0f 1f 84 00 00 00 00 	nopl   0x0(%rax,%rax,1)
+ 6af:	00 
+ 6b0:	4c 89 ea             	mov    %r13,%rdx
+ 6b3:	4c 89 f6             	mov    %r14,%rsi
+ 6b6:	44 89 ff             	mov    %r15d,%edi
+ 6b9:	41 ff 14 dc          	callq  *(%r12,%rbx,8)
+ 6bd:	48 83 c3 01          	add    $0x1,%rbx
+ 6c1:	48 39 dd             	cmp    %rbx,%rbp
+ 6c4:	75 ea                	jne    6b0 &lt;__libc_csu_init+0x40&gt;
+ 6c6:	48 83 c4 08          	add    $0x8,%rsp
+ 6ca:	5b                   	pop    %rbx
+ 6cb:	5d                   	pop    %rbp
+ 6cc:	41 5c                	pop    %r12
+ 6ce:	41 5d                	pop    %r13
+ 6d0:	41 5e                	pop    %r14
+ 6d2:	41 5f                	pop    %r15
+ 6d4:	c3                   	retq   
+ 6d5:	90                   	nop
+ 6d6:	66 2e 0f 1f 84 00 00 	nopw   %cs:0x0(%rax,%rax,1)
+ 6dd:	00 00 00 
+
+00000000000006e0 &lt;__libc_csu_fini&gt;:
+ 6e0:	f3 c3                	repz retq 
+
+</code></pre>
+<p>所以得出的结论是，这三个段在逆向中应该不需要关注。。</p>
+
+<span id="footnote"></span>
+<div id = "warn"></div>
+</div>
+<div class="toc-container"><ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#perface">Perface</a></li>
+<li><a href="#fork%E5%92%8Cexec">fork和exec</a></li>
+<li><a href="#user-space%E9%83%A8%E5%88%86">User Space部分</a>
+<ul>
+<li><a href="#_start">_start</a></li>
+<li><a href="#__libc_start_main">__libc_start_main</a></li>
+<li><a href="#_init%E5%92%8C_fini"><code>_init</code>和<code>_fini</code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="fullPage"><canvas id="canvas"></canvas></div>
+</article>
+<div id="eof"><span>EOF</span></div><div class="round-shape-one"></div>
+<section>
+<div class="doc_comments">
+
+</div></section>
+</div></div></div><script>
+"use strict";!function(){for(var n=document.getElementsByTagName("pre"),e=n.length,s=0;s<e;s++){n[s].innerHTML='<span class="line-number"></span>'+n[s].innerHTML+'<span class="cl"></span>';for(var a=n[s].innerHTML.split(/\n/).length,r=0;r<a-1;r++){n[s].getElementsByTagName("span")[0].innerHTML+="<span>"+(r+1)+"</span>"}}}();
+let mainNavLinks=document.querySelectorAll(".markdownIt-TOC a");window.addEventListener("scroll",event=>{let fromTop=window.scrollY;mainNavLinks.forEach((link,index)=>{let section=document.getElementById(decodeURI(link.hash).substring(1));let nextSection=null
+if(mainNavLinks[index+1]){nextSection=document.getElementById(decodeURI(mainNavLinks[index+1].hash).substring(1));}
+if(section.offsetTop<=fromTop){if(nextSection){if(nextSection.offsetTop>fromTop){link.classList.add("currentToc");}else{link.classList.remove("currentToc");}}else{link.classList.add("currentToc");}}else{link.classList.remove("currentToc");}});});
+var h=document.documentElement,b=document.body,st="scrollTop",sh="scrollHeight",progress=document.querySelector(".progress"),scroll;document.addEventListener("scroll",function(){scroll=(h[st]||b[st])/((h[sh]||b[sh])-h.clientHeight)*100;progress.style.setProperty("--scroll",scroll+"%")});
+var wxScale=new WxScale({fullPage:document.querySelector("#fullPage"),canvas:document.querySelector("#canvas")});var imgBox=document.querySelectorAll("#md_block img");for(var i=0;i<imgBox.length;i++){imgBox[i].onclick=function(e){wxScale.start(this)}};
+</script>
+<a id="scrollUp" href="#top" style="position: fixed; z-index: 2147483647; display: block;"></a><div class="footer animated fadeInDown"><div class="site_footer"><div class="mysocials"><div class="my_socials"><a href="https://github.com/reticenceji"title="github"><i class="iconfont icon-github"></i></a><a href="reticenceji@qq.com"title="envelope"><i class="iconfont icon-envelope"></i></a><a href="https://www.zhihu.com/people/reticenceji"title="zhihu"><i class="iconfont icon-zhihu"></i></a></div></div><div class="copyright"id="copyright">Copyright © 2018-2020 <a href="https://reticenceji.github.io" style="margin:0;">Reticence</a>.</div>
+<span style="display: inline;margin-right:15px;">👁<strong><span id="busuanzi_value_site_uv"></span></strong></span><span id="busuanzi_container_page_pv" style="display: inline;"><span>📚<strong>176</strong> posts</span></div></div>
+<script>
+console.log("\n %c \u26a1Theme: Bitcron-pro Author's Blog:https://blog.blinkstar.cn  Writen By Serence  \n\n", "color: #ffffff; background: rgba(49, 49, 49, 0.85); padding:5px 0;border-radius:5px;", );
+</script>
+<script src="https://cdn.jsdelivr.net/npm/instant.page@3.0.0/instantpage.min.js" type="module" defer></script>
+<script type="text/javascript" async src="https://reticenceji.github.io/media/js/prism.js"></script>
+</body>
+</html>

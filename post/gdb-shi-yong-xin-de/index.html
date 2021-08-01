@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="shortcut icon" href="https://reticenceji.github.io/favicon.ico" type="image/x-icon" /><meta name="viewport"content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="apple-mobile-web-app-capable"content="yes"/><meta name="apple-mobile-web-app-status-bar-style"content="black"/><meta name="format-detection"content="telephone=no"/><meta name="renderer"content="webkit"><meta name="description"content=""><meta charset="UTF-8"><title>GDB-Release调试 | Reticence</title>
+<link href="https://reticenceji.github.io/styles/main.css" type="text/css" rel="stylesheet" /><link href="https://at.alicdn.com/t/font_1621793_zatzzgvf30g.css" type="text/css" rel="stylesheet" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css"><script async src="https://cdn.jsdelivr.net/npm/busuanzi@2.3.0/bsz.pure.mini.min.js"></script><script src="https://reticenceji.github.io/media/js/magnify.min.js"></script><script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js"></script>
+<script type="text/javascript">function btn_toggle(){document.getElementById("hn").classList.contains("no-js")?document.getElementById("hn").classList.remove("no-js"):document.getElementById("hn").classList.add("no-js")}</script>
+
+<link rel="canonical" href="https://reticenceji.github.io/post/gdb-shi-yong-xin-de/" />
+</head>
+<body>
+<div class="progress"></div><style>.progress{background:linear-gradient(to right,#87ceeb var(--scroll),transparent 0);background-repeat:no-repeat;position:fixed;width:100%;height:4px;z-index:1}</style><div class="darkmode-background"></div><div class="darkmode-layer"></div>
+<noscript><p class="warn" >本页面需要浏览器支持（启用）JavaScript</p></noscript><div class="header"><div class="logo_title"><div class="title animated fadeInDown"><a href="https://reticenceji.github.io"><img alt="logo" style="display:inline-block;" src="https://reticenceji.github.io/images/avatar.png"/></a><h1 title="Reticence" class="weaklink"><a  href="/">Reticence</a></h1>
+
+<div class="navbar weaklink">
+<div class="normal_nav">
+<div class="bitcron_nav_container"><div class="bitcron_nav"><div class="bitcron_nav"><div style="display:flex;justify-content:center;"><nav class="mixed_site_nav_wrap site_nav_wrap"><ul class="mixed_site_nav site_nav sm sm-base">	<li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/" class="selected active current nav__item" >Index</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/tags" class="selected active current nav__item" >Tags</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/archives" class="selected active current nav__item" >Archives</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/navigator.html" class="selected active current nav__item" >Navigator</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/post/about" class="selected active current nav__item" >About</a></li></ul></nav>
+<div style="float:right;margin-top:1em"><form id="gridea-search-form" data-update="1578893743252" action="/search/index.html"><input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="Search..."></form></div><div style="margin-left:0.5em;margin-top:1.2em"><input id="switch_default" onclick="mobileBtn()" type="checkbox" class="switch_default"><label for="switch_default" class="toggleBtn"></label></div></div>
+<div class="clear clear_nav_inline_end"></div></div></div><div class="clear clear_nav_end"></div></div></div><div class="hamberger" href="javascript:void(0)" onclick="btn_toggle();"><i class="iconfont icon-category"></i></div></div></div></div>
+<div id="hn" class="no-js hidden_nav animated fadeInDown"><div class="bitcron_nav_container"><div class="bitcron_nav"><nav class="mixed_site_nav_wrap site_nav_wrap"><ul class="mixed_site_nav site_nav sm sm-base">	<li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/" class="selected active current nav__item" >Index</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/tags" class="selected active current nav__item" >Tags</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/archives" class="selected active current nav__item" >Archives</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/navigator.html" class="selected active current nav__item" >Navigator</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/post/about" class="selected active current nav__item" >About</a></li></ul><div class="clear clear_nav_inline_end"></div></nav></div><div class="clear clear_nav_end"></div></div>
+<div style="display:flex;justify-content:center;inline-block;text-align:center;margin-top:7%"><div><form id="gridea-search-form" data-update="1627835297708" action="/search/index.html"><input class="search-input" autocomplete="off" spellcheck="false" name="q"  placeholder="Search..." /></form></div><div style="margin-left:0.5em"><input id="switch_default_h" onclick="mobileBtn()" type="checkbox" class="switch_default"><label for="switch_default" class="toggleBtn"></label></div></div>
+</div></div>
+<script>function enableDarkmode(){document.body.classList.add("darkmode"),document.getElementById("switch_default").checked=1,document.getElementById("switch_default_h").checked=1}function removeDarkmode(){document.body.classList.remove("darkmode"),document.getElementById("switch_default").checked=0,document.getElementById("switch_default_h").checked=0}function getCookie(a){var b,c=new RegExp("(^| )"+a+"=([^;]*)(;|$)");return(b=document.cookie.match(c))?unescape(b[2]):null}cookie=getCookie("darkmode"),"enable"==cookie&&enableDarkmode(),window.matchMedia("(prefers-color-scheme: dark)").matches&&"disable"!==cookie&&(enableDarkmode(),document.cookie="darkmode=enable; path=/");var mobileBtn=function(){1==document.getElementById("switch_default").checked?(enableDarkmode(),document.cookie="darkmode=enable; path=/"):(removeDarkmode(),document.cookie="darkmode=disable; path=/")};</script>
+
+<div class="main"><div class="main-inner"><div class="content">
+<article class="post">
+<h2 class="post_title sm_margin"><a>GDB-Release调试</a></h2>
+<script>function lan(){if(document.getElementById("lan").innerText=="繁"){var s=document.getElementById("tongwenlet_cn");if(s!=null){document.body.removeChild(s)}var s=document.createElement("script");s.language="javascript";s.type="text/javascript";s.src="https://cdn.jsdelivr.net/gh/qyxtim/Static@1.1/bookmarklet_tw.js";s.id="tongwenlet_cn";document.body.appendChild(s);document.getElementById("lan").innerHTML="简"}else{if(document.getElementById("lan").innerText=="簡"){var s=document.getElementById("tongwenlet_cn");if(s!=null){document.body.removeChild(s)}var s=document.createElement("script");s.language="javascript";s.type="text/javascript";s.src="https://cdn.jsdelivr.net/gh/qyxtim/Static@1.1/bookmarklet_cn.js";s.id="tongwenlet_cn";document.body.appendChild(s);document.getElementById("lan").innerHTML="繁"}}};</script>
+<section class="post_details"><i class="iconfont icon-calendar"></i><span style="margin-right:15px"> 2020-10-28</span><i class="iconfont icon-browse"></i><span style="margin-right:15px"> <span id="busuanzi_value_page_pv"></span> Views</span><i class="iconfont icon-category"></i><span class="weaklink" style="margin-right:15px">	<a href="https://reticenceji.github.io/tag/nL6gwIN_5/" class="tag">Tools</a> | 	<a href="https://reticenceji.github.io/tag/nfABdWVsa/" class="tag">OS</a></span><i class="iconfont icon-caret-down"></i><span style="margin-right:15px">1130字</span><i class="iconfont icon-naozhong"></i><span style="margin-right:15px">5 min read</span><a id="lan" href="javascript:void(0);"onclick="lan();"title="调整简繁体" style="margin-right:15px;">繁</a>
+</section>
+
+<div style="display:flex">
+<div class="md_block" id="md_block">
+<div class="round-shape-one"></div>
+<p><a href="https://sourceware.org/gdb/current/onlinedocs/gdb/">Doc</a><br>
+<a href="https://gef.readthedocs.io/en/master/commands/assemble/">Gef-Doc</a><br>
+在gdb中查看命令帮助的方法是<code>help command</code></p>
+<h2 id="插件安装">插件安装</h2>
+<p>首先我们安装插件。github上可以找到peda和gef两个插件，我们把他们的源代码peda.py和gef.py下载下来，放到一个目录里。比如叫gdb_tools。<br>
+然后修改~/.gdbinit</p>
+<pre><code>source /xxxx/gef.py
+#source /xxxxx/peda.py
+#暂时不用的插件注释
+</code></pre>
+<h2 id="汇编级别调试">汇编级别调试</h2>
+<p>首先我们要搞清楚，调试信息和符号表。我们在用gcc编译一个二进制的时候，默认是不加调试信息，但是不去除符号表的。这两个东西都可以辅助我们进行调试。一般来说，一个软件的release版本是不带调试信息的，逆向的软件当然也不会带调试信息。</p>
+<h3 id="汇编代码">汇编代码</h3>
+<p><code>display</code>：Print value of expression EXP each time the program stops.<br>
+<code>assemble</code>：这个命令可以把指令汇编成二进制</p>
+<ul>
+<li><code>asm 指令1; 指令2; ......;</code>显示汇编</li>
+<li><code>asm -l 地址 指令1; 指令2; ......</code>可以直接把汇编的内容写进内存</li>
+</ul>
+<p><code>got</code>：可以查看got表<br>
+<code>cs-disassamble</code>：这是gef带的反汇编工具</p>
+<ul>
+<li><code>cs Location length=想要反汇编的条数</code></li>
+</ul>
+<p><code>disassmble</code>：是gdb的反汇编工具</p>
+<h3 id="控制流control-flow">控制流control flow</h3>
+<ol>
+<li><code>entry-break</code>：gef中一个强大的命令，让程序在开始处停顿。他会依次检查main,__libc_start_main,ELF中规定的Entry point。</li>
+<li><code>ni</code>和<code>si</code>对应汇编级别下的<strong>单步跳过</strong>和<strong>单步进入</strong></li>
+<li><code>r</code>,<code>c</code>：run/continue</li>
+<li><code>b</code> 设置断点，<code>d</code>清除断点.
+<ol>
+<li><code>break ... if cond</code> 条件断点</li>
+<li><code>tbreak</code>一次性断点</li>
+<li><code>hbreak</code>可以设置硬件断点</li>
+<li><code>b ( ) if ( )</code>条件断点</li>
+</ol>
+</li>
+<li>对于x86，我们还可以用<code>flags</code>命令来修改flag寄存器，比如<code>edit-flags [(+|-|~)FLAGNAME ...]</code></li>
+<li>关注trace窗口</li>
+</ol>
+<h3 id="信息info">信息info</h3>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>info all-registers</td>
+<td>查看所有的寄存器</td>
+</tr>
+<tr>
+<td>info all-registers name</td>
+<td>查看某个寄存器</td>
+</tr>
+<tr>
+<td>info b</td>
+<td>查看所有断点</td>
+</tr>
+<tr>
+<td>info address sym</td>
+<td>查看符号sym的存储地址</td>
+</tr>
+<tr>
+<td>info variables</td>
+<td>查看所有的变量（符号表和调试信息）</td>
+</tr>
+<tr>
+<td>info functions</td>
+<td>查看所有的函数（符号表和调试信息）</td>
+</tr>
+</tbody>
+</table>
+<h3 id="查看内存的方法">查看内存的方法：</h3>
+<ol>
+<li>memory，这个可以让layout增加一个memory窗口，但是riscv看起来没有用。
+<ol>
+<li><code>memory watch 0x800004be 0x100 dword</code>，监控内存</li>
+<li><code>memory reset</code>，取消所有监控内存</li>
+<li><code>memory unwatch 0x800004be</code>，取消查看那一块内存</li>
+</ol>
+</li>
+<li>x 是 examine 的缩写<br>
+格式: <code>x /[n][f][u] &lt;addr&gt;</code></li>
+</ol>
+<ul>
+<li>
+<p><code>[n]</code>表示要显示的内存单元的个数</p>
+</li>
+<li>
+<p><code>[f]</code>表示显示方式, 可取如下值</p>
+<table>
+<thead>
+<tr>
+<th>[f]</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>x</td>
+<td>按十六进制格式显示变量。</td>
+</tr>
+<tr>
+<td>d</td>
+<td>按十进制格式显示变量。</td>
+</tr>
+<tr>
+<td>u</td>
+<td>按十进制格式显示无符号整型。</td>
+</tr>
+<tr>
+<td>o</td>
+<td>按八进制格式显示变量。</td>
+</tr>
+<tr>
+<td>t</td>
+<td>按二进制格式显示变量。</td>
+</tr>
+<tr>
+<td>a</td>
+<td>按十六进制格式显示变量。</td>
+</tr>
+<tr>
+<td>**i **</td>
+<td><strong>指令格式</strong></td>
+</tr>
+<tr>
+<td>**s  **</td>
+<td>**字符串格式 **</td>
+</tr>
+<tr>
+<td>f</td>
+<td>按浮点数格式显示变量。</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p><code>[u]</code>表示一个地址单元的长度, 可取如下值</p>
+<table>
+<thead>
+<tr>
+<th>[u]</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>b</td>
+<td>单字节</td>
+</tr>
+<tr>
+<td>h</td>
+<td>双字节</td>
+</tr>
+<tr>
+<td>w</td>
+<td>四字节</td>
+</tr>
+<tr>
+<td>g</td>
+<td>八字节</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+<ol>
+<li><code>hexdump</code>系列， 打印内存的值，<code>hexdump [qword|dword|word|byte][LOCATION] [[L][SIZE]][REVERSE]</code></li>
+<li>比如<code>hexdump byte $sp 10</code>，Byte还会显示ascii码对应的字符layout</li>
+</ol>
+<h3 id="查看寄存器">查看寄存器</h3>
+<p><code>info all-registers</code>：查看真正的所有的寄存器，在指令后面加上寄存器的名字可以查看指定的寄存器</p>
+<p><code>reg</code>：查看所有的寄存器</p>
+<p>感觉还挺好的东西</p>
+<ol>
+<li>显示源代码窗口       <code>(gdb) layout src</code></li>
+<li>显示寄存器窗口       <code>(gdb) layout regs</code></li>
+<li>显示汇编代码窗口     <code>(gdb) layout asm</code><br>
+<code>Ctrl+X</code>退出。</li>
+</ol>
+<h3 id="寻址location">寻址Location</h3>
+<p>我们经常需要获得某个地址的信息，无论是查看反汇编、内存内容，或是设置断点。那么在GDB中，我们有哪些指定地址的方式呢？</p>
+<ul>
+<li>使用symbol table里的符号。你可以通过外部命令<code>readelf</code>查看，也可以用<code>info functions</code>和<code>info variables</code>查看。比如<code>b main</code>，<code>disassemble task_init</code></li>
+<li>用绝对的数字指定地址。
+<ul>
+<li>设置断点的时候要<code>b *0x80000a5c</code>，在0x80000a5c设置断点。因为直接加数字的话gdb会理解成行号。</li>
+<li>在hexdump/x的时候，<code>hexdump qword 0x80000a5c 10</code>查看0x80000a5c的内存，加<code>*</code>就跟C语言一样变成取地址的内容了</li>
+</ul>
+</li>
+<li>利用寄存器：
+<ul>
+<li>查看内存<code>hexdump qword $sp 10</code>。</li>
+<li>如果是设置断点，用<code>rb</code>指令。<code>rb ra</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="调试进程">调试进程</h3>
+<p><code>gdb -p PID</code>还可以调试进程。</p>
+<h2 id="edb">edb</h2>
+<p>我觉得gdb还是在思路清楚的情况下好用。没有图形界面还是有点难用，虽然功能很强大。<br>
+Linux下有一个很像ollydbg的调试器<a href="https://github.com/eteran/edb-debugger">edb</a>，挺好的。</p>
+
+<span id="footnote"></span>
+<div id = "warn"></div>
+</div>
+<div class="toc-container"><ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#%E6%8F%92%E4%BB%B6%E5%AE%89%E8%A3%85">插件安装</a></li>
+<li><a href="#%E6%B1%87%E7%BC%96%E7%BA%A7%E5%88%AB%E8%B0%83%E8%AF%95">汇编级别调试</a>
+<ul>
+<li><a href="#%E6%B1%87%E7%BC%96%E4%BB%A3%E7%A0%81">汇编代码</a></li>
+<li><a href="#%E6%8E%A7%E5%88%B6%E6%B5%81control-flow">控制流control flow</a></li>
+<li><a href="#%E4%BF%A1%E6%81%AFinfo">信息info</a></li>
+<li><a href="#%E6%9F%A5%E7%9C%8B%E5%86%85%E5%AD%98%E7%9A%84%E6%96%B9%E6%B3%95">查看内存的方法：</a></li>
+<li><a href="#%E6%9F%A5%E7%9C%8B%E5%AF%84%E5%AD%98%E5%99%A8">查看寄存器</a></li>
+<li><a href="#%E5%AF%BB%E5%9D%80location">寻址Location</a></li>
+<li><a href="#%E8%B0%83%E8%AF%95%E8%BF%9B%E7%A8%8B">调试进程</a></li>
+</ul>
+</li>
+<li><a href="#edb">edb</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="fullPage"><canvas id="canvas"></canvas></div>
+</article>
+<div id="eof"><span>EOF</span></div><div class="round-shape-one"></div>
+<section>
+<div class="doc_comments">
+
+</div></section>
+</div></div></div><script>
+"use strict";!function(){for(var n=document.getElementsByTagName("pre"),e=n.length,s=0;s<e;s++){n[s].innerHTML='<span class="line-number"></span>'+n[s].innerHTML+'<span class="cl"></span>';for(var a=n[s].innerHTML.split(/\n/).length,r=0;r<a-1;r++){n[s].getElementsByTagName("span")[0].innerHTML+="<span>"+(r+1)+"</span>"}}}();
+let mainNavLinks=document.querySelectorAll(".markdownIt-TOC a");window.addEventListener("scroll",event=>{let fromTop=window.scrollY;mainNavLinks.forEach((link,index)=>{let section=document.getElementById(decodeURI(link.hash).substring(1));let nextSection=null
+if(mainNavLinks[index+1]){nextSection=document.getElementById(decodeURI(mainNavLinks[index+1].hash).substring(1));}
+if(section.offsetTop<=fromTop){if(nextSection){if(nextSection.offsetTop>fromTop){link.classList.add("currentToc");}else{link.classList.remove("currentToc");}}else{link.classList.add("currentToc");}}else{link.classList.remove("currentToc");}});});
+var h=document.documentElement,b=document.body,st="scrollTop",sh="scrollHeight",progress=document.querySelector(".progress"),scroll;document.addEventListener("scroll",function(){scroll=(h[st]||b[st])/((h[sh]||b[sh])-h.clientHeight)*100;progress.style.setProperty("--scroll",scroll+"%")});
+var wxScale=new WxScale({fullPage:document.querySelector("#fullPage"),canvas:document.querySelector("#canvas")});var imgBox=document.querySelectorAll("#md_block img");for(var i=0;i<imgBox.length;i++){imgBox[i].onclick=function(e){wxScale.start(this)}};
+</script>
+<a id="scrollUp" href="#top" style="position: fixed; z-index: 2147483647; display: block;"></a><div class="footer animated fadeInDown"><div class="site_footer"><div class="mysocials"><div class="my_socials"><a href="https://github.com/reticenceji"title="github"><i class="iconfont icon-github"></i></a><a href="reticenceji@qq.com"title="envelope"><i class="iconfont icon-envelope"></i></a><a href="https://www.zhihu.com/people/reticenceji"title="zhihu"><i class="iconfont icon-zhihu"></i></a></div></div><div class="copyright"id="copyright">Copyright © 2018-2020 <a href="https://reticenceji.github.io" style="margin:0;">Reticence</a>.</div>
+<span style="display: inline;margin-right:15px;">👁<strong><span id="busuanzi_value_site_uv"></span></strong></span><span id="busuanzi_container_page_pv" style="display: inline;"><span>📚<strong>176</strong> posts</span></div></div>
+<script>
+console.log("\n %c \u26a1Theme: Bitcron-pro Author's Blog:https://blog.blinkstar.cn  Writen By Serence  \n\n", "color: #ffffff; background: rgba(49, 49, 49, 0.85); padding:5px 0;border-radius:5px;", );
+</script>
+<script src="https://cdn.jsdelivr.net/npm/instant.page@3.0.0/instantpage.min.js" type="module" defer></script>
+<script type="text/javascript" async src="https://reticenceji.github.io/media/js/prism.js"></script>
+</body>
+</html>

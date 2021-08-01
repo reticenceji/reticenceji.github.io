@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="shortcut icon" href="https://reticenceji.github.io/favicon.ico" type="image/x-icon" /><meta name="viewport"content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="apple-mobile-web-app-capable"content="yes"/><meta name="apple-mobile-web-app-status-bar-style"content="black"/><meta name="format-detection"content="telephone=no"/><meta name="renderer"content="webkit"><meta name="description"content=""><meta charset="UTF-8"><title>OS-File System | Reticence</title>
+<link href="https://reticenceji.github.io/styles/main.css" type="text/css" rel="stylesheet" /><link href="https://at.alicdn.com/t/font_1621793_zatzzgvf30g.css" type="text/css" rel="stylesheet" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css"><script async src="https://cdn.jsdelivr.net/npm/busuanzi@2.3.0/bsz.pure.mini.min.js"></script><script src="https://reticenceji.github.io/media/js/magnify.min.js"></script><script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js"></script>
+<script type="text/javascript">function btn_toggle(){document.getElementById("hn").classList.contains("no-js")?document.getElementById("hn").classList.remove("no-js"):document.getElementById("hn").classList.add("no-js")}</script>
+
+<link rel="canonical" href="https://reticenceji.github.io/post/os-wen-jian-xi-tong/" />
+</head>
+<body>
+<div class="progress"></div><style>.progress{background:linear-gradient(to right,#87ceeb var(--scroll),transparent 0);background-repeat:no-repeat;position:fixed;width:100%;height:4px;z-index:1}</style><div class="darkmode-background"></div><div class="darkmode-layer"></div>
+<noscript><p class="warn" >本页面需要浏览器支持（启用）JavaScript</p></noscript><div class="header"><div class="logo_title"><div class="title animated fadeInDown"><a href="https://reticenceji.github.io"><img alt="logo" style="display:inline-block;" src="https://reticenceji.github.io/images/avatar.png"/></a><h1 title="Reticence" class="weaklink"><a  href="/">Reticence</a></h1>
+
+<div class="navbar weaklink">
+<div class="normal_nav">
+<div class="bitcron_nav_container"><div class="bitcron_nav"><div class="bitcron_nav"><div style="display:flex;justify-content:center;"><nav class="mixed_site_nav_wrap site_nav_wrap"><ul class="mixed_site_nav site_nav sm sm-base">	<li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/" class="selected active current nav__item" >Index</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/tags" class="selected active current nav__item" >Tags</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/archives" class="selected active current nav__item" >Archives</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/navigator.html" class="selected active current nav__item" >Navigator</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/post/about" class="selected active current nav__item" >About</a></li></ul></nav>
+<div style="float:right;margin-top:1em"><form id="gridea-search-form" data-update="1578893743252" action="/search/index.html"><input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="Search..."></form></div><div style="margin-left:0.5em;margin-top:1.2em"><input id="switch_default" onclick="mobileBtn()" type="checkbox" class="switch_default"><label for="switch_default" class="toggleBtn"></label></div></div>
+<div class="clear clear_nav_inline_end"></div></div></div><div class="clear clear_nav_end"></div></div></div><div class="hamberger" href="javascript:void(0)" onclick="btn_toggle();"><i class="iconfont icon-category"></i></div></div></div></div>
+<div id="hn" class="no-js hidden_nav animated fadeInDown"><div class="bitcron_nav_container"><div class="bitcron_nav"><nav class="mixed_site_nav_wrap site_nav_wrap"><ul class="mixed_site_nav site_nav sm sm-base">	<li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/" class="selected active current nav__item" >Index</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/tags" class="selected active current nav__item" >Tags</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/archives" class="selected active current nav__item" >Archives</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/navigator.html" class="selected active current nav__item" >Navigator</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/post/about" class="selected active current nav__item" >About</a></li></ul><div class="clear clear_nav_inline_end"></div></nav></div><div class="clear clear_nav_end"></div></div>
+<div style="display:flex;justify-content:center;inline-block;text-align:center;margin-top:7%"><div><form id="gridea-search-form" data-update="1627835297708" action="/search/index.html"><input class="search-input" autocomplete="off" spellcheck="false" name="q"  placeholder="Search..." /></form></div><div style="margin-left:0.5em"><input id="switch_default_h" onclick="mobileBtn()" type="checkbox" class="switch_default"><label for="switch_default" class="toggleBtn"></label></div></div>
+</div></div>
+<script>function enableDarkmode(){document.body.classList.add("darkmode"),document.getElementById("switch_default").checked=1,document.getElementById("switch_default_h").checked=1}function removeDarkmode(){document.body.classList.remove("darkmode"),document.getElementById("switch_default").checked=0,document.getElementById("switch_default_h").checked=0}function getCookie(a){var b,c=new RegExp("(^| )"+a+"=([^;]*)(;|$)");return(b=document.cookie.match(c))?unescape(b[2]):null}cookie=getCookie("darkmode"),"enable"==cookie&&enableDarkmode(),window.matchMedia("(prefers-color-scheme: dark)").matches&&"disable"!==cookie&&(enableDarkmode(),document.cookie="darkmode=enable; path=/");var mobileBtn=function(){1==document.getElementById("switch_default").checked?(enableDarkmode(),document.cookie="darkmode=enable; path=/"):(removeDarkmode(),document.cookie="darkmode=disable; path=/")};</script>
+
+<div class="main"><div class="main-inner"><div class="content">
+<article class="post">
+<h2 class="post_title sm_margin"><a>OS-File System</a></h2>
+<script>function lan(){if(document.getElementById("lan").innerText=="繁"){var s=document.getElementById("tongwenlet_cn");if(s!=null){document.body.removeChild(s)}var s=document.createElement("script");s.language="javascript";s.type="text/javascript";s.src="https://cdn.jsdelivr.net/gh/qyxtim/Static@1.1/bookmarklet_tw.js";s.id="tongwenlet_cn";document.body.appendChild(s);document.getElementById("lan").innerHTML="简"}else{if(document.getElementById("lan").innerText=="簡"){var s=document.getElementById("tongwenlet_cn");if(s!=null){document.body.removeChild(s)}var s=document.createElement("script");s.language="javascript";s.type="text/javascript";s.src="https://cdn.jsdelivr.net/gh/qyxtim/Static@1.1/bookmarklet_cn.js";s.id="tongwenlet_cn";document.body.appendChild(s);document.getElementById("lan").innerHTML="繁"}}};</script>
+<section class="post_details"><i class="iconfont icon-calendar"></i><span style="margin-right:15px"> 2020-12-26</span><i class="iconfont icon-browse"></i><span style="margin-right:15px"> <span id="busuanzi_value_page_pv"></span> Views</span><i class="iconfont icon-category"></i><span class="weaklink" style="margin-right:15px">	<a href="https://reticenceji.github.io/tag/nfABdWVsa/" class="tag">OS</a></span><i class="iconfont icon-caret-down"></i><span style="margin-right:15px">1725字</span><i class="iconfont icon-naozhong"></i><span style="margin-right:15px">7 min read</span><a id="lan" href="javascript:void(0);"onclick="lan();"title="调整简繁体" style="margin-right:15px;">繁</a>
+</section>
+
+<div style="display:flex">
+<div class="md_block" id="md_block">
+<div class="round-shape-one"></div>
+<h2 id="文件的概念">文件的概念</h2>
+<blockquote>
+<p>The operating system provides a uniform logical view of stored information. The operating system abstracts from the physical properties of its storage devices to define a logical storage unit, the <strong>file</strong> .</p>
+</blockquote>
+<p>文件，就是操作系统把物理存储设备上的内容做了抽象，提供的统一单元。</p>
+<p>通常，文件的<strong>属性</strong>包括名称、类型、大小、保护信息、修改时间、创建时间等等。</p>
+<p>文件是一个抽象的数据类型，应该实现的操作包括：创建文件(touch)、写文件(write)、读文件(read)、删除文件(rm)、文件定位(seek)、截断文件（截断文件的意思是删除文件的全部能容但是保留文件的属性不变）</p>
+<h2 id="文件共享">文件共享</h2>
+<p>网络共享</p>
+<h2 id="挂载">挂载</h2>
+<p>可以认为是把文件系统的信息从disk装载到memory里，或者说是文件系统的安装。</p>
+<h2 id="保护机制">保护机制</h2>
+<p>Type of access:</p>
+<ul>
+<li>read write append</li>
+<li>execute</li>
+</ul>
+<h2 id="文件系统">文件系统</h2>
+<p>没有什么问题是加一层抽象不能解决的——我也不知道是谁说的。我们对文件系统可以分成下面几层。<br>
+<img src="https://reticenceji.github.io/post-images/1610171155594.png" alt="" loading="lazy"><br>
+<img src="https://reticenceji.github.io/post-images/1610206607176.jpeg" alt="" loading="lazy"></p>
+<ul>
+<li>Logical file system: 管理metadata。FCB（file control block）包含有关文件的信息，包括文件的所有者、权限、文件内容的位置等。</li>
+<li>FIle-organization module: 每个文件的Logical Block从0到N编号，而包含数据的物理块并不与逻辑号匹配，需要通过转换来定位。</li>
+<li>Basic file system: 想适当的设备驱动程序发送通用命令以读写。同时管理内存缓冲区和保存各种文件系统、目录和数据块的缓存。</li>
+<li>I/O control: 输入为高级命令，输出为硬件特定的指令。</li>
+</ul>
+<p>类似内存要给每个process分配frame，我们要给每个file分配Block。<br>
+类似内存要管理free frame，我们也需要管理free block。</p>
+<h3 id="目录">目录</h3>
+<p>在Linux中，一切皆文件。目录是一种特殊的文件，存储<strong>文件名到文件inode的映射。</strong><br>
+文件的很多属性都存储在inode里，但是文件名不是。文件名存储在目录里。<br>
+所以，多个文件名可以映射到同一个inode，这也就是<strong>硬链接</strong>。<br>
+<img src="https://reticenceji.github.io/post-images/1610175053053.png" alt="" loading="lazy"><br>
+由于目录的内容其实是一个key-value字典，所以我们一般采用hash table的方式存储以加快查找速度。当然简单的实现也可以用线性表。</p>
+<p>整个操作系统会hold一个<strong>System-Wide Open-File Table</strong>，里面的内容是inode。<br>
+每个Process也有一个Open-File Table，内容是在<strong>Sysrem-Wide Open-File Table</strong>的index。<br>
+我们知道我们调用底层的open会返回一个fd(File Descriptor)，就是在这个Process的<strong>Open-File Table</strong>的index。</p>
+<h3 id="disk-block-allocation">Disk Block Allocation</h3>
+<p>我们需要为File在Disk上分配Block用来存储信息。<br>
+我们有几种策略 continuous, linked, indexed。<br>
+<strong>continuous allocation</strong>: 这样我们在存储文件信息的时候，只需要存储文件的起始block和长度。我们读取文件的代价也很小。<br>
+但是文件大小变化会很麻烦：如果一段连续的空间被用完了但是文件还要继续扩大就带来了很大的问题。<br>
+连续存储会带来碎片，所以我们有整理磁盘这个操作，把磁盘碎片合并起来。<br>
+<img src="https://reticenceji.github.io/post-images/1610176724376.png" alt="" loading="lazy"></p>
+<p><strong>linked allocation</strong>:用链表的形式，这样可以方便扩展文件大小，解决连续分配的问题。<br>
+我们在每一个block存储下一个block的地址。<br>
+问题有很多，指针会占用空间。<br>
+可靠性不高，一旦link中间的一个某节点损坏就完了；<br>
+比如我想读中间的某一块（随即访问），我就要从前往后遍历，比较低效率。<br>
+FAT采用这个策略。<br>
+<img src="https://reticenceji.github.io/post-images/1610176786317.png" alt="" loading="lazy"><br>
+<strong>indexed allocation</strong>:每个文件有它的<strong>index blocks</strong>，index block存储着指向他的别的内容块的指针。这样没有externel fragmentation，并且允许文件物理不连续。<br>
+<img src="https://reticenceji.github.io/post-images/1610176816631.png" alt="" loading="lazy"><br>
+我们来看Linux上的实现Ext2，一个Block的大小是4KB。引入了和页表类似的多级概念，可以很好的handle大文件和小文件。<br>
+最大能够支持的文件大小为<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>12</mn><mo>∗</mo><mn>4096</mn><mo>+</mo><mn>1024</mn><mo>∗</mo><mn>4096</mn><mo>+</mo><mn>102</mn><msup><mn>4</mn><mn>2</mn></msup><mo>∗</mo><mn>4096</mn><mo>+</mo><mn>102</mn><msup><mn>4</mn><mn>3</mn></msup><mo>∗</mo><mn>4096</mn><mo>=</mo><mn>4</mn><mi>T</mi></mrow><annotation encoding="application/x-tex">12*4096+1024*4096+1024^2*4096+1024^3*4096 = 4T</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord">2</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">4</span><span class="mord">0</span><span class="mord">9</span><span class="mord">6</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord">0</span><span class="mord">2</span><span class="mord">4</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">4</span><span class="mord">0</span><span class="mord">9</span><span class="mord">6</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord">0</span><span class="mord">2</span><span class="mord"><span class="mord">4</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">4</span><span class="mord">0</span><span class="mord">9</span><span class="mord">6</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord">0</span><span class="mord">2</span><span class="mord"><span class="mord">4</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">4</span><span class="mord">0</span><span class="mord">9</span><span class="mord">6</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord">4</span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span></span></span></span><br>
+<img src="https://reticenceji.github.io/post-images/1609893543519.png" alt="" loading="lazy"></p>
+<h3 id="free-space-management">Free-Space Management*</h3>
+<p><strong>Bit Vector</strong>：我们用一个bit map来管理所有的block。举一个例子，我们的硬盘一共有10个block，block0-block9，其中block0空闲其他已用。<br>
+那么我们用一个10bit vector表示<code>1000 0000 00</code>。<code>V[0]==1</code>表示block0空闲。<br>
+<strong>Linked List</strong>：不需要额外的空间，因为可以把链表的指针存储在free block里。每一个空闲的block指向下一个空闲的block，然后我们只用保存第一个空闲的Block。但这样不是一个高效的做法，因为遍历磁盘代价很高。FAT。<br>
+<img src="https://reticenceji.github.io/post-images/1610176695183.png" alt="" loading="lazy"><br>
+<strong>Grouping</strong>：是Link list的改进，在第一个free block中存储n个free block的location，前n-1个直接指向free block，最后一个又指向一个存储着n个free blockdlocation的块，<br>
+<strong>Counting</strong>：基于这样一个事实：通常多个连续的block可能要同时分配或者释放。因此我们不是记录n个free block的location，而是记录第一个free block的地址以及紧接着的free block的数量。</p>
+<p>soft link：就是一个普通的文件，但是他的内容指向另一个文件。（快捷方式）</p>
+<h2 id="管理文件系统的数据结构">管理文件系统的数据结构</h2>
+<p>Super Block和File control block</p>
+<h2 id="从linux看文件">从Linux看文件</h2>
+<p><code>mkfs</code>：格式化命令。<br>
+<code>stat</code>：查看文件信息或文件系统信息。<br>
+<code>ls</code>：</p>
+<h3 id="superblock-inode-dentry-file">superblock inode dentry file</h3>
+<p>以下内容来自于该<a href="https://unix.stackexchange.com/questions/4402/what-is-a-superblock-inode-dentry-and-a-file">链接</a>的翻译。</p>
+<p>首先我们要理解metadata是什么。从wikipedia中偷来的解释为，metadata是data的data，意思是说metadata包括了data的一些信息。举个例子，我有一辆车，然后车的颜色、价格、型号等信息它们虽然不是车本身，但是是关于车的信息。</p>
+<p><strong>superblock</strong>存储文件系统的重要的metadata，并且定义了文件系统的类型，大小，状态以及metadata的metadata。superblock对文件系统十分重要，所以会有很多冗余的备份。</p>
+<p>在文件系统中，一个<strong>inode</strong>存储了一个file的metadata。为了清楚起见，在Linux/Unix中一切皆文件，包括files, directories, devices 等等。另外需要注意的是，inode中没有文件名。inode存储了文件的ownership, access mode等所有的metadata除了文件名。</p>
+<p><strong>dentry</strong>是联系inodes和file name的纽带。同时dentry在目录缓存中扮演重要角色，维护着最经常被访问的files。文件系统会经常遍历dentry来寻找文件。</p>
+<p><strong>file</strong>的概念在最开始讲了。</p>
+<h3 id="链接">链接</h3>
+<p><code>ln a.out ahard</code><br>
+hard link: 在<strong>目录文件</strong>创建一个条目，他的inode和原来文件的inode一模一样。文件的link数+1。<br>
+我们看到的<code>.</code>和<code>..</code>都是hard link。<br>
+我们删除一个文件，其实是把文件的link数-1。当link数变成0了，那文件就真的被删掉了。（有点像垃圾回收）</p>
+
+<span id="footnote"></span>
+<div id = "warn"></div>
+</div>
+<div class="toc-container"><ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#%E6%96%87%E4%BB%B6%E7%9A%84%E6%A6%82%E5%BF%B5">文件的概念</a></li>
+<li><a href="#%E6%96%87%E4%BB%B6%E5%85%B1%E4%BA%AB">文件共享</a></li>
+<li><a href="#%E6%8C%82%E8%BD%BD">挂载</a></li>
+<li><a href="#%E4%BF%9D%E6%8A%A4%E6%9C%BA%E5%88%B6">保护机制</a></li>
+<li><a href="#%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F">文件系统</a>
+<ul>
+<li><a href="#%E7%9B%AE%E5%BD%95">目录</a></li>
+<li><a href="#disk-block-allocation">Disk Block Allocation</a></li>
+<li><a href="#free-space-management">Free-Space Management*</a></li>
+</ul>
+</li>
+<li><a href="#%E7%AE%A1%E7%90%86%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E7%9A%84%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84">管理文件系统的数据结构</a></li>
+<li><a href="#%E4%BB%8Elinux%E7%9C%8B%E6%96%87%E4%BB%B6">从Linux看文件</a>
+<ul>
+<li><a href="#superblock-inode-dentry-file">superblock inode dentry file</a></li>
+<li><a href="#%E9%93%BE%E6%8E%A5">链接</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="fullPage"><canvas id="canvas"></canvas></div>
+</article>
+<div id="eof"><span>EOF</span></div><div class="round-shape-one"></div>
+<section>
+<div class="doc_comments">
+
+</div></section>
+</div></div></div><script>
+"use strict";!function(){for(var n=document.getElementsByTagName("pre"),e=n.length,s=0;s<e;s++){n[s].innerHTML='<span class="line-number"></span>'+n[s].innerHTML+'<span class="cl"></span>';for(var a=n[s].innerHTML.split(/\n/).length,r=0;r<a-1;r++){n[s].getElementsByTagName("span")[0].innerHTML+="<span>"+(r+1)+"</span>"}}}();
+let mainNavLinks=document.querySelectorAll(".markdownIt-TOC a");window.addEventListener("scroll",event=>{let fromTop=window.scrollY;mainNavLinks.forEach((link,index)=>{let section=document.getElementById(decodeURI(link.hash).substring(1));let nextSection=null
+if(mainNavLinks[index+1]){nextSection=document.getElementById(decodeURI(mainNavLinks[index+1].hash).substring(1));}
+if(section.offsetTop<=fromTop){if(nextSection){if(nextSection.offsetTop>fromTop){link.classList.add("currentToc");}else{link.classList.remove("currentToc");}}else{link.classList.add("currentToc");}}else{link.classList.remove("currentToc");}});});
+var h=document.documentElement,b=document.body,st="scrollTop",sh="scrollHeight",progress=document.querySelector(".progress"),scroll;document.addEventListener("scroll",function(){scroll=(h[st]||b[st])/((h[sh]||b[sh])-h.clientHeight)*100;progress.style.setProperty("--scroll",scroll+"%")});
+var wxScale=new WxScale({fullPage:document.querySelector("#fullPage"),canvas:document.querySelector("#canvas")});var imgBox=document.querySelectorAll("#md_block img");for(var i=0;i<imgBox.length;i++){imgBox[i].onclick=function(e){wxScale.start(this)}};
+</script>
+<a id="scrollUp" href="#top" style="position: fixed; z-index: 2147483647; display: block;"></a><div class="footer animated fadeInDown"><div class="site_footer"><div class="mysocials"><div class="my_socials"><a href="https://github.com/reticenceji"title="github"><i class="iconfont icon-github"></i></a><a href="reticenceji@qq.com"title="envelope"><i class="iconfont icon-envelope"></i></a><a href="https://www.zhihu.com/people/reticenceji"title="zhihu"><i class="iconfont icon-zhihu"></i></a></div></div><div class="copyright"id="copyright">Copyright © 2018-2020 <a href="https://reticenceji.github.io" style="margin:0;">Reticence</a>.</div>
+<span style="display: inline;margin-right:15px;">👁<strong><span id="busuanzi_value_site_uv"></span></strong></span><span id="busuanzi_container_page_pv" style="display: inline;"><span>📚<strong>176</strong> posts</span></div></div>
+<script>
+console.log("\n %c \u26a1Theme: Bitcron-pro Author's Blog:https://blog.blinkstar.cn  Writen By Serence  \n\n", "color: #ffffff; background: rgba(49, 49, 49, 0.85); padding:5px 0;border-radius:5px;", );
+</script>
+<script src="https://cdn.jsdelivr.net/npm/instant.page@3.0.0/instantpage.min.js" type="module" defer></script>
+<script type="text/javascript" async src="https://reticenceji.github.io/media/js/prism.js"></script>
+</body>
+</html>

@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="shortcut icon" href="https://reticenceji.github.io/favicon.ico" type="image/x-icon" /><meta name="viewport"content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="apple-mobile-web-app-capable"content="yes"/><meta name="apple-mobile-web-app-status-bar-style"content="black"/><meta name="format-detection"content="telephone=no"/><meta name="renderer"content="webkit"><meta name="description"content=""><meta charset="UTF-8"><title>鸿蒙应用开发 | Reticence</title>
+<link href="https://reticenceji.github.io/styles/main.css" type="text/css" rel="stylesheet" /><link href="https://at.alicdn.com/t/font_1621793_zatzzgvf30g.css" type="text/css" rel="stylesheet" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css"><script async src="https://cdn.jsdelivr.net/npm/busuanzi@2.3.0/bsz.pure.mini.min.js"></script><script src="https://reticenceji.github.io/media/js/magnify.min.js"></script><script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js"></script>
+<script type="text/javascript">function btn_toggle(){document.getElementById("hn").classList.contains("no-js")?document.getElementById("hn").classList.remove("no-js"):document.getElementById("hn").classList.add("no-js")}</script>
+
+<link rel="canonical" href="https://reticenceji.github.io/post/hong-meng-ying-yong-kai-fa/" />
+</head>
+<body>
+<div class="progress"></div><style>.progress{background:linear-gradient(to right,#87ceeb var(--scroll),transparent 0);background-repeat:no-repeat;position:fixed;width:100%;height:4px;z-index:1}</style><div class="darkmode-background"></div><div class="darkmode-layer"></div>
+<noscript><p class="warn" >本页面需要浏览器支持（启用）JavaScript</p></noscript><div class="header"><div class="logo_title"><div class="title animated fadeInDown"><a href="https://reticenceji.github.io"><img alt="logo" style="display:inline-block;" src="https://reticenceji.github.io/images/avatar.png"/></a><h1 title="Reticence" class="weaklink"><a  href="/">Reticence</a></h1>
+
+<div class="navbar weaklink">
+<div class="normal_nav">
+<div class="bitcron_nav_container"><div class="bitcron_nav"><div class="bitcron_nav"><div style="display:flex;justify-content:center;"><nav class="mixed_site_nav_wrap site_nav_wrap"><ul class="mixed_site_nav site_nav sm sm-base">	<li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/" class="selected active current nav__item" >Index</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/tags" class="selected active current nav__item" >Tags</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/archives" class="selected active current nav__item" >Archives</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/navigator.html" class="selected active current nav__item" >Navigator</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/post/about" class="selected active current nav__item" >About</a></li></ul></nav>
+<div style="float:right;margin-top:1em"><form id="gridea-search-form" data-update="1578893743252" action="/search/index.html"><input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="Search..."></form></div><div style="margin-left:0.5em;margin-top:1.2em"><input id="switch_default" onclick="mobileBtn()" type="checkbox" class="switch_default"><label for="switch_default" class="toggleBtn"></label></div></div>
+<div class="clear clear_nav_inline_end"></div></div></div><div class="clear clear_nav_end"></div></div></div><div class="hamberger" href="javascript:void(0)" onclick="btn_toggle();"><i class="iconfont icon-category"></i></div></div></div></div>
+<div id="hn" class="no-js hidden_nav animated fadeInDown"><div class="bitcron_nav_container"><div class="bitcron_nav"><nav class="mixed_site_nav_wrap site_nav_wrap"><ul class="mixed_site_nav site_nav sm sm-base">	<li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/" class="selected active current nav__item" >Index</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/tags" class="selected active current nav__item" >Tags</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/archives" class="selected active current nav__item" >Archives</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/navigator.html" class="selected active current nav__item" >Navigator</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/post/about" class="selected active current nav__item" >About</a></li></ul><div class="clear clear_nav_inline_end"></div></nav></div><div class="clear clear_nav_end"></div></div>
+<div style="display:flex;justify-content:center;inline-block;text-align:center;margin-top:7%"><div><form id="gridea-search-form" data-update="1627835297708" action="/search/index.html"><input class="search-input" autocomplete="off" spellcheck="false" name="q"  placeholder="Search..." /></form></div><div style="margin-left:0.5em"><input id="switch_default_h" onclick="mobileBtn()" type="checkbox" class="switch_default"><label for="switch_default" class="toggleBtn"></label></div></div>
+</div></div>
+<script>function enableDarkmode(){document.body.classList.add("darkmode"),document.getElementById("switch_default").checked=1,document.getElementById("switch_default_h").checked=1}function removeDarkmode(){document.body.classList.remove("darkmode"),document.getElementById("switch_default").checked=0,document.getElementById("switch_default_h").checked=0}function getCookie(a){var b,c=new RegExp("(^| )"+a+"=([^;]*)(;|$)");return(b=document.cookie.match(c))?unescape(b[2]):null}cookie=getCookie("darkmode"),"enable"==cookie&&enableDarkmode(),window.matchMedia("(prefers-color-scheme: dark)").matches&&"disable"!==cookie&&(enableDarkmode(),document.cookie="darkmode=enable; path=/");var mobileBtn=function(){1==document.getElementById("switch_default").checked?(enableDarkmode(),document.cookie="darkmode=enable; path=/"):(removeDarkmode(),document.cookie="darkmode=disable; path=/")};</script>
+
+<div class="main"><div class="main-inner"><div class="content">
+<article class="post">
+<h2 class="post_title sm_margin"><a>鸿蒙应用开发</a></h2>
+<script>function lan(){if(document.getElementById("lan").innerText=="繁"){var s=document.getElementById("tongwenlet_cn");if(s!=null){document.body.removeChild(s)}var s=document.createElement("script");s.language="javascript";s.type="text/javascript";s.src="https://cdn.jsdelivr.net/gh/qyxtim/Static@1.1/bookmarklet_tw.js";s.id="tongwenlet_cn";document.body.appendChild(s);document.getElementById("lan").innerHTML="简"}else{if(document.getElementById("lan").innerText=="簡"){var s=document.getElementById("tongwenlet_cn");if(s!=null){document.body.removeChild(s)}var s=document.createElement("script");s.language="javascript";s.type="text/javascript";s.src="https://cdn.jsdelivr.net/gh/qyxtim/Static@1.1/bookmarklet_cn.js";s.id="tongwenlet_cn";document.body.appendChild(s);document.getElementById("lan").innerHTML="繁"}}};</script>
+<section class="post_details"><i class="iconfont icon-calendar"></i><span style="margin-right:15px"> 2021-07-16</span><i class="iconfont icon-browse"></i><span style="margin-right:15px"> <span id="busuanzi_value_page_pv"></span> Views</span><i class="iconfont icon-category"></i><span class="weaklink" style="margin-right:15px"></span><i class="iconfont icon-caret-down"></i><span style="margin-right:15px">2603字</span><i class="iconfont icon-naozhong"></i><span style="margin-right:15px">11 min read</span><a id="lan" href="javascript:void(0);"onclick="lan();"title="调整简繁体" style="margin-right:15px;">繁</a>
+</section>
+
+<div style="display:flex">
+<div class="md_block" id="md_block">
+<div class="round-shape-one"></div>
+<p>参考文档：https://developer.harmonyos.com/cn/docs/documentation/doc-references/reference-document-outline-0000001115016824</p>
+<p>实例工程：https://developer.harmonyos.com/cn/docs/documentation/doc-guides/samples-0000001162414961</p>
+<p>CodeLab：https://developer.huawei.com/consumer/cn/codelabsPortal/index</p>
+<p>备忘录：https://github.com/reticenceji/todo_harmonyOS</p>
+<h2 id="hello-world">Hello world</h2>
+<p>首先要下载<a href="https://developer.harmonyos.com/cn/develop/deveco-studio">IDE</a>，最好是Windows10。然后根据<a href="https://developer.harmonyos.com/cn/docs/documentation/doc-guides/start-with-js-0000000000029619">入门 JS</a>编写第一个Hello world。</p>
+<blockquote>
+<p>功能点-<a href="https://developer.harmonyos.com/cn/docs/documentation/doc-guides/start-with-js-0000000000029619">页面切换</a></p>
+<ol>
+<li>首先要在配置文件中加入页面的route。 <strong>表示基于JS UI框架开发的JS模块集合，其中的每个元素代表一个JS模块的信息。</strong></li>
+</ol>
+<pre><code class="language-json">&quot;js&quot;: [
+      {
+        &quot;pages&quot;: [
+          &quot;pages/index/index&quot;,
+          &quot;pages/edit/edit&quot;			// Here
+        ],
+        &quot;name&quot;: &quot;default&quot;,
+        &quot;window&quot;: {
+          &quot;designWidth&quot;: 720,
+          &quot;autoDesignWidth&quot;: true
+        }
+      }
+    ]
+</code></pre>
+<ol start="2">
+<li>关键的路由切换函数</li>
+</ol>
+<pre><code class="language-javascript">import router from '@system.router';
+
+export default {
+  launch() {
+    router.push ({
+      uri:'pages/details/details', // 指定要跳转的页面
+    })
+  }
+}
+</code></pre>
+</blockquote>
+<h2 id="entry">Entry</h2>
+<ul>
+<li>
+<p>libs 二进制</p>
+</li>
+<li>
+<p>resources 资源文件</p>
+<pre><code>|---base  // 默认存在的目录
+|   |---element
+|   |   |---string.json
+|   |---media
+|   |   |---icon.png
+|---en_GB-vertical-car-mdpi // 限定词目录示例，需要开发者自行创建   
+|   |---element
+|   |   |---string.json
+|   |---media
+|   |   |---icon.png
+|---rawfile  // 默认存在的目录
+</code></pre>
+</li>
+<li>
+<p>src 源代码文件</p>
+</li>
+<li>
+<p>config.json</p>
+</li>
+</ul>
+<p><strong>? 为什么例子中的 资源目录 是一级子目录</strong></p>
+<h2 id="ability">Ability</h2>
+<p><a href="https://developer.harmonyos.com/cn/docs/documentation/doc-guides/ability-ability-overview-0000000000029852">Ability</a>是应用所具备能力的抽象，也是应用程序的重要组成部分。一个应用可以具备多种能力（即可以包含多个Ability），HarmonyOS支持应用以Ability为单位进行部署。</p>
+<ul>
+<li>
+<p>FA支持Page Ability：</p>
+<ul>
+<li>
+<p>Page模板是FA唯一支持的模板，用于提供与用户交互的能力。一个Page实例可以包含一组相关页面，每个页面用一个AbilitySlice实例表示。<a href="https://alliance-communityfile-drcn.dbankcdn.com/FileServer/getFile/cmtyPub/011/111/111/0000000000011111111.20210702111617.58737162885392977271705835948749:50520704022933:2800:B945EE1047F0B7F05F233B3D06CEAE397C86B0D20E9FB0D1204C5AC5D9332F0E.png?needInitFileName=true?needInitFileName=true">生命周期</a><br>
+<code>onStart(),onActive(),onInactive(),onBackground()</code></p>
+<ul>
+<li>
+<p>AbilitySlice</p>
+<p>当发起导航的AbilitySlice和导航目标的AbilitySlice处于同一个Page时，您可以通过<code>present()</code>方法实现导航。</p>
+<p>AbilitySlice作为Page的内部单元，以Action的形式对外暴露，因此可以通过配置Intent的Action导航到目标AbilitySlice。</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>PA支持Service Ability和Data Ability：</p>
+<ul>
+<li>
+<p><a href="https://developer.harmonyos.com/cn/docs/documentation/doc-guides/ability-service-creating-0000000000044464">Service模板</a>：用于提供后台运行任务的能力。</p>
+<p><code>onStart(),onCommand(),onConnect(),onDisconnect(),onStop()</code></p>
+<p>Service也需要在应用配置文件中进行注册，注册类型type需要设置为service。</p>
+</li>
+<li>
+<p>Data模板：用于对外部提供统一的数据访问抽象。</p>
+<p>Data的提供方和使用方都通过URI（Uniform Resource Identifier）来标识一个具体的数据，例如数据库中的某个表或磁盘上的某个文件。</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="intent">Intent</h3>
+<h2 id="js和前端">JS和前端</h2>
+<p>在鸿蒙应用开发中，JS主要是用来</p>
+<ol>
+<li>动态渲染前端界面的HTML，比如国际化能力。</li>
+<li>动态响应前端发生的事件，比如按钮点击，表单提交。</li>
+<li>前端后端的交接。</li>
+</ol>
+<h3 id="js语法概述">JS语法概述</h3>
+<p>JS语法类C。JS是动态解释形语言。</p>
+<h4 id="循环">循环</h4>
+<pre><code class="language-js">// 第一种for循环，类C
+for (i = 0; i &lt; 5; i++) {
+     text += &quot;数字是 &quot; + i + &quot;&lt;br&gt;&quot;;
+}
+// 第二种for循环
+var person = {fname:&quot;Bill&quot;, lname:&quot;Gates&quot;, age:62};
+var indexes = [2,4,5]
+var text = &quot;&quot;;	//变量要提前定义，不像Python
+var x;
+for (x in person) {		//x是key
+    text += person[x];
+}
+var sum = 0;
+for (x in indexes){		//x是下标
+    sum += indexes[x]
+}
+// while
+while (i &lt; 10) {
+    text += &quot;数字是 &quot; + i;
+    i++;
+}
+// do while
+do {
+    text += &quot;The number is &quot; + i;
+    i++;
+ }
+while (i &lt; 10);
+</code></pre>
+<h4 id="正则表达式和字符串">正则表达式和字符串</h4>
+<p>JS中的正则表达式：<code>/regex-expr/</code></p>
+<pre><code class="language-js">var str = &quot;Visit Microsoft!&quot;;
+var res = str.replace(/microsoft/i, &quot;W3School&quot;); 
+</code></pre>
+<h4 id="对象">对象</h4>
+<pre><code class="language-js">var person = {firstName:&quot;Bill&quot;, lastName:&quot;Gates&quot;, age:62, eyeColor:&quot;blue&quot;};
+// 访问方法
+1. person.firstName
+2. person[&quot;firstName&quot;]
+// 对象的内容也可以是函数，this.show()
+</code></pre>
+<h4 id="数组">数组</h4>
+<p><strong>JS数组是一种特殊类型的对象</strong>。在 JavaScript 中对数组使用 typeof 运算符会返回 &quot;object&quot;。所以，她有属性和方法</p>
+<pre><code class="language-js">var car = [];
+car.push(&quot;Lemon&quot;);     // 向 car 添加一个新元素 (Lemon)
+var x = cars.length;   // length 属性返回元素的数量
+var y = cars.sort();   // sort() 方法对数组进行排序
+delete car[0];		   // 使用 delete 会在数组留下未定义的空洞。
+car.splice(0, 1);      // 删除 car 中的第一个元素
+var c = cars.slice(1,3);	// 取1..3的内容 
+</code></pre>
+<h3 id="undefined和null">undefined和null</h3>
+<ul>
+<li>当声明的变量未初始化时，该变量的默认值是 undefined</li>
+<li>当函数无明确返回值时，返回的也是值 undefined</li>
+<li>有参数但是没有传值的时候，参数的值是 undefined</li>
+<li>对象没有赋值的属性，该属性的值为undefined</li>
+</ul>
+<pre><code class="language-js">var oTemp;	//undefined
+//===========================================
+function myFunction(p1, p2) {}
+var x = myFunction(7, 8);	// undefined
+//===========================================
+function myFunction(p1) {
+    var x = p1;	//undefined
+}
+myFunction();
+//===========================================
+x = {};
+x.h;	//undefined
+//===========================================
+function myFunction(p1) {
+	p = 1;		//这里需要 var p=1;
+    var x=p;	//undefined
+}
+</code></pre>
+<p>如何判断一个东西是不是undefined呢？<code>x === undefined</code></p>
+<p>undefined 是声明了变量但未对其初始化时赋予该变量的值，null 则用于表示尚未存在的对象。null一般是我们手动设置表示不存在的东西。用<code>x === null</code></p>
+<pre><code class="language-js">alert(null == undefined);  //输出 &quot;true&quot;
+</code></pre>
+<h3 id="页面和js的交互">页面和JS的交互</h3>
+<p><a href="https://developer.harmonyos.com/cn/docs/documentation/doc-references/js-framework-js-tag-0000000000611401">JS有关的配置文件</a></p>
+<h4 id="页面生命周期">页面生命周期</h4>
+<p><a href="https://developer.harmonyos.com/cn/docs/documentation/doc-references/js-framework-lifecycle-0000001113708038">JS页面和应用生命周期</a></p>
+<h4 id="事件">事件</h4>
+<p><a href="https://developer.harmonyos.com/cn/docs/documentation/doc-guides/ui-js-building-ui-event-0000000000500592">手势事件和按键事件</a>。</p>
+<p><a href="https://developer.harmonyos.com/cn/docs/documentation/doc-references/js-components-common-events-0000001051151132">组件事件</a>：事件绑定在组件上，当组件达到事件触发条件时，会执行JS中对应的事件回调函数，实现页面UI视图和页面JS逻辑层的交互。有的组件还会有自己的特殊事件，有的事件会有默认的传入参数，我们也可以自己传入参数。</p>
+<p>这是HTML的一个片段，</p>
+<pre><code class="language-html">&lt;list&gt;
+    &lt;list-item for=&quot;{{todoList}}&quot; class=&quot;todo-item&quot; onlongpress=&quot;LongPressToDelete&quot; onclick=&quot;ClickToEdit($idx)&quot;&gt;
+        &lt;text class=&quot;title-text&quot;&gt; {{$item.title}} &lt;/text&gt;
+        &lt;text class=&quot;date-text&quot;&gt; {{$item.date}} &lt;/text&gt;
+        &lt;div class=&quot;delete-choose&quot;&gt;
+            &lt;input type=&quot;checkbox&quot; value=&quot;{{$idx}}&quot; disabled=&quot;{{!choose_delete}}&quot; show=&quot;{{choose_delete}}&quot; onchange=&quot;ClickToDelete($idx)&quot;&gt;			&lt;!-- Notice Here --&gt;
+            &lt;/input&gt;
+        &lt;/div&gt;
+    &lt;/list-item&gt;
+&lt;/list&gt;
+</code></pre>
+<p>这是对应的JS事件处理，input的内容发生改变的时候会触发处理函数</p>
+<pre><code class="language-js">// value是我传入的$idx，e是默认的传入参数
+ClickToDelete(value, e) {
+    console.info(&quot;ClickToDelete&quot; + e.checked.toString());
+    if (e.checked) {
+        this.add_delete = &quot;-&quot;;
+        this.choose_indexes.push(value);
+        console.info(&quot;indexes: &quot; + this.choose_indexes.toString());
+    }
+    else {
+        this.choose_indexes.splice(this.choose_indexes.indexOf(value), 1);
+        console.info(&quot;indexes: &quot; + this.choose_indexes.toString());
+    };
+    if (this.choose_indexes.length == 0) {
+        this.add_delete = &quot;+&quot;;
+    }
+},
+</code></pre>
+<h4 id="渲染">渲染</h4>
+<p>上面的例子有for循环的渲染。默认<code>$item</code>代表数组中的元素,<code>$idx</code>代表数组中的元素索引。请参考<a href="https://developer.harmonyos.com/cn/docs/documentation/doc-references/js-framework-syntax-hml-0000000000611413">HML语法参考</a>。</p>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>类型</th>
+<th>默认值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>for</td>
+<td>Array</td>
+<td>-</td>
+<td>根据设置的数据列表，展开当前元素。</td>
+</tr>
+<tr>
+<td>if</td>
+<td>boolean</td>
+<td>-</td>
+<td>根据设置的boolean值，添加或移除当前元素。</td>
+</tr>
+<tr>
+<td>show</td>
+<td>boolean</td>
+<td>-</td>
+<td>根据设置的boolean值，显示或隐藏当前元素。</td>
+</tr>
+</tbody>
+</table>
+<h4 id="ui">UI</h4>
+<p>利用HTML+CSS我们可以简单的绘制好看的用户界面。利用IDE的Preview功能我们可以动态查看我们的UI效果。</p>
+<p><a href="https://developer.harmonyos.com/cn/docs/documentation/doc-references/js-components-common-attributes-0000001050831187">组件</a>的官方文档，看着名字就大概可以猜到作用。</p>
+<p>通过<a href="https://www.w3school.com.cn/cssref/css_selectors.asp">CSS 选择器</a>，我们美化我们的组件。组件普遍支持的可以在style或css中设置组件<a href="https://developer.harmonyos.com/cn/docs/documentation/doc-references/js-components-common-styles-0000001050791158">外观样式</a>。</p>
+<p>当然，真正的UI设计也是一门艺术。</p>
+<p><a href="https://developer.harmonyos.com/cn/docs/documentation/doc-guides/ui-js-fa-developing-0000001063300612">开发-开发一个JS FA应用 (harmonyos.com)</a>: 通过里面代码的例子（搜索<code>cartStyle</code>。在HTML给元素注册事件关联的函数，以及一些属性设置为变量<code>{{cartStyle}}</code>，在js中写函数，通过<code>this.cartStyle</code>可以修改元素的值。如果需要修改的是样式，可以修改<code>class</code>属性，然后在css中通过类选择器<code>.className</code>来规定不同样式。）</p>
+<p><a href="https://developer.harmonyos.com/cn/docs/documentation/doc-references/lite-wearable-lifestyle-0000001169264881">JS API参考-生命周期 (harmonyos.com)</a></p>
+<p><a href="https://developer.harmonyos.com/cn/docs/documentation/doc-guides/ui-js-building-ui-event-0000000000500592">开发-事件 (harmonyos.com)</a>，比如长按<code>longpress</code>，点击<code>click</code></p>
+<p><a href="https://developer.harmonyos.com/cn/docs/documentation/doc-references/js-framework-file-0000000000611396">JS API参考-文件组织 (harmonyos.com)</a></p>
+<p><a href="https://developer.harmonyos.com/cn/docs/documentation/doc-references/js-components-common-attributes-0000001050831187">JS API参考组件 (harmonyos.com)</a> ： 介绍了很多常用的属性，以及怎么修改属性。通过这些组件我们可以很好的构建前端的样式。</p>
+<p><a href="https://developer.harmonyos.com/cn/docs/documentation/doc-references/js-apis-basic-features-routes-0000000000611824">JS API参考-页面路由 (harmonyos.com)</a> 页面路由可以让我们在不同的页面之间跳转，记得在配置文件写好页面的路由。</p>
+<p>组件</p>
+<h3 id="jsjava">JS+JAVA</h3>
+<p><strong>数据访问的代码是在Java里写的，页面逻辑是JS写的，他们之间怎么进行交互？</strong><a href="https://developer.harmonyos.com/cn/docs/documentation/doc-guides/ui-js-fa-call-pa-0000001050435961">开发-JS FA如何调用PA (harmonyos.com)</a>。</p>
+<h4 id="json">JSON</h4>
+<p>事实上，核心就是之间的交互一切都是<strong>字符串的交互</strong>，凡是不是字符串的东西都编码成字符串。常用的编码方式是<strong>JSON</strong>格式，两边都有库支持。JSON 指的是 JavaScript 对象标记法（<em>J</em>ava<em>S</em>cript <em>O</em>bject <em>N</em>otation），JSON 是一种轻量级的数据交换格式，JSON 具有自我描述性且易于理解，JSON 独立于语言。</p>
+<pre><code>// Java JSON 方法，第三方JSON库
+
+</code></pre>
+<pre><code class="language-js">// JS JSON 方法
+var myObj = { name:&quot;Bill Gates&quot;,  age:62, city:&quot;Seattle&quot; };		// 一个 对象
+var myJSON =  JSON.stringify(myObj);	//把 对象 变成一个 JSON字符串
+var Obj = JSON.parse(myJSON);
+</code></pre>
+<h2 id="java和后端">Java和后端</h2>
+<h3 id="java语法概述">Java语法概述</h3>
+<p>Java中的对象可以理解为 C++中的智能指针，更准确的说是垃圾回收机制啦。</p>
+<h3 id="日志">日志</h3>
+<p>善用Log，HarmonyOS提供了<a href="https://developer.harmonyos.com/cn/docs/documentation/doc-guides/hilog-overview-0000001061752577">HiLog日志系统</a>，让应用可以按照指定类型、指定级别、指定格式字符串输出日志内容，帮助开发者了解应用的运行状态，更好地调试程序。</p>
+<h3 id="service-ability">Service Ability</h3>
+<p>https://developer.harmonyos.com/cn/docs/documentation/doc-guides/ability-service-concept-0000000000044457</p>
+<h3 id="data-ability">Data Ability</h3>
+<p>https://developer.harmonyos.com/cn/docs/documentation/doc-guides/ability-data-concept-0000000000043058</p>
+<h3 id="intent-2">Intent</h3>
+<p>Intent是对象之间传递信息的载体。例如，当一个Ability需要启动另一个Ability时，或者一个AbilitySlice需要导航到另一个AbilitySlice时，可以通过Intent指定启动的目标同时携带相关数据。Intent的构成元素包括Operation与Parameters，具体描述参见<a href="https://developer.harmonyos.com/cn/docs/documentation/doc-guides/ability-intent-0000000000038799#ZH-CN_TOPIC_0000001076675608__table610715348476">表1</a>。</p>
+<pre><code class="language-java">// 设置传递的参数，可以反复调用传递多个参数
+intent.setParam(key, value);
+// 获得参数，一般不直接用
+intent.getParam(key);
+intent.getStringParam();...
+</code></pre>
+<p>intent.setOperation()</p>
+<h3 id="数据库">数据库</h3>
+<p><strong><a href="https://developer.harmonyos.com/cn/docs/documentation/doc-guides/database-relational-guidelines-0000000000030051">关系型数据库</a></strong>： HarmonyOS底层采用SQLite作为持久化存储引擎。一个Demo<a href="https://developer.huawei.com/consumer/cn/codelabsPortal/carddetails/HarmonyOS-Relational-Database">Codelabs_华为尖端技术_编码体验-华为开发者联盟 (huawei.com)</a>。</p>
+<p><strong><a href="https://developer.harmonyos.com/cn/docs/documentation/doc-guides/database-orm-overview-0000000000030070">对象关系映射数据库</a></strong>： 通过操作对象的形式操作数据库。</p>
+<p><strong><a href="https://developer.harmonyos.com/cn/docs/documentation/doc-guides/database-preference-overview-0000000000030086">轻量级偏好数据库</a></strong>：内存中也会有一份，所以不适合大数据。一个Demo<a href="https://developer.huawei.com/consumer/cn/codelabsPortal/carddetails/HarmonyOS-Preferenced-Database">Codelabs_华为尖端技术_编码体验-华为开发者联盟 (huawei.com)</a>。</p>
+<p><strong><a href="https://developer.harmonyos.com/cn/docs/documentation/doc-guides/database-mdds-overview-0000000000030123">分布式数据库</a></strong>：</p>
+<h2 id="分布式数据服务">分布式数据服务</h2>
+<h2 id="异步编程">异步编程</h2>
+<p>一般主线程用于UI的绘制<br>
+TaskDispatcher 任务分发器<br>
+GlobalTaskDispatcher<br>
+<a href="https://developer.harmonyos.com/cn/docs/documentation/doc-guides/thread-mgmt-guidelines-0000000000032130">线程管理开发指导</a></p>
+<p>CES common event service 公共事件服务，可以让所有的进程都感知到</p>
+<h2 id="流转">流转</h2>
+<p><a href="https://developer.harmonyos.com/cn/docs/documentation/doc-guides/hop-overview-0000001092995092">流转</a></p>
+<p><a href="https://developer.harmonyos.com/cn/docs/documentation/doc-references/js-apis-distributed-migration-0000001050024965">分布式迁移 js</a></p>
+
+<span id="footnote"></span>
+<div id = "warn"></div>
+</div>
+<div class="toc-container"><ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#hello-world">Hello world</a></li>
+<li><a href="#entry">Entry</a></li>
+<li><a href="#ability">Ability</a>
+<ul>
+<li><a href="#intent">Intent</a></li>
+</ul>
+</li>
+<li><a href="#js%E5%92%8C%E5%89%8D%E7%AB%AF">JS和前端</a>
+<ul>
+<li><a href="#js%E8%AF%AD%E6%B3%95%E6%A6%82%E8%BF%B0">JS语法概述</a>
+<ul>
+<li><a href="#%E5%BE%AA%E7%8E%AF">循环</a></li>
+<li><a href="#%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%92%8C%E5%AD%97%E7%AC%A6%E4%B8%B2">正则表达式和字符串</a></li>
+<li><a href="#%E5%AF%B9%E8%B1%A1">对象</a></li>
+<li><a href="#%E6%95%B0%E7%BB%84">数组</a></li>
+</ul>
+</li>
+<li><a href="#undefined%E5%92%8Cnull">undefined和null</a></li>
+<li><a href="#%E9%A1%B5%E9%9D%A2%E5%92%8Cjs%E7%9A%84%E4%BA%A4%E4%BA%92">页面和JS的交互</a>
+<ul>
+<li><a href="#%E9%A1%B5%E9%9D%A2%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F">页面生命周期</a></li>
+<li><a href="#%E4%BA%8B%E4%BB%B6">事件</a></li>
+<li><a href="#%E6%B8%B2%E6%9F%93">渲染</a></li>
+<li><a href="#ui">UI</a></li>
+</ul>
+</li>
+<li><a href="#jsjava">JS+JAVA</a>
+<ul>
+<li><a href="#json">JSON</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#java%E5%92%8C%E5%90%8E%E7%AB%AF">Java和后端</a>
+<ul>
+<li><a href="#java%E8%AF%AD%E6%B3%95%E6%A6%82%E8%BF%B0">Java语法概述</a></li>
+<li><a href="#%E6%97%A5%E5%BF%97">日志</a></li>
+<li><a href="#service-ability">Service Ability</a></li>
+<li><a href="#data-ability">Data Ability</a></li>
+<li><a href="#intent-2">Intent</a></li>
+<li><a href="#%E6%95%B0%E6%8D%AE%E5%BA%93">数据库</a></li>
+</ul>
+</li>
+<li><a href="#%E5%88%86%E5%B8%83%E5%BC%8F%E6%95%B0%E6%8D%AE%E6%9C%8D%E5%8A%A1">分布式数据服务</a></li>
+<li><a href="#%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B">异步编程</a></li>
+<li><a href="#%E6%B5%81%E8%BD%AC">流转</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="fullPage"><canvas id="canvas"></canvas></div>
+</article>
+<div id="eof"><span>EOF</span></div><div class="round-shape-one"></div>
+<section>
+<div class="doc_comments">
+
+</div></section>
+</div></div></div><script>
+"use strict";!function(){for(var n=document.getElementsByTagName("pre"),e=n.length,s=0;s<e;s++){n[s].innerHTML='<span class="line-number"></span>'+n[s].innerHTML+'<span class="cl"></span>';for(var a=n[s].innerHTML.split(/\n/).length,r=0;r<a-1;r++){n[s].getElementsByTagName("span")[0].innerHTML+="<span>"+(r+1)+"</span>"}}}();
+let mainNavLinks=document.querySelectorAll(".markdownIt-TOC a");window.addEventListener("scroll",event=>{let fromTop=window.scrollY;mainNavLinks.forEach((link,index)=>{let section=document.getElementById(decodeURI(link.hash).substring(1));let nextSection=null
+if(mainNavLinks[index+1]){nextSection=document.getElementById(decodeURI(mainNavLinks[index+1].hash).substring(1));}
+if(section.offsetTop<=fromTop){if(nextSection){if(nextSection.offsetTop>fromTop){link.classList.add("currentToc");}else{link.classList.remove("currentToc");}}else{link.classList.add("currentToc");}}else{link.classList.remove("currentToc");}});});
+var h=document.documentElement,b=document.body,st="scrollTop",sh="scrollHeight",progress=document.querySelector(".progress"),scroll;document.addEventListener("scroll",function(){scroll=(h[st]||b[st])/((h[sh]||b[sh])-h.clientHeight)*100;progress.style.setProperty("--scroll",scroll+"%")});
+var wxScale=new WxScale({fullPage:document.querySelector("#fullPage"),canvas:document.querySelector("#canvas")});var imgBox=document.querySelectorAll("#md_block img");for(var i=0;i<imgBox.length;i++){imgBox[i].onclick=function(e){wxScale.start(this)}};
+</script>
+<a id="scrollUp" href="#top" style="position: fixed; z-index: 2147483647; display: block;"></a><div class="footer animated fadeInDown"><div class="site_footer"><div class="mysocials"><div class="my_socials"><a href="https://github.com/reticenceji"title="github"><i class="iconfont icon-github"></i></a><a href="reticenceji@qq.com"title="envelope"><i class="iconfont icon-envelope"></i></a><a href="https://www.zhihu.com/people/reticenceji"title="zhihu"><i class="iconfont icon-zhihu"></i></a></div></div><div class="copyright"id="copyright">Copyright © 2018-2020 <a href="https://reticenceji.github.io" style="margin:0;">Reticence</a>.</div>
+<span style="display: inline;margin-right:15px;">👁<strong><span id="busuanzi_value_site_uv"></span></strong></span><span id="busuanzi_container_page_pv" style="display: inline;"><span>📚<strong>176</strong> posts</span></div></div>
+<script>
+console.log("\n %c \u26a1Theme: Bitcron-pro Author's Blog:https://blog.blinkstar.cn  Writen By Serence  \n\n", "color: #ffffff; background: rgba(49, 49, 49, 0.85); padding:5px 0;border-radius:5px;", );
+</script>
+<script src="https://cdn.jsdelivr.net/npm/instant.page@3.0.0/instantpage.min.js" type="module" defer></script>
+<script type="text/javascript" async src="https://reticenceji.github.io/media/js/prism.js"></script>
+</body>
+</html>

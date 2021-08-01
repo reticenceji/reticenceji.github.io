@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="shortcut icon" href="https://reticenceji.github.io/favicon.ico" type="image/x-icon" /><meta name="viewport"content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="apple-mobile-web-app-capable"content="yes"/><meta name="apple-mobile-web-app-status-bar-style"content="black"/><meta name="format-detection"content="telephone=no"/><meta name="renderer"content="webkit"><meta name="description"content=""><meta charset="UTF-8"><title>OS-Buddy System&amp;Slub | Reticence</title>
+<link href="https://reticenceji.github.io/styles/main.css" type="text/css" rel="stylesheet" /><link href="https://at.alicdn.com/t/font_1621793_zatzzgvf30g.css" type="text/css" rel="stylesheet" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css"><script async src="https://cdn.jsdelivr.net/npm/busuanzi@2.3.0/bsz.pure.mini.min.js"></script><script src="https://reticenceji.github.io/media/js/magnify.min.js"></script><script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js"></script>
+<script type="text/javascript">function btn_toggle(){document.getElementById("hn").classList.contains("no-js")?document.getElementById("hn").classList.remove("no-js"):document.getElementById("hn").classList.add("no-js")}</script>
+
+<link rel="canonical" href="https://reticenceji.github.io/post/buddy-system-de-shi-xian/" />
+</head>
+<body>
+<div class="progress"></div><style>.progress{background:linear-gradient(to right,#87ceeb var(--scroll),transparent 0);background-repeat:no-repeat;position:fixed;width:100%;height:4px;z-index:1}</style><div class="darkmode-background"></div><div class="darkmode-layer"></div>
+<noscript><p class="warn" >本页面需要浏览器支持（启用）JavaScript</p></noscript><div class="header"><div class="logo_title"><div class="title animated fadeInDown"><a href="https://reticenceji.github.io"><img alt="logo" style="display:inline-block;" src="https://reticenceji.github.io/images/avatar.png"/></a><h1 title="Reticence" class="weaklink"><a  href="/">Reticence</a></h1>
+
+<div class="navbar weaklink">
+<div class="normal_nav">
+<div class="bitcron_nav_container"><div class="bitcron_nav"><div class="bitcron_nav"><div style="display:flex;justify-content:center;"><nav class="mixed_site_nav_wrap site_nav_wrap"><ul class="mixed_site_nav site_nav sm sm-base">	<li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/" class="selected active current nav__item" >Index</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/tags" class="selected active current nav__item" >Tags</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/archives" class="selected active current nav__item" >Archives</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/navigator.html" class="selected active current nav__item" >Navigator</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/post/about" class="selected active current nav__item" >About</a></li></ul></nav>
+<div style="float:right;margin-top:1em"><form id="gridea-search-form" data-update="1578893743252" action="/search/index.html"><input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="Search..."></form></div><div style="margin-left:0.5em;margin-top:1.2em"><input id="switch_default" onclick="mobileBtn()" type="checkbox" class="switch_default"><label for="switch_default" class="toggleBtn"></label></div></div>
+<div class="clear clear_nav_inline_end"></div></div></div><div class="clear clear_nav_end"></div></div></div><div class="hamberger" href="javascript:void(0)" onclick="btn_toggle();"><i class="iconfont icon-category"></i></div></div></div></div>
+<div id="hn" class="no-js hidden_nav animated fadeInDown"><div class="bitcron_nav_container"><div class="bitcron_nav"><nav class="mixed_site_nav_wrap site_nav_wrap"><ul class="mixed_site_nav site_nav sm sm-base">	<li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/" class="selected active current nav__item" >Index</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/tags" class="selected active current nav__item" >Tags</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/archives" class="selected active current nav__item" >Archives</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/navigator.html" class="selected active current nav__item" >Navigator</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/post/about" class="selected active current nav__item" >About</a></li></ul><div class="clear clear_nav_inline_end"></div></nav></div><div class="clear clear_nav_end"></div></div>
+<div style="display:flex;justify-content:center;inline-block;text-align:center;margin-top:7%"><div><form id="gridea-search-form" data-update="1627835297708" action="/search/index.html"><input class="search-input" autocomplete="off" spellcheck="false" name="q"  placeholder="Search..." /></form></div><div style="margin-left:0.5em"><input id="switch_default_h" onclick="mobileBtn()" type="checkbox" class="switch_default"><label for="switch_default" class="toggleBtn"></label></div></div>
+</div></div>
+<script>function enableDarkmode(){document.body.classList.add("darkmode"),document.getElementById("switch_default").checked=1,document.getElementById("switch_default_h").checked=1}function removeDarkmode(){document.body.classList.remove("darkmode"),document.getElementById("switch_default").checked=0,document.getElementById("switch_default_h").checked=0}function getCookie(a){var b,c=new RegExp("(^| )"+a+"=([^;]*)(;|$)");return(b=document.cookie.match(c))?unescape(b[2]):null}cookie=getCookie("darkmode"),"enable"==cookie&&enableDarkmode(),window.matchMedia("(prefers-color-scheme: dark)").matches&&"disable"!==cookie&&(enableDarkmode(),document.cookie="darkmode=enable; path=/");var mobileBtn=function(){1==document.getElementById("switch_default").checked?(enableDarkmode(),document.cookie="darkmode=enable; path=/"):(removeDarkmode(),document.cookie="darkmode=disable; path=/")};</script>
+
+<div class="main"><div class="main-inner"><div class="content">
+<article class="post">
+<h2 class="post_title sm_margin"><a>OS-Buddy System&amp;Slub</a></h2>
+<script>function lan(){if(document.getElementById("lan").innerText=="繁"){var s=document.getElementById("tongwenlet_cn");if(s!=null){document.body.removeChild(s)}var s=document.createElement("script");s.language="javascript";s.type="text/javascript";s.src="https://cdn.jsdelivr.net/gh/qyxtim/Static@1.1/bookmarklet_tw.js";s.id="tongwenlet_cn";document.body.appendChild(s);document.getElementById("lan").innerHTML="简"}else{if(document.getElementById("lan").innerText=="簡"){var s=document.getElementById("tongwenlet_cn");if(s!=null){document.body.removeChild(s)}var s=document.createElement("script");s.language="javascript";s.type="text/javascript";s.src="https://cdn.jsdelivr.net/gh/qyxtim/Static@1.1/bookmarklet_cn.js";s.id="tongwenlet_cn";document.body.appendChild(s);document.getElementById("lan").innerHTML="繁"}}};</script>
+<section class="post_details"><i class="iconfont icon-calendar"></i><span style="margin-right:15px"> 2021-01-03</span><i class="iconfont icon-browse"></i><span style="margin-right:15px"> <span id="busuanzi_value_page_pv"></span> Views</span><i class="iconfont icon-category"></i><span class="weaklink" style="margin-right:15px">	<a href="https://reticenceji.github.io/tag/nfABdWVsa/" class="tag">OS</a></span><i class="iconfont icon-caret-down"></i><span style="margin-right:15px">2552字</span><i class="iconfont icon-naozhong"></i><span style="margin-right:15px">11 min read</span><a id="lan" href="javascript:void(0);"onclick="lan();"title="调整简繁体" style="margin-right:15px;">繁</a>
+</section>
+
+<div style="display:flex">
+<div class="md_block" id="md_block">
+<div class="round-shape-one"></div>
+<h2 id="buddy-system">Buddy system</h2>
+<p><a href="(https://www.halolinux.us/kernel-reference/the-buddy-system-algorithm.html)">这篇文章</a>详细的介绍了我们为什么要使用Buddy System.具体的实现可以参考<a href="https://coolshell.cn/articles/10427.html">这篇文章</a>。</p>
+<p>当User运行进程申请内存的时候，我们会在内核维护的<strong>Free Frame List</strong>上为他分配。</p>
+<p>但是在Kernel中情况有所不同。因为我们往往需要让kernel的<strong>物理内存连续</strong>，或者有些负责作为外部硬件设备的mapping的内存并不能被换出。所以我们引入了一些专门用于Kernel的Frame管理机制，比如说Buddy system和slab。</p>
+<p>Buddy system也可以有不同的实现。Linux采用的和下面要讲述的是<strong>Binary buddy system</strong>。</p>
+<h2 id="binary-buddy-system">Binary buddy system</h2>
+<p>例如，我们要管理的是一块大小为8的内存：</p>
+<pre><code>+--------+--------+--------+--------+--------+--------+--------+--------+
+| page 0 | page 1 | page 2 | page 3 | page 4 | page 5 | page 6 | page 7 |
++--------+--------+--------+--------+--------+--------+--------+--------+
+</code></pre>
+<p>我们把他组织成下图所示的结构：</p>
+<pre><code>8 +---&gt; 4 +---&gt; 2 +---&gt; 1
+  |       |       |
+  |       |       +---&gt; 1
+  |       |
+  |       +---&gt; 2 +---&gt; 1
+  |               |
+  |               +---&gt; 1
+  |
+  +---&gt; 4 +---&gt; 2 +---&gt; 1
+          |       |
+          |       +---&gt; 1
+          |
+          +---&gt; 2 +---&gt; 1
+                  |
+                  +---&gt; 1
+</code></pre>
+<p>这是一个<strong>满二叉树</strong>。所以我们可以用一个数组来存储他：</p>
+<pre><code>+-----------------------------------------------------------+
+| 8 | 4 | 4 | 2 | 2 | 2 | 2 | 1 | 1 | 1 | 1 | 1 | 1 | 1 | 1 |
++-----------------------------------------------------------+
+</code></pre>
+<p>数组中的数字代表的是可分配的物理地址连续页的最大个数，比如此时：</p>
+<ul>
+<li>
+<p>bitmap[0] 对应的是 page 0 ~ page 7</p>
+</li>
+<li>
+<p>bitmap[1] 对应的是 page 0 ~ page 3</p>
+</li>
+<li>
+<p>bitmap[2] 对应的是 page 4 ~ page 7</p>
+</li>
+<li>
+<p>bitmap[3] 对应的是 page 0 ~ page 1</p>
+</li>
+<li>
+<p>bitmap[4] 对应的是 page 2 ~ page 3</p>
+<p>以此类推。</p>
+</li>
+</ul>
+<p>我们要实现两个接口，一个时alloc_page分配页，一个是free_page回收页。</p>
+<h3 id="alloc_page">alloc_page</h3>
+<p><code>uint64 alloc_page(int num_of_page)</code>。接受申请的page数量，返回申请得到的连续内存的首地址，如果申请失败（内存不够），返回NULL。</p>
+<p>如果我们申请一个alloc_page(3)：</p>
+<pre><code>4 +---&gt; 0 +---&gt; 2 +---&gt; 1
+  |       |       |
+  |       |       +---&gt; 1
+  |       |
+  |       +---&gt; 2 +---&gt; 1
+  |               |
+  |               +---&gt; 1
+  |
+  +---&gt; 4 +---&gt; 2 +---&gt; 1
+          |       |
+          |       +---&gt; 1
+          |
+          +---&gt; 2 +---&gt; 1
+                  |
+                  +---&gt; 1
+                  
++-----------------------------------------------------------+
+| 4 | 0 | 4 | 2 | 2 | 2 | 2 | 1 | 1 | 1 | 1 | 1 | 1 | 1 | 1 |
++-----------------------------------------------------------+
+</code></pre>
+<p>我们把<strong>3向上对齐到4</strong>，然后分配一个正好为4的空间。</p>
+<p>然后我们<strong>只需要更新他祖先节点</strong>的值。</p>
+<p>我们继续申请 alloc_page(1):</p>
+<pre><code>2 +---&gt; 0 +---&gt; 2 +---&gt; 1
+  |       |       |
+  |       |       +---&gt; 1
+  |       |
+  |       +---&gt; 2 +---&gt; 1
+  |               |
+  |               +---&gt; 1
+  |
+  +---&gt; 2 +---&gt; 1 +---&gt; 0 ← 
+          |       |
+          |       +---&gt; 1
+          |
+          +---&gt; 2 +---&gt; 1
+                  |
+                  +---&gt; 1
+
++-----------------------------------------------------------+
+| 2 | 0 | 2 | 2 | 2 | 1 | 2 | 1 | 1 | 1 | 1 | 0 | 1 | 1 | 1 |
++-----------------------------------------------------------+
+</code></pre>
+<p>注意到我们<strong>节点上的值是最大可用的连续内存</strong>，所以是2不是3（第2层）。</p>
+<p>然后我们考虑实现上的一些细节，数据结构采用上面的堆。</p>
+<ol>
+<li>我们要返回的是虚拟地址，也就是说我们要把我们找到的array index转换成VA，因为我们在Kernel对物理空间和虚拟空间进行了等值映射，所以其实我们就是把array index转换成page number.</li>
+<li>更新当前节点的值不难，如何更新父节点的值？</li>
+<li>如何找到符合条件的最小节点？</li>
+<li>如何向上对齐到2^n</li>
+</ol>
+<p><strong>可能的解决方案：</strong></p>
+<h3 id="free_page">free_page</h3>
+<p><code>void free_page(uint64 VA)</code>接受要释放的虚拟空间的地址，在我们维护的buddy system中把它释放。</p>
+<p>我们来看一个例子，假设初始状态如此，我们要释放箭头指向节点。我们首先需要恢复他的值，然后如果他的buddy可以和他合并，那么继续更新他的parent；如果不行，那么更新到此为止。</p>
+<pre><code>4 +---&gt; 2 +---&gt; 2 +---&gt; 1
+  |       |       |
+  |       |       +---&gt; 1
+  |       |             
+  |       +---&gt; 1 +---&gt; 0 ← 
+  |               |
+  |               +---&gt; 1
+  |
+  +---&gt; 4 +---&gt; 2 +---&gt; 1
+          |       |
+          |       +---&gt; 1
+          |
+          +---&gt; 2 +---&gt; 1
+                  |
+                  +---&gt; 1
+                  ↓
++-----------------------------------------------------------+
+| 4 | 2 | 4 | 1 | 2 | 2 | 2 | 0 | 1 | 1 | 1 | 1 | 1 | 1 | 1 |
++-----------------------------------------------------------+
+=================================================================================
+8 +---&gt; 4 +---&gt; 2 +---&gt; 1
+  |       |       |
+  |       |       +---&gt; 1
+  |       |             
+  |       +---&gt; 2 +---&gt; 1 ← 
+  |               |
+  |               +---&gt; 1
+  |
+  +---&gt; 4 +---&gt; 2 +---&gt; 1
+          |       |
+          |       +---&gt; 1
+          |
+          +---&gt; 2 +---&gt; 1
+                  |
+                  +---&gt; 1
+                  ↓
++-----------------------------------------------------------+
+| 8 | 4 | 4 | 2 | 2 | 2 | 2 | 1 | 1 | 1 | 1 | 1 | 1 | 1 | 1 |
++-----------------------------------------------------------+
+
+</code></pre>
+<p>然后我们考虑实现上的一些细节，数据结构采用上面的堆。</p>
+<ol>
+<li>之前的index对应的唯一的<code>page_num==VA</code>，现在的<code>VA==page_num</code>对应着多个index，要释放哪一个呢？</li>
+<li>我们要如何和他的buddy进行合并呢？如何更新祖先节点的值呢？</li>
+</ol>
+<p><strong>可能的解决方案：</strong></p>
+<h2 id="slub">Slub</h2>
+<p><a href="https://blog.csdn.net/lukuen/article/details/6935068">实现参考链接</a>，<a href="https://www.ibm.com/developerworks/cn/linux/l-cn-slub/index.html">教科书般的参考链接</a>，讲的很好。</p>
+<p>内核管理页面使用了2个算法：buddy system和slub。buddy system以page为单位管理内存，但在大多数情况下，程序需要的并不是一整页，而是几个、几十个字节的小内存。于是需要另外一套系统来完成对小内存的管理，这就是slub系统。slub系统运行在buddy system之上，为内核提供小内存管理的功能。</p>
+<p>每个数组元素对应一种大小的内存，可以把一个kmem_cache结构体看做是一个特定大小内存的零售商，整个slub系统中共有12个这样的零售商，每个“零售商”只“零售”特定大小的内存，例如：有的“零售商”只&quot;零售&quot;8Byte大小的内存，有的只”零售“16Byte大小的内存。</p>
+<h3 id="kmem_cache">kmem_cache</h3>
+<p><code>struct kmem_cache* slub_allocator[NR_PARTIAL] = {};</code>。slub_allocator是一个全局的结构，描述了整个SLUB分配器，他可以分配一共<code>NR_PARTIAL</code>种内存大小。</p>
+<p>他的每一个元素都是一个特定大小的“内存零售商”，我们一共有<code>NR_PARTIAL</code>个这样的内存零售商（准确的说法是<strong>内核对象缓冲区 kernel memory cache</strong>），每个“零售商”只“零售”特定大小的内存。我们来看kmem_cache的数据结构（省略了统计和调试相关的字段）。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">类型</th>
+<th style="text-align:left">名称</th>
+<th style="text-align:left">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">unsigned long</td>
+<td style="text-align:left">flags</td>
+<td style="text-align:left">描述缓冲区属性的一组标志</td>
+</tr>
+<tr>
+<td style="text-align:left">int</td>
+<td style="text-align:left">size</td>
+<td style="text-align:left">分配给对象的内存大小（可能大于对象的实际大小）</td>
+</tr>
+<tr>
+<td style="text-align:left">int</td>
+<td style="text-align:left">objsize</td>
+<td style="text-align:left">对象的实际大小</td>
+</tr>
+<tr>
+<td style="text-align:left">int</td>
+<td style="text-align:left">offset</td>
+<td style="text-align:left">存放空闲对象指针的位移</td>
+</tr>
+<tr>
+<td style="text-align:left">int</td>
+<td style="text-align:left">order</td>
+<td style="text-align:left">表示一个 slab 需要2^order 个物理页框</td>
+</tr>
+<tr>
+<td style="text-align:left">kmem_cache_node</td>
+<td style="text-align:left">local_node</td>
+<td style="text-align:left">创建缓冲区的节点的 slab 信息</td>
+</tr>
+<tr>
+<td style="text-align:left">int</td>
+<td style="text-align:left">objects</td>
+<td style="text-align:left">一个 slab 中的对象总个数</td>
+</tr>
+<tr>
+<td style="text-align:left">gfp_t</td>
+<td style="text-align:left">allocflags</td>
+<td style="text-align:left">创建一个 slab 时使用的一组额外标志</td>
+</tr>
+<tr>
+<td style="text-align:left">int</td>
+<td style="text-align:left">refcount</td>
+<td style="text-align:left">缓冲区计数器。当用户请求创建新的缓冲区时，SLUB 分配器重用已创建的相似大小的缓冲区，从而减少缓冲区的个数。</td>
+</tr>
+<tr>
+<td style="text-align:left">void (*)(…)</td>
+<td style="text-align:left">ctor</td>
+<td style="text-align:left">创建 slab 时用于初始化每个对象的构造函数</td>
+</tr>
+<tr>
+<td style="text-align:left">int</td>
+<td style="text-align:left">inuse</td>
+<td style="text-align:left">元数据的位移</td>
+</tr>
+<tr>
+<td style="text-align:left">int</td>
+<td style="text-align:left">align</td>
+<td style="text-align:left">对齐</td>
+</tr>
+<tr>
+<td style="text-align:left">const char *</td>
+<td style="text-align:left">name</td>
+<td style="text-align:left">缓冲区名字</td>
+</tr>
+<tr>
+<td style="text-align:left">struct list_head</td>
+<td style="text-align:left">list</td>
+<td style="text-align:left">包含所有缓冲区描述结构的双向循环队列，队列头为 slab_caches</td>
+</tr>
+<tr>
+<td style="text-align:left">int</td>
+<td style="text-align:left">remote_node_defrag_ratio</td>
+<td style="text-align:left">该值越小，越倾向从本节点中分配对象</td>
+</tr>
+<tr>
+<td style="text-align:left">struct kmem_cache_node * []</td>
+<td style="text-align:left">node</td>
+<td style="text-align:left">为每个节点创建的 slab 信息的数据结构（创建缓冲区的节点除外，使用 local_node 字段）</td>
+</tr>
+<tr>
+<td style="text-align:left">struct kmem_cache_cpu * []</td>
+<td style="text-align:left">cpu_slab</td>
+<td style="text-align:left">为每个处理器创建的 slab 信息的数据结构</td>
+</tr>
+</tbody>
+</table>
+<h3 id="kmem_cache_cpu">kmem_cache_cpu</h3>
+<p>每个零售商<code>kmem_cache</code>有两个“部门”，一个是“仓库”：<code>kmem_cache_node</code>，一个“营业厅”：<code>kmem_cache_cpu</code>。“营业厅”里只保留一个slab，只有在营业厅<code>kmem_cache_cpu</code>中没有空闲内存的情况下才会从仓库中换出其他的slab。 <strong>所谓slab就是零售商<code>kmem_cache</code>批发的连续的整页内存</strong>，零售商把这些整页的内存分成许多小内存，然后分别“零售”出去，一个slab可能包含多个连续的内存页。slab的大小和零售商有关。</p>
+<p>我们来看kmem_cache_cpu 数据结构。描述了一个正在被使用的slab。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">类型</th>
+<th style="text-align:left">名称</th>
+<th style="text-align:left">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">void **</td>
+<td style="text-align:left">freelist</td>
+<td style="text-align:left">free object队列的指针，即第一个空闲对象的指针</td>
+</tr>
+<tr>
+<td style="text-align:left">struct page *</td>
+<td style="text-align:left">page</td>
+<td style="text-align:left">slab 的第一个物理页框描述符</td>
+</tr>
+<tr>
+<td style="text-align:left">int</td>
+<td style="text-align:left">node</td>
+<td style="text-align:left">处理器所在 NUMA 节点号，值 -1 用于调试</td>
+</tr>
+<tr>
+<td style="text-align:left">unsigned int</td>
+<td style="text-align:left">offset</td>
+<td style="text-align:left">用于存放下一个空闲对象指针的位移，以字（word）为单位</td>
+</tr>
+<tr>
+<td style="text-align:left">unsigned int</td>
+<td style="text-align:left">objsize</td>
+<td style="text-align:left">对象实际大小，与 kmem_cache 结构 objsize 字段一致</td>
+</tr>
+</tbody>
+</table>
+<p>**一个 slab 就是一组连续的物理内存frame，被划分成了固定数目的object。**slab没有额外的free object queue（这与 SLAB 的实现不同），而是重用了free object自身的空间。slab 也没有额外的描述结构，因为 SLUB 分配器在代表物理frame的 <code>struct page</code>中加入 freelist，inuse 和 slab 的 union 字段，分别代表第一个空闲对象的指针，已分配对象的数目和缓冲区 kmem_cache 结构的指针，所以 slab 的第一个物理页框的 page 结构就可以描述自己。</p>
+<h3 id="kmem_cache_node">kmem_cache_node</h3>
+<p>在 SLUB 中，没有单独的 Empty slab 队列。每个 NUMA 节点使用 kmem_cache_node 结构维护一个处于 Partial 状态的 slab 队列。我们来看他的数据结构：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">类型</th>
+<th style="text-align:left">名称</th>
+<th style="text-align:left">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">spinlock_t</td>
+<td style="text-align:left">list_lock</td>
+<td style="text-align:left">保护 nr_partial 和 partial 字段的自旋锁</td>
+</tr>
+<tr>
+<td style="text-align:left">unsigned long</td>
+<td style="text-align:left">nr_partial</td>
+<td style="text-align:left">本节点 Partial slab 的数目</td>
+</tr>
+<tr>
+<td style="text-align:left">atomic_long_t</td>
+<td style="text-align:left">nr_slabs</td>
+<td style="text-align:left">本节点 slab 的总数</td>
+</tr>
+<tr>
+<td style="text-align:left">struct list_head</td>
+<td style="text-align:left">partial</td>
+<td style="text-align:left">Partial slab 的双向循环队列</td>
+</tr>
+</tbody>
+</table>
+<h3 id="接口">接口</h3>
+<p>我们创建SLUB的目的是为了管理内存空间，所以他提供的接口自然是malloc和free，准确的如下</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">函数</th>
+<th style="text-align:left">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">kmem_cache_create</td>
+<td style="text-align:left">创建新的缓冲区。</td>
+</tr>
+<tr>
+<td style="text-align:left">kmem_cache_destroy</td>
+<td style="text-align:left">销毁缓冲区。因为存在重用缓冲区的情况，只有当 kmem_cache 结构的 refcount 字段为 0时才真正销毁。</td>
+</tr>
+<tr>
+<td style="text-align:left">kmem_cache_alloc</td>
+<td style="text-align:left">从处理器本地的活动 slab 中分配对象。</td>
+</tr>
+<tr>
+<td style="text-align:left">kmem_cache_alloc_node</td>
+<td style="text-align:left">如果指定的 NUMA 节点与本处理器所在节点不一致，则先从指定节点上获取 slab，替换处理器活动 slab，然后分配对象。</td>
+</tr>
+<tr>
+<td style="text-align:left">kmem_cache_free</td>
+<td style="text-align:left">释放对象。如果对象属于某 Partial slab 且释放操作使这个 slab转变成Empty 状态，则释放该 slab。</td>
+</tr>
+<tr>
+<td style="text-align:left">kmem_ptr_validate</td>
+<td style="text-align:left">检查给定对象的指针是否合法。</td>
+</tr>
+<tr>
+<td style="text-align:left">kmem_cache_size</td>
+<td style="text-align:left">返回对象实际大小。</td>
+</tr>
+<tr>
+<td style="text-align:left">kmem_cache_shrink</td>
+<td style="text-align:left">检查各个节点的 Partial 队列，回收实际处于 Empty 状态的 slab，并将剩余的 slab 按已分配对象的数目排序。</td>
+</tr>
+<tr>
+<td style="text-align:left">kmalloc</td>
+<td style="text-align:left">从通用缓冲区中分配一个对象。</td>
+</tr>
+<tr>
+<td style="text-align:left">kmalloc_node</td>
+<td style="text-align:left">从通用缓冲区中分配一个属于指定 NUMA 节点的对象。</td>
+</tr>
+<tr>
+<td style="text-align:left">kfree</td>
+<td style="text-align:left">释放一个通用对象。</td>
+</tr>
+<tr>
+<td style="text-align:left">ksize</td>
+<td style="text-align:left">返回分配给对象的内存大小（可能大于对象的实际大小）</td>
+</tr>
+</tbody>
+</table>
+<p>SLUB在初始化时，需要预先申请一定的空间来做数据结构和Cache的初始化，此时依赖于Buddy System提供的接口。</p>
+<p>关于分配和释放内存，第一个链接讲的真是太好了。</p>
+
+<span id="footnote"></span>
+<div id = "warn"></div>
+</div>
+<div class="toc-container"><ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#buddy-system">Buddy system</a></li>
+<li><a href="#binary-buddy-system">Binary buddy system</a>
+<ul>
+<li><a href="#alloc_page">alloc_page</a></li>
+<li><a href="#free_page">free_page</a></li>
+</ul>
+</li>
+<li><a href="#slub">Slub</a>
+<ul>
+<li><a href="#kmem_cache">kmem_cache</a></li>
+<li><a href="#kmem_cache_cpu">kmem_cache_cpu</a></li>
+<li><a href="#kmem_cache_node">kmem_cache_node</a></li>
+<li><a href="#%E6%8E%A5%E5%8F%A3">接口</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="fullPage"><canvas id="canvas"></canvas></div>
+</article>
+<div id="eof"><span>EOF</span></div><div class="round-shape-one"></div>
+<section>
+<div class="doc_comments">
+
+</div></section>
+</div></div></div><script>
+"use strict";!function(){for(var n=document.getElementsByTagName("pre"),e=n.length,s=0;s<e;s++){n[s].innerHTML='<span class="line-number"></span>'+n[s].innerHTML+'<span class="cl"></span>';for(var a=n[s].innerHTML.split(/\n/).length,r=0;r<a-1;r++){n[s].getElementsByTagName("span")[0].innerHTML+="<span>"+(r+1)+"</span>"}}}();
+let mainNavLinks=document.querySelectorAll(".markdownIt-TOC a");window.addEventListener("scroll",event=>{let fromTop=window.scrollY;mainNavLinks.forEach((link,index)=>{let section=document.getElementById(decodeURI(link.hash).substring(1));let nextSection=null
+if(mainNavLinks[index+1]){nextSection=document.getElementById(decodeURI(mainNavLinks[index+1].hash).substring(1));}
+if(section.offsetTop<=fromTop){if(nextSection){if(nextSection.offsetTop>fromTop){link.classList.add("currentToc");}else{link.classList.remove("currentToc");}}else{link.classList.add("currentToc");}}else{link.classList.remove("currentToc");}});});
+var h=document.documentElement,b=document.body,st="scrollTop",sh="scrollHeight",progress=document.querySelector(".progress"),scroll;document.addEventListener("scroll",function(){scroll=(h[st]||b[st])/((h[sh]||b[sh])-h.clientHeight)*100;progress.style.setProperty("--scroll",scroll+"%")});
+var wxScale=new WxScale({fullPage:document.querySelector("#fullPage"),canvas:document.querySelector("#canvas")});var imgBox=document.querySelectorAll("#md_block img");for(var i=0;i<imgBox.length;i++){imgBox[i].onclick=function(e){wxScale.start(this)}};
+</script>
+<a id="scrollUp" href="#top" style="position: fixed; z-index: 2147483647; display: block;"></a><div class="footer animated fadeInDown"><div class="site_footer"><div class="mysocials"><div class="my_socials"><a href="https://github.com/reticenceji"title="github"><i class="iconfont icon-github"></i></a><a href="reticenceji@qq.com"title="envelope"><i class="iconfont icon-envelope"></i></a><a href="https://www.zhihu.com/people/reticenceji"title="zhihu"><i class="iconfont icon-zhihu"></i></a></div></div><div class="copyright"id="copyright">Copyright © 2018-2020 <a href="https://reticenceji.github.io" style="margin:0;">Reticence</a>.</div>
+<span style="display: inline;margin-right:15px;">👁<strong><span id="busuanzi_value_site_uv"></span></strong></span><span id="busuanzi_container_page_pv" style="display: inline;"><span>📚<strong>176</strong> posts</span></div></div>
+<script>
+console.log("\n %c \u26a1Theme: Bitcron-pro Author's Blog:https://blog.blinkstar.cn  Writen By Serence  \n\n", "color: #ffffff; background: rgba(49, 49, 49, 0.85); padding:5px 0;border-radius:5px;", );
+</script>
+<script src="https://cdn.jsdelivr.net/npm/instant.page@3.0.0/instantpage.min.js" type="module" defer></script>
+<script type="text/javascript" async src="https://reticenceji.github.io/media/js/prism.js"></script>
+</body>
+</html>

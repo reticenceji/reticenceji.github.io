@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="shortcut icon" href="https://reticenceji.github.io/favicon.ico" type="image/x-icon" /><meta name="viewport"content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="apple-mobile-web-app-capable"content="yes"/><meta name="apple-mobile-web-app-status-bar-style"content="black"/><meta name="format-detection"content="telephone=no"/><meta name="renderer"content="webkit"><meta name="description"content=""><meta charset="UTF-8"><title>ADS-Binomial Queue | Reticence</title>
+<link href="https://reticenceji.github.io/styles/main.css" type="text/css" rel="stylesheet" /><link href="https://at.alicdn.com/t/font_1621793_zatzzgvf30g.css" type="text/css" rel="stylesheet" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css"><script async src="https://cdn.jsdelivr.net/npm/busuanzi@2.3.0/bsz.pure.mini.min.js"></script><script src="https://reticenceji.github.io/media/js/magnify.min.js"></script><script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js"></script>
+<script type="text/javascript">function btn_toggle(){document.getElementById("hn").classList.contains("no-js")?document.getElementById("hn").classList.remove("no-js"):document.getElementById("hn").classList.add("no-js")}</script>
+
+<link rel="canonical" href="https://reticenceji.github.io/post/ds-binomial-queue/" />
+</head>
+<body>
+<div class="progress"></div><style>.progress{background:linear-gradient(to right,#87ceeb var(--scroll),transparent 0);background-repeat:no-repeat;position:fixed;width:100%;height:4px;z-index:1}</style><div class="darkmode-background"></div><div class="darkmode-layer"></div>
+<noscript><p class="warn" >本页面需要浏览器支持（启用）JavaScript</p></noscript><div class="header"><div class="logo_title"><div class="title animated fadeInDown"><a href="https://reticenceji.github.io"><img alt="logo" style="display:inline-block;" src="https://reticenceji.github.io/images/avatar.png"/></a><h1 title="Reticence" class="weaklink"><a  href="/">Reticence</a></h1>
+
+<div class="navbar weaklink">
+<div class="normal_nav">
+<div class="bitcron_nav_container"><div class="bitcron_nav"><div class="bitcron_nav"><div style="display:flex;justify-content:center;"><nav class="mixed_site_nav_wrap site_nav_wrap"><ul class="mixed_site_nav site_nav sm sm-base">	<li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/" class="selected active current nav__item" >Index</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/tags" class="selected active current nav__item" >Tags</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/archives" class="selected active current nav__item" >Archives</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/navigator.html" class="selected active current nav__item" >Navigator</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/post/about" class="selected active current nav__item" >About</a></li></ul></nav>
+<div style="float:right;margin-top:1em"><form id="gridea-search-form" data-update="1578893743252" action="/search/index.html"><input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="Search..."></form></div><div style="margin-left:0.5em;margin-top:1.2em"><input id="switch_default" onclick="mobileBtn()" type="checkbox" class="switch_default"><label for="switch_default" class="toggleBtn"></label></div></div>
+<div class="clear clear_nav_inline_end"></div></div></div><div class="clear clear_nav_end"></div></div></div><div class="hamberger" href="javascript:void(0)" onclick="btn_toggle();"><i class="iconfont icon-category"></i></div></div></div></div>
+<div id="hn" class="no-js hidden_nav animated fadeInDown"><div class="bitcron_nav_container"><div class="bitcron_nav"><nav class="mixed_site_nav_wrap site_nav_wrap"><ul class="mixed_site_nav site_nav sm sm-base">	<li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/" class="selected active current nav__item" >Index</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/tags" class="selected active current nav__item" >Tags</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/archives" class="selected active current nav__item" >Archives</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/navigator.html" class="selected active current nav__item" >Navigator</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/post/about" class="selected active current nav__item" >About</a></li></ul><div class="clear clear_nav_inline_end"></div></nav></div><div class="clear clear_nav_end"></div></div>
+<div style="display:flex;justify-content:center;inline-block;text-align:center;margin-top:7%"><div><form id="gridea-search-form" data-update="1627835297708" action="/search/index.html"><input class="search-input" autocomplete="off" spellcheck="false" name="q"  placeholder="Search..." /></form></div><div style="margin-left:0.5em"><input id="switch_default_h" onclick="mobileBtn()" type="checkbox" class="switch_default"><label for="switch_default" class="toggleBtn"></label></div></div>
+</div></div>
+<script>function enableDarkmode(){document.body.classList.add("darkmode"),document.getElementById("switch_default").checked=1,document.getElementById("switch_default_h").checked=1}function removeDarkmode(){document.body.classList.remove("darkmode"),document.getElementById("switch_default").checked=0,document.getElementById("switch_default_h").checked=0}function getCookie(a){var b,c=new RegExp("(^| )"+a+"=([^;]*)(;|$)");return(b=document.cookie.match(c))?unescape(b[2]):null}cookie=getCookie("darkmode"),"enable"==cookie&&enableDarkmode(),window.matchMedia("(prefers-color-scheme: dark)").matches&&"disable"!==cookie&&(enableDarkmode(),document.cookie="darkmode=enable; path=/");var mobileBtn=function(){1==document.getElementById("switch_default").checked?(enableDarkmode(),document.cookie="darkmode=enable; path=/"):(removeDarkmode(),document.cookie="darkmode=disable; path=/")};</script>
+
+<div class="main"><div class="main-inner"><div class="content">
+<article class="post">
+<h2 class="post_title sm_margin"><a>ADS-Binomial Queue</a></h2>
+<script>function lan(){if(document.getElementById("lan").innerText=="繁"){var s=document.getElementById("tongwenlet_cn");if(s!=null){document.body.removeChild(s)}var s=document.createElement("script");s.language="javascript";s.type="text/javascript";s.src="https://cdn.jsdelivr.net/gh/qyxtim/Static@1.1/bookmarklet_tw.js";s.id="tongwenlet_cn";document.body.appendChild(s);document.getElementById("lan").innerHTML="简"}else{if(document.getElementById("lan").innerText=="簡"){var s=document.getElementById("tongwenlet_cn");if(s!=null){document.body.removeChild(s)}var s=document.createElement("script");s.language="javascript";s.type="text/javascript";s.src="https://cdn.jsdelivr.net/gh/qyxtim/Static@1.1/bookmarklet_cn.js";s.id="tongwenlet_cn";document.body.appendChild(s);document.getElementById("lan").innerHTML="繁"}}};</script>
+<section class="post_details"><i class="iconfont icon-calendar"></i><span style="margin-right:15px"> 2021-03-29</span><i class="iconfont icon-browse"></i><span style="margin-right:15px"> <span id="busuanzi_value_page_pv"></span> Views</span><i class="iconfont icon-category"></i><span class="weaklink" style="margin-right:15px">	<a href="https://reticenceji.github.io/tag/0AqTQfzSL/" class="tag">DS</a></span><i class="iconfont icon-caret-down"></i><span style="margin-right:15px">1772字</span><i class="iconfont icon-naozhong"></i><span style="margin-right:15px">11 min read</span><a id="lan" href="javascript:void(0);"onclick="lan();"title="调整简繁体" style="margin-right:15px;">繁</a>
+</section>
+
+<div style="display:flex">
+<div class="md_block" id="md_block">
+<div class="round-shape-one"></div>
+<h2 id="二项堆">二项堆</h2>
+<p>二项堆 H 由一组满足下面的二叉堆性质的二项树组成。</p>
+<ol>
+<li>H 中的每个二项树遵循最小堆性质：节点的关键字大于或等于其父节点的关键字</li>
+<li>对任意非负整数k，在 H 中至多有一颗二项树的根具有度数 k。第二个性质决定了如何判断一个包含 n 个元素的二项堆由哪几个二项树构成呢？将 n 写成二进制形式，哪一位为 1，那一位对应的二项树就应该存在。<br>
+比如，一个有42(0b101010)个结点的堆，就是由2、8、32个结点的树构成的森林。</li>
+</ol>
+<h2 id="复杂度分析">复杂度分析</h2>
+<table>
+<thead>
+<tr>
+<th>过程</th>
+<th>二项堆(最坏)</th>
+<th>摊还分析</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>MAKE_HEAP</td>
+<td>Θ(1)</td>
+<td></td>
+</tr>
+<tr>
+<td>INSERT</td>
+<td>Ω(lg n)</td>
+<td>O(1)</td>
+</tr>
+<tr>
+<td>MINIMUM</td>
+<td>Ω(lg n)<br />这个是特殊的，因为每一个Root都可能是最小</td>
+<td></td>
+</tr>
+<tr>
+<td>EXTRACT-MIN</td>
+<td>Θ(lg n)</td>
+<td></td>
+</tr>
+<tr>
+<td>UNION</td>
+<td>Θ(lg n)</td>
+<td></td>
+</tr>
+<tr>
+<td>DECREASE-KEY</td>
+<td>Θ(lg n)</td>
+<td></td>
+</tr>
+<tr>
+<td>DELETE</td>
+<td>Θ(lg n)</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="adt">ADT</h2>
+<p><a href="https://www.geeksforgeeks.org/binomial-heap-2/">参考链接-讲解</a>. <a href="">参考链接-实现</a></p>
+<p><strong>The main operation in Binomial Heap is <code>union()</code>, all other operations mainly use this operation.</strong> The union() operation is to combine two Binomial Heaps into one. Let us first discuss other operations, we will discuss union later.</p>
+<ol>
+<li><code>insert(H, k)</code>: Inserts a key ‘k’ to Binomial Heap ‘H’. This operation first creates a Binomial Heap with single key ‘k’, then calls union on H and the new Binomial heap. 插入的摊还复杂度是<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mn>2</mn><mo>)</mo></mrow><annotation encoding="application/x-tex">O(2)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord">2</span><span class="mclose">)</span></span></span></span></li>
+<li><code>getMin(H)</code>: A simple way to <code>getMin()</code> is to traverse the list of root of Binomial Trees and return the minimum key. This implementation requires <strong>O(Log N)</strong> time. It can be optimized to O(1) by maintaining a pointer to minimum key root.</li>
+<li><code>extractMin(H)</code>: This operation also uses union(). We first call getMin() to find the minimum key Binomial Tree, then we remove the node and create a new Binomial Heap by connecting all subtrees of the removed minimum node. Finally, we call <code>union()</code> on H and the newly created Binomial Heap. This operation requires <strong>O(Log N)</strong> time.</li>
+<li><code>delete(H)</code>: Like Binary Heap, delete operation first reduces the key to minus infinite, then calls extractMin().</li>
+<li><code>decreaseKey(H)</code>: decreaseKey() is also similar to Binary Heap. We compare the decreases key with it parent and if parent’s key is more, we swap keys and recur for the parent. We stop when we either reach a node whose parent has a smaller key or we hit the root node. Time complexity of decreaseKey() is <strong>O(Log N)</strong>.</li>
+<li><code>union(H1,H2)</code>⭐️
+<ol>
+<li>The first step is to simply merge the two Heaps in <strong>non-decreasing order of degrees</strong> 按照结点的度数排序O(Log N).</li>
+<li>After the simple merge, we need to make sure that there is at most one Binomial Tree of any order. To do this, we need to combine Binomial Trees of the same order. We traverse the list of merged roots, we keep track of three-pointers, <code>prev-x</code>, <code>x</code> and <code>next-x</code>. There can be following 4 cases when we traverse the list of roots.
+<ul>
+<li>Case 1: Orders of x and next-x are not same, we simply move ahead.</li>
+<li>In following 3 cases orders of x and next-x are same.
+<ul>
+<li>Case 2: If the order of next-next-x is also same, move ahead. (当出现三个一样的时候，我们其实可以有合并其中任意两个。这里选择合并后面两个，所以就直接往后移动指针了。如果考试考到了，这个点是需要注意的，其实有<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msubsup><mi>C</mi><mn>3</mn><mn>2</mn></msubsup><mo>=</mo><mn>3</mn></mrow><annotation encoding="application/x-tex">C_3^2=3</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.0622159999999998em;vertical-align:-0.24810799999999997em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.07153em;">C</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-2.4518920000000004em;margin-left:-0.07153em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.24810799999999997em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">3</span></span></span></span>种可能性)</li>
+<li>Case 3: If the key of x is smaller than or equal to the key of next-x, then make next-x as a child of x by linking it with x.</li>
+<li>Case 4: If the key of x is greater, then make x as the child of next. 三和四的区别就在于谁当root.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+</li>
+</ol>
+<figure data-type="image" tabindex="1"><img src="https://reticenceji.github.io/post-images/Bionomial_tree_2.png" alt="img" loading="lazy"></figure>
+<h2 id="实现">实现</h2>
+<p>陈越老师课件的数据结构：</p>
+<pre><code class="language-c">typedef struct BinNode *Position;
+typedef struct Collection *BinQueue;
+typedef struct BinNode *BinTree; 
+
+struct BinNode 
+{ 
+    ElementType	    Element;
+    Position	    LeftChild;		
+    Position 	    NextSibling;	/* 注意这个Sibling是从个数多到个数少排序的，就像上面的图一样.Root是没有的 */
+} ;
+
+struct Collection 
+{ 
+    int	    		CurrentSize;	/* total number of nodes */
+    BinTree			TheTrees[ MaxTrees ];
+} ;
+</code></pre>
+<p>union：</p>
+<pre><code class="language-cpp">// This function perform union operation on two
+// binomial heap i.e. l1 &amp; l2
+list&lt;Node*&gt; unionBionomialHeap(list&lt;Node*&gt; l1,list&lt;Node*&gt; l2)
+{
+	// _new to another binomial heap which contain
+	// new heap after merging l1 &amp; l2
+	list&lt;Node*&gt; _new;
+	list&lt;Node*&gt;::iterator it = l1.begin();
+	list&lt;Node*&gt;::iterator ot = l2.begin();
+// 第一步，首先不降序排序
+	while (it!=l1.end() &amp;&amp; ot!=l2.end())
+	{
+		// if D(l1) &lt;= D(l2)
+		if((*it)-&gt;degree &lt;= (*ot)-&gt;degree)
+		{
+			_new.push_back(*it);
+			it++;
+		}
+		// if D(l1) &gt; D(l2)
+		else
+		{
+			_new.push_back(*ot);
+			ot++;
+		}
+	}
+	// if there remains some elements in l1 binomial heap
+	while (it != l1.end())
+	{
+		_new.push_back(*it);
+		it++;
+	}
+
+	// if there remains some elements in l2 binomial heap
+	while (ot!=l2.end())
+	{
+		_new.push_back(*ot);
+		ot++;
+	}
+	return _new;
+}
+
+list&lt;Node*&gt; adjust(list&lt;Node*&gt; _heap)
+{
+	if (_heap.size() &lt;= 1)
+		return _heap;
+	list&lt;Node*&gt; new_heap;
+	list&lt;Node*&gt;::iterator it1,it2,it3;
+	it1 = it2 = it3 = _heap.begin();
+
+	if (_heap.size() == 2)
+	{
+		it2 = it1;
+		it2++;
+		it3 = _heap.end();
+	}
+	else
+	{
+		it2++;
+		it3=it2;
+		it3++;
+	}
+	while (it1 != _heap.end())
+	{
+		// if only one element remains to be processed
+		if (it2 == _heap.end())
+			it1++;
+
+		// If D(it1) &lt; D(it2) i.e. merging of Binomial
+		// Tree pointed by it1 &amp; it2 is not possible
+		// then move next in heap
+		else if ((*it1)-&gt;degree &lt; (*it2)-&gt;degree)
+		{
+			it1++;
+			it2++;
+			if(it3!=_heap.end())
+				it3++;
+		}
+
+		// if D(it1),D(it2) &amp; D(it3) are same i.e.
+		// degree of three consecutive Binomial Tree are same
+		// in heap
+		else if (it3!=_heap.end() &amp;&amp;
+				(*it1)-&gt;degree == (*it2)-&gt;degree &amp;&amp;
+				(*it1)-&gt;degree == (*it3)-&gt;degree)
+		{
+			it1++;
+			it2++;
+			it3++;
+		}
+
+		// if degree of two Binomial Tree are same in heap
+		else if ((*it1)-&gt;degree == (*it2)-&gt;degree)
+		{
+			Node *temp;
+			*it1 = mergeBinomialTrees(*it1,*it2);
+			it2 = _heap.erase(it2);
+			if(it3 != _heap.end())
+				it3++;
+		}
+	}
+	return _heap;
+}
+</code></pre>
+<pre><code class="language-cpp">// C++ program to implement different operations
+// on Binomial Heap
+#include&lt;bits/stdc++.h&gt;
+using namespace std;
+
+// A Binomial Tree node.
+struct Node
+{
+	int data, degree;
+	Node *child, *sibling, *parent;
+};
+
+Node* newNode(int key)
+{
+	Node *temp = new Node;
+	temp-&gt;data = key;
+	temp-&gt;degree = 0;
+	temp-&gt;child = temp-&gt;parent = temp-&gt;sibling = NULL;
+	return temp;
+}
+
+// This function merge two Binomial Trees.
+Node* mergeBinomialTrees(Node *b1, Node *b2)
+{
+	// Make sure b1 is smaller
+	if (b1-&gt;data &gt; b2-&gt;data)
+		swap(b1, b2);
+
+	// We basically make larger valued tree
+	// a child of smaller valued tree
+	b2-&gt;parent = b1;
+	b2-&gt;sibling = b1-&gt;child;
+	b1-&gt;child = b2;
+	b1-&gt;degree++;
+
+	return b1;
+}
+
+// adjust function rearranges the heap so that
+// heap is in increasing order of degree and
+// no two binomial trees have same degree in this heap
+
+
+// inserting a Binomial Tree into binomial heap
+list&lt;Node*&gt; insertATreeInHeap(list&lt;Node*&gt; _heap,
+							Node *tree)
+{
+	// creating a new heap i.e temp
+	list&lt;Node*&gt; temp;
+
+	// inserting Binomial Tree into heap
+	temp.push_back(tree);
+
+	// perform union operation to finally insert
+	// Binomial Tree in original heap
+	temp = unionBionomialHeap(_heap,temp);
+
+	return adjust(temp);
+}
+
+// removing minimum key element from binomial heap
+// this function take Binomial Tree as input and return
+// binomial heap after
+// removing head of that tree i.e. minimum element
+list&lt;Node*&gt; removeMinFromTreeReturnBHeap(Node *tree)
+{
+	list&lt;Node*&gt; heap;
+	Node *temp = tree-&gt;child;
+	Node *lo;
+
+	// making a binomial heap from Binomial Tree
+	while (temp)
+	{
+		lo = temp;
+		temp = temp-&gt;sibling;
+		lo-&gt;sibling = NULL;
+		heap.push_front(lo);
+	}
+	return heap;
+}
+
+// inserting a key into the binomial heap
+list&lt;Node*&gt; insert(list&lt;Node*&gt; _head, int key)
+{
+	Node *temp = newNode(key);
+	return insertATreeInHeap(_head,temp);
+}
+
+// return pointer of minimum value Node
+// present in the binomial heap
+Node* getMin(list&lt;Node*&gt; _heap)
+{
+	list&lt;Node*&gt;::iterator it = _heap.begin();
+	Node *temp = *it;
+	while (it != _heap.end())
+	{
+		if ((*it)-&gt;data &lt; temp-&gt;data)
+			temp = *it;
+		it++;
+	}
+	return temp;
+}
+
+list&lt;Node*&gt; extractMin(list&lt;Node*&gt; _heap)
+{
+	list&lt;Node*&gt; new_heap,lo;
+	Node *temp;
+
+	// temp contains the pointer of minimum value
+	// element in heap
+	temp = getMin(_heap);
+	list&lt;Node*&gt;::iterator it;
+	it = _heap.begin();
+	while (it != _heap.end())
+	{
+		if (*it != temp)
+		{
+			// inserting all Binomial Tree into new
+			// binomial heap except the Binomial Tree
+			// contains minimum element
+			new_heap.push_back(*it);
+		}
+		it++;
+	}
+	lo = removeMinFromTreeReturnBHeap(temp);
+	new_heap = unionBionomialHeap(new_heap,lo);
+	new_heap = adjust(new_heap);
+	return new_heap;
+}
+
+// print function for Binomial Tree
+void printTree(Node *h)
+{
+	while (h)
+	{
+		cout &lt;&lt; h-&gt;data &lt;&lt; &quot; &quot;;
+		printTree(h-&gt;child);
+		h = h-&gt;sibling;
+	}
+}
+
+// print function for binomial heap
+void printHeap(list&lt;Node*&gt; _heap)
+{
+	list&lt;Node*&gt; ::iterator it;
+	it = _heap.begin();
+	while (it != _heap.end())
+	{
+		printTree(*it);
+		it++;
+	}
+}
+
+
+// Driver program to test above functions
+int main()
+{
+	int ch,key;
+	list&lt;Node*&gt; _heap;
+
+	// Insert data in the heap
+	_heap = insert(_heap,10);
+	_heap = insert(_heap,20);
+	_heap = insert(_heap,30);
+
+	cout &lt;&lt; &quot;Heap elements after insertion:\n&quot;;
+	printHeap(_heap);
+
+	Node *temp = getMin(_heap);
+	cout &lt;&lt; &quot;\nMinimum element of heap &quot;
+		&lt;&lt; temp-&gt;data &lt;&lt; &quot;\n&quot;;
+
+	// Delete minimum element of heap
+	_heap = extractMin(_heap);
+	cout &lt;&lt; &quot;Heap after deletion of minimum element\n&quot;;
+	printHeap(_heap);
+
+	return 0;
+}
+
+</code></pre>
+
+<span id="footnote"></span>
+<div id = "warn"></div>
+</div>
+<div class="toc-container"><ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#%E4%BA%8C%E9%A1%B9%E5%A0%86">二项堆</a></li>
+<li><a href="#%E5%A4%8D%E6%9D%82%E5%BA%A6%E5%88%86%E6%9E%90">复杂度分析</a></li>
+<li><a href="#adt">ADT</a></li>
+<li><a href="#%E5%AE%9E%E7%8E%B0">实现</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="fullPage"><canvas id="canvas"></canvas></div>
+</article>
+<div id="eof"><span>EOF</span></div><div class="round-shape-one"></div>
+<section>
+<div class="doc_comments">
+
+</div></section>
+</div></div></div><script>
+"use strict";!function(){for(var n=document.getElementsByTagName("pre"),e=n.length,s=0;s<e;s++){n[s].innerHTML='<span class="line-number"></span>'+n[s].innerHTML+'<span class="cl"></span>';for(var a=n[s].innerHTML.split(/\n/).length,r=0;r<a-1;r++){n[s].getElementsByTagName("span")[0].innerHTML+="<span>"+(r+1)+"</span>"}}}();
+let mainNavLinks=document.querySelectorAll(".markdownIt-TOC a");window.addEventListener("scroll",event=>{let fromTop=window.scrollY;mainNavLinks.forEach((link,index)=>{let section=document.getElementById(decodeURI(link.hash).substring(1));let nextSection=null
+if(mainNavLinks[index+1]){nextSection=document.getElementById(decodeURI(mainNavLinks[index+1].hash).substring(1));}
+if(section.offsetTop<=fromTop){if(nextSection){if(nextSection.offsetTop>fromTop){link.classList.add("currentToc");}else{link.classList.remove("currentToc");}}else{link.classList.add("currentToc");}}else{link.classList.remove("currentToc");}});});
+var h=document.documentElement,b=document.body,st="scrollTop",sh="scrollHeight",progress=document.querySelector(".progress"),scroll;document.addEventListener("scroll",function(){scroll=(h[st]||b[st])/((h[sh]||b[sh])-h.clientHeight)*100;progress.style.setProperty("--scroll",scroll+"%")});
+var wxScale=new WxScale({fullPage:document.querySelector("#fullPage"),canvas:document.querySelector("#canvas")});var imgBox=document.querySelectorAll("#md_block img");for(var i=0;i<imgBox.length;i++){imgBox[i].onclick=function(e){wxScale.start(this)}};
+</script>
+<a id="scrollUp" href="#top" style="position: fixed; z-index: 2147483647; display: block;"></a><div class="footer animated fadeInDown"><div class="site_footer"><div class="mysocials"><div class="my_socials"><a href="https://github.com/reticenceji"title="github"><i class="iconfont icon-github"></i></a><a href="reticenceji@qq.com"title="envelope"><i class="iconfont icon-envelope"></i></a><a href="https://www.zhihu.com/people/reticenceji"title="zhihu"><i class="iconfont icon-zhihu"></i></a></div></div><div class="copyright"id="copyright">Copyright © 2018-2020 <a href="https://reticenceji.github.io" style="margin:0;">Reticence</a>.</div>
+<span style="display: inline;margin-right:15px;">👁<strong><span id="busuanzi_value_site_uv"></span></strong></span><span id="busuanzi_container_page_pv" style="display: inline;"><span>📚<strong>176</strong> posts</span></div></div>
+<script>
+console.log("\n %c \u26a1Theme: Bitcron-pro Author's Blog:https://blog.blinkstar.cn  Writen By Serence  \n\n", "color: #ffffff; background: rgba(49, 49, 49, 0.85); padding:5px 0;border-radius:5px;", );
+</script>
+<script src="https://cdn.jsdelivr.net/npm/instant.page@3.0.0/instantpage.min.js" type="module" defer></script>
+<script type="text/javascript" async src="https://reticenceji.github.io/media/js/prism.js"></script>
+</body>
+</html>

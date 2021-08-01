@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="shortcut icon" href="https://reticenceji.github.io/favicon.ico" type="image/x-icon" /><meta name="viewport"content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="apple-mobile-web-app-capable"content="yes"/><meta name="apple-mobile-web-app-status-bar-style"content="black"/><meta name="format-detection"content="telephone=no"/><meta name="renderer"content="webkit"><meta name="description"content=""><meta charset="UTF-8"><title>RISCV-SBI | Reticence</title>
+<link href="https://reticenceji.github.io/styles/main.css" type="text/css" rel="stylesheet" /><link href="https://at.alicdn.com/t/font_1621793_zatzzgvf30g.css" type="text/css" rel="stylesheet" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css"><script async src="https://cdn.jsdelivr.net/npm/busuanzi@2.3.0/bsz.pure.mini.min.js"></script><script src="https://reticenceji.github.io/media/js/magnify.min.js"></script><script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js"></script>
+<script type="text/javascript">function btn_toggle(){document.getElementById("hn").classList.contains("no-js")?document.getElementById("hn").classList.remove("no-js"):document.getElementById("hn").classList.add("no-js")}</script>
+
+<link rel="canonical" href="https://reticenceji.github.io/post/riscv-sbi/" />
+</head>
+<body>
+<div class="progress"></div><style>.progress{background:linear-gradient(to right,#87ceeb var(--scroll),transparent 0);background-repeat:no-repeat;position:fixed;width:100%;height:4px;z-index:1}</style><div class="darkmode-background"></div><div class="darkmode-layer"></div>
+<noscript><p class="warn" >本页面需要浏览器支持（启用）JavaScript</p></noscript><div class="header"><div class="logo_title"><div class="title animated fadeInDown"><a href="https://reticenceji.github.io"><img alt="logo" style="display:inline-block;" src="https://reticenceji.github.io/images/avatar.png"/></a><h1 title="Reticence" class="weaklink"><a  href="/">Reticence</a></h1>
+
+<div class="navbar weaklink">
+<div class="normal_nav">
+<div class="bitcron_nav_container"><div class="bitcron_nav"><div class="bitcron_nav"><div style="display:flex;justify-content:center;"><nav class="mixed_site_nav_wrap site_nav_wrap"><ul class="mixed_site_nav site_nav sm sm-base">	<li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/" class="selected active current nav__item" >Index</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/tags" class="selected active current nav__item" >Tags</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/archives" class="selected active current nav__item" >Archives</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/navigator.html" class="selected active current nav__item" >Navigator</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/post/about" class="selected active current nav__item" >About</a></li></ul></nav>
+<div style="float:right;margin-top:1em"><form id="gridea-search-form" data-update="1578893743252" action="/search/index.html"><input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="Search..."></form></div><div style="margin-left:0.5em;margin-top:1.2em"><input id="switch_default" onclick="mobileBtn()" type="checkbox" class="switch_default"><label for="switch_default" class="toggleBtn"></label></div></div>
+<div class="clear clear_nav_inline_end"></div></div></div><div class="clear clear_nav_end"></div></div></div><div class="hamberger" href="javascript:void(0)" onclick="btn_toggle();"><i class="iconfont icon-category"></i></div></div></div></div>
+<div id="hn" class="no-js hidden_nav animated fadeInDown"><div class="bitcron_nav_container"><div class="bitcron_nav"><nav class="mixed_site_nav_wrap site_nav_wrap"><ul class="mixed_site_nav site_nav sm sm-base">	<li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/" class="selected active current nav__item" >Index</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/tags" class="selected active current nav__item" >Tags</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/archives" class="selected active current nav__item" >Archives</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/navigator.html" class="selected active current nav__item" >Navigator</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/post/about" class="selected active current nav__item" >About</a></li></ul><div class="clear clear_nav_inline_end"></div></nav></div><div class="clear clear_nav_end"></div></div>
+<div style="display:flex;justify-content:center;inline-block;text-align:center;margin-top:7%"><div><form id="gridea-search-form" data-update="1627835297708" action="/search/index.html"><input class="search-input" autocomplete="off" spellcheck="false" name="q"  placeholder="Search..." /></form></div><div style="margin-left:0.5em"><input id="switch_default_h" onclick="mobileBtn()" type="checkbox" class="switch_default"><label for="switch_default" class="toggleBtn"></label></div></div>
+</div></div>
+<script>function enableDarkmode(){document.body.classList.add("darkmode"),document.getElementById("switch_default").checked=1,document.getElementById("switch_default_h").checked=1}function removeDarkmode(){document.body.classList.remove("darkmode"),document.getElementById("switch_default").checked=0,document.getElementById("switch_default_h").checked=0}function getCookie(a){var b,c=new RegExp("(^| )"+a+"=([^;]*)(;|$)");return(b=document.cookie.match(c))?unescape(b[2]):null}cookie=getCookie("darkmode"),"enable"==cookie&&enableDarkmode(),window.matchMedia("(prefers-color-scheme: dark)").matches&&"disable"!==cookie&&(enableDarkmode(),document.cookie="darkmode=enable; path=/");var mobileBtn=function(){1==document.getElementById("switch_default").checked?(enableDarkmode(),document.cookie="darkmode=enable; path=/"):(removeDarkmode(),document.cookie="darkmode=disable; path=/")};</script>
+
+<div class="main"><div class="main-inner"><div class="content">
+<article class="post">
+<h2 class="post_title sm_margin"><a>RISCV-SBI</a></h2>
+<script>function lan(){if(document.getElementById("lan").innerText=="繁"){var s=document.getElementById("tongwenlet_cn");if(s!=null){document.body.removeChild(s)}var s=document.createElement("script");s.language="javascript";s.type="text/javascript";s.src="https://cdn.jsdelivr.net/gh/qyxtim/Static@1.1/bookmarklet_tw.js";s.id="tongwenlet_cn";document.body.appendChild(s);document.getElementById("lan").innerHTML="简"}else{if(document.getElementById("lan").innerText=="簡"){var s=document.getElementById("tongwenlet_cn");if(s!=null){document.body.removeChild(s)}var s=document.createElement("script");s.language="javascript";s.type="text/javascript";s.src="https://cdn.jsdelivr.net/gh/qyxtim/Static@1.1/bookmarklet_cn.js";s.id="tongwenlet_cn";document.body.appendChild(s);document.getElementById("lan").innerHTML="繁"}}};</script>
+<section class="post_details"><i class="iconfont icon-calendar"></i><span style="margin-right:15px"> 2021-03-26</span><i class="iconfont icon-browse"></i><span style="margin-right:15px"> <span id="busuanzi_value_page_pv"></span> Views</span><i class="iconfont icon-category"></i><span class="weaklink" style="margin-right:15px">	<a href="https://reticenceji.github.io/tag/nfABdWVsa/" class="tag">OS</a></span><i class="iconfont icon-caret-down"></i><span style="margin-right:15px">1580字</span><i class="iconfont icon-naozhong"></i><span style="margin-right:15px">8 min read</span><a id="lan" href="javascript:void(0);"onclick="lan();"title="调整简繁体" style="margin-right:15px;">繁</a>
+</section>
+
+<div style="display:flex">
+<div class="md_block" id="md_block">
+<div class="round-shape-one"></div>
+<p>官方文档的链接请阅读README:<a href="https://github.com/riscv/riscv-sbi-doc.git">https://github.com/riscv/riscv-sbi-doc.git</a>. 在这里,我把其中一些重要内容翻译成中文.</p>
+<p>参考<a href="https://archive.fosdem.org/2019/schedule/event/riscvsbi/attachments/slides/3058/export/events/attachments/riscvsbi/slides/3058/FOSDEM_RISCV_SBI_Atish.pdf">PPT</a></p>
+<h1 id="认识riscv-sbi">认识RISCV SBI</h1>
+<p>我们使用S Mode 使用 ECALL产生异常，让M mode处理异常，从而调用SBI接口；<br>
+就像我们在U Mode使用ECALL产生异常，让S Mode处理异常，从而调用系统调用一样。<br>
+<img src="https://reticenceji.github.io/post-images/1616826661985.jpg" alt="" loading="lazy"></p>
+<h2 id="二进制规范">二进制规范</h2>
+<p>和Linux使用几乎相同的二进制规范，</p>
+<ul>
+<li>函数参数的传递通过寄存器<code>a0</code>-<code>a5</code></li>
+<li>寄存器<code>a7</code>(or <code>t0</code> on RV32E-based systems) 保存 SBI EID，相当于调用号。<code>a6</code>保存SBI FID，这个相当于一个辅助信息来区别调用。</li>
+<li>返回值通过寄存器<code>a0</code>和<code>a1</code>返回。同时error code也通过<code>a0</code>返回。</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Error Type</th>
+<th style="text-align:left">Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">SBI_SUCCESS</td>
+<td style="text-align:left">0</td>
+</tr>
+<tr>
+<td style="text-align:left">SBI_ERR_FAILED</td>
+<td style="text-align:left">-1</td>
+</tr>
+<tr>
+<td style="text-align:left">SBI_ERR_NOT_SUPPORTED</td>
+<td style="text-align:left">-2</td>
+</tr>
+<tr>
+<td style="text-align:left">SBI_ERR_INVALID_PARAM</td>
+<td style="text-align:left">-3</td>
+</tr>
+<tr>
+<td style="text-align:left">SBI_ERR_DENIED</td>
+<td style="text-align:left">-4</td>
+</tr>
+<tr>
+<td style="text-align:left">SBI_ERR_INVALID_ADDRESS</td>
+<td style="text-align:left">-5</td>
+</tr>
+<tr>
+<td style="text-align:left">SBI_ERR_ALREADY_AVAILABLE</td>
+<td style="text-align:left">-6</td>
+</tr>
+</tbody>
+</table>
+<h2 id="base-extension-eid-0x10">Base Extension (EID #0x10)</h2>
+<p>这些接口是必须实现的，和版本号有关，但是我觉得没什么用。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Function Name</th>
+<th style="text-align:left">FID</th>
+<th style="text-align:left">EID</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">sbi_get_sbi_spec_version</td>
+<td style="text-align:left">0</td>
+<td style="text-align:left">0x10</td>
+</tr>
+<tr>
+<td style="text-align:left">sbi_get_sbi_impl_id</td>
+<td style="text-align:left">1</td>
+<td style="text-align:left">0x10</td>
+</tr>
+<tr>
+<td style="text-align:left">sbi_get_sbi_impl_version</td>
+<td style="text-align:left">2</td>
+<td style="text-align:left">0x10</td>
+</tr>
+<tr>
+<td style="text-align:left">sbi_probe_extension</td>
+<td style="text-align:left">3</td>
+<td style="text-align:left">0x10</td>
+</tr>
+<tr>
+<td style="text-align:left">sbi_get_mvendorid</td>
+<td style="text-align:left">4</td>
+<td style="text-align:left">0x10</td>
+</tr>
+<tr>
+<td style="text-align:left">sbi_get_marchid</td>
+<td style="text-align:left">5</td>
+<td style="text-align:left">0x10</td>
+</tr>
+<tr>
+<td style="text-align:left">sbi_get_mimpid</td>
+<td style="text-align:left">6</td>
+<td style="text-align:left">0x10</td>
+</tr>
+</tbody>
+</table>
+<p>我们常见的不同SBI的实现的Implementation ID。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Implementation ID</th>
+<th style="text-align:left">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">0</td>
+<td style="text-align:left">Berkeley Boot Loader (BBL)</td>
+</tr>
+<tr>
+<td style="text-align:left">1</td>
+<td style="text-align:left"><strong>OpenSBI</strong></td>
+</tr>
+<tr>
+<td style="text-align:left">2</td>
+<td style="text-align:left">Xvisor</td>
+</tr>
+<tr>
+<td style="text-align:left">3</td>
+<td style="text-align:left">KVM</td>
+</tr>
+<tr>
+<td style="text-align:left">4</td>
+<td style="text-align:left"><strong>RustSBI</strong>（华中科技大学的洛佳大神）</td>
+</tr>
+<tr>
+<td style="text-align:left">5</td>
+<td style="text-align:left">Diosix</td>
+</tr>
+</tbody>
+</table>
+<h2 id="legacy-extensions-eids-0x00-0x0f">Legacy Extensions (EIDs #0x00 - #0x0F)</h2>
+<h3 id="1-set-timer-eid-0x00">1. Set Timer (EID #0x00)</h3>
+<pre><code class="language-C">void sbi_set_timer(uint64_t stime_value)
+</code></pre>
+<p>设置时钟。</p>
+<p>这个函数同时会清楚peding timer interrupt bit.</p>
+<h3 id="console-putchar-eid-0x01">Console Putchar (EID #0x01)</h3>
+<pre><code class="language-C">void sbi_console_putchar(int ch)
+</code></pre>
+<p>把ch代表的数据写到调试控制台。</p>
+<h3 id="console-getchar-eid-0x02">Console Getchar (EID #0x02)</h3>
+<pre><code class="language-C">int sbi_console_getchar(void)
+</code></pre>
+<p>从调试控制台读取数据。如果失败了会返回-1。</p>
+<p>这是唯一一个有返回值的legacy extention</p>
+<h3 id="clear-ipi-eid-0x03">Clear IPI (EID #0x03)</h3>
+<pre><code class="language-C">void sbi_clear_ipi(void)
+</code></pre>
+<p>清除所有的pending IPI，如果有的话。</p>
+<blockquote>
+<p>IPI的意思是Inter-processor interrupt</p>
+</blockquote>
+<p>不推荐使用，因为S mode可以直接清除sip.SSIP</p>
+<h3 id="send-ipi-eid-0x04">Send IPI (EID #0x04)</h3>
+<pre><code class="language-C">void sbi_send_ipi(const unsigned long *hart_mask)
+</code></pre>
+<p>向其他的<strong>hart</strong>发送inter-processor interrupt。其他hart通过这个hart_mask来指定。</p>
+<blockquote>
+<p>unsigned long hart_mask是包含harts ID的scalar bit-vector。如果包含了非法的ID会返回SBI_ERR_INVALID_PARAM错误。</p>
+</blockquote>
+<h3 id="remote-fencei-eid-0x05">Remote FENCE.I (EID #0x05)</h3>
+<pre><code class="language-C">void sbi_remote_fence_i(const unsigned long *hart_mask)
+</code></pre>
+<p>让其他的hart执行Fence_i，其他hart通过这个hart_mask来指定。</p>
+<blockquote>
+<p>Fence_i:同步指令流，使对内存指令区域的读写，对后续取指令可见。</p>
+</blockquote>
+<h3 id="remote-sfencevma-eid-0x06">Remote SFENCE.VMA (EID #0x06)</h3>
+<pre><code class="language-C">void sbi_remote_sfence_vma(const unsigned long *hart_mask,
+                           unsigned long start,
+                           unsigned long size)
+</code></pre>
+<p>让其他的hart执行sfence.vma，其他hart通过这个hart_mask来指定。包括虚拟地址在start和start+size的所有虚拟地址。</p>
+<blockquote>
+<p>sfence.vma rs1, rs2 Fence(Store, AddressTranslation)<br>
+虚拟内存屏障(Fence Virtual Memory). R-type, RV32I and RV64I 特权指令。<br>
+根据后续的虚拟地址翻译对之前的页表存入进行排序。当 rs2=0 时，所有地址空间的翻译都会受到影响；否则，仅对 x[rs2]标识的地址空间的翻译进行排序。当 rs1=0 时，对所选地址空间中的所有虚拟地址的翻译进行排序；否则，仅对其中包含虚拟地址 x[rs1]的页面地址翻译进行排序。</p>
+</blockquote>
+<h3 id="remote-sfencevma-with-asid-eid-0x07">Remote SFENCE.VMA with ASID (EID #0x07)</h3>
+<pre><code class="language-C">void sbi_remote_sfence_vma_asid(const unsigned long *hart_mask,
+                                unsigned long start,
+                                unsigned long size,
+                                unsigned long asid)
+</code></pre>
+<h3 id="system-shutdown-eid-0x08">System Shutdown (EID #0x08)</h3>
+<pre><code class="language-C">void sbi_shutdown(void)
+</code></pre>
+<p>关机，或者说是停止所有的hart。</p>
+<h3 id="小结">小结</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Function Name</th>
+<th style="text-align:left">FID</th>
+<th style="text-align:left">EID</th>
+<th style="text-align:left">Replacement EID</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">sbi_set_timer</td>
+<td style="text-align:left">0</td>
+<td style="text-align:left">0x00</td>
+<td style="text-align:left">0x54494D45</td>
+</tr>
+<tr>
+<td style="text-align:left">sbi_console_putchar</td>
+<td style="text-align:left">0</td>
+<td style="text-align:left">0x01</td>
+<td style="text-align:left">N/A</td>
+</tr>
+<tr>
+<td style="text-align:left">sbi_console_getchar</td>
+<td style="text-align:left">0</td>
+<td style="text-align:left">0x02</td>
+<td style="text-align:left">N/A</td>
+</tr>
+<tr>
+<td style="text-align:left">sbi_clear_ipi</td>
+<td style="text-align:left">0</td>
+<td style="text-align:left">0x03</td>
+<td style="text-align:left">N/A</td>
+</tr>
+<tr>
+<td style="text-align:left">sbi_send_ipi</td>
+<td style="text-align:left">0</td>
+<td style="text-align:left">0x04</td>
+<td style="text-align:left">0x735049</td>
+</tr>
+<tr>
+<td style="text-align:left">sbi_remote_fence_i</td>
+<td style="text-align:left">0</td>
+<td style="text-align:left">0x05</td>
+<td style="text-align:left">0x52464E43</td>
+</tr>
+<tr>
+<td style="text-align:left">sbi_remote_sfence_vma</td>
+<td style="text-align:left">0</td>
+<td style="text-align:left">0x06</td>
+<td style="text-align:left">0x52464E43</td>
+</tr>
+<tr>
+<td style="text-align:left">sbi_remote_sfence_vma_asid</td>
+<td style="text-align:left">0</td>
+<td style="text-align:left">0x07</td>
+<td style="text-align:left">0x52464E43</td>
+</tr>
+<tr>
+<td style="text-align:left">sbi_shutdown</td>
+<td style="text-align:left">0</td>
+<td style="text-align:left">0x08</td>
+<td style="text-align:left">0x53525354</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>RESERVED</strong></td>
+<td style="text-align:left"></td>
+<td style="text-align:left">0x09-0x0F</td>
+<td style="text-align:left"></td>
+</tr>
+</tbody>
+</table>
+<p>你可以看到这里还有Replacement EID，这是另一些扩展的接口。</p>
+<h1 id="使用riscv-sbi">使用RISCV SBI</h1>
+<figure data-type="image" tabindex="1"><img src="https://reticenceji.github.io/post-images/1616916397962.jpg" alt="" loading="lazy"></figure>
+<h2 id="opensbi">OpenSBI</h2>
+<ul>
+<li><a href="https://github.com/riscv/opensbi">开源的RISCV SBI参考实现</a>，由社区驱动</li>
+<li>Builds a static library that any M-mode boot loader can link</li>
+<li>Source level documentation using Doxygen</li>
+</ul>
+<p>两个静态链接库：</p>
+<ul>
+<li>libsbi.a：
+<ul>
+<li>A static library that provides SBI implementation</li>
+<li>Other M-mode boot loader may just link this for SBI functionality</li>
+<li>Every future proposed SBI extension will be implemented</li>
+</ul>
+</li>
+<li>libplatsbi.a：
+<ul>
+<li>A static library that provides reference platform implementation</li>
+<li>Contains minimal platform drivers required for bringup</li>
+<li>Links libsbi.a for sbi implementation</li>
+<li>Platform vendors are welcome to add their platform support</li>
+</ul>
+</li>
+</ul>
+<h2 id="qemuopensbi">Qemu+OpenSBI</h2>
+<p>参考GIT仓库的文档</p>
+<pre><code class="language-shell">#下载OpenSBI
+git clone https://github.com/riscv/opensbi.git
+#设置环境 
+export CROSS_COMPILE=riscv64-unknown-linux-gnu- 
+make PLATFORM=generic FW_PAYLOAD_PATH=../oslab/arch/riscv/boot/Image 
+#qemu启动
+qemu-system-riscv64 -M virt -m 256M -nographic\
+	-bios build/platform/generic/firmware/fw_payload.elf\
+    -S -s
+</code></pre>
+<p>生成的FIRMWARE：我们使用第一个。得到的<code>fw_payload.elf</code>就是我们完整的程序。</p>
+<p>**FW_PAYLOAD：**在启动阶段直接包含二进制文件，跟随OpenSBI firmware执行。通常payload是一个Bootloader(比如u-boot)或者一个小kernel。</p>
+<p>**FW_JUMP：**是仅处理下一个booting stage entry的地址的固件，例如bootloader或OS内核，而无需直接包含此下一阶段的二进制代码。也就是说，在上一个阶段就要把要启动的东西加载到内存中。</p>
+<p>**FW_DYNAMIC：**可获取有关下一个booting stage（例如bootloader或OS）以及上一个引导阶段的runtime OpenSBI库选项的信息。也就是说上一个启动阶段要向OpenSBI提供信息。</p>
+<p>查看一下我们获得的ELF：0x80200000是默认的我们的PAYLOAD的加载地址。在做好准备工作之后，OpenSBI会mret到0x80200000处。</p>
+<pre><code>Disassembly of section .payload:
+
+0000000080200000 &lt;payload_bin&gt;:
+    80200000:   00000297                auipc   t0,0x0
+    80200004:   02828293                addi    t0,t0,40 # 80200028 &lt;payload_bin+0x28&gt;
+    80200008:   fbf0031b                addiw   t1,zero,-65
+    8020000c:   01f31313                slli    t1,t1,0x1f
+    80200010:   006282b3                add     t0,t0,t1
+    80200014:   10529073                csrw    stvec,t0
+    80200018:   191030ef                jal     ra,802039a8 &lt;payload_bin+0x39a8&gt;
+    8020001c:   0e9010ef                jal     ra,80201904 &lt;payload_bin+0x1904&gt;
+    80200020:   7f5010ef                jal     ra,80202014 &lt;payload_bin+0x2014&gt;
+    80200024:   18051073                csrw    satp,a0
+    80200028:   12000073                sfence.vma
+    8020002c:   000402b7                lui     t0,0x40
+    80200030:   1222829b                addiw   t0,t0,290
+    80200034:   10029073                csrw    sstatus,t0
+    80200038:   14201073                csrw    scause,zero
+    8020003c:   00000297                auipc   t0,0x0
+    80200040:   02028293                addi    t0,t0,32 # 8020005c &lt;payload_bin+0x5c&gt;
+</code></pre>
+<h3 id="板子maix-dock">板子Maix Dock</h3>
+<p>Linux 不需要装驱动，系统自带了，使用 <code>ls /dev/ttyUSB*</code> 即可看到设备号。</p>
+<p>处理器采用Kendryte K210，是<a href="https://github.com/riscv/opensbi/blob/master/docs/platform/platform.md">opensbi所支持</a>的。</p>
+<p>用<code>kflash</code>烧写。具体可以参考我的另一篇文章<a href="/post/zai-k210-yun-xing-luo-ji-cheng-xu">k210运行裸机程序</a></p>
+<h2 id="rustsbiqemuk210">RustSBI+QEMU/K210</h2>
+<p>RustSBI提供了QEMU和K210的两套。</p>
+<p>下载或编译<code>rustsbi-k210.bin</code>和<code>rustsbi-qemu.bin</code>。然后把他剪切一下。</p>
+<p>k210跳转到0x80020000的地方，而程序被加载到0x80000000。所以我们需要把我们的kernel剪切到文件的0x20000处。qemu跳转到0x80200000的地方。Image和bin都是纯二进制文件，用<code>objcopy --strip-all</code>对ELF进行裁剪产生。下面是一个demo</p>
+<pre><code class="language-makefile">K210_BOOTLOADER_SIZE = 131072
+QEMU_BOOTLOADER_SIZE = 2097152
+KERNEL_BIN = ./boot/Image
+K210_RUSTSBI_BIN = ./boot/rustsbi-k210.bin
+QEMU_RUSTSBI_BIN = ./boot/rustsbi-qemu.bin
+K210_FIRMWARE = ./boot/k210_firmware.bin
+
+debug: all
+	qemu-system-riscv64 -machine virt -nographic \
+	-bios $(QEMU_RUSTSBI_BIN) \
+	-device loader,file=$(KERNEL_BIN),addr=0x80200000 \
+	-s -S
+run: all
+	qemu-system-riscv64 -machine virt -nographic \
+	-bios $(QEMU_RUSTSBI_BIN) \
+	-device loader,file=$(KERNEL_BIN),addr=0x80200000 
+k210: all
+	@cp $(K210_RUSTSBI_BIN) $(K210_FIRMWARE)
+	@dd if=$(KERNEL_BIN) of=$(K210_FIRMWARE) bs=$(K210_BOOTLOADER_SIZE) seek=1
+</code></pre>
+
+<span id="footnote"></span>
+<div id = "warn"></div>
+</div>
+<div class="toc-container"><ul class="markdownIt-TOC">
+<li><a href="#%E8%AE%A4%E8%AF%86riscv-sbi">认识RISCV SBI</a>
+<ul>
+<li><a href="#%E4%BA%8C%E8%BF%9B%E5%88%B6%E8%A7%84%E8%8C%83">二进制规范</a></li>
+<li><a href="#base-extension-eid-0x10">Base Extension (EID #0x10)</a></li>
+<li><a href="#legacy-extensions-eids-0x00-0x0f">Legacy Extensions (EIDs #0x00 - #0x0F)</a>
+<ul>
+<li><a href="#1-set-timer-eid-0x00">1. Set Timer (EID #0x00)</a></li>
+<li><a href="#console-putchar-eid-0x01">Console Putchar (EID #0x01)</a></li>
+<li><a href="#console-getchar-eid-0x02">Console Getchar (EID #0x02)</a></li>
+<li><a href="#clear-ipi-eid-0x03">Clear IPI (EID #0x03)</a></li>
+<li><a href="#send-ipi-eid-0x04">Send IPI (EID #0x04)</a></li>
+<li><a href="#remote-fencei-eid-0x05">Remote FENCE.I (EID #0x05)</a></li>
+<li><a href="#remote-sfencevma-eid-0x06">Remote SFENCE.VMA (EID #0x06)</a></li>
+<li><a href="#remote-sfencevma-with-asid-eid-0x07">Remote SFENCE.VMA with ASID (EID #0x07)</a></li>
+<li><a href="#system-shutdown-eid-0x08">System Shutdown (EID #0x08)</a></li>
+<li><a href="#%E5%B0%8F%E7%BB%93">小结</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#%E4%BD%BF%E7%94%A8riscv-sbi">使用RISCV SBI</a>
+<ul>
+<li><a href="#opensbi">OpenSBI</a></li>
+<li><a href="#qemuopensbi">Qemu+OpenSBI</a>
+<ul>
+<li><a href="#%E6%9D%BF%E5%AD%90maix-dock">板子Maix Dock</a></li>
+</ul>
+</li>
+<li><a href="#rustsbiqemuk210">RustSBI+QEMU/K210</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="fullPage"><canvas id="canvas"></canvas></div>
+</article>
+<div id="eof"><span>EOF</span></div><div class="round-shape-one"></div>
+<section>
+<div class="doc_comments">
+
+</div></section>
+</div></div></div><script>
+"use strict";!function(){for(var n=document.getElementsByTagName("pre"),e=n.length,s=0;s<e;s++){n[s].innerHTML='<span class="line-number"></span>'+n[s].innerHTML+'<span class="cl"></span>';for(var a=n[s].innerHTML.split(/\n/).length,r=0;r<a-1;r++){n[s].getElementsByTagName("span")[0].innerHTML+="<span>"+(r+1)+"</span>"}}}();
+let mainNavLinks=document.querySelectorAll(".markdownIt-TOC a");window.addEventListener("scroll",event=>{let fromTop=window.scrollY;mainNavLinks.forEach((link,index)=>{let section=document.getElementById(decodeURI(link.hash).substring(1));let nextSection=null
+if(mainNavLinks[index+1]){nextSection=document.getElementById(decodeURI(mainNavLinks[index+1].hash).substring(1));}
+if(section.offsetTop<=fromTop){if(nextSection){if(nextSection.offsetTop>fromTop){link.classList.add("currentToc");}else{link.classList.remove("currentToc");}}else{link.classList.add("currentToc");}}else{link.classList.remove("currentToc");}});});
+var h=document.documentElement,b=document.body,st="scrollTop",sh="scrollHeight",progress=document.querySelector(".progress"),scroll;document.addEventListener("scroll",function(){scroll=(h[st]||b[st])/((h[sh]||b[sh])-h.clientHeight)*100;progress.style.setProperty("--scroll",scroll+"%")});
+var wxScale=new WxScale({fullPage:document.querySelector("#fullPage"),canvas:document.querySelector("#canvas")});var imgBox=document.querySelectorAll("#md_block img");for(var i=0;i<imgBox.length;i++){imgBox[i].onclick=function(e){wxScale.start(this)}};
+</script>
+<a id="scrollUp" href="#top" style="position: fixed; z-index: 2147483647; display: block;"></a><div class="footer animated fadeInDown"><div class="site_footer"><div class="mysocials"><div class="my_socials"><a href="https://github.com/reticenceji"title="github"><i class="iconfont icon-github"></i></a><a href="reticenceji@qq.com"title="envelope"><i class="iconfont icon-envelope"></i></a><a href="https://www.zhihu.com/people/reticenceji"title="zhihu"><i class="iconfont icon-zhihu"></i></a></div></div><div class="copyright"id="copyright">Copyright © 2018-2020 <a href="https://reticenceji.github.io" style="margin:0;">Reticence</a>.</div>
+<span style="display: inline;margin-right:15px;">👁<strong><span id="busuanzi_value_site_uv"></span></strong></span><span id="busuanzi_container_page_pv" style="display: inline;"><span>📚<strong>176</strong> posts</span></div></div>
+<script>
+console.log("\n %c \u26a1Theme: Bitcron-pro Author's Blog:https://blog.blinkstar.cn  Writen By Serence  \n\n", "color: #ffffff; background: rgba(49, 49, 49, 0.85); padding:5px 0;border-radius:5px;", );
+</script>
+<script src="https://cdn.jsdelivr.net/npm/instant.page@3.0.0/instantpage.min.js" type="module" defer></script>
+<script type="text/javascript" async src="https://reticenceji.github.io/media/js/prism.js"></script>
+</body>
+</html>

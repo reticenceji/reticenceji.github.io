@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="shortcut icon" href="https://reticenceji.github.io/favicon.ico" type="image/x-icon" /><meta name="viewport"content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="apple-mobile-web-app-capable"content="yes"/><meta name="apple-mobile-web-app-status-bar-style"content="black"/><meta name="format-detection"content="telephone=no"/><meta name="renderer"content="webkit"><meta name="description"content=""><meta charset="UTF-8"><title>C++ Q&amp;A | Reticence</title>
+<link href="https://reticenceji.github.io/styles/main.css" type="text/css" rel="stylesheet" /><link href="https://at.alicdn.com/t/font_1621793_zatzzgvf30g.css" type="text/css" rel="stylesheet" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css"><script async src="https://cdn.jsdelivr.net/npm/busuanzi@2.3.0/bsz.pure.mini.min.js"></script><script src="https://reticenceji.github.io/media/js/magnify.min.js"></script><script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js"></script>
+<script type="text/javascript">function btn_toggle(){document.getElementById("hn").classList.contains("no-js")?document.getElementById("hn").classList.remove("no-js"):document.getElementById("hn").classList.add("no-js")}</script>
+
+<link rel="canonical" href="https://reticenceji.github.io/post/c-qanda/" />
+</head>
+<body>
+<div class="progress"></div><style>.progress{background:linear-gradient(to right,#87ceeb var(--scroll),transparent 0);background-repeat:no-repeat;position:fixed;width:100%;height:4px;z-index:1}</style><div class="darkmode-background"></div><div class="darkmode-layer"></div>
+<noscript><p class="warn" >本页面需要浏览器支持（启用）JavaScript</p></noscript><div class="header"><div class="logo_title"><div class="title animated fadeInDown"><a href="https://reticenceji.github.io"><img alt="logo" style="display:inline-block;" src="https://reticenceji.github.io/images/avatar.png"/></a><h1 title="Reticence" class="weaklink"><a  href="/">Reticence</a></h1>
+
+<div class="navbar weaklink">
+<div class="normal_nav">
+<div class="bitcron_nav_container"><div class="bitcron_nav"><div class="bitcron_nav"><div style="display:flex;justify-content:center;"><nav class="mixed_site_nav_wrap site_nav_wrap"><ul class="mixed_site_nav site_nav sm sm-base">	<li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/" class="selected active current nav__item" >Index</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/tags" class="selected active current nav__item" >Tags</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/archives" class="selected active current nav__item" >Archives</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/navigator.html" class="selected active current nav__item" >Navigator</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/post/about" class="selected active current nav__item" >About</a></li></ul></nav>
+<div style="float:right;margin-top:1em"><form id="gridea-search-form" data-update="1578893743252" action="/search/index.html"><input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="Search..."></form></div><div style="margin-left:0.5em;margin-top:1.2em"><input id="switch_default" onclick="mobileBtn()" type="checkbox" class="switch_default"><label for="switch_default" class="toggleBtn"></label></div></div>
+<div class="clear clear_nav_inline_end"></div></div></div><div class="clear clear_nav_end"></div></div></div><div class="hamberger" href="javascript:void(0)" onclick="btn_toggle();"><i class="iconfont icon-category"></i></div></div></div></div>
+<div id="hn" class="no-js hidden_nav animated fadeInDown"><div class="bitcron_nav_container"><div class="bitcron_nav"><nav class="mixed_site_nav_wrap site_nav_wrap"><ul class="mixed_site_nav site_nav sm sm-base">	<li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/" class="selected active current nav__item" >Index</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/tags" class="selected active current nav__item" >Tags</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/archives" class="selected active current nav__item" >Archives</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/navigator.html" class="selected active current nav__item" >Navigator</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/post/about" class="selected active current nav__item" >About</a></li></ul><div class="clear clear_nav_inline_end"></div></nav></div><div class="clear clear_nav_end"></div></div>
+<div style="display:flex;justify-content:center;inline-block;text-align:center;margin-top:7%"><div><form id="gridea-search-form" data-update="1627835297708" action="/search/index.html"><input class="search-input" autocomplete="off" spellcheck="false" name="q"  placeholder="Search..." /></form></div><div style="margin-left:0.5em"><input id="switch_default_h" onclick="mobileBtn()" type="checkbox" class="switch_default"><label for="switch_default" class="toggleBtn"></label></div></div>
+</div></div>
+<script>function enableDarkmode(){document.body.classList.add("darkmode"),document.getElementById("switch_default").checked=1,document.getElementById("switch_default_h").checked=1}function removeDarkmode(){document.body.classList.remove("darkmode"),document.getElementById("switch_default").checked=0,document.getElementById("switch_default_h").checked=0}function getCookie(a){var b,c=new RegExp("(^| )"+a+"=([^;]*)(;|$)");return(b=document.cookie.match(c))?unescape(b[2]):null}cookie=getCookie("darkmode"),"enable"==cookie&&enableDarkmode(),window.matchMedia("(prefers-color-scheme: dark)").matches&&"disable"!==cookie&&(enableDarkmode(),document.cookie="darkmode=enable; path=/");var mobileBtn=function(){1==document.getElementById("switch_default").checked?(enableDarkmode(),document.cookie="darkmode=enable; path=/"):(removeDarkmode(),document.cookie="darkmode=disable; path=/")};</script>
+
+<div class="main"><div class="main-inner"><div class="content">
+<article class="post">
+<h2 class="post_title sm_margin"><a>C++ Q&amp;A</a></h2>
+<script>function lan(){if(document.getElementById("lan").innerText=="繁"){var s=document.getElementById("tongwenlet_cn");if(s!=null){document.body.removeChild(s)}var s=document.createElement("script");s.language="javascript";s.type="text/javascript";s.src="https://cdn.jsdelivr.net/gh/qyxtim/Static@1.1/bookmarklet_tw.js";s.id="tongwenlet_cn";document.body.appendChild(s);document.getElementById("lan").innerHTML="简"}else{if(document.getElementById("lan").innerText=="簡"){var s=document.getElementById("tongwenlet_cn");if(s!=null){document.body.removeChild(s)}var s=document.createElement("script");s.language="javascript";s.type="text/javascript";s.src="https://cdn.jsdelivr.net/gh/qyxtim/Static@1.1/bookmarklet_cn.js";s.id="tongwenlet_cn";document.body.appendChild(s);document.getElementById("lan").innerHTML="繁"}}};</script>
+<section class="post_details"><i class="iconfont icon-calendar"></i><span style="margin-right:15px"> 2021-04-23</span><i class="iconfont icon-browse"></i><span style="margin-right:15px"> <span id="busuanzi_value_page_pv"></span> Views</span><i class="iconfont icon-category"></i><span class="weaklink" style="margin-right:15px">	<a href="https://reticenceji.github.io/tag/Hm6SgxCYQ/" class="tag">C++</a></span><i class="iconfont icon-caret-down"></i><span style="margin-right:15px">3348字</span><i class="iconfont icon-naozhong"></i><span style="margin-right:15px">13 min read</span><a id="lan" href="javascript:void(0);"onclick="lan();"title="调整简繁体" style="margin-right:15px;">繁</a>
+</section>
+
+<div style="display:flex">
+<div class="md_block" id="md_block">
+<div class="round-shape-one"></div>
+<p><ul class="markdownIt-TOC">
+<li>
+<ul>
+<li>
+<ul>
+<li>
+<ul>
+<li>
+<ul>
+<li><a href="#c%E5%86%85%E5%AE%B9%E5%A5%BD%E5%A4%9A%E8%A6%81%E5%AD%A6%E4%BB%80%E4%B9%88">C++内容好多，要学什么？</a></li>
+<li><a href="#c%E7%9A%84object%E5%8F%AF%E4%BB%A5%E7%94%A8struct%E6%9D%A5%E7%90%86%E8%A7%A3%E8%80%8Cpython%E4%B8%AD%E7%9A%84object%E8%A6%81%E5%BD%93%E6%88%90%E6%8C%87%E9%92%88%E6%9D%A5%E7%90%86%E8%A7%A3rust%E4%B8%AD%E7%9A%84object%E8%A6%81%E5%BD%93%E6%88%90%E6%99%BA%E8%83%BDstruct%E6%9D%A5%E7%90%86%E8%A7%A3">C++的object可以用struct来理解，而Python中的object要当成指针来理解，Rust中的object要当成“智能struct”来理解?</a></li>
+<li><a href="#%E4%BB%80%E4%B9%88%E6%97%B6%E5%80%99%E5%BA%94%E8%AF%A5%E7%94%A8%E5%BC%95%E7%94%A8%E4%BD%9C%E4%B8%BA%E5%8F%82%E6%95%B0%E6%98%AF%E4%B8%8D%E6%98%AF%E8%83%BD%E7%94%A8%E5%BC%95%E7%94%A8%E7%9A%84%E5%9C%B0%E6%96%B9%E9%83%BD%E5%8F%AF%E4%BB%A5%E7%94%A8%E6%8C%87%E9%92%88%E4%BB%80%E4%B9%88%E6%97%B6%E5%80%99%E5%BA%94%E8%AF%A5%E7%94%A8%E5%8E%9F%E5%80%BC%E5%BC%95%E7%94%A8%E4%BD%9C%E4%B8%BA%E8%BF%94%E5%9B%9E%E5%80%BC">什么时候应该用引用作为参数，是不是能用引用的地方都可以用指针？什么时候应该用原值？引用作为返回值？</a></li>
+<li><a href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E8%87%AA%E5%B7%B1%E5%86%99%E7%9A%84%E5%BA%93%E4%B8%8D%E9%9C%80%E8%A6%81%E6%B7%BB%E5%8A%A0namespace%E5%95%8A">为什么自己写的库不需要添加namespace啊？</a></li>
+<li><a href="#%E6%B5%81%E5%BC%8F%E8%BE%93%E5%85%A5%E7%9A%84%E8%BF%99%E4%B8%AA%E6%A0%BC%E5%BC%8F%E5%8C%96%E6%80%8E%E4%B9%88%E5%81%9A">流式输入的这个格式化怎么做？</a></li>
+<li><a href="#rtti%E6%98%AF%E4%BB%80%E4%B9%88">RTTI是什么？</a></li>
+<li><a href="#%E5%A4%9A%E6%80%81%E5%92%8C%E8%99%9A%E5%87%BD%E6%95%B0%E6%98%AF%E6%80%8E%E4%B9%88%E5%AE%9E%E7%8E%B0%E7%9A%84">多态和虚函数是怎么实现的？</a></li>
+<li><a href="#struct-%E5%92%8C-class-%E7%9A%84%E5%8C%BA%E5%88%AB">struct 和 class 的区别？</a></li>
+<li><a href="#%E4%BB%80%E4%B9%88%E6%98%AFtrivial%E5%92%8Cnon-trivial">什么是trivial和non-trivial?</a></li>
+<li><a href="#%E5%9C%A8%E6%88%90%E5%91%98%E5%88%9D%E5%A7%8B%E5%8C%96%E5%88%97%E8%A1%A8%E8%83%8C%E5%90%8E%E5%AE%9E%E9%99%85%E5%8F%91%E7%8E%B0%E7%9A%84%E4%BA%8B%E6%83%85%E6%98%AF%E4%BB%80%E4%B9%88%E5%91%A2">在成员初始化列表背后实际发现的事情是什么呢？</a></li>
+<li><a href="#xx-%E5%92%8C-px-x-%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB">x.x 和 px-&gt;x 有什么区别？</a></li>
+<li><a href="#%E6%88%90%E5%91%98%E5%87%BD%E6%95%B0%E5%9C%A8%E5%93%AA%E9%87%8C">成员函数在哪里？</a></li>
+<li><a href="#%E7%BA%AF%E8%99%9A%E5%87%BD%E6%95%B0%E6%98%AF%E4%BB%80%E4%B9%88">纯虚函数是什么？</a></li>
+<li><a href="#%E6%88%91%E6%83%B3%E8%BF%94%E5%9B%9E%E5%A4%A7%E9%87%8F%E5%86%85%E5%AE%B9%E7%9A%84%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5%E6%98%AF%E4%BB%80%E4%B9%88%E6%AF%94%E5%A6%82%E6%95%B0%E7%BB%84-vector">我想返回大量内容的最佳实践是什么？比如数组、vector？</a></li>
+<li><a href="#%E6%8A%8A%E5%AD%90%E7%B1%BB%E8%B5%8B%E5%80%BC%E7%BB%99%E7%88%B6%E7%B1%BB%E4%BC%9A%E5%8F%91%E7%94%9F%E4%BB%80%E4%B9%88%E4%BA%8B">把子类赋值给父类，会发生什么事？</a></li>
+<li><a href="#%E5%BC%95%E7%94%A8%E7%9A%84%E5%88%9D%E5%A7%8B%E5%8C%96">引用的初始化</a></li>
+<li><a href="#%E4%BB%80%E4%B9%88%E6%97%B6%E5%80%99%E4%BC%9A%E5%8F%91%E7%94%9Fcopycopy%E7%9A%84%E6%97%B6%E5%80%99%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88">什么时候会发生Copy？Copy的时候发生了什么？</a></li>
+<li><a href="#%E5%B1%80%E9%83%A8%E5%8F%98%E9%87%8F%E5%8F%AA%E5%88%9D%E5%A7%8B%E5%8C%96%E4%B8%80%E6%AC%A1%E6%98%AF%E6%80%8E%E4%B9%88%E5%81%9A%E5%88%B0%E7%9A%84">局部变量只初始化一次是怎么做到的？</a></li>
+<li><a href="#%E5%85%A8%E5%B1%80%E9%9D%99%E6%80%81%E7%B1%BB%E7%9A%84%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E5%92%8C%E6%9E%90%E6%9E%84%E5%87%BD%E6%95%B0%E5%8F%AA%E8%B0%83%E7%94%A8%E4%B8%80%E6%AC%A1%E6%98%AF%E6%80%8E%E4%B9%88%E5%81%9A%E5%88%B0%E7%9A%84">全局静态类的构造函数和析构函数只调用一次是怎么做到的？</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</p>
+<h5 id="c内容好多要学什么">C++内容好多，要学什么？</h5>
+<ul>
+<li>第一部分 面向对象程序设计基础  2学时
+<ul>
+<li>面向对象的由来和发展</li>
+<li>面向对象中的抽象</li>
+<li>类，对象和封装</li>
+<li>继承性和多态性</li>
+<li>面向对象程序设计的挑战</li>
+<li>程序设计风格基础</li>
+</ul>
+</li>
+<li>第二部分C++语言基础   8学时
+<ul>
+<li>更好的C</li>
+<li>const</li>
+<li>引用</li>
+<li>函数原型</li>
+<li>内联函数</li>
+<li>缺省自变量</li>
+<li>重载</li>
+<li>类和封装</li>
+<li>私有、保护和公共</li>
+<li>构造函数和析构函数</li>
+<li>友元</li>
+<li>类中的运算符和函数重载</li>
+<li>派生</li>
+<li>虚函数和多态性</li>
+<li>流</li>
+</ul>
+</li>
+<li>第三部分 面向对象的软件开发  6学时
+<ul>
+<li>传统的软件开发方法</li>
+<li>面向对象模型</li>
+<li>面向对象设计与实现</li>
+<li>典例实例剖析</li>
+</ul>
+</li>
+<li>第四部分C++的高级论题   10学时
+<ul>
+<li>模板和异常处理</li>
+<li>拷贝构造函数与参数传递</li>
+<li>常量约束</li>
+<li>虚析构函数</li>
+<li>重载时参数匹配顺序</li>
+<li>静态成员</li>
+<li>临时对象的构造和撤消</li>
+</ul>
+</li>
+<li>第五部分 实例剖析   6学时
+<ul>
+<li>问题叙述</li>
+<li>分析</li>
+<li>系统设计</li>
+<li>对象设计</li>
+<li>实现</li>
+<li>技术和风格评述</li>
+</ul>
+</li>
+</ul>
+<h5 id="c的object可以用struct来理解而python中的object要当成指针来理解rust中的object要当成智能struct来理解">C++的object可以用struct来理解，而Python中的object要当成指针来理解，Rust中的object要当成“智能struct”来理解?</h5>
+<h5 id="什么时候应该用引用作为参数是不是能用引用的地方都可以用指针什么时候应该用原值引用作为返回值">什么时候应该用引用作为参数，是不是能用引用的地方都可以用指针？什么时候应该用原值？引用作为返回值？</h5>
+<p>一个 reference 通常是以一个指针来实现的，所以 point 和 reference 并没有本质的区别。（那下面这个i*3怎么解释）</p>
+<p>引用可以是l-value也可以是r-value。</p>
+<p><code>func(const double&amp; a)</code>：如果不想更改a，那么这是最好的办法。而且这样子a就只能是一个r-value。下面的<code>i*3</code>就合法了。</p>
+<p><code>func(double&amp; a)</code></p>
+<p>如果要用<code>func(i*3)</code>，我们就不能用引用或者指针了，因为<code>i*3</code>不是一个左值</p>
+<h5 id="为什么自己写的库不需要添加namespace啊">为什么自己写的库不需要添加namespace啊？</h5>
+<p>首先也是可以添加的。</p>
+<h5 id="流式输入的这个格式化怎么做">流式输入的这个格式化怎么做？</h5>
+<p>C++对格式化这一块的支持并不好。</p>
+<h5 id="rtti是什么">RTTI是什么？</h5>
+<p>RTTI(Run Time Type Identification)即通过运行时类型识别，程序能够使用基类的指针或引用来检查着这些指针或引用所指的对象的实际派生类型。<br>
+一般来说，每一个 class 相关联的 type_info 对象的指针 通常也保存在 vtable 的第一个 slot 中。</p>
+<h5 id="多态和虚函数是怎么实现的">多态和虚函数是怎么实现的？</h5>
+<p>C++在内存布局以及存取时间上的主要额外负担都是由 virtual 引起的，包括：</p>
+<ul>
+<li>virtual function 机制：引起了保存 vtable 和透过 vtable 找到函数地址；</li>
+<li>virtual base class 机制：引起了透过指针来找到基类的成员。</li>
+</ul>
+<p>Virtual function 机制则由以下的 2 个的两个步骤来支持：</p>
+<ul>
+<li>每一个 class 产生出一系列指针 Virtual function 的指针，放在一个被称为 virtual<br>
+table(vtbl, vtable)的表格中。</li>
+<li>每一个 class object 被添加了一个指针 vptr，指向相对应的 vtable。vptr 的设置由编译器<br>
+全权负责，程序员无需关心。<br>
+一个 vtable 对应 一个 class ， 一个 vptr 才对应 一个 class object</li>
+</ul>
+<p>用GDB来调试以下程序：</p>
+<pre><code class="language-cpp">#include &lt;iostream&gt;
+
+class Base{
+    private:
+        int i;
+    public:
+        Base():i(10){std::cout &lt;&lt; &quot;I'm Base()&quot; &lt;&lt; std::endl; }
+        ~Base(){std::cout &lt;&lt; &quot;I'm ~Base()&quot; &lt;&lt; std::endl; }
+        virtual void print(){std::cout &lt;&lt; &quot;I'm base_print()&quot; &lt;&lt; std::endl;}
+
+};
+
+class Derived : public Base{
+    private:
+        int i;
+    public:
+        Derived():i(12){std::cout &lt;&lt; &quot;I'm Derived()&quot; &lt;&lt; std::endl; }
+        ~Derived(){std::cout &lt;&lt; &quot;I'm ~Derived()&quot; &lt;&lt; std::endl; }
+        void print(){std::cout &lt;&lt; &quot;I'm derived_print()&quot; &lt;&lt; std::endl;}
+};
+
+int main() {
+    Base base = Base();  
+    Derived derived= Derived();
+    base.print();
+    derived.print();	
+    std::cout &lt;&lt; sizeof(Derived) &lt;&lt; std::endl;
+    return 0;
+}
+</code></pre>
+<p>首先查看我们初始化之后他们的位置。是在栈上的。</p>
+<pre><code>gef➤  p &amp;derived 
+$4 = (Derived *) 0x7fffffffdbb0
+gef➤  p &amp;base
+$5 = (Base *) 0x7fffffffdba0
+</code></pre>
+<p>查看他们的大小。为什么是一样的呢？因为被对齐了：</p>
+<pre><code>gef➤  p sizeof(derived)
+$6 = 0x10
+gef➤  p sizeof(base)
+$7 = 0x10
+</code></pre>
+<p>查看他们的虚函数表。<code>0x7fff...</code>的是vptr的位置，可以看出他们的位置在类的最前面。另外，下面省略了RTTI，我们在后面查看完整的vtable：</p>
+<pre><code>gef➤  info vtbl derived 
+vtable for 'Derived' @ 0x555555557d20 (subobject @ 0x7fffffffdbb0):
+[0]: 0x555555555506 &lt;Derived::print()&gt;
+gef➤  info vtbl base
+vtable for 'Base' @ 0x555555557d38 (subobject @ 0x7fffffffdba0):
+[0]: 0x5555555553ee &lt;Base::print()&gt;
+</code></pre>
+<p>看一下内存布局（后面16个byte是derived）。可以看出子类会把父类的成员直接放到自己的前面。在类的最开始，存放的是vptr：</p>
+<pre><code>gef➤  x/8xw &amp;base
+0x7fffffffdba0: 0x55557d38      0x00005555      0x0000000a      0x00005555
+0x7fffffffdbb0: 0x55557d20      0x00005555      0x0000000a      0x0000000c
+</code></pre>
+<p>完整的vtable。前面三个共24bytes是Derived的vtable，后三个共24bytes是Base的vtable。他们的布局是类似的，我们选一个说</p>
+<ul>
+<li>第一个8个字节：都是0，我也不知道是干什么用的。</li>
+<li>第二个8个字节：我怀疑是RTTI，但是不清楚。（前面十六个字节可能是调试选项的原因生成的）</li>
+<li>第三个8个字节：对应virtual function，在这里是print。</li>
+</ul>
+<pre><code>0x555555557d10 &lt;_ZTV7Derived&gt;:  	0x0000000000000000      0x0000555555557d40
+0x555555557d20 &lt;_ZTV7De
+0x7fffffffdba0: 0x55557d38      0x00005555      0x0000000a    rived+16&gt;:   0x0000555555555506      
+0x555555557d28 &lt;_ZTV4Base&gt;:			0x0000000000000000		0x0000555555557d58
+0x555555557d38 &lt;_ZTV4Base+16&gt;:   	0x00005555555553ee
+</code></pre>
+<p>总结一下，多态性在底层就是vtable实现的。如果我们希望我们的类有多态性，需要给那些体现多态性的函数加上<code>virtual</code>关键字。</p>
+<h5 id="struct-和-class-的区别">struct 和 class 的区别？</h5>
+<p>在语言层面并无本质的区别，更多的是概念和编程思想上的区别。<br>
+struct 用来表现那些只有数据的集合体 POD（Plain OId Data）、而 class 则希望表达的是 ADT（abstract data type）的思想。<br>
+由于这 2 个关键字在本质是无区别，所以 class 并没有必须要引入，但是引入它的确非常令人满意，因为这个语言所引入的不止是这个关键字，还有它所支持的封装和继承的哲学。</p>
+<h5 id="什么是trivial和non-trivial">什么是trivial和non-trivial?</h5>
+<p>trivial意思是无意义，这个trivial和non-trivial是对类的四种函数来说的：<br>
+构造函数(ctor)<br>
+复制构造函数(copy)<br>
+赋值函数(assignment)<br>
+析构函数(dtor)</p>
+<p>如果至少满足下面3条里的一条，那么上面的四种函数是non-trivial函数：</p>
+<ol>
+<li>显式(explict)定义了这四种函数。</li>
+<li>类里有非静态非POD的数据成员。(比如有virtual函数)</li>
+<li>有基类。</li>
+</ol>
+<p>如果这个类都是trivial ctor/dtor/copy/assignment函数，我们对这个类进行构造、析构、拷贝和赋值时可以采用最有效率的方法，不调用无所事事正真的那些ctor/dtor等，而直接采用内存操作如malloc()、memcpy()等提高性能，这也是SGI STL内部干的事情。</p>
+<p>换句话说，虽然那些函数在语义上存在，但不会被真正产生出来。比如拷贝，我们可以用memcpy直接 bitwise copy semantics。</p>
+<h5 id="在成员初始化列表背后实际发现的事情是什么呢">在成员初始化列表背后实际发现的事情是什么呢？</h5>
+<ul>
+<li>初始化成员：使用 member initialization list 或者调用默认构造函数；</li>
+<li>在那之前，如果 class object 有 vptr，它们必须被正确的设置；</li>
+<li>在那之前，所有的上一层的 base class construcotrs 必须被调用，以 base classes 声明<br>
+的顺序。使用 member initialization list 或者调用默认构造函数，同时如果 base class<br>
+是多重继承下的非第 1 基类，还需要调整 this 指针；</li>
+<li>在那之前，所有的 virtual base class constructors 必须被调用，从左到右，从深到浅。<br>
+并同时设置好 virtual base class 所需要使用的各种机制；</li>
+</ul>
+<p>即处理顺序为：virtual base classes → base class → vptr → member。</p>
+<p>编译器会一一操作初始化列表，把其中的初始化操作以 member 声明的次序在 constructor<br>
+内安插初始化操作，并且在任何 explicit user code 之前。</p>
+<p><u>以 member 声明的次序来决定初始化次序</u>和<u>初始化列表中的排列次序</u>之间的外观错乱，可<br>
+能会导致一些不明显的 Bug。</p>
+<p>不过 GCC 已经可以强制要求使用声明次序来进行初始化以避免了这个陷阱。</p>
+<h5 id="xx-和-px-x-有什么区别">x.x 和 px-&gt;x 有什么区别？</h5>
+<p><code>X x; x.x = 0.0;</code>和<code>X *px; px-&gt;x = 0.0;</code><br>
+这两种写法在什么时候有重大的区别呢？<br>
+答案是<strong>当类型 X 是一个继承体系中有虚基类的子类，并且 x 成员又正好是虚基类中的成员时</strong>，这两种写法在编译器看来就会有重大的区别了（这种情况下的 offset 计算方式不同，其它情况的offset 也可以直接算出）。因为 x 的类型是固定的，编译器可以直接向第 8 条中所述的进行offset 扩展，但是对于 pt 来说，由于无法确定 pt 指向的真正类型，所以只能借由一个执行期的间接来得到成员的具体地址。</p>
+<p><code>x.x</code>是一个静态绑定，不会有多态的特征。</p>
+<h5 id="成员函数在哪里">成员函数在哪里？</h5>
+<p>普通函数、普通成员函数、静态成员函数到最后都会变成与 C 语言函数类似的普通函数，只是编译器在这些不同类型的函数身上做了不同的扩展，并放在不同的 scope 里面而已。也就是说，都在<code>.text</code>段中。</p>
+<p><code>Type1 X::foo(Type2 arg1) { … }</code><br>
+会被转换为如下的普通函数（应该会改变函数的名字，变成奇奇怪怪的样子）：<br>
+<code>void foo(X *const this, Type1 &amp;__result, Type2 arg1) { … }</code>返回值都没了？那对应的汇编是什么鬼样子，如果我把他当作一个过程调用会怎么样？</p>
+<h5 id="纯虚函数是什么">纯虚函数是什么？</h5>
+<p>纯虚函数是一种特殊的虚函数，在许多情况下，在基类中不能对虚函数给出有意义的实现，而把它声明为纯虚函数，它的实现留给该基类的派生类去做。这就是纯虚函数的作用。</p>
+<p>C++中的纯虚函数，一般在函数签名后使用=0作为此类函数的标志。但是纯虚函数也可以有实现，但是有纯虚函数的class不能被实例化，所以这个实现应该是给子类使用的。</p>
+<h5 id="我想返回大量内容的最佳实践是什么比如数组-vector">我想返回大量内容的最佳实践是什么？比如数组、vector？</h5>
+<h5 id="把子类赋值给父类会发生什么事">把子类赋值给父类，会发生什么事？</h5>
+<p>我们知道，可以用父类的指针和虚函数实现多态。</p>
+<p>由于引用和指针在本质上是一样的，我们也可以用引用来实现多态。</p>
+<p>同样的也可以把子类赋值给父类，但是要注意的是，<strong>多余的信息会被截断，vptr不会被复制。</strong></p>
+<h5 id="引用的初始化">引用的初始化</h5>
+<p>我们知道引用是必须初始化的。</p>
+<p>一个类如果有成员是引用，引用的初始化只能放在初始化列表中。</p>
+<h5 id="什么时候会发生copycopy的时候发生了什么">什么时候会发生Copy？Copy的时候发生了什么？</h5>
+<p><code>Base::Base(const Base&amp; a)</code> Copy的函数原型。C++会提供默认的Copy，单纯的把内容复制。<strong>但是一旦复制的内容里有指针，可能默认的Copy就不是你的本意了。</strong></p>
+<pre><code>void func (Base x) {...};
+Base func2 () {Base a; ... return a;};
+Base a;			//这样会调用一个Constructor
+Base b = a;		//这样会调用一个Copy Constructor
+Base b(a);		//这个和上一句是一个意思，也会调用Copy Constructor
+func(b);		//作为参数传递，也会调用一个Copy Constructor
+func2();		//作为返回值，也会调用一个Copy Constructor
+
+虽然上面这么说，但是编译器可能会优化掉一些没有必要的Copy。
+</code></pre>
+<p>如果有指针，默认的Copy动作会单纯的复制你的指针，这样a和b就中的指针就指向了同一个内存区域。可能会造成什么问题呢？</p>
+<ol>
+<li>可能会对同一块内存析构两次。</li>
+<li>可能会修改我本来不想修改的内容。</li>
+</ol>
+<h5 id="局部变量只初始化一次是怎么做到的">局部变量只初始化一次是怎么做到的？</h5>
+<h5 id="全局静态类的构造函数和析构函数只调用一次是怎么做到的">全局静态类的构造函数和析构函数只调用一次是怎么做到的？</h5>
+
+<span id="footnote"></span>
+<div id = "warn"></div>
+</div>
+<div class="toc-container"><ul class="markdownIt-TOC">
+<li>
+<ul>
+<li>
+<ul>
+<li>
+<ul>
+<li>
+<ul>
+<li><a href="#c%E5%86%85%E5%AE%B9%E5%A5%BD%E5%A4%9A%E8%A6%81%E5%AD%A6%E4%BB%80%E4%B9%88">C++内容好多，要学什么？</a></li>
+<li><a href="#c%E7%9A%84object%E5%8F%AF%E4%BB%A5%E7%94%A8struct%E6%9D%A5%E7%90%86%E8%A7%A3%E8%80%8Cpython%E4%B8%AD%E7%9A%84object%E8%A6%81%E5%BD%93%E6%88%90%E6%8C%87%E9%92%88%E6%9D%A5%E7%90%86%E8%A7%A3rust%E4%B8%AD%E7%9A%84object%E8%A6%81%E5%BD%93%E6%88%90%E6%99%BA%E8%83%BDstruct%E6%9D%A5%E7%90%86%E8%A7%A3">C++的object可以用struct来理解，而Python中的object要当成指针来理解，Rust中的object要当成“智能struct”来理解?</a></li>
+<li><a href="#%E4%BB%80%E4%B9%88%E6%97%B6%E5%80%99%E5%BA%94%E8%AF%A5%E7%94%A8%E5%BC%95%E7%94%A8%E4%BD%9C%E4%B8%BA%E5%8F%82%E6%95%B0%E6%98%AF%E4%B8%8D%E6%98%AF%E8%83%BD%E7%94%A8%E5%BC%95%E7%94%A8%E7%9A%84%E5%9C%B0%E6%96%B9%E9%83%BD%E5%8F%AF%E4%BB%A5%E7%94%A8%E6%8C%87%E9%92%88%E4%BB%80%E4%B9%88%E6%97%B6%E5%80%99%E5%BA%94%E8%AF%A5%E7%94%A8%E5%8E%9F%E5%80%BC%E5%BC%95%E7%94%A8%E4%BD%9C%E4%B8%BA%E8%BF%94%E5%9B%9E%E5%80%BC">什么时候应该用引用作为参数，是不是能用引用的地方都可以用指针？什么时候应该用原值？引用作为返回值？</a></li>
+<li><a href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E8%87%AA%E5%B7%B1%E5%86%99%E7%9A%84%E5%BA%93%E4%B8%8D%E9%9C%80%E8%A6%81%E6%B7%BB%E5%8A%A0namespace%E5%95%8A">为什么自己写的库不需要添加namespace啊？</a></li>
+<li><a href="#%E6%B5%81%E5%BC%8F%E8%BE%93%E5%85%A5%E7%9A%84%E8%BF%99%E4%B8%AA%E6%A0%BC%E5%BC%8F%E5%8C%96%E6%80%8E%E4%B9%88%E5%81%9A">流式输入的这个格式化怎么做？</a></li>
+<li><a href="#rtti%E6%98%AF%E4%BB%80%E4%B9%88">RTTI是什么？</a></li>
+<li><a href="#%E5%A4%9A%E6%80%81%E5%92%8C%E8%99%9A%E5%87%BD%E6%95%B0%E6%98%AF%E6%80%8E%E4%B9%88%E5%AE%9E%E7%8E%B0%E7%9A%84">多态和虚函数是怎么实现的？</a></li>
+<li><a href="#struct-%E5%92%8C-class-%E7%9A%84%E5%8C%BA%E5%88%AB">struct 和 class 的区别？</a></li>
+<li><a href="#%E4%BB%80%E4%B9%88%E6%98%AFtrivial%E5%92%8Cnon-trivial">什么是trivial和non-trivial?</a></li>
+<li><a href="#%E5%9C%A8%E6%88%90%E5%91%98%E5%88%9D%E5%A7%8B%E5%8C%96%E5%88%97%E8%A1%A8%E8%83%8C%E5%90%8E%E5%AE%9E%E9%99%85%E5%8F%91%E7%8E%B0%E7%9A%84%E4%BA%8B%E6%83%85%E6%98%AF%E4%BB%80%E4%B9%88%E5%91%A2">在成员初始化列表背后实际发现的事情是什么呢？</a></li>
+<li><a href="#xx-%E5%92%8C-px-x-%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB">x.x 和 px-&gt;x 有什么区别？</a></li>
+<li><a href="#%E6%88%90%E5%91%98%E5%87%BD%E6%95%B0%E5%9C%A8%E5%93%AA%E9%87%8C">成员函数在哪里？</a></li>
+<li><a href="#%E7%BA%AF%E8%99%9A%E5%87%BD%E6%95%B0%E6%98%AF%E4%BB%80%E4%B9%88">纯虚函数是什么？</a></li>
+<li><a href="#%E6%88%91%E6%83%B3%E8%BF%94%E5%9B%9E%E5%A4%A7%E9%87%8F%E5%86%85%E5%AE%B9%E7%9A%84%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5%E6%98%AF%E4%BB%80%E4%B9%88%E6%AF%94%E5%A6%82%E6%95%B0%E7%BB%84-vector">我想返回大量内容的最佳实践是什么？比如数组、vector？</a></li>
+<li><a href="#%E6%8A%8A%E5%AD%90%E7%B1%BB%E8%B5%8B%E5%80%BC%E7%BB%99%E7%88%B6%E7%B1%BB%E4%BC%9A%E5%8F%91%E7%94%9F%E4%BB%80%E4%B9%88%E4%BA%8B">把子类赋值给父类，会发生什么事？</a></li>
+<li><a href="#%E5%BC%95%E7%94%A8%E7%9A%84%E5%88%9D%E5%A7%8B%E5%8C%96">引用的初始化</a></li>
+<li><a href="#%E4%BB%80%E4%B9%88%E6%97%B6%E5%80%99%E4%BC%9A%E5%8F%91%E7%94%9Fcopycopy%E7%9A%84%E6%97%B6%E5%80%99%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88">什么时候会发生Copy？Copy的时候发生了什么？</a></li>
+<li><a href="#%E5%B1%80%E9%83%A8%E5%8F%98%E9%87%8F%E5%8F%AA%E5%88%9D%E5%A7%8B%E5%8C%96%E4%B8%80%E6%AC%A1%E6%98%AF%E6%80%8E%E4%B9%88%E5%81%9A%E5%88%B0%E7%9A%84">局部变量只初始化一次是怎么做到的？</a></li>
+<li><a href="#%E5%85%A8%E5%B1%80%E9%9D%99%E6%80%81%E7%B1%BB%E7%9A%84%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E5%92%8C%E6%9E%90%E6%9E%84%E5%87%BD%E6%95%B0%E5%8F%AA%E8%B0%83%E7%94%A8%E4%B8%80%E6%AC%A1%E6%98%AF%E6%80%8E%E4%B9%88%E5%81%9A%E5%88%B0%E7%9A%84">全局静态类的构造函数和析构函数只调用一次是怎么做到的？</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="fullPage"><canvas id="canvas"></canvas></div>
+</article>
+<div id="eof"><span>EOF</span></div><div class="round-shape-one"></div>
+<section>
+<div class="doc_comments">
+
+</div></section>
+</div></div></div><script>
+"use strict";!function(){for(var n=document.getElementsByTagName("pre"),e=n.length,s=0;s<e;s++){n[s].innerHTML='<span class="line-number"></span>'+n[s].innerHTML+'<span class="cl"></span>';for(var a=n[s].innerHTML.split(/\n/).length,r=0;r<a-1;r++){n[s].getElementsByTagName("span")[0].innerHTML+="<span>"+(r+1)+"</span>"}}}();
+let mainNavLinks=document.querySelectorAll(".markdownIt-TOC a");window.addEventListener("scroll",event=>{let fromTop=window.scrollY;mainNavLinks.forEach((link,index)=>{let section=document.getElementById(decodeURI(link.hash).substring(1));let nextSection=null
+if(mainNavLinks[index+1]){nextSection=document.getElementById(decodeURI(mainNavLinks[index+1].hash).substring(1));}
+if(section.offsetTop<=fromTop){if(nextSection){if(nextSection.offsetTop>fromTop){link.classList.add("currentToc");}else{link.classList.remove("currentToc");}}else{link.classList.add("currentToc");}}else{link.classList.remove("currentToc");}});});
+var h=document.documentElement,b=document.body,st="scrollTop",sh="scrollHeight",progress=document.querySelector(".progress"),scroll;document.addEventListener("scroll",function(){scroll=(h[st]||b[st])/((h[sh]||b[sh])-h.clientHeight)*100;progress.style.setProperty("--scroll",scroll+"%")});
+var wxScale=new WxScale({fullPage:document.querySelector("#fullPage"),canvas:document.querySelector("#canvas")});var imgBox=document.querySelectorAll("#md_block img");for(var i=0;i<imgBox.length;i++){imgBox[i].onclick=function(e){wxScale.start(this)}};
+</script>
+<a id="scrollUp" href="#top" style="position: fixed; z-index: 2147483647; display: block;"></a><div class="footer animated fadeInDown"><div class="site_footer"><div class="mysocials"><div class="my_socials"><a href="https://github.com/reticenceji"title="github"><i class="iconfont icon-github"></i></a><a href="reticenceji@qq.com"title="envelope"><i class="iconfont icon-envelope"></i></a><a href="https://www.zhihu.com/people/reticenceji"title="zhihu"><i class="iconfont icon-zhihu"></i></a></div></div><div class="copyright"id="copyright">Copyright © 2018-2020 <a href="https://reticenceji.github.io" style="margin:0;">Reticence</a>.</div>
+<span style="display: inline;margin-right:15px;">👁<strong><span id="busuanzi_value_site_uv"></span></strong></span><span id="busuanzi_container_page_pv" style="display: inline;"><span>📚<strong>176</strong> posts</span></div></div>
+<script>
+console.log("\n %c \u26a1Theme: Bitcron-pro Author's Blog:https://blog.blinkstar.cn  Writen By Serence  \n\n", "color: #ffffff; background: rgba(49, 49, 49, 0.85); padding:5px 0;border-radius:5px;", );
+</script>
+<script src="https://cdn.jsdelivr.net/npm/instant.page@3.0.0/instantpage.min.js" type="module" defer></script>
+<script type="text/javascript" async src="https://reticenceji.github.io/media/js/prism.js"></script>
+</body>
+</html>

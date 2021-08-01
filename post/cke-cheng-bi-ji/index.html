@@ -1,0 +1,1258 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="shortcut icon" href="https://reticenceji.github.io/favicon.ico" type="image/x-icon" /><meta name="viewport"content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="apple-mobile-web-app-capable"content="yes"/><meta name="apple-mobile-web-app-status-bar-style"content="black"/><meta name="format-detection"content="telephone=no"/><meta name="renderer"content="webkit"><meta name="description"content=""><meta charset="UTF-8"><title>C++课程笔记 | Reticence</title>
+<link href="https://reticenceji.github.io/styles/main.css" type="text/css" rel="stylesheet" /><link href="https://at.alicdn.com/t/font_1621793_zatzzgvf30g.css" type="text/css" rel="stylesheet" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css"><script async src="https://cdn.jsdelivr.net/npm/busuanzi@2.3.0/bsz.pure.mini.min.js"></script><script src="https://reticenceji.github.io/media/js/magnify.min.js"></script><script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js"></script>
+<script type="text/javascript">function btn_toggle(){document.getElementById("hn").classList.contains("no-js")?document.getElementById("hn").classList.remove("no-js"):document.getElementById("hn").classList.add("no-js")}</script>
+
+<link rel="canonical" href="https://reticenceji.github.io/post/cke-cheng-bi-ji/" />
+</head>
+<body>
+<div class="progress"></div><style>.progress{background:linear-gradient(to right,#87ceeb var(--scroll),transparent 0);background-repeat:no-repeat;position:fixed;width:100%;height:4px;z-index:1}</style><div class="darkmode-background"></div><div class="darkmode-layer"></div>
+<noscript><p class="warn" >本页面需要浏览器支持（启用）JavaScript</p></noscript><div class="header"><div class="logo_title"><div class="title animated fadeInDown"><a href="https://reticenceji.github.io"><img alt="logo" style="display:inline-block;" src="https://reticenceji.github.io/images/avatar.png"/></a><h1 title="Reticence" class="weaklink"><a  href="/">Reticence</a></h1>
+
+<div class="navbar weaklink">
+<div class="normal_nav">
+<div class="bitcron_nav_container"><div class="bitcron_nav"><div class="bitcron_nav"><div style="display:flex;justify-content:center;"><nav class="mixed_site_nav_wrap site_nav_wrap"><ul class="mixed_site_nav site_nav sm sm-base">	<li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/" class="selected active current nav__item" >Index</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/tags" class="selected active current nav__item" >Tags</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/archives" class="selected active current nav__item" >Archives</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/navigator.html" class="selected active current nav__item" >Navigator</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/post/about" class="selected active current nav__item" >About</a></li></ul></nav>
+<div style="float:right;margin-top:1em"><form id="gridea-search-form" data-update="1578893743252" action="/search/index.html"><input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="Search..."></form></div><div style="margin-left:0.5em;margin-top:1.2em"><input id="switch_default" onclick="mobileBtn()" type="checkbox" class="switch_default"><label for="switch_default" class="toggleBtn"></label></div></div>
+<div class="clear clear_nav_inline_end"></div></div></div><div class="clear clear_nav_end"></div></div></div><div class="hamberger" href="javascript:void(0)" onclick="btn_toggle();"><i class="iconfont icon-category"></i></div></div></div></div>
+<div id="hn" class="no-js hidden_nav animated fadeInDown"><div class="bitcron_nav_container"><div class="bitcron_nav"><nav class="mixed_site_nav_wrap site_nav_wrap"><ul class="mixed_site_nav site_nav sm sm-base">	<li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/" class="selected active current nav__item" >Index</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/tags" class="selected active current nav__item" >Tags</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/archives" class="selected active current nav__item" >Archives</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/navigator.html" class="selected active current nav__item" >Navigator</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/post/about" class="selected active current nav__item" >About</a></li></ul><div class="clear clear_nav_inline_end"></div></nav></div><div class="clear clear_nav_end"></div></div>
+<div style="display:flex;justify-content:center;inline-block;text-align:center;margin-top:7%"><div><form id="gridea-search-form" data-update="1627835297708" action="/search/index.html"><input class="search-input" autocomplete="off" spellcheck="false" name="q"  placeholder="Search..." /></form></div><div style="margin-left:0.5em"><input id="switch_default_h" onclick="mobileBtn()" type="checkbox" class="switch_default"><label for="switch_default" class="toggleBtn"></label></div></div>
+</div></div>
+<script>function enableDarkmode(){document.body.classList.add("darkmode"),document.getElementById("switch_default").checked=1,document.getElementById("switch_default_h").checked=1}function removeDarkmode(){document.body.classList.remove("darkmode"),document.getElementById("switch_default").checked=0,document.getElementById("switch_default_h").checked=0}function getCookie(a){var b,c=new RegExp("(^| )"+a+"=([^;]*)(;|$)");return(b=document.cookie.match(c))?unescape(b[2]):null}cookie=getCookie("darkmode"),"enable"==cookie&&enableDarkmode(),window.matchMedia("(prefers-color-scheme: dark)").matches&&"disable"!==cookie&&(enableDarkmode(),document.cookie="darkmode=enable; path=/");var mobileBtn=function(){1==document.getElementById("switch_default").checked?(enableDarkmode(),document.cookie="darkmode=enable; path=/"):(removeDarkmode(),document.cookie="darkmode=disable; path=/")};</script>
+
+<div class="main"><div class="main-inner"><div class="content">
+<article class="post">
+<h2 class="post_title sm_margin"><a>C++课程笔记</a></h2>
+<script>function lan(){if(document.getElementById("lan").innerText=="繁"){var s=document.getElementById("tongwenlet_cn");if(s!=null){document.body.removeChild(s)}var s=document.createElement("script");s.language="javascript";s.type="text/javascript";s.src="https://cdn.jsdelivr.net/gh/qyxtim/Static@1.1/bookmarklet_tw.js";s.id="tongwenlet_cn";document.body.appendChild(s);document.getElementById("lan").innerHTML="简"}else{if(document.getElementById("lan").innerText=="簡"){var s=document.getElementById("tongwenlet_cn");if(s!=null){document.body.removeChild(s)}var s=document.createElement("script");s.language="javascript";s.type="text/javascript";s.src="https://cdn.jsdelivr.net/gh/qyxtim/Static@1.1/bookmarklet_cn.js";s.id="tongwenlet_cn";document.body.appendChild(s);document.getElementById("lan").innerHTML="繁"}}};</script>
+<section class="post_details"><i class="iconfont icon-calendar"></i><span style="margin-right:15px"> 2021-03-02</span><i class="iconfont icon-browse"></i><span style="margin-right:15px"> <span id="busuanzi_value_page_pv"></span> Views</span><i class="iconfont icon-category"></i><span class="weaklink" style="margin-right:15px">	<a href="https://reticenceji.github.io/tag/Hm6SgxCYQ/" class="tag">C++</a> | 	<a href="https://reticenceji.github.io/tag/Gq2mdKppx/" class="tag">Notes</a></span><i class="iconfont icon-caret-down"></i><span style="margin-right:15px">10838字</span><i class="iconfont icon-naozhong"></i><span style="margin-right:15px">43 min read</span><a id="lan" href="javascript:void(0);"onclick="lan();"title="调整简繁体" style="margin-right:15px;">繁</a>
+<font color=7D26CD>置顶</font></section>
+
+<div style="display:flex">
+<div class="md_block" id="md_block">
+<div class="round-shape-one"></div>
+<p>C++是一个强大的语言，其中包含的很多程序设计的思想值得学习。请千万不要在程序里出现裸new，用智能指针包裹他们！</p>
+<!-- more -->
+<!-- 陈翔 CAD&CG Lab xchencs@zju.edu.cn
+[C++参考](https://zh.cppreference.com/)
+评分：一半作业一半考试。最后有一个大作业。PTA机考。
+助教的邮箱：yuexiakuangxiao@163.com -->
+<ul>
+<li>
+<p>C++语言基础   8学时</p>
+<ul>
+<li>更好的C ✔️</li>
+<li>const ✔️</li>
+<li>引用 ✔️</li>
+<li>函数原型</li>
+<li>内联函数 ✔️</li>
+<li>缺省自变量 ✔️</li>
+<li>重载 ✔️</li>
+<li>类和封装 ✔️</li>
+<li>私有、保护和公共 ✔️</li>
+<li>构造函数和析构函数 ✔️</li>
+<li>友元 ✔️</li>
+<li>类中的运算符和函数重载</li>
+<li>派生 ✔️</li>
+<li>虚函数和多态性 ✔️</li>
+<li>流​ ✔️</li>
+</ul>
+</li>
+<li>
+<p>第三部分 面向对象的软件开发  6学时</p>
+<ul>
+<li>传统的软件开发方法</li>
+<li>面向对象模型</li>
+<li>面向对象设计与实现</li>
+<li>典例实例剖析</li>
+</ul>
+</li>
+<li>
+<p>第四部分C++的高级论题   10学时</p>
+<ul>
+<li>模板和异常处理</li>
+<li>拷贝构造函数与参数传递</li>
+<li>常量约束</li>
+<li>虚析构函数</li>
+<li>重载时参数匹配顺序</li>
+<li>静态成员</li>
+<li>临时对象的构造和撤消</li>
+</ul>
+</li>
+</ul>
+<h1 id="c语言基础">C++语言基础</h1>
+<h2 id="better-c">Better C</h2>
+<p>很久之前C++是C的超集，不过经过十几年的发展现在从C++已经不能完全兼容C了。</p>
+<p>不过运算符那些东西和C都是一样的。</p>
+<p>我们在C语言里一般用<code>stdio.h</code>，在C++用流<code>iostram</code></p>
+<ul>
+<li>文件输入流<code>ifstream</code></li>
+<li>文件输出流 <code>ofstream</code></li>
+<li>标准输入流 <code>cin</code></li>
+<li>标准输出流 <code>cout</code></li>
+</ul>
+<pre><code class="language-cpp">#include &lt;iostream&gt;
+#include &lt;fstream&gt;
+
+using namespace std;
+
+int main()
+{
+    ofstream FileA(&quot;./hello.txt&quot;);
+    ifstream FileB(&quot;./CMakeLists.txt&quot;);
+    string str=&quot;Hello world&quot;;
+    FileA &lt;&lt; str &lt;&lt; endl;
+    FileB &gt;&gt; str;
+    cout &lt;&lt; &quot;Str= &quot; &lt;&lt; str &lt;&lt; endl;
+    return 0;
+}
+</code></pre>
+<p>我们在C语言里用的字符数组，在C++里多了一个选择——<code>string</code></p>
+<p>除了和C语言一样的循环，C++11还有一种枚举循环。这个</p>
+<pre><code class="language-cpp">#include &lt;iostream&gt;
+
+int main()
+{
+    char s[]=&quot;hello world!&quot;;
+    for (auto x:s)			//拷贝
+    {
+        std::cout &lt;&lt; x;
+    }
+    for (auto &amp;x:s)			//引用
+    {
+        std::cout &lt;&lt; x;
+    }
+}
+</code></pre>
+<h3 id="static">static</h3>
+<p>对于全局变量，局部变量，全局函数，和C语言是一样的。需要注意的是，函数的局部变量在语义上只会初始化一次，全局类的构造函数和析构函数也只会调用一次。至于具体是怎么实现的？</p>
+<p>对于class的成员变量来说，Shared by all instance。静态成员的定义应该放在cpp文件中。静态成员变量不能在初始化列表中初始化，因为他不是普通的成员变量。不过也没有人会在这里初始化吧，直接在定义的地方初始化就好了。</p>
+<p>类似的，如果data是private的话，外部也是不能访问的。令人迷惑的是，如果外部可以访问，（实例）<code>a.data</code>和（类）<code>A::data</code>都是合法的用法，但是显然第二个语义表达的更清楚。</p>
+<p>对于class的方法来说，也是Shared by all instance，但是只能访问全局变量，因为参数中没有默认的self指针。</p>
+<pre><code class="language-cpp">// Demo: 
+// 静态的东西都是属于类而不是属于实例的，整个程序只有一份
+class A
+{
+	static int k;	//静态变量需要在类中定义
+public:
+	static int get_k(){ 	//静态函数
+        //静态函数是没有self的，所以里面使用的变量只能是静态变量，不能是类里面的变量
+		return k;
+	}
+};
+int A::k = 555;		//必须在*外部*显式的初始化
+
+void main(){
+    A a;
+    cout &lt;&lt; a.get_k() &lt;&lt; endl;
+    cout &lt;&lt; A::get_k() &lt;&lt; endl;
+}
+</code></pre>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>static修饰</th>
+<th>无static修饰</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>方法</td>
+<td>外部访问性受修饰符影响。<br />实际上全局也只有一个代码。没有默认的this指针，所以不能访问类变量。<br />可以用类或实例访问。</td>
+<td>外部访问性受修饰符影响。<br />实际上全局也只有一个代码。其实第一个参数是隐含的this指针。<br />可以用实例访问。</td>
+</tr>
+<tr>
+<td>变量</td>
+<td>外部访问性受修饰符影响。<br />可以理解为在类命名空间下的静态变量（可以用类实例来访问他）；必须要在外面初始化。全局只有一个。<br />可以用类或实例访问。</td>
+<td>外部访问性受修饰符影响。<br />每一个类的实例都有一个变量。<br />可以用实例访问。</td>
+</tr>
+</tbody>
+</table>
+<h2 id="reference">Reference</h2>
+<p>引用是C语言里不存在的概念。<br>
+引用变量是一个<strong>别名</strong>，也就是说，它是某个已存在变量的另一个名字。一旦把引用初始化为某个变量，就可以使用该引用名称或变量名称来指向变量。<br>
+引用很容易与指针混淆，虽然他们在原理上有相似之处。在使用的时候，它们之间有三个主要的不同：</p>
+<ul>
+<li><strong>不存在空引用</strong>。引用必须连接到一块合法的内存。</li>
+<li>一旦引用被初始化为一个对象，就不能被指向到另一个对象。指针可以在任何时候指向到另一个对象。</li>
+<li>引用必须在创建时被初始化。指针可以在任何时间被初始化。</li>
+<li>没有引用的引用。不可以有指针指向引用。不过指针可以有引用。</li>
+</ul>
+<p>例子，指针用<code>*</code>号，引用用<code>&amp;</code>号。</p>
+<pre><code class="language-cpp">// 声明简单的变量  
+int  i; 
+double  d; 
+// 声明引用变量  
+int&amp; r = i; 
+double&amp; s = d;
+//常见用法
+int&amp; inc(int&amp; x){
+    x++;        //如果调用inc(var),那么var确实+1了。
+    return x;  //引用类型是可以返回的，但是不要把局部变量返回了。
+}
+</code></pre>
+<p>非常量引用的初始值必须为左值。其实可以用指针的角度去思考这个问题。为什么<code>const int&amp;</code>就可以了呢？因为他不是左值。</p>
+<p>在实现上，其实编译器为<code>i*3</code>找了一个栈上的临时空间来存放他，<code>3</code>也是同理。仔细一想，这样也合乎逻辑。</p>
+<pre><code class="language-cpp">int i;
+int&amp; r1 = i;
+int&amp; r2 = i*3;				//非法，i*3不是合法的左值。i*3的地址在哪里？
+int$ r3 = 3;				//非法，3不是合法的左值。3的地址在哪里？
+const int&amp; cr1 = i*3;		//合法，创建了一个临时空间
+const int&amp; cr2 = 3;			//合法，创建了一个临时空间
+</code></pre>
+<p>引用的大小是固定的，和指针一样。所以很适合大对象的参数传递。他和指针在本质上差别不大，所以能用引用的地方大都能用指针，指针更加灵活。</p>
+<h2 id="inline">Inline</h2>
+<p>Inline Function是为了避免调用函数的额外开销，会“原地展开”</p>
+<ul>
+<li>inline使用限制：inline 的使用是有所限制的，inline 只适合涵数体内代码简单的涵数使用，不能包含复杂的结构控制语句例如 while、switch，并且不能内联函数本身不能是直接递归函数（即，自己内部还调用自己的函数）</li>
+<li>inline仅是一个对编译器的建议：inline 函数仅仅是一个对编译器的建议，所以最后能否真正内联，看编译器的意思，它如果认为函数不复杂，能在调用点展开，就会真正内联，并不是说声明了内联就会内联，声明内联只是一个建议而已。</li>
+<li>建议 inline 函数的<strong>定义放在头文件</strong>中：其次，因为内联函数要在调用点展开，所以编译器必须随处可见内联函数的定义，要不然就成了非内联函数的调用了。所以，这要求每个调用了内联函数的文件都出现了该内联函数的定义。内联函数是weak symbol，所以不会出现重复定义的问题。</li>
+</ul>
+<h2 id="const">Const</h2>
+<p>compile time constant 和 run-time constant<br>
+const：默认只能在当前的编译单元之间使用。因为编译器可能会把const直接替换成常数，所以我们通常把他放到头文件中，internal linkage才不会引起错误。<br>
+extern const可以跨越这个限制。</p>
+<pre><code class="language-cpp">char * const q =&quot; abc&quot;;     //你不能用一个变量指针指向一个常量，比如下面的第一种情况。
+int const *q = x;     //你不能修改q
+const char * p = &quot;ABC&quot;;     //你不能通过p去修改指向的内容
+char const * p = &quot;ABC&quot;;     //你不能通过p去修改指向的内容，和上面一样
+</code></pre>
+<p>传递对象但是不想改动他，可以：</p>
+<ol>
+<li>直接传值，但是对大结构不友好，浪费栈空间。</li>
+<li>传指针，用const修饰</li>
+<li>传引用，用const修饰（引用和指针一样大小）</li>
+</ol>
+<p>有时我们把我们的instance声明为const，不希望他的数据被修改。<br>
+但是在调用类方法的时候，我们怎么知道数据会不会被修改呢（因为我们在编译的时候，可能还不知道函数的具体实现，只有函数的声明.h文件，所以编译器无法帮我们检查）<br>
+我们可以通过把方法限定为const表示该函数不修改内部数据，能加上const的地方就加上const是好的编程习惯。不过const是会“传染”的，处理遗留代码会很麻烦。</p>
+<ol>
+<li>被const修饰的函数不能修改内部的数据。</li>
+<li>被const修饰的函数不能调用非const修饰的函数。</li>
+</ol>
+<pre><code class="language-cpp">class A{
+    public:
+    void foo(){     //本质：void foo(A *this)
+        cout &lt;&lt; &quot;foo&quot; &lt;&lt; endl;
+    }
+    void foo() const{    //本质：void foo(const A* this)，所以相当于一个函数的重载
+        cout &lt;&lt; &quot;const foo&quot; &lt;&lt; endl;
+    }   
+}
+</code></pre>
+<p>const还可以用来修饰函数：</p>
+<p>函数前const：普通函数或成员函数（非静态成员函数）前均可加const修饰，表示函数的返回值为const，不可修改。格式为：</p>
+<p><code>const returnType functionName(param list)</code></p>
+<p>函数后加const：只有类的非静态成员函数后可以加const修饰，表示<strong>该类的this指针为const类型</strong>，不能改变类的成员变量的值，即成员变量为read only，任何改变成员变量的行为均为非法。此类型的函数可称为只读成员函数，格式为：</p>
+<p><code>returnType functionName(param list) const</code></p>
+<h2 id="encapsulation-with-class-star">Encapsulation with Class ⭐️</h2>
+<p>C++的类，我觉得可以用struct来理解。class和struct差别不大（或者说在本质上是一样的）。不过Struct的所有东西都默认是Public的，Class里的所有东西默认是Private的。这个和Python是不同的。Python的object更像是一个指针或者说类的引用，指向真正的内容。而C++的类就是真正的内容，不过类里面可能有指针指向堆里的数据。<br>
+一个demo：</p>
+<pre><code class="language-cpp">class Vector
+{
+    public:
+        //这是类的构造函数
+        //这个冒号的特性是使用初始化列表来初始化字段
+        Vector(int s):elem(new double[s]), sz(s) 
+        {
+
+        }
+        //重载了[]运算符
+        double&amp; operator[](int i)
+        {
+            return elem[i];
+        }
+        //一个普通的接口
+        int size()
+        {
+            return sz;
+        }
+    //私有变量
+    private:
+        double* elem;
+        int sz;
+};
+int main()
+{
+    Vector arrow = Vector(2);
+    arrow[1]=1;
+    std::cout &lt;&lt; arrow.size() &lt;&lt; std::endl;
+    std::cout &lt;&lt; arrow[0] &lt;&lt; std::endl;
+    std::cout &lt;&lt; arrow[1] &lt;&lt; std::endl;
+    return 0;
+}
+</code></pre>
+<p>我们还没有提供一种机制来delete我们的elem。这个需要通过<strong>析构函数</strong>来完成。虽然会提供默认的析构函数，但是<strong>new和delete一定是成对出现的</strong>，自己new的东西肯定要自己delete。也没有错误处理。</p>
+<p>我们的arrow变量是一个handler。一般来说，我们把变量作为private，把提供的接口作为Public。</p>
+<p>我们在使用<code>a.size</code>的时候，其实编译器帮我们把arrow的地址作为指针当作第一个参数传了进去(this)，底层还是一个函数。换句话说，表面上是<code>int size()</code>，实际上是<code>int size(Vector *this)</code>。</p>
+<p>每个instance的变量是各不相同的，但是函数是相同的。</p>
+<p><code>::</code>：resolver<br>
+<code>&lt;class_name&gt;::&lt;function_name&gt;</code></p>
+<h3 id="this">this</h3>
+<p>在 C++ 中，每一个对象都能通过 this 指针来访问自己的地址。<strong>this 指针是所有成员函数的隐含参数（第一个参数，在这一点上和Rust是类似的）</strong>。因此，在成员函数内部，它可以用来指向调用对象。<br>
+对于我们来说，this 形参是隐式定义的。实际上，任何自定义名为 this 的参数或变量的行为都是非法的。我们可以在成员函数体内部使用 this，因此尽管没有必要（如果局部变量、函数参数隐藏了类变量就有必要了）。</p>
+<h2 id="constructordestructor">Constructor&amp;Destructor</h2>
+<p>和内存存在着千丝万缕联系的函数，书写的时候要非常小心。如果里面有裸<code>new</code>和裸<code>delete</code>，建议把默认的函数全部禁止了：</p>
+<ul>
+<li>构造函数：对象会有一个默认的构造函数，是没有参数的。
+<ul>
+<li>C++有一个Initializer list的语法糖，帮我们简单的书写初始化。并且还有更多的好处，可以给const变量、引用赋初值，是工程的最佳实践。 <code>CExample(): a(0),b(8.8) { }</code>比如这是一个初始化函数，函数体为空。</li>
+</ul>
+</li>
+<li>析构函数：当对象的生存周期结束的时候，对象的析构函数会被调用。编译器会帮你在后面插入析构函数。</li>
+</ul>
+<pre><code class="language-cpp">class X {
+public:
+    X(Sometype); 			//  ordinary constructor: create an object
+    X();   			 		// default constructor
+    X(const X&amp;);    		// copy constructor
+    X(X&amp;&amp;);          		// move constructor
+    X&amp; operator=(const X&amp;); // copy assignment: clean up target and copy
+    X&amp; operator=(X&amp;&amp;); 		// move assignment: clean up target and move
+    ˜X(); 					// destructor: clean up
+</code></pre>
+<p>There are five situations in which an object is copied or moved:</p>
+<ul>
+<li>As the source of an assignment</li>
+<li>As an object initializer</li>
+<li>As a function argument</li>
+<li>As a function return value</li>
+<li>As an exception</li>
+</ul>
+<pre><code class="language-cpp">// move语义是新标准的东西，我也不太懂
+// 编译器默认的copy assignment是 bitwise的拷贝，和下面的行为是一致的，也就是说我其实可以不用写
+#include &lt;iostream&gt;
+
+using namespace std;
+class X
+{
+public:
+    int a;
+
+    X(int _a): a(_a) {
+        cout &lt;&lt; &quot;X()&quot; &lt;&lt; endl;
+    };
+    X(const X&amp; x) {
+        cout &lt;&lt; &quot;X(const X&amp;)&quot; &lt;&lt; endl; 
+        this-&gt;a = x.a; 
+    };
+    X&amp; operator=(const X&amp;){
+        cout &lt;&lt; &quot;X&amp; operator=(const X&amp;)&quot; &lt;&lt; endl; 
+        return *this;
+    }
+    ~X(){
+        cout &lt;&lt; &quot;~X()&quot; &lt;&lt; endl;
+    };
+};
+
+
+int main()
+{
+    X x(1),z(1);
+    X y = x;	// copy constructor
+    z = y;		// copy assignment
+    cout &lt;&lt; x.a &lt;&lt; &quot; &quot; &lt;&lt; y.a &lt;&lt; &quot; &quot; &lt;&lt; z.a &lt;&lt; endl;
+}
+</code></pre>
+<p><a href="https://stackoverflow.com/questions/19919434/assignment-of-objects-in-c">参考链接-深拷贝和浅拷贝</a>。类对象默认的copy是浅拷贝，对于一些简单的类，这是没有什么问题的。但是对于<strong>内部存在指针</strong>的类，问题就大了。如果内部有别的对象，通过组合的方式结合在一起，其实我们不用为此写一个copy constructor，默认的行为是正确的。<br>
+类对象的拷贝操作可以通过两个成员来定义<strong>拷贝构造函数( copy constructor )<strong>与</strong>拷贝赋值运算符( copy assìgnment )</strong>。<br>
+<code>Vector::Vector(const Vector&amp; a)</code> : copy constructor<br>
+<code>Vector&amp; Vector::operator=(const Vector&amp; a)</code> : copy assignment</p>
+<p>把这两个函数重载成你需要的拷贝方法，比如deep copy。</p>
+<p>你写了构造函数，不过其实编译器会扩展构造函数做更多的事情，顺序如下：</p>
+<ol>
+<li>所有的 virtual base class constructors 必须被调用，从左到右，从深到浅。并同时设置好 virtual base class 所需要使用的各种机制。</li>
+<li>所有的上一层的 base class construcotrs 必须被调用，以 base classes 声明的顺序。使用 member initialization list 或者调用默认构造函数，同时如果 base class是多重继承下的非第 1 基类，还需要调整 this 指针。</li>
+<li>如果 class object 有 vptr，它们必须被正确的设置。</li>
+<li>初始化成员列表：使用 member initialization list 或者调用默认构造函数。</li>
+<li>你自己写的构造函数内容。</li>
+</ol>
+<p>析构函数也是会被扩展。</p>
+<ol>
+<li>如果 object 内带有 vptr，那么首先重设相关的 vtable；</li>
+<li>你自己写的destructor 函数本身现在会被执行， 也就是说 vptr 会在程序员的代码执行之前被重设。</li>
+<li>以声明顺序的相反顺序调用 members 的析构函数。</li>
+<li>如果有任何直接的（上一层）nonvirtual base classed 拥有 destructor，那么会以其声明顺序的相反顺序被调用。</li>
+<li>如果有任何 virtual base classes 拥有 destructor，而当前讨论的这个 class 是最尾端的，那么它们会以其原来的构造顺序的相反顺序被调用。</li>
+</ol>
+<h2 id="newdelete">New&amp;Delete</h2>
+<p><a href="https://blog.csdn.net/hazir/article/details/21413833">参考链接</a><br>
+动态内存操作：C++提供了<code>new</code>和<code>delete</code>两个关键字。<br>
+new会开辟一块内存，delete会释放一块内存。<br>
+那难道和malloc和free一样吗？<br>
+如果new一个class，会调用类的<strong>构造函数constructor</strong>；如果delete一个class，会调用类的<strong>析构函数destructor</strong>。<br>
+更准确的说，new的时候先开辟一块内存，再调用constructor；delete的时候先调用类的destructor，再释放那块内存。<br>
+正确的编写destructor，是程序正确的关键。可能要关闭打开的文件，释放锁，释放过程中开辟的内存等工作。更关键的是，要记得delete。<br>
+在new的时候，会额外开辟一些空间存一些metadata，存储在真正数据的前面，解决下面注释中提到的问题。</p>
+<pre><code class="language-c++">int main()
+{
+    int *pa = new int(101);
+    int *parr = new int [10];
+    int *pstr = new String[16];
+
+    delete pa;
+    delete []parr;
+    delete []pstr;      //没有把16传递进去，怎么知道要清理几次呢？
+}
+</code></pre>
+<figure data-type="image" tabindex="1"><img src="https://reticenceji.github.io/post-images/1615198175254.jpeg" alt="" loading="lazy"></figure>
+<center>在64位系统中前面开辟8字节</center>
+<p>所以我们有两种方式创建一个Object：一个是new，另一个是用RAII（资源获取即初始化）。他们的区别在于：</p>
+<ol>
+<li>new出来的东西是存在heap中的。自己new出来的东西自己要去delete/delete[]。</li>
+<li>RAII的内容保存在栈上。这样，当函数结束，变量生命周期结合素，堆栈被释放，析构函数会被编译器自动调用。或者更准确的说，在C++中，一个被<code>{}</code>包裹的部分是一个<u>automatic storage</u>。当<code>{}</code>内的语句执行完成后，里面的资源被自动释放。这通常是<strong>最佳实践</strong>。不过你懂得，有时候还是要用heap的，比如大量内容的保存和更长的生命周期。这个时候我们最好用<strong>智能指针</strong>。</li>
+</ol>
+<pre><code class="language-cpp">#include &lt;iostream&gt;
+class Vector
+{
+    private:
+        int num;
+    public:
+        Vector(int s):num(s){
+            std::cout &lt;&lt; &quot;Vector Constructor&quot; &lt;&lt; std::endl;
+        }
+};
+int main()
+{
+    Vector arrow = Vector(2);				//RAII
+    Vector* arrow_stack = &amp;arrow;	
+    Vector* arrow_heap = new Vector(2); 	//new
+    return 0;
+}
+</code></pre>
+<p>看Allocator代码才知道new还有别的用法：</p>
+<ol>
+<li>
+<p>基本的new：<code>A *obj = new A();</code>  使用 new 创建对象，分配了空间并调用了构造函数。其实 C++ 规定 new 的这两个功能分开实现：</p>
+<ol>
+<li>分配空间： 调用函数 operator new 来实现。</li>
+<li>调用构造函数： 调用 placement new 来实现。</li>
+</ol>
+</li>
+<li>
+<p>operator new 如<code>::operator new(sizeof(T)*n)</code>，这个就是单纯的分配空间</p>
+</li>
+<li>
+<p>placement new 的功能就是 在一个 <strong>已经分配好的空间上</strong>，调用构造函数，创建一个类。</p>
+<pre><code class="language-cpp">void *buf = // 在这里为buf分配内存
+Class *pc = new (buf) Class(); 
+</code></pre>
+</li>
+</ol>
+<p>与之对应的也有不同的delete</p>
+<ol>
+<li>基本的delete，先调用析构函数然后释放空间</li>
+<li>operator delete，和operator new对应，释放分配的空间<code>::operator delete(buffer)</code></li>
+<li>不需要和placement new对应的delete，直接调用析构函数就行了</li>
+</ol>
+<h2 id="default-arguments">Default Arguments</h2>
+<p>默认参数，在<strong>函数原型</strong>的时候为形参分配默认参数。如<code>void showArea(double length = 20.0, double width = 10.0);</code>。编译器如果发现你提供的参数少了，就会帮你把默认参数传进去。所以在<strong>函数定义</strong>的时候不需要说默认参数。另外，默认参数的位置必须在右边。默认参数是<strong>不推荐使用</strong>的，最佳的工程实践应该是用函数重载来实现这个功能。</p>
+<h2 id="overload">Overload</h2>
+<p>相同的函数名，但是不同的<strong>函数传入参数类型</strong>。然后编译器会给每一个函数分配一个唯一的奇怪的名字（取决于具体的编译器）。 另外，C++中的函数签名(function signature)：包含了一个函数的信息，包括函数名、参数类型、参数个数、顺序以及它所在的类和命名空间。</p>
+<p>函数的重载是一种<strong>静态的多态性</strong>。编译器会帮你选择正确的（参数表和传入参数类型最匹配）函数。</p>
+<p>有时候，你传入的参数类型让编译器无法抉择应该使用哪一个函数，就会报错。最佳的工程实践，应该是让传入的参数和函数参数表完全匹配，而不是依赖编译器的隐式转换。</p>
+<p>子类会隐藏父类的所有同名函数，即使参数不同。</p>
+<h2 id="inheritance-privateprotectpublic">Inheritance-private,protect,public</h2>
+<p>如果两个对象是继承关系，那么子类是父类更特殊的推广。经常举的例子是<code>Shape</code>和<code>Rectangle</code>。</p>
+<pre><code class="language-cpp">class Derived : public Base
+{
+    //会把Base Class中所有的方法、变量都继承下来，包括构造函数、析构函数
+    //Base Class中的private方法，对于Derived Class也不能访问，			还有friends
+    //protected方法，对于Derived Class可以访问，但是对外部来说是不可见的，	 还有friends
+    //public方法，都可以访问
+}
+</code></pre>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Public继承中的Accessibility</th>
+<th style="text-align:left">private members</th>
+<th style="text-align:left">protected members</th>
+<th style="text-align:left">public members</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">Base Class</td>
+<td style="text-align:left">Yes</td>
+<td style="text-align:left">Yes</td>
+<td style="text-align:left">Yes</td>
+</tr>
+<tr>
+<td style="text-align:left">Derived Class</td>
+<td style="text-align:left">No</td>
+<td style="text-align:left">Yes</td>
+<td style="text-align:left">Yes</td>
+</tr>
+<tr>
+<td style="text-align:left">Outer</td>
+<td style="text-align:left">No</td>
+<td style="text-align:left">No</td>
+<td style="text-align:left">Yes</td>
+</tr>
+</tbody>
+</table>
+<p>我们要初始化基类的内容要怎么办呢？最佳实践是在初始化列表中加入基类</p>
+<pre><code>事实上，我们会先调用Base的构造函数，再调用Derived的构造函数;
+构造函数中初始化的顺序取决于变量定义的，顺序而不是初始化列表的顺序。
+Derived(value,...): attr(value), Base(...) {};
+</code></pre>
+<p><strong>Name hiding</strong>：如果在Derived Class编写了一个函数，那么Base Class中所有的同名函数都会<strong>被隐藏</strong>，即使参数列表不同。如果需要调用的话，要用<code>Base::function</code>显式声明要调用的函数。</p>
+<p><code>friend</code>关键字。可以用用他来指定可以作为friend的东西，被friend修饰的东西就可以访问private的东西了。他是破坏了封装的准则的，要慎用。</p>
+<pre><code class="language-cpp">//class 默认是private, struct默认是public
+struct X{
+private:
+    int i;
+public:
+    friend struct Z;		//可以是某个变量
+	friend void Fri::h();	//可以是别的类的函数
+	friend void glo();		//可以是全局函数
+}
+   
+</code></pre>
+<p>最开始的例子可以猜到，其实继承也是有public, private, protected 之分的。但是一般用的都是public，后面两个基本上不怎么用。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">继承方式</th>
+<th style="text-align:left">基类的public成员</th>
+<th style="text-align:left">基类的protected成员</th>
+<th style="text-align:left">基类的private成员</th>
+<th style="text-align:left">继承引起的访问控制关系变化概括</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">public继承</td>
+<td style="text-align:left">仍为public成员</td>
+<td style="text-align:left">仍为protected成员</td>
+<td style="text-align:left">不可见</td>
+<td style="text-align:left">基类的非私有成员在子类的访问属性不变</td>
+</tr>
+<tr>
+<td style="text-align:left">protected继承</td>
+<td style="text-align:left">变为protected成员</td>
+<td style="text-align:left">变为protected成员</td>
+<td style="text-align:left">不可见</td>
+<td style="text-align:left">基类的非私有成员都为子类的保护成员</td>
+</tr>
+<tr>
+<td style="text-align:left">private继承</td>
+<td style="text-align:left">变为private成员</td>
+<td style="text-align:left">变为private成员</td>
+<td style="text-align:left">不可见</td>
+<td style="text-align:left">基类中的非私有成员都称为子类的私有成员</td>
+</tr>
+</tbody>
+</table>
+<p>另外，在继承中，构造函数调用顺序：先基类，后子类；析构函数调用顺序：先子类，后基类。</p>
+<table>
+<thead>
+<tr>
+<th>-</th>
+<th>作用域</th>
+<th>函数名</th>
+<th>参数</th>
+<th>返回值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>重载</td>
+<td>相同</td>
+<td>相同</td>
+<td>不同</td>
+<td>不影响</td>
+</tr>
+<tr>
+<td>覆盖</td>
+<td>子类和父类</td>
+<td>相同</td>
+<td>相同</td>
+<td>相同</td>
+</tr>
+<tr>
+<td>隐藏</td>
+<td>重叠（包括子类和父类）</td>
+<td>相同</td>
+<td>不同</td>
+<td>不影响</td>
+</tr>
+</tbody>
+</table>
+<p>多继承：<strong>别用</strong>，除非是全是虚函数的接口。</p>
+<h2 id="polymorphism-virtual-function">Polymorphism-virtual function</h2>
+<p>https://bbs.pediy.com/thread-221160.htm</p>
+<p>通过添加这个<code>virtual</code>，我们可以只用<code>foo</code>方便的调用到每个类型上正确的函数。virtual的意思是：<strong>当通过基类的指针或者引用调用该成员函数时，将根据指针指向的对象类型确定调用的函数，而非指针的类型。</strong></p>
+<p>可以试着把virtual去掉，会发现调用的都是<code>Shape.render()</code>，是一个静态绑定。另外，实际上我们只需要在基类上写上virtual。</p>
+<p>如果一个类有虚函数，编译器会自动为<strong>这个类型的对象在头部增加一个虚表指针（<code>vftable</code>）</strong>，指向虚函数表。虚函数表中存放着一个个的虚函数的地址。每一个类的实例上都多了一个虚表，增加内存代价，然后调用的时候也多了一层，间接调用。</p>
+<p>注意，<code>base = derive</code>是合法的，但是这个copy是不会把上面提到的<code>vptr</code>复制过去的，所以<code>base.xxx</code>调用的还是基类的方法。</p>
+<p>记住一个点，如果想利用多态性的话，基类的<strong>析构函数必须是virtual的</strong>。为什么呢？因为否则的话你用基类指针接住子类，调用这个指针指向的析构函数如果没有virtual的帮助的话会调用基类析构函数而不是本来应该调用的子类析构函数。你不要假设类的使用者不会这么做，你会很痛苦的。</p>
+<pre><code class="language-cpp">class Shape{
+public:
+    virtual void render() = 0;	//纯虚函数
+    virtual ~Shape() {...}		//基类的析构函数肯定是virtual的。
+}
+class Ellipse : public Shape {
+public:
+    void render() override{...}
+}
+class Circle : public Ellipse{
+public:
+    void render() override{ 
+        Shape::render();		//重用父类的代码
+        ...
+    }
+}
+
+void foo(Shape* ptr){
+    ptr-&gt;render();
+}
+
+int main(){
+    Ellipse e;
+    Circle c;
+    foo(&amp;c);
+    foo(&amp;e);
+}
+//离开作用域后会调用c,e的虚构函数，应该是编译器帮我们加上的，在出栈的时候？
+//智能指针 unique_ptr 可以帮你管理内存
+</code></pre>
+<p><strong>纯虚函数</strong>：比如上面的Shape，它其实是一个抽象的概念，我们没法实现他的render。我们不应该去写他，所以我们把他变成一个纯虚函数。有纯虚函数的类，是<strong>抽象类</strong>，是不能实例化的。纯虚函数的子类应该去实现纯虚函数，否则也不能实例化。</p>
+<p>类型转换 Up-casting</p>
+<pre><code>Derive 	Base
+Derive&amp;=&gt;Base&amp;
+Derive*=&gt;Base*
+</code></pre>
+<p>动态绑定和静态绑定</p>
+<p>关于继承和虚函数的底层实现内存布局，在另一篇<a href="/post/c-qanda/">Blog C++Q&amp;A</a>中有解释。</p>
+<h2 id="operator-overloading">operator overloading</h2>
+<p>可以重载的运算符。不过优先级是无法改变的，<strong>操作数个数</strong>(如果是member function要算上this)也是无法改变的。也就是说我们应该尽量维持他们的语义。如果C++中本身不存在的运算符也是无法添加的。</p>
+<table>
+<thead>
+<tr>
+<th>+</th>
+<th>-</th>
+<th>*</th>
+<th>/</th>
+<th>%</th>
+<th>^</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>&amp;</td>
+<td>|</td>
+<td>~</td>
+<td>!</td>
+<td>,</td>
+<td>=</td>
+</tr>
+<tr>
+<td>&lt;</td>
+<td>&gt;</td>
+<td>&lt;=</td>
+<td>&gt;=</td>
+<td>++</td>
+<td>--</td>
+</tr>
+<tr>
+<td>&lt;&lt;</td>
+<td>&gt;&gt;</td>
+<td>==</td>
+<td>!=</td>
+<td>&amp;&amp;</td>
+<td>||</td>
+</tr>
+<tr>
+<td>+=</td>
+<td>-=</td>
+<td>/=</td>
+<td>%=</td>
+<td>^=</td>
+<td>&amp;=</td>
+</tr>
+<tr>
+<td>|=</td>
+<td>*=</td>
+<td>&lt;&lt;=</td>
+<td>&gt;&gt;=</td>
+<td>[]</td>
+<td>()</td>
+</tr>
+<tr>
+<td>-&gt;</td>
+<td>-&gt;*</td>
+<td>new</td>
+<td>new []</td>
+<td>delete</td>
+<td>delete []</td>
+</tr>
+</tbody>
+</table>
+<p>运算符重载的本质就是函数重载，<code>operator运算符()</code>。</p>
+<pre><code class="language-cpp">// 第一种写法，写成member function。
+// 推荐单目运算符使用，[] () = 必须用
+// 后面的const表示函数是一个常量函数，不会更改this的状态
+Complex operator+ (Complex const &amp;obj) const{
+    Complex res;
+    res.real = this-&gt;real + obj.real;
+    res.imag = this-&gt;imag + obj.imag;
+    return res;
+}
+语义： x+y ===&gt; x.operator+(y)
+    
+// 第二种写法，写成global function，没有了默认的self变量
+// 推荐双目运算符使用，看起来清楚一点
+// 要访问类内部的数据，所以用上了friend
+// 通过friend修饰可以访问私有变量
+class Complex {
+private:
+    int real, imag;
+public:
+    Complex(int r = 0, int i =0)  {real = r;   imag = i;}
+    friend Complex operator+ (Complex const &amp;, Complex const &amp;);
+}
+Complex operator+ (Complex const &amp;c1, Complex const &amp;c2)
+{
+    return Complex(c1.real + c2.real, c1.imag + c2.imag);
+}
+语义： x+y ===&gt; operator+(x,y)
+</code></pre>
+<p>注意：</p>
+<ul>
+<li><code>E&amp; T::operator[] (int index)</code>返回的是引用</li>
+<li><code>++</code>和<code>--</code>让人迷惑。<code>T&amp; operator++()</code>是prefix++，<code>T operator++(int)</code> 是postfix++。这个int是一个占位符。</li>
+<li>运算符之间往往是联系很大的，你要合理的重用他们避免代码重复。比如<code>!=</code>和<code>==</code>，<code>&gt;</code>和<code>&lt;=</code>，<code>&lt;</code>和<code>&gt;=</code>；<code>+=</code>和<code>++</code>。</li>
+<li>类型强制转换运算符是单目运算符，也可以被重载，但只能重载为成员函数，不能重载为全局函数。<code>operator double();</code>这是一个对double强制类型转换的重载。</li>
+<li>赋值运算符<code>=</code>，Be sure to assign to all data members: pointers... Checkfor <strong>self-assignment</strong><code>if (this!= &amp;rhs)</code>.</li>
+</ul>
+<h2 id="stream">stream</h2>
+<p>C语言其实已经有完善的I/O了，那么我们为什么还需要stream呢？</p>
+<ol>
+<li>stream是类型安全的。</li>
+<li>可以对自己定义的类，重载流输入输出符号。可扩展性高。</li>
+<li>更加面向对象。</li>
+</ol>
+<p>但是对格式化输出不友好(std::format comes back in C++20,但是还没有编译器支持；有很多第三方库也支持格式化输出)。流可能会更慢。</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Input</th>
+<th>Output</th>
+<th>Header</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Generic</td>
+<td>istream</td>
+<td>ostream</td>
+<td>iostream</td>
+</tr>
+<tr>
+<td>File</td>
+<td>ifstream</td>
+<td>ofstream</td>
+<td>ifstream</td>
+</tr>
+<tr>
+<td>C string</td>
+<td>istrstream</td>
+<td>ostrstream</td>
+<td>strstream</td>
+</tr>
+<tr>
+<td>C++ string</td>
+<td>istringstream</td>
+<td>ostringstream</td>
+<td>sstream</td>
+</tr>
+</tbody>
+</table>
+<p>Extractor<code>&gt;&gt;</code>, Inserter<code>&lt;&lt;</code>, <strong>Manipulator</strong>.</p>
+<p><code>&lt;&lt;</code>：对于基本类型都已经定义好了。默认是忽略前导的whitespace的。我们可以为我们的类型自己重载这个运算符。<code>&gt;&gt;</code>也是。</p>
+<pre><code class="language-cpp">// 声明 通过friend可以访问私有变量
+friend std::ostream &amp;operator&lt;&lt;(std::ostream &amp;output, const Fraction &amp;D);
+friend std::istream &amp;operator&gt;&gt;(std::istream &amp;input, Fraction &amp;D);
+// 定义，注意这个不是类方法，是没有默认的self变量的
+std::istream &amp;operator&gt;&gt;(std::istream &amp;input, Fraction &amp;D)
+{
+    input &gt;&gt; D.numerator &gt;&gt; D.denominator;
+    return input;
+}
+
+std::ostream &amp;operator&lt;&lt;(std::ostream &amp;output, const Fraction &amp;D)
+{
+    output &lt;&lt; D.to_string();
+    return output;
+}
+
+// 自定义Manipulator的例子
+ostream&amp; tab(ostream&amp; out){
+    return out &lt;&lt; '\t';
+}
+</code></pre>
+<p>除了流，我们还有更精细的对输入的控制：</p>
+<ul>
+<li>其他的函数
+<ul>
+<li><code>get()</code></li>
+<li>``getline()`</li>
+<li>cout.flash()`：刷新缓冲区，会把缓存中的东西都写出去。</li>
+</ul>
+</li>
+<li>manipulator可以控制流的状态。我们也可以自定义manipulator。
+<ul>
+<li>endl：换行，刷新缓冲区</li>
+<li>hex：</li>
+<li>setprecision(2)：控制输出的精度</li>
+<li>setw(20)：</li>
+</ul>
+</li>
+<li>stream flag</li>
+</ul>
+<h2 id="composition">composition</h2>
+<p>表示“has a”的关系。比如car has a engin/windows<br>
+一个优秀的composition应该满足</p>
+<ul>
+<li>The part (member) is part of the object (class)</li>
+<li>The part (member) can only belong to one object (class) at a time</li>
+<li>The part (member) has its existence managed by the object (class)</li>
+<li>The part (member) does not know about the existence of the object (class)<br>
+包含的方法，通过对象是不是能管理包含内容的生命周期决定要选择哪一种：A has a B</li>
+</ul>
+<ol>
+<li>直接包含。A和B的生命周期相同。A的析构函数会调用被包含的B的析构函数。A会按照和声明相反的顺序调用members的析构函数。</li>
+<li>通过指针。那么我们需要通过析构函数手动的释放B。显然这个更复杂。所以我们在需要动态的分配的时候才会通过指针。当然，我们还有智能指针呢。</li>
+</ol>
+<h3 id="抽象类型">抽象类型</h3>
+<p>抽象类型( abstract type ) 则把使用者与类的实现细节完全隔离开来。</p>
+<h2 id="类型转换">类型转换</h2>
+<p>对于单参数的构造函数，可能会做隐式类型转换。<code>A a = b</code>被转换成<code>A a=A(b)</code>。想要避免这个现象，可以在<strong>单参数构造函数</strong>前加上<code>explicit</code>关键字。</p>
+<p>内置的隐式类型转换：</p>
+<pre><code>char=&gt;short=&gt;int=&gt;float=&gt;double
+           =&gt;int=&gt;long
+T=&gt;T&amp;
+T&amp;=&gt;T
+T*=&gt;void*
+T[]=&gt;T*
+T*=&gt;T[]
+T=&gt;const T
+</code></pre>
+<p>可以自己重载类型转换。<code>X::operator T()</code>，Compiler will use it as a type conversion from X=&gt;T.</p>
+<p>另外注意以下C++赋值的<strong>默认语义是copy</strong>而Rust是move，二者是有很大区别的。而这也会带来很多很微妙的问题，比如一个析构函数对应了有 复制构造函数、构造函数，C++11引入了移动构造函数但是我不知道什么时候会被调用。这样的话类里头有指针就很容易出问题，建议用智能指针RAII。</p>
+<p>C++提供了四个有语义的类型转换：</p>
+<ol>
+<li>
+<p><strong>static_cast</strong>: 它用于非多态类型的转换（静态转换），<strong>对应于C中的隐式类型转换</strong>，<strong>但他不能用于两个不相关类型的转换</strong>，如整形和整形指针之间的转换，虽然二者都是四个字节，但他们一个表示数据，一个表示地址，类型不相关，无法进行转换。</p>
+<p>不能在没有派生关系的两个类类型之间转换</p>
+<p>不能去除掉原有类型的类型修饰符，例如<code>const</code>，<code>volatile</code>，<code>__unaligned</code></p>
+<p>转换对象时由于没有动态类型检查，所以由基类对象转换成派生类对象的时候存在安全隐患</p>
+</li>
+<li>
+<p><strong>reinterpret_cast</strong>: 重新解释，可将一种类型转换成另一种不相关类型，<strong>对应C中的强制类型转换</strong>，处理无法进行隐式转换的情况</p>
+</li>
+<li>
+<p><strong>const_cast</strong>: 他的功能就是删除变量的const属性，方便再次赋值。该转换在编译时完成，用于解除const，volatile修饰符，只能转换指针或者引用。</p>
+</li>
+<li>
+<p><strong>dynamic_cast</strong>: 有条件转换，动态类型转换，将一个基类对象指针（或引用）转换到继承类指针，dynamic_cast会根据基类指针是否真正指向继承类指针来做相应处理，运行时检查类型安全（转换失败返回nullptr）：</p>
+<p>1）安全的基类和子类之间的转换。</p>
+<p>2）必须有虚函数。</p>
+<p>3）相同基类不同子类之间的交叉转换，但结果返回nullptr。</p>
+</li>
+</ol>
+<pre><code class="language-cpp">// C++提供了4个有语义的类型转换
+double d = 7.1;
+int a;
+a = d;				// implicit
+a = (int) d;		// explicit
+a = static_cast&lt;int&gt;(d);	
+
+double *pd = reinterpret_cast&lt;double*&gt;(&amp;a);	//并不改变底层的二进制
+const_cast&lt;&gt;();
+
+// 下面假设A是基类，BC继承A
+A* pa = new B;
+C *pc = dynamic_cast&lt;C*&gt;(pa);	// 依赖于虚表，返回nullptr
+</code></pre>
+<h2 id="template">Template</h2>
+<p>泛型编程的基础。广泛的的在标准库中使用。有点以类型作为参数的感觉，和重载有时能完成同样的事情。或者说，通过模板编译器能帮我们自动生成重载的函数。</p>
+<ul>
+<li>Function template <code>sort</code>...</li>
+<li>Class template <code>stack</code>,<code>list</code>,...</li>
+</ul>
+<p>Demo: Function template</p>
+<pre><code class="language-cpp">// 交换函数，只能是Int
+void my_swap(int&amp; x,int&amp; y){
+        int temp = x;
+        x = y;
+        y = temp;
+}
+void my_swap(string&amp; x,string&amp; y){
+        string temp = x;
+        x = y;
+        y = temp;
+}
+
+// 这样子就可以为所有的类型做swap
+// 当我们实际上用int类型调用的时候，编译器会帮我们生成和上面第一种一样的代码 swap(int,int)
+// 但是如果你调用swap(double,int)就不行，编译器不会做默认的隐式转换 除非你显式的调用swap&lt;double&gt;(double, int)
+template &lt;typename T&gt;
+void my_swap(T&amp; x,T&amp; y){
+        T temp = x;
+        x = y;
+        y = temp;
+}
+
+// 如果编译器无法在传入参数和返回值中判断出类型，你需要显式的调用模板函数my_fun&lt;double&gt;()
+template &lt;typename T&gt;
+void my_fun(){
+    T ...
+}
+</code></pre>
+<p>模板和普通函数是可以共存的，并且在参数匹配的时候会优先选择普通函数。当然我觉得这个一般是没啥用的。</p>
+<p>Overload rules：</p>
+<ol>
+<li>参数完全匹配的普通函数</li>
+<li>参数完全匹配的模板函数</li>
+<li>可以通过隐式转换匹配的普通函数</li>
+</ol>
+<p>Demo: class template</p>
+<pre><code class="language-cpp">template &lt;class T&gt;
+class Vector {
+    Vector(int size);
+    ...
+}
+
+Vector&lt;T&gt;::Vector(int size) :m_size(size){
+    m_element = new T[m_size];
+}
+...
+    
+int main(){
+    	vector&lt;int&gt; x = vector&lt;int&gt;(100);
+}
+
+// Template可以有多个泛型
+template &lt;class Key,class Value&gt;
+class HashTable{
+    ...
+}
+
+// template还可以带参数，不过参数一定要在编译期就能确定值。
+template &lt;class T,int N&gt;
+class Array{
+    private T my_arr[N];
+    ...
+}
+Array&lt;int ,3&gt;a;
+</code></pre>
+<p>[!] 其实我们写了一个模板T，<strong>并不是放之四海而皆能编译</strong>的。因为可能对泛型T是有要求的。看一个rust的例子：</p>
+<pre><code>pub fn sort(&amp;mut self)
+where
+    T: Ord,				//如果要排序的话，T要是实现了Ord Trait的。偏序比较。
+</code></pre>
+<p>对应C++，可能就是要重载<code>&lt;</code>号之类的比较符号。这个错误在C++是非常隐晦的，C++20提出了和上面的Rust类似的解决方案。</p>
+<p>[!] 歧义递归模板</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th><a href="http://www.cnblogs.com/ider/archive/2011/06/30/what_is_in_cpp_header_and_implementation_file.html#none_template_type">非模板类型(none-template)</a></th>
+<th><a href="http://www.cnblogs.com/ider/archive/2011/06/30/what_is_in_cpp_header_and_implementation_file.html#none_template_type">模板类型(template)</a></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="http://www.cnblogs.com/ider/archive/2011/06/30/what_is_in_cpp_header_and_implementation_file.html#header_file">头文件(.h)</a></td>
+<td>全局变量申明（带extern限定符）全局函数的申明带<a href="http://www.cnblogs.com/ider/archive/2011/06/30/what_is_in_cpp_header_and_implementation_file.html#inline_qualifier">inline限定符</a>的全局函数的定义</td>
+<td>带<a href="http://www.cnblogs.com/ider/archive/2011/06/30/what_is_in_cpp_header_and_implementation_file.html#inline_qualifier">inline限定符</a>的全局模板函数的申明和定义</td>
+</tr>
+<tr>
+<td>类的定义类函数成员和数据成员的申明（在类内部）类定义内的函数定义（相当于inline）带<a href="http://www.cnblogs.com/ider/archive/2011/06/30/what_is_in_cpp_header_and_implementation_file.html#static_const_qualifier">static const限定符</a>的数据成员在<strong>类内部</strong>的初始化带<a href="http://www.cnblogs.com/ider/archive/2011/06/30/what_is_in_cpp_header_and_implementation_file.html#inline_qualifier">inline限定符</a>的类定义外的函数定义</td>
+<td>模板类的定义模板类成员的申明和定义（定义可以放在类内或者类外，类外不需要写inline）</td>
+<td></td>
+</tr>
+<tr>
+<td>实现文件(.cpp)</td>
+<td>全局变量的定义（及初始化）全局函数的定义</td>
+<td>(无)</td>
+</tr>
+<tr>
+<td>类函数成员的定义类带static限定符的数据成员的初始化</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="stl-standard-template-library">STL (standard template library)</h2>
+<p>已经写好的数据结构，robust，portable，easy。泛型编程。</p>
+<ul>
+<li>Containers: pair,vector,deque,list,set,map</li>
+<li>Algotithm: sort() copy() find()</li>
+<li>Iterators: begin() end() 不要对无效的迭代器进行任何操作！<code>li=L.erase(li)</code></li>
+</ul>
+<p>最常用的三个数据结构：map，vector，list</p>
+<figure data-type="image" tabindex="2"><img src="https://reticenceji.github.io/post-images/image-20210605203121551.png" alt="image-20210605203121551" loading="lazy"></figure>
+<figure data-type="image" tabindex="3"><img src="https://reticenceji.github.io/post-images/image-20210605203530117.png" alt="image-20210605203530117" loading="lazy"></figure>
+<p>然后因为这些东西加上泛型比较冗长，所以我们一般会用：</p>
+<ol>
+<li>typedef <code>typedefPBmap&lt;Name,list&lt;PhoneNum&gt;&gt;</code></li>
+<li>auto 来自动推导类型（C++11）</li>
+</ol>
+<h2 id="iterators">Iterators</h2>
+<p>要理解泛型编程，一定要理解的是泛型和迭代器。</p>
+<p>迭代器是<strong>容器和算法</strong>之间的粘合剂。模板让算法独立于存储的数据类型，迭代器让算法独立于使用的容器类型。迭代器提供了一个和底层实现无关的。</p>
+<p>STL为每个容器类型都实现了迭代器，无论他们底层是如何实现的，都有类似的基本接口。我觉得迭代器就像一个<strong>有额外metadata的指针</strong>，能用在指针上面的操作基本都能用在迭代器上，比如<code>*</code>,<code>++ --</code>,<code>[]</code>,<code>==</code>等。不过迭代器有的是<strong>单向</strong>（不支持<code>--</code>和<code>[]</code>）的，有的是<strong>双向</strong>（支持<code>++</code>和<code>--</code>）的，有的是支持<strong>随机访问RandomAccessIterator</strong>（支持<code>[]</code>）的。（这个也好理解，比如单向链表如果要逆向访问代价就很大了；如果内存中连续的话，随机访问问题也不大）。指针变量可以理解为数组的迭代器。</p>
+<p>除此之外还有<strong>输入迭代器InputIterator</strong>和<strong>输出迭代器</strong>的区别，输入迭代器可以让我们解引用<code>*</code>但是我们不能修改内容。输出迭代器只能让我们写容器的值而不能读取。比如cout就是输出迭代器。</p>
+<p>遍历<code>for (auto it = con.begin(); it!=con.end(); it++){}</code>。不过++得到的结果和底层的实现有关，比如<code>set</code>的底层实现是红黑树，所以<code>set</code>内部的元素是有序的，<code>++</code>会获得中序遍历的下一个值（也就是从小到大）；<code>vector</code>在内存中是有序的，<code>++</code>就会获得内存中相邻的下一个元素。</p>
+<p>迭代器至少要重载<code>*</code>，<code>-&gt;</code>，<code>==</code>操作吧。可能<code>++</code>等算数符号至少也要实现一个的。这些接口定义好了，就可以用算法库了。</p>
+<p>迭代器里面往往会定义一些类型信息，方便外部的使用</p>
+<pre><code class="language-cpp">template &lt;class T&gt;
+struct myIter{
+	typedef T value_type;    
+    
+    T* ptr;
+    ...
+}
+
+</code></pre>
+<h2 id="exception">Exception</h2>
+<p>throw try catch</p>
+<p><code>new</code> raise <code>bad_alloc()</code>exception on failure</p>
+<p>如果在<strong>构造函数中发生了异常</strong>，那么析构函数不会执行。所以如果你在构造函数里头有new的话，内存就泄漏了。解决办法是啥呢？智能指针永远的神，或者说用另一个对象Wrapper给他包起来，这就是RAII！总之最好不要有一个裸指针，太难了。</p>
+<pre><code class="language-cpp">// Wrapper就是把指针封装起来，可以是简单的像Rust中Box一样的东西，也可以是其他的智能指针unique_ptr和shared_ptr
+class Wrapper{
+
+}
+
+class A{
+private:
+    Wrapper w;
+    // 或者 unique_ptr&lt;int[]&gt; w;
+public:
+    A() :w(new int[10]){
+        cout &lt;&lt; &quot;A::A()&quot; &lt;&lt; endl;
+        throw 1;	// 为了演示
+    }
+    ~A() {
+        cout &lt;&lt; &quot;A::~A()&quot; &lt;&lt; endl;
+    }
+}
+</code></pre>
+<p>如果在析构函数发生了异常。。那就完了，不要让他抛异常。</p>
+<pre><code class="language-c++">// 关于执行顺序
+    // 一旦try里面发生了异常，会从上到下依次检查是否有匹配的catch块。
+        // 一旦匹配了，执行catch块的内容
+        // 如果没有匹配
+    // 如果try里面没有发生异常
+        // 继续执行，直到函数return(并没有真正返回，算出了返回值)
+// 执行finally块的内容
+// 函数返回
+int[] arr = new int[5];
+double b = 0;
+
+try{
+    arr[6] = 8;
+}
+catch (ArrayIndexOutOfBoundsException ex){
+    System.out.println(&quot;----&quot;);
+    b = 1/0;
+}catch (Exception e){
+    System.out.println(&quot;****&quot;);
+    e.printStackTrace();
+}finally {
+    arr[4] = 3;
+    System.out.println(arr[4]);
+}
+</code></pre>
+<p>C++ 标准库中有一些类代表异常，这些类都是从 exception 类派生而来的。一般来说我们尽量使用标准库的异常，不要自己定义异常类，虽然我们可以throw任何类实例。更一般来说，尽量不要让程序可能抛出异常。</p>
+<h3 id="智能指针">智能指针</h3>
+<p>C++智能指针，<code>unique_ptr</code>，<code>shared_ptr</code>，<code>weak_ptr</code></p>
+<p>基本的使用方法<code>unique_ptr&lt;A&gt; pa = new(A);</code>，C++11。最好的使用方法：<code>auto pa = make_unique&lt;A&gt;();</code>，括号里可以写A构造函数的参数，不过这个是C++14支持的。 unique_ptr是独占式指针，意味着<code>auto pa2 = pa;</code>等复制语义的语句是不被允许的，编译器会告诉你copy constructor/ copy assignment constructor都被删除了。<code>std::move)()</code>移动语义是被允许的。<code>pa.get()</code>可以把裸指针拿出来，虽然<code>pa</code>的使用和裸指针基本一样。</p>
+<p>类似的，<code>auto pa = make_shared&lt;A&gt;();</code>。顾名思义是允许多个指针指向内容，是由引用计数实现的。我们可以用<code>pa.use_count()</code>查看引用计数。shared_ptr有一个问题，就是一旦发生了<strong>循环引用</strong>，就不会释放，造成内存泄漏。Java/Python的垃圾回收基本原理也是引用计数。</p>
+<p><code>weak_ptr</code>和<code>shared_ptr</code>是很类似的，但是weak_ptr是没有管理的所有权的。他就不会关系管理的类的构造和析构。</p>
+<pre><code class="language-cpp">//  引用计数器类  用于存储指向同一对象的指针数
+template&lt;typename T&gt;
+class Counter
+{
+private:
+	//  数据成员
+	T* ptr;    //  对象指针
+	int cnt;   //  引用计数器
+	//  友元类声明
+	template&lt;typename T&gt;
+	friend class SmartPtr;
+	//  成员函数
+	//  构造函数
+	Counter(T* p)   //  p为指向动态分配对象的指针
+	{
+		ptr = p;
+		cnt = 1;
+	}
+	//  析构函数
+	~Counter()
+	{
+		delete ptr;
+	}
+};
+
+//  智能指针类  
+template&lt;typename T&gt;
+class SmartPtr
+{
+private:
+	//  数据成员
+	T* ptr;
+	Counter&lt;T&gt;* ptr_cnt;
+
+public:
+	//  普通构造函数  初始化计数类
+	SmartPtr(T* p) : ptr(p), ptr_cnt(new Counter&lt;T&gt;(p))
+	{
+	}
+	//  拷贝构造函数
+	SmartPtr(const SmartPtr&amp; other) : ptr(other.ptr), ptr_cnt(other.ptr_cnt)
+	{
+		ptr_cnt-&gt;cnt++;
+	}
+	//  移动构造函数
+	SmartPtr(SmartPtr&amp;&amp; other) : ptr(std::move(other.ptr)), ptr_cnt(std::move(other.ptr_cnt))
+	{
+		other.ptr_cnt = nullptr;
+	}
+
+	//  赋值重载
+	SmartPtr&amp; operator=(const SmartPtr&amp; rhs)
+	{
+		if (ptr_cnt != rhs.ptr_cnt)
+		{
+			if (ptr_cnt != nullptr)
+			{
+				ptr_cnt-&gt;cnt--;
+				if (ptr_cnt-&gt;cnt == 0)
+					delete ptr_cnt;
+			}
+			ptr = rhs.ptr;
+			ptr_cnt = rhs.ptr_cnt;
+			rhs.ptr_cnt-&gt;cnt++;
+
+		}
+		return *this;
+	}
+
+	// 移动赋值重载	
+	SmartPtr&amp; operator=(SmartPtr &amp;&amp; rhs)
+	{
+		if (ptr_cnt != rhs.ptr_cnt)
+		{
+			std::swap(this, rhs);
+		}
+		return *this;
+	}
+
+	//  析构函数
+	~SmartPtr()
+	{
+		if (ptr_cnt != nullptr)
+		{
+			ptr_cnt-&gt;cnt--;
+			if (ptr_cnt-&gt;cnt == 0)
+				delete ptr_cnt;
+		}
+	}
+
+	T&amp; operator*()     const { return *(ptr); }
+	T* operator&amp;()     const { return ptr; }
+	size_t use_count() const { return ptr_cnt-&gt;cnt; }
+	bool unique()      const { return (ptr_cnt-&gt;cnt == 1); }
+	T* get()           const { return ptr; }
+};
+/*
+————————————————
+版权声明：本文为CSDN博主「RaKiRaKiRa」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/RaKiRaKiRa/article/details/94991797
+*/
+</code></pre>
+<p>UCObject UCPointer</p>
+<p>有时候我们需要把智能指针作为参数传递，有下面三种方式：</p>
+<pre><code class="language-cpp">void passByValue(std::unique_ptr&lt;Resource&gt; mResPtr) {}
+void passByConstRef(const std::unique_ptr&lt;Resource&gt;&amp; mResRef) {}
+void passByRawPtr(Resource *mResPtr) {}
+</code></pre>
+<p>一般来说第三个是比较好的传递参数的方式，在函数不需要拥有对象所有权的情况下。</p>
+
+<span id="footnote"></span>
+<div id = "warn"></div>
+</div>
+<div class="toc-container"><ul class="markdownIt-TOC">
+<li><a href="#c%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80">C++语言基础</a>
+<ul>
+<li><a href="#better-c">Better C</a>
+<ul>
+<li><a href="#static">static</a></li>
+</ul>
+</li>
+<li><a href="#reference">Reference</a></li>
+<li><a href="#inline">Inline</a></li>
+<li><a href="#const">Const</a></li>
+<li><a href="#encapsulation-with-class-star">Encapsulation with Class :star:</a>
+<ul>
+<li><a href="#this">this</a></li>
+</ul>
+</li>
+<li><a href="#constructordestructor">Constructor&amp;Destructor</a></li>
+<li><a href="#newdelete">New&amp;Delete</a></li>
+<li><a href="#default-arguments">Default Arguments</a></li>
+<li><a href="#overload">Overload</a></li>
+<li><a href="#inheritance-privateprotectpublic">Inheritance-private,protect,public</a></li>
+<li><a href="#polymorphism-virtual-function">Polymorphism-virtual function</a></li>
+<li><a href="#operator-overloading">operator overloading</a></li>
+<li><a href="#stream">stream</a></li>
+<li><a href="#composition">composition</a>
+<ul>
+<li><a href="#%E6%8A%BD%E8%B1%A1%E7%B1%BB%E5%9E%8B">抽象类型</a></li>
+</ul>
+</li>
+<li><a href="#%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2">类型转换</a></li>
+<li><a href="#template">Template</a></li>
+<li><a href="#stl-standard-template-library">STL (standard template library)</a></li>
+<li><a href="#iterators">Iterators</a></li>
+<li><a href="#exception">Exception</a>
+<ul>
+<li><a href="#%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88">智能指针</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="fullPage"><canvas id="canvas"></canvas></div>
+</article>
+<div id="eof"><span>EOF</span></div><div class="round-shape-one"></div>
+<section>
+<div class="doc_comments">
+
+</div></section>
+</div></div></div><script>
+"use strict";!function(){for(var n=document.getElementsByTagName("pre"),e=n.length,s=0;s<e;s++){n[s].innerHTML='<span class="line-number"></span>'+n[s].innerHTML+'<span class="cl"></span>';for(var a=n[s].innerHTML.split(/\n/).length,r=0;r<a-1;r++){n[s].getElementsByTagName("span")[0].innerHTML+="<span>"+(r+1)+"</span>"}}}();
+let mainNavLinks=document.querySelectorAll(".markdownIt-TOC a");window.addEventListener("scroll",event=>{let fromTop=window.scrollY;mainNavLinks.forEach((link,index)=>{let section=document.getElementById(decodeURI(link.hash).substring(1));let nextSection=null
+if(mainNavLinks[index+1]){nextSection=document.getElementById(decodeURI(mainNavLinks[index+1].hash).substring(1));}
+if(section.offsetTop<=fromTop){if(nextSection){if(nextSection.offsetTop>fromTop){link.classList.add("currentToc");}else{link.classList.remove("currentToc");}}else{link.classList.add("currentToc");}}else{link.classList.remove("currentToc");}});});
+var h=document.documentElement,b=document.body,st="scrollTop",sh="scrollHeight",progress=document.querySelector(".progress"),scroll;document.addEventListener("scroll",function(){scroll=(h[st]||b[st])/((h[sh]||b[sh])-h.clientHeight)*100;progress.style.setProperty("--scroll",scroll+"%")});
+var wxScale=new WxScale({fullPage:document.querySelector("#fullPage"),canvas:document.querySelector("#canvas")});var imgBox=document.querySelectorAll("#md_block img");for(var i=0;i<imgBox.length;i++){imgBox[i].onclick=function(e){wxScale.start(this)}};
+</script>
+<a id="scrollUp" href="#top" style="position: fixed; z-index: 2147483647; display: block;"></a><div class="footer animated fadeInDown"><div class="site_footer"><div class="mysocials"><div class="my_socials"><a href="https://github.com/reticenceji"title="github"><i class="iconfont icon-github"></i></a><a href="reticenceji@qq.com"title="envelope"><i class="iconfont icon-envelope"></i></a><a href="https://www.zhihu.com/people/reticenceji"title="zhihu"><i class="iconfont icon-zhihu"></i></a></div></div><div class="copyright"id="copyright">Copyright © 2018-2020 <a href="https://reticenceji.github.io" style="margin:0;">Reticence</a>.</div>
+<span style="display: inline;margin-right:15px;">👁<strong><span id="busuanzi_value_site_uv"></span></strong></span><span id="busuanzi_container_page_pv" style="display: inline;"><span>📚<strong>176</strong> posts</span></div></div>
+<script>
+console.log("\n %c \u26a1Theme: Bitcron-pro Author's Blog:https://blog.blinkstar.cn  Writen By Serence  \n\n", "color: #ffffff; background: rgba(49, 49, 49, 0.85); padding:5px 0;border-radius:5px;", );
+</script>
+<script src="https://cdn.jsdelivr.net/npm/instant.page@3.0.0/instantpage.min.js" type="module" defer></script>
+<script type="text/javascript" async src="https://reticenceji.github.io/media/js/prism.js"></script>
+</body>
+</html>

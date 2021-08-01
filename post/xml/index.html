@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="shortcut icon" href="https://reticenceji.github.io/favicon.ico" type="image/x-icon" /><meta name="viewport"content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="apple-mobile-web-app-capable"content="yes"/><meta name="apple-mobile-web-app-status-bar-style"content="black"/><meta name="format-detection"content="telephone=no"/><meta name="renderer"content="webkit"><meta name="description"content=""><meta charset="UTF-8"><title>XML | Reticence</title>
+<link href="https://reticenceji.github.io/styles/main.css" type="text/css" rel="stylesheet" /><link href="https://at.alicdn.com/t/font_1621793_zatzzgvf30g.css" type="text/css" rel="stylesheet" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css"><script async src="https://cdn.jsdelivr.net/npm/busuanzi@2.3.0/bsz.pure.mini.min.js"></script><script src="https://reticenceji.github.io/media/js/magnify.min.js"></script><script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js"></script>
+<script type="text/javascript">function btn_toggle(){document.getElementById("hn").classList.contains("no-js")?document.getElementById("hn").classList.remove("no-js"):document.getElementById("hn").classList.add("no-js")}</script>
+
+<link rel="canonical" href="https://reticenceji.github.io/post/xml/" />
+</head>
+<body>
+<div class="progress"></div><style>.progress{background:linear-gradient(to right,#87ceeb var(--scroll),transparent 0);background-repeat:no-repeat;position:fixed;width:100%;height:4px;z-index:1}</style><div class="darkmode-background"></div><div class="darkmode-layer"></div>
+<noscript><p class="warn" >本页面需要浏览器支持（启用）JavaScript</p></noscript><div class="header"><div class="logo_title"><div class="title animated fadeInDown"><a href="https://reticenceji.github.io"><img alt="logo" style="display:inline-block;" src="https://reticenceji.github.io/images/avatar.png"/></a><h1 title="Reticence" class="weaklink"><a  href="/">Reticence</a></h1>
+
+<div class="navbar weaklink">
+<div class="normal_nav">
+<div class="bitcron_nav_container"><div class="bitcron_nav"><div class="bitcron_nav"><div style="display:flex;justify-content:center;"><nav class="mixed_site_nav_wrap site_nav_wrap"><ul class="mixed_site_nav site_nav sm sm-base">	<li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/" class="selected active current nav__item" >Index</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/tags" class="selected active current nav__item" >Tags</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/archives" class="selected active current nav__item" >Archives</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/navigator.html" class="selected active current nav__item" >Navigator</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/post/about" class="selected active current nav__item" >About</a></li></ul></nav>
+<div style="float:right;margin-top:1em"><form id="gridea-search-form" data-update="1578893743252" action="/search/index.html"><input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="Search..."></form></div><div style="margin-left:0.5em;margin-top:1.2em"><input id="switch_default" onclick="mobileBtn()" type="checkbox" class="switch_default"><label for="switch_default" class="toggleBtn"></label></div></div>
+<div class="clear clear_nav_inline_end"></div></div></div><div class="clear clear_nav_end"></div></div></div><div class="hamberger" href="javascript:void(0)" onclick="btn_toggle();"><i class="iconfont icon-category"></i></div></div></div></div>
+<div id="hn" class="no-js hidden_nav animated fadeInDown"><div class="bitcron_nav_container"><div class="bitcron_nav"><nav class="mixed_site_nav_wrap site_nav_wrap"><ul class="mixed_site_nav site_nav sm sm-base">	<li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/" class="selected active current nav__item" >Index</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/tags" class="selected active current nav__item" >Tags</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/archives" class="selected active current nav__item" >Archives</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/navigator.html" class="selected active current nav__item" >Navigator</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/post/about" class="selected active current nav__item" >About</a></li></ul><div class="clear clear_nav_inline_end"></div></nav></div><div class="clear clear_nav_end"></div></div>
+<div style="display:flex;justify-content:center;inline-block;text-align:center;margin-top:7%"><div><form id="gridea-search-form" data-update="1627835297708" action="/search/index.html"><input class="search-input" autocomplete="off" spellcheck="false" name="q"  placeholder="Search..." /></form></div><div style="margin-left:0.5em"><input id="switch_default_h" onclick="mobileBtn()" type="checkbox" class="switch_default"><label for="switch_default" class="toggleBtn"></label></div></div>
+</div></div>
+<script>function enableDarkmode(){document.body.classList.add("darkmode"),document.getElementById("switch_default").checked=1,document.getElementById("switch_default_h").checked=1}function removeDarkmode(){document.body.classList.remove("darkmode"),document.getElementById("switch_default").checked=0,document.getElementById("switch_default_h").checked=0}function getCookie(a){var b,c=new RegExp("(^| )"+a+"=([^;]*)(;|$)");return(b=document.cookie.match(c))?unescape(b[2]):null}cookie=getCookie("darkmode"),"enable"==cookie&&enableDarkmode(),window.matchMedia("(prefers-color-scheme: dark)").matches&&"disable"!==cookie&&(enableDarkmode(),document.cookie="darkmode=enable; path=/");var mobileBtn=function(){1==document.getElementById("switch_default").checked?(enableDarkmode(),document.cookie="darkmode=enable; path=/"):(removeDarkmode(),document.cookie="darkmode=disable; path=/")};</script>
+
+<div class="main"><div class="main-inner"><div class="content">
+<article class="post">
+<h2 class="post_title sm_margin"><a>XML</a></h2>
+<script>function lan(){if(document.getElementById("lan").innerText=="繁"){var s=document.getElementById("tongwenlet_cn");if(s!=null){document.body.removeChild(s)}var s=document.createElement("script");s.language="javascript";s.type="text/javascript";s.src="https://cdn.jsdelivr.net/gh/qyxtim/Static@1.1/bookmarklet_tw.js";s.id="tongwenlet_cn";document.body.appendChild(s);document.getElementById("lan").innerHTML="简"}else{if(document.getElementById("lan").innerText=="簡"){var s=document.getElementById("tongwenlet_cn");if(s!=null){document.body.removeChild(s)}var s=document.createElement("script");s.language="javascript";s.type="text/javascript";s.src="https://cdn.jsdelivr.net/gh/qyxtim/Static@1.1/bookmarklet_cn.js";s.id="tongwenlet_cn";document.body.appendChild(s);document.getElementById("lan").innerHTML="繁"}}};</script>
+<section class="post_details"><i class="iconfont icon-calendar"></i><span style="margin-right:15px"> 2021-04-22</span><i class="iconfont icon-browse"></i><span style="margin-right:15px"> <span id="busuanzi_value_page_pv"></span> Views</span><i class="iconfont icon-category"></i><span class="weaklink" style="margin-right:15px">	<a href="https://reticenceji.github.io/tag/uXp2zQxRH/" class="tag">Database</a> | 	<a href="https://reticenceji.github.io/tag/FsPAOTRN-/" class="tag">Web</a></span><i class="iconfont icon-caret-down"></i><span style="margin-right:15px">3517字</span><i class="iconfont icon-naozhong"></i><span style="margin-right:15px">16 min read</span><a id="lan" href="javascript:void(0);"onclick="lan();"title="调整简繁体" style="margin-right:15px;">繁</a>
+</section>
+
+<div style="display:flex">
+<div class="md_block" id="md_block">
+<div class="round-shape-one"></div>
+<p>关于这篇提到的关于XML的内容，都是W3C组织规定的。可以很方便的在W3School找到权威详细的资料。</p>
+<p><a href="https://www.w3school.com.cn/x.asp">中文W3school XML</a><br>
+<a href="https://www.w3schools.com/xml/default.asp">英文W3scholos XML</a><br>
+<a href="http://www.xpather.com/">XPath在线工具</a>和<a href="http://www.xpathtester.com/xquery">XQuery在线工具</a>，方便学习。</p>
+<!-- more -->
+<h2 id="xml">XML</h2>
+<p><strong>XML</strong>可扩展标记语言，Extensible Markup Language 。还有一个<strong>JSON</strong>也可以实现类似的功能，不过更轻量一点。他们大都用于<strong>数据的传输</strong>，还有很常见的场景是<strong>配置文件</strong>。<br>
+XML是从SGML中扩展出来的。还有很相似的概念是HTML，不过HTML的<strong>标签tag</strong>都是定死的。XML则<strong>没有固定的标记</strong>，XML不能直接描述网页具体的外观，内容，它只是描述内容的数据形式和结构。</p>
+<p>一个例子，可以看出XML适合人的阅读。self-description but redundent，所以最好用于<strong>少量数据</strong>的传输。</p>
+<h3 id="xml基础">XML基础</h3>
+<p>看下面的Demo，包含了最常见的XML要素。</p>
+<ul>
+<li>
+<p>prelog：下面的第一行。这是optional的，但是如果有的话必须在第一行。</p>
+</li>
+<li>
+<p>Tag:  label for a section of data。</p>
+</li>
+<li>
+<p>Element (元素) : section of data beginning with <code>&lt;tagname&gt;</code> and ending with matching <code>&lt;/tagname&gt;</code>。<code>&lt;tagname attr=&quot;...&quot;&gt; text... &lt;/tagname&gt;</code></p>
+<ul>
+<li>一个Element可以包含的内容有text、attributes、other elements，以及他们的组合。</li>
+</ul>
+</li>
+<li>
+<p>Attribute：Elements can have <strong>attributes</strong>.属性是<code>name=&quot;value&quot;</code>的形式，双引号是必须的。在tag的内部书写。什么时候用属性，什么时候用元素呢？</p>
+<ul>
+<li>建议：存储metadata用attribute，比如id。</li>
+<li>attributes cannot contain multiple values (elements can)</li>
+<li>attributes cannot contain tree structures (elements can)</li>
+<li>attributes are not easily expandable (for future changes)</li>
+</ul>
+</li>
+<li>
+<p>comment：下面最后一行。和HTML一样。</p>
+</li>
+</ul>
+<pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;bookstore&gt;
+    &lt;book category=&quot;cooking&quot;&gt;
+        &lt;title lang=&quot;en&quot;&gt;Everyday Italian&lt;/title&gt;
+        &lt;author&gt;Giada De Laurentiis&lt;/author&gt;
+        &lt;year&gt;2005&lt;/year&gt;
+        &lt;price&gt;30.00&lt;/price&gt;
+    &lt;/book&gt;
+    &lt;book category=&quot;children&quot;&gt;
+        &lt;title lang=&quot;en&quot;&gt;Harry Potter&lt;/title&gt;
+        &lt;author&gt;J K. Rowling&lt;/author&gt;
+        &lt;year&gt;2005&lt;/year&gt;
+        &lt;price&gt;29.99&lt;/price&gt;
+    &lt;/book&gt;
+    &lt;book category=&quot;web&quot;&gt;
+        &lt;title lang=&quot;en&quot;&gt;Learning XML&lt;/title&gt;
+        &lt;author&gt;Erik T. Ray&lt;/author&gt;
+        &lt;year&gt;2003&lt;/year&gt;
+        &lt;price&gt;39.95&lt;/price&gt;
+    &lt;/book&gt;
+&lt;/bookstore&gt;
+&lt;!-- This is a comment --&gt;
+</code></pre>
+<p>XML文档是一个树形结构（树，不是森林，也就是说有唯一的一个根节点），比如上面那个XML文档对应于下面这个结构。事实上，下图为了方便把重复元素只画了一个：</p>
+<figure data-type="image" tabindex="1"><img src="https://reticenceji.github.io/post-images/nodetree.gif" alt="nodetree" loading="lazy"></figure>
+<h3 id="命名空间namespace">命名空间namespace。</h3>
+<p><code>xmlns:element-name = &quot;xxx&quot;</code>。下面的两个table拥有不同的样式，看起来很不好。我们给他们分配不同的命名空间。</p>
+<pre><code class="language-xml">&lt;root&gt;
+
+    &lt;h:table xmlns:h=&quot;http://www.w3.org/TR/html4/&quot;&gt;
+        &lt;h:tr&gt;
+            &lt;h:td&gt;Apples&lt;/h:td&gt;
+            &lt;h:td&gt;Bananas&lt;/h:td&gt;
+        &lt;/h:tr&gt;
+    &lt;/h:table&gt;
+
+    &lt;f:table xmlns:f=&quot;https://www.w3schools.com/furniture&quot;&gt;
+        &lt;f:name&gt;African Coffee Table&lt;/f:name&gt;
+        &lt;f:width&gt;80&lt;/f:width&gt;
+        &lt;f:length&gt;120&lt;/f:length&gt;
+    &lt;/f:table&gt;
+
+&lt;/root&gt;
+</code></pre>
+<h3 id="特殊字符怎么办">特殊字符怎么办</h3>
+<p>To store string data that may contain tags, without the tags being interpreted as subelements, use <strong>CDATA</strong> as below</p>
+<pre><code class="language-xml">&lt;![CDATA[&lt;course&gt; … &lt;/course&gt;]]&gt;
+</code></pre>
+<p>Here, <code>&lt;course&gt;</code> and <code>&lt;/course&gt;</code> are treated as just strings. CDATA stands for “character data”.</p>
+<p>不想用上面的CDATA，还可以用下面的转义。</p>
+<table>
+<thead>
+<tr>
+<th>&lt;</th>
+<th>&lt;</th>
+<th>less than</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>&gt;</td>
+<td>&gt;</td>
+<td>greater than</td>
+</tr>
+<tr>
+<td>&amp;</td>
+<td>&amp;</td>
+<td>ampersand</td>
+</tr>
+<tr>
+<td>'</td>
+<td>'</td>
+<td>apostrophe</td>
+</tr>
+<tr>
+<td>&quot;</td>
+<td>&quot;</td>
+<td>quotation mark</td>
+</tr>
+</tbody>
+</table>
+<h2 id="xml文档模式">XML文档模式</h2>
+<p>为了解析XML，我们最好有一个办法指定XML 的类型，不然XML太灵活了。当然，这不是必须的。</p>
+<h3 id="dtd">DTD</h3>
+<p>这是一种办法，用DTD指定XML的格式。如果XML不符合DTD的规定，我们认为这个XML是无效的。</p>
+<p>指定Element的子元素，一般有4种类型：</p>
+<ol>
+<li>names of elements （第1行，我们用<code>|</code>表示或关系，<code>+</code>表示可以出现1到多次，<code>*</code>表示出现0到多次）</li>
+<li><code>#PCDATA</code> (parsed character data)</li>
+<li>EMPTY (no subelements) 。对应于这样的Tag<code>&lt;element&gt;&lt;/element&gt;</code>或者简单的写成<code>&lt;element /&gt;</code>，当然一般都会带属性的，不然要他做什么。</li>
+<li>ANY (anything can be a subelement)。如果你在DTD中没有规定，就是ANY。</li>
+</ol>
+<pre><code class="language-xml-dtd">&lt;!DOCTYPE  university [
+        &lt;!ELEMENT university ( (department|course|instructor|teaches)+)&gt;	
+        &lt;!ELEMENT department ( dept_name, building, budget)&gt;				要求按照顺序出现
+        &lt;!ELEMENT course ( course id, title, dept name, credits)&gt;
+        &lt;!ELEMENT instructor (IID, name, dept name, salary)&gt;
+        &lt;!ELEMENT teaches (IID, course id)&gt;
+        &lt;!ELEMENT dept name( #PCDATA )&gt;
+        &lt;!ELEMENT building( #PCDATA )&gt;
+        &lt;!ELEMENT budget( #PCDATA )&gt;
+        &lt;!ELEMENT course id ( #PCDATA )&gt;
+        &lt;!ELEMENT title ( #PCDATA )&gt;
+        &lt;!ELEMENT credits( #PCDATA )&gt;
+        &lt;!ELEMENT IID( #PCDATA )&gt;
+        &lt;!ELEMENT name( #PCDATA )&gt;
+        &lt;!ELEMENT salary( #PCDATA )&gt;
+]&gt;
+
+</code></pre>
+<p>指定Attribute的类型</p>
+<ol>
+<li>
+<p>CDATA</p>
+</li>
+<li>
+<p>ID (identifier) or IDREF (ID reference) or IDREFS (multiple IDREFs)</p>
+<p>IDREFS后面跟一个用空格隔开的reference lists。</p>
+</li>
+</ol>
+<p>可以指定属性存在的必要性：</p>
+<ol>
+<li><code>#REQUIRED</code>必要的，<code>#IMPLIED</code>不是必要的。</li>
+<li>如果是ID，那么在一个文档中不能重复；如果是IDREF，那么一定要在<strong>一个文档中别的元素的ID中出现</strong>（只要是别的元素的ID就行，DTD不会检查类型）；如果是IDREFS，那么每一个属性都要在别的元素的ID中出现。</li>
+</ol>
+<pre><code class="language-xml-dtd">&lt;!ATTLIST course
+	course_id	ID		#REQUIRED
+    dept_name	IDREF	#REQUIRED
+	instructors	IDREFS 	#IMPLIED&gt;
+
+</code></pre>
+<h3 id="xml-schema">XML Schema</h3>
+<p>DTD比较简单，但是比较简陋。所以我们更多的使用XML Schema。不同于DTD，XML Schema非常复杂。XML Schema 最重要的能力之一就是对数据类型的支持，另外XML Schema本身就是XML。</p>
+<ul>
+<li>
+<p><code>&lt;schema&gt;</code> 元素是每一个 XML Schema 的根元素。需要注意的是，为了避免和用户XML产生冲突，所有的XML Schema标签之前都会加上命名空间xs，比如<code>&lt;xs:schema xmlns:xs=&quot;http://reticenceji.github.io/&quot;&gt;</code>。</p>
+</li>
+<li>
+<p><code>&lt;element&gt;</code>限制元素内容的类型。</p>
+<ul>
+<li>
+<p>一个简单的类型：比如<code>&lt;xs:element name=&quot;age&quot; type=&quot;xs:integer&quot;/&gt;</code>，就限定了这样一个标签<code>&lt;age&gt;28&lt;/age&gt;</code></p>
+</li>
+<li>
+<p>常用的类型有：xs:string、xs:decimal、xs:integer、xs:boolean、xs:date、xs:time。</p>
+</li>
+<li>
+<p>一个复杂类型（有属性或子元素）的定义，就需要用到XML的嵌套了。比如下例<code>&lt;xs:complexType&gt;</code> the &quot;note&quot; element is a complex type，</p>
+<ul>
+<li>1：<code>&lt;sequence.../&gt;</code>：该元素包含的所有子元素出现顺序与定义顺序必须保持一致；</li>
+<li>2：<code>&lt;choice.../&gt;</code>：该元素包含的所有子元素只能出现其中之一；</li>
+<li>3：<code>&lt;all.../&gt;</code>：该元素包含的子元素可以任意次序出现。</li>
+<li>minOccurs定义元素最少出现次数，最小值为0；maxOccurs定义最多出现的次数，最大可以为unbounded，表示不限制出现册次数。</li>
+</ul>
+<pre><code class="language-xml">&lt;xs:element name=&quot;note&quot;&gt;
+    &lt;xs:complexType&gt;
+        &lt;xs:sequence&gt;
+            &lt;xs:element name=&quot;to&quot; type=&quot;xs:string&quot;/&gt;
+            &lt;xs:element name=&quot;from&quot; type=&quot;xs:string&quot;/&gt;
+            &lt;xs:element name=&quot;heading&quot; type=&quot;xs:string&quot;/&gt;
+            &lt;xs:element name=&quot;body&quot; type=&quot;xs:string&quot;/&gt;
+        &lt;/xs:sequence&gt;
+        &lt;xs:attribute name=&quot;lang&quot; type=&quot;xs:string&quot; use=&quot;required&quot;/&gt;
+    &lt;/xs:complexType&gt;
+&lt;/xs:element&gt;
+</code></pre>
+</li>
+</ul>
+</li>
+<li>
+<p><code>&lt;attribute&gt;</code>限制元素属性。简易元素无法拥有属性。假如某个元素拥有属性，它就会被当作某种复合类型。但是属性本身总是作为简易类型被声明的。比如<code>&lt;xs:attribute name=&quot;lang&quot; type=&quot;xs:string&quot; use=&quot;required&quot;/&gt;</code></p>
+</li>
+<li>
+<p>在XML中可以定义Key和Key reference对应SQL中的主键和外键。<code>&lt;field&gt;</code>表示作为key的元素或属性，<code>&lt;selector&gt;</code>表示这个键的作用域。在下面这个例子中，就是说<code>&lt;university&gt;</code>下面的<code>&lt;department&gt;</code>，其<code>dept_name</code>是主键。</p>
+<pre><code class="language-xml">&lt;xs:key name =&quot;deptKey&quot;&gt;
+    &lt;xs:selector xpath = &quot;/university/department&quot;/&gt;
+    &lt;xs:field xpath = &quot;dept_name&quot;/&gt;
+&lt;/xs:key&gt;
+</code></pre>
+<p>类似的，这个定义了外键，refer上面的<code>deptKey</code>。</p>
+<pre><code class="language-xml">&lt;xs:keyref name = &quot;courseDeptFKey&quot; refer=“deptKey”&gt;
+    &lt;xs:selector xpath = &quot;/university/course&quot;/&gt;
+    &lt;xs:field xpath = &quot;dept_name&quot;/&gt;
+&lt;/xs:keyref&gt;
+</code></pre>
+</li>
+</ul>
+<h2 id="xml查询和转换">XML查询和转换</h2>
+<p>XML是用来传输信息的，我们当然要从XML中提取信息。XPath和XQuery是两种查询的方式。XSLT是XML转换的方式。</p>
+<h3 id="xpathstar2">XPath🌟</h3>
+<figure data-type="image" tabindex="2"><img src="https://reticenceji.github.io/post-images/image-20210422134849816.png" alt="image-20210422134849816" loading="lazy"></figure>
+<p>XML文档是一个典型的树型结构，和我们的文件系统是相似的。</p>
+<p>XPath使用<strong>路径表达式</strong>来选取 XML 文档中的节点或者节点集。这些路径表达式和我们在常规的电脑文件系统中看到的表达式非常相似。不过一个文件夹下不会有两个同名文件，但是一个结点下面可能会有两个相同的子节点。<strong>在 XPath 中，有七种类型的节点：元素Element、属性Attribute、文本text、命名空间namespace、处理指令processing-instruction、注释comment以及文档（根）节点document node。</strong></p>
+<p><strong>XML 文档是被作为节点树来对待的。树的根被称为文档节点document node或者根节点。</strong></p>
+<p>XPath是很多应用的基础。</p>
+<p><code>/university-3/instructor/name</code></p>
+<p>常用的表达式：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">表达式</th>
+<th style="text-align:left">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">nodename</td>
+<td style="text-align:left">选取此节点的所有子节点。</td>
+</tr>
+<tr>
+<td style="text-align:left">/</td>
+<td style="text-align:left">从根节点选取。</td>
+</tr>
+<tr>
+<td style="text-align:left">//</td>
+<td style="text-align:left">从匹配选择的当前节点选择文档中的节点，而不考虑它们的位置。就是说儿子、孙子、曾孙都可以选到</td>
+</tr>
+<tr>
+<td style="text-align:left">.</td>
+<td style="text-align:left">选取当前节点。</td>
+</tr>
+<tr>
+<td style="text-align:left">..</td>
+<td style="text-align:left">选取当前节点的父节点。</td>
+</tr>
+<tr>
+<td style="text-align:left">@</td>
+<td style="text-align:left">选取属性。</td>
+</tr>
+<tr>
+<td style="text-align:left">|</td>
+<td style="text-align:left">表示或关系，合并多个查询<code>//book/title | //book/price</code>：选取 book 元素的所有 title 和 price 元素。</td>
+</tr>
+</tbody>
+</table>
+<p><strong>谓语</strong>（Predicates）。谓语用来查找某个特定的节点或者包含某个指定的值的节点。谓语被嵌在方括号<code>[]</code>中。</p>
+<p>在下面的表格中，我们列出了带有谓语的一些路径表达式，以及表达式的结果。可以看出那些基本的逻辑运算符和算数运算符都是可以用的。不过是<code>=</code>不是<code>==</code>哈：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">路径表达式</th>
+<th style="text-align:left">结果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>/bookstore/book[1]</code></td>
+<td style="text-align:left">选取属于 bookstore 子元素的第一个 book 元素。</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>/bookstore/book[last()]</code></td>
+<td style="text-align:left">选取属于 bookstore 子元素的最后一个 book 元素。</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>/bookstore/book[last() - 1]</code></td>
+<td style="text-align:left">选取属于 bookstore 子元素的倒数第二个 book 元素。</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>/bookstore/book[position() &lt; 3]</code></td>
+<td style="text-align:left">选取最前面的两个属于 bookstore 元素的子元素的 book 元素。</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>//title[@lang]</code></td>
+<td style="text-align:left">选取所有拥有名为 lang 的属性的 title 元素。</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>//title[@lang='eng']</code></td>
+<td style="text-align:left">选取所有 title 元素，且这些元素拥有值为 eng 的 lang 属性。</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>/bookstore/book[price &gt; 35.00]</code></td>
+<td style="text-align:left">选取 bookstore 元素的所有 book 元素，且其中的 price 元素的值须大于 35.00。</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>/bookstore/book[price &gt; 35.00]/title</code></td>
+<td style="text-align:left">选取 bookstore 元素中的 book 元素的所有 title 元素，且其中的 price 元素的值须大于 35.00。</td>
+</tr>
+</tbody>
+</table>
+<p>通配符<code>*</code>：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">路径表达式</th>
+<th style="text-align:left">结果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">/bookstore/*</td>
+<td style="text-align:left">选取 bookstore 元素的所有子元素。</td>
+</tr>
+<tr>
+<td style="text-align:left">//*</td>
+<td style="text-align:left">选取文档中的所有元素。</td>
+</tr>
+<tr>
+<td style="text-align:left">//title[@*]</td>
+<td style="text-align:left">选取所有带有属性的 title 元素。</td>
+</tr>
+</tbody>
+</table>
+<p>XPath还有一些函数</p>
+<table>
+<thead>
+<tr>
+<th>函数名</th>
+<th>说明</th>
+<th>举例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>count(expression)</td>
+<td>统计和表达式匹配的节点数量</td>
+<td></td>
+</tr>
+<tr>
+<td>doc(name)</td>
+<td>返回根节点，name可以是文档的名字或者URL</td>
+<td></td>
+</tr>
+<tr>
+<td>id(&quot;foo&quot;)</td>
+<td>返回属性类型为ID且值为&quot;foo&quot;的节点</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<hr>
+<p>上面的内容是书里提到的，应该是会考得。下面的不是。</p>
+<p>Axis和Step。我也不知道这个有什么用。Step 是<code>axisname::nodetest[predicate]</code>，比如<code>/bookstore/child::book</code>表示Selects all book nodes that are children of the bookstore。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">AxisName</th>
+<th style="text-align:left">Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">ancestor</td>
+<td style="text-align:left">Selects all ancestors (parent, grandparent, etc.) of the current node</td>
+</tr>
+<tr>
+<td style="text-align:left">ancestor-or-self</td>
+<td style="text-align:left">Selects all ancestors (parent, grandparent, etc.) of the current node and the current node itself</td>
+</tr>
+<tr>
+<td style="text-align:left">attribute</td>
+<td style="text-align:left">Selects all attributes of the current node</td>
+</tr>
+<tr>
+<td style="text-align:left">child</td>
+<td style="text-align:left">Selects all children of the current node</td>
+</tr>
+<tr>
+<td style="text-align:left">descendant</td>
+<td style="text-align:left">Selects all descendants (children, grandchildren, etc.) of the current node</td>
+</tr>
+<tr>
+<td style="text-align:left">descendant-or-self</td>
+<td style="text-align:left">Selects all descendants (children, grandchildren, etc.) of the current node and the current node itself</td>
+</tr>
+<tr>
+<td style="text-align:left">following</td>
+<td style="text-align:left">Selects everything in the document after the closing tag of the current node</td>
+</tr>
+<tr>
+<td style="text-align:left">following-sibling</td>
+<td style="text-align:left">Selects all siblings after the current node</td>
+</tr>
+<tr>
+<td style="text-align:left">namespace</td>
+<td style="text-align:left">Selects all namespace nodes of the current node</td>
+</tr>
+<tr>
+<td style="text-align:left">parent</td>
+<td style="text-align:left">Selects the parent of the current node</td>
+</tr>
+<tr>
+<td style="text-align:left">preceding</td>
+<td style="text-align:left">Selects all nodes that appear before the current node in the document, except ancestors, attribute nodes and namespace nodes</td>
+</tr>
+<tr>
+<td style="text-align:left">preceding-sibling</td>
+<td style="text-align:left">Selects all siblings before the current node</td>
+</tr>
+<tr>
+<td style="text-align:left">self</td>
+<td style="text-align:left">Selects the current node</td>
+</tr>
+</tbody>
+</table>
+<p>更多的函数。</p>
+<h3 id="xquery">XQuery</h3>
+<p>这个比XPath强大，但是也更复杂。是基于XPath的。感觉这玩意儿有点像shell语言。</p>
+<h4 id="flwor">FLWOR</h4>
+<p>一个基本的XQuery是由<strong>FLWOR</strong>组成的：</p>
+<pre><code>for $x in /university/course
+let $courseld := $x/@course_id
+where $x/credits &gt; 3
+return &lt;course_id&gt; {$courseld} &lt;/course_id&gt;
+</code></pre>
+<p>最基本的我们一般只需要<code>for</code>+<code>return</code></p>
+<ul>
+<li><code>for $x in [xpath查询]</code>，然后就会循环枚举每一个匹配到的项目。有点像select</li>
+<li><code>return</code>字句可以对查询内容加工构造XML形式的结果，不过需要给变量外面套<code>{}</code></li>
+</ul>
+<p>其他的：</p>
+<ul>
+<li><code>let</code>可以用来加工查询结果，提取有效信息，然后赋值给变量。</li>
+<li>
+<h2 id="where可以对查询结果进行筛选"><code>where</code>可以对查询结果进行筛选。</h2>
+</li>
+<li><code>order by</code>，显然是用来对查询结果排序的</li>
+</ul>
+<h4 id="高级特性">高级特性</h4>
+<p>XQuery 含有超过 100 个内建的函数。这些函数可用于字符串值、数值、日期以及时间比较、节点和 QName 操作、序列操作、逻辑值等等。自定义函数：</p>
+<pre><code>declare function 前缀:函数名($参数 AS 数据类型)
+  AS 返回的数据类型
+{
+
+(: ...函数代码... :)
+
+};
+</code></pre>
+<h3 id="xslt">XSLT</h3>
+<p>据说这个不怎么考。了解以下即可。</p>
+<p>XSL = XML 样式表。XML 不使用预先定义的标签（我们可以使用任何喜欢的标签名），并且这些标签的意义<em>并不都那么容易被理解</em>。元素意味着一个 HTML 表格，一件家具，或是别的什么东西 - 浏览器不清楚如何显示它。XSL 可<em>描述</em>如何来显示 XML 文档！</p>
+<p>XSL 包括三部分：</p>
+<ul>
+<li>XSLT：一种用于转换 XML 文档的语言。</li>
+<li>XPath：一种用于在 XML 文档中导航的语言。</li>
+<li>XSL-FO：一种用于格式化 XML 文档的语言。</li>
+</ul>
+<p>这个是用来转换的。什么意思呢？比如从XML转换成HTML，或者从一个XML转换成另一个XML。</p>
+<p>XSLT Templates，也是一个XML文档。</p>
+<pre><code class="language-xml">&lt;xsl:template match=&quot;/bank-2/customer&quot;&gt;
+    &lt;custom&gt;
+        &lt;xsl:value-of select=&quot;customer_name&quot;/&gt;
+    &lt;/custom&gt;
+&lt;/xsl:template&gt;
+&lt;xsl:template match=&quot;*&quot;/&gt;
+
+</code></pre>
+<p>xsl:template ：用XPath来匹配一些节点</p>
+<p>xsl:value-of ：标签的内容</p>
+<h2 id="api">API</h2>
+<p>SAX: Simple API for XML。基本的XML解析器。</p>
+<p>DOM: Document Object Model。这个是常用的，给我们提供一系列函数来操作文档树。</p>
+
+<span id="footnote"></span>
+<div id = "warn"></div>
+</div>
+<div class="toc-container"><ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#xml">XML</a>
+<ul>
+<li><a href="#xml%E5%9F%BA%E7%A1%80">XML基础</a></li>
+<li><a href="#%E5%91%BD%E5%90%8D%E7%A9%BA%E9%97%B4namespace">命名空间namespace。</a></li>
+<li><a href="#%E7%89%B9%E6%AE%8A%E5%AD%97%E7%AC%A6%E6%80%8E%E4%B9%88%E5%8A%9E">特殊字符怎么办</a></li>
+</ul>
+</li>
+<li><a href="#xml%E6%96%87%E6%A1%A3%E6%A8%A1%E5%BC%8F">XML文档模式</a>
+<ul>
+<li><a href="#dtd">DTD</a></li>
+<li><a href="#xml-schema">XML Schema</a></li>
+</ul>
+</li>
+<li><a href="#xml%E6%9F%A5%E8%AF%A2%E5%92%8C%E8%BD%AC%E6%8D%A2">XML查询和转换</a>
+<ul>
+<li><a href="#xpathstar2">XPath:star2:</a></li>
+<li><a href="#xquery">XQuery</a>
+<ul>
+<li><a href="#flwor">FLWOR</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#where%E5%8F%AF%E4%BB%A5%E5%AF%B9%E6%9F%A5%E8%AF%A2%E7%BB%93%E6%9E%9C%E8%BF%9B%E8%A1%8C%E7%AD%9B%E9%80%89"><code>where</code>可以对查询结果进行筛选。</a><br>
+*
+<ul>
+<li><a href="#%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7">高级特性</a></li>
+<li><a href="#xslt">XSLT</a></li>
+</ul>
+</li>
+<li><a href="#api">API</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="fullPage"><canvas id="canvas"></canvas></div>
+</article>
+<div id="eof"><span>EOF</span></div><div class="round-shape-one"></div>
+<section>
+<div class="doc_comments">
+
+</div></section>
+</div></div></div><script>
+"use strict";!function(){for(var n=document.getElementsByTagName("pre"),e=n.length,s=0;s<e;s++){n[s].innerHTML='<span class="line-number"></span>'+n[s].innerHTML+'<span class="cl"></span>';for(var a=n[s].innerHTML.split(/\n/).length,r=0;r<a-1;r++){n[s].getElementsByTagName("span")[0].innerHTML+="<span>"+(r+1)+"</span>"}}}();
+let mainNavLinks=document.querySelectorAll(".markdownIt-TOC a");window.addEventListener("scroll",event=>{let fromTop=window.scrollY;mainNavLinks.forEach((link,index)=>{let section=document.getElementById(decodeURI(link.hash).substring(1));let nextSection=null
+if(mainNavLinks[index+1]){nextSection=document.getElementById(decodeURI(mainNavLinks[index+1].hash).substring(1));}
+if(section.offsetTop<=fromTop){if(nextSection){if(nextSection.offsetTop>fromTop){link.classList.add("currentToc");}else{link.classList.remove("currentToc");}}else{link.classList.add("currentToc");}}else{link.classList.remove("currentToc");}});});
+var h=document.documentElement,b=document.body,st="scrollTop",sh="scrollHeight",progress=document.querySelector(".progress"),scroll;document.addEventListener("scroll",function(){scroll=(h[st]||b[st])/((h[sh]||b[sh])-h.clientHeight)*100;progress.style.setProperty("--scroll",scroll+"%")});
+var wxScale=new WxScale({fullPage:document.querySelector("#fullPage"),canvas:document.querySelector("#canvas")});var imgBox=document.querySelectorAll("#md_block img");for(var i=0;i<imgBox.length;i++){imgBox[i].onclick=function(e){wxScale.start(this)}};
+</script>
+<a id="scrollUp" href="#top" style="position: fixed; z-index: 2147483647; display: block;"></a><div class="footer animated fadeInDown"><div class="site_footer"><div class="mysocials"><div class="my_socials"><a href="https://github.com/reticenceji"title="github"><i class="iconfont icon-github"></i></a><a href="reticenceji@qq.com"title="envelope"><i class="iconfont icon-envelope"></i></a><a href="https://www.zhihu.com/people/reticenceji"title="zhihu"><i class="iconfont icon-zhihu"></i></a></div></div><div class="copyright"id="copyright">Copyright © 2018-2020 <a href="https://reticenceji.github.io" style="margin:0;">Reticence</a>.</div>
+<span style="display: inline;margin-right:15px;">👁<strong><span id="busuanzi_value_site_uv"></span></strong></span><span id="busuanzi_container_page_pv" style="display: inline;"><span>📚<strong>176</strong> posts</span></div></div>
+<script>
+console.log("\n %c \u26a1Theme: Bitcron-pro Author's Blog:https://blog.blinkstar.cn  Writen By Serence  \n\n", "color: #ffffff; background: rgba(49, 49, 49, 0.85); padding:5px 0;border-radius:5px;", );
+</script>
+<script src="https://cdn.jsdelivr.net/npm/instant.page@3.0.0/instantpage.min.js" type="module" defer></script>
+<script type="text/javascript" async src="https://reticenceji.github.io/media/js/prism.js"></script>
+</body>
+</html>

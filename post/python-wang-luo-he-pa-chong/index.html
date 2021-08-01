@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="shortcut icon" href="https://reticenceji.github.io/favicon.ico" type="image/x-icon" /><meta name="viewport"content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="apple-mobile-web-app-capable"content="yes"/><meta name="apple-mobile-web-app-status-bar-style"content="black"/><meta name="format-detection"content="telephone=no"/><meta name="renderer"content="webkit"><meta name="description"content=""><meta charset="UTF-8"><title>Python-网络和爬虫 | Reticence</title>
+<link href="https://reticenceji.github.io/styles/main.css" type="text/css" rel="stylesheet" /><link href="https://at.alicdn.com/t/font_1621793_zatzzgvf30g.css" type="text/css" rel="stylesheet" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css"><script async src="https://cdn.jsdelivr.net/npm/busuanzi@2.3.0/bsz.pure.mini.min.js"></script><script src="https://reticenceji.github.io/media/js/magnify.min.js"></script><script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js"></script>
+<script type="text/javascript">function btn_toggle(){document.getElementById("hn").classList.contains("no-js")?document.getElementById("hn").classList.remove("no-js"):document.getElementById("hn").classList.add("no-js")}</script>
+
+<link rel="canonical" href="https://reticenceji.github.io/post/python-wang-luo-he-pa-chong/" />
+</head>
+<body>
+<div class="progress"></div><style>.progress{background:linear-gradient(to right,#87ceeb var(--scroll),transparent 0);background-repeat:no-repeat;position:fixed;width:100%;height:4px;z-index:1}</style><div class="darkmode-background"></div><div class="darkmode-layer"></div>
+<noscript><p class="warn" >本页面需要浏览器支持（启用）JavaScript</p></noscript><div class="header"><div class="logo_title"><div class="title animated fadeInDown"><a href="https://reticenceji.github.io"><img alt="logo" style="display:inline-block;" src="https://reticenceji.github.io/images/avatar.png"/></a><h1 title="Reticence" class="weaklink"><a  href="/">Reticence</a></h1>
+
+<div class="navbar weaklink">
+<div class="normal_nav">
+<div class="bitcron_nav_container"><div class="bitcron_nav"><div class="bitcron_nav"><div style="display:flex;justify-content:center;"><nav class="mixed_site_nav_wrap site_nav_wrap"><ul class="mixed_site_nav site_nav sm sm-base">	<li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/" class="selected active current nav__item" >Index</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/tags" class="selected active current nav__item" >Tags</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/archives" class="selected active current nav__item" >Archives</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/navigator.html" class="selected active current nav__item" >Navigator</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/post/about" class="selected active current nav__item" >About</a></li></ul></nav>
+<div style="float:right;margin-top:1em"><form id="gridea-search-form" data-update="1578893743252" action="/search/index.html"><input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="Search..."></form></div><div style="margin-left:0.5em;margin-top:1.2em"><input id="switch_default" onclick="mobileBtn()" type="checkbox" class="switch_default"><label for="switch_default" class="toggleBtn"></label></div></div>
+<div class="clear clear_nav_inline_end"></div></div></div><div class="clear clear_nav_end"></div></div></div><div class="hamberger" href="javascript:void(0)" onclick="btn_toggle();"><i class="iconfont icon-category"></i></div></div></div></div>
+<div id="hn" class="no-js hidden_nav animated fadeInDown"><div class="bitcron_nav_container"><div class="bitcron_nav"><nav class="mixed_site_nav_wrap site_nav_wrap"><ul class="mixed_site_nav site_nav sm sm-base">	<li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/" class="selected active current nav__item" >Index</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/tags" class="selected active current nav__item" >Tags</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/archives" class="selected active current nav__item" >Archives</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/navigator.html" class="selected active current nav__item" >Navigator</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/post/about" class="selected active current nav__item" >About</a></li></ul><div class="clear clear_nav_inline_end"></div></nav></div><div class="clear clear_nav_end"></div></div>
+<div style="display:flex;justify-content:center;inline-block;text-align:center;margin-top:7%"><div><form id="gridea-search-form" data-update="1627835297708" action="/search/index.html"><input class="search-input" autocomplete="off" spellcheck="false" name="q"  placeholder="Search..." /></form></div><div style="margin-left:0.5em"><input id="switch_default_h" onclick="mobileBtn()" type="checkbox" class="switch_default"><label for="switch_default" class="toggleBtn"></label></div></div>
+</div></div>
+<script>function enableDarkmode(){document.body.classList.add("darkmode"),document.getElementById("switch_default").checked=1,document.getElementById("switch_default_h").checked=1}function removeDarkmode(){document.body.classList.remove("darkmode"),document.getElementById("switch_default").checked=0,document.getElementById("switch_default_h").checked=0}function getCookie(a){var b,c=new RegExp("(^| )"+a+"=([^;]*)(;|$)");return(b=document.cookie.match(c))?unescape(b[2]):null}cookie=getCookie("darkmode"),"enable"==cookie&&enableDarkmode(),window.matchMedia("(prefers-color-scheme: dark)").matches&&"disable"!==cookie&&(enableDarkmode(),document.cookie="darkmode=enable; path=/");var mobileBtn=function(){1==document.getElementById("switch_default").checked?(enableDarkmode(),document.cookie="darkmode=enable; path=/"):(removeDarkmode(),document.cookie="darkmode=disable; path=/")};</script>
+
+<div class="main"><div class="main-inner"><div class="content">
+<article class="post">
+<h2 class="post_title sm_margin"><a>Python-网络和爬虫</a></h2>
+<script>function lan(){if(document.getElementById("lan").innerText=="繁"){var s=document.getElementById("tongwenlet_cn");if(s!=null){document.body.removeChild(s)}var s=document.createElement("script");s.language="javascript";s.type="text/javascript";s.src="https://cdn.jsdelivr.net/gh/qyxtim/Static@1.1/bookmarklet_tw.js";s.id="tongwenlet_cn";document.body.appendChild(s);document.getElementById("lan").innerHTML="简"}else{if(document.getElementById("lan").innerText=="簡"){var s=document.getElementById("tongwenlet_cn");if(s!=null){document.body.removeChild(s)}var s=document.createElement("script");s.language="javascript";s.type="text/javascript";s.src="https://cdn.jsdelivr.net/gh/qyxtim/Static@1.1/bookmarklet_cn.js";s.id="tongwenlet_cn";document.body.appendChild(s);document.getElementById("lan").innerHTML="繁"}}};</script>
+<section class="post_details"><i class="iconfont icon-calendar"></i><span style="margin-right:15px"> 2020-11-18</span><i class="iconfont icon-browse"></i><span style="margin-right:15px"> <span id="busuanzi_value_page_pv"></span> Views</span><i class="iconfont icon-category"></i><span class="weaklink" style="margin-right:15px">	<a href="https://reticenceji.github.io/tag/aTiVQxwll/" class="tag">Python</a></span><i class="iconfont icon-caret-down"></i><span style="margin-right:15px">2712字</span><i class="iconfont icon-naozhong"></i><span style="margin-right:15px">12 min read</span><a id="lan" href="javascript:void(0);"onclick="lan();"title="调整简繁体" style="margin-right:15px;">繁</a>
+</section>
+
+<div style="display:flex">
+<div class="md_block" id="md_block">
+<div class="round-shape-one"></div>
+<h2 id="1-socket">1. socket</h2>
+<p>这个东西偏底层。<br>
+<a href="https://realpython.com/python-sockets/#background">教程</a><br>
+<img src="https://reticenceji.github.io/post-images/1605869235770.webp" alt="" loading="lazy"></p>
+<center>API调用流程</center>
+最常用的socket应用，是client-server。一边作为**服务器**，等待来自**客户**的连接。
+创建一个TCPsocket，这是server的例子：
+<pre><code class="language-python">import socket
+HOST = '127.0.0.1'  # Standard loopback interface address (localhost)
+PORT = 65432        # Port to listen on (non-privileged ports are &gt; 1023)
+# 第一个参数表示使用IPV4，第二个参数表示创建一个TCP socket
+# https://docs.python.org/3/library/socket.html#socket.AF_INET
+# https://docs.python.org/3/library/socket.html#socket.SOCK_STREAM
+with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+    # 将套接字绑定到 address。套接字必须尚未绑定。0.0.0.0是一个缺省的表述。
+	# port应该在1-65535，并且小于1024的需要权限
+    s.bind((HOST, PORT))
+    # 开启监听，1是连接的最大数量
+    s.listen(1)
+    conn, addr = s.accept()
+    with conn:
+        print('Connected by', addr)
+        while True:
+            # 接受数据
+            data = conn.recv(1024)
+            if not data:
+                break
+            # 发送数据
+            conn.sendall(data)
+</code></pre>
+<p>这是client的例子：</p>
+<pre><code class="language-python">conn, addr = s.accept()
+with conn:
+    print('Connected by', addr)
+    while True:
+        data = conn.recv(1024)
+        if not data:
+            break
+        conn.sendall(data)
+</code></pre>
+<p>通过netstat观察我们创建的连接。可以看到第一个为监听端口。后面的两个是建立连接的两个端口（因为都在本地，所以都能看到）</p>
+<pre><code>netstat -an | grep 4430
+tcp        0      0 0.0.0.0:4430            0.0.0.0:*               LISTEN     
+tcp        0      0 127.0.0.1:55702         127.0.0.1:4430          ESTABLISHED
+tcp        0      0 127.0.0.1:4430          127.0.0.1:55702         ESTABLISHED
+</code></pre>
+<p>这里的问题是只能不能同时服务多个client，真正的服务器需要用并发编程实现。那个就比较复杂了。</p>
+<h2 id="2-requests第三方">2. Requests(第三方)</h2>
+<p>官方文档：https://requests.readthedocs.io/zh_CN/latest/，我觉得这个库的源代码很值得学习。这可以称得上是<strong>最好的HTTP库</strong>了。</p>
+<pre><code class="language-python">#import requests
+#发送HTTP请求，比如GET和POST
+requests.request(method, url, **kwargs)		#这是七个HTTP Request方法的由来，其中常用的参数见下
+requests.get(url,params,**kwarg)	#data就是附在url后面的参数，kwarg就是HTTP请求头中间的那些参数
+requests.post(url, data=None, json=None, **kwargs)	#post
+</code></pre>
+<p>request的附带参数（**kwargs）：</p>
+<ul>
+<li><strong>params</strong> -- (optional) Dictionary or bytes to be sent in the query string for the <a href="https://requests.readthedocs.io/zh_CN/latest/api.html#requests.Request"><code>Request</code></a>。<strong>和URL放在一起的参数。</strong></li>
+<li><strong>data</strong> -- (optional) Dictionary or list of tuples <code>[(key, value)]</code> (will be form-encoded), bytes, or file-like object to send in the body of the <a href="https://requests.readthedocs.io/zh_CN/latest/api.html#requests.Request"><code>Request</code></a>。<strong>请求体。可以理解为POST方法中的数据，放在请求头后面的数据，</strong></li>
+<li><strong>json</strong> -- (optional) json data to send in the body of the <a href="https://requests.readthedocs.io/zh_CN/latest/api.html#requests.Request"><code>Request</code></a>。<strong>也是请求体，但是被打包成json。</strong></li>
+<li><strong>headers</strong> -- (optional) Dictionary of HTTP Headers to send with the <a href="https://requests.readthedocs.io/zh_CN/latest/api.html#requests.Request"><code>Request</code></a>。<strong>对请求头的修改。</strong></li>
+<li><strong>cookies</strong> -- (optional) Dict or CookieJar object to send with the <a href="https://requests.readthedocs.io/zh_CN/latest/api.html#requests.Request"><code>Request</code></a>.</li>
+<li><strong>files</strong> -- (optional) Dictionary of <code>'name': file-like-objects</code> (or <code>{'name': file-tuple}</code>) for multipart encoding upload. <code>file-tuple</code> can be a 2-tuple <code>('filename', fileobj)</code>, 3-tuple <code>('filename', fileobj, 'content_type')</code> or a 4-tuple <code>('filename', fileobj, 'content_type', custom_headers)</code>, where <code>'content-type'</code> is a string defining the content type of the given file and <code>custom_headers</code> a dict-like object containing additional headers to add for the file。<strong>请求体，传文件</strong></li>
+<li><strong>auth</strong> -- (optional) Auth tuple to enable Basic/Digest/Custom HTTP Auth。这个验证方式好像已经基本不怎么用了。</li>
+<li><strong>timeout</strong> (<em>float</em> <em>or</em> <em>tuple</em>) -- (optional) How many seconds to wait for the server to send data before giving up, as a float, or a <a href="https://requests.readthedocs.io/zh_CN/latest/user/advanced.html#timeouts">(connect timeout, read timeout)</a> tuple.</li>
+<li><strong>allow_redirects</strong> (<em>bool</em>) -- (optional) Boolean. Enable/disable GET/OPTIONS/POST/PUT/PATCH/DELETE/HEAD redirection. Defaults to <code>True</code>.</li>
+<li><strong>proxies</strong> -- (optional) Dictionary mapping protocol to the URL of the proxy.</li>
+<li><strong>verify</strong> -- (optional) Either a boolean, in which case it controls whether we verify the server's TLS certificate, or a string, in which case it must be a path to a CA bundle to use. Defaults to <code>True</code>.</li>
+<li><strong>stream</strong> -- (optional) if <code>False</code>, the response content will be immediately downloaded.</li>
+<li><strong>cert</strong> -- (optional) if String, path to ssl client cert file (.pem). If Tuple, ('cert', 'key') pair.</li>
+</ul>
+<p>下面我们来看response中Request为我们解析出来的信息。</p>
+<pre><code class="language-python">import requests
+res = requests.get(url,headers=headers)		#这些请求都会返回一个Response对象
+res.text	#解码之后的response的Entity Body部分
+res.encoding	#修改解码方法，一般情况下requests库会帮你推断
+res.content		#response的Entity Body部分，二进制格式	
+res.json	#response的Entity Body部分，request自带的json解码器会帮你解码json
+res.status_code		#response的状态码
+res.headers		#response的首部行
+res.cookies		#response的cookie.的返回对象为 RequestsCookieJar，它的行为和字典类似，但接口更为完整
+res.history		#默认情况下requests会自动帮你完成重定向，Response.history 是一个 Response 对象的列表，为了完成请求而创建了这些对象。这个对象列表按照从最老到最近的请求进行排序。
+</code></pre>
+<p><a href="https://requests.readthedocs.io/zh_CN/latest/user/quickstart.html#id11">错误与异常</a><br>
+遇到网络问题（如：DNS 查询失败、拒绝连接等）时，Requests 会抛出一个 <code>ConnectionError</code> 异常。<br>
+如果 HTTP 请求返回了不成功的状态码， <code>Response.raise_for_status()</code> 会抛出一个 <code>HTTPError</code> 异常。<br>
+若请求超时，则抛出一个 <code>Timeout</code> 异常。<br>
+若请求超过了设定的最大重定向次数，则会抛出一个 <code>TooManyRedirects</code> 异常。<br>
+所有Requests显式抛出的异常都继承自 <code>requests.exceptions.RequestException</code> 。</p>
+<h2 id="3-selenium第三方">3. selenium(第三方)</h2>
+<p><a href="https://www.selenium.dev/documentation/en/">官方文档</a>，还没看出有啥用。这个比较好：http://www.testclass.net/selenium_python</p>
+<p>可以认为是一个自动化控制浏览器的一个优秀的库。需要准备环境，包括python, selenium, webdriver.</p>
+<p>框架底层使用JavaScript模拟真实用户对浏览器进行操作。测试脚本执行时，浏览器自动按照脚本代码做出点击，输入，打开，验证等操作，就像真实用户所做的一样，从终端用户的角度测试应用程序。</p>
+<ul>
+<li>
+<p>准备工作</p>
+<pre><code class="language-python">from selenium import webdriver
+driver = webdriver.Chrome(chrome_options=options)	#打开webdriver
+</code></pre>
+</li>
+<li>
+<p>元素定位</p>
+<pre><code class="language-python">#一共有8种方法，顾名思义。最后两种办法最普适也最复杂。
+find_element_by_id()	
+find_element_by_name()	
+find_element_by_class_name()
+find_element_by_tag_name()
+find_element_by_link_text()
+find_element_by_partial_link_text()
+find_element_by_xpath()	#xpath不太熟，但是可以在chrome中直接复制。
+find_element_by_css_selector()
+#把element改成elements，可以获得符合条件的一组元素	
+</code></pre>
+</li>
+<li>
+<p>窗口大小控制</p>
+<pre><code>driver.set_window_size(480, 800)	#设置窗口大小
+driver.maximize_window()
+</code></pre>
+</li>
+<li>
+<p>特殊动作</p>
+<pre><code>driver.back()		#后退
+driver.forward()	#前进
+driver.refresh() 	#刷新当前页面
+</code></pre>
+</li>
+<li>
+<p><strong>常用动作</strong></p>
+<pre><code class="language-python">#基本操作
+input = d.find_element_by_xpath(r'//*[@id=&quot;kw&quot;]')
+input.send_keys(value)	#输入文本，基本键盘操作
+input.clear()		#清除文本
+input.click()		#单击，基本鼠标操作
+#鼠标事件
+from selenium.webdriver.common.action_chains import ActionChains
+ActionChains(driver).move_to_element(above).perform()	# 对定位到的元素执行鼠标悬停操作
+context_click()		#右击
+double_click()		#双击
+drag_and_drop()		#拖动
+move_to_element()	#鼠标悬停
+#键盘事件
+from selenium.webdriver.common.keys import Keys
+send_keys(Keys.BACK_SPACE) 	#删除键（BackSpace）
+send_keys(Keys.CONTROL,'a') #全选（Ctrl+A）
+send_keys(Keys.CONTROL,'c') #复制（Ctrl+C）
+#截图，用绝对路径
+driver.get_screenshot_as_file(&quot;/home/reticence/baidu.png&quot;)
+</code></pre>
+</li>
+<li>
+<p>获取信息</p>
+<pre><code class="language-Python">#获取元素属性
+input.get_attribute(name)	#获得某属性
+input.text		#获取元素文本
+#获取页面信息
+driver.title	#标题
+driver.current_url	#URL
+</code></pre>
+</li>
+<li>
+<p>设置等待时间</p>
+<p><code>driver.implicitly_wait(10)</code></p>
+</li>
+<li>
+<p>切换frame</p>
+<p>WebDriver只能在一个页面上对元素识别与定位，对于frame/iframe表单内嵌页面上的元素无法直接定位。</p>
+<pre><code class="language-python">#先通过xpth定位到iframe
+xf = driver.find_element_by_xpath('//*[@id=&quot;x-URS-iframe&quot;]')
+#再将定位对象传给switch_to.frame()方法
+driver.switch_to.frame(xf)
+driver.switch_to.parent_frame()		#上级表单，表单可能嵌套
+driver.switch_to.default_content()	#回到最外层，即页面
+</code></pre>
+</li>
+<li>
+<p>切换window</p>
+<pre><code>handle = driver.window_handles[1]		#获得当前所有打开窗口的句柄
+driver.switch_to.window(handle)		#切换窗口
+</code></pre>
+<p><code>driver.switch_to_alert().accept()</code>：切换到alert/prompt/confirm，接受</p>
+</li>
+<li>
+<p>下拉框选择</p>
+<pre><code>from selenium.webdriver.support.select import Select
+sel=browser.find_element_by_xpath(&quot;/html/body/div[1]/div[1]/div/section/div[4]/ul/li[23]/div/div/select[1]&quot;)	#定位select元素
+Select(sel).select_by_visible_text('浙江省')	#通过选项的文本选择
+Select(s).select_by_index(5)	#从0开始计数
+Select(s).select_by_value('2')	
+</code></pre>
+</li>
+<li>
+<p>Cookie</p>
+<pre><code>driver.get_cookies()	#获得cookie
+driver.add_cookie(cookie_dict) #添加cookie。“cookie_dict”指字典对象，必须有name 和value 值。
+</code></pre>
+</li>
+<li>
+<p>拉动滚动条<br>
+没有直接拉动滚动条的办法。通过执行js代码实现。</p>
+<pre><code>js=&quot;window.scrollTo(100,450);&quot;
+driver.execute_script(js)
+</code></pre>
+</li>
+<li>
+<p>跑路<br>
+<code>driver.close()</code>关闭单个窗口；<code>driver.quit()</code>关闭所有窗口</p>
+</li>
+</ul>
+<h2 id="4requestium第三方">4.requestium(第三方)</h2>
+<p>需要带界面测试的用selenium，不需要带界面测试的用request。<br>
+requestium是selenium和requests的结合版，挺神奇的。<a href="https://github.com/tryolabs/requestium">Github项目链接</a>。建议了解了上面两个库之后在去学习这个库。</p>
+<pre><code>from requestium import Session
+# Session,是服务器用来标示用户的方式，在服务器端维持一个数据结构保存一个用户。Cookie可以认为是Session实现方式的一部分。
+# 所以想要保存状态就要维持session，比如设置cookie就是一种方法。Session对象可以自动的维持session，更simple。
+s = Session(webdriver_path='/home/reticence/bin/chromedriver',browser='chrome',default_timeout=15)
+
+# get方法，和Request库一模一样，自然还有post等方法
+response = s.get(&quot;https://reticenceji.github.io&quot;)
+
+# 我们可以直白的查看返回的内容
+print( response.url,response.status_code,response.headers,response.content)
+
+# 最常用的还是解析返回的内容，我们可以用正则表达式，Xpath，CSS
+response.re_first(&quot;&lt;title&gt;.*?&lt;/title&gt;&quot;)
+response.re(&quot;&lt;title&gt;.*?&lt;/title&gt;&quot;)
+response.xpath()
+response.css()
+
+#我们可以在webdirver和Session中转移cookie
+s.transfer_driver_cookies_to_session()
+s.transfer_session_cookies_to_driver()
+
+#想用selenium的特性，加上一个.driver就好了
+s.driver.get('http://reddit.com')
+#而且你把find换成ensure，可以实现等待元素出现的功能，人性多了
+s.driver.ensure_element_by_xpath(&quot;//a[@href='https://www.reddit.com/login']&quot;).click()
+</code></pre>
+<h2 id="appium">appium</h2>
+<p>参考链接：http://www.testclass.net/appium/about_appium</p>
+<ol>
+<li>appium是开源的移动端自动化测试框架；</li>
+<li>appium可以测试原生的、混合的、以及移动端的web项目；</li>
+<li>appium可以测试ios，android应用（当然了，还有firefox os）；</li>
+<li>appium是跨平台的，可以用在osx，windows以及linux桌面系统上；<br>
+安装：<code>pip install Appium-Python-Client</code></li>
+</ol>
+<h2 id="爬虫">爬虫</h2>
+<p><a href="https://github.com/wistbean/learn_python3_spider">教程链接</a><br>
+说了半天，还是没有讲到爬虫怎么写。事实上，学爬虫是我学Python最开始的原因，虽然之后变成了写各种小脚本。<br>
+言归正传，简单的说爬虫就是自动化抓取网页信息的工具，一般用python来写，因为方便。<br>
+爬虫的基本流程，包括发送请求和接受数据-解析数据-清洗数据-保存数据。</p>
+<ol>
+<li>发送请求。有内置的urllib库，我没有用过。反正<strong>request</strong>库很好用。</li>
+<li>解析数据。我们接受到的数据可能是json/html文本/二进制数据等等。json在python里有内置的库解析，二进制数据也没啥好解析的，该是啥是啥。html的解析可以用<strong>beautifulsoup(第三方)</strong>,<strong>lxml（标准库）</strong>，当然还有万能的正则表达式<strong>re</strong>.</li>
+<li>清洗数据。</li>
+<li>保存数据。简单的可以直接用<strong>file</strong>。当然也有保存到表格（<strong>csv</strong>）。高端的正式的就是保存到数据库了。</li>
+</ol>
+<p>难点在哪呢？</p>
+<ol>
+<li>发送请求可能是会被反爬手段拒绝的。所以我们可能要修改请求头，cookie，代理等。批量爬取意味着批量发送请求，你还要合理的构造请求。如果为了高效的话可能还要多线程。</li>
+<li>解析数据本来就挺难的。你要观察数据特点。</li>
+<li>得到的数据可能是乱七八糟的，要用各种方法清洗数据。</li>
+</ol>
+<p>所以，这玩意儿我现在还是不太会。</p>
+
+<span id="footnote"></span>
+<div id = "warn"></div>
+</div>
+<div class="toc-container"><ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#1-socket">1. socket</a></li>
+<li><a href="#2-requests%E7%AC%AC%E4%B8%89%E6%96%B9">2. Requests(第三方)</a></li>
+<li><a href="#3-selenium%E7%AC%AC%E4%B8%89%E6%96%B9">3. selenium(第三方)</a></li>
+<li><a href="#4requestium%E7%AC%AC%E4%B8%89%E6%96%B9">4.requestium(第三方)</a></li>
+<li><a href="#appium">appium</a></li>
+<li><a href="#%E7%88%AC%E8%99%AB">爬虫</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="fullPage"><canvas id="canvas"></canvas></div>
+</article>
+<div id="eof"><span>EOF</span></div><div class="round-shape-one"></div>
+<section>
+<div class="doc_comments">
+
+</div></section>
+</div></div></div><script>
+"use strict";!function(){for(var n=document.getElementsByTagName("pre"),e=n.length,s=0;s<e;s++){n[s].innerHTML='<span class="line-number"></span>'+n[s].innerHTML+'<span class="cl"></span>';for(var a=n[s].innerHTML.split(/\n/).length,r=0;r<a-1;r++){n[s].getElementsByTagName("span")[0].innerHTML+="<span>"+(r+1)+"</span>"}}}();
+let mainNavLinks=document.querySelectorAll(".markdownIt-TOC a");window.addEventListener("scroll",event=>{let fromTop=window.scrollY;mainNavLinks.forEach((link,index)=>{let section=document.getElementById(decodeURI(link.hash).substring(1));let nextSection=null
+if(mainNavLinks[index+1]){nextSection=document.getElementById(decodeURI(mainNavLinks[index+1].hash).substring(1));}
+if(section.offsetTop<=fromTop){if(nextSection){if(nextSection.offsetTop>fromTop){link.classList.add("currentToc");}else{link.classList.remove("currentToc");}}else{link.classList.add("currentToc");}}else{link.classList.remove("currentToc");}});});
+var h=document.documentElement,b=document.body,st="scrollTop",sh="scrollHeight",progress=document.querySelector(".progress"),scroll;document.addEventListener("scroll",function(){scroll=(h[st]||b[st])/((h[sh]||b[sh])-h.clientHeight)*100;progress.style.setProperty("--scroll",scroll+"%")});
+var wxScale=new WxScale({fullPage:document.querySelector("#fullPage"),canvas:document.querySelector("#canvas")});var imgBox=document.querySelectorAll("#md_block img");for(var i=0;i<imgBox.length;i++){imgBox[i].onclick=function(e){wxScale.start(this)}};
+</script>
+<a id="scrollUp" href="#top" style="position: fixed; z-index: 2147483647; display: block;"></a><div class="footer animated fadeInDown"><div class="site_footer"><div class="mysocials"><div class="my_socials"><a href="https://github.com/reticenceji"title="github"><i class="iconfont icon-github"></i></a><a href="reticenceji@qq.com"title="envelope"><i class="iconfont icon-envelope"></i></a><a href="https://www.zhihu.com/people/reticenceji"title="zhihu"><i class="iconfont icon-zhihu"></i></a></div></div><div class="copyright"id="copyright">Copyright © 2018-2020 <a href="https://reticenceji.github.io" style="margin:0;">Reticence</a>.</div>
+<span style="display: inline;margin-right:15px;">👁<strong><span id="busuanzi_value_site_uv"></span></strong></span><span id="busuanzi_container_page_pv" style="display: inline;"><span>📚<strong>176</strong> posts</span></div></div>
+<script>
+console.log("\n %c \u26a1Theme: Bitcron-pro Author's Blog:https://blog.blinkstar.cn  Writen By Serence  \n\n", "color: #ffffff; background: rgba(49, 49, 49, 0.85); padding:5px 0;border-radius:5px;", );
+</script>
+<script src="https://cdn.jsdelivr.net/npm/instant.page@3.0.0/instantpage.min.js" type="module" defer></script>
+<script type="text/javascript" async src="https://reticenceji.github.io/media/js/prism.js"></script>
+</body>
+</html>

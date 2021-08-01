@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="shortcut icon" href="https://reticenceji.github.io/favicon.ico" type="image/x-icon" /><meta name="viewport"content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="apple-mobile-web-app-capable"content="yes"/><meta name="apple-mobile-web-app-status-bar-style"content="black"/><meta name="format-detection"content="telephone=no"/><meta name="renderer"content="webkit"><meta name="description"content=""><meta charset="UTF-8"><title>C语言笔记（考试向） | Reticence</title>
+<link href="https://reticenceji.github.io/styles/main.css" type="text/css" rel="stylesheet" /><link href="https://at.alicdn.com/t/font_1621793_zatzzgvf30g.css" type="text/css" rel="stylesheet" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css"><script async src="https://cdn.jsdelivr.net/npm/busuanzi@2.3.0/bsz.pure.mini.min.js"></script><script src="https://reticenceji.github.io/media/js/magnify.min.js"></script><script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js"></script>
+<script type="text/javascript">function btn_toggle(){document.getElementById("hn").classList.contains("no-js")?document.getElementById("hn").classList.remove("no-js"):document.getElementById("hn").classList.add("no-js")}</script>
+
+<link rel="canonical" href="https://reticenceji.github.io/post/c-yu-yan-bi-ji-kao-shi-xiang/" />
+</head>
+<body>
+<div class="progress"></div><style>.progress{background:linear-gradient(to right,#87ceeb var(--scroll),transparent 0);background-repeat:no-repeat;position:fixed;width:100%;height:4px;z-index:1}</style><div class="darkmode-background"></div><div class="darkmode-layer"></div>
+<noscript><p class="warn" >本页面需要浏览器支持（启用）JavaScript</p></noscript><div class="header"><div class="logo_title"><div class="title animated fadeInDown"><a href="https://reticenceji.github.io"><img alt="logo" style="display:inline-block;" src="https://reticenceji.github.io/images/avatar.png"/></a><h1 title="Reticence" class="weaklink"><a  href="/">Reticence</a></h1>
+
+<div class="navbar weaklink">
+<div class="normal_nav">
+<div class="bitcron_nav_container"><div class="bitcron_nav"><div class="bitcron_nav"><div style="display:flex;justify-content:center;"><nav class="mixed_site_nav_wrap site_nav_wrap"><ul class="mixed_site_nav site_nav sm sm-base">	<li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/" class="selected active current nav__item" >Index</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/tags" class="selected active current nav__item" >Tags</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/archives" class="selected active current nav__item" >Archives</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/navigator.html" class="selected active current nav__item" >Navigator</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/post/about" class="selected active current nav__item" >About</a></li></ul></nav>
+<div style="float:right;margin-top:1em"><form id="gridea-search-form" data-update="1578893743252" action="/search/index.html"><input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="Search..."></form></div><div style="margin-left:0.5em;margin-top:1.2em"><input id="switch_default" onclick="mobileBtn()" type="checkbox" class="switch_default"><label for="switch_default" class="toggleBtn"></label></div></div>
+<div class="clear clear_nav_inline_end"></div></div></div><div class="clear clear_nav_end"></div></div></div><div class="hamberger" href="javascript:void(0)" onclick="btn_toggle();"><i class="iconfont icon-category"></i></div></div></div></div>
+<div id="hn" class="no-js hidden_nav animated fadeInDown"><div class="bitcron_nav_container"><div class="bitcron_nav"><nav class="mixed_site_nav_wrap site_nav_wrap"><ul class="mixed_site_nav site_nav sm sm-base">	<li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/" class="selected active current nav__item" >Index</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/tags" class="selected active current nav__item" >Tags</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/archives" class="selected active current nav__item" >Archives</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/navigator.html" class="selected active current nav__item" >Navigator</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/post/about" class="selected active current nav__item" >About</a></li></ul><div class="clear clear_nav_inline_end"></div></nav></div><div class="clear clear_nav_end"></div></div>
+<div style="display:flex;justify-content:center;inline-block;text-align:center;margin-top:7%"><div><form id="gridea-search-form" data-update="1627835297708" action="/search/index.html"><input class="search-input" autocomplete="off" spellcheck="false" name="q"  placeholder="Search..." /></form></div><div style="margin-left:0.5em"><input id="switch_default_h" onclick="mobileBtn()" type="checkbox" class="switch_default"><label for="switch_default" class="toggleBtn"></label></div></div>
+</div></div>
+<script>function enableDarkmode(){document.body.classList.add("darkmode"),document.getElementById("switch_default").checked=1,document.getElementById("switch_default_h").checked=1}function removeDarkmode(){document.body.classList.remove("darkmode"),document.getElementById("switch_default").checked=0,document.getElementById("switch_default_h").checked=0}function getCookie(a){var b,c=new RegExp("(^| )"+a+"=([^;]*)(;|$)");return(b=document.cookie.match(c))?unescape(b[2]):null}cookie=getCookie("darkmode"),"enable"==cookie&&enableDarkmode(),window.matchMedia("(prefers-color-scheme: dark)").matches&&"disable"!==cookie&&(enableDarkmode(),document.cookie="darkmode=enable; path=/");var mobileBtn=function(){1==document.getElementById("switch_default").checked?(enableDarkmode(),document.cookie="darkmode=enable; path=/"):(removeDarkmode(),document.cookie="darkmode=disable; path=/")};</script>
+
+<div class="main"><div class="main-inner"><div class="content">
+<article class="post">
+<h2 class="post_title sm_margin"><a>C语言笔记（考试向）</a></h2>
+<script>function lan(){if(document.getElementById("lan").innerText=="繁"){var s=document.getElementById("tongwenlet_cn");if(s!=null){document.body.removeChild(s)}var s=document.createElement("script");s.language="javascript";s.type="text/javascript";s.src="https://cdn.jsdelivr.net/gh/qyxtim/Static@1.1/bookmarklet_tw.js";s.id="tongwenlet_cn";document.body.appendChild(s);document.getElementById("lan").innerHTML="简"}else{if(document.getElementById("lan").innerText=="簡"){var s=document.getElementById("tongwenlet_cn");if(s!=null){document.body.removeChild(s)}var s=document.createElement("script");s.language="javascript";s.type="text/javascript";s.src="https://cdn.jsdelivr.net/gh/qyxtim/Static@1.1/bookmarklet_cn.js";s.id="tongwenlet_cn";document.body.appendChild(s);document.getElementById("lan").innerHTML="繁"}}};</script>
+<section class="post_details"><i class="iconfont icon-calendar"></i><span style="margin-right:15px"> 2020-07-29</span><i class="iconfont icon-browse"></i><span style="margin-right:15px"> <span id="busuanzi_value_page_pv"></span> Views</span><i class="iconfont icon-category"></i><span class="weaklink" style="margin-right:15px">	<a href="https://reticenceji.github.io/tag/1N1qlBrCX/" class="tag">C</a></span><i class="iconfont icon-caret-down"></i><span style="margin-right:15px">4321字</span><i class="iconfont icon-naozhong"></i><span style="margin-right:15px">18 min read</span><a id="lan" href="javascript:void(0);"onclick="lan();"title="调整简繁体" style="margin-right:15px;">繁</a>
+</section>
+
+<div style="display:flex">
+<div class="md_block" id="md_block">
+<div class="round-shape-one"></div>
+<ol start="0">
+<li>
+<p>禅<br>
+do one thing and do it best<br>
+在任何一种编程语言中，如果代码的执行结果和求值顺序相关，则都是不好的程序设计风格</p>
+</li>
+<li>
+<p>用指针却不初始化，必死无疑。<br>
+#include &lt;stdlib.h&gt;<br>
+malloc(); 	free();		void <em>calloc(size_t n,size_t size); void</em> realloc(void *ptr,size_t size);<br>
+fopen(); 	fclose();<br>
+malloc()的问题 参数是unsigned int；失败返回NULL；void *通用指针；<br>
+calloc()会给申请到的空间赋初值0；<br>
+realloc()可以给已经分配的空间改变大小；</p>
+</li>
+<li>
+<p>while (getchar()!='\n');<br>
+//可以用来省略行尾多余的字符，比如fgets()超过限制的部分，scanf()中对空白字符的忽略。</p>
+</li>
+<li>
+<p>int *(a[20]);	//20 pointer to int 20个指针<br>
+int (*b)[20];	//pointer to 20 int<br>
+二维数组&gt;&lt;二级指针	可以给他们+1，发现加的”单位“不一样。<br>
+想要指向二维数组，还是数组指针比较靠谱。</p>
+</li>
+</ol>
+<pre><code>        int a[3][4];
+        int (*pa)[4]=a;
+        int *aa[3]={a[0],a[1],a[2]}
+        int **paa=aa;
+</code></pre>
+<ol start="4">
+<li>
+<p>const float * pf; /* pf 指向一个 float 类型的 const 值 ，pf可更改*/<br>
+float * const pt; /* pt 是一个 const 指针 *pf可更改*/<br>
+const float * const ptr;//表明 ptr 既不能指向别处，它所指向的值也不能改变。</p>
+</li>
+<li>
+<p>标准输入函数</p>
+<pre><code> getchar();
+ getc(FILE *stream);
+ gets(char *s);	//读到换行符，扔掉换行符。
+ fgets(char *s, int n,FIlE *stream);//读到换行符，或n-1个字符，会把换行符读进来
+ scanf(const char *format,...);
+ fscanf(FILE *,const char *format,...)
+ fread(void *ptr,size_t size,size_t nmemb,FILE *stream);//读的是二进制
+</code></pre>
+</li>
+</ol>
+<p>回忆一下，他们有什么不同？哪些操作是不安全的？对于空白字符他们怎么处理？最后缓冲区会变成什么样子？</p>
+<ol start="6">
+<li>标准输出函数</li>
+</ol>
+<pre><code>puts();//会自动换行
+fputs(const char*s,FILE *stream);//
+printf();
+fprintf();
+fwrite(void *ptr,size_t size,size_t nmemb,FILE *stream);
+sprintf(char *s,const const *format,...);
+</code></pre>
+<ol start="7">
+<li>
+<p>for循环<br>
+1.先执行语句1<br>
+2.语句2真假<br>
+{}<br>
+3.执行语句3<br>
+重复23；</p>
+</li>
+<li>
+<p>宏，按字符展开，空格作为间隔符，宏名出现在字符串中不会被展开<br>
+#define X 5						//类对象宏			<br>
+#define F1(X) printf(&quot;X=%d&quot;,X)	//类函数宏<br>
+#define F2(X) printf(#X&quot;%d&quot;,X)	//#把X转化成字符串，相当于&quot;X&quot;<br>
+#define F3(N) int x##N			//##把两个记号粘合成一个记号<br>
+#define PR(X,...) printf(&quot;%d&quot;#<strong>VA_ARGS</strong>,X)	//变参宏</p>
+</li>
+<li>
+<p>内存用于存储程序中的数据，由存储期，作用域，链接表征。注意对象和标识符的区别。			<br>
+<strong>生命周期（存储期）</strong>：所谓存储期是指“对象”在内存中保留了多长时间。这个的最好理解方式是从汇编的角度考虑。自动存储器都是在进入函数的时候，在栈上动态分配的内存，所以生命周期和函数一样。静态存储（static）的变量分配在内存里，所以和程序有相同的生命周期。</p>
+<ol>
+<li>静态存储期(static)：在程序执行时分配内存，在程序运行整个过程都存在。<br>
+具有文件作用域的变量自动具有（也必须是）静态存储期。<br>
+只会初始化一次，未显式初始化会被初始化成0.</li>
+<li>自动存储期(auto)：程序进入变量定义所在块时分配变量的内存，在程序离开块时释放内存，缺省就是auto</li>
+<li>线程储存期：线程存储期用于并发程序设计，程序执行可被分为多个线程。具有线程存储期的对象，从被声明时到线程结束一直存在。以关键字_Thread_local 声明一个对象时，每个线程都获得该变量的私有备份。</li>
+<li>动态分配存储期：调用malloc()（之类的函数）时分配内存，调用free()释放内存。<br>
+<strong>作用域和链接</strong>：这个的最好理解方式是从编译器的角度考虑。<br>
+作用域：（“标识符”的作用域和链接表明了程序的哪些部分可以使用它。）</li>
+<li>文件作用域：定义在函数之外,声明之后所有的函数都可见(全局变量)</li>
+<li>块作用域：对该块以及包含的嵌套块可见，变长数组稍有不同，它们的存储期从声明处到块的末尾，而不是从块的开始处到块的末尾。</li>
+<li>函数原型作用域（function prototype scope）用于函数原型中的形参名（变量名），如<code>int mighty(int mouse, double large);</code> 函数原型作用域的范围是从形参定义处到原型声明结束。这意味着，编译器在处理函数原型中的形参时只关心它的类型，而形参名（如果有的话）通常无关紧要。<br>
+<strong>链接</strong>：
+<ol>
+<li>无链接：块作用域自然是无链接的。</li>
+<li>内部链接：static。只在当前的编译单元（.c文件）中可用。</li>
+<li>外部链接：别的文件需要用extern再声明一遍。<br>
+一些变量的修饰符：<br>
+volatile：告诉计算机代理（而不是程序）可以改变该变量的值<br>
+const：只读，不能修改<br>
+restrict:表明指针是访问数据对象唯一且初始的方式<br>
+extern:只是声明别处已经定义的变量<br>
+regester:寄存器（不算内存）变量，加快运行速度，但是不能乱用<br>
+局部参数如果和全局参数同名会暂时掩盖全局参数，</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>
+<p>函数的参数结合有<strong>自右向左</strong>的顺序，如i=3; f(i,i++)即f(4,3)。<br>
+这个也可以从汇编的角度考虑。__cdecl， C语言的堆栈传递法,从右到左压入堆栈.由调用者负责清理堆栈。<br>
+函数默认类型是整型。<br>
+函数按值传递。</p>
+</li>
+<li>
+<p>A[X]与*(A+X)完全等价，A+X和&amp;A[X]完全等价</p>
+</li>
+<li>
+<p>运算符的优先顺序</p>
+</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>符号</th>
+<th>结合方向</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td>()	[]	-&gt;	.</td>
+<td></td>
+</tr>
+<tr>
+<td>单目</td>
+<td>!	~	++	--	&amp;	*	(类型)	sizeof</td>
+<td>右向左</td>
+</tr>
+<tr>
+<td><strong>算数</strong></td>
+<td>*	/	%</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>+	-</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>移位</strong></td>
+<td>&gt;&gt;	&lt;&lt;</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>关系</strong></td>
+<td>&gt;	&lt;	&gt;=	&lt;=</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>!=	==</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>位</strong></td>
+<td>&amp;	^	<code>|</code></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>逻辑</strong></td>
+<td>&amp;&amp;	<code>||</code></td>
+<td></td>
+</tr>
+<tr>
+<td>条件</td>
+<td>?:</td>
+<td>右向左</td>
+</tr>
+<tr>
+<td>赋值</td>
+<td>=	+=	&gt;&gt;=	诸如此类</td>
+<td>右向左</td>
+</tr>
+<tr>
+<td>顺序</td>
+<td>,</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<ol start="15">
+<li></li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>数据类型</th>
+<th>字节数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>long long int</td>
+<td>8</td>
+</tr>
+<tr>
+<td>long int</td>
+<td>4</td>
+</tr>
+<tr>
+<td>int</td>
+<td>4(整形字面量)</td>
+</tr>
+<tr>
+<td>short int</td>
+<td>2</td>
+</tr>
+<tr>
+<td>char</td>
+<td>1</td>
+</tr>
+<tr>
+<td>double</td>
+<td>8(浮点字面量)</td>
+</tr>
+<tr>
+<td>float</td>
+<td>4</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>在C标准中并未规定，具体的大小在不同机器上是不同的。。但是考试要考？？</li>
+<li>在前面加unsigned不改变占内存大小，改变数据表示范围</li>
+<li>用sizeof()就好</li>
+</ul>
+<ol start="16">
+<li>格式化输出/输入<br>
+scanf</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>符号</th>
+<th>表意</th>
+<th>例子或备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>%d</td>
+<td>十进制</td>
+<td>//ld	长整型整数  %4d	%-4d</td>
+</tr>
+<tr>
+<td>%o</td>
+<td>八进制</td>
+<td>//八进制和十六进制都是无符号的</td>
+</tr>
+<tr>
+<td>%x</td>
+<td>十六进制</td>
+<td>//x小写，X大写</td>
+</tr>
+<tr>
+<td>%u</td>
+<td>无符号十进制</td>
+<td></td>
+</tr>
+<tr>
+<td>%c</td>
+<td>字符</td>
+<td></td>
+</tr>
+<tr>
+<td>%s</td>
+<td>字符串</td>
+<td></td>
+</tr>
+<tr>
+<td>%f</td>
+<td>小数</td>
+<td>//%4.3lf</td>
+</tr>
+<tr>
+<td>%e</td>
+<td>标准指数</td>
+<td></td>
+</tr>
+<tr>
+<td>%%</td>
+<td>百分号</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>一些修饰符：<br>
+<strong>-</strong> 待打印项左对齐<br>
+<strong>+</strong> 有符号值若为正，则在值前面显示加号；若为负，则在值前面显示减号、	<br>
+<strong>#</strong> 把结果转换为另一种形式。如果是%o 格式，则以0开始；如果是%x或%X格式，则以0x或0X开始；<br>
+<strong>0</strong> 对于数值格式，用前导 0 代替空格填充字段宽度。对于整数格式，如果出现-标记或指定精度，则忽略该标记</p>
+<p>17.小细节<br>
+在程序中，0开头为八进制数，如073;0x开头为十六进制，如0xffffff;没有二进制<br>
+短路逻辑	 a||b	a为1，忽略b<br>
+a&amp;&amp;b	a为0，忽略b<br>
+如果初始化静态存储期的变量（如，静态外部链接、静态内部链接或静态无链接），必须使用常量值。这同样适用于结构。如果初始化一个静态存储期的结构，初始化列表中的值必须是常量表达式。如果是自动存储期，初始化列表中的值可以不是常量。</p>
+<p>18.常用的字符串函数 原型在string.h中</p>
+<pre><code>size_t strlen(const char *s); 	//strlen返回的是字符数，不包括最后的'\0' 
+char *strcat(char *s1,const char *s2);	
+    //拼接字符串，把第2个字符串的备份附加在第1个字符串末尾，并把拼接后形成的新字符串作为第1个字符串，返回其地址。
+    //可能会遇到越界问题，自己用sizeof和strlen解决即可。
+    //相应的有strncat
+int strcmp(const char *s1,const char *s2);
+    //比较s1和s2的内容，相同返回0，不同根据字典序（ascii码大小），前者大返回1，后者大返回-1
+    //相应的有strncmp
+char * strcpy(char *s1,const char *s2);
+    //把第二个字符串拷贝到第一个字符串（指针）指定的位置
+    //相应的有strncpy
+sprintf(char *s,......);//后面和printf一样，把东西写到字符串里。
+</code></pre>
+<ol start="19">
+<li>文件<br>
+FILE *f;<br>
+概念：文件是在磁盘或固态硬盘上一段已经命名的存储区。Linux中，一切皆文件。<br>
+标准高级 I/O（standard high-level I/O）使用 C 库的标准包和 stdio.h 头文件定义。<br>
+C 程序会自动打开 3 个文件，它们被称为标准输入（standard input）、标准输出（standard output）和标准错误输出（standard error output）。在默认情况下，标准输入是系统的普通输入设备，通常为键盘；标准输出和标准错误输出是系统的普通输出设备，通常为显示屏。<br>
+在Linux中一切皆是文件</li>
+</ol>
+<ul>
+<li>打开文件：<br>
+fopen(文件名字符串,模式字符串);<br>
+f=fopen(&quot;cBiji.txt&quot;,&quot;a&quot;);<br>
+程序成功打开文件后，fopen()将返回文件指针（file pointer），失败返回NULL</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>模式字符串</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>&quot;r&quot;</td>
+<td>以读模式打开文件</td>
+</tr>
+<tr>
+<td>&quot;w&quot;</td>
+<td>以写模式打开文件，把现有文件的长度截为 0，如果文件不存在，则创建一个新文件</td>
+</tr>
+<tr>
+<td>&quot;a&quot;</td>
+<td>以写模式打开文件，在现有文件末尾添加内容，如果文件不存在，则创建一个新文件</td>
+</tr>
+<tr>
+<td>&quot;r+&quot;</td>
+<td>以更新模式打开文件（即可以读写文件）</td>
+</tr>
+<tr>
+<td>&quot;w+&quot;</td>
+<td>以更新模式打开文件（即，读和写），如果文件存在,则将其长度截为 0；如果文件不存在,则创建一个新文件</td>
+</tr>
+<tr>
+<td>&quot;a+&quot;</td>
+<td>以更新模式打开文件（即，读和写），在现有文件的末尾添加内容，如果文件不存在则创建一个新文件；可以读整个文件，但是只能从末尾添加内容</td>
+</tr>
+</tbody>
+</table>
+<p>&quot;rb&quot;、&quot;wb&quot;、&quot;ab&quot;、&quot;ab+&quot;、&quot;a+b&quot;、&quot;wb+&quot;、&quot;w+b&quot; 与上一个模式类似，但是以二进制模式而不是文本模式打开文件</p>
+<ul>
+<li>文件的IO<br>
+putc(FILE <em>fp,const char</em>s);	文件版的putchar();<br>
+getc(FILE *fp); getc(f)					文件版的getchar();<br>
+fprintf(FILE *fp,......); fprintf(f,&quot;%d&quot;,2);<br>
+fscanf(FILE *fp,......);<br>
+fgets(char *buf,int l,FILE *fp);<br>
+它的第 1 个参数和gets()函数一样，也是表示储存输入位置的地址（char * 类型）；<br>
+第 2 个参数是一个整数，表示待输入字符串的大小.fgets()函数读取输入直到第1个换行符的后面，或读到文件结尾，或者读取l-1个字符（然后，fgets()在末尾添加一个空字符使之成为一个字符串。如果 fgets()在读到字符上限之前已读完一整行，它会把表示行结尾的换行符放在空字符前面；<br>
+最后一个参数是文件指针；<br>
+fputs()函数接受两个参数：第 1 个是字符串的地址；第 2 个是文件指针。不会自动换行。</li>
+</ul>
+<p>fseek(FILE *fp,long int offset,manifest constant);  改变偏移量，如fseek(f,2L,SEEK_SET)<br>
+如果一切正常，fseek()的返回值为 0；如果出现错误（如试图移动的距离超出文件的范围），其返回值为-1。offset:0不变，负数前移，正数后移。</p>
+<pre><code>manifest constant	meaning
+SEEK_SET 			文件开始处
+SEEK_CUR 			当前位置
+SEEK_END 			文件末尾
+</code></pre>
+<p>long int ftell(FILE *fp);返回当前的位置<br>
+int fgetpos(FILE * restrict stream, fpos_t * restrict pos);//ftell的替代品<br>
+int fsetpos(FILE *stream, const fpos_t *pos);//fseek的替代品，这两个不用管<br>
+int fflush(FILE *fp); //刷新缓冲区，把缓冲区未写入的数据发送到fp指定的输出文件<br>
+int setvbuf(FILE * restrict fp, char * restrict buf, int mode, size_t size);//设置缓冲区，不管<br>
+size_t fwrite(const void * restrict ptr, size_t size, size_t nmemb,FILE * restrict fp);<br>
+fwrite()函数把二进制数据写入文件。<br>
+指针 ptr 是待写入数据块的地址。<br>
+size 表示待写入数据块的大小（以字节为单位），<br>
+nmemb 表示待写入数据块的数量。<br>
+fp 指定待写入的文件。<br>
+fwrite()函数返回成功写入项的数量。正常情况下，该返回值就是 nmemb，但如果出现写入错误，返回值会比 nmemb 小。<br>
+size_t fread(void * restrict ptr, size_t size, size_t nmemb,FILE * restrict fp);</p>
+<ul>
+<li>关闭文件：fclose(f);成功返回0</li>
+</ul>
+<p>20.序列点<br>
+下面就是标准中定义的顺序点：<br>
+（1）函数调用时，实参表内全部参数求值结束，函数的第一条指令执行之前（注意参数分隔符“,”不是顺序点）；<br>
+（2）&amp;&amp;操作符的左操作数结尾处；<br>
+（3）||操作符的左操作数结尾处；<br>
+（4）?:操作符的第一个操作数的结尾处；<br>
+（5）逗号运算符；<br>
+（6）表达式求值的结束点，具体包括下列几类：自动对象的初值计算结束处；表达式语句末尾的分号处； do/while/if/switch/for语句的控制条件的右括号处；for语句控制条件中的两个分号处；return语句返回值计算结束（末尾的分号）处。</p>
+<p>21.结构</p>
+<pre><code>struct{
+        int x;
+        int y;
+} f,*ff;
+
+f.x
+x-&gt;ff
+(*ff).y	//引用的三种办法
+</code></pre>
+<p>22.位移运算<br>
+逻辑位移	补零（对于无符号数）<br>
+算数右移	补符号位（对于由符号数）<br>
+当宽度较小的整数赋给宽度较大的整数，会发生扩充（看被扩充数的类型）<br>
+零扩充　	无符号<br>
+符号扩充	有符号<br>
+较大的整数给较小的，低位截断<br>
+23.位运算的技巧<br>
+x&amp;=(x-1)  删除ｘ中最右边值为１的一个二进制位<br>
+~0获得一个全部位为１的(-1)</p>
+<p>24.从汇编的角度看<br>
+1.未初始化　　块中建立的变量的值是随机的（寄存器或栈），<br>
+全局变量或静态变量是0（运行时分配内存）<br>
+2.短路机制	跳转走了，就像if嵌套<br>
+3.C语言没有指定同一运算符中多个操作数的计算顺序(&amp;&amp;　||　?:　,　)除外</p>
+<p>25.命令行参数<br>
+int main(int argc, char *argv [])<br>
+argc:argement count,<br>
+argv:argement value<br>
+argv[0]通常储存程序名<br>
+argv后面的元素储存其他的参数<br>
+用空格区分参数，如果参数中有空格用双引号括起来<br>
+strtol()把字符串转换成 long 类型的值，<br>
+strtoul()把字符串转换成 unsigned long 类型的值，<br>
+strtod()把字符串转换成 double 类型的值。<br>
+这些函数的智能之处在于识别和报告字符串中的首字符是否是数字。<br>
+atof()函数把字符串转换成 double 类型的值，<br>
+atol()函数把字符串转换成 long 类型的值。<br>
+atoi()函数把字符串转换成 int 类型的值。<br>
+这些函数不做错误检查，只字符串转换开头的数值。</p>
+<p>26.函数指针<br>
+int (*f)(int,int);<br>
+f可以指向这样类型的指针。<br>
+可以用来实现很多面向对象的特性.</p>
+<p>27.链表<br>
+链表的头和尾常常是要单独考虑的<br>
+要注意的是指针的值为NULL，在试图引用会产生段错误，要排查。<br>
+想清楚，有那些情况。<br>
+备份好数据，别把节点丢了。真的要丢记得释放内存。<br>
+如果你用头结点的话，会方便好多好多。</p>
+<p>读入1：</p>
+<pre><code>struct ListNode *readlist()
+{
+        struct ListNode *head=NULL,*tail=NULL;
+        int number;
+        loop:
+            scanf(&quot;%d&quot;,&amp;number); 			//data读入
+            if (number == -1) return head;	//出口
+            if (head==NULL) tail=head=(struct ListNode*)malloc(sizeof(struct ListNode)); 
+            else tail=tail-&gt;next=(struct ListNode*)malloc(sizeof(struct ListNode)); //开辟空间，分情况
+            tail-&gt;data=number;
+            tail-&gt;next=NULL;
+        goto loop;
+    }
+</code></pre>
+<p>读入+排序：</p>
+<pre><code>struct ListNode *readlist()
+{
+    struct ListNode *head=NULL,*new;
+    int number;
+    loop:
+        scanf(&quot;%d&quot;,&amp;number); 			//data读入
+        if (number == -1) return head;	//出口
+        new=(ListNode *)malloc(sizeof(ListNode));
+        new-&gt;data=number;
+        insert(head,new);//排序在insert做好
+    goto loop;
+}
+</code></pre>
+<p>倒置：</p>
+<pre><code>struct ListNode *reverse( struct ListNode *head )
+{
+    if (head=NULL) return head;
+    struct ListNode *cur=head-&gt;next,*tmp,*before;
+    head-&gt;next=NULL;
+    before=head;
+    while (cur!=NULL)
+    {
+        tmp=cur-&gt;next;
+        cur-&gt;next=before;
+        before=cur;
+        cur=tmp;
+    }
+    return before;
+}
+</code></pre>
+<p>删除一大堆：</p>
+<pre><code>struct ListNode *deletem( struct ListNode *L, int m )
+{
+    struct ListNode *head=L,*tmp,*before;
+    while (head!=NULL &amp;&amp; head-&gt;data==m)
+    {
+        tmp=head;
+        head=head-&gt;next;
+        free(tmp);
+    } 
+    for (tmp=head;tmp!=NULL;)
+    {
+        if (tmp-&gt;next &amp;&amp; tmp-&gt;next-&gt;data==m) tmp-&gt;next=tmp-&gt;next-&gt;next;
+        else tmp=tmp-&gt;next;
+    }
+    return head;
+}
+</code></pre>
+<p>有序插入：</p>
+<pre><code>polynomial* insert(polynomial* head,polynomial *cur)
+{
+    polynomial *new;
+    if (head ==NULL || cur-&gt;exp &gt;= head-&gt;exp)
+    {
+        cur-&gt;next=head;
+        head=cur;
+    }//首先和头比较
+    else for (new=head;new;new=new-&gt;next)
+    {
+    /*	if (cur-&gt;exp == new-&gt;exp) 
+        {
+            new-&gt;coef+=cur-&gt;coef; 
+            break;
+        }	*/这里特殊的地方在于合并了同类项,一般是不用的，所以我给那边的比较加了等号
+        else if ((cur-&gt;exp &lt; new-&gt;exp &amp;&amp; new-&gt;next==NULL) || (cur-&gt;exp &lt; new-&gt;exp &amp;&amp; cur-&gt;exp &gt;= new-&gt;next-&gt;exp))
+        {
+            cur-&gt;next=new-&gt;next;
+            new-&gt;next=cur;
+            break;
+        }
+    }
+    return head;
+}
+</code></pre>
+
+<span id="footnote"></span>
+<div id = "warn"></div>
+</div>
+<div class="toc-container"></div>
+</div>
+<div id="fullPage"><canvas id="canvas"></canvas></div>
+</article>
+<div id="eof"><span>EOF</span></div><div class="round-shape-one"></div>
+<section>
+<div class="doc_comments">
+
+</div></section>
+</div></div></div><script>
+"use strict";!function(){for(var n=document.getElementsByTagName("pre"),e=n.length,s=0;s<e;s++){n[s].innerHTML='<span class="line-number"></span>'+n[s].innerHTML+'<span class="cl"></span>';for(var a=n[s].innerHTML.split(/\n/).length,r=0;r<a-1;r++){n[s].getElementsByTagName("span")[0].innerHTML+="<span>"+(r+1)+"</span>"}}}();
+let mainNavLinks=document.querySelectorAll(".markdownIt-TOC a");window.addEventListener("scroll",event=>{let fromTop=window.scrollY;mainNavLinks.forEach((link,index)=>{let section=document.getElementById(decodeURI(link.hash).substring(1));let nextSection=null
+if(mainNavLinks[index+1]){nextSection=document.getElementById(decodeURI(mainNavLinks[index+1].hash).substring(1));}
+if(section.offsetTop<=fromTop){if(nextSection){if(nextSection.offsetTop>fromTop){link.classList.add("currentToc");}else{link.classList.remove("currentToc");}}else{link.classList.add("currentToc");}}else{link.classList.remove("currentToc");}});});
+var h=document.documentElement,b=document.body,st="scrollTop",sh="scrollHeight",progress=document.querySelector(".progress"),scroll;document.addEventListener("scroll",function(){scroll=(h[st]||b[st])/((h[sh]||b[sh])-h.clientHeight)*100;progress.style.setProperty("--scroll",scroll+"%")});
+var wxScale=new WxScale({fullPage:document.querySelector("#fullPage"),canvas:document.querySelector("#canvas")});var imgBox=document.querySelectorAll("#md_block img");for(var i=0;i<imgBox.length;i++){imgBox[i].onclick=function(e){wxScale.start(this)}};
+</script>
+<a id="scrollUp" href="#top" style="position: fixed; z-index: 2147483647; display: block;"></a><div class="footer animated fadeInDown"><div class="site_footer"><div class="mysocials"><div class="my_socials"><a href="https://github.com/reticenceji"title="github"><i class="iconfont icon-github"></i></a><a href="reticenceji@qq.com"title="envelope"><i class="iconfont icon-envelope"></i></a><a href="https://www.zhihu.com/people/reticenceji"title="zhihu"><i class="iconfont icon-zhihu"></i></a></div></div><div class="copyright"id="copyright">Copyright © 2018-2020 <a href="https://reticenceji.github.io" style="margin:0;">Reticence</a>.</div>
+<span style="display: inline;margin-right:15px;">👁<strong><span id="busuanzi_value_site_uv"></span></strong></span><span id="busuanzi_container_page_pv" style="display: inline;"><span>📚<strong>176</strong> posts</span></div></div>
+<script>
+console.log("\n %c \u26a1Theme: Bitcron-pro Author's Blog:https://blog.blinkstar.cn  Writen By Serence  \n\n", "color: #ffffff; background: rgba(49, 49, 49, 0.85); padding:5px 0;border-radius:5px;", );
+</script>
+<script src="https://cdn.jsdelivr.net/npm/instant.page@3.0.0/instantpage.min.js" type="module" defer></script>
+<script type="text/javascript" async src="https://reticenceji.github.io/media/js/prism.js"></script>
+</body>
+</html>

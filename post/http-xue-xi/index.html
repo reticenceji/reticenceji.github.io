@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="shortcut icon" href="https://reticenceji.github.io/favicon.ico" type="image/x-icon" /><meta name="viewport"content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="apple-mobile-web-app-capable"content="yes"/><meta name="apple-mobile-web-app-status-bar-style"content="black"/><meta name="format-detection"content="telephone=no"/><meta name="renderer"content="webkit"><meta name="description"content=""><meta charset="UTF-8"><title>Networking-应用层-HTTP学习 | Reticence</title>
+<link href="https://reticenceji.github.io/styles/main.css" type="text/css" rel="stylesheet" /><link href="https://at.alicdn.com/t/font_1621793_zatzzgvf30g.css" type="text/css" rel="stylesheet" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css"><script async src="https://cdn.jsdelivr.net/npm/busuanzi@2.3.0/bsz.pure.mini.min.js"></script><script src="https://reticenceji.github.io/media/js/magnify.min.js"></script><script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js"></script>
+<script type="text/javascript">function btn_toggle(){document.getElementById("hn").classList.contains("no-js")?document.getElementById("hn").classList.remove("no-js"):document.getElementById("hn").classList.add("no-js")}</script>
+
+<link rel="canonical" href="https://reticenceji.github.io/post/http-xue-xi/" />
+</head>
+<body>
+<div class="progress"></div><style>.progress{background:linear-gradient(to right,#87ceeb var(--scroll),transparent 0);background-repeat:no-repeat;position:fixed;width:100%;height:4px;z-index:1}</style><div class="darkmode-background"></div><div class="darkmode-layer"></div>
+<noscript><p class="warn" >本页面需要浏览器支持（启用）JavaScript</p></noscript><div class="header"><div class="logo_title"><div class="title animated fadeInDown"><a href="https://reticenceji.github.io"><img alt="logo" style="display:inline-block;" src="https://reticenceji.github.io/images/avatar.png"/></a><h1 title="Reticence" class="weaklink"><a  href="/">Reticence</a></h1>
+
+<div class="navbar weaklink">
+<div class="normal_nav">
+<div class="bitcron_nav_container"><div class="bitcron_nav"><div class="bitcron_nav"><div style="display:flex;justify-content:center;"><nav class="mixed_site_nav_wrap site_nav_wrap"><ul class="mixed_site_nav site_nav sm sm-base">	<li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/" class="selected active current nav__item" >Index</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/tags" class="selected active current nav__item" >Tags</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/archives" class="selected active current nav__item" >Archives</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/navigator.html" class="selected active current nav__item" >Navigator</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/post/about" class="selected active current nav__item" >About</a></li></ul></nav>
+<div style="float:right;margin-top:1em"><form id="gridea-search-form" data-update="1578893743252" action="/search/index.html"><input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="Search..."></form></div><div style="margin-left:0.5em;margin-top:1.2em"><input id="switch_default" onclick="mobileBtn()" type="checkbox" class="switch_default"><label for="switch_default" class="toggleBtn"></label></div></div>
+<div class="clear clear_nav_inline_end"></div></div></div><div class="clear clear_nav_end"></div></div></div><div class="hamberger" href="javascript:void(0)" onclick="btn_toggle();"><i class="iconfont icon-category"></i></div></div></div></div>
+<div id="hn" class="no-js hidden_nav animated fadeInDown"><div class="bitcron_nav_container"><div class="bitcron_nav"><nav class="mixed_site_nav_wrap site_nav_wrap"><ul class="mixed_site_nav site_nav sm sm-base">	<li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/" class="selected active current nav__item" >Index</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/tags" class="selected active current nav__item" >Tags</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/archives" class="selected active current nav__item" >Archives</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/navigator.html" class="selected active current nav__item" >Navigator</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/post/about" class="selected active current nav__item" >About</a></li></ul><div class="clear clear_nav_inline_end"></div></nav></div><div class="clear clear_nav_end"></div></div>
+<div style="display:flex;justify-content:center;inline-block;text-align:center;margin-top:7%"><div><form id="gridea-search-form" data-update="1627835297708" action="/search/index.html"><input class="search-input" autocomplete="off" spellcheck="false" name="q"  placeholder="Search..." /></form></div><div style="margin-left:0.5em"><input id="switch_default_h" onclick="mobileBtn()" type="checkbox" class="switch_default"><label for="switch_default" class="toggleBtn"></label></div></div>
+</div></div>
+<script>function enableDarkmode(){document.body.classList.add("darkmode"),document.getElementById("switch_default").checked=1,document.getElementById("switch_default_h").checked=1}function removeDarkmode(){document.body.classList.remove("darkmode"),document.getElementById("switch_default").checked=0,document.getElementById("switch_default_h").checked=0}function getCookie(a){var b,c=new RegExp("(^| )"+a+"=([^;]*)(;|$)");return(b=document.cookie.match(c))?unescape(b[2]):null}cookie=getCookie("darkmode"),"enable"==cookie&&enableDarkmode(),window.matchMedia("(prefers-color-scheme: dark)").matches&&"disable"!==cookie&&(enableDarkmode(),document.cookie="darkmode=enable; path=/");var mobileBtn=function(){1==document.getElementById("switch_default").checked?(enableDarkmode(),document.cookie="darkmode=enable; path=/"):(removeDarkmode(),document.cookie="darkmode=disable; path=/")};</script>
+
+<div class="main"><div class="main-inner"><div class="content">
+<article class="post">
+<h2 class="post_title sm_margin"><a>Networking-应用层-HTTP学习</a></h2>
+<script>function lan(){if(document.getElementById("lan").innerText=="繁"){var s=document.getElementById("tongwenlet_cn");if(s!=null){document.body.removeChild(s)}var s=document.createElement("script");s.language="javascript";s.type="text/javascript";s.src="https://cdn.jsdelivr.net/gh/qyxtim/Static@1.1/bookmarklet_tw.js";s.id="tongwenlet_cn";document.body.appendChild(s);document.getElementById("lan").innerHTML="简"}else{if(document.getElementById("lan").innerText=="簡"){var s=document.getElementById("tongwenlet_cn");if(s!=null){document.body.removeChild(s)}var s=document.createElement("script");s.language="javascript";s.type="text/javascript";s.src="https://cdn.jsdelivr.net/gh/qyxtim/Static@1.1/bookmarklet_cn.js";s.id="tongwenlet_cn";document.body.appendChild(s);document.getElementById("lan").innerHTML="繁"}}};</script>
+<section class="post_details"><i class="iconfont icon-calendar"></i><span style="margin-right:15px"> 2020-12-10</span><i class="iconfont icon-browse"></i><span style="margin-right:15px"> <span id="busuanzi_value_page_pv"></span> Views</span><i class="iconfont icon-category"></i><span class="weaklink" style="margin-right:15px">	<a href="https://reticenceji.github.io/tag/GLCgJ5F7H/" class="tag">Networking</a> | 	<a href="https://reticenceji.github.io/tag/FsPAOTRN-/" class="tag">Web</a></span><i class="iconfont icon-caret-down"></i><span style="margin-right:15px">2560字</span><i class="iconfont icon-naozhong"></i><span style="margin-right:15px">10 min read</span><a id="lan" href="javascript:void(0);"onclick="lan();"title="调整简繁体" style="margin-right:15px;">繁</a>
+</section>
+
+<div style="display:flex">
+<div class="md_block" id="md_block">
+<div class="round-shape-one"></div>
+<p>本文希望能较为全面的囊括到HTTP基础知识和应用的方面。同时也是《图解HTTP》的读书笔记。</p>
+<h2 id="基本知识-basic">基本知识 Basic</h2>
+<p>HTTP自诞生以来有几个版本，现在最常用的HTTP/1.1。<br>
+HTTP是工作在应用层上的。下面一层利用TCP协议进行传输。<br>
+学习一个东西的最好方法是动手实践一下，我们可以用socket实现一个简单的、利用HTTP进行消息传输的<strong>服务器和客户端</strong><br>
+HTTP<strong>无状态</strong>、使用<strong>统一资源标识符（URI）</strong>、利用一定格式的<strong>请求和响应报文</strong>进行通信。</p>
+<h2 id="首部字段-header-fields">首部字段 Header Fields</h2>
+<p>HTTP 首部字段根据实际用途被分为以下 4 种类型。</p>
+<ol>
+<li>通用首部字段（General Header Fields）：请求报文和响应报文两方都会使用的首部</li>
+<li>请求首部字段（Request Header Fields）：从客户端向服务器端发送请求报文时使用的首部。补充了请求的附加内容、客户端信息、响应内容相关优先级等信息。</li>
+<li>响应首部字段（Response Header Fields）：从服务器端向客户端返回响应报文时使用的首部。补充了响应的附加内容，也会要求客户端附加额外的内容信息。</li>
+<li>实体首部字段（Entity Header Fields）：针对请求报文和响应报文的实体部分使用的首部。补充了资源内容更新时间等与实体有关的信息。</li>
+</ol>
+<h3 id="http11规定的首部字段">HTTP/1.1规定的首部字段</h3>
+<blockquote>
+<p>通用首部字段</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">首部字段名</th>
+<th style="text-align:left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">Cache-Control</td>
+<td style="text-align:left">控制缓存的行为</td>
+</tr>
+<tr>
+<td style="text-align:left">Connection</td>
+<td style="text-align:left">控制不再转发给代理的首部字段、管理持久连接</td>
+</tr>
+<tr>
+<td style="text-align:left">Date</td>
+<td style="text-align:left">创建报文的日期时间</td>
+</tr>
+<tr>
+<td style="text-align:left">Pragna</td>
+<td style="text-align:left">报文指令</td>
+</tr>
+<tr>
+<td style="text-align:left">Trailer</td>
+<td style="text-align:left">报文末端的首部一览</td>
+</tr>
+<tr>
+<td style="text-align:left">Transfer-Encoding</td>
+<td style="text-align:left">指定报文主体的传输编码方式</td>
+</tr>
+<tr>
+<td style="text-align:left">Upgrade</td>
+<td style="text-align:left">升级为其它协议</td>
+</tr>
+<tr>
+<td style="text-align:left">Via</td>
+<td style="text-align:left">代理服务器的相关信息</td>
+</tr>
+<tr>
+<td style="text-align:left">Warning</td>
+<td style="text-align:left">错误通知请求首部字段</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>请求首部字段</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">首部字段名</th>
+<th style="text-align:left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">Accept</td>
+<td style="text-align:left">用户代理可处理的媒体类型</td>
+</tr>
+<tr>
+<td style="text-align:left">Accept-Charset</td>
+<td style="text-align:left">优先的字符集</td>
+</tr>
+<tr>
+<td style="text-align:left">Accept-Encoding</td>
+<td style="text-align:left">优先的内容编码</td>
+</tr>
+<tr>
+<td style="text-align:left">Accept-Language</td>
+<td style="text-align:left">优先的语言(自然语言)</td>
+</tr>
+<tr>
+<td style="text-align:left">Authorization</td>
+<td style="text-align:left">Web认证信息</td>
+</tr>
+<tr>
+<td style="text-align:left">Expect</td>
+<td style="text-align:left">期待服务器的指定行为</td>
+</tr>
+<tr>
+<td style="text-align:left">From</td>
+<td style="text-align:left">用户的电子邮箱地址</td>
+</tr>
+<tr>
+<td style="text-align:left">Host</td>
+<td style="text-align:left">请求资源所在服务器</td>
+</tr>
+<tr>
+<td style="text-align:left">if-Match</td>
+<td style="text-align:left">比较实体标记(ETag)</td>
+</tr>
+<tr>
+<td style="text-align:left">if-Modified-Since</td>
+<td style="text-align:left">比较资源的更新时间</td>
+</tr>
+<tr>
+<td style="text-align:left">if-None-Match</td>
+<td style="text-align:left">比较实体标记(与if-Match相反)</td>
+</tr>
+<tr>
+<td style="text-align:left">if-Range</td>
+<td style="text-align:left">资源为更新时发送实体Byte的范围请求</td>
+</tr>
+<tr>
+<td style="text-align:left">if-Unmodified-Since</td>
+<td style="text-align:left">比较资源的更新时间(与if-Modified-Since相反)</td>
+</tr>
+<tr>
+<td style="text-align:left">Max-Forwards</td>
+<td style="text-align:left">最大传输逐跳数</td>
+</tr>
+<tr>
+<td style="text-align:left">Proxy-Authorization</td>
+<td style="text-align:left">代理服务器要求客户端的认证信息</td>
+</tr>
+<tr>
+<td style="text-align:left">Range</td>
+<td style="text-align:left">实体字节范围请求</td>
+</tr>
+<tr>
+<td style="text-align:left">Referer</td>
+<td style="text-align:left">对请求中的URL的原始获取方法</td>
+</tr>
+<tr>
+<td style="text-align:left">TE</td>
+<td style="text-align:left">传输编码的优先级</td>
+</tr>
+<tr>
+<td style="text-align:left">User-Agent</td>
+<td style="text-align:left">HTTP客户端程序的信息</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>响应首部字段</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">首部字段名</th>
+<th style="text-align:left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">Accept-Ranges</td>
+<td style="text-align:left">是否接受字节范围请求</td>
+</tr>
+<tr>
+<td style="text-align:left">Age</td>
+<td style="text-align:left">推算资源创建经过时间</td>
+</tr>
+<tr>
+<td style="text-align:left">ETag</td>
+<td style="text-align:left">资源的匹配信息</td>
+</tr>
+<tr>
+<td style="text-align:left">Location</td>
+<td style="text-align:left">令客户端重定向至指定的URL</td>
+</tr>
+<tr>
+<td style="text-align:left">Proxy-Authenticate</td>
+<td style="text-align:left">代理服务器对客户端的认证信息</td>
+</tr>
+<tr>
+<td style="text-align:left">Rety-After</td>
+<td style="text-align:left">对再次发起请求的时机要求</td>
+</tr>
+<tr>
+<td style="text-align:left">Server</td>
+<td style="text-align:left">HTTP服务器的安装信息</td>
+</tr>
+<tr>
+<td style="text-align:left">Vary</td>
+<td style="text-align:left">代理服务器缓存的管理信息</td>
+</tr>
+<tr>
+<td style="text-align:left">WWW-Authenticate</td>
+<td style="text-align:left">服务器对客户端的认证信息</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>实体首部字段</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">首部字段名</th>
+<th style="text-align:left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">Allow</td>
+<td style="text-align:left">资源支持的HTTP方法</td>
+</tr>
+<tr>
+<td style="text-align:left">Content-Encoding</td>
+<td style="text-align:left">实体主体适用的编码方式</td>
+</tr>
+<tr>
+<td style="text-align:left">Content-Language</td>
+<td style="text-align:left">实体主体的自然语言</td>
+</tr>
+<tr>
+<td style="text-align:left">Content-Length</td>
+<td style="text-align:left">实体主体的大小(单位:字节)</td>
+</tr>
+<tr>
+<td style="text-align:left">Content-Location</td>
+<td style="text-align:left">替代资源的URL</td>
+</tr>
+<tr>
+<td style="text-align:left">Content-MD5</td>
+<td style="text-align:left">实体主体的报文摘要</td>
+</tr>
+<tr>
+<td style="text-align:left">Content-Range</td>
+<td style="text-align:left">实体主体的位置范围</td>
+</tr>
+<tr>
+<td style="text-align:left">Content-Type</td>
+<td style="text-align:left">实体主体的媒体类型</td>
+</tr>
+<tr>
+<td style="text-align:left">Expires</td>
+<td style="text-align:left">实体主体过期的日期时间</td>
+</tr>
+<tr>
+<td style="text-align:left">Last-Modified</td>
+<td style="text-align:left">资源的最后修改日期时间</td>
+</tr>
+</tbody>
+</table>
+<h3 id="其他的首部字段-rfc4229">其他的首部字段 RFC4229</h3>
+<blockquote>
+<p>Cookie服务首部字段</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">首部字段名</th>
+<th style="text-align:left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">Set-Cookie</td>
+<td style="text-align:left">开始状态管理所有的Cookie信息</td>
+</tr>
+<tr>
+<td style="text-align:left">Cookie</td>
+<td style="text-align:left">服务器接收到的Cookie信息</td>
+</tr>
+</tbody>
+</table>
+<p>其中Set-Cookie字段属性：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">属性</th>
+<th style="text-align:left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">NAME=VALUE</td>
+<td style="text-align:left">赋予Cookie的名称和其值</td>
+</tr>
+<tr>
+<td style="text-align:left">expires=DATE</td>
+<td style="text-align:left">Cookie的有效期(若不明确指定则默认为浏览器关闭前为止)</td>
+</tr>
+<tr>
+<td style="text-align:left">path=PATH</td>
+<td style="text-align:left">将服务器上的文件目录作为Cookie的适用对象(若不指定则默认为文档所在的目录)</td>
+</tr>
+<tr>
+<td style="text-align:left">domain=域名</td>
+<td style="text-align:left">作为Cookie适用对象的域名(若不指定则默认为创建Cookie的服务器的域名)</td>
+</tr>
+<tr>
+<td style="text-align:left">Secure</td>
+<td style="text-align:left">仅在HTTPS安全通信时才会发送Cookie</td>
+</tr>
+<tr>
+<td style="text-align:left">HttpOnly</td>
+<td style="text-align:left">加以限制, 使Cookie不能被JavaScript脚本访问</td>
+</tr>
+</tbody>
+</table>
+<p>上面的介绍相当粗略，其实有很多字段都很有用处。书上讲得很好，我懒了摘抄了，尽量记住吧。</p>
+<h2 id="请求-request">请求 Request</h2>
+<p>客户端的HTTP报文段叫做<strong>请求报文</strong>。<br>
+<img src="https://reticenceji.github.io/post-images/1607595385237.png" alt="请求报文结构" loading="lazy"></p>
+<h3 id="方法-method">方法 Method</h3>
+<p>GET，POST、PUT、DELETE、HEAD、OPTION、TRACE、CONNECT</p>
+<h3 id="持久连接-connect">持久连接 Connect</h3>
+<h3 id="cookie状态管理">Cookie状态管理</h3>
+<h3 id="编码-encode">编码 Encode</h3>
+<p>报文(Message)：是HTTP通信的基本单位，由8位组字节流构成。报文的主体用来传输实体主体。<br>
+实体(Entity)：作为请求和响应的有效荷载数据，由实体首部和实体主体组成。<br>
+当实体主体被加密或编码的时候，我们才区分这两个概念。<br>
+常见的编码方式有以下几种：</p>
+<ol>
+<li>gzip:GNU zip</li>
+<li>compress:UNIX的标准压缩</li>
+<li>deflate:zlib</li>
+<li>identity:不进行编码</li>
+</ol>
+<h3 id="范围请求-partial-request">范围请求 Partial Request</h3>
+<p>下载指定的实体内容范围可以使用范围请求。<br>
+<img src="https://reticenceji.github.io/post-images/1607603581785.png" alt="" loading="lazy"></p>
+<h3 id="缓存技术-cache">缓存技术 Cache</h3>
+<figure data-type="image" tabindex="1"><img src="https://reticenceji.github.io/post-images/1607604648905.png" alt="" loading="lazy"></figure>
+<h2 id="响应-response">响应 Response</h2>
+<figure data-type="image" tabindex="2"><img src="https://reticenceji.github.io/post-images/1607595469390.png" alt="响应报文结构" loading="lazy"></figure>
+<h3 id="状态码status-code">状态码Status Code</h3>
+<p>状态码分成五类：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">分类</th>
+<th style="text-align:left">分类描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">1**</td>
+<td style="text-align:left">信息，服务器收到请求，需要请求者继续执行操作</td>
+</tr>
+<tr>
+<td style="text-align:left">2**</td>
+<td style="text-align:left">成功，操作被成功接收并处理</td>
+</tr>
+<tr>
+<td style="text-align:left">3**</td>
+<td style="text-align:left">重定向，需要进一步的操作以完成请求</td>
+</tr>
+<tr>
+<td style="text-align:left">4**</td>
+<td style="text-align:left">客户端错误，请求包含语法错误或无法完成请求</td>
+</tr>
+<tr>
+<td style="text-align:left">5**</td>
+<td style="text-align:left">服务器错误，服务器在处理请求的过程中发生了错误</td>
+</tr>
+</tbody>
+</table>
+<p>其中常用的有14个：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">状态码</th>
+<th style="text-align:left">状态码英文名称</th>
+<th style="text-align:left">中文描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">200</td>
+<td style="text-align:left">OK</td>
+<td style="text-align:left">请求成功。一般用于GET与POST请求</td>
+</tr>
+<tr>
+<td style="text-align:left">204</td>
+<td style="text-align:left">No Content</td>
+<td style="text-align:left">无内容。服务器成功处理，但未返回内容。在未更新网页的情况下，可确保浏览器继续显示当前文档</td>
+</tr>
+<tr>
+<td style="text-align:left">206</td>
+<td style="text-align:left">Partial Content</td>
+<td style="text-align:left">部分内容。用户进行了<strong>范围请求</strong>，服务器成功处理了部分GET请求。</td>
+</tr>
+<tr>
+<td style="text-align:left">301</td>
+<td style="text-align:left">Moved Permanently</td>
+<td style="text-align:left">永久移动。请求的资源已被永久的移动到新URI，返回信息会包括新的URI，浏览器会自动定向到新URI。今后任何新的请求都应使用新的URI代替</td>
+</tr>
+<tr>
+<td style="text-align:left">302</td>
+<td style="text-align:left">Found</td>
+<td style="text-align:left">临时移动。与301类似。但资源只是临时被移动。客户端应继续使用原有URI</td>
+</tr>
+<tr>
+<td style="text-align:left">303</td>
+<td style="text-align:left">See Other</td>
+<td style="text-align:left">查看其它地址。与301类似。使用GET请求查看</td>
+</tr>
+<tr>
+<td style="text-align:left">304</td>
+<td style="text-align:left">Not Modified</td>
+<td style="text-align:left">未修改。所请求的资源未修改，服务器返回此状态码时，不会返回任何资源。客户端通常会缓存访问过的资源，通过提供一个头信息指出客户端希望只返回在指定日期之后修改的资源。304和重定向没有关系。</td>
+</tr>
+<tr>
+<td style="text-align:left">307</td>
+<td style="text-align:left">Temporary Redirect</td>
+<td style="text-align:left">临时重定向。与302类似。使用GET请求重定向</td>
+</tr>
+<tr>
+<td style="text-align:left">400</td>
+<td style="text-align:left">Bad Request</td>
+<td style="text-align:left">客户端请求的语法错误，服务器无法理解</td>
+</tr>
+<tr>
+<td style="text-align:left">401</td>
+<td style="text-align:left">Unauthorized</td>
+<td style="text-align:left">请求要求用户的身份认证</td>
+</tr>
+<tr>
+<td style="text-align:left">403</td>
+<td style="text-align:left">Forbidden</td>
+<td style="text-align:left">服务器理解请求客户端的请求，但是拒绝执行此请求</td>
+</tr>
+<tr>
+<td style="text-align:left">404</td>
+<td style="text-align:left">Not Found</td>
+<td style="text-align:left">服务器无法根据客户端的请求找到资源（网页）。通过此代码，网站设计人员可设置&quot;您所请求的资源无法找到&quot;的个性页面</td>
+</tr>
+<tr>
+<td style="text-align:left">500</td>
+<td style="text-align:left">Internal Server Error</td>
+<td style="text-align:left">服务器内部错误，无法完成请求</td>
+</tr>
+<tr>
+<td style="text-align:left">503</td>
+<td style="text-align:left">Service Unavailable</td>
+<td style="text-align:left">由于超载或系统维护，服务器暂时的无法处理客户端的请求。延时的长度可包含在服务器的Retry-After头信息中</td>
+</tr>
+</tbody>
+</table>
+<h2 id="web服务器">Web服务器</h2>
+<h3 id="通信数据转发程序">通信数据转发程序</h3>
+<h4 id="代理-proxy">代理 Proxy</h4>
+<p>代理是一种有转发功能的应用程序，它扮演了位于服务器和客户端“中间人”的角色。接收由客户端<em>发送的请求</em>并转发给服务器，同时接收服务器<em>返回的响应</em>给客户端。</p>
+<p><img src="https://reticenceji.github.io/post-images/1607603635756.png" alt="" loading="lazy"><br>
+使用代理服务器的理由有：利用缓存技术减少网络带宽的流量，组织内部针对特定网站的访问控制，以获取访问日志为主要目的，等等。</p>
+<ul>
+<li>缓存代理（Caching Proxy）：会预先将资源的副本保存在代理服务器上。</li>
+<li>透明代理（Transparent Proxy）：在转发Request和Response时，不对报文进行任何加工的代理称为透明代理。反之称为非透明代理。</li>
+</ul>
+<h4 id="网关gateway">网关：Gateway</h4>
+<p><strong>网关是转发其它服务器通信数据的服务器</strong>。接收从客户端发送来的请求时，它就像自己拥有资源的源服务器一样对请求进行处理。有时客户端可能不会察觉和自己通信的是一个网关。<br>
+网关能让通信线路上的服务器使用非HTTP协议服务，比如连接数据库。</p>
+<h4 id="隧道">隧道</h4>
+<p>隧道：隧道是在相隔甚远的客户端和服务器两者之间进行中转，并保持双方通信连接的应用程序。</p>
+<h2 id="https">HTTPS</h2>
+<p>因为HTTP不能确保消息传输的完整性，无法验证通信方的身份，使用明文进行通信。HTTP并不安全。所以我们引入了HTTPS，HTTP Secure。一般来说，就是在HTTP和TCP之间加入了SSL层，实现加密、证书、完整性验证的功能。<br>
+<img src="https://reticenceji.github.io/post-images/1607664071115.png" alt="" loading="lazy"></p>
+<h3 id="ssl">SSL</h3>
+<figure data-type="image" tabindex="3"><img src="https://reticenceji.github.io/post-images/1607664077405.png" alt="" loading="lazy"></figure>
+<ol>
+<li>可以确保服务器的公钥是真实的。</li>
+<li>可以在不安全的通道上传输信息，因为私钥不需要传输。</li>
+<li>使用<strong>非对称加密</strong>效率较低，可以在确保安全的情况下传输<strong>共享密钥</strong>实现<strong>对称加密</strong></li>
+</ol>
+<h2 id="认证-certification">认证 Certification</h2>
+<h3 id="基于ssl的certification">基于SSL的certification</h3>
+<h3 id="基于表单的certification">基于表单的certification</h3>
+<p>这是最为常见的认证方式。目前没有标准的实现形式，一般结合Session和Cookie一起使用。</p>
+
+<span id="footnote"></span>
+<div id = "warn"></div>
+</div>
+<div class="toc-container"><ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#%E5%9F%BA%E6%9C%AC%E7%9F%A5%E8%AF%86-basic">基本知识 Basic</a></li>
+<li><a href="#%E9%A6%96%E9%83%A8%E5%AD%97%E6%AE%B5-header-fields">首部字段 Header Fields</a>
+<ul>
+<li><a href="#http11%E8%A7%84%E5%AE%9A%E7%9A%84%E9%A6%96%E9%83%A8%E5%AD%97%E6%AE%B5">HTTP/1.1规定的首部字段</a></li>
+<li><a href="#%E5%85%B6%E4%BB%96%E7%9A%84%E9%A6%96%E9%83%A8%E5%AD%97%E6%AE%B5-rfc4229">其他的首部字段 RFC4229</a></li>
+</ul>
+</li>
+<li><a href="#%E8%AF%B7%E6%B1%82-request">请求 Request</a>
+<ul>
+<li><a href="#%E6%96%B9%E6%B3%95-method">方法 Method</a></li>
+<li><a href="#%E6%8C%81%E4%B9%85%E8%BF%9E%E6%8E%A5-connect">持久连接 Connect</a></li>
+<li><a href="#cookie%E7%8A%B6%E6%80%81%E7%AE%A1%E7%90%86">Cookie状态管理</a></li>
+<li><a href="#%E7%BC%96%E7%A0%81-encode">编码 Encode</a></li>
+<li><a href="#%E8%8C%83%E5%9B%B4%E8%AF%B7%E6%B1%82-partial-request">范围请求 Partial Request</a></li>
+<li><a href="#%E7%BC%93%E5%AD%98%E6%8A%80%E6%9C%AF-cache">缓存技术 Cache</a></li>
+</ul>
+</li>
+<li><a href="#%E5%93%8D%E5%BA%94-response">响应 Response</a>
+<ul>
+<li><a href="#%E7%8A%B6%E6%80%81%E7%A0%81status-code">状态码Status Code</a></li>
+</ul>
+</li>
+<li><a href="#web%E6%9C%8D%E5%8A%A1%E5%99%A8">Web服务器</a>
+<ul>
+<li><a href="#%E9%80%9A%E4%BF%A1%E6%95%B0%E6%8D%AE%E8%BD%AC%E5%8F%91%E7%A8%8B%E5%BA%8F">通信数据转发程序</a>
+<ul>
+<li><a href="#%E4%BB%A3%E7%90%86-proxy">代理 Proxy</a></li>
+<li><a href="#%E7%BD%91%E5%85%B3gateway">网关：Gateway</a></li>
+<li><a href="#%E9%9A%A7%E9%81%93">隧道</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#https">HTTPS</a>
+<ul>
+<li><a href="#ssl">SSL</a></li>
+</ul>
+</li>
+<li><a href="#%E8%AE%A4%E8%AF%81-certification">认证 Certification</a>
+<ul>
+<li><a href="#%E5%9F%BA%E4%BA%8Essl%E7%9A%84certification">基于SSL的certification</a></li>
+<li><a href="#%E5%9F%BA%E4%BA%8E%E8%A1%A8%E5%8D%95%E7%9A%84certification">基于表单的certification</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="fullPage"><canvas id="canvas"></canvas></div>
+</article>
+<div id="eof"><span>EOF</span></div><div class="round-shape-one"></div>
+<section>
+<div class="doc_comments">
+
+</div></section>
+</div></div></div><script>
+"use strict";!function(){for(var n=document.getElementsByTagName("pre"),e=n.length,s=0;s<e;s++){n[s].innerHTML='<span class="line-number"></span>'+n[s].innerHTML+'<span class="cl"></span>';for(var a=n[s].innerHTML.split(/\n/).length,r=0;r<a-1;r++){n[s].getElementsByTagName("span")[0].innerHTML+="<span>"+(r+1)+"</span>"}}}();
+let mainNavLinks=document.querySelectorAll(".markdownIt-TOC a");window.addEventListener("scroll",event=>{let fromTop=window.scrollY;mainNavLinks.forEach((link,index)=>{let section=document.getElementById(decodeURI(link.hash).substring(1));let nextSection=null
+if(mainNavLinks[index+1]){nextSection=document.getElementById(decodeURI(mainNavLinks[index+1].hash).substring(1));}
+if(section.offsetTop<=fromTop){if(nextSection){if(nextSection.offsetTop>fromTop){link.classList.add("currentToc");}else{link.classList.remove("currentToc");}}else{link.classList.add("currentToc");}}else{link.classList.remove("currentToc");}});});
+var h=document.documentElement,b=document.body,st="scrollTop",sh="scrollHeight",progress=document.querySelector(".progress"),scroll;document.addEventListener("scroll",function(){scroll=(h[st]||b[st])/((h[sh]||b[sh])-h.clientHeight)*100;progress.style.setProperty("--scroll",scroll+"%")});
+var wxScale=new WxScale({fullPage:document.querySelector("#fullPage"),canvas:document.querySelector("#canvas")});var imgBox=document.querySelectorAll("#md_block img");for(var i=0;i<imgBox.length;i++){imgBox[i].onclick=function(e){wxScale.start(this)}};
+</script>
+<a id="scrollUp" href="#top" style="position: fixed; z-index: 2147483647; display: block;"></a><div class="footer animated fadeInDown"><div class="site_footer"><div class="mysocials"><div class="my_socials"><a href="https://github.com/reticenceji"title="github"><i class="iconfont icon-github"></i></a><a href="reticenceji@qq.com"title="envelope"><i class="iconfont icon-envelope"></i></a><a href="https://www.zhihu.com/people/reticenceji"title="zhihu"><i class="iconfont icon-zhihu"></i></a></div></div><div class="copyright"id="copyright">Copyright © 2018-2020 <a href="https://reticenceji.github.io" style="margin:0;">Reticence</a>.</div>
+<span style="display: inline;margin-right:15px;">👁<strong><span id="busuanzi_value_site_uv"></span></strong></span><span id="busuanzi_container_page_pv" style="display: inline;"><span>📚<strong>176</strong> posts</span></div></div>
+<script>
+console.log("\n %c \u26a1Theme: Bitcron-pro Author's Blog:https://blog.blinkstar.cn  Writen By Serence  \n\n", "color: #ffffff; background: rgba(49, 49, 49, 0.85); padding:5px 0;border-radius:5px;", );
+</script>
+<script src="https://cdn.jsdelivr.net/npm/instant.page@3.0.0/instantpage.min.js" type="module" defer></script>
+<script type="text/javascript" async src="https://reticenceji.github.io/media/js/prism.js"></script>
+</body>
+</html>

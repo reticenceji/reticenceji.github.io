@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="shortcut icon" href="https://reticenceji.github.io/favicon.ico" type="image/x-icon" /><meta name="viewport"content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="apple-mobile-web-app-capable"content="yes"/><meta name="apple-mobile-web-app-status-bar-style"content="black"/><meta name="format-detection"content="telephone=no"/><meta name="renderer"content="webkit"><meta name="description"content=""><meta charset="UTF-8"><title>Python-GUI | Reticence</title>
+<link href="https://reticenceji.github.io/styles/main.css" type="text/css" rel="stylesheet" /><link href="https://at.alicdn.com/t/font_1621793_zatzzgvf30g.css" type="text/css" rel="stylesheet" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css"><script async src="https://cdn.jsdelivr.net/npm/busuanzi@2.3.0/bsz.pure.mini.min.js"></script><script src="https://reticenceji.github.io/media/js/magnify.min.js"></script><script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js"></script>
+<script type="text/javascript">function btn_toggle(){document.getElementById("hn").classList.contains("no-js")?document.getElementById("hn").classList.remove("no-js"):document.getElementById("hn").classList.add("no-js")}</script>
+
+<link rel="canonical" href="https://reticenceji.github.io/post/python-gui/" />
+</head>
+<body>
+<div class="progress"></div><style>.progress{background:linear-gradient(to right,#87ceeb var(--scroll),transparent 0);background-repeat:no-repeat;position:fixed;width:100%;height:4px;z-index:1}</style><div class="darkmode-background"></div><div class="darkmode-layer"></div>
+<noscript><p class="warn" >本页面需要浏览器支持（启用）JavaScript</p></noscript><div class="header"><div class="logo_title"><div class="title animated fadeInDown"><a href="https://reticenceji.github.io"><img alt="logo" style="display:inline-block;" src="https://reticenceji.github.io/images/avatar.png"/></a><h1 title="Reticence" class="weaklink"><a  href="/">Reticence</a></h1>
+
+<div class="navbar weaklink">
+<div class="normal_nav">
+<div class="bitcron_nav_container"><div class="bitcron_nav"><div class="bitcron_nav"><div style="display:flex;justify-content:center;"><nav class="mixed_site_nav_wrap site_nav_wrap"><ul class="mixed_site_nav site_nav sm sm-base">	<li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/" class="selected active current nav__item" >Index</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/tags" class="selected active current nav__item" >Tags</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/archives" class="selected active current nav__item" >Archives</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/navigator.html" class="selected active current nav__item" >Navigator</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/post/about" class="selected active current nav__item" >About</a></li></ul></nav>
+<div style="float:right;margin-top:1em"><form id="gridea-search-form" data-update="1578893743252" action="/search/index.html"><input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="Search..."></form></div><div style="margin-left:0.5em;margin-top:1.2em"><input id="switch_default" onclick="mobileBtn()" type="checkbox" class="switch_default"><label for="switch_default" class="toggleBtn"></label></div></div>
+<div class="clear clear_nav_inline_end"></div></div></div><div class="clear clear_nav_end"></div></div></div><div class="hamberger" href="javascript:void(0)" onclick="btn_toggle();"><i class="iconfont icon-category"></i></div></div></div></div>
+<div id="hn" class="no-js hidden_nav animated fadeInDown"><div class="bitcron_nav_container"><div class="bitcron_nav"><nav class="mixed_site_nav_wrap site_nav_wrap"><ul class="mixed_site_nav site_nav sm sm-base">	<li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/" class="selected active current nav__item" >Index</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/tags" class="selected active current nav__item" >Tags</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/archives" class="selected active current nav__item" >Archives</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/navigator.html" class="selected active current nav__item" >Navigator</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/post/about" class="selected active current nav__item" >About</a></li></ul><div class="clear clear_nav_inline_end"></div></nav></div><div class="clear clear_nav_end"></div></div>
+<div style="display:flex;justify-content:center;inline-block;text-align:center;margin-top:7%"><div><form id="gridea-search-form" data-update="1627835297708" action="/search/index.html"><input class="search-input" autocomplete="off" spellcheck="false" name="q"  placeholder="Search..." /></form></div><div style="margin-left:0.5em"><input id="switch_default_h" onclick="mobileBtn()" type="checkbox" class="switch_default"><label for="switch_default" class="toggleBtn"></label></div></div>
+</div></div>
+<script>function enableDarkmode(){document.body.classList.add("darkmode"),document.getElementById("switch_default").checked=1,document.getElementById("switch_default_h").checked=1}function removeDarkmode(){document.body.classList.remove("darkmode"),document.getElementById("switch_default").checked=0,document.getElementById("switch_default_h").checked=0}function getCookie(a){var b,c=new RegExp("(^| )"+a+"=([^;]*)(;|$)");return(b=document.cookie.match(c))?unescape(b[2]):null}cookie=getCookie("darkmode"),"enable"==cookie&&enableDarkmode(),window.matchMedia("(prefers-color-scheme: dark)").matches&&"disable"!==cookie&&(enableDarkmode(),document.cookie="darkmode=enable; path=/");var mobileBtn=function(){1==document.getElementById("switch_default").checked?(enableDarkmode(),document.cookie="darkmode=enable; path=/"):(removeDarkmode(),document.cookie="darkmode=disable; path=/")};</script>
+
+<div class="main"><div class="main-inner"><div class="content">
+<article class="post">
+<h2 class="post_title sm_margin"><a>Python-GUI</a></h2>
+<script>function lan(){if(document.getElementById("lan").innerText=="繁"){var s=document.getElementById("tongwenlet_cn");if(s!=null){document.body.removeChild(s)}var s=document.createElement("script");s.language="javascript";s.type="text/javascript";s.src="https://cdn.jsdelivr.net/gh/qyxtim/Static@1.1/bookmarklet_tw.js";s.id="tongwenlet_cn";document.body.appendChild(s);document.getElementById("lan").innerHTML="简"}else{if(document.getElementById("lan").innerText=="簡"){var s=document.getElementById("tongwenlet_cn");if(s!=null){document.body.removeChild(s)}var s=document.createElement("script");s.language="javascript";s.type="text/javascript";s.src="https://cdn.jsdelivr.net/gh/qyxtim/Static@1.1/bookmarklet_cn.js";s.id="tongwenlet_cn";document.body.appendChild(s);document.getElementById("lan").innerHTML="繁"}}};</script>
+<section class="post_details"><i class="iconfont icon-calendar"></i><span style="margin-right:15px"> 2020-11-22</span><i class="iconfont icon-browse"></i><span style="margin-right:15px"> <span id="busuanzi_value_page_pv"></span> Views</span><i class="iconfont icon-category"></i><span class="weaklink" style="margin-right:15px">	<a href="https://reticenceji.github.io/tag/aTiVQxwll/" class="tag">Python</a></span><i class="iconfont icon-caret-down"></i><span style="margin-right:15px">1185字</span><i class="iconfont icon-naozhong"></i><span style="margin-right:15px">6 min read</span><a id="lan" href="javascript:void(0);"onclick="lan();"title="调整简繁体" style="margin-right:15px;">繁</a>
+</section>
+
+<div style="display:flex">
+<div class="md_block" id="md_block">
+<div class="round-shape-one"></div>
+<p>Pyqt是一个比较好的PythonGUI库，Qt也比较先进。但是要配环境。<br>
+Tkinter是标准库，比较简单也比较菜。这里主要介绍这个库。主要是学习一下面向对象和基本的GUI思想。</p>
+<h2 id="gui思想">GUI思想</h2>
+<p>GUI编程，一般来说都是<strong>事件</strong>驱动(<strong>Event</strong>-driven)。</p>
+<p>用户点击按钮，是一个事件，移动鼠标，是一个事件。用户做什么，都是一个事件。而且不光是用户的行为产生事件，也可能是程序本身产生事件。比如说一个任务执行完成了，产生一个事件。</p>
+<p>所以我们要对我们要处理的事件<strong>绑定bind</strong>一个处理函数，也叫<strong>event handler</strong>。</p>
+<p>所以我们编写GUI程序，可能需要考虑的是：</p>
+<p><strong>界面布局(I don't care，但是挺复杂的)——要处理的事件(比如点击按钮)——绑定Event和Handler。</strong></p>
+<p>不过事实上，库以及帮我们做了很多事情，比如说绑定点击按钮Event和Handler，我们要做的只是<code>Button(master, text=&quot;Guess&quot;, command=self.guess_number)</code>。传入的command参数就是Handler。（哈？好像也没说Handler和哪个Event绑定啊。在这个例子这个已经被默认了。这个Event是怎么产生的呢？也被隐藏了。）</p>
+<p>一般来说，事件的产生是不需要我们考虑的。我们关注的只是Handler，然后可以用bind方法绑定Event和Handler。</p>
+<h2 id="tk概览">Tk概览</h2>
+<p>这是Tk的所有组件</p>
+<table>
+<thead>
+<tr>
+<th>控件</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://www.runoob.com/python/python-tk-button.html">Button</a></td>
+<td>按钮控件；在程序中显示按钮。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/python-tk-canvas.html">Canvas</a></td>
+<td>画布控件；显示图形元素如线条或文本</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/python-tk-checkbutton.html">Checkbutton</a></td>
+<td>多选框控件；用于在程序中提供多项选择框</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/python-tkinter-entry.html">Entry</a></td>
+<td>输入控件；用于显示简单的文本内容</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/python-tk-frame.html">Frame</a></td>
+<td>框架控件；在屏幕上显示一个矩形区域，多用来作为容器</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/python-tk-label.html">Label</a></td>
+<td>标签控件；可以显示文本和位图</td>
+</tr>
+<tr>
+<td>Listbox</td>
+<td>列表框控件；在Listbox窗口小部件是用来显示一个字符串列表给用户</td>
+</tr>
+<tr>
+<td>Menubutton</td>
+<td>菜单按钮控件，用于显示菜单项。</td>
+</tr>
+<tr>
+<td>Menu</td>
+<td>菜单控件；显示菜单栏,下拉菜单和弹出菜单</td>
+</tr>
+<tr>
+<td>Message</td>
+<td>消息控件；用来显示多行文本，与label比较类似</td>
+</tr>
+<tr>
+<td>Radiobutton</td>
+<td>单选按钮控件；显示一个单选的按钮状态</td>
+</tr>
+<tr>
+<td>Scale</td>
+<td>范围控件；显示一个数值刻度，为输出限定范围的数字区间</td>
+</tr>
+<tr>
+<td>Scrollbar</td>
+<td>滚动条控件，当内容超过可视化区域时使用，如列表框。.</td>
+</tr>
+<tr>
+<td>Text</td>
+<td>文本控件；用于显示多行文本</td>
+</tr>
+<tr>
+<td>Toplevel</td>
+<td>容器控件；用来提供一个单独的对话框，和Frame比较类似</td>
+</tr>
+<tr>
+<td>Spinbox</td>
+<td>输入控件；与Entry类似，但是可以指定输入范围值</td>
+</tr>
+<tr>
+<td>PanedWindow</td>
+<td>PanedWindow是一个窗口布局管理的插件，可以包含一个或者多个子控件。</td>
+</tr>
+<tr>
+<td>LabelFrame</td>
+<td>labelframe 是一个简单的容器控件。常用与复杂的窗口布局。</td>
+</tr>
+<tr>
+<td>tkMessageBox</td>
+<td>用于显示你应用程序的消息框。</td>
+</tr>
+</tbody>
+</table>
+<p>这是Tk组件的标准属性</p>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Dimension</td>
+<td>控件大小；</td>
+</tr>
+<tr>
+<td>Color</td>
+<td>控件颜色；</td>
+</tr>
+<tr>
+<td>Font</td>
+<td>控件字体；</td>
+</tr>
+<tr>
+<td>Anchor</td>
+<td>锚点；</td>
+</tr>
+<tr>
+<td>Relief</td>
+<td>控件样式；</td>
+</tr>
+<tr>
+<td>Bitmap</td>
+<td>位图；</td>
+</tr>
+<tr>
+<td>Cursor</td>
+<td>光标；</td>
+</tr>
+</tbody>
+</table>
+<h2 id="hello-world">Hello World</h2>
+<p>我们上面提到了三步：**界面布局(I don't care，但是挺复杂的)——要处理的事件(比如点击按钮)——绑定Event和Handler。**不过在实际的coding中顺序是反过来的（当然你可以先留着不写）：</p>
+<p>先写Handler-创建组件（事件附着在组件上）并绑定Handler-布局组件</p>
+<h2 id="document上的一个例子">Document上的一个例子</h2>
+<pre><code class="language-Python">from tkinter import Tk, Label, Button, Entry, IntVar, END, W, E
+
+class Calculator:
+
+    def __init__(self, master):
+        self.master = master
+        master.title(&quot;Calculator&quot;)
+
+        self.total = 0
+        self.entered_number = 0
+
+        self.total_label_text = IntVar()
+        self.total_label_text.set(self.total)
+        self.total_label = Label(master, textvariable=self.total_label_text)
+
+        self.label = Label(master, text=&quot;Total:&quot;)
+
+        vcmd = master.register(self.validate) # we have to wrap the command
+        self.entry = Entry(master, validate=&quot;key&quot;, validatecommand=(vcmd, '%P'))
+
+        #Button组件
+        self.add_button = Button(master, text=&quot;+&quot;, command=lambda: self.update(&quot;add&quot;))
+        self.subtract_button = Button(master, text=&quot;-&quot;, command=lambda: self.update(&quot;subtract&quot;))
+        self.reset_button = Button(master, text=&quot;Reset&quot;, command=lambda: self.update(&quot;reset&quot;))
+
+        # LAYOUT布局。这里用网格方法布局。
+        self.label.grid(row=0, column=0, sticky=W)
+        self.total_label.grid(row=0, column=1, columnspan=2, sticky=E)
+
+        self.entry.grid(row=1, column=0, columnspan=3, sticky=W+E)
+
+        self.add_button.grid(row=2, column=0)
+        self.subtract_button.grid(row=2, column=1)
+        self.reset_button.grid(row=2, column=2, sticky=W+E)
+
+    def validate(self, new_text):
+        if not new_text: # the field is being cleared
+            self.entered_number = 0
+            return True
+
+        try:
+            self.entered_number = int(new_text)
+            return True
+        except ValueError:
+            return False
+        
+	#这就是一个Handler
+    def update(self, method):
+        if method == &quot;add&quot;:
+            self.total += self.entered_number
+        elif method == &quot;subtract&quot;:
+            self.total -= self.entered_number
+        else: # reset
+            self.total = 0
+
+        self.total_label_text.set(self.total)
+        self.entry.delete(0, END)
+
+# Tk is the class which we use to create the root window – the main window of our application. 
+root = Tk()
+my_gui = Calculator(root)
+# root.mainloop() is a method on the main window which we execute when we want to run our application. 
+root.mainloop()
+</code></pre>
+
+<span id="footnote"></span>
+<div id = "warn"></div>
+</div>
+<div class="toc-container"><ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#gui%E6%80%9D%E6%83%B3">GUI思想</a></li>
+<li><a href="#tk%E6%A6%82%E8%A7%88">Tk概览</a></li>
+<li><a href="#hello-world">Hello World</a></li>
+<li><a href="#document%E4%B8%8A%E7%9A%84%E4%B8%80%E4%B8%AA%E4%BE%8B%E5%AD%90">Document上的一个例子</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="fullPage"><canvas id="canvas"></canvas></div>
+</article>
+<div id="eof"><span>EOF</span></div><div class="round-shape-one"></div>
+<section>
+<div class="doc_comments">
+
+</div></section>
+</div></div></div><script>
+"use strict";!function(){for(var n=document.getElementsByTagName("pre"),e=n.length,s=0;s<e;s++){n[s].innerHTML='<span class="line-number"></span>'+n[s].innerHTML+'<span class="cl"></span>';for(var a=n[s].innerHTML.split(/\n/).length,r=0;r<a-1;r++){n[s].getElementsByTagName("span")[0].innerHTML+="<span>"+(r+1)+"</span>"}}}();
+let mainNavLinks=document.querySelectorAll(".markdownIt-TOC a");window.addEventListener("scroll",event=>{let fromTop=window.scrollY;mainNavLinks.forEach((link,index)=>{let section=document.getElementById(decodeURI(link.hash).substring(1));let nextSection=null
+if(mainNavLinks[index+1]){nextSection=document.getElementById(decodeURI(mainNavLinks[index+1].hash).substring(1));}
+if(section.offsetTop<=fromTop){if(nextSection){if(nextSection.offsetTop>fromTop){link.classList.add("currentToc");}else{link.classList.remove("currentToc");}}else{link.classList.add("currentToc");}}else{link.classList.remove("currentToc");}});});
+var h=document.documentElement,b=document.body,st="scrollTop",sh="scrollHeight",progress=document.querySelector(".progress"),scroll;document.addEventListener("scroll",function(){scroll=(h[st]||b[st])/((h[sh]||b[sh])-h.clientHeight)*100;progress.style.setProperty("--scroll",scroll+"%")});
+var wxScale=new WxScale({fullPage:document.querySelector("#fullPage"),canvas:document.querySelector("#canvas")});var imgBox=document.querySelectorAll("#md_block img");for(var i=0;i<imgBox.length;i++){imgBox[i].onclick=function(e){wxScale.start(this)}};
+</script>
+<a id="scrollUp" href="#top" style="position: fixed; z-index: 2147483647; display: block;"></a><div class="footer animated fadeInDown"><div class="site_footer"><div class="mysocials"><div class="my_socials"><a href="https://github.com/reticenceji"title="github"><i class="iconfont icon-github"></i></a><a href="reticenceji@qq.com"title="envelope"><i class="iconfont icon-envelope"></i></a><a href="https://www.zhihu.com/people/reticenceji"title="zhihu"><i class="iconfont icon-zhihu"></i></a></div></div><div class="copyright"id="copyright">Copyright © 2018-2020 <a href="https://reticenceji.github.io" style="margin:0;">Reticence</a>.</div>
+<span style="display: inline;margin-right:15px;">👁<strong><span id="busuanzi_value_site_uv"></span></strong></span><span id="busuanzi_container_page_pv" style="display: inline;"><span>📚<strong>176</strong> posts</span></div></div>
+<script>
+console.log("\n %c \u26a1Theme: Bitcron-pro Author's Blog:https://blog.blinkstar.cn  Writen By Serence  \n\n", "color: #ffffff; background: rgba(49, 49, 49, 0.85); padding:5px 0;border-radius:5px;", );
+</script>
+<script src="https://cdn.jsdelivr.net/npm/instant.page@3.0.0/instantpage.min.js" type="module" defer></script>
+<script type="text/javascript" async src="https://reticenceji.github.io/media/js/prism.js"></script>
+</body>
+</html>

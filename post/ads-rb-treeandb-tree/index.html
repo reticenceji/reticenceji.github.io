@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="shortcut icon" href="https://reticenceji.github.io/favicon.ico" type="image/x-icon" /><meta name="viewport"content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="apple-mobile-web-app-capable"content="yes"/><meta name="apple-mobile-web-app-status-bar-style"content="black"/><meta name="format-detection"content="telephone=no"/><meta name="renderer"content="webkit"><meta name="description"content=""><meta charset="UTF-8"><title>ADS-RB Tree and B+ Tree | Reticence</title>
+<link href="https://reticenceji.github.io/styles/main.css" type="text/css" rel="stylesheet" /><link href="https://at.alicdn.com/t/font_1621793_zatzzgvf30g.css" type="text/css" rel="stylesheet" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css"><script async src="https://cdn.jsdelivr.net/npm/busuanzi@2.3.0/bsz.pure.mini.min.js"></script><script src="https://reticenceji.github.io/media/js/magnify.min.js"></script><script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js"></script>
+<script type="text/javascript">function btn_toggle(){document.getElementById("hn").classList.contains("no-js")?document.getElementById("hn").classList.remove("no-js"):document.getElementById("hn").classList.add("no-js")}</script>
+
+<link rel="canonical" href="https://reticenceji.github.io/post/ads-rb-treeandb-tree/" />
+</head>
+<body>
+<div class="progress"></div><style>.progress{background:linear-gradient(to right,#87ceeb var(--scroll),transparent 0);background-repeat:no-repeat;position:fixed;width:100%;height:4px;z-index:1}</style><div class="darkmode-background"></div><div class="darkmode-layer"></div>
+<noscript><p class="warn" >本页面需要浏览器支持（启用）JavaScript</p></noscript><div class="header"><div class="logo_title"><div class="title animated fadeInDown"><a href="https://reticenceji.github.io"><img alt="logo" style="display:inline-block;" src="https://reticenceji.github.io/images/avatar.png"/></a><h1 title="Reticence" class="weaklink"><a  href="/">Reticence</a></h1>
+
+<div class="navbar weaklink">
+<div class="normal_nav">
+<div class="bitcron_nav_container"><div class="bitcron_nav"><div class="bitcron_nav"><div style="display:flex;justify-content:center;"><nav class="mixed_site_nav_wrap site_nav_wrap"><ul class="mixed_site_nav site_nav sm sm-base">	<li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/" class="selected active current nav__item" >Index</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/tags" class="selected active current nav__item" >Tags</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/archives" class="selected active current nav__item" >Archives</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/navigator.html" class="selected active current nav__item" >Navigator</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/post/about" class="selected active current nav__item" >About</a></li></ul></nav>
+<div style="float:right;margin-top:1em"><form id="gridea-search-form" data-update="1578893743252" action="/search/index.html"><input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="Search..."></form></div><div style="margin-left:0.5em;margin-top:1.2em"><input id="switch_default" onclick="mobileBtn()" type="checkbox" class="switch_default"><label for="switch_default" class="toggleBtn"></label></div></div>
+<div class="clear clear_nav_inline_end"></div></div></div><div class="clear clear_nav_end"></div></div></div><div class="hamberger" href="javascript:void(0)" onclick="btn_toggle();"><i class="iconfont icon-category"></i></div></div></div></div>
+<div id="hn" class="no-js hidden_nav animated fadeInDown"><div class="bitcron_nav_container"><div class="bitcron_nav"><nav class="mixed_site_nav_wrap site_nav_wrap"><ul class="mixed_site_nav site_nav sm sm-base">	<li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/" class="selected active current nav__item" >Index</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/tags" class="selected active current nav__item" >Tags</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/archives" class="selected active current nav__item" >Archives</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/navigator.html" class="selected active current nav__item" >Navigator</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/post/about" class="selected active current nav__item" >About</a></li></ul><div class="clear clear_nav_inline_end"></div></nav></div><div class="clear clear_nav_end"></div></div>
+<div style="display:flex;justify-content:center;inline-block;text-align:center;margin-top:7%"><div><form id="gridea-search-form" data-update="1627835297708" action="/search/index.html"><input class="search-input" autocomplete="off" spellcheck="false" name="q"  placeholder="Search..." /></form></div><div style="margin-left:0.5em"><input id="switch_default_h" onclick="mobileBtn()" type="checkbox" class="switch_default"><label for="switch_default" class="toggleBtn"></label></div></div>
+</div></div>
+<script>function enableDarkmode(){document.body.classList.add("darkmode"),document.getElementById("switch_default").checked=1,document.getElementById("switch_default_h").checked=1}function removeDarkmode(){document.body.classList.remove("darkmode"),document.getElementById("switch_default").checked=0,document.getElementById("switch_default_h").checked=0}function getCookie(a){var b,c=new RegExp("(^| )"+a+"=([^;]*)(;|$)");return(b=document.cookie.match(c))?unescape(b[2]):null}cookie=getCookie("darkmode"),"enable"==cookie&&enableDarkmode(),window.matchMedia("(prefers-color-scheme: dark)").matches&&"disable"!==cookie&&(enableDarkmode(),document.cookie="darkmode=enable; path=/");var mobileBtn=function(){1==document.getElementById("switch_default").checked?(enableDarkmode(),document.cookie="darkmode=enable; path=/"):(removeDarkmode(),document.cookie="darkmode=disable; path=/")};</script>
+
+<div class="main"><div class="main-inner"><div class="content">
+<article class="post">
+<h2 class="post_title sm_margin"><a>ADS-RB Tree and B+ Tree</a></h2>
+<script>function lan(){if(document.getElementById("lan").innerText=="繁"){var s=document.getElementById("tongwenlet_cn");if(s!=null){document.body.removeChild(s)}var s=document.createElement("script");s.language="javascript";s.type="text/javascript";s.src="https://cdn.jsdelivr.net/gh/qyxtim/Static@1.1/bookmarklet_tw.js";s.id="tongwenlet_cn";document.body.appendChild(s);document.getElementById("lan").innerHTML="简"}else{if(document.getElementById("lan").innerText=="簡"){var s=document.getElementById("tongwenlet_cn");if(s!=null){document.body.removeChild(s)}var s=document.createElement("script");s.language="javascript";s.type="text/javascript";s.src="https://cdn.jsdelivr.net/gh/qyxtim/Static@1.1/bookmarklet_cn.js";s.id="tongwenlet_cn";document.body.appendChild(s);document.getElementById("lan").innerHTML="繁"}}};</script>
+<section class="post_details"><i class="iconfont icon-calendar"></i><span style="margin-right:15px"> 2021-03-08</span><i class="iconfont icon-browse"></i><span style="margin-right:15px"> <span id="busuanzi_value_page_pv"></span> Views</span><i class="iconfont icon-category"></i><span class="weaklink" style="margin-right:15px">	<a href="https://reticenceji.github.io/tag/0AqTQfzSL/" class="tag">DS</a></span><i class="iconfont icon-caret-down"></i><span style="margin-right:15px">1353字</span><i class="iconfont icon-naozhong"></i><span style="margin-right:15px">7 min read</span><a id="lan" href="javascript:void(0);"onclick="lan();"title="调整简繁体" style="margin-right:15px;">繁</a>
+</section>
+
+<div style="display:flex">
+<div class="md_block" id="md_block">
+<div class="round-shape-one"></div>
+<p>根据对平衡的不同定义，我们还有红黑树和B+树。只能说他们又难又强大。他们的目标都是加速搜索，而且B+树更进一步对大数据的搜索更友好，可以说是面向计算机体系结构的数据结构了。</p>
+<!-- more -->
+<h2 id="red-black-treestar">Red-Black Tree⭐️</h2>
+<p>红黑树节点的数据结构：</p>
+<p><img src="https://reticenceji.github.io/post-images/image-20210509113119326.png" alt="image-20210509113119326" loading="lazy"><br>
+红黑树的定义：</p>
+<blockquote>
+<p>A red-black tree is a binary search tree that satisfies the following red-black properties:<br>
+(1) Every node is either red or black. （染色）<br>
+(2) The root is black.<br>
+(3) Every leaf (NIL) is black.   （注意这里的leaf指的是空节点，或者说是NIL节点）<br>
+(4) <strong>If a node is red, then both its children are black.</strong> （换句话说，不会有两个连续的红色节点）<br>
+(5) For each node, all simple paths from the node to descendant leaves contain the <strong>same number of black nodes.</strong>(平衡条件)<br>
+在这些条件保证下：</p>
+</blockquote>
+<ol>
+<li>一棵有n个内部节点的红黑树的高度至多为<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>2</mn><mi>l</mi><mi>o</mi><mi>g</mi><mo>(</mo><mi>n</mi><mo>+</mo><mn>1</mn><mo>)</mo></mrow><annotation encoding="application/x-tex">2 log(n+1)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">2</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">o</span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mclose">)</span></span></span></span>。</li>
+<li>红黑树能保证在最坏情况下，执行所有操作的时间复杂度都是O(lg N)</li>
+</ol>
+<ul>
+<li>internal node: 可以认为是非NULL结点。</li>
+<li>external node: NULL结点。</li>
+<li>black height: 从节点x出发（不含）到一个叶节点的任意一条简单路径上的黑色节点个数，记为<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>b</mi><mi>h</mi><mo>(</mo><mi>x</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">bh(x)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">b</span><span class="mord mathdefault">h</span><span class="mopen">(</span><span class="mord mathdefault">x</span><span class="mclose">)</span></span></span></span></li>
+</ul>
+<p>相比于AVL Tree，红黑树插入和删除的旋转操作更少，不过没有AVL Tree平衡。所以对于<strong>插入删除频繁</strong>的场景可以用红黑树，</p>
+<h3 id="复杂度分析">复杂度分析</h3>
+<table>
+<thead>
+<tr>
+<th>算法</th>
+<th><strong>平均</strong></th>
+<th><strong>最差</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>空间</td>
+<td>O(n)</td>
+<td>O(n)</td>
+</tr>
+<tr>
+<td>搜索</td>
+<td>O(log n)</td>
+<td>O(log n)</td>
+</tr>
+<tr>
+<td>插入</td>
+<td>O(log n)</td>
+<td>O(log n)</td>
+</tr>
+<tr>
+<td>删除</td>
+<td>O(log n)</td>
+<td>O(log n)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="插入">插入</h3>
+<p>首先，我们默认把插入的点染成红色。</p>
+<ol>
+<li>
+<p>第一种情况，如果parent是黑色，则插入成功。</p>
+</li>
+<li>
+<p>如果parent是红色，那么我们要考虑uncle的颜色，如果uncle是红色，那么就是下面的情况：</p>
+<figure data-type="image" tabindex="1"><img src="https://reticenceji.github.io/post-images/output243.png" alt="img" loading="lazy"></figure>
+</li>
+<li>
+<p>如果uncle是黑色，那么有4种情况：和AVL Tree的四种情况是类似的转法，不过转的同时还要改变颜色。</p>
+<ol>
+<li><img src="https://reticenceji.github.io/post-images/output244.png" alt="img" loading="lazy"></li>
+<li><img src="https://reticenceji.github.io/post-images/output245.png" alt="img" loading="lazy"></li>
+<li><img src="https://reticenceji.github.io/post-images/output246.png" alt="img" loading="lazy"></li>
+<li><img src="https://reticenceji.github.io/post-images/output247.png" alt="img" loading="lazy"></li>
+</ol>
+</li>
+</ol>
+<blockquote>
+<p>文字表述：</p>
+<p>Perform standard BST insertion and make the colour of newly inserted nodes as <strong>RED</strong>.<br>
+If x is the root, change the colour of x as <strong>BLACK</strong> (Black height of complete tree increases by 1).<br>
+Do the following if the color of x’s parent is not <strong>BLACK</strong> and x is not the root.<br>
+a) If x’s uncle is <strong>RED</strong> (Grandparent must have been black from property 4)<br>
+(i) Change the colour of parent and uncle as <strong>BLACK</strong>.<br>
+(ii) Colour of a grandparent as RED.<br>
+(iii) Change x = x’s grandparent, repeat steps 2 and 3 for new x.<br>
+b) If x’s uncle is <strong>BLACK</strong>, then there can be four configurations for x, x’s parent (p) and x’s grandparent (g) (This is similar to AVL Tree)<br>
+(i) Left Left Case (p is left child of g and x is left child of p)<br>
+(ii) Left Right Case (p is left child of g and x is the right child of p)<br>
+(iii) Right Right Case (Mirror of case i)<br>
+(iv) Right Left Case (Mirror of case ii)</p>
+</blockquote>
+<h3 id="删除">删除</h3>
+<p>类似插入，我们首先也要进行一个普通的删除过程。</p>
+<p>Let v be the node to be deleted and u be the child that replaces v (Note that u is NULL when v is a leaf and color of NULL is considered as Black).</p>
+<ul>
+<li>0度节点：Reset its parent link to NULL.很简单，删了就好，让他的父亲指向NIL，不会带来不平衡。</li>
+<li>1度节点：Replace the node by its single child。把它的孩子当作它。如果这个一度节点是红色或者孩子是红色，那么没什么问题，但是如果都是黑色，删除就意味着bh-1。</li>
+<li>2度节点：Replace the node by the <strong>largest one in its left subtree</strong> or the <strong>smallest one in its right subtree</strong>. Then Delete the replacing node from the subtree. 因为是最大或者最小，那么他最多是1度。问题转移到了1度节点。</li>
+</ul>
+<p>所以问题的关键是1度黑节点的删除，下面假设要删除的节点是N，他的父亲是P，兄弟是S：</p>
+<figure data-type="image" tabindex="6"><img src="https://reticenceji.github.io/post-images/image-20210510215401523.png" alt="image-20210510215401523" loading="lazy"></figure>
+<pre><code class="language-c">insert_fixup(T, z)
+{
+    while (z-&gt;parent-&gt;color == RED) //如果是黑色就完成了
+    {
+        if (z-&gt;parent == z-&gt;parent-&gt;parent-&gt;left)
+        {
+            y = z-&gt;parent-&gt;parent-&gt;right;
+            if (y-&gt;color ==RED)     //case 1
+            {
+                z-&gt;parent-&gt;color = BLACK;
+                y-&gt;color = BLACK;
+                z-&gt;parent-&gt;parent-&gt;color = RED;
+                z = z-&gt;parent-&gt;parent;
+            }
+            else 
+            {
+                if (z == z-&gt;parent-&gt;right)     //case 2
+                {
+                    z = z-&gt;parent;
+                    left_rotate(T,z)
+                }
+                z-&gt;parent.color = BLACK;            //case 3
+                z-&gt;parent-&gt;parent-&gt;color = RED;
+                right_rotate(T,z-&gt;parent-&gt;parent);
+            }
+            else 
+            }
+        }    
+    }
+}
+
+</code></pre>
+<h2 id="b-tree">B+ Tree</h2>
+<p>B+树不是一个二叉树，但是是搜索树。适用于超大规模的数，迎合硬件存储机制。定义如下：</p>
+<blockquote>
+<p>A <strong>B+ tree</strong> of order <strong>M</strong> is a tree with the following structural properties:<br>
+(1)  The root is either a leaf or has between <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>2</mn></mrow><annotation encoding="application/x-tex">2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span></span></span></span> and <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>M</mi></mrow><annotation encoding="application/x-tex">M</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.10903em;">M</span></span></span></span> children.<br>
+(2)  All nonleaf nodes (except the root) have between <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>⌈</mo><mi>M</mi><mi mathvariant="normal">/</mi><mn>2</mn><mo>⌉</mo></mrow><annotation encoding="application/x-tex">\lceil M/2\rceil</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">⌈</span><span class="mord mathdefault" style="margin-right:0.10903em;">M</span><span class="mord">/</span><span class="mord">2</span><span class="mclose">⌉</span></span></span></span> and <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>M</mi></mrow><annotation encoding="application/x-tex">M</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.10903em;">M</span></span></span></span> children.<br>
+(3)  All leaves are at the same depth.</p>
+</blockquote>
+<figure data-type="image" tabindex="7"><img src="https://reticenceji.github.io/post-images/image-20210510123640238.png" alt="image-20210510123640238" loading="lazy"></figure>
+<p>这里的叶子节点，包含了M个数据。</p>
+<p>non-leaf节点，包含了M-1个数据和M个指针。通常这个数据会取下一个Block中最小的那个，看上面标红的。</p>
+<p>对于查找的操作来说，和普通的搜索树是类似的。</p>
+<p><a href="https://www.geeksforgeeks.org/introduction-of-b-tree/">https://www.geeksforgeeks.org/introduction-of-b-tree-2/?ref=leftbar-rightbar</a></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Sr. No.</th>
+<th style="text-align:left">Algorithm</th>
+<th style="text-align:left">Time Complexity</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">1.</td>
+<td style="text-align:left">Search</td>
+<td style="text-align:left">O(log n)</td>
+</tr>
+<tr>
+<td style="text-align:left">2.</td>
+<td style="text-align:left">Insert</td>
+<td style="text-align:left">O(log n)</td>
+</tr>
+<tr>
+<td style="text-align:left">3.</td>
+<td style="text-align:left">Delete</td>
+<td style="text-align:left">O(log n)</td>
+</tr>
+</tbody>
+</table>
+<p>考试常考的是2-3-4 Tree（也就是M=4的B+ Tree）或2-3 Tree（M=3），虽然实际用途似乎并不会这么小。</p>
+<pre><code class="language-c">Btree  Insert ( ElementType X,  Btree T ) 
+{ 
+	Search from root to leaf for X and find the proper leaf node;
+	Insert X;
+	while ( this node has M+1 keys ) {
+    		split it into 2 nodes with (M+1)/2 and (M+1)/2  keys, respectively;
+    		if (this node is the root)
+        		create a new root with two children;
+    		check its parent;
+	}
+} 
+</code></pre>
+
+<span id="footnote"></span>
+<div id = "warn"></div>
+</div>
+<div class="toc-container"><ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#red-black-treestar">Red-Black Tree:star:</a>
+<ul>
+<li><a href="#%E5%A4%8D%E6%9D%82%E5%BA%A6%E5%88%86%E6%9E%90">复杂度分析</a></li>
+<li><a href="#%E6%8F%92%E5%85%A5">插入</a></li>
+<li><a href="#%E5%88%A0%E9%99%A4">删除</a></li>
+</ul>
+</li>
+<li><a href="#b-tree">B+ Tree</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="fullPage"><canvas id="canvas"></canvas></div>
+</article>
+<div id="eof"><span>EOF</span></div><div class="round-shape-one"></div>
+<section>
+<div class="doc_comments">
+
+</div></section>
+</div></div></div><script>
+"use strict";!function(){for(var n=document.getElementsByTagName("pre"),e=n.length,s=0;s<e;s++){n[s].innerHTML='<span class="line-number"></span>'+n[s].innerHTML+'<span class="cl"></span>';for(var a=n[s].innerHTML.split(/\n/).length,r=0;r<a-1;r++){n[s].getElementsByTagName("span")[0].innerHTML+="<span>"+(r+1)+"</span>"}}}();
+let mainNavLinks=document.querySelectorAll(".markdownIt-TOC a");window.addEventListener("scroll",event=>{let fromTop=window.scrollY;mainNavLinks.forEach((link,index)=>{let section=document.getElementById(decodeURI(link.hash).substring(1));let nextSection=null
+if(mainNavLinks[index+1]){nextSection=document.getElementById(decodeURI(mainNavLinks[index+1].hash).substring(1));}
+if(section.offsetTop<=fromTop){if(nextSection){if(nextSection.offsetTop>fromTop){link.classList.add("currentToc");}else{link.classList.remove("currentToc");}}else{link.classList.add("currentToc");}}else{link.classList.remove("currentToc");}});});
+var h=document.documentElement,b=document.body,st="scrollTop",sh="scrollHeight",progress=document.querySelector(".progress"),scroll;document.addEventListener("scroll",function(){scroll=(h[st]||b[st])/((h[sh]||b[sh])-h.clientHeight)*100;progress.style.setProperty("--scroll",scroll+"%")});
+var wxScale=new WxScale({fullPage:document.querySelector("#fullPage"),canvas:document.querySelector("#canvas")});var imgBox=document.querySelectorAll("#md_block img");for(var i=0;i<imgBox.length;i++){imgBox[i].onclick=function(e){wxScale.start(this)}};
+</script>
+<a id="scrollUp" href="#top" style="position: fixed; z-index: 2147483647; display: block;"></a><div class="footer animated fadeInDown"><div class="site_footer"><div class="mysocials"><div class="my_socials"><a href="https://github.com/reticenceji"title="github"><i class="iconfont icon-github"></i></a><a href="reticenceji@qq.com"title="envelope"><i class="iconfont icon-envelope"></i></a><a href="https://www.zhihu.com/people/reticenceji"title="zhihu"><i class="iconfont icon-zhihu"></i></a></div></div><div class="copyright"id="copyright">Copyright © 2018-2020 <a href="https://reticenceji.github.io" style="margin:0;">Reticence</a>.</div>
+<span style="display: inline;margin-right:15px;">👁<strong><span id="busuanzi_value_site_uv"></span></strong></span><span id="busuanzi_container_page_pv" style="display: inline;"><span>📚<strong>176</strong> posts</span></div></div>
+<script>
+console.log("\n %c \u26a1Theme: Bitcron-pro Author's Blog:https://blog.blinkstar.cn  Writen By Serence  \n\n", "color: #ffffff; background: rgba(49, 49, 49, 0.85); padding:5px 0;border-radius:5px;", );
+</script>
+<script src="https://cdn.jsdelivr.net/npm/instant.page@3.0.0/instantpage.min.js" type="module" defer></script>
+<script type="text/javascript" async src="https://reticenceji.github.io/media/js/prism.js"></script>
+</body>
+</html>

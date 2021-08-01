@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="shortcut icon" href="https://reticenceji.github.io/favicon.ico" type="image/x-icon" /><meta name="viewport"content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="apple-mobile-web-app-capable"content="yes"/><meta name="apple-mobile-web-app-status-bar-style"content="black"/><meta name="format-detection"content="telephone=no"/><meta name="renderer"content="webkit"><meta name="description"content=""><meta charset="UTF-8"><title>GDB-Debug调试 | Reticence</title>
+<link href="https://reticenceji.github.io/styles/main.css" type="text/css" rel="stylesheet" /><link href="https://at.alicdn.com/t/font_1621793_zatzzgvf30g.css" type="text/css" rel="stylesheet" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css"><script async src="https://cdn.jsdelivr.net/npm/busuanzi@2.3.0/bsz.pure.mini.min.js"></script><script src="https://reticenceji.github.io/media/js/magnify.min.js"></script><script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js"></script>
+<script type="text/javascript">function btn_toggle(){document.getElementById("hn").classList.contains("no-js")?document.getElementById("hn").classList.remove("no-js"):document.getElementById("hn").classList.add("no-js")}</script>
+
+<link rel="canonical" href="https://reticenceji.github.io/post/gdb-gef-shi-yong-xin-de-diao-shi-xin-xi/" />
+</head>
+<body>
+<div class="progress"></div><style>.progress{background:linear-gradient(to right,#87ceeb var(--scroll),transparent 0);background-repeat:no-repeat;position:fixed;width:100%;height:4px;z-index:1}</style><div class="darkmode-background"></div><div class="darkmode-layer"></div>
+<noscript><p class="warn" >本页面需要浏览器支持（启用）JavaScript</p></noscript><div class="header"><div class="logo_title"><div class="title animated fadeInDown"><a href="https://reticenceji.github.io"><img alt="logo" style="display:inline-block;" src="https://reticenceji.github.io/images/avatar.png"/></a><h1 title="Reticence" class="weaklink"><a  href="/">Reticence</a></h1>
+
+<div class="navbar weaklink">
+<div class="normal_nav">
+<div class="bitcron_nav_container"><div class="bitcron_nav"><div class="bitcron_nav"><div style="display:flex;justify-content:center;"><nav class="mixed_site_nav_wrap site_nav_wrap"><ul class="mixed_site_nav site_nav sm sm-base">	<li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/" class="selected active current nav__item" >Index</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/tags" class="selected active current nav__item" >Tags</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/archives" class="selected active current nav__item" >Archives</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/navigator.html" class="selected active current nav__item" >Navigator</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/post/about" class="selected active current nav__item" >About</a></li></ul></nav>
+<div style="float:right;margin-top:1em"><form id="gridea-search-form" data-update="1578893743252" action="/search/index.html"><input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="Search..."></form></div><div style="margin-left:0.5em;margin-top:1.2em"><input id="switch_default" onclick="mobileBtn()" type="checkbox" class="switch_default"><label for="switch_default" class="toggleBtn"></label></div></div>
+<div class="clear clear_nav_inline_end"></div></div></div><div class="clear clear_nav_end"></div></div></div><div class="hamberger" href="javascript:void(0)" onclick="btn_toggle();"><i class="iconfont icon-category"></i></div></div></div></div>
+<div id="hn" class="no-js hidden_nav animated fadeInDown"><div class="bitcron_nav_container"><div class="bitcron_nav"><nav class="mixed_site_nav_wrap site_nav_wrap"><ul class="mixed_site_nav site_nav sm sm-base">	<li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/" class="selected active current nav__item" >Index</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/tags" class="selected active current nav__item" >Tags</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/archives" class="selected active current nav__item" >Archives</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/navigator.html" class="selected active current nav__item" >Navigator</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/post/about" class="selected active current nav__item" >About</a></li></ul><div class="clear clear_nav_inline_end"></div></nav></div><div class="clear clear_nav_end"></div></div>
+<div style="display:flex;justify-content:center;inline-block;text-align:center;margin-top:7%"><div><form id="gridea-search-form" data-update="1627835297708" action="/search/index.html"><input class="search-input" autocomplete="off" spellcheck="false" name="q"  placeholder="Search..." /></form></div><div style="margin-left:0.5em"><input id="switch_default_h" onclick="mobileBtn()" type="checkbox" class="switch_default"><label for="switch_default" class="toggleBtn"></label></div></div>
+</div></div>
+<script>function enableDarkmode(){document.body.classList.add("darkmode"),document.getElementById("switch_default").checked=1,document.getElementById("switch_default_h").checked=1}function removeDarkmode(){document.body.classList.remove("darkmode"),document.getElementById("switch_default").checked=0,document.getElementById("switch_default_h").checked=0}function getCookie(a){var b,c=new RegExp("(^| )"+a+"=([^;]*)(;|$)");return(b=document.cookie.match(c))?unescape(b[2]):null}cookie=getCookie("darkmode"),"enable"==cookie&&enableDarkmode(),window.matchMedia("(prefers-color-scheme: dark)").matches&&"disable"!==cookie&&(enableDarkmode(),document.cookie="darkmode=enable; path=/");var mobileBtn=function(){1==document.getElementById("switch_default").checked?(enableDarkmode(),document.cookie="darkmode=enable; path=/"):(removeDarkmode(),document.cookie="darkmode=disable; path=/")};</script>
+
+<div class="main"><div class="main-inner"><div class="content">
+<article class="post">
+<h2 class="post_title sm_margin"><a>GDB-Debug调试</a></h2>
+<script>function lan(){if(document.getElementById("lan").innerText=="繁"){var s=document.getElementById("tongwenlet_cn");if(s!=null){document.body.removeChild(s)}var s=document.createElement("script");s.language="javascript";s.type="text/javascript";s.src="https://cdn.jsdelivr.net/gh/qyxtim/Static@1.1/bookmarklet_tw.js";s.id="tongwenlet_cn";document.body.appendChild(s);document.getElementById("lan").innerHTML="简"}else{if(document.getElementById("lan").innerText=="簡"){var s=document.getElementById("tongwenlet_cn");if(s!=null){document.body.removeChild(s)}var s=document.createElement("script");s.language="javascript";s.type="text/javascript";s.src="https://cdn.jsdelivr.net/gh/qyxtim/Static@1.1/bookmarklet_cn.js";s.id="tongwenlet_cn";document.body.appendChild(s);document.getElementById("lan").innerHTML="繁"}}};</script>
+<section class="post_details"><i class="iconfont icon-calendar"></i><span style="margin-right:15px"> 2020-11-09</span><i class="iconfont icon-browse"></i><span style="margin-right:15px"> <span id="busuanzi_value_page_pv"></span> Views</span><i class="iconfont icon-category"></i><span class="weaklink" style="margin-right:15px">	<a href="https://reticenceji.github.io/tag/1N1qlBrCX/" class="tag">C</a> | 	<a href="https://reticenceji.github.io/tag/nL6gwIN_5/" class="tag">Tools</a></span><i class="iconfont icon-caret-down"></i><span style="margin-right:15px">754字</span><i class="iconfont icon-naozhong"></i><span style="margin-right:15px">3 min read</span><a id="lan" href="javascript:void(0);"onclick="lan();"title="调整简繁体" style="margin-right:15px;">繁</a>
+</section>
+
+<div style="display:flex">
+<div class="md_block" id="md_block">
+<div class="round-shape-one"></div>
+<p>我们需要给源代码加上调试选项，如<code>gcc -g3 hello.c -o hello.dbg</code>，然后用gdb进行调试。<br>
+常用命令：<br>
+<code>start</code>在开始处(main/libc_main/entry_point)断住。<br>
+<code>finish</code>可以执行完当前函数，然后返回。<br>
+<code>display 变量名</code>可以对变量添加监视。</p>
+<p><code>set variable</code>还可以给变量赋值。</p>
+<h2 id="查看内容">查看内容</h2>
+<h3 id="frame">Frame</h3>
+<p>查看栈帧Frame</p>
+<p><code>info frame</code>：<br>
+This command prints a verbose description of the selected stack frame, including:</p>
+<ul>
+<li>the address of the frame</li>
+<li>the address of the next frame down (called by this frame)</li>
+<li>the address of the next frame up (caller of this frame)</li>
+<li>the language in which the source code corresponding to this frame is written</li>
+<li>the address of the frame’s arguments</li>
+<li>the address of the frame’s local variables</li>
+<li>the program counter saved in it (the address of execution in the caller frame)</li>
+<li>which registers were saved in the frame</li>
+</ul>
+<h3 id="print">print</h3>
+<p><code>p 变量名</code>，p是print的缩写，我们可以查看变量的值：</p>
+<ul>
+<li>全局变量（所有文件可见的）</li>
+<li>静态全局变量（当前文件可见的）</li>
+<li>局部变量（当前Scope可见的）</li>
+</ul>
+<p>如果你在编译的时候开启了O3选项，那有些变量可能被优化了GDB会告诉你无法访问。</p>
+<p><code>print [options --] [/fmt] expr</code>，是print的完整用法。</p>
+<p>我们可以规定我们打印出变量的格式，这个和查看内存的x命令类似：</p>
+<table>
+<thead>
+<tr>
+<th>/fmt</th>
+<th>功 能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>/x</td>
+<td>以十六进制的形式打印出整数。</td>
+</tr>
+<tr>
+<td>/d</td>
+<td>以有符号、十进制的形式打印出整数。</td>
+</tr>
+<tr>
+<td>/u</td>
+<td>以无符号、十进制的形式打印出整数。</td>
+</tr>
+<tr>
+<td>/o</td>
+<td>以八进制的形式打印出整数。</td>
+</tr>
+<tr>
+<td>/t</td>
+<td>以二进制的形式打印出整数。</td>
+</tr>
+<tr>
+<td>/f</td>
+<td>以浮点数的形式打印变量或表达式的值。</td>
+</tr>
+<tr>
+<td>/c</td>
+<td>以字符形式打印变量或表达式的值。</td>
+</tr>
+</tbody>
+</table>
+<p>一般情况下你不需要指定打印信息的格式，有调试信息的帮助GDB会自己判断，他甚至能打印结构和数组！</p>
+<h2 id="控制流">控制流</h2>
+<p><code>start</code>：他可以智能的在程序的入口设下断点。它会寻找<code>main</code>,ELF的Entry Point等。<br>
+<code>until 行号</code>：比如你在面对一个大循环的时候，可以用它快速执行到指定的行号。<br>
+我们现在要用<code>ni</code>和<code>si</code>来单步执行一条汇编指令<code>i=instruction</code>，单纯的<code>n</code>和<code>s</code>可以执行一条代码的下一步。</p>
+<h3 id="b-断点">b 断点</h3>
+<p><code>b</code>设置断点。相比没有调试信息的，我们可以：</p>
+<ul>
+<li>直接根据文件和行号设置断点了。<code>b file:linenum</code></li>
+<li>我们设置条件断点可以更加灵活。</li>
+</ul>
+<h3 id="watch-观察点">watch 观察点</h3>
+<p><code>watch</code>命令设置<strong>观察点</strong>，也就是当一个变量值发生变化时，程序会停下来。观察点可以通过软件或硬件的方式实现，取决于具体的系统。但是软件实现的观察点会导致程序运行很慢，使用时需注意。</p>
+<h2 id="gui">GUI</h2>
+<p><code>Crtl+X+A</code>组合键，可以切换CLI和GUI界面。</p>
+<p><code>layout asm</code></p>
+<p><code>layout regs</code></p>
+<h2 id="改变程序的执行">改变程序的执行</h2>
+<h2 id="测试数据重定向">测试数据重定向</h2>
+<p>可以用<br>
+<code>run &lt; cat data.txt</code>或者<code>start &lt; cat data.txt</code>之类的方法来把测试数据重定向。</p>
+
+<span id="footnote"></span>
+<div id = "warn"></div>
+</div>
+<div class="toc-container"><ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#%E6%9F%A5%E7%9C%8B%E5%86%85%E5%AE%B9">查看内容</a>
+<ul>
+<li><a href="#frame">Frame</a></li>
+<li><a href="#print">print</a></li>
+</ul>
+</li>
+<li><a href="#%E6%8E%A7%E5%88%B6%E6%B5%81">控制流</a>
+<ul>
+<li><a href="#b-%E6%96%AD%E7%82%B9">b 断点</a></li>
+<li><a href="#watch-%E8%A7%82%E5%AF%9F%E7%82%B9">watch 观察点</a></li>
+</ul>
+</li>
+<li><a href="#gui">GUI</a></li>
+<li><a href="#%E6%94%B9%E5%8F%98%E7%A8%8B%E5%BA%8F%E7%9A%84%E6%89%A7%E8%A1%8C">改变程序的执行</a></li>
+<li><a href="#%E6%B5%8B%E8%AF%95%E6%95%B0%E6%8D%AE%E9%87%8D%E5%AE%9A%E5%90%91">测试数据重定向</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="fullPage"><canvas id="canvas"></canvas></div>
+</article>
+<div id="eof"><span>EOF</span></div><div class="round-shape-one"></div>
+<section>
+<div class="doc_comments">
+
+</div></section>
+</div></div></div><script>
+"use strict";!function(){for(var n=document.getElementsByTagName("pre"),e=n.length,s=0;s<e;s++){n[s].innerHTML='<span class="line-number"></span>'+n[s].innerHTML+'<span class="cl"></span>';for(var a=n[s].innerHTML.split(/\n/).length,r=0;r<a-1;r++){n[s].getElementsByTagName("span")[0].innerHTML+="<span>"+(r+1)+"</span>"}}}();
+let mainNavLinks=document.querySelectorAll(".markdownIt-TOC a");window.addEventListener("scroll",event=>{let fromTop=window.scrollY;mainNavLinks.forEach((link,index)=>{let section=document.getElementById(decodeURI(link.hash).substring(1));let nextSection=null
+if(mainNavLinks[index+1]){nextSection=document.getElementById(decodeURI(mainNavLinks[index+1].hash).substring(1));}
+if(section.offsetTop<=fromTop){if(nextSection){if(nextSection.offsetTop>fromTop){link.classList.add("currentToc");}else{link.classList.remove("currentToc");}}else{link.classList.add("currentToc");}}else{link.classList.remove("currentToc");}});});
+var h=document.documentElement,b=document.body,st="scrollTop",sh="scrollHeight",progress=document.querySelector(".progress"),scroll;document.addEventListener("scroll",function(){scroll=(h[st]||b[st])/((h[sh]||b[sh])-h.clientHeight)*100;progress.style.setProperty("--scroll",scroll+"%")});
+var wxScale=new WxScale({fullPage:document.querySelector("#fullPage"),canvas:document.querySelector("#canvas")});var imgBox=document.querySelectorAll("#md_block img");for(var i=0;i<imgBox.length;i++){imgBox[i].onclick=function(e){wxScale.start(this)}};
+</script>
+<a id="scrollUp" href="#top" style="position: fixed; z-index: 2147483647; display: block;"></a><div class="footer animated fadeInDown"><div class="site_footer"><div class="mysocials"><div class="my_socials"><a href="https://github.com/reticenceji"title="github"><i class="iconfont icon-github"></i></a><a href="reticenceji@qq.com"title="envelope"><i class="iconfont icon-envelope"></i></a><a href="https://www.zhihu.com/people/reticenceji"title="zhihu"><i class="iconfont icon-zhihu"></i></a></div></div><div class="copyright"id="copyright">Copyright © 2018-2020 <a href="https://reticenceji.github.io" style="margin:0;">Reticence</a>.</div>
+<span style="display: inline;margin-right:15px;">👁<strong><span id="busuanzi_value_site_uv"></span></strong></span><span id="busuanzi_container_page_pv" style="display: inline;"><span>📚<strong>176</strong> posts</span></div></div>
+<script>
+console.log("\n %c \u26a1Theme: Bitcron-pro Author's Blog:https://blog.blinkstar.cn  Writen By Serence  \n\n", "color: #ffffff; background: rgba(49, 49, 49, 0.85); padding:5px 0;border-radius:5px;", );
+</script>
+<script src="https://cdn.jsdelivr.net/npm/instant.page@3.0.0/instantpage.min.js" type="module" defer></script>
+<script type="text/javascript" async src="https://reticenceji.github.io/media/js/prism.js"></script>
+</body>
+</html>

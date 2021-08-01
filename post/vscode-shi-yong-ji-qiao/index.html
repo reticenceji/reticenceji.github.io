@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="shortcut icon" href="https://reticenceji.github.io/favicon.ico" type="image/x-icon" /><meta name="viewport"content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="apple-mobile-web-app-capable"content="yes"/><meta name="apple-mobile-web-app-status-bar-style"content="black"/><meta name="format-detection"content="telephone=no"/><meta name="renderer"content="webkit"><meta name="description"content=""><meta charset="UTF-8"><title>VSCode使用技巧 | Reticence</title>
+<link href="https://reticenceji.github.io/styles/main.css" type="text/css" rel="stylesheet" /><link href="https://at.alicdn.com/t/font_1621793_zatzzgvf30g.css" type="text/css" rel="stylesheet" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css"><script async src="https://cdn.jsdelivr.net/npm/busuanzi@2.3.0/bsz.pure.mini.min.js"></script><script src="https://reticenceji.github.io/media/js/magnify.min.js"></script><script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js"></script>
+<script type="text/javascript">function btn_toggle(){document.getElementById("hn").classList.contains("no-js")?document.getElementById("hn").classList.remove("no-js"):document.getElementById("hn").classList.add("no-js")}</script>
+
+<link rel="canonical" href="https://reticenceji.github.io/post/vscode-shi-yong-ji-qiao/" />
+</head>
+<body>
+<div class="progress"></div><style>.progress{background:linear-gradient(to right,#87ceeb var(--scroll),transparent 0);background-repeat:no-repeat;position:fixed;width:100%;height:4px;z-index:1}</style><div class="darkmode-background"></div><div class="darkmode-layer"></div>
+<noscript><p class="warn" >本页面需要浏览器支持（启用）JavaScript</p></noscript><div class="header"><div class="logo_title"><div class="title animated fadeInDown"><a href="https://reticenceji.github.io"><img alt="logo" style="display:inline-block;" src="https://reticenceji.github.io/images/avatar.png"/></a><h1 title="Reticence" class="weaklink"><a  href="/">Reticence</a></h1>
+
+<div class="navbar weaklink">
+<div class="normal_nav">
+<div class="bitcron_nav_container"><div class="bitcron_nav"><div class="bitcron_nav"><div style="display:flex;justify-content:center;"><nav class="mixed_site_nav_wrap site_nav_wrap"><ul class="mixed_site_nav site_nav sm sm-base">	<li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/" class="selected active current nav__item" >Index</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/tags" class="selected active current nav__item" >Tags</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/archives" class="selected active current nav__item" >Archives</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/navigator.html" class="selected active current nav__item" >Navigator</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/post/about" class="selected active current nav__item" >About</a></li></ul></nav>
+<div style="float:right;margin-top:1em"><form id="gridea-search-form" data-update="1578893743252" action="/search/index.html"><input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="Search..."></form></div><div style="margin-left:0.5em;margin-top:1.2em"><input id="switch_default" onclick="mobileBtn()" type="checkbox" class="switch_default"><label for="switch_default" class="toggleBtn"></label></div></div>
+<div class="clear clear_nav_inline_end"></div></div></div><div class="clear clear_nav_end"></div></div></div><div class="hamberger" href="javascript:void(0)" onclick="btn_toggle();"><i class="iconfont icon-category"></i></div></div></div></div>
+<div id="hn" class="no-js hidden_nav animated fadeInDown"><div class="bitcron_nav_container"><div class="bitcron_nav"><nav class="mixed_site_nav_wrap site_nav_wrap"><ul class="mixed_site_nav site_nav sm sm-base">	<li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/" class="selected active current nav__item" >Index</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/tags" class="selected active current nav__item" >Tags</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/archives" class="selected active current nav__item" >Archives</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/navigator.html" class="selected active current nav__item" >Navigator</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/post/about" class="selected active current nav__item" >About</a></li></ul><div class="clear clear_nav_inline_end"></div></nav></div><div class="clear clear_nav_end"></div></div>
+<div style="display:flex;justify-content:center;inline-block;text-align:center;margin-top:7%"><div><form id="gridea-search-form" data-update="1627835297708" action="/search/index.html"><input class="search-input" autocomplete="off" spellcheck="false" name="q"  placeholder="Search..." /></form></div><div style="margin-left:0.5em"><input id="switch_default_h" onclick="mobileBtn()" type="checkbox" class="switch_default"><label for="switch_default" class="toggleBtn"></label></div></div>
+</div></div>
+<script>function enableDarkmode(){document.body.classList.add("darkmode"),document.getElementById("switch_default").checked=1,document.getElementById("switch_default_h").checked=1}function removeDarkmode(){document.body.classList.remove("darkmode"),document.getElementById("switch_default").checked=0,document.getElementById("switch_default_h").checked=0}function getCookie(a){var b,c=new RegExp("(^| )"+a+"=([^;]*)(;|$)");return(b=document.cookie.match(c))?unescape(b[2]):null}cookie=getCookie("darkmode"),"enable"==cookie&&enableDarkmode(),window.matchMedia("(prefers-color-scheme: dark)").matches&&"disable"!==cookie&&(enableDarkmode(),document.cookie="darkmode=enable; path=/");var mobileBtn=function(){1==document.getElementById("switch_default").checked?(enableDarkmode(),document.cookie="darkmode=enable; path=/"):(removeDarkmode(),document.cookie="darkmode=disable; path=/")};</script>
+
+<div class="main"><div class="main-inner"><div class="content">
+<article class="post">
+<h2 class="post_title sm_margin"><a>VSCode使用技巧</a></h2>
+<script>function lan(){if(document.getElementById("lan").innerText=="繁"){var s=document.getElementById("tongwenlet_cn");if(s!=null){document.body.removeChild(s)}var s=document.createElement("script");s.language="javascript";s.type="text/javascript";s.src="https://cdn.jsdelivr.net/gh/qyxtim/Static@1.1/bookmarklet_tw.js";s.id="tongwenlet_cn";document.body.appendChild(s);document.getElementById("lan").innerHTML="简"}else{if(document.getElementById("lan").innerText=="簡"){var s=document.getElementById("tongwenlet_cn");if(s!=null){document.body.removeChild(s)}var s=document.createElement("script");s.language="javascript";s.type="text/javascript";s.src="https://cdn.jsdelivr.net/gh/qyxtim/Static@1.1/bookmarklet_cn.js";s.id="tongwenlet_cn";document.body.appendChild(s);document.getElementById("lan").innerHTML="繁"}}};</script>
+<section class="post_details"><i class="iconfont icon-calendar"></i><span style="margin-right:15px"> 2021-04-21</span><i class="iconfont icon-browse"></i><span style="margin-right:15px"> <span id="busuanzi_value_page_pv"></span> Views</span><i class="iconfont icon-category"></i><span class="weaklink" style="margin-right:15px">	<a href="https://reticenceji.github.io/tag/nL6gwIN_5/" class="tag">Tools</a></span><i class="iconfont icon-caret-down"></i><span style="margin-right:15px">1849字</span><i class="iconfont icon-naozhong"></i><span style="margin-right:15px">9 min read</span><a id="lan" href="javascript:void(0);"onclick="lan();"title="调整简繁体" style="margin-right:15px;">繁</a>
+</section>
+
+<div style="display:flex">
+<div class="md_block" id="md_block">
+<div class="round-shape-one"></div>
+<h1 id="插件推荐">插件推荐</h1>
+<p>VSCode的很多强大功能都是由插件支持的。</p>
+<h2 id="cc的插件">C/C++的插件</h2>
+<table>
+<thead>
+<tr>
+<th>插件名</th>
+<th>说明</th>
+<th>使用方法</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>C/C++</td>
+<td>装就完事了</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Doxygen Documentation Generatorcschlosser</td>
+<td>自动生成规范的注释格式</td>
+<td>输入<code>/**</code>然后回车。</td>
+</tr>
+<tr>
+<td>Cpp Reference</td>
+<td>可以方便的查看标准库的参考</td>
+<td>光标放在需要查询的函数上，<code>Ctrl+Shift+A</code></td>
+</tr>
+<tr>
+<td>Better C++ Syntax</td>
+<td>高亮</td>
+<td></td>
+</tr>
+<tr>
+<td>C++ Helper</td>
+<td>头文件一些代码的辅助</td>
+<td>写好头文件，选中函数-右击-create implementation<br />自动生成头文件保护宏</td>
+</tr>
+<tr>
+<td>Makefile boilerplate</td>
+<td>自动生成Makefile模板</td>
+<td>输入<code>!</code>，然后选择工程类型，回车。</td>
+</tr>
+<tr>
+<td>C++ Snippets</td>
+<td>代码自动提示补全</td>
+<td>-</td>
+</tr>
+<tr>
+<td>LinkerScript</td>
+<td>Lds高亮</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="python的插件">Python的插件</h2>
+<p>因为我做过的稍大的工程就是一个Flask的图书管理系统，所以下面很多是Flask开发的插件，有些是前端的插件。没有他们代码都不会写。</p>
+<table>
+<thead>
+<tr>
+<th>插件名</th>
+<th>说明</th>
+<th>使用方法</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Python</td>
+<td>装就完事了</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Python Docstring Generator</td>
+<td>自动生成规范的注释格式</td>
+<td>输入<code>&quot;&quot;&quot;</code>然后回车</td>
+</tr>
+<tr>
+<td>Jinja2 Snippet Kit</td>
+<td>Jinja块代码的生成</td>
+<td>Jxxx，然后回车，见下。</td>
+</tr>
+<tr>
+<td>flask-snippets</td>
+<td>flask代码块的自动生成</td>
+<td>fxxx，然后回车，见下</td>
+</tr>
+<tr>
+<td>The Powerful Bootstrap</td>
+<td>Bootstrap代码块的自动生成</td>
+<td>!xxx，然后回车，见下</td>
+</tr>
+</tbody>
+</table>
+<h3 id="jinja">Jinja:</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Prefix</th>
+<th style="text-align:left">Output</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">jblock</td>
+<td style="text-align:left">{% block <em>name</em> %} {% endblock <em>name</em> %}</td>
+</tr>
+<tr>
+<td style="text-align:left">jif</td>
+<td style="text-align:left">{% if <em>cond</em> %} {% endif %}</td>
+</tr>
+<tr>
+<td style="text-align:left">jifelse</td>
+<td style="text-align:left">{% if <em>cond</em> %} {% else %} {% endif %}</td>
+</tr>
+<tr>
+<td style="text-align:left">jextend</td>
+<td style="text-align:left">{% extends '<em>file</em>' %}</td>
+</tr>
+<tr>
+<td style="text-align:left">jfor</td>
+<td style="text-align:left">{% for <em>A</em> in <em>B</em> %} {% endfor %}</td>
+</tr>
+<tr>
+<td style="text-align:left">jrandom</td>
+<td style="text-align:left">{{ range(<em>MIN</em>, <em>MAX</em>) | random }}</td>
+</tr>
+<tr>
+<td style="text-align:left">jvar</td>
+<td style="text-align:left">{{ <em>variable</em> }}</td>
+</tr>
+<tr>
+<td style="text-align:left">jfunc</td>
+<td style="text-align:left">{% <em>function</em> %}</td>
+</tr>
+<tr>
+<td style="text-align:left">jround</td>
+<td style="text-align:left">{% <em>float</em> | round %}</td>
+</tr>
+<tr>
+<td style="text-align:left">jjoin</td>
+<td style="text-align:left">{% <em>list</em> | join(',') %}</td>
+</tr>
+<tr>
+<td style="text-align:left">jset</td>
+<td style="text-align:left">{% set <em>A</em> = <em>B</em> %}</td>
+</tr>
+<tr>
+<td style="text-align:left">jurl</td>
+<td style="text-align:left">{{ url_for('<em>dir</em>', filename='<em>file</em>') }}</td>
+</tr>
+<tr>
+<td style="text-align:left">jcall</td>
+<td style="text-align:left">{% call <em>func</em> %} {% endcall %}</td>
+</tr>
+<tr>
+<td style="text-align:left">jfilter</td>
+<td style="text-align:left">{% filter <em>cmd</em> %} {% endfilter %}</td>
+</tr>
+<tr>
+<td style="text-align:left">jinclude</td>
+<td style="text-align:left">{% include '<em>file</em>' %}</td>
+</tr>
+<tr>
+<td style="text-align:left">jfrom</td>
+<td style="text-align:left">{% from '<em>dir</em>' import <em>func</em> %}</td>
+</tr>
+<tr>
+<td style="text-align:left">jimg</td>
+<td style="text-align:left"><code>&lt;img src=&quot;{{ url_for('static', filename='A') }}&quot; alt=&quot;B&quot;&gt;</code></td>
+</tr>
+<tr>
+<td style="text-align:left">jhref</td>
+<td style="text-align:left">a href with url_for embed</td>
+</tr>
+</tbody>
+</table>
+<h3 id="flask">Flask</h3>
+<h4 id="base">Base</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Abbreviation</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">hw</td>
+<td style="text-align:left">Flask hello world</td>
+</tr>
+<tr>
+<td style="text-align:left">route</td>
+<td style="text-align:left">Flask route</td>
+</tr>
+<tr>
+<td style="text-align:left">routegp</td>
+<td style="text-align:left">Flask route with GET, POST</td>
+</tr>
+<tr>
+<td style="text-align:left">routep</td>
+<td style="text-align:left">Flask route POST only</td>
+</tr>
+</tbody>
+</table>
+<h4 id="controls-snippets">Controls snippets</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Abbreviation</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">&quot;&quot;&quot;</td>
+<td style="text-align:left">ML docstring</td>
+</tr>
+<tr>
+<td style="text-align:left">&quot;&quot;</td>
+<td style="text-align:left">SL docstring</td>
+</tr>
+<tr>
+<td style="text-align:left">fapp</td>
+<td style="text-align:left">Flask App</td>
+</tr>
+<tr>
+<td style="text-align:left">froute</td>
+<td style="text-align:left">Flask route</td>
+</tr>
+<tr>
+<td style="text-align:left">furl</td>
+<td style="text-align:left">URL generator</td>
+</tr>
+<tr>
+<td style="text-align:left">fmeth</td>
+<td style="text-align:left">URL methods</td>
+</tr>
+<tr>
+<td style="text-align:left">frt</td>
+<td style="text-align:left">Render template</td>
+</tr>
+<tr>
+<td style="text-align:left">ftreq</td>
+<td style="text-align:left">Test request</td>
+</tr>
+<tr>
+<td style="text-align:left">fup</td>
+<td style="text-align:left">Flask upload</td>
+</tr>
+<tr>
+<td style="text-align:left">fsup</td>
+<td style="text-align:left">Secure upload</td>
+</tr>
+<tr>
+<td style="text-align:left">frc</td>
+<td style="text-align:left">Read cookie</td>
+</tr>
+<tr>
+<td style="text-align:left">fsc</td>
+<td style="text-align:left">Set cookie</td>
+</tr>
+<tr>
+<td style="text-align:left">feh</td>
+<td style="text-align:left">Error handler</td>
+</tr>
+<tr>
+<td style="text-align:left">flog</td>
+<td style="text-align:left">Flask logging</td>
+</tr>
+</tbody>
+</table>
+<h4 id="templates-snippets">Templates snippets</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Abbreviation</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">fexp</td>
+<td style="text-align:left">Flask expresion</td>
+</tr>
+<tr>
+<td style="text-align:left">ffilter</td>
+<td style="text-align:left">Flask filter</td>
+</tr>
+<tr>
+<td style="text-align:left">fcomment</td>
+<td style="text-align:left">Flask comment</td>
+</tr>
+<tr>
+<td style="text-align:left">fblock</td>
+<td style="text-align:left">Flask block</td>
+</tr>
+<tr>
+<td style="text-align:left">fextends</td>
+<td style="text-align:left">Flask extends</td>
+</tr>
+<tr>
+<td style="text-align:left">fself</td>
+<td style="text-align:left">Flask self</td>
+</tr>
+<tr>
+<td style="text-align:left">fsuper</td>
+<td style="text-align:left">Flask super</td>
+</tr>
+<tr>
+<td style="text-align:left">ffor</td>
+<td style="text-align:left">Flask for</td>
+</tr>
+<tr>
+<td style="text-align:left">fif</td>
+<td style="text-align:left">Flask if</td>
+</tr>
+<tr>
+<td style="text-align:left">fife</td>
+<td style="text-align:left">Flask ife</td>
+</tr>
+<tr>
+<td style="text-align:left">felif</td>
+<td style="text-align:left">Flask elif</td>
+</tr>
+<tr>
+<td style="text-align:left">fmacro</td>
+<td style="text-align:left">Flask macro</td>
+</tr>
+<tr>
+<td style="text-align:left">ffb</td>
+<td style="text-align:left">Flask filter block</td>
+</tr>
+<tr>
+<td style="text-align:left">fset</td>
+<td style="text-align:left">Flask set</td>
+</tr>
+<tr>
+<td style="text-align:left">finclude</td>
+<td style="text-align:left">Flask include</td>
+</tr>
+<tr>
+<td style="text-align:left">fimport</td>
+<td style="text-align:left">Flask import</td>
+</tr>
+<tr>
+<td style="text-align:left">fautoescape</td>
+<td style="text-align:left">Flask autoescape</td>
+</tr>
+<tr>
+<td style="text-align:left">furl</td>
+<td style="text-align:left">Flask url</td>
+</tr>
+</tbody>
+</table>
+<h3 id="bootstrap">BootStrap</h3>
+<h4 id="snippet-element">Snippet Element</h4>
+<ul>
+<li><code>!bs-arlert</code></li>
+<li><code>!bs-btn-badge</code></li>
+<li><code>!bs-btn-pill</code></li>
+<li><code>!bs-link-badge</code></li>
+<li><code>!bs-breadcrumb</code></li>
+<li><code>!bs-btn</code></li>
+<li><code>!bs-btn-outline</code></li>
+<li><code>!bs-btn-lg</code></li>
+<li><code>!bs-btn-sm</code></li>
+<li><code>!bs-btn-block</code></li>
+<li><code>!bs-btn-group</code></li>
+<li><code>!bs-card</code></li>
+<li><code>!bs-card-body</code></li>
+<li><code>!bs-card-box</code></li>
+<li><code>!bs-card-img</code></li>
+<li><code>!bs-list-group</code></li>
+<li><code>!bs-kithensink</code></li>
+<li><code>!bs-btn-nesting</code></li>
+<li><code>!bs-btn-toolbar</code></li>
+<li><code>!bs-car-ctrl</code></li>
+<li><code>!bs-car-cross</code></li>
+<li><code>!bs-car-cap</code></li>
+<li><code>!bs-coll-link</code></li>
+<li><code>!bs-coll-btn</code></li>
+<li><code>!bs-drop-btn</code></li>
+<li><code>!bs-form-email</code></li>
+<li><code>!bs-form-pass</code></li>
+<li><code>!bs-file-in</code></li>
+<li><code>!bs-range-in</code></li>
+<li><code>!bs-radio</code></li>
+<li><code>!bs-switch</code></li>
+<li><code>!bs-sel-menu</code></li>
+<li><code>!bs-file-menu</code></li>
+<li><code>!bs-modal</code></li>
+<li><code>!bs-modal-msg</code></li>
+<li><code>!bs-navs</code></li>
+<li><code>!bs-navs-center</code></li>
+<li><code>!bs-navs-vertical</code></li>
+<li><code>!bs-navs-tabs</code></li>
+<li><code>!bs-navs-pills</code></li>
+<li><code>!bs-navbar</code></li>
+<li><code>!bs-navbar-brand</code></li>
+<li><code>!bs-navbar-img</code></li>
+<li><code>!bs-form-search</code></li>
+<li><code>!bs-pagenation</code></li>
+<li><code>!bs-poppvers-top</code></li>
+<li><code>!bs-poppvers-bottom</code></li>
+<li><code>!bs-poppvers-left</code></li>
+<li><code>!bs-poppvers-right</code></li>
+<li><code>!bs-cont</code></li>
+<li><code>!bs-cont-fluid</code></li>
+<li><code>!bs-prog</code></li>
+<li><code>!bs-prog-label</code></li>
+<li><code>!bs-prog-height</code></li>
+<li><code>!bs-prog-strip</code></li>
+<li><code>!bs-prog-anim</code></li>
+<li><code>!bs-spin-flex</code></li>
+<li><code>!bs-spin-grow</code></li>
+<li><code>!bs-toast</code></li>
+<li><code>!bs-toast-trans</code></li>
+<li><code>!bs-toast-stack</code></li>
+<li><code>!bs-js</code></li>
+<li><code>!bs-css</code></li>
+</ul>
+<h4 id="simple-template">Simple Template</h4>
+<ul>
+<li><code>!crt-form</code></li>
+<li><code>!crt-drop-login</code></li>
+<li><code>!crt-drop-div</code></li>
+<li><code>!crt-drop-txt</code></li>
+<li><code>!crt-form-login</code></li>
+<li><code>!crt-form-login1</code></li>
+<li><code>!crt-accordin</code></li>
+<li><code>!crt-start</code></li>
+</ul>
+<h4 id="cdn-bootstrap">CDN Bootstrap</h4>
+<ul>
+<li><code>!bs-start-cdn</code></li>
+<li><code>!bs-cdn-jspop</code></li>
+<li><code>!bs-cdn-jqs</code></li>
+<li><code>!bs-cdn-jqbs</code></li>
+<li><code>!bs-cdn-js</code></li>
+<li><code>!bs-cdn-css</code></li>
+</ul>
+<h2 id="rust">Rust</h2>
+<p>这个的插件还比较少。不过cargo本身就提供了一系列很强大的功能命令。我还是要学习一个。</p>
+<table>
+<thead>
+<tr>
+<th>插件名</th>
+<th>说明</th>
+<th>使用方法</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>rust-analyzer</td>
+<td>rust语法分析和提示，比Rust官方的更智能</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Crates</td>
+<td>Crates版本检测</td>
+<td></td>
+</tr>
+<tr>
+<td>Even Better TOML</td>
+<td>TOML高亮和语法检测</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Rust Doc Viewer</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Rustfmt</td>
+<td>格式化.rs</td>
+<td><code>Ctrl+Shift+I</code>不支持nightly</td>
+</tr>
+<tr>
+<td>Cargo</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="java">Java</h2>
+<p>没有用过，直接装个Pack也许可以？</p>
+<h2 id="语言无关">语言无关</h2>
+<p>强烈推荐下面的Remote插件</p>
+<table>
+<thead>
+<tr>
+<th>插件名</th>
+<th>说明</th>
+<th>使用方法</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Todo Tree</td>
+<td>TODO高亮和展示</td>
+<td>注释里加上TODO xxx</td>
+</tr>
+<tr>
+<td><strong>Draw.io</strong> Integration</td>
+<td>在VS Code里画drawio流程图</td>
+<td>编辑一个.drawio.svg文件</td>
+</tr>
+<tr>
+<td>hexdump for VSCode</td>
+<td>二进制查看</td>
+<td>-</td>
+</tr>
+<tr>
+<td><strong>Remote - Containers</strong></td>
+<td>连接docker container</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Remote - SSH</td>
+<td>连接SSH</td>
+<td>-</td>
+</tr>
+<tr>
+<td>SQLTools</td>
+<td>连接到数据库，主要功能就是查看数据表还有高亮代码吧</td>
+<td>还需要下载每一种数据库的Drivers</td>
+</tr>
+<tr>
+<td>Tabnine</td>
+<td>AI自动代码生成</td>
+<td>写就完事，但是你最好完全清楚你要些什么</td>
+</tr>
+<tr>
+<td><strong>Gitlens</strong></td>
+<td>Git插件</td>
+<td>原来侧边栏中的分支管理功能变多，几乎可以不用命令行来使用Git。<br />可以查看文件历史、修改时间等信息。</td>
+</tr>
+<tr>
+<td>Rainbow Brackets</td>
+<td>匹配的括号会变成同样的颜色</td>
+<td>-</td>
+</tr>
+<tr>
+<td><strong>Comment Translate</strong></td>
+<td>自动翻译注释</td>
+<td>把光标放在注释上</td>
+</tr>
+</tbody>
+</table>
+<h1 id="debug还是gdb好用">Debug（还是GDB好用）</h1>
+<p>Debug的配置由<code>.vscode/launch.json</code>(准确的说，这个JSON是被VSCode扩展的JSON)文件管理。当你打开调试面板的时候，可以选择<code>launch.json</code>里面不同的config进行调试。下面是我的两个，分别是gdb和C/C++插件提供的。如果你的工作目录下没有这个文件，点击调试之后会默认生成一个。以<a href="https://code.visualstudio.com/docs/cpp/launch-json-reference">C++</a>为例：</p>
+<pre><code class="language-json">{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    &quot;version&quot;: &quot;0.2.0&quot;,
+    &quot;configurations&quot;: [
+        {
+            &quot;type&quot;: &quot;by-gdb&quot;,
+            &quot;request&quot;: &quot;attach&quot;,
+            &quot;name&quot;: &quot;Attach(gdb)&quot;,
+            &quot;program&quot;: &quot;a.out&quot;,
+            &quot;cwd&quot;: &quot;${workspaceRoot}&quot;,
+            &quot;processId&quot;: 1234
+        },
+        {
+            &quot;name&quot;: &quot;gcc - 生成和调试活动文件&quot;,
+            &quot;type&quot;: &quot;cppdbg&quot;,
+            &quot;request&quot;: &quot;launch&quot;,
+            &quot;program&quot;: &quot;${fileDirname}/${fileBasenameNoExtension}&quot;,
+            &quot;args&quot;: [],
+            &quot;stopAtEntry&quot;: false,
+            &quot;cwd&quot;: &quot;${workspaceFolder}&quot;,
+            &quot;environment&quot;: [],
+            &quot;externalConsole&quot;: false,
+            &quot;MIMode&quot;: &quot;gdb&quot;,
+            &quot;setupCommands&quot;: [
+                {
+                    &quot;description&quot;: &quot;为 gdb 启用整齐打印&quot;,
+                    &quot;text&quot;: &quot;-enable-pretty-printing&quot;,
+                    &quot;ignoreFailures&quot;: true
+                }
+            ],
+            &quot;preLaunchTask&quot;: &quot;C/C++: gcc 生成活动文件&quot;,
+            &quot;miDebuggerPath&quot;: &quot;/usr/bin/gdb&quot;
+        }
+    ]
+}
+</code></pre>
+<p>不过我感觉vscode的调试还是不如直接使用gdb来的方便。另外，debug不方便和gef插件共用。Debug Terminal不能显示非ASCII字符。不知道怎么解决，还是用GDB吧。</p>
+<h1 id="vscode-命令">VSCode 命令</h1>
+<p><code>Ctrl+P</code>可以调出命令窗口。然后命令的不同前缀有不同的含义。前面两个比较重要。</p>
+<table>
+<thead>
+<tr>
+<th>前缀</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>?</td>
+<td>显示可执行的命令</td>
+</tr>
+<tr>
+<td>&gt;</td>
+<td>输入命令</td>
+</tr>
+<tr>
+<td>@</td>
+<td>查找当前工程下的符号</td>
+</tr>
+<tr>
+<td>#</td>
+<td>查找当前文件下的符号</td>
+</tr>
+<tr>
+<td>:</td>
+<td>跳转到输入的行号</td>
+</tr>
+<tr>
+<td>无</td>
+<td>跳转到输入的文件名</td>
+</tr>
+</tbody>
+</table>
+<h1 id="tasks">Tasks</h1>
+<p>这个感觉有一点像脚本，不过是用JSON来写的简单脚本。</p>
+<ul>
+<li>type： 脚本类型</li>
+<li>label：标签，task的名字</li>
+<li>command：要执行的命令</li>
+<li>args：命令的参数。内置的变量可以用<code>ctrl+space</code>来查看提示。</li>
+<li>options：</li>
+<li>problemMatcher：</li>
+<li>groups：任务分组，在build组的任务们，可以通过在命令行输入<code>&gt;run build task</code>来运行，如果任务分组是test，你就可以用<code>&gt;run test task</code>来运行</li>
+</ul>
+<pre><code class="language-json">{
+    &quot;tasks&quot;: [
+        {
+            &quot;type&quot;: &quot;cppbuild&quot;,
+            &quot;label&quot;: &quot;C/C++: g++ build active file&quot;,
+            &quot;command&quot;: &quot;/usr/bin/g++&quot;,
+            &quot;args&quot;: [
+                &quot;-g&quot;,
+                &quot;*.cpp&quot;,
+                &quot;-o&quot;,
+                &quot;${fileDirname}/${fileBasenameNoExtension}&quot;
+            ],
+            &quot;options&quot;: {
+                &quot;cwd&quot;: &quot;${workspaceFolder}&quot;
+            },
+            &quot;problemMatcher&quot;: [
+                &quot;$gcc&quot;
+            ],
+            &quot;group&quot;: {
+                &quot;kind&quot;: &quot;build&quot;,
+                &quot;isDefault&quot;: true
+            },
+            &quot;detail&quot;: &quot;Task generated by Debugger.&quot;
+        }
+    ],
+    &quot;version&quot;: &quot;2.0.0&quot;
+}
+</code></pre>
+<h2 id="环境管理">环境管理</h2>
+<p>利用workspace<br>
+选择某个目录，在下面建立这些文件，分别表示不同类型语言的插件配置。</p>
+<pre><code>./c.code-workspace
+./latex.code-workspace
+./python.code-workspace
+./rust.code-workspace
+</code></pre>
+<p>将插件分成4种：</p>
+<ol>
+<li>全局启用，局部启用 比如theme, gitlens</li>
+<li>全局启用，局部禁用 比如remote, database, hexdump</li>
+<li>全局禁用，局部启用 比如语言相关的插件</li>
+<li>全局禁用，局部禁用 建议卸载（</li>
+</ol>
+<p>奇怪的是这些插件的启用信息并不保存在workspace文件中。</p>
+
+<span id="footnote"></span>
+<div id = "warn"></div>
+</div>
+<div class="toc-container"><ul class="markdownIt-TOC">
+<li><a href="#%E6%8F%92%E4%BB%B6%E6%8E%A8%E8%8D%90">插件推荐</a>
+<ul>
+<li><a href="#cc%E7%9A%84%E6%8F%92%E4%BB%B6">C/C++的插件</a></li>
+<li><a href="#python%E7%9A%84%E6%8F%92%E4%BB%B6">Python的插件</a>
+<ul>
+<li><a href="#jinja">Jinja:</a></li>
+<li><a href="#flask">Flask</a>
+<ul>
+<li><a href="#base">Base</a></li>
+<li><a href="#controls-snippets">Controls snippets</a></li>
+<li><a href="#templates-snippets">Templates snippets</a></li>
+</ul>
+</li>
+<li><a href="#bootstrap">BootStrap</a>
+<ul>
+<li><a href="#snippet-element">Snippet Element</a></li>
+<li><a href="#simple-template">Simple Template</a></li>
+<li><a href="#cdn-bootstrap">CDN Bootstrap</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#rust">Rust</a></li>
+<li><a href="#java">Java</a></li>
+<li><a href="#%E8%AF%AD%E8%A8%80%E6%97%A0%E5%85%B3">语言无关</a></li>
+</ul>
+</li>
+<li><a href="#debug%E8%BF%98%E6%98%AFgdb%E5%A5%BD%E7%94%A8">Debug（还是GDB好用）</a></li>
+<li><a href="#vscode-%E5%91%BD%E4%BB%A4">VSCode 命令</a></li>
+<li><a href="#tasks">Tasks</a>
+<ul>
+<li><a href="#%E7%8E%AF%E5%A2%83%E7%AE%A1%E7%90%86">环境管理</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="fullPage"><canvas id="canvas"></canvas></div>
+</article>
+<div id="eof"><span>EOF</span></div><div class="round-shape-one"></div>
+<section>
+<div class="doc_comments">
+
+</div></section>
+</div></div></div><script>
+"use strict";!function(){for(var n=document.getElementsByTagName("pre"),e=n.length,s=0;s<e;s++){n[s].innerHTML='<span class="line-number"></span>'+n[s].innerHTML+'<span class="cl"></span>';for(var a=n[s].innerHTML.split(/\n/).length,r=0;r<a-1;r++){n[s].getElementsByTagName("span")[0].innerHTML+="<span>"+(r+1)+"</span>"}}}();
+let mainNavLinks=document.querySelectorAll(".markdownIt-TOC a");window.addEventListener("scroll",event=>{let fromTop=window.scrollY;mainNavLinks.forEach((link,index)=>{let section=document.getElementById(decodeURI(link.hash).substring(1));let nextSection=null
+if(mainNavLinks[index+1]){nextSection=document.getElementById(decodeURI(mainNavLinks[index+1].hash).substring(1));}
+if(section.offsetTop<=fromTop){if(nextSection){if(nextSection.offsetTop>fromTop){link.classList.add("currentToc");}else{link.classList.remove("currentToc");}}else{link.classList.add("currentToc");}}else{link.classList.remove("currentToc");}});});
+var h=document.documentElement,b=document.body,st="scrollTop",sh="scrollHeight",progress=document.querySelector(".progress"),scroll;document.addEventListener("scroll",function(){scroll=(h[st]||b[st])/((h[sh]||b[sh])-h.clientHeight)*100;progress.style.setProperty("--scroll",scroll+"%")});
+var wxScale=new WxScale({fullPage:document.querySelector("#fullPage"),canvas:document.querySelector("#canvas")});var imgBox=document.querySelectorAll("#md_block img");for(var i=0;i<imgBox.length;i++){imgBox[i].onclick=function(e){wxScale.start(this)}};
+</script>
+<a id="scrollUp" href="#top" style="position: fixed; z-index: 2147483647; display: block;"></a><div class="footer animated fadeInDown"><div class="site_footer"><div class="mysocials"><div class="my_socials"><a href="https://github.com/reticenceji"title="github"><i class="iconfont icon-github"></i></a><a href="reticenceji@qq.com"title="envelope"><i class="iconfont icon-envelope"></i></a><a href="https://www.zhihu.com/people/reticenceji"title="zhihu"><i class="iconfont icon-zhihu"></i></a></div></div><div class="copyright"id="copyright">Copyright © 2018-2020 <a href="https://reticenceji.github.io" style="margin:0;">Reticence</a>.</div>
+<span style="display: inline;margin-right:15px;">👁<strong><span id="busuanzi_value_site_uv"></span></strong></span><span id="busuanzi_container_page_pv" style="display: inline;"><span>📚<strong>176</strong> posts</span></div></div>
+<script>
+console.log("\n %c \u26a1Theme: Bitcron-pro Author's Blog:https://blog.blinkstar.cn  Writen By Serence  \n\n", "color: #ffffff; background: rgba(49, 49, 49, 0.85); padding:5px 0;border-radius:5px;", );
+</script>
+<script src="https://cdn.jsdelivr.net/npm/instant.page@3.0.0/instantpage.min.js" type="module" defer></script>
+<script type="text/javascript" async src="https://reticenceji.github.io/media/js/prism.js"></script>
+</body>
+</html>

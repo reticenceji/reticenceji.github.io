@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="shortcut icon" href="https://reticenceji.github.io/favicon.ico" type="image/x-icon" /><meta name="viewport"content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="apple-mobile-web-app-capable"content="yes"/><meta name="apple-mobile-web-app-status-bar-style"content="black"/><meta name="format-detection"content="telephone=no"/><meta name="renderer"content="webkit"><meta name="description"content=""><meta charset="UTF-8"><title>Rust中的模式匹配 | Reticence</title>
+<link href="https://reticenceji.github.io/styles/main.css" type="text/css" rel="stylesheet" /><link href="https://at.alicdn.com/t/font_1621793_zatzzgvf30g.css" type="text/css" rel="stylesheet" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css"><script async src="https://cdn.jsdelivr.net/npm/busuanzi@2.3.0/bsz.pure.mini.min.js"></script><script src="https://reticenceji.github.io/media/js/magnify.min.js"></script><script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js"></script>
+<script type="text/javascript">function btn_toggle(){document.getElementById("hn").classList.contains("no-js")?document.getElementById("hn").classList.remove("no-js"):document.getElementById("hn").classList.add("no-js")}</script>
+
+<link rel="canonical" href="https://reticenceji.github.io/post/rust-zhong-de-mo-shi-pi-pei/" />
+</head>
+<body>
+<div class="progress"></div><style>.progress{background:linear-gradient(to right,#87ceeb var(--scroll),transparent 0);background-repeat:no-repeat;position:fixed;width:100%;height:4px;z-index:1}</style><div class="darkmode-background"></div><div class="darkmode-layer"></div>
+<noscript><p class="warn" >本页面需要浏览器支持（启用）JavaScript</p></noscript><div class="header"><div class="logo_title"><div class="title animated fadeInDown"><a href="https://reticenceji.github.io"><img alt="logo" style="display:inline-block;" src="https://reticenceji.github.io/images/avatar.png"/></a><h1 title="Reticence" class="weaklink"><a  href="/">Reticence</a></h1>
+
+<div class="navbar weaklink">
+<div class="normal_nav">
+<div class="bitcron_nav_container"><div class="bitcron_nav"><div class="bitcron_nav"><div style="display:flex;justify-content:center;"><nav class="mixed_site_nav_wrap site_nav_wrap"><ul class="mixed_site_nav site_nav sm sm-base">	<li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/" class="selected active current nav__item" >Index</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/tags" class="selected active current nav__item" >Tags</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/archives" class="selected active current nav__item" >Archives</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/navigator.html" class="selected active current nav__item" >Navigator</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/post/about" class="selected active current nav__item" >About</a></li></ul></nav>
+<div style="float:right;margin-top:1em"><form id="gridea-search-form" data-update="1578893743252" action="/search/index.html"><input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="Search..."></form></div><div style="margin-left:0.5em;margin-top:1.2em"><input id="switch_default" onclick="mobileBtn()" type="checkbox" class="switch_default"><label for="switch_default" class="toggleBtn"></label></div></div>
+<div class="clear clear_nav_inline_end"></div></div></div><div class="clear clear_nav_end"></div></div></div><div class="hamberger" href="javascript:void(0)" onclick="btn_toggle();"><i class="iconfont icon-category"></i></div></div></div></div>
+<div id="hn" class="no-js hidden_nav animated fadeInDown"><div class="bitcron_nav_container"><div class="bitcron_nav"><nav class="mixed_site_nav_wrap site_nav_wrap"><ul class="mixed_site_nav site_nav sm sm-base">	<li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/" class="selected active current nav__item" >Index</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/tags" class="selected active current nav__item" >Tags</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/archives" class="selected active current nav__item" >Archives</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/navigator.html" class="selected active current nav__item" >Navigator</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/post/about" class="selected active current nav__item" >About</a></li></ul><div class="clear clear_nav_inline_end"></div></nav></div><div class="clear clear_nav_end"></div></div>
+<div style="display:flex;justify-content:center;inline-block;text-align:center;margin-top:7%"><div><form id="gridea-search-form" data-update="1627835297708" action="/search/index.html"><input class="search-input" autocomplete="off" spellcheck="false" name="q"  placeholder="Search..." /></form></div><div style="margin-left:0.5em"><input id="switch_default_h" onclick="mobileBtn()" type="checkbox" class="switch_default"><label for="switch_default" class="toggleBtn"></label></div></div>
+</div></div>
+<script>function enableDarkmode(){document.body.classList.add("darkmode"),document.getElementById("switch_default").checked=1,document.getElementById("switch_default_h").checked=1}function removeDarkmode(){document.body.classList.remove("darkmode"),document.getElementById("switch_default").checked=0,document.getElementById("switch_default_h").checked=0}function getCookie(a){var b,c=new RegExp("(^| )"+a+"=([^;]*)(;|$)");return(b=document.cookie.match(c))?unescape(b[2]):null}cookie=getCookie("darkmode"),"enable"==cookie&&enableDarkmode(),window.matchMedia("(prefers-color-scheme: dark)").matches&&"disable"!==cookie&&(enableDarkmode(),document.cookie="darkmode=enable; path=/");var mobileBtn=function(){1==document.getElementById("switch_default").checked?(enableDarkmode(),document.cookie="darkmode=enable; path=/"):(removeDarkmode(),document.cookie="darkmode=disable; path=/")};</script>
+
+<div class="main"><div class="main-inner"><div class="content">
+<article class="post">
+<h2 class="post_title sm_margin"><a>Rust中的模式匹配</a></h2>
+<script>function lan(){if(document.getElementById("lan").innerText=="繁"){var s=document.getElementById("tongwenlet_cn");if(s!=null){document.body.removeChild(s)}var s=document.createElement("script");s.language="javascript";s.type="text/javascript";s.src="https://cdn.jsdelivr.net/gh/qyxtim/Static@1.1/bookmarklet_tw.js";s.id="tongwenlet_cn";document.body.appendChild(s);document.getElementById("lan").innerHTML="简"}else{if(document.getElementById("lan").innerText=="簡"){var s=document.getElementById("tongwenlet_cn");if(s!=null){document.body.removeChild(s)}var s=document.createElement("script");s.language="javascript";s.type="text/javascript";s.src="https://cdn.jsdelivr.net/gh/qyxtim/Static@1.1/bookmarklet_cn.js";s.id="tongwenlet_cn";document.body.appendChild(s);document.getElementById("lan").innerHTML="繁"}}};</script>
+<section class="post_details"><i class="iconfont icon-calendar"></i><span style="margin-right:15px"> 2021-07-29</span><i class="iconfont icon-browse"></i><span style="margin-right:15px"> <span id="busuanzi_value_page_pv"></span> Views</span><i class="iconfont icon-category"></i><span class="weaklink" style="margin-right:15px">	<a href="https://reticenceji.github.io/tag/3Sdf--wHm/" class="tag">Rust</a></span><i class="iconfont icon-caret-down"></i><span style="margin-right:15px">1487字</span><i class="iconfont icon-naozhong"></i><span style="margin-right:15px">7 min read</span><a id="lan" href="javascript:void(0);"onclick="lan();"title="调整简繁体" style="margin-right:15px;">繁</a>
+</section>
+
+<div style="display:flex">
+<div class="md_block" id="md_block">
+<div class="round-shape-one"></div>
+<p>凡是和C语言不一样的东西都令我费解啊。模式匹配是Rust的特性，非常的实用。</p>
+<p>https://kaisery.github.io/trpl-zh-cn/ch18-03-pattern-syntax.html</p>
+<p>模式匹配的全部语法：</p>
+<ul>
+<li>匹配字面量（demo 1）</li>
+<li>匹配命名变量，并绑定（demo 1）</li>
+<li>多个模式——或者 和 范围（demo 3）</li>
+<li>也可以使用模式来解构结构体、枚举、元组和引用，以便使用这些值的不同部分。（demo 4）</li>
+<li>匹配守卫（demo 2）</li>
+<li>可反驳和不可反驳（demo 5）</li>
+<li><em>@</em> 运算符（<code>@</code>）允许我们在创建一个存放值的变量的同时测试其值是否匹配模式。（demo 6）</li>
+</ul>
+<h2 id="match">match</h2>
+<center>demo 1</center>
+<pre><code class="language-rust">match VALUE {
+    PATTERN =&gt; EXPRESSION,
+    PATTERN =&gt; EXPRESSION,    
+    PATTERN =&gt; EXPRESSION,
+}
+
+fn main() {
+    let x = Some(5);
+    let y = 10;
+
+    match x {
+        Some(50) =&gt; println!(&quot;Got 50&quot;),					// 可以匹配常量
+        Some(y) =&gt; println!(&quot;Matched, y = {:?}&quot;, y),	// 可以匹配并绑定变量
+        _ =&gt; println!(&quot;Default case, x = {:?}&quot;, x),		// 默认情况
+    }
+
+    println!(&quot;at the end: x = {:?}, y = {:?}&quot;, x, y);
+}
+</code></pre>
+<p><code>match</code> 表达式必须是 <strong>穷尽</strong>（<em>exhaustive</em>）的，意为 <code>match</code> 表达式所有可能的值都必须被考虑到。有一个特定的模式 <code>_</code> 可以匹配所有情况，不过它从不绑定任何变量。</p>
+<p><strong>匹配守卫</strong>（match guard）是一个指定于 match 分支模式之后的额外 if 条件，它也必须被满足才能选择此分支。匹配守卫用于表达比单独的模式所能允许的更为复杂的情况。如下：</p>
+<center>demo 2</center>
+<pre><code class="language-rust">let num = Some(4);
+
+match num {
+    Some(x) if x &lt; 5 =&gt; println!(&quot;less than five: {}&quot;, x),
+    Some(x) =&gt; println!(&quot;{}&quot;, x),
+    None =&gt; (),
+}
+</code></pre>
+<p>除了简单的匹配，还可以有<strong>或者</strong>和<strong>范围</strong>。</p>
+<center>demo 3</center>
+<pre><code class="language-rust">let x = 5;
+
+// 或者
+match x {
+    1|2|3|4|5 =&gt; println!(&quot;one through five&quot;),
+    _ =&gt; println!(&quot;something else&quot;),
+}
+// 范围，这个感觉是或者的语法糖
+// 范围只允许用于数字或 char 值，因为编译器会在编译时检查范围不为空。char 和 数字值是 Rust 仅有的可以判断范围是否为空的类型。
+match x {
+    1..=5 =&gt; println!(&quot;one through five&quot;),
+    _ =&gt; println!(&quot;something else&quot;),
+}
+</code></pre>
+<h2 id="let">let</h2>
+<p>let原本的样子：<code>let PATTERN = EXPRESSION;</code>所以</p>
+<center>demo 4</center>
+<pre><code class="language-rust">let i = 1;
+let ref a:i32 = i;
+
+// 这样可以同时绑定三个变量
+let (x, y, z) = (1, 2, 3);	
+
+// 这段代码创建了变量 a 和 b 来匹配结构体 p 中的 x 和 y 字段。
+struct Point {
+    x: i32,
+    y: i32,
+}
+fn main() {
+    let p = Point { x: 0, y: 7 };
+
+    let Point { x: a, y: b } = p;
+    assert_eq!(0, a);
+    assert_eq!(7, b);
+}
+
+// 解构枚举，经常要解构Result和Option,下面两种写法是一样的
+match ret {
+    Some(x) =&gt; print!(&quot;{:?}&quot;,x),
+    None =&gt; (),
+}
+if let Some(x) = ret {
+    print!(&quot;{:?}&quot;,x);
+}
+// 所以说模式匹配还可以用来解构 struct,enum,tuple
+</code></pre>
+<h2 id="if-let">if let</h2>
+<blockquote>
+<p>模式有两种形式：refutable（可反驳的）和 irrefutable（不可反驳的）。能匹配任何传递的可能值的模式被称为是 <strong>不可反驳的</strong>（<em>irrefutable</em>）。一个例子就是 <code>let x = 5;</code> 语句中的 <code>x</code>，因为 <code>x</code> 可以匹配任何值所以不可能会失败。对某些可能的值进行匹配会失败的模式被称为是 <strong>可反驳的</strong>（<em>refutable</em>）。一个这样的例子便是 <code>if let Some(x) = a_value</code> 表达式中的 <code>Some(x)</code>；如果变量 <code>a_value</code> 中的值是 <code>None</code> 而不是 <code>Some</code>，那么 <code>Some(x)</code> 模式不能匹配。</p>
+<p>函数参数、 <code>let</code> 语句和 <code>for</code> 循环只能接受不可反驳的模式，因为通过不匹配的值程序无法进行有意义的工作。<code>if let</code> 和 <code>while let</code> 表达式被限制为只能接受可反驳的模式，因为根据定义他们意在处理可能的失败：条件表达式的功能就是根据成功或失败执行不同的操作。</p>
+</blockquote>
+<p>有了let的模式匹配作为基础，我们可以来看<code>if let</code>. 下面的代码是错误的，编译器会告诉你没有穷尽匹配——显然，如果op2是None的话，那么m应该是什么呢？正确的写法应该是用<code>if let</code>，这就是<strong>可反驳和不可反驳</strong>显著的区别：</p>
+<center>demo 5</center>
+<pre><code class="language-rust">let op2 = Some(1);
+// Error 在 Rust 要求不可反驳模式的地方使用可反驳模式
+let Some(m) = op2;
+... 
+// Ok 当匹配成功的时候可以正确的执行{}内的代码
+// 注意到m的作用域
+if let Some(m) = op2 {
+    ...
+} 
+// 匹配失败的时候可以把逻辑放在else中
+else {
+    
+}
+</code></pre>
+<center>demo 6</center>
+<pre><code class="language-rust">
+#![allow(unused)]
+fn main() {
+enum Message {
+    Hello { id: i32 },
+}
+
+let msg = Message::Hello { id: 5 };
+
+match msg {
+    Message::Hello { id: id_variable @ 3..=7 } =&gt; {
+        println!(&quot;Found an id in range: {}&quot;, id_variable)
+    },
+    Message::Hello { id: 10..=12 } =&gt; {
+        println!(&quot;Found an id in another range&quot;)
+    },
+    Message::Hello { id } =&gt; {
+        println!(&quot;Found some other id: {}&quot;, id)
+    },
+}
+}
+</code></pre>
+<hr>
+<p><code>ref</code>和 <code>&amp;</code>有什么区别呢？看下面这个例子，<code>a</code>的类型全部都是<code>&amp;i32</code>。</p>
+<pre><code class="language-rust">	let ref a = i;
+	let a = &amp;i;
+	let &amp;a = &amp;&amp;i;
+</code></pre>
+<blockquote>
+<p>单纯Rust语言上考虑。我们在不同情况下解释<code>&amp;</code>的意思：</p>
+<ol>
+<li>在表达式上，表示的是借用。</li>
+<li>在变量绑定上，表示解地址操作与*类似。</li>
+<li>在类型声明上，表示引用类型。</li>
+<li>在模式匹配上，<strong>无效关键字</strong></li>
+</ol>
+<p>那么<code>ref</code>的通用解释是：</p>
+<ol>
+<li>在表达式上，<strong>无效关键字</strong>。</li>
+<li>在变量绑定上，表示引用类型。</li>
+<li>在类型声明上，<strong>无效关键字</strong>。</li>
+<li>在模式匹配上，表示引用类型。</li>
+</ol>
+<p>非要给区分<code>ref</code>和<code>&amp;</code>到底哪个是引用，哪个是借用。我们可以先从词性划分，引用我归类为名词，而借用归类为动词。<code>&amp;A</code>在表达式上 表示借用A，这是一个动作，那结果就是产出一个引用类型。所以<code>let ref B</code>表示声明了一个引用类型，它只能绑定到某次借用动作上。</p>
+<p>**所以<code>ref</code> 更适合叫引用， <code>&amp;</code>叫借用。**与之对应的有<code>ref mut</code>和<code>&amp;mut</code>。</p>
+<p>作者：kayryu<br>
+链接：https://www.jianshu.com/p/ac519d8c5ec9</p>
+</blockquote>
+<p>函数的参数相当于一个隐式的let绑定。</p>
+
+<span id="footnote"></span>
+<div id = "warn"></div>
+</div>
+<div class="toc-container"><ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#match">match</a></li>
+<li><a href="#let">let</a></li>
+<li><a href="#if-let">if let</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="fullPage"><canvas id="canvas"></canvas></div>
+</article>
+<div id="eof"><span>EOF</span></div><div class="round-shape-one"></div>
+<section>
+<div class="doc_comments">
+
+</div></section>
+</div></div></div><script>
+"use strict";!function(){for(var n=document.getElementsByTagName("pre"),e=n.length,s=0;s<e;s++){n[s].innerHTML='<span class="line-number"></span>'+n[s].innerHTML+'<span class="cl"></span>';for(var a=n[s].innerHTML.split(/\n/).length,r=0;r<a-1;r++){n[s].getElementsByTagName("span")[0].innerHTML+="<span>"+(r+1)+"</span>"}}}();
+let mainNavLinks=document.querySelectorAll(".markdownIt-TOC a");window.addEventListener("scroll",event=>{let fromTop=window.scrollY;mainNavLinks.forEach((link,index)=>{let section=document.getElementById(decodeURI(link.hash).substring(1));let nextSection=null
+if(mainNavLinks[index+1]){nextSection=document.getElementById(decodeURI(mainNavLinks[index+1].hash).substring(1));}
+if(section.offsetTop<=fromTop){if(nextSection){if(nextSection.offsetTop>fromTop){link.classList.add("currentToc");}else{link.classList.remove("currentToc");}}else{link.classList.add("currentToc");}}else{link.classList.remove("currentToc");}});});
+var h=document.documentElement,b=document.body,st="scrollTop",sh="scrollHeight",progress=document.querySelector(".progress"),scroll;document.addEventListener("scroll",function(){scroll=(h[st]||b[st])/((h[sh]||b[sh])-h.clientHeight)*100;progress.style.setProperty("--scroll",scroll+"%")});
+var wxScale=new WxScale({fullPage:document.querySelector("#fullPage"),canvas:document.querySelector("#canvas")});var imgBox=document.querySelectorAll("#md_block img");for(var i=0;i<imgBox.length;i++){imgBox[i].onclick=function(e){wxScale.start(this)}};
+</script>
+<a id="scrollUp" href="#top" style="position: fixed; z-index: 2147483647; display: block;"></a><div class="footer animated fadeInDown"><div class="site_footer"><div class="mysocials"><div class="my_socials"><a href="https://github.com/reticenceji"title="github"><i class="iconfont icon-github"></i></a><a href="reticenceji@qq.com"title="envelope"><i class="iconfont icon-envelope"></i></a><a href="https://www.zhihu.com/people/reticenceji"title="zhihu"><i class="iconfont icon-zhihu"></i></a></div></div><div class="copyright"id="copyright">Copyright © 2018-2020 <a href="https://reticenceji.github.io" style="margin:0;">Reticence</a>.</div>
+<span style="display: inline;margin-right:15px;">👁<strong><span id="busuanzi_value_site_uv"></span></strong></span><span id="busuanzi_container_page_pv" style="display: inline;"><span>📚<strong>176</strong> posts</span></div></div>
+<script>
+console.log("\n %c \u26a1Theme: Bitcron-pro Author's Blog:https://blog.blinkstar.cn  Writen By Serence  \n\n", "color: #ffffff; background: rgba(49, 49, 49, 0.85); padding:5px 0;border-radius:5px;", );
+</script>
+<script src="https://cdn.jsdelivr.net/npm/instant.page@3.0.0/instantpage.min.js" type="module" defer></script>
+<script type="text/javascript" async src="https://reticenceji.github.io/media/js/prism.js"></script>
+</body>
+</html>

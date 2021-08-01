@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="shortcut icon" href="https://reticenceji.github.io/favicon.ico" type="image/x-icon" /><meta name="viewport"content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="apple-mobile-web-app-capable"content="yes"/><meta name="apple-mobile-web-app-status-bar-style"content="black"/><meta name="format-detection"content="telephone=no"/><meta name="renderer"content="webkit"><meta name="description"content=""><meta charset="UTF-8"><title>Git和Github-Q&amp;A | Reticence</title>
+<link href="https://reticenceji.github.io/styles/main.css" type="text/css" rel="stylesheet" /><link href="https://at.alicdn.com/t/font_1621793_zatzzgvf30g.css" type="text/css" rel="stylesheet" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css"><script async src="https://cdn.jsdelivr.net/npm/busuanzi@2.3.0/bsz.pure.mini.min.js"></script><script src="https://reticenceji.github.io/media/js/magnify.min.js"></script><script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js"></script>
+<script type="text/javascript">function btn_toggle(){document.getElementById("hn").classList.contains("no-js")?document.getElementById("hn").classList.remove("no-js"):document.getElementById("hn").classList.add("no-js")}</script>
+
+<link rel="canonical" href="https://reticenceji.github.io/post/git-he-github/" />
+</head>
+<body>
+<div class="progress"></div><style>.progress{background:linear-gradient(to right,#87ceeb var(--scroll),transparent 0);background-repeat:no-repeat;position:fixed;width:100%;height:4px;z-index:1}</style><div class="darkmode-background"></div><div class="darkmode-layer"></div>
+<noscript><p class="warn" >本页面需要浏览器支持（启用）JavaScript</p></noscript><div class="header"><div class="logo_title"><div class="title animated fadeInDown"><a href="https://reticenceji.github.io"><img alt="logo" style="display:inline-block;" src="https://reticenceji.github.io/images/avatar.png"/></a><h1 title="Reticence" class="weaklink"><a  href="/">Reticence</a></h1>
+
+<div class="navbar weaklink">
+<div class="normal_nav">
+<div class="bitcron_nav_container"><div class="bitcron_nav"><div class="bitcron_nav"><div style="display:flex;justify-content:center;"><nav class="mixed_site_nav_wrap site_nav_wrap"><ul class="mixed_site_nav site_nav sm sm-base">	<li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/" class="selected active current nav__item" >Index</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/tags" class="selected active current nav__item" >Tags</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/archives" class="selected active current nav__item" >Archives</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/navigator.html" class="selected active current nav__item" >Navigator</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/post/about" class="selected active current nav__item" >About</a></li></ul></nav>
+<div style="float:right;margin-top:1em"><form id="gridea-search-form" data-update="1578893743252" action="/search/index.html"><input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="Search..."></form></div><div style="margin-left:0.5em;margin-top:1.2em"><input id="switch_default" onclick="mobileBtn()" type="checkbox" class="switch_default"><label for="switch_default" class="toggleBtn"></label></div></div>
+<div class="clear clear_nav_inline_end"></div></div></div><div class="clear clear_nav_end"></div></div></div><div class="hamberger" href="javascript:void(0)" onclick="btn_toggle();"><i class="iconfont icon-category"></i></div></div></div></div>
+<div id="hn" class="no-js hidden_nav animated fadeInDown"><div class="bitcron_nav_container"><div class="bitcron_nav"><nav class="mixed_site_nav_wrap site_nav_wrap"><ul class="mixed_site_nav site_nav sm sm-base">	<li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/" class="selected active current nav__item" >Index</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/tags" class="selected active current nav__item" >Tags</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/archives" class="selected active current nav__item" >Archives</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/navigator.html" class="selected active current nav__item" >Navigator</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/post/about" class="selected active current nav__item" >About</a></li></ul><div class="clear clear_nav_inline_end"></div></nav></div><div class="clear clear_nav_end"></div></div>
+<div style="display:flex;justify-content:center;inline-block;text-align:center;margin-top:7%"><div><form id="gridea-search-form" data-update="1627835297708" action="/search/index.html"><input class="search-input" autocomplete="off" spellcheck="false" name="q"  placeholder="Search..." /></form></div><div style="margin-left:0.5em"><input id="switch_default_h" onclick="mobileBtn()" type="checkbox" class="switch_default"><label for="switch_default" class="toggleBtn"></label></div></div>
+</div></div>
+<script>function enableDarkmode(){document.body.classList.add("darkmode"),document.getElementById("switch_default").checked=1,document.getElementById("switch_default_h").checked=1}function removeDarkmode(){document.body.classList.remove("darkmode"),document.getElementById("switch_default").checked=0,document.getElementById("switch_default_h").checked=0}function getCookie(a){var b,c=new RegExp("(^| )"+a+"=([^;]*)(;|$)");return(b=document.cookie.match(c))?unescape(b[2]):null}cookie=getCookie("darkmode"),"enable"==cookie&&enableDarkmode(),window.matchMedia("(prefers-color-scheme: dark)").matches&&"disable"!==cookie&&(enableDarkmode(),document.cookie="darkmode=enable; path=/");var mobileBtn=function(){1==document.getElementById("switch_default").checked?(enableDarkmode(),document.cookie="darkmode=enable; path=/"):(removeDarkmode(),document.cookie="darkmode=disable; path=/")};</script>
+
+<div class="main"><div class="main-inner"><div class="content">
+<article class="post">
+<h2 class="post_title sm_margin"><a>Git和Github-Q&amp;A</a></h2>
+<script>function lan(){if(document.getElementById("lan").innerText=="繁"){var s=document.getElementById("tongwenlet_cn");if(s!=null){document.body.removeChild(s)}var s=document.createElement("script");s.language="javascript";s.type="text/javascript";s.src="https://cdn.jsdelivr.net/gh/qyxtim/Static@1.1/bookmarklet_tw.js";s.id="tongwenlet_cn";document.body.appendChild(s);document.getElementById("lan").innerHTML="简"}else{if(document.getElementById("lan").innerText=="簡"){var s=document.getElementById("tongwenlet_cn");if(s!=null){document.body.removeChild(s)}var s=document.createElement("script");s.language="javascript";s.type="text/javascript";s.src="https://cdn.jsdelivr.net/gh/qyxtim/Static@1.1/bookmarklet_cn.js";s.id="tongwenlet_cn";document.body.appendChild(s);document.getElementById("lan").innerHTML="繁"}}};</script>
+<section class="post_details"><i class="iconfont icon-calendar"></i><span style="margin-right:15px"> 2020-10-03</span><i class="iconfont icon-browse"></i><span style="margin-right:15px"> <span id="busuanzi_value_page_pv"></span> Views</span><i class="iconfont icon-category"></i><span class="weaklink" style="margin-right:15px">	<a href="https://reticenceji.github.io/tag/nfABdWVsa/" class="tag">OS</a></span><i class="iconfont icon-caret-down"></i><span style="margin-right:15px">1389字</span><i class="iconfont icon-naozhong"></i><span style="margin-right:15px">6 min read</span><a id="lan" href="javascript:void(0);"onclick="lan();"title="调整简繁体" style="margin-right:15px;">繁</a>
+</section>
+
+<div style="display:flex">
+<div class="md_block" id="md_block">
+<div class="round-shape-one"></div>
+<p>参考链接：https://www.cnblogs.com/flora5/p/7152556.html<br>
+(未完待续，持续更新)</p>
+<h3 id="需求一如何在本地创建一个仓库然后和远程联动">需求一：如何在本地创建一个仓库，然后和远程联动？</h3>
+<ol>
+<li>
+<p>创建公钥：  <code>ssh-keygen -t rsa -C &quot;your_email@example.com&quot;</code><br>
+然后查看公钥：<code>cat ~/.ssh/id_rsa.pub</code>，复制其中的内容，添加到Github的SSH中，名字随意。<br>
+<img src="https://reticenceji.github.io/post-images/1608269366372.png" alt="" loading="lazy"><br>
+然后相当于添加了一个身份认证。在本地填上自己的email和name，就可以和远程仓库联动了。</p>
+</li>
+<li>
+<p>创建文件夹，<code>git init</code></p>
+</li>
+<li>
+<p>添加Origin远程仓库：<code>git remote add origin git@github.com:reticenceji/oslab.git</code>(注意不要添加Https开头的那个远程仓库的地址，选SSH的)。添加后，远程库的名字就是<code>origin</code>，这是Git默认的叫法，也可以改成别的，但是<code>origin</code>这个名字一看就知道是远程库。</p>
+</li>
+<li>
+<p>如果远程仓库是空的，你需要初始化一下（也就是第一次上传时）<code>git push --set-upstream origin master</code></p>
+</li>
+</ol>
+<ul>
+<li>2,3,4是你自己创建库，如果是已经存在的库，直接git clone就好了。</li>
+<li><code>git remote -v</code> 查看origin</li>
+</ul>
+<ol start="4">
+<li>查看信息<pre><code>git remote -v     #查看远程仓库信息
+git config --global -l   #列出本地个人信息，建议把email和github设成一样
+</code></pre>
+</li>
+</ol>
+<h3 id="需求二上传-下载的基本操作">需求二：上传、下载的基本操作</h3>
+<ol>
+<li>关于上传的基本操作</li>
+</ol>
+<pre><code class="language-shell">git status     #查看当前工作区的状态
+git add filename1,filename2	#保存到暂存区stage
+git add .	#保存全部文件到stage
+git commit -m &quot;提交说明&quot;	#保存到repository，提交说明尽可能的详细。
+git push -u origin master	#第一次提交到远程仓库
+git push origin master	#之后提交到远程仓库
+</code></pre>
+<ol start="2">
+<li>关于回退的基本操作</li>
+</ol>
+<pre><code class="language-shell">git log		#查看提交历史，以便确定要回退到哪个版本。
+git reflog	#查看命令历史，以便确定要回到未来的哪个版本。
+git reset --hard HEAD^	#返回到上一个版本
+</code></pre>
+<p>3 <code>git pull origin</code>从远程拉取最新版本。</p>
+<h3 id="需求三本地代码和远程代码有冲突的时候pull失败push失败">需求三：本地代码和远程代码有冲突的时候，pull失败/push失败</h3>
+<p>当本地代码和远程代码有冲突的时候，执行git pull操作的时候，会提示有冲突，然后直接终止本次pull。<br>
+以下pull失败为例子。我在本地和远程分别编辑了README导致了冲突。<br>
+<img src="https://reticenceji.github.io/post-images/1601820199395.png" alt="" loading="lazy"><br>
+以下push为例子。我在本地和远程分别编辑了README导致了冲突。<br>
+<img src="https://reticenceji.github.io/post-images/1601820828236.png" alt="" loading="lazy"></p>
+<p>这个有问题高级的方式解决，但是比较繁琐。建议在别的地方备份一下，然后强制合并：</p>
+<pre><code>   git fetch --all      #从远程下载最新的，而不尝试合并或rebase任何东西。
+   git reset --hard origin/master   #将主分支重置为您刚刚获取的内容
+</code></pre>
+<p>然后你手动观察一下哪里不太一样，手动merge再push。</p>
+<ul>
+<li>这个问题最好避免。避免方法为在写之前先pull一下更新到最新版本，写完之后add-commit-push三连直接上传。其实pull所做的操作就是fetch+merge，push也是有merge；所以不要你在写的时候正好别人也在写同样的文件提交了，一般不会出问题。</li>
+<li>强制pull(慎用)，加个<code>-f</code>选项</li>
+<li>origin可以认为是指向某个repository的指针，master是branch名字（主分支）。origin/master就是那个远程repo的主分支。我们输入的<code>git push origin master</code>是<code>git push origin master:master</code>的简写实际上是把本地的master推送到远程的master</li>
+</ul>
+<h3 id="需求四不用命令行使用git">需求四：不用命令行使用git</h3>
+<p>建议使用VSCode.</p>
+<ul>
+<li>他会列出所有的Changes,点击Changes旁边的<code>+</code>号保存changes到stage，相当于add。</li>
+<li>最上方的✔️是commit</li>
+<li></li>
+</ul>
+<h3 id="需求五版本的推进">需求五：版本的推进</h3>
+<p>使用git的tag功能<br>
+方法一：使用github<br>
+可以在github里添加tag<br>
+然后<code>git pull origin #不能 git pull origin master</code>，在本地就会有tag了。</p>
+<p>方法二：使用git<br>
+创建一个标签：<code>git tag -a v1.0 -m &quot;lab1的最终版本&quot;</code><br>
+列出所有的标签：<code>git tag</code></p>
+<p>然后如果你想返回到之前的版本：<code>git checkout v1.0</code>，然后你可以查看当时的成果。不过你想做出修改，也不会改到现在的版本。你先应该<code>git checkout master</code>回到当前的主分支，然后继续工作。</p>
+<h3 id="需求六commit之后后悔了想要撤回">需求六：commit之后后悔了，想要撤回</h3>
+<p>执行<code>git reset --soft HEAD^</code>，就是回到上一个版本。你的代码还在的。</p>
+<h3 id="需求六想做一个小改动覆盖上一次的提交">需求六：想做一个小改动，覆盖上一次的提交</h3>
+<p>本地覆盖记录<br>
+<code>git commit --amend -m &quot;xxxx&quot;</code><br>
+线上覆盖提交，-f 表示强制push,远程的最新的一次commit被删除<br>
+<code>git push origin 分支名称:分支名称 -f</code></p>
+<h3 id="需求七查看版本之间的区别">需求七：查看版本之间的区别</h3>
+<p><code>git diff</code>命令可以查看区别，主要使用如下：<br>
+<code>git diff</code>查看当前没有add的内容修改。(这个vscode可以直接显示)<br>
+<code>git diff --cached</code>查看已经add没有commit的修改。<br>
+<code>git diff 版本号1 版本号2</code>查看版本之间的区别，举个例子，比如我刚刚pull了一个版本，我想查看他和上一个版本的区别，可以用<code>git diff HEAD^ HEAD</code>。</p>
+<h3 id="需求八创建开发分支">需求八：创建开发分支</h3>
+<p><code>git branch name</code>可以创建分支，比如创建<code>develop</code>分支。<br>
+创建完之后，用<code>git checkout name</code>切换分支。<br>
+之后我们的commit操作就会提交到我们当前的这个分支上了。</p>
+<p>之后，当我们做了一定的工作然后想要合并回主分支的时候，用<code>merge</code>或者<code>rebase</code>。merge是最简单的，永远不要rebase那些已经推送到公共仓库的更新。</p>
+
+<span id="footnote"></span>
+<div id = "warn"></div>
+</div>
+<div class="toc-container"><ul class="markdownIt-TOC">
+<li>
+<ul>
+<li>
+<ul>
+<li><a href="#%E9%9C%80%E6%B1%82%E4%B8%80%E5%A6%82%E4%BD%95%E5%9C%A8%E6%9C%AC%E5%9C%B0%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA%E4%BB%93%E5%BA%93%E7%84%B6%E5%90%8E%E5%92%8C%E8%BF%9C%E7%A8%8B%E8%81%94%E5%8A%A8">需求一：如何在本地创建一个仓库，然后和远程联动？</a></li>
+<li><a href="#%E9%9C%80%E6%B1%82%E4%BA%8C%E4%B8%8A%E4%BC%A0-%E4%B8%8B%E8%BD%BD%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C">需求二：上传、下载的基本操作</a></li>
+<li><a href="#%E9%9C%80%E6%B1%82%E4%B8%89%E6%9C%AC%E5%9C%B0%E4%BB%A3%E7%A0%81%E5%92%8C%E8%BF%9C%E7%A8%8B%E4%BB%A3%E7%A0%81%E6%9C%89%E5%86%B2%E7%AA%81%E7%9A%84%E6%97%B6%E5%80%99pull%E5%A4%B1%E8%B4%A5push%E5%A4%B1%E8%B4%A5">需求三：本地代码和远程代码有冲突的时候，pull失败/push失败</a></li>
+<li><a href="#%E9%9C%80%E6%B1%82%E5%9B%9B%E4%B8%8D%E7%94%A8%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%BD%BF%E7%94%A8git">需求四：不用命令行使用git</a></li>
+<li><a href="#%E9%9C%80%E6%B1%82%E4%BA%94%E7%89%88%E6%9C%AC%E7%9A%84%E6%8E%A8%E8%BF%9B">需求五：版本的推进</a></li>
+<li><a href="#%E9%9C%80%E6%B1%82%E5%85%ADcommit%E4%B9%8B%E5%90%8E%E5%90%8E%E6%82%94%E4%BA%86%E6%83%B3%E8%A6%81%E6%92%A4%E5%9B%9E">需求六：commit之后后悔了，想要撤回</a></li>
+<li><a href="#%E9%9C%80%E6%B1%82%E5%85%AD%E6%83%B3%E5%81%9A%E4%B8%80%E4%B8%AA%E5%B0%8F%E6%94%B9%E5%8A%A8%E8%A6%86%E7%9B%96%E4%B8%8A%E4%B8%80%E6%AC%A1%E7%9A%84%E6%8F%90%E4%BA%A4">需求六：想做一个小改动，覆盖上一次的提交</a></li>
+<li><a href="#%E9%9C%80%E6%B1%82%E4%B8%83%E6%9F%A5%E7%9C%8B%E7%89%88%E6%9C%AC%E4%B9%8B%E9%97%B4%E7%9A%84%E5%8C%BA%E5%88%AB">需求七：查看版本之间的区别</a></li>
+<li><a href="#%E9%9C%80%E6%B1%82%E5%85%AB%E5%88%9B%E5%BB%BA%E5%BC%80%E5%8F%91%E5%88%86%E6%94%AF">需求八：创建开发分支</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="fullPage"><canvas id="canvas"></canvas></div>
+</article>
+<div id="eof"><span>EOF</span></div><div class="round-shape-one"></div>
+<section>
+<div class="doc_comments">
+
+</div></section>
+</div></div></div><script>
+"use strict";!function(){for(var n=document.getElementsByTagName("pre"),e=n.length,s=0;s<e;s++){n[s].innerHTML='<span class="line-number"></span>'+n[s].innerHTML+'<span class="cl"></span>';for(var a=n[s].innerHTML.split(/\n/).length,r=0;r<a-1;r++){n[s].getElementsByTagName("span")[0].innerHTML+="<span>"+(r+1)+"</span>"}}}();
+let mainNavLinks=document.querySelectorAll(".markdownIt-TOC a");window.addEventListener("scroll",event=>{let fromTop=window.scrollY;mainNavLinks.forEach((link,index)=>{let section=document.getElementById(decodeURI(link.hash).substring(1));let nextSection=null
+if(mainNavLinks[index+1]){nextSection=document.getElementById(decodeURI(mainNavLinks[index+1].hash).substring(1));}
+if(section.offsetTop<=fromTop){if(nextSection){if(nextSection.offsetTop>fromTop){link.classList.add("currentToc");}else{link.classList.remove("currentToc");}}else{link.classList.add("currentToc");}}else{link.classList.remove("currentToc");}});});
+var h=document.documentElement,b=document.body,st="scrollTop",sh="scrollHeight",progress=document.querySelector(".progress"),scroll;document.addEventListener("scroll",function(){scroll=(h[st]||b[st])/((h[sh]||b[sh])-h.clientHeight)*100;progress.style.setProperty("--scroll",scroll+"%")});
+var wxScale=new WxScale({fullPage:document.querySelector("#fullPage"),canvas:document.querySelector("#canvas")});var imgBox=document.querySelectorAll("#md_block img");for(var i=0;i<imgBox.length;i++){imgBox[i].onclick=function(e){wxScale.start(this)}};
+</script>
+<a id="scrollUp" href="#top" style="position: fixed; z-index: 2147483647; display: block;"></a><div class="footer animated fadeInDown"><div class="site_footer"><div class="mysocials"><div class="my_socials"><a href="https://github.com/reticenceji"title="github"><i class="iconfont icon-github"></i></a><a href="reticenceji@qq.com"title="envelope"><i class="iconfont icon-envelope"></i></a><a href="https://www.zhihu.com/people/reticenceji"title="zhihu"><i class="iconfont icon-zhihu"></i></a></div></div><div class="copyright"id="copyright">Copyright © 2018-2020 <a href="https://reticenceji.github.io" style="margin:0;">Reticence</a>.</div>
+<span style="display: inline;margin-right:15px;">👁<strong><span id="busuanzi_value_site_uv"></span></strong></span><span id="busuanzi_container_page_pv" style="display: inline;"><span>📚<strong>176</strong> posts</span></div></div>
+<script>
+console.log("\n %c \u26a1Theme: Bitcron-pro Author's Blog:https://blog.blinkstar.cn  Writen By Serence  \n\n", "color: #ffffff; background: rgba(49, 49, 49, 0.85); padding:5px 0;border-radius:5px;", );
+</script>
+<script src="https://cdn.jsdelivr.net/npm/instant.page@3.0.0/instantpage.min.js" type="module" defer></script>
+<script type="text/javascript" async src="https://reticenceji.github.io/media/js/prism.js"></script>
+</body>
+</html>

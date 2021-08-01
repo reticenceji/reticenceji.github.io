@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="shortcut icon" href="https://reticenceji.github.io/favicon.ico" type="image/x-icon" /><meta name="viewport"content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="apple-mobile-web-app-capable"content="yes"/><meta name="apple-mobile-web-app-status-bar-style"content="black"/><meta name="format-detection"content="telephone=no"/><meta name="renderer"content="webkit"><meta name="description"content=""><meta charset="UTF-8"><title>DS-Heap | Reticence</title>
+<link href="https://reticenceji.github.io/styles/main.css" type="text/css" rel="stylesheet" /><link href="https://at.alicdn.com/t/font_1621793_zatzzgvf30g.css" type="text/css" rel="stylesheet" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css"><script async src="https://cdn.jsdelivr.net/npm/busuanzi@2.3.0/bsz.pure.mini.min.js"></script><script src="https://reticenceji.github.io/media/js/magnify.min.js"></script><script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js"></script>
+<script type="text/javascript">function btn_toggle(){document.getElementById("hn").classList.contains("no-js")?document.getElementById("hn").classList.remove("no-js"):document.getElementById("hn").classList.add("no-js")}</script>
+
+<link rel="canonical" href="https://reticenceji.github.io/post/dui-heap/" />
+</head>
+<body>
+<div class="progress"></div><style>.progress{background:linear-gradient(to right,#87ceeb var(--scroll),transparent 0);background-repeat:no-repeat;position:fixed;width:100%;height:4px;z-index:1}</style><div class="darkmode-background"></div><div class="darkmode-layer"></div>
+<noscript><p class="warn" >本页面需要浏览器支持（启用）JavaScript</p></noscript><div class="header"><div class="logo_title"><div class="title animated fadeInDown"><a href="https://reticenceji.github.io"><img alt="logo" style="display:inline-block;" src="https://reticenceji.github.io/images/avatar.png"/></a><h1 title="Reticence" class="weaklink"><a  href="/">Reticence</a></h1>
+
+<div class="navbar weaklink">
+<div class="normal_nav">
+<div class="bitcron_nav_container"><div class="bitcron_nav"><div class="bitcron_nav"><div style="display:flex;justify-content:center;"><nav class="mixed_site_nav_wrap site_nav_wrap"><ul class="mixed_site_nav site_nav sm sm-base">	<li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/" class="selected active current nav__item" >Index</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/tags" class="selected active current nav__item" >Tags</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/archives" class="selected active current nav__item" >Archives</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/navigator.html" class="selected active current nav__item" >Navigator</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/post/about" class="selected active current nav__item" >About</a></li></ul></nav>
+<div style="float:right;margin-top:1em"><form id="gridea-search-form" data-update="1578893743252" action="/search/index.html"><input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="Search..."></form></div><div style="margin-left:0.5em;margin-top:1.2em"><input id="switch_default" onclick="mobileBtn()" type="checkbox" class="switch_default"><label for="switch_default" class="toggleBtn"></label></div></div>
+<div class="clear clear_nav_inline_end"></div></div></div><div class="clear clear_nav_end"></div></div></div><div class="hamberger" href="javascript:void(0)" onclick="btn_toggle();"><i class="iconfont icon-category"></i></div></div></div></div>
+<div id="hn" class="no-js hidden_nav animated fadeInDown"><div class="bitcron_nav_container"><div class="bitcron_nav"><nav class="mixed_site_nav_wrap site_nav_wrap"><ul class="mixed_site_nav site_nav sm sm-base">	<li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/" class="selected active current nav__item" >Index</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/tags" class="selected active current nav__item" >Tags</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/archives" class="selected active current nav__item" >Archives</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/navigator.html" class="selected active current nav__item" >Navigator</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/post/about" class="selected active current nav__item" >About</a></li></ul><div class="clear clear_nav_inline_end"></div></nav></div><div class="clear clear_nav_end"></div></div>
+<div style="display:flex;justify-content:center;inline-block;text-align:center;margin-top:7%"><div><form id="gridea-search-form" data-update="1627835297708" action="/search/index.html"><input class="search-input" autocomplete="off" spellcheck="false" name="q"  placeholder="Search..." /></form></div><div style="margin-left:0.5em"><input id="switch_default_h" onclick="mobileBtn()" type="checkbox" class="switch_default"><label for="switch_default" class="toggleBtn"></label></div></div>
+</div></div>
+<script>function enableDarkmode(){document.body.classList.add("darkmode"),document.getElementById("switch_default").checked=1,document.getElementById("switch_default_h").checked=1}function removeDarkmode(){document.body.classList.remove("darkmode"),document.getElementById("switch_default").checked=0,document.getElementById("switch_default_h").checked=0}function getCookie(a){var b,c=new RegExp("(^| )"+a+"=([^;]*)(;|$)");return(b=document.cookie.match(c))?unescape(b[2]):null}cookie=getCookie("darkmode"),"enable"==cookie&&enableDarkmode(),window.matchMedia("(prefers-color-scheme: dark)").matches&&"disable"!==cookie&&(enableDarkmode(),document.cookie="darkmode=enable; path=/");var mobileBtn=function(){1==document.getElementById("switch_default").checked?(enableDarkmode(),document.cookie="darkmode=enable; path=/"):(removeDarkmode(),document.cookie="darkmode=disable; path=/")};</script>
+
+<div class="main"><div class="main-inner"><div class="content">
+<article class="post">
+<h2 class="post_title sm_margin"><a>DS-Heap</a></h2>
+<script>function lan(){if(document.getElementById("lan").innerText=="繁"){var s=document.getElementById("tongwenlet_cn");if(s!=null){document.body.removeChild(s)}var s=document.createElement("script");s.language="javascript";s.type="text/javascript";s.src="https://cdn.jsdelivr.net/gh/qyxtim/Static@1.1/bookmarklet_tw.js";s.id="tongwenlet_cn";document.body.appendChild(s);document.getElementById("lan").innerHTML="简"}else{if(document.getElementById("lan").innerText=="簡"){var s=document.getElementById("tongwenlet_cn");if(s!=null){document.body.removeChild(s)}var s=document.createElement("script");s.language="javascript";s.type="text/javascript";s.src="https://cdn.jsdelivr.net/gh/qyxtim/Static@1.1/bookmarklet_cn.js";s.id="tongwenlet_cn";document.body.appendChild(s);document.getElementById("lan").innerHTML="繁"}}};</script>
+<section class="post_details"><i class="iconfont icon-calendar"></i><span style="margin-right:15px"> 2020-11-08</span><i class="iconfont icon-browse"></i><span style="margin-right:15px"> <span id="busuanzi_value_page_pv"></span> Views</span><i class="iconfont icon-category"></i><span class="weaklink" style="margin-right:15px">	<a href="https://reticenceji.github.io/tag/0AqTQfzSL/" class="tag">DS</a></span><i class="iconfont icon-caret-down"></i><span style="margin-right:15px">1027字</span><i class="iconfont icon-naozhong"></i><span style="margin-right:15px">5 min read</span><a id="lan" href="javascript:void(0);"onclick="lan();"title="调整简繁体" style="margin-right:15px;">繁</a>
+</section>
+
+<div style="display:flex">
+<div class="md_block" id="md_block">
+<div class="round-shape-one"></div>
+<h2 id="二叉堆">二叉堆</h2>
+<p>参考链接：<a href="https://www.jianshu.com/p/6b526aa481b1">简书-堆</a></p>
+<p>堆是一种特殊的树，二叉堆就是用数组实现的二叉树。</p>
+<p>堆分为两种：<strong>最大堆max-heap</strong>和<strong>最小堆min-heap</strong>，两者的差别在于节点的排序方式。在最大堆中，父节点的值比每一个子节点的值都要大。在最小堆中，父节点的值比每一个子节点的值都要小。这就是所谓的“堆属性”，并且这个属性对堆中的每一个节点都成立。我们下面主要提到的堆指二叉堆。</p>
+<p>你可以发现相比于二叉树，堆的“有序性”降低了。因此堆的主要目的不是用于搜索，而是快速的对最大或最小元素进行删除或插入操作。并且最小堆和最大堆没有必要是二叉堆。</p>
+<h3 id="index第一个元素的index0">index(第一个元素的index=0)</h3>
+<p><code>parent = (int)((i-1)/2)</code>这里加个int主要是强调一下取整。。<br>
+<code>lson = i*2+1;	rson = i*2+2</code><br>
+千万不要直接复制下面的代码，因为这不是我一次写的。有的地方index=0有点地方index=1，有时候我直接用一个数组，有时候定义了一个完整的结构。</p>
+<h2 id="优先队列-priority-queue">优先队列 Priority Queue</h2>
+<p>Abstract Data Type优先队列的定义如下：</p>
+<pre><code class="language-c">//ADT priority queue
+typedef struct HeapStruct* PriorityQueue;
+struct HeapStruct{
+    int Capacity;
+    int Size;
+    Elementtype *Elements;	//一般用数组
+}
+
+void Insert(Elementtype X,PriorityQueue H);
+Elementtype DeleteMin(PriorityQueue H);
+Elementtype FindMin(PriorityQueue H);
+PriorityQueue BuildHeap(Array a);
+</code></pre>
+<p>二叉堆是实现ADT优先队列的一个高效方法	，优先队列在底层一般使用二叉堆（<strong>Binary Heap</strong>）实现。优先队列有两个最基本的操作，Insert和ReturnMin。下面的操作是第一个元素的index = 1;</p>
+<pre><code class="language-c">//Insert 很简单，插入的元素和父节点比较，如果小就交换，知道达到根节点或父节点小为之。时间复杂度是O(log(n))，其实就是PercolateUp的过程。
+void Insert(Elementtype X,PriorityQueue H){
+    int i;
+    if (IsFull(H))
+    {
+        Error(&quot;Priority is full&quot;); return;
+    }
+    for (i=++H-&gt;size; H-&gt;Elements[i/2]&gt;X,i/=2)
+    	H-&gt;Elements[i] = H-&gt;Elements[i/2];
+    H-&gt;Elements[i]=X;
+}
+</code></pre>
+<pre><code class="language-c">//DeleteMin 其实是最后一个先提升到root，在沉到下面把最小的换上去。时间复杂度也是O(log(n))
+ElementType  DeleteMin( PriorityQueue  H ) { 
+    int  i, Child; 
+ 	ElementType  MinElement, LastElement; 
+    if ( IsEmpty( H ) ) { 
+        Error( &quot;Priority queue is empty&quot; ); return  H-&gt;Elements[ 0 ];   
+    } 
+    MinElement = H-&gt;Elements[ 1 ];  /* save the min element */
+    LastElement = H-&gt;Elements[ H-&gt;Size-- ];  /* take last and reset size */
+    for ( i = 1; i * 2 &lt;= H-&gt;Size; i = Child ) {  /* Find smaller child */
+		Child = i * 2; 
+        if (Child != H-&gt;Size &amp;&amp; H-&gt;Elements[Child+1] &lt; H-&gt;Elements[Child]) 
+            Child++; 
+        if ( LastElement &gt; H-&gt;Elements[ Child ] )   /* Percolate one level */
+			H-&gt;Elements[ i ] = H-&gt;Elements[ Child ]; 
+      	else     
+          	break;   /* find the proper position */
+    } 
+    H-&gt;Elements[ i ] = MinElement; 
+    return  MinElement; 
+}
+</code></pre>
+<pre><code class="language-c">PriorityQueue  BuildHeap( int  MaxElements ) 
+{ 
+    PriorityQueue  H; 
+    if ( MaxElements &lt; MinPQSize ) 
+        return  Error( &quot;Priority queue size is too small&quot; ); 
+    H = malloc( sizeof ( struct HeapStruct ) ); 
+    if ( H ==NULL ) 
+        return  FatalError( &quot;Out of space!!!&quot; ); 
+    /* Allocate the array plus one extra for sentinel */ 
+    H-&gt;Elements = malloc(( MaxElements + 1 ) * sizeof( ElementType )); 
+    if ( H-&gt;Elements == NULL ) 
+        return  FatalError( &quot;Out of space!!!&quot; ); 
+    H-&gt;Capacity = MaxElements; 
+    H-&gt;Size = 0; 
+    H-&gt;Elements[ 0 ] = MinData;  /* set the sentinel */
+    return  H; 
+}
+
+</code></pre>
+<h2 id="其他的操作">其他的操作</h2>
+<p>PercolateDown就是和自己的两个儿子比，把三个数中最小的换成父亲，然后一直从root到n。(我这里是第一个节点index==0的写法)</p>
+<pre><code class="language-c">void PercDown(int *heap, int root ,int n)
+{
+    int Child,i,r; 
+    r = heap[root];
+    for (i = root; i*2+1 &lt;= n; i = Child ) { 
+        //选出最小的Child 
+		Child = i*2+1; 
+        if (Child != n &amp;&amp; heap[Child+1] &gt;  heap[Child]) 
+            Child++; 
+        if ( heap[i] &lt; heap[Child] )   /* Percolate one level */
+			swap(heap+i,heap+Child);
+      	else     
+          	break;   /* find the proper position */
+    } 
+    heap[i] = r;    
+}
+</code></pre>
+<p>那么Initialize的另一个写法是：For binary heaps with <em>N</em> elements, the <em>BuildHeap</em> function (which adjust an array of elements into a heap in linear time) does at most 2<em>N</em>−2 comparisons between elements.</p>
+<pre><code class="language-c">for (i=N/2; i&gt;0; i--)
+    PercolateDown(heap-&gt;Element, i, heap-&gt;size-1);
+</code></pre>
+<p>DeleteMin的另一个写法是：</p>
+<pre><code class="language-c">Elementtype DeleteMin(heap)
+{
+    swap(&amp;heap-&gt;Elements[0] ,&amp;heap-&gt;Element[--heap-&gt;size]);  //交换第一个和最后一个元素，并把size-1
+    PercolateDown(heap-&gt;Elements, 0, heap-&gt;size-1);    //在新的size范围内把index=0沉底
+    return heap-&gt;Elements[heap-&gt;size];   //返回之前移到最后的元素
+}
+​```c
+void Insert(heap, Elementtype v)
+{
+    heap-&gt;Elements[heap-&gt;size++] = v;
+    PercolateUp();
+} 
+</code></pre>
+
+<span id="footnote"></span>
+<div id = "warn"></div>
+</div>
+<div class="toc-container"><ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#%E4%BA%8C%E5%8F%89%E5%A0%86">二叉堆</a>
+<ul>
+<li><a href="#index%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%85%83%E7%B4%A0%E7%9A%84index0">index(第一个元素的index=0)</a></li>
+</ul>
+</li>
+<li><a href="#%E4%BC%98%E5%85%88%E9%98%9F%E5%88%97-priority-queue">优先队列 Priority Queue</a></li>
+<li><a href="#%E5%85%B6%E4%BB%96%E7%9A%84%E6%93%8D%E4%BD%9C">其他的操作</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="fullPage"><canvas id="canvas"></canvas></div>
+</article>
+<div id="eof"><span>EOF</span></div><div class="round-shape-one"></div>
+<section>
+<div class="doc_comments">
+
+</div></section>
+</div></div></div><script>
+"use strict";!function(){for(var n=document.getElementsByTagName("pre"),e=n.length,s=0;s<e;s++){n[s].innerHTML='<span class="line-number"></span>'+n[s].innerHTML+'<span class="cl"></span>';for(var a=n[s].innerHTML.split(/\n/).length,r=0;r<a-1;r++){n[s].getElementsByTagName("span")[0].innerHTML+="<span>"+(r+1)+"</span>"}}}();
+let mainNavLinks=document.querySelectorAll(".markdownIt-TOC a");window.addEventListener("scroll",event=>{let fromTop=window.scrollY;mainNavLinks.forEach((link,index)=>{let section=document.getElementById(decodeURI(link.hash).substring(1));let nextSection=null
+if(mainNavLinks[index+1]){nextSection=document.getElementById(decodeURI(mainNavLinks[index+1].hash).substring(1));}
+if(section.offsetTop<=fromTop){if(nextSection){if(nextSection.offsetTop>fromTop){link.classList.add("currentToc");}else{link.classList.remove("currentToc");}}else{link.classList.add("currentToc");}}else{link.classList.remove("currentToc");}});});
+var h=document.documentElement,b=document.body,st="scrollTop",sh="scrollHeight",progress=document.querySelector(".progress"),scroll;document.addEventListener("scroll",function(){scroll=(h[st]||b[st])/((h[sh]||b[sh])-h.clientHeight)*100;progress.style.setProperty("--scroll",scroll+"%")});
+var wxScale=new WxScale({fullPage:document.querySelector("#fullPage"),canvas:document.querySelector("#canvas")});var imgBox=document.querySelectorAll("#md_block img");for(var i=0;i<imgBox.length;i++){imgBox[i].onclick=function(e){wxScale.start(this)}};
+</script>
+<a id="scrollUp" href="#top" style="position: fixed; z-index: 2147483647; display: block;"></a><div class="footer animated fadeInDown"><div class="site_footer"><div class="mysocials"><div class="my_socials"><a href="https://github.com/reticenceji"title="github"><i class="iconfont icon-github"></i></a><a href="reticenceji@qq.com"title="envelope"><i class="iconfont icon-envelope"></i></a><a href="https://www.zhihu.com/people/reticenceji"title="zhihu"><i class="iconfont icon-zhihu"></i></a></div></div><div class="copyright"id="copyright">Copyright © 2018-2020 <a href="https://reticenceji.github.io" style="margin:0;">Reticence</a>.</div>
+<span style="display: inline;margin-right:15px;">👁<strong><span id="busuanzi_value_site_uv"></span></strong></span><span id="busuanzi_container_page_pv" style="display: inline;"><span>📚<strong>176</strong> posts</span></div></div>
+<script>
+console.log("\n %c \u26a1Theme: Bitcron-pro Author's Blog:https://blog.blinkstar.cn  Writen By Serence  \n\n", "color: #ffffff; background: rgba(49, 49, 49, 0.85); padding:5px 0;border-radius:5px;", );
+</script>
+<script src="https://cdn.jsdelivr.net/npm/instant.page@3.0.0/instantpage.min.js" type="module" defer></script>
+<script type="text/javascript" async src="https://reticenceji.github.io/media/js/prism.js"></script>
+</body>
+</html>

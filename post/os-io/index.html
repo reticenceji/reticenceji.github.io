@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="shortcut icon" href="https://reticenceji.github.io/favicon.ico" type="image/x-icon" /><meta name="viewport"content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="apple-mobile-web-app-capable"content="yes"/><meta name="apple-mobile-web-app-status-bar-style"content="black"/><meta name="format-detection"content="telephone=no"/><meta name="renderer"content="webkit"><meta name="description"content=""><meta charset="UTF-8"><title>OS-I/O | Reticence</title>
+<link href="https://reticenceji.github.io/styles/main.css" type="text/css" rel="stylesheet" /><link href="https://at.alicdn.com/t/font_1621793_zatzzgvf30g.css" type="text/css" rel="stylesheet" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css"><script async src="https://cdn.jsdelivr.net/npm/busuanzi@2.3.0/bsz.pure.mini.min.js"></script><script src="https://reticenceji.github.io/media/js/magnify.min.js"></script><script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js"></script>
+<script type="text/javascript">function btn_toggle(){document.getElementById("hn").classList.contains("no-js")?document.getElementById("hn").classList.remove("no-js"):document.getElementById("hn").classList.add("no-js")}</script>
+
+<link rel="canonical" href="https://reticenceji.github.io/post/os-io/" />
+</head>
+<body>
+<div class="progress"></div><style>.progress{background:linear-gradient(to right,#87ceeb var(--scroll),transparent 0);background-repeat:no-repeat;position:fixed;width:100%;height:4px;z-index:1}</style><div class="darkmode-background"></div><div class="darkmode-layer"></div>
+<noscript><p class="warn" >本页面需要浏览器支持（启用）JavaScript</p></noscript><div class="header"><div class="logo_title"><div class="title animated fadeInDown"><a href="https://reticenceji.github.io"><img alt="logo" style="display:inline-block;" src="https://reticenceji.github.io/images/avatar.png"/></a><h1 title="Reticence" class="weaklink"><a  href="/">Reticence</a></h1>
+
+<div class="navbar weaklink">
+<div class="normal_nav">
+<div class="bitcron_nav_container"><div class="bitcron_nav"><div class="bitcron_nav"><div style="display:flex;justify-content:center;"><nav class="mixed_site_nav_wrap site_nav_wrap"><ul class="mixed_site_nav site_nav sm sm-base">	<li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/" class="selected active current nav__item" >Index</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/tags" class="selected active current nav__item" >Tags</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/archives" class="selected active current nav__item" >Archives</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/navigator.html" class="selected active current nav__item" >Navigator</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/post/about" class="selected active current nav__item" >About</a></li></ul></nav>
+<div style="float:right;margin-top:1em"><form id="gridea-search-form" data-update="1578893743252" action="/search/index.html"><input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="Search..."></form></div><div style="margin-left:0.5em;margin-top:1.2em"><input id="switch_default" onclick="mobileBtn()" type="checkbox" class="switch_default"><label for="switch_default" class="toggleBtn"></label></div></div>
+<div class="clear clear_nav_inline_end"></div></div></div><div class="clear clear_nav_end"></div></div></div><div class="hamberger" href="javascript:void(0)" onclick="btn_toggle();"><i class="iconfont icon-category"></i></div></div></div></div>
+<div id="hn" class="no-js hidden_nav animated fadeInDown"><div class="bitcron_nav_container"><div class="bitcron_nav"><nav class="mixed_site_nav_wrap site_nav_wrap"><ul class="mixed_site_nav site_nav sm sm-base">	<li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/" class="selected active current nav__item" >Index</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/tags" class="selected active current nav__item" >Tags</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/archives" class="selected active current nav__item" >Archives</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/navigator.html" class="selected active current nav__item" >Navigator</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/post/about" class="selected active current nav__item" >About</a></li></ul><div class="clear clear_nav_inline_end"></div></nav></div><div class="clear clear_nav_end"></div></div>
+<div style="display:flex;justify-content:center;inline-block;text-align:center;margin-top:7%"><div><form id="gridea-search-form" data-update="1627835297708" action="/search/index.html"><input class="search-input" autocomplete="off" spellcheck="false" name="q"  placeholder="Search..." /></form></div><div style="margin-left:0.5em"><input id="switch_default_h" onclick="mobileBtn()" type="checkbox" class="switch_default"><label for="switch_default" class="toggleBtn"></label></div></div>
+</div></div>
+<script>function enableDarkmode(){document.body.classList.add("darkmode"),document.getElementById("switch_default").checked=1,document.getElementById("switch_default_h").checked=1}function removeDarkmode(){document.body.classList.remove("darkmode"),document.getElementById("switch_default").checked=0,document.getElementById("switch_default_h").checked=0}function getCookie(a){var b,c=new RegExp("(^| )"+a+"=([^;]*)(;|$)");return(b=document.cookie.match(c))?unescape(b[2]):null}cookie=getCookie("darkmode"),"enable"==cookie&&enableDarkmode(),window.matchMedia("(prefers-color-scheme: dark)").matches&&"disable"!==cookie&&(enableDarkmode(),document.cookie="darkmode=enable; path=/");var mobileBtn=function(){1==document.getElementById("switch_default").checked?(enableDarkmode(),document.cookie="darkmode=enable; path=/"):(removeDarkmode(),document.cookie="darkmode=disable; path=/")};</script>
+
+<div class="main"><div class="main-inner"><div class="content">
+<article class="post">
+<h2 class="post_title sm_margin"><a>OS-I/O</a></h2>
+<script>function lan(){if(document.getElementById("lan").innerText=="繁"){var s=document.getElementById("tongwenlet_cn");if(s!=null){document.body.removeChild(s)}var s=document.createElement("script");s.language="javascript";s.type="text/javascript";s.src="https://cdn.jsdelivr.net/gh/qyxtim/Static@1.1/bookmarklet_tw.js";s.id="tongwenlet_cn";document.body.appendChild(s);document.getElementById("lan").innerHTML="简"}else{if(document.getElementById("lan").innerText=="簡"){var s=document.getElementById("tongwenlet_cn");if(s!=null){document.body.removeChild(s)}var s=document.createElement("script");s.language="javascript";s.type="text/javascript";s.src="https://cdn.jsdelivr.net/gh/qyxtim/Static@1.1/bookmarklet_cn.js";s.id="tongwenlet_cn";document.body.appendChild(s);document.getElementById("lan").innerHTML="繁"}}};</script>
+<section class="post_details"><i class="iconfont icon-calendar"></i><span style="margin-right:15px"> 2020-12-18</span><i class="iconfont icon-browse"></i><span style="margin-right:15px"> <span id="busuanzi_value_page_pv"></span> Views</span><i class="iconfont icon-category"></i><span class="weaklink" style="margin-right:15px">	<a href="https://reticenceji.github.io/tag/nfABdWVsa/" class="tag">OS</a></span><i class="iconfont icon-caret-down"></i><span style="margin-right:15px">1465字</span><i class="iconfont icon-naozhong"></i><span style="margin-right:15px">6 min read</span><a id="lan" href="javascript:void(0);"onclick="lan();"title="调整简繁体" style="margin-right:15px;">繁</a>
+</section>
+
+<div style="display:flex">
+<div class="md_block" id="md_block">
+<div class="round-shape-one"></div>
+<p>很多具体的东西都是设备实现的，操作系统(驱动？)把硬件<strong>抽象</strong>给我们使用。</p>
+<h2 id="storage">Storage</h2>
+<h3 id="设备">设备</h3>
+<h4 id="magnetic-tape">Magnetic Tape</h4>
+<p>磁带。已经被淘汰了。。<br>
+因为要转，所以最好的方式是顺序读。<br>
+唯一的优点是便宜。</p>
+<h4 id="hdd">HDD*</h4>
+<p>磁盘可能都要被淘汰了。。<br>
+<img src="https://reticenceji.github.io/post-images/1608951186211.png" alt="" loading="lazy"><br>
+挪动磁头的时间：seek time<br>
+转动磁盘的时间：rotational latency<br>
+为了减少磁头挪动的时间，我们要合理的<strong>调度*：</strong></p>
+<ul>
+<li><strong>FCFS</strong>：First come first serve</li>
+<li><strong>SSTF</strong>：shortest seektime time first，但是这样可能会starve</li>
+<li><strong>SCAN &amp; C-SCAN</strong>：磁头从头扫描到尾，再从尾扫描到头/磁头从头扫描到尾，然后立即回到头再开始下一次扫描</li>
+<li><strong>LOOK &amp; C-LOOK</strong>：磁头从最小到最大的请求处，再从最大到最小/磁头最小到最大的请求处，然后立即回到最小的请求处再开始下一次扫描</li>
+</ul>
+<p>这上面的算法除了FCFS都有可能发生starve。</p>
+<h4 id="ssd">SSD</h4>
+<p>一般寿命会短一点，有写入次数的限制。我们应该平衡每一个block的使用。<br>
+但是比HDD快。调度算法使用FCFS就可以了。</p>
+<h3 id="disk-attachment">Disk Attachment</h3>
+<p>计算机访问磁盘有两种方式，一个是通过IO端口，称为主机连接存储(<strong>host-attached storage</strong>)，另一种是通过分布式文件系统的远程主机，称为网络连接存储(network-attached storage)。</p>
+<p>network-attached storage: NAS iSCSI</p>
+<h3 id="raid">RAID*</h3>
+<p>Disk是unreliable, slow but cheap的。</p>
+<p>我们通过Redundancy（冗余）的思想，试图解决这个问题。Redundant arrays of independent disks (RAIDs)。</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>特点</th>
+<th>解决的问题</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>RAID0</td>
+<td>有block-level striping，把文件的块分散到多个磁盘上，这样可以并行的访问改善performance。</td>
+<td>performance</td>
+</tr>
+<tr>
+<td>RAID1</td>
+<td>有mirrow disk，给Disk一个完整的copy</td>
+<td>reliability</td>
+</tr>
+<tr>
+<td>RAID2（不使用）</td>
+<td>把数据从bit级别切分，使用<strong>Hamming code</strong>进行纠错，可以纠正1bit的错误。</td>
+<td>reliability</td>
+</tr>
+<tr>
+<td>RAID3</td>
+<td>也是把数据从bit级别切分，使用<strong>Bit Interleaved Parity</strong>进行纠错，可以纠正1bit的错误，</td>
+<td>reliability</td>
+</tr>
+<tr>
+<td>RAID4</td>
+<td>把数据从strip级别切分，在一个单独的磁盘上保存其他块的奇偶校验块，可以并行的读入所有的块和奇偶校验。</td>
+<td>performance&amp;reliability</td>
+</tr>
+<tr>
+<td>RAID5</td>
+<td>把数据从strip级别切分，把奇偶校验块分散在所有的磁盘里</td>
+<td>performance&amp;reliability</td>
+</tr>
+<tr>
+<td>RAID6</td>
+<td>和RAID5很像，但是用了P+Q两额外的冗余信息，可以容忍两个bit的错误</td>
+<td>performance&amp;reliability</td>
+</tr>
+</tbody>
+</table>
+<p>RAID3读取一个内容需要读取所有的磁盘。这还可以并行，但是对一个小写入（比如1 bit），还是要读取所有的盘，效率就不高。<br>
+RAID4解决了RAID3的问题，按照块来组织数据，读取可以并行。但是对于小块内容的写入效率较低，而且总是要访问校验磁盘频率过高影响寿命。校验盘成为瓶颈。</p>
+<p>对上面出现的纠错方式的解释，以4bit的数据<code>1101</code>为例，他会变成 <code>110_1__</code></p>
+<p>Hamming code：</p>
+<ol>
+<li>
+<p>首先我们注意到数据一共有4bit，我们需要<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mn>2</mn><mi>k</mi></msup><mo>−</mo><mn>1</mn><mo>≥</mo><mi>n</mi><mo>+</mo><mi>k</mi></mrow><annotation encoding="application/x-tex">2^k-1≥n+k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.932438em;vertical-align:-0.08333em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.849108em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.03148em;">k</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.78041em;vertical-align:-0.13597em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≥</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span></span></span></span>的k bit的校验位，k=3。</p>
+</li>
+<li>
+<p>第1位校验码考虑<strong>编号为XX1</strong>的位（也就是第1,3,5,7...位）的XOR。<code>1xor0xor1=0</code>，插到第1位。</p>
+<p>第2位校验码考虑<strong>编号末位为X1X</strong>的位（也就是第2,3,6,7...位）的XOR。<code>1xor1xor1=1</code>，插到第2位。</p>
+<p>第3位校验码考虑<strong>编号末位为1XX</strong>的位（也就是第4,5,6,7,12,13,14,15...位）的XOR。<code>0xor1xor1=0</code>，插到第4位。</p>
+</li>
+<li>
+<p>所以我们得到的校验码是<code>110</code>。我们把他插入我们的数据中：110<strong>0</strong>1<strong>10</strong></p>
+</li>
+<li>
+<p>那么比如我们的数据变成了<code>111 0110</code>我们要怎么纠错呢？我们要再算一他的Hamming code=<code>101</code>，如果有<code>1</code>那么说明出现了错误。那么错误在哪里呢？出错的位置为<code>101</code>即第5位。我们对他取反就完成了纠错。</p>
+</li>
+</ol>
+<p>Bit Interleaved Parity：</p>
+<ol>
+<li>纠错码为<code>1 xor 0 xor 1 xor 1 = 1</code>。</li>
+<li>比如我们的数据一位损坏了，变成了<code>110?</code>，那么<code>？=1 xor 0 xor 1 xor 1 = 1</code>，把原来<code>？</code>的地方换成纠错码。</li>
+<li>我们可以这样做的原因是，磁盘控制器能够检测到一个扇区是否被正确读取，所以我们只需要1个额外的bit。</li>
+</ol>
+<h2 id="io设备">IO设备</h2>
+<p>IO device多种多样，有不同的方式去控制他们。我们不可能让操作系统去为每一种IO设备专门写一段代码，没有问题是多加一层抽象解决不了的。</p>
+<figure data-type="image" tabindex="1"><img src="https://reticenceji.github.io/post-images/1608951259015.png" alt="" loading="lazy"></figure>
+<h3 id="io-access">IO access</h3>
+<p>一些CPU有专门的IO指令，比如x86的<code>in</code>，<code>out</code>。<br>
+另一种是Memory Mapped IO，把这些设备的控制寄存器map到内存的某个部分，然后用和操作内存一样的指令操作IO。</p>
+<p>Polling（轮询）：CPU主动，需要busy waiting，如果Device比较慢就不合理。<br>
+Interrupt（中断）：IO主动<br>
+DMA（Direct Memory Access）：直接把数据从硬盘传输到内存，不经过CPU，从而减少CPU负担。</p>
+<h3 id="分类">分类</h3>
+<h4 id="接口">接口</h4>
+<p>block I/O：块设备以块为单位进行访问，比如说Disk就是一个例子。基本的应该实现<code>read()</code> <code>write()</code> <code>seek()</code></p>
+<p>character-stream I/O：字符设备比如键盘和鼠标，stream，<code>get()</code> <code>put()</code></p>
+<p>memory-mapped file access：</p>
+<p>network sockets：网络设备一般用socket接口</p>
+<h4 id="阻塞与异步">阻塞与异步</h4>
+<p>同步IO包括阻塞IO和非阻塞IO：</p>
+<ul>
+<li><strong>阻塞Blocking</strong>的IO比较简单，在执行system call的时候，应用程序暂时被挂起，变成waiting状态。当system call完成的时候，又变成ready。等到他被调度为running的时候，就收到了system call的返回值，完成了IO动作。</li>
+<li><strong>非阻塞NonBlocking</strong>的IO</li>
+</ul>
+<p>异步IO</p>
+<h3 id="kernel-io-subsystem">Kernel IO Subsystem</h3>
+<p>caching：hold a copy of data for fast access</p>
+<p>Device reservation: provides exclusive access to a device</p>
+<p>Spooling: A spool is a buffer that holds the output (device’s input) if device can serve only one request at a time</p>
+<p>I/O Protection：</p>
+<p>Error Handling：</p>
+
+<span id="footnote"></span>
+<div id = "warn"></div>
+</div>
+<div class="toc-container"><ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#storage">Storage</a>
+<ul>
+<li><a href="#%E8%AE%BE%E5%A4%87">设备</a>
+<ul>
+<li><a href="#magnetic-tape">Magnetic Tape</a></li>
+<li><a href="#hdd">HDD*</a></li>
+<li><a href="#ssd">SSD</a></li>
+</ul>
+</li>
+<li><a href="#disk-attachment">Disk Attachment</a></li>
+<li><a href="#raid">RAID*</a></li>
+</ul>
+</li>
+<li><a href="#io%E8%AE%BE%E5%A4%87">IO设备</a>
+<ul>
+<li><a href="#io-access">IO access</a></li>
+<li><a href="#%E5%88%86%E7%B1%BB">分类</a>
+<ul>
+<li><a href="#%E6%8E%A5%E5%8F%A3">接口</a></li>
+<li><a href="#%E9%98%BB%E5%A1%9E%E4%B8%8E%E5%BC%82%E6%AD%A5">阻塞与异步</a></li>
+</ul>
+</li>
+<li><a href="#kernel-io-subsystem">Kernel IO Subsystem</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="fullPage"><canvas id="canvas"></canvas></div>
+</article>
+<div id="eof"><span>EOF</span></div><div class="round-shape-one"></div>
+<section>
+<div class="doc_comments">
+
+</div></section>
+</div></div></div><script>
+"use strict";!function(){for(var n=document.getElementsByTagName("pre"),e=n.length,s=0;s<e;s++){n[s].innerHTML='<span class="line-number"></span>'+n[s].innerHTML+'<span class="cl"></span>';for(var a=n[s].innerHTML.split(/\n/).length,r=0;r<a-1;r++){n[s].getElementsByTagName("span")[0].innerHTML+="<span>"+(r+1)+"</span>"}}}();
+let mainNavLinks=document.querySelectorAll(".markdownIt-TOC a");window.addEventListener("scroll",event=>{let fromTop=window.scrollY;mainNavLinks.forEach((link,index)=>{let section=document.getElementById(decodeURI(link.hash).substring(1));let nextSection=null
+if(mainNavLinks[index+1]){nextSection=document.getElementById(decodeURI(mainNavLinks[index+1].hash).substring(1));}
+if(section.offsetTop<=fromTop){if(nextSection){if(nextSection.offsetTop>fromTop){link.classList.add("currentToc");}else{link.classList.remove("currentToc");}}else{link.classList.add("currentToc");}}else{link.classList.remove("currentToc");}});});
+var h=document.documentElement,b=document.body,st="scrollTop",sh="scrollHeight",progress=document.querySelector(".progress"),scroll;document.addEventListener("scroll",function(){scroll=(h[st]||b[st])/((h[sh]||b[sh])-h.clientHeight)*100;progress.style.setProperty("--scroll",scroll+"%")});
+var wxScale=new WxScale({fullPage:document.querySelector("#fullPage"),canvas:document.querySelector("#canvas")});var imgBox=document.querySelectorAll("#md_block img");for(var i=0;i<imgBox.length;i++){imgBox[i].onclick=function(e){wxScale.start(this)}};
+</script>
+<a id="scrollUp" href="#top" style="position: fixed; z-index: 2147483647; display: block;"></a><div class="footer animated fadeInDown"><div class="site_footer"><div class="mysocials"><div class="my_socials"><a href="https://github.com/reticenceji"title="github"><i class="iconfont icon-github"></i></a><a href="reticenceji@qq.com"title="envelope"><i class="iconfont icon-envelope"></i></a><a href="https://www.zhihu.com/people/reticenceji"title="zhihu"><i class="iconfont icon-zhihu"></i></a></div></div><div class="copyright"id="copyright">Copyright © 2018-2020 <a href="https://reticenceji.github.io" style="margin:0;">Reticence</a>.</div>
+<span style="display: inline;margin-right:15px;">👁<strong><span id="busuanzi_value_site_uv"></span></strong></span><span id="busuanzi_container_page_pv" style="display: inline;"><span>📚<strong>176</strong> posts</span></div></div>
+<script>
+console.log("\n %c \u26a1Theme: Bitcron-pro Author's Blog:https://blog.blinkstar.cn  Writen By Serence  \n\n", "color: #ffffff; background: rgba(49, 49, 49, 0.85); padding:5px 0;border-radius:5px;", );
+</script>
+<script src="https://cdn.jsdelivr.net/npm/instant.page@3.0.0/instantpage.min.js" type="module" defer></script>
+<script type="text/javascript" async src="https://reticenceji.github.io/media/js/prism.js"></script>
+</body>
+</html>

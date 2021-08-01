@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="shortcut icon" href="https://reticenceji.github.io/favicon.ico" type="image/x-icon" /><meta name="viewport"content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="apple-mobile-web-app-capable"content="yes"/><meta name="apple-mobile-web-app-status-bar-style"content="black"/><meta name="format-detection"content="telephone=no"/><meta name="renderer"content="webkit"><meta name="description"content=""><meta charset="UTF-8"><title>ACTF2020Writeup | Reticence</title>
+<link href="https://reticenceji.github.io/styles/main.css" type="text/css" rel="stylesheet" /><link href="https://at.alicdn.com/t/font_1621793_zatzzgvf30g.css" type="text/css" rel="stylesheet" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css"><script async src="https://cdn.jsdelivr.net/npm/busuanzi@2.3.0/bsz.pure.mini.min.js"></script><script src="https://reticenceji.github.io/media/js/magnify.min.js"></script><script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js"></script>
+<script type="text/javascript">function btn_toggle(){document.getElementById("hn").classList.contains("no-js")?document.getElementById("hn").classList.remove("no-js"):document.getElementById("hn").classList.add("no-js")}</script>
+
+<link rel="canonical" href="https://reticenceji.github.io/post/actf2020writeup/" />
+</head>
+<body>
+<div class="progress"></div><style>.progress{background:linear-gradient(to right,#87ceeb var(--scroll),transparent 0);background-repeat:no-repeat;position:fixed;width:100%;height:4px;z-index:1}</style><div class="darkmode-background"></div><div class="darkmode-layer"></div>
+<noscript><p class="warn" >本页面需要浏览器支持（启用）JavaScript</p></noscript><div class="header"><div class="logo_title"><div class="title animated fadeInDown"><a href="https://reticenceji.github.io"><img alt="logo" style="display:inline-block;" src="https://reticenceji.github.io/images/avatar.png"/></a><h1 title="Reticence" class="weaklink"><a  href="/">Reticence</a></h1>
+
+<div class="navbar weaklink">
+<div class="normal_nav">
+<div class="bitcron_nav_container"><div class="bitcron_nav"><div class="bitcron_nav"><div style="display:flex;justify-content:center;"><nav class="mixed_site_nav_wrap site_nav_wrap"><ul class="mixed_site_nav site_nav sm sm-base">	<li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/" class="selected active current nav__item" >Index</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/tags" class="selected active current nav__item" >Tags</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/archives" class="selected active current nav__item" >Archives</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/navigator.html" class="selected active current nav__item" >Navigator</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/post/about" class="selected active current nav__item" >About</a></li></ul></nav>
+<div style="float:right;margin-top:1em"><form id="gridea-search-form" data-update="1578893743252" action="/search/index.html"><input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="Search..."></form></div><div style="margin-left:0.5em;margin-top:1.2em"><input id="switch_default" onclick="mobileBtn()" type="checkbox" class="switch_default"><label for="switch_default" class="toggleBtn"></label></div></div>
+<div class="clear clear_nav_inline_end"></div></div></div><div class="clear clear_nav_end"></div></div></div><div class="hamberger" href="javascript:void(0)" onclick="btn_toggle();"><i class="iconfont icon-category"></i></div></div></div></div>
+<div id="hn" class="no-js hidden_nav animated fadeInDown"><div class="bitcron_nav_container"><div class="bitcron_nav"><nav class="mixed_site_nav_wrap site_nav_wrap"><ul class="mixed_site_nav site_nav sm sm-base">	<li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/" class="selected active current nav__item" >Index</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/tags" class="selected active current nav__item" >Tags</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/archives" class="selected active current nav__item" >Archives</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/navigator.html" class="selected active current nav__item" >Navigator</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/post/about" class="selected active current nav__item" >About</a></li></ul><div class="clear clear_nav_inline_end"></div></nav></div><div class="clear clear_nav_end"></div></div>
+<div style="display:flex;justify-content:center;inline-block;text-align:center;margin-top:7%"><div><form id="gridea-search-form" data-update="1627835297708" action="/search/index.html"><input class="search-input" autocomplete="off" spellcheck="false" name="q"  placeholder="Search..." /></form></div><div style="margin-left:0.5em"><input id="switch_default_h" onclick="mobileBtn()" type="checkbox" class="switch_default"><label for="switch_default" class="toggleBtn"></label></div></div>
+</div></div>
+<script>function enableDarkmode(){document.body.classList.add("darkmode"),document.getElementById("switch_default").checked=1,document.getElementById("switch_default_h").checked=1}function removeDarkmode(){document.body.classList.remove("darkmode"),document.getElementById("switch_default").checked=0,document.getElementById("switch_default_h").checked=0}function getCookie(a){var b,c=new RegExp("(^| )"+a+"=([^;]*)(;|$)");return(b=document.cookie.match(c))?unescape(b[2]):null}cookie=getCookie("darkmode"),"enable"==cookie&&enableDarkmode(),window.matchMedia("(prefers-color-scheme: dark)").matches&&"disable"!==cookie&&(enableDarkmode(),document.cookie="darkmode=enable; path=/");var mobileBtn=function(){1==document.getElementById("switch_default").checked?(enableDarkmode(),document.cookie="darkmode=enable; path=/"):(removeDarkmode(),document.cookie="darkmode=disable; path=/")};</script>
+
+<div class="main"><div class="main-inner"><div class="content">
+<article class="post">
+<h2 class="post_title sm_margin"><a>ACTF2020Writeup</a></h2>
+<script>function lan(){if(document.getElementById("lan").innerText=="繁"){var s=document.getElementById("tongwenlet_cn");if(s!=null){document.body.removeChild(s)}var s=document.createElement("script");s.language="javascript";s.type="text/javascript";s.src="https://cdn.jsdelivr.net/gh/qyxtim/Static@1.1/bookmarklet_tw.js";s.id="tongwenlet_cn";document.body.appendChild(s);document.getElementById("lan").innerHTML="简"}else{if(document.getElementById("lan").innerText=="簡"){var s=document.getElementById("tongwenlet_cn");if(s!=null){document.body.removeChild(s)}var s=document.createElement("script");s.language="javascript";s.type="text/javascript";s.src="https://cdn.jsdelivr.net/gh/qyxtim/Static@1.1/bookmarklet_cn.js";s.id="tongwenlet_cn";document.body.appendChild(s);document.getElementById("lan").innerHTML="繁"}}};</script>
+<section class="post_details"><i class="iconfont icon-calendar"></i><span style="margin-right:15px"> 2020-09-19</span><i class="iconfont icon-browse"></i><span style="margin-right:15px"> <span id="busuanzi_value_page_pv"></span> Views</span><i class="iconfont icon-category"></i><span class="weaklink" style="margin-right:15px">	<a href="https://reticenceji.github.io/tag/4n7nIsyFy/" class="tag">WriteUps</a></span><i class="iconfont icon-caret-down"></i><span style="margin-right:15px">839字</span><i class="iconfont icon-naozhong"></i><span style="margin-right:15px">4 min read</span><a id="lan" href="javascript:void(0);"onclick="lan();"title="调整简繁体" style="margin-right:15px;">繁</a>
+</section>
+
+<div style="display:flex">
+<div class="md_block" id="md_block">
+<div class="round-shape-one"></div>
+<h2 id="warmup">Warmup:</h2>
+<p>考虑到题目提示，修改Referer。然后提示我是非法的谷歌机器人，参考https://blog.csdn.net/jaffreyen/article/details/88871507，修改User-agent。<br>
+GET / HTTP/1.1<br>
+Host: warmup.2020.actf.lol<br>
+Cache-Control: max-age=0<br>
+Upgrade-Insecure-Requests: 1<br>
+User-Agent: Mozilla/5.0 (Linux; Android 6.0.1; Nexus 5X Build/MMB29P) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.96 Mobile Safari/537.36 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)<br>
+Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)<br>
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,<em>/</em>;q=0.8,application/signed-exchange;v=b3;q=0.9<br>
+Accept-Encoding: gzip, deflate<br>
+Accept-Language: zh-CN,zh;q=0.9<br>
+Cookie: authtoken=3190103109.fdb8886317f0d14a75e75e860342718d<br>
+Connection: close<br>
+Referer:https://google.com/</p>
+<h2 id="文件包含失败">文件包含：（失败）</h2>
+<p>首先随便上传一个文件，</p>
+<pre><code>Your dir : uploads/2ff4fb82e497844a03adf28cf6bedfde
+Your files :
+array(4) { [0]=&gt; string(1) &quot;.&quot; [1]=&gt; string(2) &quot;..&quot; [2]=&gt; string(11)&quot;favicon.ico&quot; [3]=&gt; string(9) &quot;index.php&quot; }
+</code></pre>
+<p>uploads/2ff4fb82e497844a03adf28cf6bedfde/favicon.ico，应该是文件包含漏洞。</p>
+<pre><code>&lt;?php
+			$myfile = fopen(&quot;webdictionary.txt&quot;, &quot;r&quot;) or die(&quot;Unable to open file!&quot;);
+			while(!feof($myfile)) {
+				echo fgets($myfile) . &quot;&lt;br&gt;&quot;;
+			}
+			fclose($myfile);
+		?&gt;
+</code></pre>
+<p>发现题目有过滤器，&lt;? detected!<br>
+考虑利用<code>&amp;#x6C3C</code>，就是汉字“氼”，来代替&lt;   (似乎没用)<br>
+然后提示我上传的不是图片，应该是通过文件头判断的。<code>89 50 4E 47 0D 0A 1A 0A 00 00 00 0D</code>直接复制一段png格式的文件头，上传成功。<br>
+http://image_uploads.2020.actf.lol/uploads/2ff4fb82e497844a03adf28cf6bedfde/f.png<br>
+但是这样子不会被php解析。<br>
+考虑在.php后面添加0字节，不行。添加:，不行。<br>
+pngg上传成功，有可能是黑名单。<br>
+试图通过后缀名的绕过均失败。</p>
+<p>wappalyzer告诉我大概是nginx作为服务器。<br>
+参考这个链接：https://misakikata.github.io/2019/05/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E6%BC%8F%E6%B4%9E/，https://www.cnblogs.com/wangyuyang1016/p/11754418.html，上传png文件之后再/1.php但是access denied。貌似没有这个<strong>nginx文件解析漏洞</strong>。错了，有的。只是文件不合法。</p>
+<p>思路：构造一个图片可以通过过滤器，并能被php解析器解析。</p>
+<h2 id="upload1">Upload1:</h2>
+<p>验证在前端进行，直接BurpSuite改上传的文件名即可。</p>
+<h2 id="upload2">upload2:</h2>
+<p>没有递归清除php,pphphphpp</p>
+<h2 id="calc">Calc：</h2>
+<p>jquery ajax error函数和及其参数详细说明 (转):https://www.cnblogs.com/hangaozu/p/9008310.html.，试图采用报错获取一些信息。<br>
+首先遇到的问题是在开发者工具修改HTML中的JS无效。参考网上的思路，https://www.pianshen.com/article/5951797391/。</p>
+<pre><code>error:function(a,b,c){
+                console.log(a.responseText); console.log(b); console.log(c);
+</code></pre>
+<p>然后发现calc.php应该很重要，访问获得提示代码<br>
+PHP补习：<br>
+<strong>FILE</strong>：本文件的常量<br>
+isset:https://www.php.net/manual/zh/function.isset.php<br>
+点号：连接字符串<br>
+? num=1;var_dump(scandir(chr(47)))，在num前加空格可以绕过黑名单<br>
+https://www.cnblogs.com/chrysanthemum/p/11757363.html</p>
+<h2 id="php_file_inlcude">php_file_inlcude:</h2>
+<p>1.利用..就好<br>
+2.利用webcompany的思路</p>
+<h2 id="games">games:</h2>
+<p>burpsuite永远滴神<br>
+302重定向：https://blog.csdn.net/Deep___Learning/article/details/100799946<br>
+最后用burp抓包，把302的都看了一遍</p>
+<h2 id="版本控制">版本控制：</h2>
+<p>https://www.cnblogs.com/Lmg66/p/13598803.html<br>
+用GitHack，不过需要Cookie，修改GitHack/lib/request.py文件，添加Cookie.<br>
+git版本控制命令参考：https://www.cnblogs.com/zhangguicheng/articles/12080897.html<br>
+git版本回退：git reset --hard HEAD^</p>
+<h2 id="babyphp">babyPHP</h2>
+<p>$1=0e830400451993494058024219903391;<br>
+参考：https://blog.csdn.net/xiayu729100940/article/details/102619255</p>
+<h2 id="circuit">Circuit</h2>
+<p>高位是0，倒推，挺快的。</p>
+<p>没有时间写pwn和逆向。。太遗憾了。。虽然也不一定会写。。</p>
+
+<span id="footnote"></span>
+<div id = "warn"></div>
+</div>
+<div class="toc-container"><ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#warmup">Warmup:</a></li>
+<li><a href="#%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E5%A4%B1%E8%B4%A5">文件包含：（失败）</a></li>
+<li><a href="#upload1">Upload1:</a></li>
+<li><a href="#upload2">upload2:</a></li>
+<li><a href="#calc">Calc：</a></li>
+<li><a href="#php_file_inlcude">php_file_inlcude:</a></li>
+<li><a href="#games">games:</a></li>
+<li><a href="#%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6">版本控制：</a></li>
+<li><a href="#babyphp">babyPHP</a></li>
+<li><a href="#circuit">Circuit</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="fullPage"><canvas id="canvas"></canvas></div>
+</article>
+<div id="eof"><span>EOF</span></div><div class="round-shape-one"></div>
+<section>
+<div class="doc_comments">
+
+</div></section>
+</div></div></div><script>
+"use strict";!function(){for(var n=document.getElementsByTagName("pre"),e=n.length,s=0;s<e;s++){n[s].innerHTML='<span class="line-number"></span>'+n[s].innerHTML+'<span class="cl"></span>';for(var a=n[s].innerHTML.split(/\n/).length,r=0;r<a-1;r++){n[s].getElementsByTagName("span")[0].innerHTML+="<span>"+(r+1)+"</span>"}}}();
+let mainNavLinks=document.querySelectorAll(".markdownIt-TOC a");window.addEventListener("scroll",event=>{let fromTop=window.scrollY;mainNavLinks.forEach((link,index)=>{let section=document.getElementById(decodeURI(link.hash).substring(1));let nextSection=null
+if(mainNavLinks[index+1]){nextSection=document.getElementById(decodeURI(mainNavLinks[index+1].hash).substring(1));}
+if(section.offsetTop<=fromTop){if(nextSection){if(nextSection.offsetTop>fromTop){link.classList.add("currentToc");}else{link.classList.remove("currentToc");}}else{link.classList.add("currentToc");}}else{link.classList.remove("currentToc");}});});
+var h=document.documentElement,b=document.body,st="scrollTop",sh="scrollHeight",progress=document.querySelector(".progress"),scroll;document.addEventListener("scroll",function(){scroll=(h[st]||b[st])/((h[sh]||b[sh])-h.clientHeight)*100;progress.style.setProperty("--scroll",scroll+"%")});
+var wxScale=new WxScale({fullPage:document.querySelector("#fullPage"),canvas:document.querySelector("#canvas")});var imgBox=document.querySelectorAll("#md_block img");for(var i=0;i<imgBox.length;i++){imgBox[i].onclick=function(e){wxScale.start(this)}};
+</script>
+<a id="scrollUp" href="#top" style="position: fixed; z-index: 2147483647; display: block;"></a><div class="footer animated fadeInDown"><div class="site_footer"><div class="mysocials"><div class="my_socials"><a href="https://github.com/reticenceji"title="github"><i class="iconfont icon-github"></i></a><a href="reticenceji@qq.com"title="envelope"><i class="iconfont icon-envelope"></i></a><a href="https://www.zhihu.com/people/reticenceji"title="zhihu"><i class="iconfont icon-zhihu"></i></a></div></div><div class="copyright"id="copyright">Copyright © 2018-2020 <a href="https://reticenceji.github.io" style="margin:0;">Reticence</a>.</div>
+<span style="display: inline;margin-right:15px;">👁<strong><span id="busuanzi_value_site_uv"></span></strong></span><span id="busuanzi_container_page_pv" style="display: inline;"><span>📚<strong>176</strong> posts</span></div></div>
+<script>
+console.log("\n %c \u26a1Theme: Bitcron-pro Author's Blog:https://blog.blinkstar.cn  Writen By Serence  \n\n", "color: #ffffff; background: rgba(49, 49, 49, 0.85); padding:5px 0;border-radius:5px;", );
+</script>
+<script src="https://cdn.jsdelivr.net/npm/instant.page@3.0.0/instantpage.min.js" type="module" defer></script>
+<script type="text/javascript" async src="https://reticenceji.github.io/media/js/prism.js"></script>
+</body>
+</html>

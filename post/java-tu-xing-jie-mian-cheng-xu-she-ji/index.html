@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="shortcut icon" href="https://reticenceji.github.io/favicon.ico" type="image/x-icon" /><meta name="viewport"content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="apple-mobile-web-app-capable"content="yes"/><meta name="apple-mobile-web-app-status-bar-style"content="black"/><meta name="format-detection"content="telephone=no"/><meta name="renderer"content="webkit"><meta name="description"content=""><meta charset="UTF-8"><title>Java图形界面程序设计 | Reticence</title>
+<link href="https://reticenceji.github.io/styles/main.css" type="text/css" rel="stylesheet" /><link href="https://at.alicdn.com/t/font_1621793_zatzzgvf30g.css" type="text/css" rel="stylesheet" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css"><script async src="https://cdn.jsdelivr.net/npm/busuanzi@2.3.0/bsz.pure.mini.min.js"></script><script src="https://reticenceji.github.io/media/js/magnify.min.js"></script><script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js"></script>
+<script type="text/javascript">function btn_toggle(){document.getElementById("hn").classList.contains("no-js")?document.getElementById("hn").classList.remove("no-js"):document.getElementById("hn").classList.add("no-js")}</script>
+
+<link rel="canonical" href="https://reticenceji.github.io/post/java-tu-xing-jie-mian-cheng-xu-she-ji/" />
+</head>
+<body>
+<div class="progress"></div><style>.progress{background:linear-gradient(to right,#87ceeb var(--scroll),transparent 0);background-repeat:no-repeat;position:fixed;width:100%;height:4px;z-index:1}</style><div class="darkmode-background"></div><div class="darkmode-layer"></div>
+<noscript><p class="warn" >本页面需要浏览器支持（启用）JavaScript</p></noscript><div class="header"><div class="logo_title"><div class="title animated fadeInDown"><a href="https://reticenceji.github.io"><img alt="logo" style="display:inline-block;" src="https://reticenceji.github.io/images/avatar.png"/></a><h1 title="Reticence" class="weaklink"><a  href="/">Reticence</a></h1>
+
+<div class="navbar weaklink">
+<div class="normal_nav">
+<div class="bitcron_nav_container"><div class="bitcron_nav"><div class="bitcron_nav"><div style="display:flex;justify-content:center;"><nav class="mixed_site_nav_wrap site_nav_wrap"><ul class="mixed_site_nav site_nav sm sm-base">	<li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/" class="selected active current nav__item" >Index</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/tags" class="selected active current nav__item" >Tags</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/archives" class="selected active current nav__item" >Archives</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/navigator.html" class="selected active current nav__item" >Navigator</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/post/about" class="selected active current nav__item" >About</a></li></ul></nav>
+<div style="float:right;margin-top:1em"><form id="gridea-search-form" data-update="1578893743252" action="/search/index.html"><input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="Search..."></form></div><div style="margin-left:0.5em;margin-top:1.2em"><input id="switch_default" onclick="mobileBtn()" type="checkbox" class="switch_default"><label for="switch_default" class="toggleBtn"></label></div></div>
+<div class="clear clear_nav_inline_end"></div></div></div><div class="clear clear_nav_end"></div></div></div><div class="hamberger" href="javascript:void(0)" onclick="btn_toggle();"><i class="iconfont icon-category"></i></div></div></div></div>
+<div id="hn" class="no-js hidden_nav animated fadeInDown"><div class="bitcron_nav_container"><div class="bitcron_nav"><nav class="mixed_site_nav_wrap site_nav_wrap"><ul class="mixed_site_nav site_nav sm sm-base">	<li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/" class="selected active current nav__item" >Index</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/tags" class="selected active current nav__item" >Tags</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/archives" class="selected active current nav__item" >Archives</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/navigator.html" class="selected active current nav__item" >Navigator</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/post/about" class="selected active current nav__item" >About</a></li></ul><div class="clear clear_nav_inline_end"></div></nav></div><div class="clear clear_nav_end"></div></div>
+<div style="display:flex;justify-content:center;inline-block;text-align:center;margin-top:7%"><div><form id="gridea-search-form" data-update="1627835297708" action="/search/index.html"><input class="search-input" autocomplete="off" spellcheck="false" name="q"  placeholder="Search..." /></form></div><div style="margin-left:0.5em"><input id="switch_default_h" onclick="mobileBtn()" type="checkbox" class="switch_default"><label for="switch_default" class="toggleBtn"></label></div></div>
+</div></div>
+<script>function enableDarkmode(){document.body.classList.add("darkmode"),document.getElementById("switch_default").checked=1,document.getElementById("switch_default_h").checked=1}function removeDarkmode(){document.body.classList.remove("darkmode"),document.getElementById("switch_default").checked=0,document.getElementById("switch_default_h").checked=0}function getCookie(a){var b,c=new RegExp("(^| )"+a+"=([^;]*)(;|$)");return(b=document.cookie.match(c))?unescape(b[2]):null}cookie=getCookie("darkmode"),"enable"==cookie&&enableDarkmode(),window.matchMedia("(prefers-color-scheme: dark)").matches&&"disable"!==cookie&&(enableDarkmode(),document.cookie="darkmode=enable; path=/");var mobileBtn=function(){1==document.getElementById("switch_default").checked?(enableDarkmode(),document.cookie="darkmode=enable; path=/"):(removeDarkmode(),document.cookie="darkmode=disable; path=/")};</script>
+
+<div class="main"><div class="main-inner"><div class="content">
+<article class="post">
+<h2 class="post_title sm_margin"><a>Java图形界面程序设计</a></h2>
+<script>function lan(){if(document.getElementById("lan").innerText=="繁"){var s=document.getElementById("tongwenlet_cn");if(s!=null){document.body.removeChild(s)}var s=document.createElement("script");s.language="javascript";s.type="text/javascript";s.src="https://cdn.jsdelivr.net/gh/qyxtim/Static@1.1/bookmarklet_tw.js";s.id="tongwenlet_cn";document.body.appendChild(s);document.getElementById("lan").innerHTML="简"}else{if(document.getElementById("lan").innerText=="簡"){var s=document.getElementById("tongwenlet_cn");if(s!=null){document.body.removeChild(s)}var s=document.createElement("script");s.language="javascript";s.type="text/javascript";s.src="https://cdn.jsdelivr.net/gh/qyxtim/Static@1.1/bookmarklet_cn.js";s.id="tongwenlet_cn";document.body.appendChild(s);document.getElementById("lan").innerHTML="繁"}}};</script>
+<section class="post_details"><i class="iconfont icon-calendar"></i><span style="margin-right:15px"> 2020-09-09</span><i class="iconfont icon-browse"></i><span style="margin-right:15px"> <span id="busuanzi_value_page_pv"></span> Views</span><i class="iconfont icon-category"></i><span class="weaklink" style="margin-right:15px">	<a href="https://reticenceji.github.io/tag/gQrBo3tUF/" class="tag">Java</a></span><i class="iconfont icon-caret-down"></i><span style="margin-right:15px">4390字</span><i class="iconfont icon-naozhong"></i><span style="margin-right:15px">20 min read</span><a id="lan" href="javascript:void(0);"onclick="lan();"title="调整简繁体" style="margin-right:15px;">繁</a>
+</section>
+
+<div style="display:flex">
+<div class="md_block" id="md_block">
+<div class="round-shape-one"></div>
+<p>[TOC]</p>
+<hr>
+<h2 id="1-a-namebasicintroductiona基本介绍-basic-introduction">1. <a name='BasicIntroduction'></a>基本介绍 Basic Introduction</h2>
+<p>AWT(Abstract Windows Toolkit)：老的GUI工具，不太好使。<br>
+Swing：经典的GUI工具。不过比较丑。Swing是建立在AWT的架构之上的。Swing提供的类大都由J开头。<br>
+JavaFX：新的GUI工具，不过没有包括在最新Java的核心之中。</p>
+<p>下面主要是Swing。主要目的是制作玩具和学习面向对象设计。<br>
+下面虽然列出了很多API，但是只是走马观花列出了一些。想获得更多：<br>
+（1）查阅参考文档。<br>
+（2）利用IDE的自动提示功能。<br>
+（3）看书<br>
+（4）利用搜索引擎</p>
+<h2 id="2-a-namedrawa绘制-draw">2. <a name='Draw'></a>绘制 Draw</h2>
+<h3 id="21-a-nameframea-显示窗体-frame">2.1. <a name='Frame'></a> 显示窗体 Frame</h3>
+<p>窗体(frame)：顶层窗口，即没有被包含在其他窗口中的窗口称为窗体。</p>
+<pre><code class="language-java">package simpleframe;
+
+//事件分配是基于awt的
+import java.awt.EventQueue;
+//图形绘制利用javax.swing里头的类
+import javax.swing.JFrame;
+
+public class SimpleFrame extends JFrame{
+	private static final int WIDTH = 300;
+	private static final int HEIGHT = 200;
+	
+	public SimpleFrame() {
+		super.setSize(WIDTH,HEIGHT);
+	}
+	
+	public static void main(String ...args) {
+		/*所有的Swing程序组件必须由事件分派线程配置
+		 * 这里简单的给关闭按钮分配了结束程序事件
+		 */
+		EventQueue.invokeLater(()-&gt;{
+			SimpleFrame frame = new SimpleFrame();
+			frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			frame.setTitle(&quot;Hello World&quot;);
+			frame.setLocation(0, 0);
+			frame.setVisible(true);
+		});
+	}
+}
+还有很多修改窗体属性的方法。
+
+</code></pre>
+<h3 id="22-a-namedrawsomethinga内容绘制-draw-something">2.2. <a name='DrawSomething'></a>内容绘制 Draw Something</h3>
+<p>JFrame里头有四个窗格：根窗格、层级窗格、玻璃窗格、内容窗格。<br>
+我们在窗体里添加组件(Component)，会自动添加到内容窗格中。</p>
+<pre><code class="language-java">Component c = ...;
+frame.add(c);
+</code></pre>
+<p>在Java中，内容绘制通过Graphics对象完成。包括画图，写字。</p>
+<pre><code class="language-java">package simpleframe;
+
+import java.awt.*;
+import javax.swing.*;
+
+public class HelloWorld extends JFrame{
+	//添加组件
+	public HelloWorld() {
+		this.add(new HelloWorldComponent());
+		//java.awt.Window,自动调整窗口大小
+		pack();
+	}
+	public static void main(String...args) {
+		EventQueue.invokeLater(()-&gt;{
+			JFrame frame = new HelloWorld();
+			frame.setTitle(&quot;HelloWorld&quot;);
+			frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			frame.setVisible(true);
+		});
+	}
+}
+
+//创建一个继承了JComponent的控件
+class HelloWorldComponent extends JComponent {
+	public static final int MESSAGE_X = 0;
+	public static final int MESSAGE_Y = 10;
+	private static final int WIDTH = 300;
+	private static final int HEIGHT = 200;
+	
+	//覆盖JComponent的这个方法，描述如何绘制控件
+	public void paintComponent(Graphics g) {
+        //画！
+		g.drawString(&quot;Hello world&quot;,MESSAGE_X, MESSAGE_Y);
+	}
+	//覆盖JComponent的这个方法，描述控件大小
+	public Dimension getPreferredSize() {
+		return new Dimension(WIDTH,HEIGHT);
+	}
+}
+
+</code></pre>
+<p>绘制2D图形，我们使用Java2D库。</p>
+<ul>
+<li>一些用于绘制的方法：<br>
+java.awt.Graphics2D.*<br>
+setPaint(Paint p)     //设置当前画笔，Color类实现了Paint接口<br>
+void fill(Shape s)    //用当前的颜色填充Shape s<br>
+void draw(Shape s)    //绘制Shape s<br>
+void drawString(String str,float x,float y)</li>
+</ul>
+<h3 id="23-a-namegeometrya几何图形-geometry">2.3. <a name='geometry'></a>几何图形 geometry</h3>
+<p><code>java.awt.geom.*</code></p>
+<ol>
+<li>矩形Rectangle2D.Double,</li>
+<li>椭圆Ellipse2D.Float</li>
+<li>直线Line2D.Double<br>
+以上都满足了Shape接口，可以被draw、fill方法绘制</li>
+<li>点Point2D.Double</li>
+</ol>
+<h3 id="24-a-namecolora颜色-color">2.4. <a name='color'></a>颜色 color</h3>
+<p><code>java.awt.Graphics2D.setPaint(Paint p)</code>     //设置当前画笔，Color类实现了Paint接口</p>
+<p>Java.awt.Color(int r,int g,int b)    //用rgb分量创建颜色对象<br>
+Color Java.awt.Component.getForeground()<br>
+Color Java.awt.Component.getBackground()<br>
+void Java.awt.Component.setBackground(Color c)<br>
+void Java.awt.Component.setForeground(Color c)<br>
+//获取、设置前景或背景颜色</p>
+<h3 id="25-a-namefonta字体-font">2.5. <a name='font'></a>字体 font</h3>
+<p><code>java.awt.Graphics.setFont(Font arg0)</code><br>
+<code>java.awt.Font</code><br>
+Font(String name,int style,int size)<br>
+创建一个字体对象，name可以使具体的字体名字也可以是逻辑字体名。style可以使Font.PLAIN,Font.BOLD,Font.ITALIC,或者是相加。<br>
+Rectangle2D getStringBounds(String s,FontRenderContext context)<br>
+返回包围这个字符串的矩形。矩形的x为基线，矩形顶端y坐标是上坡度的负值，宽度为字符串的宽度，高度为上坡度+下坡度+行间距。</p>
+<p>示例代码：</p>
+<pre><code class="language-java">
+class FontComponent extends JComponent{
+	private static final int D_WIDTH = 400;
+	private static final int D_HEIGHT = 400;
+	
+	public void paintComponent(Graphics g) {
+		String message = &quot;Hello world!!&quot;;
+		Graphics2D g2 = (Graphics2D) g;
+		//设置字体
+		Font f = new Font(&quot;Serif&quot;,Font.BOLD,36);
+		g2.setFont(f);
+		//测量字体占据的矩形
+		FontRenderContext context = g2.getFontRenderContext();
+		Rectangle2D bounds = f.getStringBounds(message, context);
+		g2.setPaint(Color.BLUE);
+		g2.drawString(message,(int)(this.getWidth()-bounds.getWidth())/2,(int)(this.getHeight()-bounds.getHeight())/4);
+		Shape rect = new Rectangle2D.Float(100F, 100F, 200F, 150F);
+		g2.draw(rect);
+		Shape ellipse = new Ellipse2D.Float(100F, 100F, 200F, 150F);
+		g2.setPaint(Color.BLUE);
+		g2.fill(ellipse);
+		//两个端点的坐标
+		Shape line = new Line2D.Float(100F, 100F, 200F+100F, 150F+100F);
+		g2.draw(line);
+	}
+	public Dimension getPreferredSize() {
+		return new Dimension(D_WIDTH,D_HEIGHT);
+	}
+}
+</code></pre>
+<h2 id="3-a-nameeventa-事件处理-event">3. <a name='Event'></a> 事件处理 Event</h2>
+<p><strong>事件源（Event Source）</strong>：比如按钮、滚动条。<br>
+<strong>事件监听器（Event Listener）</strong>：事件源可以注册事件监听器，然后对事件做出所需的响应。<br>
+事件监听器是实现了**监听器接口（Listener interface）**的类实例。<br>
+<strong>事件对象（Event Object）</strong>：通知事件监听器发生了某个事件时，事件的相关信息会被封装在一个事件对象里。<br>
+事件对象派生于java.util.EventObject，有子类ActionEvent和WindowEvent。</p>
+<p><strong>事件源</strong>可以注册<strong>事件监听器</strong>————事件发生的时候，<strong>事件源</strong>将<strong>事件对象</strong>发送给所有注册的<strong>监听器</strong>————<strong>监听器</strong>在根据<strong>事件对象</strong>决定如何响应。</p>
+<h3 id="31-a-namebuttonandwindowa按钮-窗口-button-and-window">3.1. <a name='ButtonandWindow'></a>按钮、窗口 Button and Window</h3>
+<p>WindowListener接口：<br>
+void windowActivated(WindowEvent e);    //激活窗口调用这个方法<br>
+void windowDeactivated(WindowEvent e);    //失去焦点调用这个方法<br>
+void windowClosed(WindowEvent e);    //窗口关闭后调用这个方法<br>
+void windowClosing(WindowEvent e);    //点击X调用这个方法<br>
+void windowIconified(WindowEvent e);    //最小化打开这个方法<br>
+void windowDeiconified(WindowEvent e);    //取消最小化调用这个方法<br>
+void windowOpened(WindowEvent e);    //窗口打开后调用这个方法<br>
+ActionListener接口：<br>
+void actionPerformed(ActionEvent arg0);</p>
+<pre><code class="language-java">package simpleframe;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+
+public class ButtonFrame extends JFrame{	
+	private JPanel buttonPanel;
+	private static final int D_WIDTH = 300;
+	private static final int D_HEIGHT = 200;
+	
+	public ButtonFrame() {
+		setSize(D_WIDTH,D_HEIGHT);
+		//创建Button实例
+		JButton button_yellow = new JButton(&quot;Yellow&quot;);
+		//给Button实例添加事件监听，需要传入一个满足了ActionListenner接口的对象。
+		ActionListener yellowAction = new ColorAction(Color.BLACK);
+		button_yellow.addActionListener(yellowAction);
+		//给窗口添加事件监听
+		WindowListener listener = new Terminator();
+		this.addWindowListener(listener);
+		buttonPanel = new JPanel();
+		buttonPanel.add(button_yellow);
+		add(buttonPanel);
+		
+	}
+	//用内部类实现接口
+	private class ColorAction implements ActionListener{
+		private Color backgroundcolor;
+		
+		public ColorAction(Color c) {
+			this.backgroundcolor = c;
+		}
+		
+		@Override
+		public void actionPerformed(ActionEvent event) {
+			buttonPanel.setBackground(backgroundcolor);	
+		}
+		
+	}
+	
+	/*一般来说，我们可以继承WindowAdapter来获得一个空的但是满足WindowListener接口的对象
+	 * 本来应该让WindowsListener接口有默认方法的，不过这是历史遗留问题了
+	 * 然后我们覆盖响应的方法
+	 */
+	class Terminator extends WindowAdapter{
+		public void windowClosing(WindowEvent e) {
+			System.out.print(&quot;000&quot;);
+			System.exit(0);
+		}
+	}
+	
+	public static void main(String ...arg0) {
+		EventQueue.invokeLater(()-&gt;{
+			JFrame frame = new ButtonFrame();
+			frame.setTitle(&quot;HelloWorld&quot;);
+			frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			frame.setVisible(true);
+		});
+	}
+}
+</code></pre>
+<h3 id="32-a-namekeyboarda键盘keyboard">3.2. <a name='Keyboard'></a>键盘Keyboard</h3>
+<p><strong>动作(Action)</strong>：Action接口包含了以下方法，一般的我们继承AbstractAction类。<br>
+public void actionPerformed(ActionEvent e)<br>
+public void addPropertyChangeListener(PropertyChangeListener listener)<br>
+public Object getValue(String key)<br>
+public boolean isEnabled()<br>
+public void putValue(String key, Object value)    //把一个键值对放在动作对象中。有很多键名已经有了预定义的含义。<br>
+public void removePropertyChangeListener(PropertyChangeListener listener)<br>
+public void setEnabled(boolean b)</p>
+<ul>
+<li>给组件添加快捷键：<br>
+按键对象的构造：<br>
+KeyStroke类是一个对按键描述的封装。<br>
+KeyStroke javax.swing.KeyStroke.getKeyStroke(String description)<br>
+根据description(由空白分隔的字符串序列，比如&quot;ctrl B&quot;)构造一个<strong>按键对象</strong>。<br>
+desciption格式：<br>
+修饰符+动作+单字符<br>
+修饰符如：shift/ctrl/alt<br>
+动作如：typed/pressed/released<br>
+单字符如：a,b<br>
+键盘焦点（Keyboard Focus）：<br>
+当用户按键时，按键事件会被发送给拥有焦点的组件。<br>
+每个Jcomponent有三个<strong>输入映射(input map)条件</strong>，分别将KeyStroke对象映射到关联的动作。</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>JComponent.中的常量</th>
+<th>条件说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>WHEN_IN_FOCUSED_WINDOW</td>
+<td>当组件拥有键盘焦点</td>
+</tr>
+<tr>
+<td>WHEN_FOCUSED</td>
+<td>组件包含拥有键盘焦点的组件</td>
+</tr>
+<tr>
+<td>WHEN_ANCESTOR_OF_FOCUSED_COMPONENT</td>
+<td>组件和拥有键盘焦点的组件在同一个窗口</td>
+</tr>
+</tbody>
+</table>
+<p>将键盘事件映射到一个组件，需要如下代码：</p>
+<pre><code class="language-java">    //构造一个满足了Action接口的事件对象，
+    Action blueAction = new ColorAction2(&quot;Blue&quot;, Color.BLUE);
+    //创建一个按钮
+    JButton blueButton = new JButton(blueAction);
+    //创建一个按键对象
+    KeyStroke ctrlBKey = KeyStroke.getKeyStroke(&quot;ctrl B&quot;);
+    //将按键对象映射到按钮的InputMap中，第一个参数是输入映射条件，第二个参数是键名。
+    InputMap imap = blueButton.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW);
+    imap.put(ctrlBKey, &quot;setBlue&quot;);
+    //让InputMap和ActionMap分开的目的是为了更容易让 不同输入映射 共享一个动作
+    //比如：imap.put(ctrlCKey, &quot;setBlue&quot;);
+    //将Action和键名绑定在一起，完成了快捷键的注册。
+    ActionMap amap = blueButton.getActionMap();
+    amap.put(&quot;setBlue&quot;, blueAction);
+    
+</code></pre>
+<h3 id="33-a-namemousea鼠标-mouse">3.3. <a name='Mouse'></a>鼠标 Mouse：</h3>
+<p>鼠标事件监听器接口有两个，<br>
+MouseListener：关注点击事件，</p>
+<pre><code class="language-java">    void mousePressed(MouseEvent e)    //当按下鼠标时调用这个方法
+    void mouseReleased(MouseEvent e)   //松开鼠标时调用这个方法
+    void mouseClicked(MouseEvent e)    //在完成上面两个事件后调用这个方法，一般最需要关注的。
+    void mouseEntered(MouseEvent e)    //invoked when the mouse enters a component.
+    void mouseExited(MouseEvent e)    //Invoked when the mouse exits a component.
+</code></pre>
+<p>MouseMotionListener：关注移动事件</p>
+<pre><code class="language-java">    void mouseDragged(MouseEvent e)    //拖动，就是移动鼠标的同时按下鼠标
+    void mouseMoved(MouseEvent e)      //移动
+</code></pre>
+<p>java.awt.event.MouseEvent<br>
+int getX();<br>
+int getY();<br>
+Point getPoint();    //返回鼠标的坐标<br>
+int getClickCount();    //返回鼠标连击次数</p>
+<h3 id="34-a-namea事件总结">3.4. <a name=':'></a>事件总结:</h3>
+<p>java.awt.event中罪常用的语义事件类（前3）和底层事件类（后5）：</p>
+<table>
+<thead>
+<tr>
+<th>事件类Event Class</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ActionEvent</td>
+<td>按钮点击，菜单选择，选择列表项</td>
+</tr>
+<tr>
+<td>AdjustmentEvent</td>
+<td>调节滚动条</td>
+</tr>
+<tr>
+<td>ItemEvent</td>
+<td>从复选框或者列表框中选择</td>
+</tr>
+<tr>
+<td>KeyEvent</td>
+<td>一个键按下或释放</td>
+</tr>
+<tr>
+<td>MouseEvent</td>
+<td>鼠标按下，释放，移动，拖动</td>
+</tr>
+<tr>
+<td>MouseWheelEvent</td>
+<td>鼠标滚轮转动</td>
+</tr>
+<tr>
+<td>FocusEvent</td>
+<td>某个组件获得焦点或失去焦点</td>
+</tr>
+<tr>
+<td>WindowEvent</td>
+<td>窗口状态改变</td>
+</tr>
+</tbody>
+</table>
+<p>详见《Java核心编程》Page471<br>
+|监听接口|方法|事件源Class|<br>
+|-|-|<br>
+|ActionListener|adjustmentValueChanged|actionPerformed|AbstractButton，JcomboBox，JTextField，Timer|<br>
+|AdjustmentListener|itemStateChanged|JScrollbar|<br>
+|ItemListener|focusGained</br>focusLost|AbstractButton，JcomboBox|<br>
+|FocusListener|keyPressed</br>keyReleased</br>KeyTyped|Component|<br>
+|KeyListener|mousePressed</br>mouseReleased</br>mouseClicked</br>mouseEntered</br>mouseExited|Component|<br>
+|MouseMotionListener|mouseDragged</br>mouseMoved|Component|<br>
+|MouseWheelListener|mouseWheelMoved|Component|<br>
+|WindowListener|Window|<br>
+|WindowFocusListener|windowGainedFocus</br>windowLostFocus|Window|<br>
+|WIndowStateListener|windowStateChanged|Window|</p>
+<p>回忆：<br>
+事件源 注册 事件监听器<br>
+一旦有事件发生，事件源 将会把 事件 发送给 注册了的所有事件监听器<br>
+根据事件，事件监听器会调用相应的 方法<br>
+下面这段无聊的代码体现这个思想：</p>
+<pre><code class="language-java">//首先，有一个事件源button
+JButton button = new JButton();
+//给事件源 注册 事件监听器，这个Key就是一个满足了KeyListener接口的类。
+KeyListener key = new Key();
+button.addKeyListener(key);
+//然后，如果我按下了一个键，就会调用这个事件监听器里头的方法KeyTyped
+class Key implements KeyListener{
+	public void keyPressed(KeyEvent e) {}
+	public void keyReleased(KeyEvent e) {}
+	public void keyTyped(KeyEvent e) {
+		System.out.println(&quot;&quot;+e.getKeyChar());	
+	}
+}
+</code></pre>
+<h2 id="4-a-nameapipreferencesa首选项api-preferences">4. <a name='APIpreferences'></a>首选项API preferences</h2>
+<p>java.util.preferences<br>
+保存首选项，一般我们用XML格式的文件。</p>
+<pre><code class="language-java">    //先获得root,从用户或系统根开始
+    Preferences root = Preferences.userRoot();
+    //再获得节点。可以直接提供一个路径名
+    final Preferences node = root.node(&quot;/com/horstmann/corejava&quot;);
+    //用这些方法访问键值对表，第二个参数是默认值。
+    int left = node.getInt(&quot;left&quot;, 0);
+    int top = node.getInt(&quot;top&quot;, 0);
+    int width = node.getInt(&quot;width&quot;, DEFAULT_WIDTH);
+    int height = node.getInt(&quot;height&quot;, DEFAULT_HEIGHT);
+    setBounds(left, top, width, height);
+</code></pre>
+<h2 id="5-a-nameswingmodel-view-controlleraswing和model-view-controller模式">5. <a name='SwingModel-View-Controller'></a>Swing和Model-View-Controller模式</h2>
+<figure data-type="image" tabindex="1"><img src="https://reticenceji.github.io/post-images/1599802416720.svg" alt="Model-View-Controller" loading="lazy"></figure>
+<h2 id="6-a-nameswingaswing用户界面组件">6. <a name='Swing'></a>Swing用户界面组件</h2>
+<p><a href="https://naotu.baidu.com/file/985f88a83c641b8e130d6be873abf505">组件继承关系图</a><br>
+也就是说，下面要介绍的布局管理，文本处理，选择处理，和按钮、菜单属于同一层级。</p>
+<h3 id="61-a-namelayouta布局管理layout">6.1. <a name='Layout'></a>布局管理Layout</h3>
+<p>拖放式：https://blog.csdn.net/weixin_43792401/article/details/103231454</p>
+<p>通常，组件（Component）放在容器（Container）中，Container的布局管理器（LayoutManager）会决定组件的位置和大小。<br>
+LayoutManager是一个接口。可以用<br>
+（流式布局）FlowLayout，给出最合适的大小<br>
+（表格布局）GridLayout，填满，部件一样大小<br>
+（边框布局）BorderLayout：是JFrame内容窗格的默认布局管理器。东南西北中。<br>
+一般的，我们把组件添加到容器里，让容器完成布局工作。(仔细一看，那些组件都是容器......)<br>
+一般来说，添加到Jpanel(JPanel is a generic lightweight container)中，在给JPanel设置布局。如：</p>
+<pre><code class="language-java">Jpanel panel = new JPanel();
+panel.setLayout(new FlowLayout());    //这里需要提供一个满足了LayoutManager的类
+</code></pre>
+<p>更复杂但是更强大的布局管理————（网格包布局）GridBagLayout</p>
+<h3 id="62-a-nametexta文本text">6.2. <a name='Text'></a>文本Text</h3>
+<p>JTextComponent是一个抽象类。我们一般用JTextField（文本域，单行文本）和JTextArea（文本区，多行文本）组件。还有JPasswordField。<br>
+javax.swing.text.JTextComponent<br>
+String getText()<br>
+void setText(String text)    //文本组件的内容<br>
+boolean isEditable<br>
+void setEditable(boolean)    //决定用户能否修改文本组件的内容</p>
+<h4 id="621-a-namelabelalabel标签">6.2.1. <a name='Label'></a>Label标签</h4>
+<p>Javax.swing.JLabel<br>
+JLabel(String text,Icon icon,int align)<br>
+//初始化一个标签，其中align是常量LEFT，CENTER，RIGHT<br>
+void setText(String text)</p>
+<h4 id="622-a-namepasswordapassword密码域">6.2.2. <a name='Password'></a>Password密码域</h4>
+<p>和TextField完全差不多。但是输入的字符用回显字符（如*）表示。</p>
+<pre><code class="language-java">JPasswordField(int col);    //创建一个新的密码域
+void setEchoChar(char echo);    //修改回显字符
+char[] getPassword();    //返回密码域中包含的文本。使用之后应该覆写字符数组。
+</code></pre>
+<h4 id="623-a-nametextareaatextarea文本区">6.2.3. <a name='TextArea'></a>TextArea文本区</h4>
+<p>可以输入多行文字。不过一行如果过长会在视觉上被裁剪。</p>
+<pre><code class="language-java">JTextArea textArea = new JTextArea(8,40);    //8行40列
+textArea.setLineWrap(true);    //自动换行
+textArea.setTabSize(int c)    //设置tab宽度
+</code></pre>
+<h4 id="624-a-namescrollpaneascroll-pane滚动窗格">6.2.4. <a name='Scrollpane'></a>Scroll pane滚动窗格</h4>
+<h3 id="63-a-namechoosea选择组件choose">6.3. <a name='Choose'></a>选择组件Choose</h3>
+<h4 id="631-a-namecheckboxacheckbox复选框">6.3.1. <a name='CheckBox'></a>CheckBox复选框</h4>
+<p>和按钮一样，点击复选框会触发一个动作事件。可以为复选框关联一个动作监听器。</p>
+<pre><code class="language-java">JCheckBox(String label,boolean state);    //构造一个复选框
+boolean isSelected();
+void setSelected(boolean state);
+//获取或设置复选框的选择状态
+</code></pre>
+<h4 id="632-a-nameradiobuttongroupborderaradio-button-groupborder单选按钮组和边框">6.3.2. <a name='RadioButtonGroupBorder'></a>Radio Button Group&amp;Border单选按钮组和边框</h4>
+<p>在Swing中实现单选按钮组，首先构造一个ButtonGroup类型的对象，然后将JRadioButton类型的对象添加到按钮组中。<br>
+不过ButtonGroup只是逻辑上组织了JRadioButton，在画面中你还是要自己绘制。<br>
+显然，我们应该让一个Group的Button绘制在一起，就可以利用边框。</p>
+<ul>
+<li>
+<p>JRadioButton：<br>
+JRadioButton(String name,boolean state);   //初始化，JRadioButton是自带标签的<br>
+boolean isSelected();    //返回JRadioButton的选中状态。要知道哪个按钮被选择了，必须遍历所有的按钮。</p>
+</li>
+<li>
+<p>ButtonGroup：<br>
+add(AbstractButton b);    //将按钮添加到组里</p>
+</li>
+<li>
+<p>Border和BorderFactory<br>
+BorderFactory中有很多用于创建Border实例的静态方法。比如下面两个：<br>
+Border border = BorderFactory.createEtchedBorder();<br>
+Border titled = BorderFactory.createTitledBorder(border, &quot;Title&quot;);<br>
+JComponent类可以使用边框，如下：<br>
+panel.setBorder(titled);</p>
+</li>
+</ul>
+<h4 id="633-a-namecomboboxacombobox-组合框">6.3.3. <a name='ComboBox'></a>ComboBox 组合框</h4>
+<p>JComboBox</p>
+<h4 id="634-a-nameslideraslider-滑动条">6.3.4. <a name='Slider'></a>Slider 滑动条</h4>
+<p>JSlider</p>
+<h2 id="7-a-namemenua菜单menu">7. <a name='Menu'></a>菜单Menu</h2>
+<p>JMenuBar -&gt; JMenu -&gt; JMenuItem</p>
+<p>JMenuBar：<br>
+JMenuBar()    //创建一个菜单栏<br>
+JMenu：<br>
+JMenu(String lable)    //用给定标签构造一个菜单<br>
+JMenuItem add(JMenuItem item)    //添加一个菜单项，返回这个菜单项<br>
+JMenuItem insert(Action a)    //将有给定动作的菜单项添加到菜单中，返回这个菜单项<br>
+void remove(int index)    //移除菜单项<br>
+JMenuItem：<br>
+JMenuItem(String label)    //用给定标签构造一个菜单项<br>
+JMenuItem(Action a)    //用给定动作构造一个菜单项<br>
+setEnabled(boolean b)    //启用或禁用菜单项<br>
+添加菜单栏：<br>
+javax.swing.JFrame.setMenuBar(JMenuBar menubar)    //为这个窗体设置菜单栏<br>
+JFrame.add(menuBar,BorderLayout.NORTH)    //Jrame的默认布局管理器是BorderLayoutManager，我们一般放在北边。</p>
+<p>对于每个JMenuItem，点击他的时候会产生一个ActionEvent。我们给他添加一个监听器ActionListener。</p>
+<h3 id="71-a-nameradiobuttonmenuitemcheckboxmenuitemaradiobuttonmenuitem和checkboxmenuitem">7.1. <a name='RadioButtonMenuItemCheckBoxMenuItem'></a>RadioButtonMenuItem和CheckBoxMenuItem</h3>
+<p>JCheckBoxMenuItem<br>
+JRadioButtonMenuItem</p>
+<h3 id="72-a-namea弹出式菜单">7.2. <a name=''></a>弹出式菜单</h3>
+<p>JPopupMenu</p>
+<h3 id="73-a-nametoolbaratoolbar工具条">7.3. <a name='ToolBar'></a>ToolBar工具条</h3>
+<p>ToolBar</p>
+<h2 id="8-a-namedialogboxa对话框dialog-box">8. <a name='DialogBox'></a>对话框Dialog Box</h2>
+<h3 id="81-a-nameoptionpaneaoptionpane简单的显示对话框">8.1. <a name='OptionPane'></a>OptionPane简单的显示对话框</h3>
+<p>javax.swing.JOptionPane可以让我们很方便的创建对话框。</p>
+<ol>
+<li>选择对话框的类型（Message，Comfirm，Option，Input）</li>
+<li>选择图标（Error，Information，Warning，Question，Plain）</li>
+<li>选择消息（String，Icon，Component）</li>
+<li>对于Comfirm型，选择选项类型</li>
+<li>对于Option型，选择选项和默认选项。</li>
+<li>对于Input型，选择文本域和组合框</li>
+</ol>
+<pre><code class="language-java">public static int showConfirmDialog(
+Component parentComponent,    //父组件，可以为null
+Object message,        //message，可以是String、Icon、Component或他们的数组
+String title,        //标题
+int optionType,        //JOptionPane.OK_CANCEL_OPTION,JOptionPane.YES_NO_OPTION等
+int messageType,        //JOptionPane.ERROR_MESSAGE,JOptionPane.WARNING_MESSAGE等，和图标挂钩
+Icon icon            
+)throws HeadlessException
+
+public static String showInputDialog(    //返回一个字符串，输入的消息。取消了对话框返回null
+Object message        //提示语
+)throws HeadlessException
+</code></pre>
+<h3 id="82-a-namedialogadialog创建一个对话框">8.2. <a name='Dialog'></a>Dialog创建一个对话框</h3>
+<pre><code class="language-java">package dialog;
+
+import java.awt.BorderLayout;
+
+import javax.swing.*;
+
+public class DialogFrame extends JFrame{
+	private static final int WIDTH = 300;
+	private static final int HEIGHT = 400;
+	private AboutDialog dialog;
+	
+	public DialogFrame() {
+		setSize(WIDTH,HEIGHT);
+		//创建一个菜单栏
+		JMenuBar menuBar = new JMenuBar();
+		JMenu fileMenu = new JMenu(&quot;File&quot;);
+		menuBar.add(fileMenu);
+		JMenuItem aboutItem = new JMenuItem(&quot;About&quot;);
+		aboutItem.addActionListener((event) -&gt; {
+			if (dialog == null) dialog = new AboutDialog(DialogFrame.this);
+			dialog.setVisible(true);
+		});
+		fileMenu.add(aboutItem);
+		JMenuItem exitItem = new JMenuItem(&quot;Exit&quot;);
+		exitItem.addActionListener((event) -&gt; {
+			System.exit(0);
+		});
+		fileMenu.add(exitItem);
+		
+		add(menuBar,BorderLayout.NORTH);
+	}
+	
+	public static void main(String[] args) {
+		JFrame frame = new DialogFrame();
+		frame.setVisible(true);
+	}
+}
+//继承
+class AboutDialog extends JDialog{ 
+	public AboutDialog(JFrame owner) {
+		//提供所有者窗体，对话框标题和模式特征
+		super(owner,&quot;About&quot;,true);
+		add(new JLabel(&quot;&lt;html&gt;&lt;h1&gt;By Ji&lt;/h1&gt;&lt;/html&gt;&quot;),BorderLayout.CENTER);
+		JButton ok = new JButton(&quot;OK&quot;);
+		ok.addActionListener((event)-&gt;{
+			setVisible(false);
+		});
+		JPanel panel = new JPanel();
+		panel.add(ok);
+		add(panel,BorderLayout.SOUTH);
+		pack();
+	}
+
+}
+</code></pre>
+<h3 id="83-a-namefilechooserafilechooser文件对话框">8.3. <a name='FileChooser'></a>FileChooser文件对话框</h3>
+<p>JFileChooser可以创建文件选择对话框（但不是JDialog的子类）</p>
+<ol>
+<li>JFileChooser使用方法如下：</li>
+</ol>
+<pre><code class="language-java">    //创建一个文件选择器对象
+    JFileChooser chooser = new JFileChooser();
+    //设置当前的工作目录，需要提供一个File对象
+    chooser.setCurrentDirectory(new File(&quot;.&quot;));
+    //如果允许用户选择多个文件，设置为true，默认false
+    chooser.setMultiSelectionEnabled(false);
+    //默认情况下只能选择文件，可以设置选文件夹
+    chooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+    //设置文件过滤器
+    chooser.setFileFilter(new FileNameFilter());
+    //显示对话框
+    int result = chooser.showOpenDialog(this);
+    //返回值显示了成功、未选择、发生错误
+    if (result == JFileChooser.APPROVE_OPTION)
+    {
+    	//获取选择的文件，如果多个文件的话getSelectedFiles返回一个数组
+    	File file = chooser.getSelectedFile();
+    	System.out.println(file.getPath());
+    }
+</code></pre>
+<ol start="2">
+<li>文件过滤器FileFilter，一般来说就是选择文件名的后缀。创建一个文件过滤器，需要覆盖抽象类的两个抽象方法，如下所示。</li>
+</ol>
+<pre><code class="language-java">private class FileNameFilter extends FileFilter{
+	@Override
+    //返回过滤条件，如果文件被接受，返回true
+	public boolean accept(File f) {
+		if (f.isDirectory()) return true;
+		String name = f.getName();
+		if ((name.lastIndexOf('.')&lt;0) || !name.substring(name.indexOf('.')).equals(&quot;.java&quot;))
+			return false;
+		return true;
+	}
+
+	@Override
+    //返回一个过滤器的描述
+	public String getDescription() {return &quot;.java only&quot;;}
+	
+}
+</code></pre>
+
+<span id="footnote"></span>
+<div id = "warn"></div>
+</div>
+<div class="toc-container"><ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#1-a-namebasicintroductiona%E5%9F%BA%E6%9C%AC%E4%BB%8B%E7%BB%8D-basic-introduction">1. <a name='BasicIntroduction'></a>基本介绍 Basic Introduction</a></li>
+<li><a href="#2-a-namedrawa%E7%BB%98%E5%88%B6-draw">2. <a name='Draw'></a>绘制 Draw</a>
+<ul>
+<li><a href="#21-a-nameframea-%E6%98%BE%E7%A4%BA%E7%AA%97%E4%BD%93-frame">2.1. <a name='Frame'></a> 显示窗体 Frame</a></li>
+<li><a href="#22-a-namedrawsomethinga%E5%86%85%E5%AE%B9%E7%BB%98%E5%88%B6-draw-something">2.2. <a name='DrawSomething'></a>内容绘制 Draw Something</a></li>
+<li><a href="#23-a-namegeometrya%E5%87%A0%E4%BD%95%E5%9B%BE%E5%BD%A2-geometry">2.3. <a name='geometry'></a>几何图形 geometry</a></li>
+<li><a href="#24-a-namecolora%E9%A2%9C%E8%89%B2-color">2.4. <a name='color'></a>颜色 color</a></li>
+<li><a href="#25-a-namefonta%E5%AD%97%E4%BD%93-font">2.5. <a name='font'></a>字体 font</a></li>
+</ul>
+</li>
+<li><a href="#3-a-nameeventa-%E4%BA%8B%E4%BB%B6%E5%A4%84%E7%90%86-event">3. <a name='Event'></a> 事件处理 Event</a>
+<ul>
+<li><a href="#31-a-namebuttonandwindowa%E6%8C%89%E9%92%AE-%E7%AA%97%E5%8F%A3-button-and-window">3.1. <a name='ButtonandWindow'></a>按钮、窗口 Button and Window</a></li>
+<li><a href="#32-a-namekeyboarda%E9%94%AE%E7%9B%98keyboard">3.2. <a name='Keyboard'></a>键盘Keyboard</a></li>
+<li><a href="#33-a-namemousea%E9%BC%A0%E6%A0%87-mouse">3.3. <a name='Mouse'></a>鼠标 Mouse：</a></li>
+<li><a href="#34-a-namea%E4%BA%8B%E4%BB%B6%E6%80%BB%E7%BB%93">3.4. <a name=':'></a>事件总结:</a></li>
+</ul>
+</li>
+<li><a href="#4-a-nameapipreferencesa%E9%A6%96%E9%80%89%E9%A1%B9api-preferences">4. <a name='APIpreferences'></a>首选项API preferences</a></li>
+<li><a href="#5-a-nameswingmodel-view-controlleraswing%E5%92%8Cmodel-view-controller%E6%A8%A1%E5%BC%8F">5. <a name='SwingModel-View-Controller'></a>Swing和Model-View-Controller模式</a></li>
+<li><a href="#6-a-nameswingaswing%E7%94%A8%E6%88%B7%E7%95%8C%E9%9D%A2%E7%BB%84%E4%BB%B6">6. <a name='Swing'></a>Swing用户界面组件</a>
+<ul>
+<li><a href="#61-a-namelayouta%E5%B8%83%E5%B1%80%E7%AE%A1%E7%90%86layout">6.1. <a name='Layout'></a>布局管理Layout</a></li>
+<li><a href="#62-a-nametexta%E6%96%87%E6%9C%ACtext">6.2. <a name='Text'></a>文本Text</a>
+<ul>
+<li><a href="#621-a-namelabelalabel%E6%A0%87%E7%AD%BE">6.2.1. <a name='Label'></a>Label标签</a></li>
+<li><a href="#622-a-namepasswordapassword%E5%AF%86%E7%A0%81%E5%9F%9F">6.2.2. <a name='Password'></a>Password密码域</a></li>
+<li><a href="#623-a-nametextareaatextarea%E6%96%87%E6%9C%AC%E5%8C%BA">6.2.3. <a name='TextArea'></a>TextArea文本区</a></li>
+<li><a href="#624-a-namescrollpaneascroll-pane%E6%BB%9A%E5%8A%A8%E7%AA%97%E6%A0%BC">6.2.4. <a name='Scrollpane'></a>Scroll pane滚动窗格</a></li>
+</ul>
+</li>
+<li><a href="#63-a-namechoosea%E9%80%89%E6%8B%A9%E7%BB%84%E4%BB%B6choose">6.3. <a name='Choose'></a>选择组件Choose</a>
+<ul>
+<li><a href="#631-a-namecheckboxacheckbox%E5%A4%8D%E9%80%89%E6%A1%86">6.3.1. <a name='CheckBox'></a>CheckBox复选框</a></li>
+<li><a href="#632-a-nameradiobuttongroupborderaradio-button-groupborder%E5%8D%95%E9%80%89%E6%8C%89%E9%92%AE%E7%BB%84%E5%92%8C%E8%BE%B9%E6%A1%86">6.3.2. <a name='RadioButtonGroupBorder'></a>Radio Button Group&amp;Border单选按钮组和边框</a></li>
+<li><a href="#633-a-namecomboboxacombobox-%E7%BB%84%E5%90%88%E6%A1%86">6.3.3. <a name='ComboBox'></a>ComboBox 组合框</a></li>
+<li><a href="#634-a-nameslideraslider-%E6%BB%91%E5%8A%A8%E6%9D%A1">6.3.4. <a name='Slider'></a>Slider 滑动条</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#7-a-namemenua%E8%8F%9C%E5%8D%95menu">7. <a name='Menu'></a>菜单Menu</a>
+<ul>
+<li><a href="#71-a-nameradiobuttonmenuitemcheckboxmenuitemaradiobuttonmenuitem%E5%92%8Ccheckboxmenuitem">7.1. <a name='RadioButtonMenuItemCheckBoxMenuItem'></a>RadioButtonMenuItem和CheckBoxMenuItem</a></li>
+<li><a href="#72-a-namea%E5%BC%B9%E5%87%BA%E5%BC%8F%E8%8F%9C%E5%8D%95">7.2. <a name=''></a>弹出式菜单</a></li>
+<li><a href="#73-a-nametoolbaratoolbar%E5%B7%A5%E5%85%B7%E6%9D%A1">7.3. <a name='ToolBar'></a>ToolBar工具条</a></li>
+</ul>
+</li>
+<li><a href="#8-a-namedialogboxa%E5%AF%B9%E8%AF%9D%E6%A1%86dialog-box">8. <a name='DialogBox'></a>对话框Dialog Box</a>
+<ul>
+<li><a href="#81-a-nameoptionpaneaoptionpane%E7%AE%80%E5%8D%95%E7%9A%84%E6%98%BE%E7%A4%BA%E5%AF%B9%E8%AF%9D%E6%A1%86">8.1. <a name='OptionPane'></a>OptionPane简单的显示对话框</a></li>
+<li><a href="#82-a-namedialogadialog%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA%E5%AF%B9%E8%AF%9D%E6%A1%86">8.2. <a name='Dialog'></a>Dialog创建一个对话框</a></li>
+<li><a href="#83-a-namefilechooserafilechooser%E6%96%87%E4%BB%B6%E5%AF%B9%E8%AF%9D%E6%A1%86">8.3. <a name='FileChooser'></a>FileChooser文件对话框</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="fullPage"><canvas id="canvas"></canvas></div>
+</article>
+<div id="eof"><span>EOF</span></div><div class="round-shape-one"></div>
+<section>
+<div class="doc_comments">
+
+</div></section>
+</div></div></div><script>
+"use strict";!function(){for(var n=document.getElementsByTagName("pre"),e=n.length,s=0;s<e;s++){n[s].innerHTML='<span class="line-number"></span>'+n[s].innerHTML+'<span class="cl"></span>';for(var a=n[s].innerHTML.split(/\n/).length,r=0;r<a-1;r++){n[s].getElementsByTagName("span")[0].innerHTML+="<span>"+(r+1)+"</span>"}}}();
+let mainNavLinks=document.querySelectorAll(".markdownIt-TOC a");window.addEventListener("scroll",event=>{let fromTop=window.scrollY;mainNavLinks.forEach((link,index)=>{let section=document.getElementById(decodeURI(link.hash).substring(1));let nextSection=null
+if(mainNavLinks[index+1]){nextSection=document.getElementById(decodeURI(mainNavLinks[index+1].hash).substring(1));}
+if(section.offsetTop<=fromTop){if(nextSection){if(nextSection.offsetTop>fromTop){link.classList.add("currentToc");}else{link.classList.remove("currentToc");}}else{link.classList.add("currentToc");}}else{link.classList.remove("currentToc");}});});
+var h=document.documentElement,b=document.body,st="scrollTop",sh="scrollHeight",progress=document.querySelector(".progress"),scroll;document.addEventListener("scroll",function(){scroll=(h[st]||b[st])/((h[sh]||b[sh])-h.clientHeight)*100;progress.style.setProperty("--scroll",scroll+"%")});
+var wxScale=new WxScale({fullPage:document.querySelector("#fullPage"),canvas:document.querySelector("#canvas")});var imgBox=document.querySelectorAll("#md_block img");for(var i=0;i<imgBox.length;i++){imgBox[i].onclick=function(e){wxScale.start(this)}};
+</script>
+<a id="scrollUp" href="#top" style="position: fixed; z-index: 2147483647; display: block;"></a><div class="footer animated fadeInDown"><div class="site_footer"><div class="mysocials"><div class="my_socials"><a href="https://github.com/reticenceji"title="github"><i class="iconfont icon-github"></i></a><a href="reticenceji@qq.com"title="envelope"><i class="iconfont icon-envelope"></i></a><a href="https://www.zhihu.com/people/reticenceji"title="zhihu"><i class="iconfont icon-zhihu"></i></a></div></div><div class="copyright"id="copyright">Copyright © 2018-2020 <a href="https://reticenceji.github.io" style="margin:0;">Reticence</a>.</div>
+<span style="display: inline;margin-right:15px;">👁<strong><span id="busuanzi_value_site_uv"></span></strong></span><span id="busuanzi_container_page_pv" style="display: inline;"><span>📚<strong>176</strong> posts</span></div></div>
+<script>
+console.log("\n %c \u26a1Theme: Bitcron-pro Author's Blog:https://blog.blinkstar.cn  Writen By Serence  \n\n", "color: #ffffff; background: rgba(49, 49, 49, 0.85); padding:5px 0;border-radius:5px;", );
+</script>
+<script src="https://cdn.jsdelivr.net/npm/instant.page@3.0.0/instantpage.min.js" type="module" defer></script>
+<script type="text/javascript" async src="https://reticenceji.github.io/media/js/prism.js"></script>
+</body>
+</html>

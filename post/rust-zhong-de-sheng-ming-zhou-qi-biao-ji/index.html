@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="shortcut icon" href="https://reticenceji.github.io/favicon.ico" type="image/x-icon" /><meta name="viewport"content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="apple-mobile-web-app-capable"content="yes"/><meta name="apple-mobile-web-app-status-bar-style"content="black"/><meta name="format-detection"content="telephone=no"/><meta name="renderer"content="webkit"><meta name="description"content=""><meta charset="UTF-8"><title>Rust中的生命周期标记 | Reticence</title>
+<link href="https://reticenceji.github.io/styles/main.css" type="text/css" rel="stylesheet" /><link href="https://at.alicdn.com/t/font_1621793_zatzzgvf30g.css" type="text/css" rel="stylesheet" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css"><script async src="https://cdn.jsdelivr.net/npm/busuanzi@2.3.0/bsz.pure.mini.min.js"></script><script src="https://reticenceji.github.io/media/js/magnify.min.js"></script><script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js"></script>
+<script type="text/javascript">function btn_toggle(){document.getElementById("hn").classList.contains("no-js")?document.getElementById("hn").classList.remove("no-js"):document.getElementById("hn").classList.add("no-js")}</script>
+
+<link rel="canonical" href="https://reticenceji.github.io/post/rust-zhong-de-sheng-ming-zhou-qi-biao-ji/" />
+</head>
+<body>
+<div class="progress"></div><style>.progress{background:linear-gradient(to right,#87ceeb var(--scroll),transparent 0);background-repeat:no-repeat;position:fixed;width:100%;height:4px;z-index:1}</style><div class="darkmode-background"></div><div class="darkmode-layer"></div>
+<noscript><p class="warn" >本页面需要浏览器支持（启用）JavaScript</p></noscript><div class="header"><div class="logo_title"><div class="title animated fadeInDown"><a href="https://reticenceji.github.io"><img alt="logo" style="display:inline-block;" src="https://reticenceji.github.io/images/avatar.png"/></a><h1 title="Reticence" class="weaklink"><a  href="/">Reticence</a></h1>
+
+<div class="navbar weaklink">
+<div class="normal_nav">
+<div class="bitcron_nav_container"><div class="bitcron_nav"><div class="bitcron_nav"><div style="display:flex;justify-content:center;"><nav class="mixed_site_nav_wrap site_nav_wrap"><ul class="mixed_site_nav site_nav sm sm-base">	<li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/" class="selected active current nav__item" >Index</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/tags" class="selected active current nav__item" >Tags</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/archives" class="selected active current nav__item" >Archives</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/navigator.html" class="selected active current nav__item" >Navigator</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/post/about" class="selected active current nav__item" >About</a></li></ul></nav>
+<div style="float:right;margin-top:1em"><form id="gridea-search-form" data-update="1578893743252" action="/search/index.html"><input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="Search..."></form></div><div style="margin-left:0.5em;margin-top:1.2em"><input id="switch_default" onclick="mobileBtn()" type="checkbox" class="switch_default"><label for="switch_default" class="toggleBtn"></label></div></div>
+<div class="clear clear_nav_inline_end"></div></div></div><div class="clear clear_nav_end"></div></div></div><div class="hamberger" href="javascript:void(0)" onclick="btn_toggle();"><i class="iconfont icon-category"></i></div></div></div></div>
+<div id="hn" class="no-js hidden_nav animated fadeInDown"><div class="bitcron_nav_container"><div class="bitcron_nav"><nav class="mixed_site_nav_wrap site_nav_wrap"><ul class="mixed_site_nav site_nav sm sm-base">	<li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/" class="selected active current nav__item" >Index</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/tags" class="selected active current nav__item" >Tags</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/archives" class="selected active current nav__item" >Archives</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/navigator.html" class="selected active current nav__item" >Navigator</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/post/about" class="selected active current nav__item" >About</a></li></ul><div class="clear clear_nav_inline_end"></div></nav></div><div class="clear clear_nav_end"></div></div>
+<div style="display:flex;justify-content:center;inline-block;text-align:center;margin-top:7%"><div><form id="gridea-search-form" data-update="1627835297708" action="/search/index.html"><input class="search-input" autocomplete="off" spellcheck="false" name="q"  placeholder="Search..." /></form></div><div style="margin-left:0.5em"><input id="switch_default_h" onclick="mobileBtn()" type="checkbox" class="switch_default"><label for="switch_default" class="toggleBtn"></label></div></div>
+</div></div>
+<script>function enableDarkmode(){document.body.classList.add("darkmode"),document.getElementById("switch_default").checked=1,document.getElementById("switch_default_h").checked=1}function removeDarkmode(){document.body.classList.remove("darkmode"),document.getElementById("switch_default").checked=0,document.getElementById("switch_default_h").checked=0}function getCookie(a){var b,c=new RegExp("(^| )"+a+"=([^;]*)(;|$)");return(b=document.cookie.match(c))?unescape(b[2]):null}cookie=getCookie("darkmode"),"enable"==cookie&&enableDarkmode(),window.matchMedia("(prefers-color-scheme: dark)").matches&&"disable"!==cookie&&(enableDarkmode(),document.cookie="darkmode=enable; path=/");var mobileBtn=function(){1==document.getElementById("switch_default").checked?(enableDarkmode(),document.cookie="darkmode=enable; path=/"):(removeDarkmode(),document.cookie="darkmode=disable; path=/")};</script>
+
+<div class="main"><div class="main-inner"><div class="content">
+<article class="post">
+<h2 class="post_title sm_margin"><a>Rust中的生命周期标记</a></h2>
+<script>function lan(){if(document.getElementById("lan").innerText=="繁"){var s=document.getElementById("tongwenlet_cn");if(s!=null){document.body.removeChild(s)}var s=document.createElement("script");s.language="javascript";s.type="text/javascript";s.src="https://cdn.jsdelivr.net/gh/qyxtim/Static@1.1/bookmarklet_tw.js";s.id="tongwenlet_cn";document.body.appendChild(s);document.getElementById("lan").innerHTML="简"}else{if(document.getElementById("lan").innerText=="簡"){var s=document.getElementById("tongwenlet_cn");if(s!=null){document.body.removeChild(s)}var s=document.createElement("script");s.language="javascript";s.type="text/javascript";s.src="https://cdn.jsdelivr.net/gh/qyxtim/Static@1.1/bookmarklet_cn.js";s.id="tongwenlet_cn";document.body.appendChild(s);document.getElementById("lan").innerHTML="繁"}}};</script>
+<section class="post_details"><i class="iconfont icon-calendar"></i><span style="margin-right:15px"> 2021-07-26</span><i class="iconfont icon-browse"></i><span style="margin-right:15px"> <span id="busuanzi_value_page_pv"></span> Views</span><i class="iconfont icon-category"></i><span class="weaklink" style="margin-right:15px">	<a href="https://reticenceji.github.io/tag/3Sdf--wHm/" class="tag">Rust</a></span><i class="iconfont icon-caret-down"></i><span style="margin-right:15px">1414字</span><i class="iconfont icon-naozhong"></i><span style="margin-right:15px">7 min read</span><a id="lan" href="javascript:void(0);"onclick="lan();"title="调整简繁体" style="margin-right:15px;">繁</a>
+</section>
+
+<div style="display:flex">
+<div class="md_block" id="md_block">
+<div class="round-shape-one"></div>
+<blockquote>
+<p>Rust 中的每一个引用都有其 <strong>生命周期</strong>（<em>lifetime</em>），也就是引用保持有效的作用域。大部分时候生命周期是隐含并可以推断的，正如大部分时候类型也是可以推断的一样。</p>
+<p>标记<strong>生命周期参数</strong>并不能改变任何<strong>引用</strong>的生命周期长短，他只是用于编译器的借用检查。<strong>保证引用的作用域在引用的对象析构之前结束</strong>。否则就会出现悬垂指针。</p>
+<p>对一个函数内部的生命周期进行分析，Rust编译器可以很好地解决，我们不用做额外的标记。但是，当生命周期跨函数的时候，就需要一种特殊的生命周期标记符号了。还有方法、结构体中也会有生命周期参数。</p>
+</blockquote>
+<h2 id="demo">Demo</h2>
+<p>先来看一段最好理解的生命周期标记：这里的<code>'a</code>,<code>'b</code>,<code>'c</code>都是生命周期参数。<code>'a:'b</code>的意思是<span class='katex-error' title='ParseError: KaTeX parse error: Undefined control sequence: \sideset at position 1: \̲s̲i̲d̲e̲s̲e̲t̲{&#039;}{}b \subsete…'>\sideset{&#039;}{}b \subseteq \sideset{&#039;}{}a</span></p>
+<pre><code class="language-rust">fn the_longest&lt;'a, 'b, 'c&gt;(s1: &amp;'a str, s2: &amp;'b str) -&gt; &amp;'c str
+where
+    'a: 'c,
+    'b: 'c,
+{
+    if s1.len() &gt; s2.len() {s1} else {s2}
+}
+
+fn main() {
+    let s1 = String::from(&quot;hello&quot;);
+    let s2 = String::from(&quot;hi&quot;);
+    let ret = the_longest(&amp;s1, &amp;s2);
+    println!(&quot;{}&quot;, ret);
+}
+</code></pre>
+<p>这里的意思是说返回值引用的生命周期 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>⊆</mo></mrow><annotation encoding="application/x-tex">\subseteq</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7719400000000001em;vertical-align:-0.13597em;"></span><span class="mrel">⊆</span></span></span></span> 第一个参数的生命周期，返回值引用的生命周期 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>⊆</mo></mrow><annotation encoding="application/x-tex">\subseteq</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7719400000000001em;vertical-align:-0.13597em;"></span><span class="mrel">⊆</span></span></span></span> 第二个参数的生命周期。</p>
+<p>在调用函数的时候，编译器检查<code>s1</code>,<code>s2</code>和<code>ret</code>的作用域，分别带入<code>'a</code>,<code>'b</code>,<code>'c</code>。所以通过检查。</p>
+<h2 id="demo2-协变">Demo2-协变</h2>
+<p>其实下面这样也是可以的。</p>
+<pre><code class="language-rust">fn the_longest&lt;'a&gt;(s1: &amp;'a str, s2: &amp;'a str) -&gt; &amp;'a str
+where
+{
+    if s1.len() &gt; s2.len() {s1} else {s2}
+}
+
+fn main() {
+    let s1 = String::from(&quot;hello&quot;);
+    let s2 = String::from(&quot;hi&quot;);
+    let ret = the_longest(&amp;s1, &amp;s2);
+    println!(&quot;{}&quot;, ret);
+}
+</code></pre>
+<p>是不是很奇怪？难道<code>&amp;s1</code>,<code>&amp;s2</code>和<code>ret</code>的生命周期是一样的吗？在这种一个标记（<code>'a</code>）对应多个实际生命周期（<code>&amp;s1</code>,<code>&amp;s2</code>,<code>ret</code>）的情况，编译器会取交集（或者说协变成同时满足的真正的生命周期）。它的实际含义是 <code>the_longest</code> 函数返回的引用的生命周期与传入该函数的引用的生命周期的较小者一致。</p>
+<h2 id="demo3-错误的使用示例1">Demo3-错误的使用示例1</h2>
+<pre><code class="language-rust">use std::result;
+
+fn the_longest&lt;'a&gt;(s1: &amp;'a str, s2: &amp;'a str) -&gt; &amp;'a str
+where
+{
+    if s1.len() &gt; s2.len() {s1} else {s2}
+}
+
+fn main() {
+    let s1 = String::from(&quot;hello&quot;);
+    let ret;
+    {
+        let s2 = String::from(&quot;hi&quot;);
+        ret = the_longest(&amp;s1, &amp;s2);
+    }
+    println!(&quot;{}&quot;, ret);
+}
+</code></pre>
+<p>此时<code>'a</code>的范围到里头的花括号就结束了，因为<code>s2</code>离开作用域析构了，<code>&amp;s2</code>无效了。但是对于<code>ret</code>来说，他还需要使用，所以检查失败了。</p>
+<h2 id="demo4-错误的使用示例2">Demo4-错误的使用示例2</h2>
+<p>难道我只要瞎写生命周期标记就能骗过编译器吗？</p>
+<pre><code class="language-rust">use std::result;
+
+fn the_longest&lt;'a, 'b, 'c&gt;(s1: &amp;'a str, s2: &amp;'b str) -&gt; &amp;'c str
+where
+    'a: 'b,
+    'a: 'c,
+{
+    if s1.len() &gt; s2.len() {
+        s1
+    } else {
+        s2
+    }
+}
+
+fn main() {
+    let s1 = String::from(&quot;hello&quot;);
+    let ret;
+    {
+        let s2 = String::from(&quot;hi&quot;);
+        ret = the_longest(&amp;s1, &amp;s2);
+    }
+    println!(&quot;{}&quot;, ret);
+}
+</code></pre>
+<p>这样写，没毛病吧？where子句里的东西句句属实。不过当然不是这样的，否则要生命周期标记有什么用呢？我直接不写不是铁定不会出错。提示如下：</p>
+<pre><code>error[E0312]: lifetime of reference outlives lifetime of borrowed content...
+  --&gt; src/main.rs:11:9
+   |
+11 |         s2
+   |         ^^
+   |
+note: ...the reference is valid for the lifetime `'c` as defined on the function body at 3:24...
+  --&gt; src/main.rs:3:24
+   |
+3  | fn the_longest&lt;'a, 'b, 'c&gt;(s1: &amp;'a str, s2: &amp;'b str) -&gt; &amp;'c str
+   |                        ^^
+note: ...but the borrowed content is only valid for the lifetime `'b` as defined on the function body at 3:20
+  --&gt; src/main.rs:3:20
+   |
+3  | fn the_longest&lt;'a, 'b, 'c&gt;(s1: &amp;'a str, s2: &amp;'b str) -&gt; &amp;'c str
+   |                    ^^
+</code></pre>
+<ol>
+<li>这个错误是函数的错误，和我后面不正确调用没有关系。</li>
+<li>意思是说，我这里<code>'c</code>只有属于<code>'b</code>才是合法的。因为我这里的<code>s2</code>的返回其实要求了这一点。</li>
+</ol>
+<h2 id="demo5-一个更隐晦的错误">Demo5 一个更隐晦的错误</h2>
+<p>例子来自于<a href="https://doc.rust-lang.org/nomicon/lifetime-mismatch.html">The Rustonomicon</a></p>
+<pre><code class="language-rust">#[derive(Debug)]
+struct Foo;
+
+impl Foo {
+    fn mutate_and_share(&amp;mut self) -&gt; &amp;Self { &amp;*self }
+    fn share(&amp;self) {}
+}
+
+fn main() {
+    let mut foo = Foo;
+    let loan = foo.mutate_and_share();
+    foo.share();
+    println!(&quot;{:?}&quot;, loan);
+}
+</code></pre>
+<p>load虽然使用了一个<code>&amp;mut</code>但是返回的是<code>&amp;</code> ，按理来说的话，两个shared ref是可以共存的，也就是说我们可以调用<code>foo.share()</code>。但事实上Rust会提示我们有问题。因为他认为<code>mutate_and_share()</code>传入的参数的生命周期和<code>foo</code>是一样的。书上说这种行为非常的”粗暴“。</p>
+<h2 id="其他">其他</h2>
+<p><code>'static</code>标记的是静态生命周期，就和我们在C语言中认知的<code>static</code>是一个意思。</p>
+<p>生命周期参数可以省略。称为lifetime elision rules。以下就是省略的生命周期被自动补全的规则。这是自动补全，不是推理：</p>
+<ul>
+<li>每个带生命周期参数的输入参数，每个对应不同的生命周期参数；</li>
+<li>如果只有一个输入参数带生命周期参数，那么返回值的生命周期被指定为这个参数；</li>
+<li>如果有多个输入参数带生命周期参数，但其中有<code>&amp;self</code>、<code>&amp;mut self</code>，那么返回值的生命周期被指定为这个参数；</li>
+<li>以上都不满足，就不能自动补全返回值的生命周期参数</li>
+</ul>
+<p>struct中如果有引用也要定义生命周期参数，对此我暂时先忽略。再说，可能可以用智能指针代替？</p>
+<p>https://www.zhihu.com/collection/373574784</p>
+
+<span id="footnote"></span>
+<div id = "warn"></div>
+</div>
+<div class="toc-container"><ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#demo">Demo</a></li>
+<li><a href="#demo2-%E5%8D%8F%E5%8F%98">Demo2-协变</a></li>
+<li><a href="#demo3-%E9%94%99%E8%AF%AF%E7%9A%84%E4%BD%BF%E7%94%A8%E7%A4%BA%E4%BE%8B1">Demo3-错误的使用示例1</a></li>
+<li><a href="#demo4-%E9%94%99%E8%AF%AF%E7%9A%84%E4%BD%BF%E7%94%A8%E7%A4%BA%E4%BE%8B2">Demo4-错误的使用示例2</a></li>
+<li><a href="#demo5-%E4%B8%80%E4%B8%AA%E6%9B%B4%E9%9A%90%E6%99%A6%E7%9A%84%E9%94%99%E8%AF%AF">Demo5 一个更隐晦的错误</a></li>
+<li><a href="#%E5%85%B6%E4%BB%96">其他</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="fullPage"><canvas id="canvas"></canvas></div>
+</article>
+<div id="eof"><span>EOF</span></div><div class="round-shape-one"></div>
+<section>
+<div class="doc_comments">
+
+</div></section>
+</div></div></div><script>
+"use strict";!function(){for(var n=document.getElementsByTagName("pre"),e=n.length,s=0;s<e;s++){n[s].innerHTML='<span class="line-number"></span>'+n[s].innerHTML+'<span class="cl"></span>';for(var a=n[s].innerHTML.split(/\n/).length,r=0;r<a-1;r++){n[s].getElementsByTagName("span")[0].innerHTML+="<span>"+(r+1)+"</span>"}}}();
+let mainNavLinks=document.querySelectorAll(".markdownIt-TOC a");window.addEventListener("scroll",event=>{let fromTop=window.scrollY;mainNavLinks.forEach((link,index)=>{let section=document.getElementById(decodeURI(link.hash).substring(1));let nextSection=null
+if(mainNavLinks[index+1]){nextSection=document.getElementById(decodeURI(mainNavLinks[index+1].hash).substring(1));}
+if(section.offsetTop<=fromTop){if(nextSection){if(nextSection.offsetTop>fromTop){link.classList.add("currentToc");}else{link.classList.remove("currentToc");}}else{link.classList.add("currentToc");}}else{link.classList.remove("currentToc");}});});
+var h=document.documentElement,b=document.body,st="scrollTop",sh="scrollHeight",progress=document.querySelector(".progress"),scroll;document.addEventListener("scroll",function(){scroll=(h[st]||b[st])/((h[sh]||b[sh])-h.clientHeight)*100;progress.style.setProperty("--scroll",scroll+"%")});
+var wxScale=new WxScale({fullPage:document.querySelector("#fullPage"),canvas:document.querySelector("#canvas")});var imgBox=document.querySelectorAll("#md_block img");for(var i=0;i<imgBox.length;i++){imgBox[i].onclick=function(e){wxScale.start(this)}};
+</script>
+<a id="scrollUp" href="#top" style="position: fixed; z-index: 2147483647; display: block;"></a><div class="footer animated fadeInDown"><div class="site_footer"><div class="mysocials"><div class="my_socials"><a href="https://github.com/reticenceji"title="github"><i class="iconfont icon-github"></i></a><a href="reticenceji@qq.com"title="envelope"><i class="iconfont icon-envelope"></i></a><a href="https://www.zhihu.com/people/reticenceji"title="zhihu"><i class="iconfont icon-zhihu"></i></a></div></div><div class="copyright"id="copyright">Copyright © 2018-2020 <a href="https://reticenceji.github.io" style="margin:0;">Reticence</a>.</div>
+<span style="display: inline;margin-right:15px;">👁<strong><span id="busuanzi_value_site_uv"></span></strong></span><span id="busuanzi_container_page_pv" style="display: inline;"><span>📚<strong>176</strong> posts</span></div></div>
+<script>
+console.log("\n %c \u26a1Theme: Bitcron-pro Author's Blog:https://blog.blinkstar.cn  Writen By Serence  \n\n", "color: #ffffff; background: rgba(49, 49, 49, 0.85); padding:5px 0;border-radius:5px;", );
+</script>
+<script src="https://cdn.jsdelivr.net/npm/instant.page@3.0.0/instantpage.min.js" type="module" defer></script>
+<script type="text/javascript" async src="https://reticenceji.github.io/media/js/prism.js"></script>
+</body>
+</html>

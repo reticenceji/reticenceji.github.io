@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="shortcut icon" href="https://reticenceji.github.io/favicon.ico" type="image/x-icon" /><meta name="viewport"content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="apple-mobile-web-app-capable"content="yes"/><meta name="apple-mobile-web-app-status-bar-style"content="black"/><meta name="format-detection"content="telephone=no"/><meta name="renderer"content="webkit"><meta name="description"content=""><meta charset="UTF-8"><title>Rust-基础知识 | Reticence</title>
+<link href="https://reticenceji.github.io/styles/main.css" type="text/css" rel="stylesheet" /><link href="https://at.alicdn.com/t/font_1621793_zatzzgvf30g.css" type="text/css" rel="stylesheet" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css"><script async src="https://cdn.jsdelivr.net/npm/busuanzi@2.3.0/bsz.pure.mini.min.js"></script><script src="https://reticenceji.github.io/media/js/magnify.min.js"></script><script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js"></script>
+<script type="text/javascript">function btn_toggle(){document.getElementById("hn").classList.contains("no-js")?document.getElementById("hn").classList.remove("no-js"):document.getElementById("hn").classList.add("no-js")}</script>
+
+<link rel="canonical" href="https://reticenceji.github.io/post/rust/" />
+</head>
+<body>
+<div class="progress"></div><style>.progress{background:linear-gradient(to right,#87ceeb var(--scroll),transparent 0);background-repeat:no-repeat;position:fixed;width:100%;height:4px;z-index:1}</style><div class="darkmode-background"></div><div class="darkmode-layer"></div>
+<noscript><p class="warn" >本页面需要浏览器支持（启用）JavaScript</p></noscript><div class="header"><div class="logo_title"><div class="title animated fadeInDown"><a href="https://reticenceji.github.io"><img alt="logo" style="display:inline-block;" src="https://reticenceji.github.io/images/avatar.png"/></a><h1 title="Reticence" class="weaklink"><a  href="/">Reticence</a></h1>
+
+<div class="navbar weaklink">
+<div class="normal_nav">
+<div class="bitcron_nav_container"><div class="bitcron_nav"><div class="bitcron_nav"><div style="display:flex;justify-content:center;"><nav class="mixed_site_nav_wrap site_nav_wrap"><ul class="mixed_site_nav site_nav sm sm-base">	<li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/" class="selected active current nav__item" >Index</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/tags" class="selected active current nav__item" >Tags</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/archives" class="selected active current nav__item" >Archives</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/navigator.html" class="selected active current nav__item" >Navigator</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/post/about" class="selected active current nav__item" >About</a></li></ul></nav>
+<div style="float:right;margin-top:1em"><form id="gridea-search-form" data-update="1578893743252" action="/search/index.html"><input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="Search..."></form></div><div style="margin-left:0.5em;margin-top:1.2em"><input id="switch_default" onclick="mobileBtn()" type="checkbox" class="switch_default"><label for="switch_default" class="toggleBtn"></label></div></div>
+<div class="clear clear_nav_inline_end"></div></div></div><div class="clear clear_nav_end"></div></div></div><div class="hamberger" href="javascript:void(0)" onclick="btn_toggle();"><i class="iconfont icon-category"></i></div></div></div></div>
+<div id="hn" class="no-js hidden_nav animated fadeInDown"><div class="bitcron_nav_container"><div class="bitcron_nav"><nav class="mixed_site_nav_wrap site_nav_wrap"><ul class="mixed_site_nav site_nav sm sm-base">	<li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/" class="selected active current nav__item" >Index</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/tags" class="selected active current nav__item" >Tags</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/archives" class="selected active current nav__item" >Archives</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/navigator.html" class="selected active current nav__item" >Navigator</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/post/about" class="selected active current nav__item" >About</a></li></ul><div class="clear clear_nav_inline_end"></div></nav></div><div class="clear clear_nav_end"></div></div>
+<div style="display:flex;justify-content:center;inline-block;text-align:center;margin-top:7%"><div><form id="gridea-search-form" data-update="1627835297708" action="/search/index.html"><input class="search-input" autocomplete="off" spellcheck="false" name="q"  placeholder="Search..." /></form></div><div style="margin-left:0.5em"><input id="switch_default_h" onclick="mobileBtn()" type="checkbox" class="switch_default"><label for="switch_default" class="toggleBtn"></label></div></div>
+</div></div>
+<script>function enableDarkmode(){document.body.classList.add("darkmode"),document.getElementById("switch_default").checked=1,document.getElementById("switch_default_h").checked=1}function removeDarkmode(){document.body.classList.remove("darkmode"),document.getElementById("switch_default").checked=0,document.getElementById("switch_default_h").checked=0}function getCookie(a){var b,c=new RegExp("(^| )"+a+"=([^;]*)(;|$)");return(b=document.cookie.match(c))?unescape(b[2]):null}cookie=getCookie("darkmode"),"enable"==cookie&&enableDarkmode(),window.matchMedia("(prefers-color-scheme: dark)").matches&&"disable"!==cookie&&(enableDarkmode(),document.cookie="darkmode=enable; path=/");var mobileBtn=function(){1==document.getElementById("switch_default").checked?(enableDarkmode(),document.cookie="darkmode=enable; path=/"):(removeDarkmode(),document.cookie="darkmode=disable; path=/")};</script>
+
+<div class="main"><div class="main-inner"><div class="content">
+<article class="post">
+<h2 class="post_title sm_margin"><a>Rust-基础知识</a></h2>
+<script>function lan(){if(document.getElementById("lan").innerText=="繁"){var s=document.getElementById("tongwenlet_cn");if(s!=null){document.body.removeChild(s)}var s=document.createElement("script");s.language="javascript";s.type="text/javascript";s.src="https://cdn.jsdelivr.net/gh/qyxtim/Static@1.1/bookmarklet_tw.js";s.id="tongwenlet_cn";document.body.appendChild(s);document.getElementById("lan").innerHTML="简"}else{if(document.getElementById("lan").innerText=="簡"){var s=document.getElementById("tongwenlet_cn");if(s!=null){document.body.removeChild(s)}var s=document.createElement("script");s.language="javascript";s.type="text/javascript";s.src="https://cdn.jsdelivr.net/gh/qyxtim/Static@1.1/bookmarklet_cn.js";s.id="tongwenlet_cn";document.body.appendChild(s);document.getElementById("lan").innerHTML="繁"}}};</script>
+<section class="post_details"><i class="iconfont icon-calendar"></i><span style="margin-right:15px"> 2021-03-05</span><i class="iconfont icon-browse"></i><span style="margin-right:15px"> <span id="busuanzi_value_page_pv"></span> Views</span><i class="iconfont icon-category"></i><span class="weaklink" style="margin-right:15px">	<a href="https://reticenceji.github.io/tag/3Sdf--wHm/" class="tag">Rust</a></span><i class="iconfont icon-caret-down"></i><span style="margin-right:15px">6181字</span><i class="iconfont icon-naozhong"></i><span style="margin-right:15px">26 min read</span><a id="lan" href="javascript:void(0);"onclick="lan();"title="调整简繁体" style="margin-right:15px;">繁</a>
+</section>
+
+<div style="display:flex">
+<div class="md_block" id="md_block">
+<div class="round-shape-one"></div>
+<p><ul class="markdownIt-TOC">
+<li><a href="#%E9%9D%9E%E8%AF%AD%E8%A8%80%E7%9B%B8%E5%85%B3%E7%9A%84%E5%86%85%E5%AE%B9">非语言相关的内容</a>
+<ul>
+<li><a href="#%E8%B8%A9%E7%9A%84%E5%9D%91">踩的坑</a></li>
+<li><a href="#%E7%8E%AF%E5%A2%83-cargo">环境-Cargo</a></li>
+<li><a href="#%E7%AE%A1%E7%90%86%E5%A4%A7%E5%9E%8B%E5%B7%A5%E7%A8%8B-%E7%AC%AC%E4%B8%83%E7%AB%A0">管理大型工程-第七章</a></li>
+<li><a href="#%E4%B8%80-%E5%AF%B9%E5%BA%94c%E8%AF%AD%E8%A8%80%E7%9A%84%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95">一、对应C语言的基本语法</a>
+<ul>
+<li><a href="#%E5%8F%98%E9%87%8F%E5%92%8C%E7%B1%BB%E5%9E%8B%E4%B8%80">变量和类型(一)</a></li>
+<li><a href="#%E8%AF%AD%E5%8F%A5%E5%92%8C%E8%A1%A8%E8%BE%BE%E5%BC%8F">语句和表达式</a></li>
+</ul>
+</li>
+<li><a href="#%E4%BA%8C-trait-star">二、Trait :star:</a>
+<ul>
+<li><a href="#trait%E7%9A%84%E7%BB%84%E6%88%90">Trait的组成</a>
+<ul>
+<li><a href="#%E6%96%B9%E6%B3%95%E5%92%8C%E9%9D%99%E6%80%81%E5%87%BD%E6%95%B0">方法和静态函数</a></li>
+</ul>
+</li>
+<li><a href="#trait%E4%BD%9C%E4%B8%BA%E6%B3%9B%E5%9E%8B">Trait作为泛型</a></li>
+<li><a href="#derive-%E8%87%AA%E5%8A%A8%E5%AE%9E%E7%8E%B0trait">Derive 自动实现trait</a></li>
+<li><a href="#%E6%A0%87%E5%87%86%E5%BA%93%E5%AE%9A%E4%B9%89%E7%9A%84%E5%B8%B8%E8%A7%81trait">标准库定义的常见trait</a></li>
+</ul>
+</li>
+<li><a href="#%E4%B8%89-%E6%95%B0%E7%BB%84%E5%92%8C%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%BA%8C">三、数组和字符串(二)</a>
+<ul>
+<li><a href="#%E6%95%B0%E7%BB%84">数组</a>
+<ul>
+<li><a href="#%E5%88%87%E7%89%87">切片</a></li>
+<li><a href="#range">Range</a></li>
+<li><a href="#%E6%95%B0%E7%BB%84%E7%9A%84%E8%BE%B9%E7%95%8C%E6%A3%80%E6%9F%A5">数组的边界检查</a></li>
+</ul>
+</li>
+<li><a href="#%E5%AD%97%E7%AC%A6%E4%B8%B2">字符串</a>
+<ul>
+<li><a href="#str">&amp;str</a></li>
+<li><a href="#string">String</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#%E5%9B%9B-pattern-destructure">四、Pattern Destructure</a>
+<ul>
+<li><a href="#match">Match</a></li>
+<li><a href="#if-let">if-let</a></li>
+<li><a href="#%E5%87%BD%E6%95%B0%E4%B8%AD%E7%9A%84%E4%BD%BF%E7%94%A8">函数中的使用</a></li>
+</ul>
+</li>
+<li><a href="#%E4%BA%94-%E5%8F%98%E9%87%8F%E5%92%8C%E7%B1%BB%E5%9E%8B%E4%B8%89">五、变量和类型(三)</a>
+<ul>
+<li><a href="#never-typeunit-type">Never Type&amp;Unit type</a></li>
+<li><a href="#option">Option</a></li>
+</ul>
+</li>
+<li><a href="#%E5%85%AD-%E5%AE%8F">六、宏</a>
+<ul>
+<li><a href="#%E5%A3%B0%E6%98%8E%E5%AE%8F-declarative-macros">声明宏 declarative macros</a></li>
+<li><a href="#%E8%BF%87%E7%A8%8B%E5%AE%8F-procedural-macros">过程宏 procedural macros</a></li>
+</ul>
+</li>
+<li><a href="#%E6%89%80%E6%9C%89%E6%9D%83%E5%92%8C%E5%BC%95%E7%94%A8-star">所有权和引用 :star:</a></li>
+<li><a href="#%E9%94%99%E8%AF%AF%E5%A4%84%E7%90%86-%E7%AC%AC%E4%B9%9D%E7%AB%A0">错误处理-第九章</a></li>
+</ul>
+</li>
+</ul>
+<br>
+Rust是一门优秀的语言。太强了。唯一的缺点，可能是比较难学。</p>
+<blockquote>
+<p>Rust 一门赋予每个人构建可靠且高效软件能力的语言。<br>
+高性能：Rust 速度惊人且内存利用率极高。由于没有运行时和垃圾回收，它能够胜任对性能要求特别高的服务，可以在嵌入式设备上运行，还能轻松和其他语言集成。<br>
+可靠性：Rust 丰富的类型系统和所有权模型保证了内存安全和线程安全，让您在编译期就能够消除各种各样的错误。<br>
+生产力：Rust 拥有出色的文档、友好的编译器和清晰的错误提示信息， 还集成了一流的工具——包管理器和构建工具， 智能地自动补全和类型检验的多编辑器支持， 以及自动格式化代码等等。</p>
+</blockquote>
+<h1 id="非语言相关的内容">非语言相关的内容</h1>
+<h2 id="踩的坑">踩的坑</h2>
+<ul>
+<li>加快下载速度，cargo改用清华源：https://mirrors.tuna.tsinghua.edu.cn/help/crates.io-index.git/。我发现他的版本还是有一定滞后的。</li>
+<li>解决Blocking waiting for file lock on package cache：<code>rm ~/.cargo/.package-cache</code>。不过也可以等等（（</li>
+</ul>
+<h2 id="环境-cargo">环境-Cargo</h2>
+<p>cargo是rust官方提供的包管理器。非常强大。</p>
+<p>查看文档：<code>cargo doc --open</code>，然后回打开本地浏览器查看文件包含所有依赖的文档。<br>
+编译：<code>cargo build</code><br>
+检查语法：<code>cargo check</code><br>
+运行：<code>cargo run</code></p>
+<h2 id="管理大型工程-第七章">管理大型工程-第七章</h2>
+<ul>
+<li>Package：一个或多个crate组成，提供一系列功能。包含一个cargo.toml介绍如果去构建crate</li>
+<li>Crate：a binary or library</li>
+<li>Modules： 让我们可以将一个 crate 中的代码进行分组，以提高可读性与重用性。模块还可以控制项的<strong>私有性</strong>，即项是可以被外部代码使用的（public），还是作为一个内部实现的内容，不能被外部代码使用（private）。</li>
+</ul>
+<p>Rust 中默认所有项（函数、方法、结构体、枚举、模块和常量）都是私有的。父模块中的项不能使用子模块中的私有项，但是子模块中的项可以使用他们父模块中的项。这是因为子模块封装并隐藏了他们的实现详情，但是子模块可以看到他们定义的上下文。<br>
+结构体遵循常规，内容默认全部是私有的，除非使用 pub 关键字。枚举成员默认就是公有的。</p>
+<p>引用模块的函数：</p>
+<pre><code>// Absolute path
+crate::front_of_house::hosting::add_to_waitlist();
+// Relative path
+front_of_house::hosting::add_to_waitlist();
+或者
+use crate::front_of_house::hosting
+hosting::add_to_waitlist();
+</code></pre>
+<h2 id="一-对应c语言的基本语法">一、对应C语言的基本语法</h2>
+<h3 id="变量和类型一">变量和类型(一)</h3>
+<ul>
+<li>
+<p>变量：<code>let</code>不可变，<code>let mut</code>可变，<code>const</code>常量。</p>
+<ul>
+<li>变量遮蔽。同一个<strong>变量名</strong>前后可以是不同类型的、可变性不同的。</li>
+<li><code>_</code>在Rust里是一个特殊的变量名。</li>
+<li><code>static</code>全局变量。只能是不可变的。可变的全局变量是unsafe。</li>
+<li><code>const</code>表示常量。往往会被编译器直接优化。</li>
+</ul>
+</li>
+<li>
+<p>类型，在Rust中可以交给上下文推导。也可以显式的在后面写出来。</p>
+<ul>
+<li>
+<p><code>type</code>相当于C语言中的<code>typedef</code>.比如<code>type Age = u32;</code></p>
+</li>
+<li>
+<p><code>bool</code>，有true和false两个值。一般用在逻辑表达式中。</p>
+</li>
+<li>
+<p><code>char</code>在Rust中可以表示任何一个符合<strong>unicode标准</strong>的<strong>字符</strong>。所以一个字符占据的空间是4 bytes。所以对于一般的ASCII字符，Rust提供了单字节字符字面量</p>
+<pre><code>let c1 = '\n';		//unicode
+let x :u8 = b'A';	//单字节字符字面量
+let s:&amp;[u8; 5] = b&quot;Hello&quot;;
+</code></pre>
+</li>
+<li>
+<p><strong>数字</strong>有无符号数<code>u8 u16 u32 u64 u128</code>，有符号数<code>i8 i16 i32 i64 i128</code>。还有指针大小<code>isize usize</code>。数字字面量默认是i32类型，也可以加类型约束：</p>
+<pre><code>let var1 = 123usize;		//约束字面量的类型
+let var2 = 0x8020_0000;		//可以加下划线分隔数字增加可读性
+let var3 = 32;				//默认是i32类型
+let var3 = 0o123 + 0b1001;	//八进制和二进制
+</code></pre>
+<p>整数溢出在debug的时候会Panic。可以编译时通过<code>rustc -C overflow-checks=no</code>关掉。</p>
+</li>
+<li>
+<p><strong>浮点数</strong>有<code>f32 f64</code>。Rust中的类型检查是很严格的，不同浮点数不同整数要转换成同一类型才能做运算和赋值。通过<code>as</code>实现类型转换。<code>var1 as f64</code>。</p>
+</li>
+<li>
+<p><strong>复合数据类型</strong></p>
+<ul>
+<li>
+<p>tuple</p>
+<pre><code>let a = (1, flase);	//赋值
+let (m,n) = a;		//模式匹配
+let x = a.0;		//通过数字索引
+ley y = a.1;	
+</code></pre>
+</li>
+<li>
+<p>struct</p>
+<pre><code>struct Point{
+	x: i32,
+	y: i32
+}							//声明类型
+let o=Point{x:0, y:0};		//赋值
+let x = o.x;				//通过名字索引
+let Point{m,n} = o;			//模式匹配
+</code></pre>
+</li>
+<li>
+<p>tuple struct。其实上面三种类型大同小异，就是表达方式不同，内存分布策略都是一样的。</p>
+<pre><code>struct Point(i32, i32);
+let o=Point(0,0);			//赋值
+let o=Point{0: 1,1: 2};		//赋值
+let x = o.0;				//通过名字索引
+let Point(m,n) = o;			//模式匹配
+</code></pre>
+</li>
+<li>
+<p>enum。Rust中的enum比C/C++要强大的多。代表的是多个类型“或”的关系。rust中的enum实际上是一个ADT，enum内部的variant只是一个名字而已，我们还可以将这个名字作为类型构造器来使用，意思是说我们可以把enum内部的variant当做函数来使用。</p>
+<pre><code>match 枚举类实例 {
+    分类1 =&gt; 返回值表达式,
+    分类2 =&gt; 返回值表达式,
+    ...
+}
+</code></pre>
+<pre><code>enum IpAddrKind {
+    V4(u8,u8,u8,u8),
+    V6(String),
+}
+let four = IpAddrKind::V4(127, 0, 0, 1);
+</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="语句和表达式">语句和表达式</h3>
+<p>语句和表达式。在RUST中，<strong>语句</strong>和<strong>表达式</strong>的区分方式就是有没有带分号<code>;</code>。如果带了分号说明是一条语句，如果不带分号就是表达式。表达式总是会产生一个值，如果不产生值那么就是<code>()</code>。如果把表达式放在一个语句块里<code>{}</code>起来，那也可以当成表达式。</p>
+<ul>
+<li>
+<p>循环语句：</p>
+<ul>
+<li><code>loop { }</code>,其实和while true的意思一样，但是编译器可以更好的理解里面的内容一定会被执行</li>
+<li><code>while bool { }</code>。</li>
+<li><code>for x in xxx { }</code>：主要是用来对迭代器进行遍历</li>
+</ul>
+</li>
+<li>
+<p>判断语句：<code>if bool { } else {}</code>结合表达式和语句的知识，我们知道我们也可以把他当做表达式来使用。</p>
+</li>
+<li>
+<p>函数：<code>fn sum(x: i32, y:i32) -&gt; i32{ }</code></p>
+<ul>
+<li>函数可以用return来返回，也可以视<code>{}</code>为一个表达式，表达式的值就是函数的返回值。</li>
+<li>支持递归，但暂时没有尾递归优化。</li>
+</ul>
+</li>
+<li>
+<p>注释：</p>
+<ul>
+<li>普通注释，其内容将被编译器忽略掉：
+<ul>
+<li><code>//</code> 单行注释，注释内容直到行尾。</li>
+<li><code>/* */</code> 块注释， 注释内容一直到结束分隔符。</li>
+</ul>
+</li>
+<li>文档注释，其内容将被解析成 HTML 帮助文档：
+<ul>
+<li><code>///</code> 为接下来的项生成帮助文档。</li>
+<li><code>//!</code> 为注释所属于的项（如 crate、模块或函数）生成帮助文档。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="二-trait-star">二、Trait ⭐️</h2>
+<p>Trait和别的语言里的implement很像，但是不太一样。更准确的说，Trait是Rust的核心内容，实现了很多语法点。比implement<code>更加丰富</code>。</p>
+<h3 id="trait的组成">Trait的组成</h3>
+<p>下面是一个demo，一个trait可以有一个或多个<strong>方法（或者叫函数）<strong>组成。事实上，trait里面还可以有</strong>常量和类型</strong>。</p>
+<pre><code>pub trait Summary {
+    //这三个称为method，是有self参数的，通过“变量+.”的方式调用
+    fn summarizeA(self) -&gt; String;	//等价于fn summarizeA(self: Self) -&gt; String;
+    fn summarize(&amp;self) -&gt; String;	//等价于fn summarizeB(self: &amp;Self) -&gt; String;
+    fn summarizeB(&amp;mut self) -&gt; String;	//等价于fn summarizeC(self: &amp;mut Self) -&gt; String;
+    //这个称为static function，没有self，通过“类型+::”的方式调用
+    fn summarizeC() -&gt; String;
+}
+</code></pre>
+<p>然后你就可以在你自己的类上<strong>实现impl</strong>这个trait。一旦实现了 trait，我们就可以用与 NewsArticle 和 Tweet 实例的非 trait 方法一样的方式调用 trait 方法了。如下所示：</p>
+<pre><code>impl Summary for MyClass {
+    fn summarize(&amp;self) -&gt; String {
+        format!(&quot;{}, by {} ({})&quot;, self.headline, self.author, self.location)
+    }
+    ...
+}
+</code></pre>
+<ul>
+<li>如果我们用<code>impl</code>给一个类定义方法，其实可以看做是给类<code>impl</code>了一个<strong>匿名的trait</strong>。</li>
+<li>trait是<strong>可以有默认实现</strong>的，不过也可以重写它。</li>
+</ul>
+<h4 id="方法和静态函数">方法和静态函数</h4>
+<p>事实上，method和static function没有本质的区别。<br>
+在用<code>.</code>方式调用的时候，编译器帮我们把self参数填上去了。<code>.</code>只是一个语法糖。<br>
+所以，其实self参数还可以是更复杂的，比如说<code>self:Box&lt;self&gt;</code>，如果编译器支持的话都会帮我们填好。下面介绍是怎么填写的。</p>
+<p>举个例子，关注最后两行，他们是等价的。编译器帮我们做好的完整的函数调用应该是：<code>&lt;Class as Trait&gt;::function(arguments)</code>。思考一下，这样是不是能很清楚的指明我调用的是哪一个函数。</p>
+<pre><code>pub trait Summary {
+    fn summarize_a(&amp;self) -&gt; ();
+}
+
+struct People{
+    name: String,
+    age: u32
+}
+
+impl Summary for People{
+    fn summarize_a(&amp;self)
+    {
+        println!(&quot;self {} is {} years old&quot;,self.name,self.age);
+    }
+}
+
+fn main()
+{
+    let a = People {name: &quot;AAA&quot;.to_string(),age: 18};
+    a.summarize_a();
+    &lt;People as Summary&gt;::summarize_a(&amp;a);
+}
+</code></pre>
+<h3 id="trait作为泛型">Trait作为泛型</h3>
+<p>利用trait，我们可以接受各种各样的参数。比如下面这个例子。本来我们在<code>item:</code> 后面需要书写我们传递参数的具体类型，但是我们现在用<code>impl Summary</code>，那么我们传入的参数可以是<strong>任何实现了trait Summary的任何类型</strong>。这不就是泛型吗。</p>
+<pre><code>pub fn notify(item: impl Summary) {
+    println!(&quot;Breaking news! {}&quot;, item.summarize());
+}
+//需要同时实现两种Trait
+pub fn notify(item: impl Summary + Display) {}
+//语法糖，指定泛型T和U为满足where从句限定trait的类型。
+fn some_function&lt;T, U&gt;(t: T, u: U) -&gt; i32
+    where  T: Display + Clone, U: Clone + Debug
+{}
+</code></pre>
+<p>少见一点的，你可以把返回值也用trait限定。<code>fn returns_summarizable() -&gt; impl Summary {}</code>，这样的话你需要返回一个实现了trait的类。</p>
+<p>一个很典型的例子就是格式化输出。在 <code>println(&quot;{}\n&quot;,myinstance);</code> 的时候，其实<code>{}</code>就被替换成了执行trait之后的内容。准确来说，是这样子：</p>
+<h3 id="derive-自动实现trait">Derive 自动实现trait</h3>
+<p>编译器可以帮我们自动生成**某些trait(包括Debug,Clone,Copy,Hash,ParitalEq,Eq,Default,Send,Sync等等)**的代码，比如下面这个例子，我们用derive提示编译器帮我们为People自动impl<code>Debug</code>这个trait。</p>
+<pre><code>#[derive(Debug)]
+struct People{
+    name: String,
+    age: u32
+}
+
+fn main()
+{
+    let a = People {name: &quot;AAA&quot;.to_string(),age: 18};
+    println!(&quot;Debug:{:?}&quot;,a);
+}
+</code></pre>
+<h3 id="标准库定义的常见trait">标准库定义的常见trait</h3>
+<p><strong>Display</strong>：<a href="https://doc.rust-lang.org/src/core/fmt/mod.rs.html#642-666">标准库</a>中有一个trait叫做<code>std::fmt::Display</code>，里面定义了一个方法签名<code>fn fmt(&amp;self, f: &amp;mut Formatter&lt;'_&gt;) -&gt; Result;</code>。如果你为你自己的类实现了这个方法，那么你就可以用格式化字符串了，或者简单的说就可以用<code>println(&quot;{}&quot;)</code>了。</p>
+<p><strong>sized</strong>：被sized约束的类型，意思是<strong>在编译的时候有确定的大小</strong>。这个是由编译器自行推导的，我们不能为我们的类型指定他。</p>
+<p><strong>Default</strong>：无参数无错误处理的构造函数。</p>
+<pre><code>trait Default{
+	fn default() -&gt; Self;
+}
+</code></pre>
+<h2 id="三-数组和字符串二">三、数组和字符串(二)</h2>
+<h3 id="数组">数组</h3>
+<p>数组是一个容器，在一块<strong>连续的内存空间</strong>中存储一系列<strong>相同类型</strong>的数据。数组元素的占用空间必须在编译时能确定，数组本身容纳的元素个数也要求在编译期不变。</p>
+<pre><code>let v :[i32; 5] = [1,2,3,4,5];		//创建数组
+let v2: [[i32:5]; 2] = [[1,2,3,4,5], [6,7,8,9,10]];		//多维数组
+let x = v[0]+v[1];					//引用数组的值
+</code></pre>
+<h4 id="切片">切片</h4>
+<p>可以认为<strong>数组切片</strong>是专门用于指向数组的指针。数组切片类型是<code>&amp;[T]</code>（变长数组类型是<code>[T]</code>）。数组切片是一个<strong>带有额外信息的指针(广义上的智能指针？)</strong>，他丢弃了编译时定长数组的长度信息，而将数组长度信息存储为运行期的值，因此会比裸指针占用更多的存储空间。</p>
+<p>其实这样存储着运行时大小信息的指针还有一个名字是<strong>fat pointer</strong>，与之相对应的概念是<strong>DST(dynamic sized type)</strong>，意思是在编译的时候无法确定大小的类型。安全起见我们用fat pointer指向DST。</p>
+<p>在Rust中，我们只能通过指针间接的操作DST。局部变量和函数参数的类型不能使DST类型；enum中不能包含DST类型，struct中最后一个参数可以是DST，并且这样的话struct也是DST。</p>
+<h4 id="range">Range</h4>
+<p>我觉得他不是数组。他是一个迭代器。或者说他impl了<code>Iterator</code>这个trait。range有一个语法糖是<code>start .. end</code>。我们可以用range来实现C语言中<code>for (i=start;i&lt;end;i++)</code>这样的句子。</p>
+<pre><code>use std::ops::Range;
+
+fn main() {
+    let r = 1..5;
+    let rr = Range{start:1,end:5};
+    for i in r{
+        println!(&quot;{}&quot;, i);
+    }
+    for i in rr{
+        println!(&quot;{}&quot;, i);
+    }
+}
+</code></pre>
+<p>事实上，range比这个更强大，还可以规定step，还可以到无穷（因为是迭代器）。<code>std::ops::RangeTo</code>，<code>std::ops::RangeFrom</code>。这样可以使用Range，但是要理解Range需要知道Iterator的原理。</p>
+<h4 id="数组的边界检查">数组的边界检查</h4>
+<p>可以试试下面这个CLI demo，第一个参数是数组的index。</p>
+<pre><code>fn main() {
+    let v = [10i32,20,30,40,50];
+    let index: usize = std::env::args().nth(1).map(|x|x.parse().unwrap_or(0)).unwrap_or(0);
+    println!(&quot;{:?}&quot;,v[index]);
+}
+</code></pre>
+<p>在Rust中，索引操作也是可以自行扩展的运算符。如果希望一个类可以执行<strong>索引读</strong>操作，需要该类型实现<code>std::ops::Index</code>；如果希望一个类可以执行<strong>索引写</strong>操作，需要该类型实现<code>std::ops::IndexMut</code>。在Rust中的数组默认的索引操作是会进行边界检查的，所以性能可能会稍弱于C/C++。</p>
+<p>更Rust的遍历数组的办法不应该用range，应该用迭代器：</p>
+<pre><code>fn main() {
+    let v = [10i32,20,30,40,50];
+    for (index,value) in v.iter().enumerate() {
+    	println!(&quot;{} {}&quot;,index,value);
+    }
+    
+    //filter方法可以执行过滤，nth可以获取第n个元素
+    let item = v.iter().filter(|&amp;x| *x % 2 ==0).nth(2);
+}
+</code></pre>
+<h3 id="字符串">字符串</h3>
+<p>Rust中的字符串涉及两种类型，一个是&amp;str，一个是String。</p>
+<h4 id="str">&amp;str</h4>
+<p>Rust中的字符串内部默认是使用utf-8编码格式的。因为utf-8是中的每一个字符的大小是1～4 byte，所以直接使用index操作会和你想得不一样。当然，如果都是英文还行。&amp;str只是一个reference，没有对生命周期进行管理的能力。</p>
+<pre><code>fn main(){
+    let greeting :&amp;str = &quot;你好，世界&quot;;
+    let substr :&amp;str = &amp;greeting[3..];	//你可以把它换成别的数字
+    println!(&quot;{}&quot;,substr);
+}
+</code></pre>
+<h4 id="string">String</h4>
+<p>String在Heap上申请了一块内存空间，它有权对这块内存空间进行管理和扩容。String实现了<code>Deref&lt;Target=str&gt;</code>的Trait，所以在很多情况下，&amp;String类型可以被编译器自动的转换为&amp;str类型。</p>
+<h2 id="四-pattern-destructure">四、Pattern Destructure</h2>
+<pre><code>fn main() {
+    println!(&quot;Hello, world!&quot;);
+    let t = (1,2,3);
+    let (x,y,z) = t;
+    println!(&quot;{},{},{}&quot;,x,y,z);
+}
+</code></pre>
+<h3 id="match">Match</h3>
+<p>match特别适合一个类型的取值有多种可能性的情况，有点像case，不过强大的多。</p>
+<p>Match要求所有的可能取值都要被匹配到（穷尽，exhaustive），否则会出现编译错误；其实也挺自然的，因为match语句要返回一个值，有的情况返回有的情况不返回那不是才奇怪吗。<code>_</code>代表的是Default的含义。</p>
+<pre><code>enum Direct{
+    East,West,North,South
+}
+
+fn main() {
+    let x = Direct::East;
+    let y = Direct::South;
+    match y {
+        Direct::East =&gt; {println!(&quot;East&quot;);}
+        _ =&gt; {println!(&quot;Other&quot;);}
+    }
+}
+</code></pre>
+<p>我们可以在match中绑定变量。我们使用<code>@</code>符号绑定变量，前面是新声明的变量，后面是需要匹配的模式。如果我们要绑定被匹配对象的reference（避免ownership的转移），我们可以使用<code>ref</code>关键字。</p>
+<pre><code>fn main() {
+    let x = 'x';
+    match x{
+        e @ 'a'..='z'=&gt; println!(&quot;Lower case {}&quot;,e),	
+        	//e @ 'a'..='z' if false=&gt; println!(&quot;Lower case {}&quot;,e), 看看会发生什么
+        'A'..='Z' =&gt; println!(&quot;Upper case&quot;),
+        _ =&gt; println!(&quot;Else&quot;)
+    }
+}
+</code></pre>
+<p>可以用<code>|</code>连接匹配条件，表示一个或关系；还可以在匹配条件之后加if，有点像与关系。</p>
+<pre><code>fn main() {
+	let x = 'z';
+    match x{
+        e @ 'a'..='z' | e @ 'A'..='Z'=&gt; println!(&quot;Letter {}&quot;,e),
+        '0'..='9' =&gt; println!(&quot;Number&quot;),
+        _ =&gt; println!(&quot;Else&quot;)
+    }
+}
+</code></pre>
+<h3 id="if-let">if-let</h3>
+<p>是一个语法糖，相当于不要求全部匹配的match。opt_val是一个Option。</p>
+<pre><code>fn main() {
+    let opt_val = Some(1);
+    if let Some(x) = opt_val{
+        println!(&quot;{}&quot;,x);
+    }
+}
+</code></pre>
+<p>Option是一个常用的enum。</p>
+<pre><code>pub enum Option&lt;T&gt; {
+    None,
+    Some(T),
+}
+</code></pre>
+<h3 id="函数中的使用">函数中的使用</h3>
+<p>可以在函数参数中做一个模式解构。</p>
+<h2 id="五-变量和类型三">五、变量和类型(三)</h2>
+<p>Rust中的变量是ADT。</p>
+<ul>
+<li>最简单的类型<code>unit ()</code>的基数是1，他的取值范围是<code>()</code></li>
+<li><code>bool</code>的基数是2，他的取值范围是<code>true</code>/<code>false</code>。</li>
+<li>i32的基数是<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mn>2</mn><mn>32</mn></msup></mrow><annotation encoding="application/x-tex">2^{32}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">3</span><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span></span>。</li>
+</ul>
+<p>我们把这些类型组合成一个复合类型。</p>
+<ul>
+<li><code>type T1 = [i32; 2];</code></li>
+<li><code>type T2 = (i32, i32);</code></li>
+<li><code>struct T3(i32,i32);</code></li>
+<li><code>struct T4 {f1:i32, f2:i32,}</code></li>
+</ul>
+<p>这四个类型虽然互不相同，但是他们的内存布局是相同的。他们的基数都是<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mn>2</mn><mn>32</mn></msup><mo>×</mo><msup><mn>2</mn><mn>32</mn></msup></mrow><annotation encoding="application/x-tex">2^{32}×2^{32}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.897438em;vertical-align:-0.08333em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">3</span><span class="mord mtight">2</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">3</span><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span></span>。</p>
+<ul>
+<li><code>enum Dir {North,West,South,East}</code>，他的基数是4。</li>
+<li><code>enum Option&lt;i32&gt; {Some(i32), None}</code>的基数是<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mn>2</mn><mn>32</mn></msup><mo>+</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">2^{32}+1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.897438em;vertical-align:-0.08333em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">3</span><span class="mord mtight">2</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span></li>
+</ul>
+<h3 id="never-typeunit-type">Never Type&amp;Unit type</h3>
+<p><a href="https://doc.rust-lang.org/std/primitive.unit.html">unit type</a>，也就是<code>()</code>。<a href="https://doc.rust-lang.org/std/primitive.never.html">never type</a>，也就是<code>!</code>。</p>
+<p>unit type是函数默认的返回参数，也就是说如果函数不加<code>-&gt; xxx</code>就是默认加上了<code>-&gt; ()</code>。<code>()</code>的大小是0，<code>!</code>的大小也是0。</p>
+<pre><code>#![feature(never_type)]
+use std::mem::size_of;
+
+fn main() {
+    println!(&quot;{} {}&quot;,size_of::&lt;!&gt;(),size_of::&lt;()&gt;());
+}
+</code></pre>
+<p><code>fn exit(code: i32) -&gt; !</code> exits the process without ever returning, and so returns <code>!</code>。<code>break</code>, <code>continue</code> and <code>return</code> expressions also have type <code>!</code>。<code>!</code>类型可以被转换成任何类型。</p>
+<h3 id="option">Option</h3>
+<p>所以多用<a href="https://doc.rust-lang.org/std/option/enum.Option.html">Option</a></p>
+<pre><code>pub const fn is_some(&amp;self) -&gt; bool
+Returns true if the option is a Some value.
+
+pub const fn is_none(&amp;self) -&gt; bool
+Returns true if the option is a None value.
+
+pub fn unwrap(self) -&gt; T		//不推荐
+Returns the contained Some value, consuming the self value.
+Because this function may panic, its use is generally discouraged. Instead, prefer to use pattern matching and handle the None case explicitly, or call unwrap_or, unwrap_or_else, or unwrap_or_default.
+
+pub fn expect(self, msg: &amp;str) -&gt; T
+Returns the contained Some value, consuming the self value.
+Panics if the value is a None with a custom panic message provided by msg.
+</code></pre>
+<p>对于裸指针，最好用Option进行包装防止使用空指针的情况。这是“零开销抽象”</p>
+<h2 id="六-宏">六、宏</h2>
+<p>Rust中的宏在语法解析之后起作用，所以增加了类型检查，比C/C++的宏更加强大。宏的调用方式是<code>some_macro!(...)</code>，或者<code>some_macro!{...}</code>、<code>some_macro![...]</code>。宏是元编程的一种方式。我们之前用的<code>println!</code>就是一个宏。</p>
+<h3 id="声明宏-declarative-macros">声明宏 declarative macros</h3>
+<p>可以使用macro_rules。expander是宏扩展的语法定义，后面是转换机制。语法定义的标识符以<code>$</code>开头，类型支持<code>item</code>,<code>block</code> ,<code>stmt</code> ,<code>pat</code> ,<code>expr</code>,<code>ty</code>,<code>itent</code> ,<code>path</code>,<code>tt</code>。如果我们希望在宏中重复出现语法元素，可以用<code>+</code>和<code>*</code>来实现，他们类似正则表达式中的，<code>+</code>代表出现一次或多次，<code>*</code>代表出现零次或多次。</p>
+<pre><code>macro_rules!  {
+    (expander) =&gt; {
+        transcriber
+    };
+}
+</code></pre>
+<p>比如：</p>
+<pre><code>macro_rules! hashmap{
+    ($( $key:expr =&gt; $val: expr), *) =&gt; {
+        {
+            let mut map = std::collections::HashMap::new();
+            $(map.insert($key,$val); )*
+            map
+        }
+    }
+}
+
+fn main() {
+    let x = hashmap!{1 =&gt; 2 , 3 =&gt; 4};
+    println!(&quot;{:?}&quot;,x);
+}
+</code></pre>
+<h3 id="过程宏-procedural-macros">过程宏 procedural macros</h3>
+<p>略</p>
+<hr>
+<p>至此，开始Rust之旅吧。下面你可能需要用到的知识：<br>
+还需要了解所有权和引用的知识，他们是Rust保护内存安全的基础，否则过编译寸步难行。<br>
+知道泛型能提高代码的可重用性，还有更进一步的静态分派和动态分派。<br>
+错误处理帮助我们写出更健壮的代码。Panic，Result，Option。<br>
+标准库当然也要会用啦，还可以利用别人造好的crate。<br>
+Rust的宏比C的宏强大的多。<br>
+Unsafe可以支持某些操作，但是你要自己保障safe。<br>
+Rust也支持函数式编程，支持闭包，迭代器。<br>
+Rust也支持并发，协程和线程。<br>
+工程管理也是必不可少的。</p>
+<h2 id="所有权和引用-star">所有权和引用 ⭐️</h2>
+<p>参考第四章。<br>
+Rust能保障内存安全，<strong>所有权ownership</strong>这个概念非常重要。所有权的概念就是为了管理堆上的数据。</p>
+<blockquote>
+<p>Each value in Rust has a variable that's called its <strong>owner</strong>.<br>
+There can only be one owner at one time.<br>
+When the owner goes out of scope, the value will be dropped.</p>
+</blockquote>
+<p>在栈上存储的数据，在函数返回时都会被清理。<br>
+但是在堆上，我们动态申请的数据，要怎么办呢？</p>
+<pre><code>fn main(){
+    let str_a = String::from(&quot;fdaaaaa&quot;); //生命周期的开始
+    println!(&quot;{}&quot;,str_a);            
+} //生命周期的结束
+</code></pre>
+<p>看上面的例子。<code>str_a</code>在这里就是<code>&quot;fdaaaaa&quot;</code>的owner。当owner的生命周期结束的时候，&quot;fdaaaaa&quot;占用的内存被释放(Drop)。怎么理解第二点呢？看下面的例子，str_b成为<code>&quot;fdaaaaa&quot;</code>的owner了，但是只能有一个owner，str_a就无效了，编译器会发现这个错误。<br>
+类似的，如果把str_a传入另一个函数，那么在那个函数退出的时候，会把str_a清理，原函数中的str_a就失效了，编译器会发现这个错误。</p>
+<pre><code>fn main(){
+    let str_a = String::from(&quot;fdaaaaa&quot;); 
+    let str_b = str_a;
+    println!(&quot;{}&quot;,str_b);   //str_a已经无效了           
+} 
+</code></pre>
+<p>Trait<code>Drop</code>：在变量离开其作用域的时候被调用，完成一些内存的释放工作。<br>
+Trait<code>Copy</code>，rust中的类型，如果没有实现Copy trait，那么在此类型的<strong>变量赋值、函数入参、函数返回值都是move语义</strong>（类比于c++）。并且如果实现了Copy语义，就不会被Drop。（禁止内存的二次释放）。所以一般来说，存储在Stack上的简单类型才会实现Copy trait。比如在上面这个例子，<code>str_a</code>已经Move到<code>str_b</code>上了。str_a就无效了。</p>
+<p>可是有时候我们可能不想要这个特性，比如在函数传递参数、for循环枚举的时候。为此，Rust有<strong>Reference</strong>这个概念。可以认为不是Owner但是可以引用变量的内容。如下例：</p>
+<pre><code>fn main() {
+    let s1 = String::from(&quot;hello&quot;);
+
+    let len = calculate_length(&amp;s1);
+
+    println!(&quot;The length of '{}' is {}.&quot;, s1, len);
+}
+
+fn calculate_length(s: &amp;String) -&gt; usize {
+    s.len()
+}
+</code></pre>
+<p><img src="https://reticenceji.github.io/post-images/1616217051614.svg" alt="" loading="lazy"><br>
+reference:<code>&amp;</code> mutable reference:<code>&amp;mut</code>, dereference:<code>*</code>。<br>
+变量 s 有效的作用域与函数参数的作用域一样，不过<strong>当引用离开作用域后并不丢弃它指向的数据（不Drop）</strong>，因为我们没有所有权。当函数使用引用而不是实际值作为参数，无需通过返回值来交还所有权，因为就不曾拥有所有权。<br>
+注意一个<strong>引用的作用域从声明的地方开始一直持续到最后一次使用为止</strong>。<br>
+Reference:</p>
+<blockquote>
+<p>At any given time, you can have either one mutable reference or any number of immutable references.<br>
+References must always be valid. （在Rust中编译器确保引用永远也不会变成悬垂状态：当你拥有一些数据的引用，编译器确保数据不会在其引用之前离开作用域。variable live longer than its reference）</p>
+</blockquote>
+<p>Rust强大的地方在于，他甚至能在编译的时候就保证这些特性。</p>
+<p>另一个<strong>Slice</strong>概念，也可以不是Owner，引用变量的内容，不过是引用集合中一段连续的元素序列。Slice也是不可变的。Slice:<code>s[1..4]</code>。<br>
+类似的，Rust在编译的时候，就保证Slice是始终有效的。</p>
+<h2 id="错误处理-第九章">错误处理-第九章</h2>
+<p>定义了Result枚举。很多可能产生错误的方法的返回值都是Result类型。</p>
+<pre><code>enum Result&lt;T, E&gt; {
+    Ok(T),
+    Err(E),
+}
+</code></pre>
+<p>现在你需要知道的就是 T 代表成功时返回的 Ok 成员中的数据的类型，而 E 代表失败时返回的 Err 成员中的错误的类型。<br>
+如果无法从错误中恢复，可以<code>panic!</code><br>
+如果可以处理错误，可以用match来判断是否发生错误分别处理。还有高级的处理办法，我没看懂。也可以把错误返回，不过这样函数的返回值最好是Result类型的。<br>
+Result还提供了<code>except()</code>方法来简化，如果正常会自己返回正常的内容，不正常会自己调用<code>panic!</code>。</p>
+<pre><code>fn main() {
+    let f = File::open(&quot;hello.txt&quot;);
+
+    let f = match f {
+        Ok(file) =&gt; file,       //正常工作
+        Err(error) =&gt; match error.kind() {
+            ErrorKind::NotFound =&gt; match File::create(&quot;hello.txt&quot;) {    //可以恢复的错误
+                Ok(fc) =&gt; fc,
+                Err(e) =&gt; panic!(&quot;Problem creating the file: {:?}&quot;, e),     //不可以恢复的错误
+            },
+            other_error =&gt; panic!(&quot;Problem opening the file: {:?}&quot;, other_error),
+        },
+    };
+}
+</code></pre>
+
+<span id="footnote"></span>
+<div id = "warn"></div>
+</div>
+<div class="toc-container"><ul class="markdownIt-TOC">
+<li><a href="#%E9%9D%9E%E8%AF%AD%E8%A8%80%E7%9B%B8%E5%85%B3%E7%9A%84%E5%86%85%E5%AE%B9">非语言相关的内容</a>
+<ul>
+<li><a href="#%E8%B8%A9%E7%9A%84%E5%9D%91">踩的坑</a></li>
+<li><a href="#%E7%8E%AF%E5%A2%83-cargo">环境-Cargo</a></li>
+<li><a href="#%E7%AE%A1%E7%90%86%E5%A4%A7%E5%9E%8B%E5%B7%A5%E7%A8%8B-%E7%AC%AC%E4%B8%83%E7%AB%A0">管理大型工程-第七章</a></li>
+<li><a href="#%E4%B8%80-%E5%AF%B9%E5%BA%94c%E8%AF%AD%E8%A8%80%E7%9A%84%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95">一、对应C语言的基本语法</a>
+<ul>
+<li><a href="#%E5%8F%98%E9%87%8F%E5%92%8C%E7%B1%BB%E5%9E%8B%E4%B8%80">变量和类型(一)</a></li>
+<li><a href="#%E8%AF%AD%E5%8F%A5%E5%92%8C%E8%A1%A8%E8%BE%BE%E5%BC%8F">语句和表达式</a></li>
+</ul>
+</li>
+<li><a href="#%E4%BA%8C-trait-star">二、Trait :star:</a>
+<ul>
+<li><a href="#trait%E7%9A%84%E7%BB%84%E6%88%90">Trait的组成</a>
+<ul>
+<li><a href="#%E6%96%B9%E6%B3%95%E5%92%8C%E9%9D%99%E6%80%81%E5%87%BD%E6%95%B0">方法和静态函数</a></li>
+</ul>
+</li>
+<li><a href="#trait%E4%BD%9C%E4%B8%BA%E6%B3%9B%E5%9E%8B">Trait作为泛型</a></li>
+<li><a href="#derive-%E8%87%AA%E5%8A%A8%E5%AE%9E%E7%8E%B0trait">Derive 自动实现trait</a></li>
+<li><a href="#%E6%A0%87%E5%87%86%E5%BA%93%E5%AE%9A%E4%B9%89%E7%9A%84%E5%B8%B8%E8%A7%81trait">标准库定义的常见trait</a></li>
+</ul>
+</li>
+<li><a href="#%E4%B8%89-%E6%95%B0%E7%BB%84%E5%92%8C%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%BA%8C">三、数组和字符串(二)</a>
+<ul>
+<li><a href="#%E6%95%B0%E7%BB%84">数组</a>
+<ul>
+<li><a href="#%E5%88%87%E7%89%87">切片</a></li>
+<li><a href="#range">Range</a></li>
+<li><a href="#%E6%95%B0%E7%BB%84%E7%9A%84%E8%BE%B9%E7%95%8C%E6%A3%80%E6%9F%A5">数组的边界检查</a></li>
+</ul>
+</li>
+<li><a href="#%E5%AD%97%E7%AC%A6%E4%B8%B2">字符串</a>
+<ul>
+<li><a href="#str">&amp;str</a></li>
+<li><a href="#string">String</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#%E5%9B%9B-pattern-destructure">四、Pattern Destructure</a>
+<ul>
+<li><a href="#match">Match</a></li>
+<li><a href="#if-let">if-let</a></li>
+<li><a href="#%E5%87%BD%E6%95%B0%E4%B8%AD%E7%9A%84%E4%BD%BF%E7%94%A8">函数中的使用</a></li>
+</ul>
+</li>
+<li><a href="#%E4%BA%94-%E5%8F%98%E9%87%8F%E5%92%8C%E7%B1%BB%E5%9E%8B%E4%B8%89">五、变量和类型(三)</a>
+<ul>
+<li><a href="#never-typeunit-type">Never Type&amp;Unit type</a></li>
+<li><a href="#option">Option</a></li>
+</ul>
+</li>
+<li><a href="#%E5%85%AD-%E5%AE%8F">六、宏</a>
+<ul>
+<li><a href="#%E5%A3%B0%E6%98%8E%E5%AE%8F-declarative-macros">声明宏 declarative macros</a></li>
+<li><a href="#%E8%BF%87%E7%A8%8B%E5%AE%8F-procedural-macros">过程宏 procedural macros</a></li>
+</ul>
+</li>
+<li><a href="#%E6%89%80%E6%9C%89%E6%9D%83%E5%92%8C%E5%BC%95%E7%94%A8-star">所有权和引用 :star:</a></li>
+<li><a href="#%E9%94%99%E8%AF%AF%E5%A4%84%E7%90%86-%E7%AC%AC%E4%B9%9D%E7%AB%A0">错误处理-第九章</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="fullPage"><canvas id="canvas"></canvas></div>
+</article>
+<div id="eof"><span>EOF</span></div><div class="round-shape-one"></div>
+<section>
+<div class="doc_comments">
+
+</div></section>
+</div></div></div><script>
+"use strict";!function(){for(var n=document.getElementsByTagName("pre"),e=n.length,s=0;s<e;s++){n[s].innerHTML='<span class="line-number"></span>'+n[s].innerHTML+'<span class="cl"></span>';for(var a=n[s].innerHTML.split(/\n/).length,r=0;r<a-1;r++){n[s].getElementsByTagName("span")[0].innerHTML+="<span>"+(r+1)+"</span>"}}}();
+let mainNavLinks=document.querySelectorAll(".markdownIt-TOC a");window.addEventListener("scroll",event=>{let fromTop=window.scrollY;mainNavLinks.forEach((link,index)=>{let section=document.getElementById(decodeURI(link.hash).substring(1));let nextSection=null
+if(mainNavLinks[index+1]){nextSection=document.getElementById(decodeURI(mainNavLinks[index+1].hash).substring(1));}
+if(section.offsetTop<=fromTop){if(nextSection){if(nextSection.offsetTop>fromTop){link.classList.add("currentToc");}else{link.classList.remove("currentToc");}}else{link.classList.add("currentToc");}}else{link.classList.remove("currentToc");}});});
+var h=document.documentElement,b=document.body,st="scrollTop",sh="scrollHeight",progress=document.querySelector(".progress"),scroll;document.addEventListener("scroll",function(){scroll=(h[st]||b[st])/((h[sh]||b[sh])-h.clientHeight)*100;progress.style.setProperty("--scroll",scroll+"%")});
+var wxScale=new WxScale({fullPage:document.querySelector("#fullPage"),canvas:document.querySelector("#canvas")});var imgBox=document.querySelectorAll("#md_block img");for(var i=0;i<imgBox.length;i++){imgBox[i].onclick=function(e){wxScale.start(this)}};
+</script>
+<a id="scrollUp" href="#top" style="position: fixed; z-index: 2147483647; display: block;"></a><div class="footer animated fadeInDown"><div class="site_footer"><div class="mysocials"><div class="my_socials"><a href="https://github.com/reticenceji"title="github"><i class="iconfont icon-github"></i></a><a href="reticenceji@qq.com"title="envelope"><i class="iconfont icon-envelope"></i></a><a href="https://www.zhihu.com/people/reticenceji"title="zhihu"><i class="iconfont icon-zhihu"></i></a></div></div><div class="copyright"id="copyright">Copyright © 2018-2020 <a href="https://reticenceji.github.io" style="margin:0;">Reticence</a>.</div>
+<span style="display: inline;margin-right:15px;">👁<strong><span id="busuanzi_value_site_uv"></span></strong></span><span id="busuanzi_container_page_pv" style="display: inline;"><span>📚<strong>176</strong> posts</span></div></div>
+<script>
+console.log("\n %c \u26a1Theme: Bitcron-pro Author's Blog:https://blog.blinkstar.cn  Writen By Serence  \n\n", "color: #ffffff; background: rgba(49, 49, 49, 0.85); padding:5px 0;border-radius:5px;", );
+</script>
+<script src="https://cdn.jsdelivr.net/npm/instant.page@3.0.0/instantpage.min.js" type="module" defer></script>
+<script type="text/javascript" async src="https://reticenceji.github.io/media/js/prism.js"></script>
+</body>
+</html>
