@@ -17,7 +17,7 @@
 <div style="float:right;margin-top:1em"><form id="gridea-search-form" data-update="1578893743252" action="/search/index.html"><input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="Search..."></form></div><div style="margin-left:0.5em;margin-top:1.2em"><input id="switch_default" onclick="mobileBtn()" type="checkbox" class="switch_default"><label for="switch_default" class="toggleBtn"></label></div></div>
 <div class="clear clear_nav_inline_end"></div></div></div><div class="clear clear_nav_end"></div></div></div><div class="hamberger" href="javascript:void(0)" onclick="btn_toggle();"><i class="iconfont icon-category"></i></div></div></div></div>
 <div id="hn" class="no-js hidden_nav animated fadeInDown"><div class="bitcron_nav_container"><div class="bitcron_nav"><nav class="mixed_site_nav_wrap site_nav_wrap"><ul class="mixed_site_nav site_nav sm sm-base">	<li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/" class="selected active current nav__item" >Index</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/tags" class="selected active current nav__item" >Tags</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/archives" class="selected active current nav__item" >Archives</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/navigator.html" class="selected active current nav__item" >Navigator</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/post/about" class="selected active current nav__item" >About</a></li></ul><div class="clear clear_nav_inline_end"></div></nav></div><div class="clear clear_nav_end"></div></div>
-<div style="display:flex;justify-content:center;inline-block;text-align:center;margin-top:7%"><div><form id="gridea-search-form" data-update="1627836214780" action="/search/index.html"><input class="search-input" autocomplete="off" spellcheck="false" name="q"  placeholder="Search..." /></form></div><div style="margin-left:0.5em"><input id="switch_default_h" onclick="mobileBtn()" type="checkbox" class="switch_default"><label for="switch_default" class="toggleBtn"></label></div></div>
+<div style="display:flex;justify-content:center;inline-block;text-align:center;margin-top:7%"><div><form id="gridea-search-form" data-update="1628164781557" action="/search/index.html"><input class="search-input" autocomplete="off" spellcheck="false" name="q"  placeholder="Search..." /></form></div><div style="margin-left:0.5em"><input id="switch_default_h" onclick="mobileBtn()" type="checkbox" class="switch_default"><label for="switch_default" class="toggleBtn"></label></div></div>
 </div></div>
 <script>function enableDarkmode(){document.body.classList.add("darkmode"),document.getElementById("switch_default").checked=1,document.getElementById("switch_default_h").checked=1}function removeDarkmode(){document.body.classList.remove("darkmode"),document.getElementById("switch_default").checked=0,document.getElementById("switch_default_h").checked=0}function getCookie(a){var b,c=new RegExp("(^| )"+a+"=([^;]*)(;|$)");return(b=document.cookie.match(c))?unescape(b[2]):null}cookie=getCookie("darkmode"),"enable"==cookie&&enableDarkmode(),window.matchMedia("(prefers-color-scheme: dark)").matches&&"disable"!==cookie&&(enableDarkmode(),document.cookie="darkmode=enable; path=/");var mobileBtn=function(){1==document.getElementById("switch_default").checked?(enableDarkmode(),document.cookie="darkmode=enable; path=/"):(removeDarkmode(),document.cookie="darkmode=disable; path=/")};</script>
 
@@ -25,16 +25,75 @@
 <article class="post">
 <h2 class="post_title sm_margin"><a>Rust中容器的增删改查</a></h2>
 <script>function lan(){if(document.getElementById("lan").innerText=="繁"){var s=document.getElementById("tongwenlet_cn");if(s!=null){document.body.removeChild(s)}var s=document.createElement("script");s.language="javascript";s.type="text/javascript";s.src="https://cdn.jsdelivr.net/gh/qyxtim/Static@1.1/bookmarklet_tw.js";s.id="tongwenlet_cn";document.body.appendChild(s);document.getElementById("lan").innerHTML="简"}else{if(document.getElementById("lan").innerText=="簡"){var s=document.getElementById("tongwenlet_cn");if(s!=null){document.body.removeChild(s)}var s=document.createElement("script");s.language="javascript";s.type="text/javascript";s.src="https://cdn.jsdelivr.net/gh/qyxtim/Static@1.1/bookmarklet_cn.js";s.id="tongwenlet_cn";document.body.appendChild(s);document.getElementById("lan").innerHTML="繁"}}};</script>
-<section class="post_details"><i class="iconfont icon-calendar"></i><span style="margin-right:15px"> 2021-08-02</span><i class="iconfont icon-browse"></i><span style="margin-right:15px"> <span id="busuanzi_value_page_pv"></span> Views</span><i class="iconfont icon-category"></i><span class="weaklink" style="margin-right:15px"></span><i class="iconfont icon-caret-down"></i><span style="margin-right:15px">11字</span><i class="iconfont icon-naozhong"></i><span style="margin-right:15px">1 min read</span><a id="lan" href="javascript:void(0);"onclick="lan();"title="调整简繁体" style="margin-right:15px;">繁</a>
+<section class="post_details"><i class="iconfont icon-calendar"></i><span style="margin-right:15px"> 2021-08-02</span><i class="iconfont icon-browse"></i><span style="margin-right:15px"> <span id="busuanzi_value_page_pv"></span> Views</span><i class="iconfont icon-category"></i><span class="weaklink" style="margin-right:15px"></span><i class="iconfont icon-caret-down"></i><span style="margin-right:15px">634字</span><i class="iconfont icon-naozhong"></i><span style="margin-right:15px">3 min read</span><a id="lan" href="javascript:void(0);"onclick="lan();"title="调整简繁体" style="margin-right:15px;">繁</a>
 </section>
 
 <div style="display:flex">
 <div class="md_block" id="md_block">
 <div class="round-shape-one"></div>
-<h2 id="数组">数组：</h2>
-<pre><code class="language-rust">let arr : [i32; 5] = [1, 2, 3, 4, 5];
+<p>Rust中的容器给我们的编程带来了很大的便利，但是每次都要查标准库有点麻烦，这里略加总结一下。另外，所有权真的是Rust中绕不过去的东西，“理解了所有权，就理解了Rust”。</p>
+<ul>
+<li>增、删、改、查</li>
+<li>创建、初始化</li>
+<li>遍历（迭代）</li>
+</ul>
+<h2 id="数组"><a href="https://doc.rust-lang.org/std/primitive.array.html">数组</a></h2>
+<p>Rust中的数组可以表示成<code>[T;N]</code>，N是一个要求在<strong>编译时</strong>确定的非负整数（也就是说不支持像C语言那样的动态长度数组，如果需要动态长度的话可以用Vector）。<br>
+数组元素实现了Copy Trait和没有实现Copy Trait在使用的时候差距还蛮大的。因为实现了Copy Trait在复制的时候所有权是不需要转移的。</p>
+<h3 id="初始化">初始化</h3>
+<p>初始化有两种方法，</p>
+<ol>
+<li>A list with each element, i.e., <code>[x, y, z]</code>.</li>
+<li>A repeat expression <code>[x; N]</code>, which produces an array with <code>N</code> copies of <code>x</code>. The type of <code>x</code> must be <a href="https://doc.rust-lang.org/std/marker/trait.Copy.html"><code>Copy</code></a>.</li>
+</ol>
+<pre><code class="language-rust">// 注意这里的数组是i32类型的，实现了Copy
+let mut arrcopy : [i32; 2] = [1;2];
+let mut nocopy : [String; 2] = [&quot;1&quot;.to_string(),&quot;1&quot;.to_string()];
 
+// 查
+let c = arrcopy[0];		//数组可以直接使用下标，但是越界会Panic
+// let c = nocopy[0];	//error，因为数组没有实现copy，应该用&amp;nocopy[0]
+assert_eq!([1,1], &amp;arrcopy[1..]);	// slice
+
+// 改
+arrcopy[1] = 10;
+nocopy[1] = &quot;10&quot;;
+let c = &amp;mut arrcopy[1];	// 通过一个可变引用（指针）
+*c = 110;
+// assert_eq!([1,10,3,4,5], arr);	//error
+drop(c);    // 如果不drop的话，arr存在一个mutable reference，后面无法使用
+assert_eq!([1,110], arr);	
+
+// 增删，长度是固定的，没法增删
 </code></pre>
+<h2 id="vec">[Vec]</h2>
+<p>有一个macro帮助我们初始化	<code>let vec = vec![0; 5];</code> Vec在底层的实现和C++是类似的。有两种方法创建一个Vec</p>
+<ol>
+<li><code>let mut v = Vec::&lt;i32&gt;::new();</code> 泛型的约束多半Rust可以通过上下文推导得出。</li>
+<li><code>let mut vec = Vec::with_capacity(5);</code> 预留空间，提高效率。</li>
+</ol>
+<pre><code class="language-rust">let mut stack = Vec::new();
+// 增
+stack.push(1);	
+stack.append(&amp;mut vec![3,4,5]);	// 把另一个vec中的所有元素移过来
+// 删
+let x:Option&lt;i32&gt; = stack.pop();
+x.clear();	// 清空
+// 查
+let x:i32 = stack[0];	// 下标越界会panic
+let x:Option&lt;&amp;i32&gt; = stack.get(0);	// 安全
+let x:Option&lt;&amp;mut i32&gt; = stack.get_mut(0);	// 安全
+let x = stack.get_unchecked(0); // 这个和 &amp;stack[0] 貌似没什么区别
+// 改 通过可变引用改咯
+
+// 迭代
+for i in v {}; for i in v.into_iter() {}; // 所有权都拿出来了
+for i in &amp;v {}; for i in v.iter() {}; 	
+for i in &amp;mut v{}; for i in v.iter_mut() {}; 
+</code></pre>
+<p>另一个有用的方法是sort</p>
+<h2 id="hashmap">HashMap</h2>
+<h2 id="string">String</h2>
 
 <span id="footnote"></span>
 <div id = "warn"></div>
@@ -42,7 +101,14 @@
 <div class="toc-container"><ul class="markdownIt-TOC">
 <li>
 <ul>
-<li><a href="#%E6%95%B0%E7%BB%84">数组：</a></li>
+<li><a href="#%E6%95%B0%E7%BB%84">数组</a>
+<ul>
+<li><a href="#%E5%88%9D%E5%A7%8B%E5%8C%96">初始化</a></li>
+</ul>
+</li>
+<li><a href="#vec">[Vec]</a></li>
+<li><a href="#hashmap">HashMap</a></li>
+<li><a href="#string">String</a></li>
 </ul>
 </li>
 </ul>
@@ -64,7 +130,7 @@ var h=document.documentElement,b=document.body,st="scrollTop",sh="scrollHeight",
 var wxScale=new WxScale({fullPage:document.querySelector("#fullPage"),canvas:document.querySelector("#canvas")});var imgBox=document.querySelectorAll("#md_block img");for(var i=0;i<imgBox.length;i++){imgBox[i].onclick=function(e){wxScale.start(this)}};
 </script>
 <a id="scrollUp" href="#top" style="position: fixed; z-index: 2147483647; display: block;"></a><div class="footer animated fadeInDown"><div class="site_footer"><div class="mysocials"><div class="my_socials"><a href="https://github.com/reticenceji"title="github"><i class="iconfont icon-github"></i></a><a href="reticenceji@qq.com"title="envelope"><i class="iconfont icon-envelope"></i></a><a href="https://www.zhihu.com/people/reticenceji"title="zhihu"><i class="iconfont icon-zhihu"></i></a></div></div><div class="copyright"id="copyright">Copyright © 2018-2020 <a href="https://reticenceji.github.io" style="margin:0;">Reticence</a>.</div>
-<span style="display: inline;margin-right:15px;">👁<strong><span id="busuanzi_value_site_uv"></span></strong></span><span id="busuanzi_container_page_pv" style="display: inline;"><span>📚<strong>176</strong> posts</span></div></div>
+<span style="display: inline;margin-right:15px;">👁<strong><span id="busuanzi_value_site_uv"></span></strong></span><span id="busuanzi_container_page_pv" style="display: inline;"><span>📚<strong>177</strong> posts</span></div></div>
 <script>
 console.log("\n %c \u26a1Theme: Bitcron-pro Author's Blog:https://blog.blinkstar.cn  Writen By Serence  \n\n", "color: #ffffff; background: rgba(49, 49, 49, 0.85); padding:5px 0;border-radius:5px;", );
 </script>
