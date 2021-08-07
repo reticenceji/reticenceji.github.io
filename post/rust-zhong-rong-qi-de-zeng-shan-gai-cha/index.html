@@ -17,7 +17,7 @@
 <div style="float:right;margin-top:1em"><form id="gridea-search-form" data-update="1578893743252" action="/search/index.html"><input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="Search..."></form></div><div style="margin-left:0.5em;margin-top:1.2em"><input id="switch_default" onclick="mobileBtn()" type="checkbox" class="switch_default"><label for="switch_default" class="toggleBtn"></label></div></div>
 <div class="clear clear_nav_inline_end"></div></div></div><div class="clear clear_nav_end"></div></div></div><div class="hamberger" href="javascript:void(0)" onclick="btn_toggle();"><i class="iconfont icon-category"></i></div></div></div></div>
 <div id="hn" class="no-js hidden_nav animated fadeInDown"><div class="bitcron_nav_container"><div class="bitcron_nav"><nav class="mixed_site_nav_wrap site_nav_wrap"><ul class="mixed_site_nav site_nav sm sm-base">	<li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/" class="selected active current nav__item" >Index</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/tags" class="selected active current nav__item" >Tags</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/archives" class="selected active current nav__item" >Archives</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/navigator.html" class="selected active current nav__item" >Navigator</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/post/about" class="selected active current nav__item" >About</a></li></ul><div class="clear clear_nav_inline_end"></div></nav></div><div class="clear clear_nav_end"></div></div>
-<div style="display:flex;justify-content:center;inline-block;text-align:center;margin-top:7%"><div><form id="gridea-search-form" data-update="1628164886622" action="/search/index.html"><input class="search-input" autocomplete="off" spellcheck="false" name="q"  placeholder="Search..." /></form></div><div style="margin-left:0.5em"><input id="switch_default_h" onclick="mobileBtn()" type="checkbox" class="switch_default"><label for="switch_default" class="toggleBtn"></label></div></div>
+<div style="display:flex;justify-content:center;inline-block;text-align:center;margin-top:7%"><div><form id="gridea-search-form" data-update="1628351601264" action="/search/index.html"><input class="search-input" autocomplete="off" spellcheck="false" name="q"  placeholder="Search..." /></form></div><div style="margin-left:0.5em"><input id="switch_default_h" onclick="mobileBtn()" type="checkbox" class="switch_default"><label for="switch_default" class="toggleBtn"></label></div></div>
 </div></div>
 <script>function enableDarkmode(){document.body.classList.add("darkmode"),document.getElementById("switch_default").checked=1,document.getElementById("switch_default_h").checked=1}function removeDarkmode(){document.body.classList.remove("darkmode"),document.getElementById("switch_default").checked=0,document.getElementById("switch_default_h").checked=0}function getCookie(a){var b,c=new RegExp("(^| )"+a+"=([^;]*)(;|$)");return(b=document.cookie.match(c))?unescape(b[2]):null}cookie=getCookie("darkmode"),"enable"==cookie&&enableDarkmode(),window.matchMedia("(prefers-color-scheme: dark)").matches&&"disable"!==cookie&&(enableDarkmode(),document.cookie="darkmode=enable; path=/");var mobileBtn=function(){1==document.getElementById("switch_default").checked?(enableDarkmode(),document.cookie="darkmode=enable; path=/"):(removeDarkmode(),document.cookie="darkmode=disable; path=/")};</script>
 
@@ -25,13 +25,14 @@
 <article class="post">
 <h2 class="post_title sm_margin"><a>Rust中容器的增删改查</a></h2>
 <script>function lan(){if(document.getElementById("lan").innerText=="繁"){var s=document.getElementById("tongwenlet_cn");if(s!=null){document.body.removeChild(s)}var s=document.createElement("script");s.language="javascript";s.type="text/javascript";s.src="https://cdn.jsdelivr.net/gh/qyxtim/Static@1.1/bookmarklet_tw.js";s.id="tongwenlet_cn";document.body.appendChild(s);document.getElementById("lan").innerHTML="简"}else{if(document.getElementById("lan").innerText=="簡"){var s=document.getElementById("tongwenlet_cn");if(s!=null){document.body.removeChild(s)}var s=document.createElement("script");s.language="javascript";s.type="text/javascript";s.src="https://cdn.jsdelivr.net/gh/qyxtim/Static@1.1/bookmarklet_cn.js";s.id="tongwenlet_cn";document.body.appendChild(s);document.getElementById("lan").innerHTML="繁"}}};</script>
-<section class="post_details"><i class="iconfont icon-calendar"></i><span style="margin-right:15px"> 2021-08-02</span><i class="iconfont icon-browse"></i><span style="margin-right:15px"> <span id="busuanzi_value_page_pv"></span> Views</span><i class="iconfont icon-category"></i><span class="weaklink" style="margin-right:15px"></span><i class="iconfont icon-caret-down"></i><span style="margin-right:15px">634字</span><i class="iconfont icon-naozhong"></i><span style="margin-right:15px">3 min read</span><a id="lan" href="javascript:void(0);"onclick="lan();"title="调整简繁体" style="margin-right:15px;">繁</a>
+<section class="post_details"><i class="iconfont icon-calendar"></i><span style="margin-right:15px"> 2021-08-02</span><i class="iconfont icon-browse"></i><span style="margin-right:15px"> <span id="busuanzi_value_page_pv"></span> Views</span><i class="iconfont icon-category"></i><span class="weaklink" style="margin-right:15px"></span><i class="iconfont icon-caret-down"></i><span style="margin-right:15px">1005字</span><i class="iconfont icon-naozhong"></i><span style="margin-right:15px">5 min read</span><a id="lan" href="javascript:void(0);"onclick="lan();"title="调整简繁体" style="margin-right:15px;">繁</a>
 </section>
 
 <div style="display:flex">
 <div class="md_block" id="md_block">
 <div class="round-shape-one"></div>
 <p>Rust中的容器给我们的编程带来了很大的便利，但是每次都要查标准库有点麻烦，这里略加总结一下。另外，所有权真的是Rust中绕不过去的东西，“理解了所有权，就理解了Rust”。</p>
+<p>线性表、映射、字符串是程序中最常用的三大数据结构。</p>
 <ul>
 <li>增、删、改、查</li>
 <li>创建、初始化</li>
@@ -93,7 +94,34 @@ for i in &amp;mut v{}; for i in v.iter_mut() {};
 </code></pre>
 <p>另一个有用的方法是sort</p>
 <h2 id="hashmap">HashMap</h2>
-<h2 id="string">String</h2>
+<h2 id="string-和-str">String 和 &amp;str</h2>
+<p>Rust中的字符串主要是这两种形式，所以放在一起看待。不同于C语言中的字符串就是字符数组，在Rust中并不是这样的。Rust中的字符是Unicode字符，char类型占4个字节。String是UTF-8序列，是不定长的，所以也无法用index访问其中的字符。<br>
+正则表达式要用第三方库regex::Regex。</p>
+<pre><code class="language-rust">// 查
+let s = &quot;你好, 世界!&quot;;
+assert_eq!(&quot;好, 世界!&quot;,s.get(3..).unwrap());
+assert_eq!(None,s.get(1..));    // 从一个非法的地方截断
+for i in s.chars() {};  // '你', '好', ',' ...  i:char
+for i in s.bytes() {};  // i:bytes
+assert_eq!(Some(3),s.find(&quot;好&quot;));
+// contain 方法，判断字符串中是否存在符合指定条件的字符
+
+// 改
+let v: Vec&lt;&amp;str&gt; = s.split(&quot;,&quot;).collect();      //分割子串，得到迭代器
+assert_eq!(vec![&quot;你好&quot;,&quot; 世界!&quot;],v);
+
+// 修改字符串的内容，一般用String
+// 增
+let mut hello = String::from(&quot;你好&quot;);
+hello.push_str(&quot; world&quot;);   // 在字符串末尾添加
+println!(&quot;{}&quot;,hello);
+hello.insert_str(6, &quot;啊&quot;);      //往字符串中间插入，注意得到的是 &quot;你好啊 world&quot;
+println!(&quot;{}&quot;,hello);
+// 改，由于不能索引，所以会比较麻烦
+// 先转换成迭代器，再用map处理，然后collect回去。
+let x:String = &quot;hello&quot;.to_string().chars().map(|x| (x as u8+1) as char).collect();
+x.replace(&quot;mm&quot;,&quot;ll&quot;);   // 这个也是常用方法
+</code></pre>
 
 <span id="footnote"></span>
 <div id = "warn"></div>
@@ -108,7 +136,7 @@ for i in &amp;mut v{}; for i in v.iter_mut() {};
 </li>
 <li><a href="#vec">[Vec]</a></li>
 <li><a href="#hashmap">HashMap</a></li>
-<li><a href="#string">String</a></li>
+<li><a href="#string-%E5%92%8C-str">String 和 &amp;str</a></li>
 </ul>
 </li>
 </ul>
@@ -130,7 +158,7 @@ var h=document.documentElement,b=document.body,st="scrollTop",sh="scrollHeight",
 var wxScale=new WxScale({fullPage:document.querySelector("#fullPage"),canvas:document.querySelector("#canvas")});var imgBox=document.querySelectorAll("#md_block img");for(var i=0;i<imgBox.length;i++){imgBox[i].onclick=function(e){wxScale.start(this)}};
 </script>
 <a id="scrollUp" href="#top" style="position: fixed; z-index: 2147483647; display: block;"></a><div class="footer animated fadeInDown"><div class="site_footer"><div class="mysocials"><div class="my_socials"><a href="https://github.com/reticenceji"title="github"><i class="iconfont icon-github"></i></a><a href="reticenceji@qq.com"title="envelope"><i class="iconfont icon-envelope"></i></a><a href="https://www.zhihu.com/people/reticenceji"title="zhihu"><i class="iconfont icon-zhihu"></i></a></div></div><div class="copyright"id="copyright">Copyright © 2018-2020 <a href="https://reticenceji.github.io" style="margin:0;">Reticence</a>.</div>
-<span style="display: inline;margin-right:15px;">👁<strong><span id="busuanzi_value_site_uv"></span></strong></span><span id="busuanzi_container_page_pv" style="display: inline;"><span>📚<strong>177</strong> posts</span></div></div>
+<span style="display: inline;margin-right:15px;">👁<strong><span id="busuanzi_value_site_uv"></span></strong></span><span id="busuanzi_container_page_pv" style="display: inline;"><span>📚<strong>181</strong> posts</span></div></div>
 <script>
 console.log("\n %c \u26a1Theme: Bitcron-pro Author's Blog:https://blog.blinkstar.cn  Writen By Serence  \n\n", "color: #ffffff; background: rgba(49, 49, 49, 0.85); padding:5px 0;border-radius:5px;", );
 </script>
