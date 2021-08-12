@@ -17,7 +17,7 @@
 <div style="float:right;margin-top:1em"><form id="gridea-search-form" data-update="1578893743252" action="/search/index.html"><input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="Search..."></form></div><div style="margin-left:0.5em;margin-top:1.2em"><input id="switch_default" onclick="mobileBtn()" type="checkbox" class="switch_default"><label for="switch_default" class="toggleBtn"></label></div></div>
 <div class="clear clear_nav_inline_end"></div></div></div><div class="clear clear_nav_end"></div></div></div><div class="hamberger" href="javascript:void(0)" onclick="btn_toggle();"><i class="iconfont icon-category"></i></div></div></div></div>
 <div id="hn" class="no-js hidden_nav animated fadeInDown"><div class="bitcron_nav_container"><div class="bitcron_nav"><nav class="mixed_site_nav_wrap site_nav_wrap"><ul class="mixed_site_nav site_nav sm sm-base">	<li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/" class="selected active current nav__item" >Index</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/tags" class="selected active current nav__item" >Tags</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/archives" class="selected active current nav__item" >Archives</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/navigator.html" class="selected active current nav__item" >Navigator</a></li><li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/post/about" class="selected active current nav__item" >About</a></li></ul><div class="clear clear_nav_inline_end"></div></nav></div><div class="clear clear_nav_end"></div></div>
-<div style="display:flex;justify-content:center;inline-block;text-align:center;margin-top:7%"><div><form id="gridea-search-form" data-update="1628351601264" action="/search/index.html"><input class="search-input" autocomplete="off" spellcheck="false" name="q"  placeholder="Search..." /></form></div><div style="margin-left:0.5em"><input id="switch_default_h" onclick="mobileBtn()" type="checkbox" class="switch_default"><label for="switch_default" class="toggleBtn"></label></div></div>
+<div style="display:flex;justify-content:center;inline-block;text-align:center;margin-top:7%"><div><form id="gridea-search-form" data-update="1628779526928" action="/search/index.html"><input class="search-input" autocomplete="off" spellcheck="false" name="q"  placeholder="Search..." /></form></div><div style="margin-left:0.5em"><input id="switch_default_h" onclick="mobileBtn()" type="checkbox" class="switch_default"><label for="switch_default" class="toggleBtn"></label></div></div>
 </div></div>
 <script>function enableDarkmode(){document.body.classList.add("darkmode"),document.getElementById("switch_default").checked=1,document.getElementById("switch_default_h").checked=1}function removeDarkmode(){document.body.classList.remove("darkmode"),document.getElementById("switch_default").checked=0,document.getElementById("switch_default_h").checked=0}function getCookie(a){var b,c=new RegExp("(^| )"+a+"=([^;]*)(;|$)");return(b=document.cookie.match(c))?unescape(b[2]):null}cookie=getCookie("darkmode"),"enable"==cookie&&enableDarkmode(),window.matchMedia("(prefers-color-scheme: dark)").matches&&"disable"!==cookie&&(enableDarkmode(),document.cookie="darkmode=enable; path=/");var mobileBtn=function(){1==document.getElementById("switch_default").checked?(enableDarkmode(),document.cookie="darkmode=enable; path=/"):(removeDarkmode(),document.cookie="darkmode=disable; path=/")};</script>
 
@@ -25,7 +25,7 @@
 <article class="post">
 <h2 class="post_title sm_margin"><a>编译原理-哈工大课程笔记</a></h2>
 <script>function lan(){if(document.getElementById("lan").innerText=="繁"){var s=document.getElementById("tongwenlet_cn");if(s!=null){document.body.removeChild(s)}var s=document.createElement("script");s.language="javascript";s.type="text/javascript";s.src="https://cdn.jsdelivr.net/gh/qyxtim/Static@1.1/bookmarklet_tw.js";s.id="tongwenlet_cn";document.body.appendChild(s);document.getElementById("lan").innerHTML="简"}else{if(document.getElementById("lan").innerText=="簡"){var s=document.getElementById("tongwenlet_cn");if(s!=null){document.body.removeChild(s)}var s=document.createElement("script");s.language="javascript";s.type="text/javascript";s.src="https://cdn.jsdelivr.net/gh/qyxtim/Static@1.1/bookmarklet_cn.js";s.id="tongwenlet_cn";document.body.appendChild(s);document.getElementById("lan").innerHTML="繁"}}};</script>
-<section class="post_details"><i class="iconfont icon-calendar"></i><span style="margin-right:15px"> 2021-08-05</span><i class="iconfont icon-browse"></i><span style="margin-right:15px"> <span id="busuanzi_value_page_pv"></span> Views</span><i class="iconfont icon-category"></i><span class="weaklink" style="margin-right:15px"></span><i class="iconfont icon-caret-down"></i><span style="margin-right:15px">1629字</span><i class="iconfont icon-naozhong"></i><span style="margin-right:15px">7 min read</span><a id="lan" href="javascript:void(0);"onclick="lan();"title="调整简繁体" style="margin-right:15px;">繁</a>
+<section class="post_details"><i class="iconfont icon-calendar"></i><span style="margin-right:15px"> 2021-08-05</span><i class="iconfont icon-browse"></i><span style="margin-right:15px"> <span id="busuanzi_value_page_pv"></span> Views</span><i class="iconfont icon-category"></i><span class="weaklink" style="margin-right:15px"></span><i class="iconfont icon-caret-down"></i><span style="margin-right:15px">3427字</span><i class="iconfont icon-naozhong"></i><span style="margin-right:15px">13 min read</span><a id="lan" href="javascript:void(0);"onclick="lan();"title="调整简繁体" style="margin-right:15px;">繁</a>
 </section>
 
 <div style="display:flex">
@@ -59,8 +59,10 @@
 <p><strong>自顶向下的分析方法</strong>：从分析树的顶部（根节点）向底部（叶节点）方向构造分析树。有两个问题：</p>
 <ol>
 <li>替换当前句型中的哪个非终结符：<strong>最左推导，总是选择每个句型中最左非终结符进行替换（自顶向下采用）</strong>；最右推导，总是选择每个句型中最右非终结符进行替换。</li>
-<li>用该终结符的哪个候选式进行替换。根据输入流中的下一个终结符，选择最左非终结符的一个候选式，这个可能会有多个，就需要枚举并回溯，这会影响效率。 为此，我们有预测分析法，预测分析法的工作过程，从文法开始符号出发，在每一步推导过程中根据当前句型的<strong>最左非终结符A和当前输入符号a</strong>，选择正确的A-产生式。为保证分析的确定性，<strong>选出的候选式必须是唯一的</strong>。预测分析不需要回溯，是一种确定的自顶向下分析方法。通过向前看k个符号来选择正确的产生式，称为<strong>LL(k)文法</strong>。</li>
+<li>用该终结符的哪个候选式进行替换。根据输入流中的下一个终结符，选择最左非终结符的一个候选式，这个可能会有多个，就需要枚举并回溯，这会影响效率。 为此，我们有预测分析法，预测分析法的工作过程，从文法开始符号出发，在每一步推导过程中根据当前句型的<strong>最左非终结符A和当前输入符号a</strong>，选择正确的A-产生式。为保证分析的确定性，<strong>选出的候选式必须是唯一的</strong>。<strong>预测分析</strong>不需要回溯，是一种确定的自顶向下分析方法。通过向前看k个符号来选择正确的产生式，称为<strong>LL(k)文法</strong>。</li>
 </ol>
+<hr>
+<center>从这里开始下面的内容介绍的都是预测分析法</center>
 <p>并不是所有的文法都适合预测分析。比如：</p>
 <ol>
 <li>
@@ -103,12 +105,12 @@ for ( 从1到n的每个i ) {
 <p>FOLLOW：可能在某个句型中紧跟在A后边的终结符a的集合。</p>
 </li>
 <li>
-<p>FIRST：给定一个文法符号串<code>α</code>， <code>α</code>的串首终结符集<code>FIRST(α)</code>被定义为可以从α推导出的所有串首终结符构成的集合。如果<code>α -&gt; * ε</code>，那么<code>ε</code>也在<code>FIRST(α)</code>中。计算方法。</p>
+<p>FIRST：给定一个文法符号串<code>α</code>， <code>α</code>的串首终结符集<code>FIRST(α)</code>被定义为可以从α推导出的所有串首终结符构成的集合。如果<code>α -&gt; * ε</code>，那么<code>ε</code>也在<code>FIRST(α)</code>中。</p>
 </li>
 <li>
-<p>SELECT：</p>
-<p>如果<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>ϵ</mi><mo>∈</mo><mi>F</mi><mi>I</mi><mi>R</mi><mi>S</mi><mi>T</mi><mo>(</mo><mi>a</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">\epsilon \in FIRST(a)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5782em;vertical-align:-0.0391em;"></span><span class="mord mathdefault">ϵ</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">∈</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">F</span><span class="mord mathdefault" style="margin-right:0.07847em;">I</span><span class="mord mathdefault" style="margin-right:0.00773em;">R</span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="mopen">(</span><span class="mord mathdefault">a</span><span class="mclose">)</span></span></span></span>，<code>SELECT(A-&gt;a) = FIRST(a)</code></p>
-<p>如果<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>ϵ</mi><mi mathvariant="normal">∉</mi><mi>F</mi><mi>I</mi><mi>R</mi><mi>S</mi><mi>T</mi><mo>(</mo><mi>a</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">\epsilon \notin FIRST(a)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">ϵ</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel"><span class="mord"><span class="mrel">∈</span></span><span class="mord"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.75em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="llap"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="inner"><span class="mord"><span class="mord">/</span><span class="mspace" style="margin-right:0.05555555555555555em;"></span></span></span><span class="fix"></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.25em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">F</span><span class="mord mathdefault" style="margin-right:0.07847em;">I</span><span class="mord mathdefault" style="margin-right:0.00773em;">R</span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="mopen">(</span><span class="mord mathdefault">a</span><span class="mclose">)</span></span></span></span>，<code>SELECT(A-&gt;a) = FIRST(a) - {ε} U FOLLOW(A)</code></p>
+<p>SELECT：产生式<code>A-&gt;a</code>的可选集是指可以选用该产生式进行推导时对应的输入符号的集合，记为<code>SELECT( A-&gt;β )</code>，有以下规则</p>
+<p>如果<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>ϵ</mi><mi mathvariant="normal">∉</mi><mi>F</mi><mi>I</mi><mi>R</mi><mi>S</mi><mi>T</mi><mo>(</mo><mi>a</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">\epsilon \notin FIRST(a)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">ϵ</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel"><span class="mord"><span class="mrel">∈</span></span><span class="mord"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.75em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="llap"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="inner"><span class="mord"><span class="mord">/</span><span class="mspace" style="margin-right:0.05555555555555555em;"></span></span></span><span class="fix"></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.25em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">F</span><span class="mord mathdefault" style="margin-right:0.07847em;">I</span><span class="mord mathdefault" style="margin-right:0.00773em;">R</span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="mopen">(</span><span class="mord mathdefault">a</span><span class="mclose">)</span></span></span></span>​，<code>SELECT(A-&gt;a) = FIRST(a)</code></p>
+<p>如果<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>ϵ</mi><mo>∈</mo><mi>F</mi><mi>I</mi><mi>R</mi><mi>S</mi><mi>T</mi><mo>(</mo><mi>a</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">\epsilon \in FIRST(a)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5782em;vertical-align:-0.0391em;"></span><span class="mord mathdefault">ϵ</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">∈</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">F</span><span class="mord mathdefault" style="margin-right:0.07847em;">I</span><span class="mord mathdefault" style="margin-right:0.00773em;">R</span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="mopen">(</span><span class="mord mathdefault">a</span><span class="mclose">)</span></span></span></span>​，<code>SELECT(A-&gt;a) = FIRST(a) - {ε} U FOLLOW(A)</code></p>
 </li>
 </ol>
 <p>S_文法（简单的确定性文法，显然，满足这个文法是可以很简单的预测分析的）：</p>
@@ -123,6 +125,101 @@ for ( 从1到n的每个i ) {
 </ol>
 <p>LL1 文法，第一个“L”表示从左向右扫描输入，第二个“ L”表示产生最左推导，“1”表示在每一步中只需要向前看一个输入符号来决定语法分析动作。</p>
 <figure data-type="image" tabindex="3"><img src="C:%5CUsers%5CReticence%5CDocuments%5CGridea%5Cpost-images%5Cimage-20210807134158545.png" alt="image-20210807134158545" loading="lazy"></figure>
+<h3 id="计算">计算</h3>
+<p><strong>FIRST集的计算</strong>。结合FIRST集的定义，其实挺直观的。FIRST ( X )：可以从X推导出的所有串首终结符构成的集合</p>
+<figure data-type="image" tabindex="4"><img src="C:%5CUsers%5CReticence%5CDocuments%5CGridea%5Cpost-images%5Cimage-20210808211906402.png" alt="image-20210808211906402" loading="lazy"></figure>
+<p><strong>FOLLOW集的计算</strong>。FOLLOW(A)：可能在某个句型中紧跟在A后边的终结符a的集合。如果A是某个句型的最右符号，则将结束符<code>$</code>添加到FOLLOW(A)中。</p>
+<figure data-type="image" tabindex="5"><img src="C:%5CUsers%5CReticence%5CDocuments%5CGridea%5Cpost-images%5Cimage-20210808212613749.png" alt="image-20210808212613749" loading="lazy"></figure>
+<p><strong>SELECT集的计算</strong>。有了前两个的基础可以来计算SELECT集了。我们只需要应用上面的两个规则即可。产生式<code>A-&gt;a</code>的可选集是指可以选用该产生式进行推导时对应的输入符号的集合，记为<code>SELECT( A-&gt;β )</code>。<strong>对于LL1文法，具有相同左部的产生式的SELECT集互不相交</strong>。</p>
+<ul>
+<li>如果<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>ϵ</mi><mi mathvariant="normal">∉</mi><mi>F</mi><mi>I</mi><mi>R</mi><mi>S</mi><mi>T</mi><mo>(</mo><mi>a</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">\epsilon \notin FIRST(a)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">ϵ</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel"><span class="mord"><span class="mrel">∈</span></span><span class="mord"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.75em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="llap"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="inner"><span class="mord"><span class="mord">/</span><span class="mspace" style="margin-right:0.05555555555555555em;"></span></span></span><span class="fix"></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.25em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">F</span><span class="mord mathdefault" style="margin-right:0.07847em;">I</span><span class="mord mathdefault" style="margin-right:0.00773em;">R</span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="mopen">(</span><span class="mord mathdefault">a</span><span class="mclose">)</span></span></span></span>，<code>SELECT(A-&gt;a) = FIRST(a)</code></li>
+<li>如果<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>ϵ</mi><mo>∈</mo><mi>F</mi><mi>I</mi><mi>R</mi><mi>S</mi><mi>T</mi><mo>(</mo><mi>a</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">\epsilon \in FIRST(a)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5782em;vertical-align:-0.0391em;"></span><span class="mord mathdefault">ϵ</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">∈</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">F</span><span class="mord mathdefault" style="margin-right:0.07847em;">I</span><span class="mord mathdefault" style="margin-right:0.00773em;">R</span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="mopen">(</span><span class="mord mathdefault">a</span><span class="mclose">)</span></span></span></span>​​​，<code>SELECT(A-&gt;a) = FIRST(a) - {ε} U FOLLOW(A)</code></li>
+</ul>
+<h3 id="递归下降法">递归下降法</h3>
+<p>第五讲 PPT 上的例子很直观 视频4-5</p>
+<h3 id="非递归的预测分析法">非递归的预测分析法</h3>
+<figure data-type="image" tabindex="6"><img src="C:%5CUsers%5CReticence%5CDocuments%5CGridea%5Cpost-images%5Cimage-20210808220230290.png" alt="image-20210808220230290" loading="lazy"></figure>
+<p>一个最左推导和一个语法分析树是等价的，其实是图形化表示，所以我们可以得到语法分析树AST</p>
+<figure data-type="image" tabindex="7"><img src="C:%5CUsers%5CReticence%5CDocuments%5CGridea%5Cpost-images%5Cimage-20210808221723537.png" alt="image-20210808221723537" loading="lazy"></figure>
+<p>视频4-6  例子很直观</p>
+<hr>
+<center> 从这里开始主要介绍移入-归约分析法</center>
+<h3 id="自底向上的分析方法">自底向上的分析方法</h3>
+<ul>
+<li>移入：将下一个输入符号移到栈的顶端</li>
+<li>归约：被归约的符号串的右端必然处于栈顶。语法分析器在栈中确定这个串的左端，并决定用哪个非终结符来替换这个串</li>
+<li>接收：宣布语法分析过程成功完成</li>
+<li>报错：发现一个语法错误，并调用错误恢复子例程</li>
+</ul>
+<figure data-type="image" tabindex="8"><img src="C:%5CUsers%5CReticence%5CDocuments%5CGridea%5Cpost-images%5Cimage-20210809133005840.png" alt="image-20210809133005840" loading="lazy"></figure>
+<p>回顾一个重要知识点：</p>
+<blockquote>
+<p>令G是一个文法，S是文法G的开始符号。假设<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>α</mi><mi>β</mi><mi>θ</mi></mrow><annotation encoding="application/x-tex">\alpha\beta\theta</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.0037em;">α</span><span class="mord mathdefault" style="margin-right:0.05278em;">β</span><span class="mord mathdefault" style="margin-right:0.02778em;">θ</span></span></span></span>是文法G的一个句型，如果有</p>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>S</mi><msup><mo>→</mo><mo>∗</mo></msup><mi>α</mi><mi>A</mi><mi>θ</mi><mo separator="true">,</mo><mi>A</mi><msup><mo>→</mo><mo>∗</mo></msup><mi>β</mi></mrow><annotation encoding="application/x-tex">S \rightarrow^* \alpha A\theta , A\rightarrow^*\beta
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.738696em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel"><span class="mrel">→</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.738696em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mbin mtight">∗</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.933136em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.0037em;">α</span><span class="mord mathdefault">A</span><span class="mord mathdefault" style="margin-right:0.02778em;">θ</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">A</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel"><span class="mrel">→</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.738696em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mbin mtight">∗</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.05278em;">β</span></span></span></span></span></p>
+<p>则称<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>β</mi></mrow><annotation encoding="application/x-tex">\beta</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.05278em;">β</span></span></span></span>是<strong>句型</strong><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>α</mi><mi>β</mi><mi>θ</mi></mrow><annotation encoding="application/x-tex">\alpha\beta\theta</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.0037em;">α</span><span class="mord mathdefault" style="margin-right:0.05278em;">β</span><span class="mord mathdefault" style="margin-right:0.02778em;">θ</span></span></span></span>相对于非终结符A的一个<strong>短语</strong>。从语法树上看，一个句型的语法树中任一子树的叶节点所组成的符号串都是该句型的短语。</p>
+<p>特别的，如果有<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>A</mi><mo>→</mo><mi>β</mi></mrow><annotation encoding="application/x-tex">A\rightarrow\beta</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault">A</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">→</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.05278em;">β</span></span></span></span>​则称<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>β</mi></mrow><annotation encoding="application/x-tex">\beta</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.05278em;">β</span></span></span></span>​是句型<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>α</mi><mi>β</mi><mi>θ</mi></mrow><annotation encoding="application/x-tex">\alpha\beta\theta</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.0037em;">α</span><span class="mord mathdefault" style="margin-right:0.05278em;">β</span><span class="mord mathdefault" style="margin-right:0.02778em;">θ</span></span></span></span>​相对于非终结符A的一个<strong>直接短语</strong>。一个句型的语法树中任一**最小子树(两层)**的叶节点所组成的符号串都是该句型的短语。</p>
+<p><strong>句柄</strong>，是最左边的直接短语。</p>
+</blockquote>
+<p>LR分析的关键是识别句柄。</p>
+<h3 id="lr文法">LR文法</h3>
+<p>LR文法是最大的，可以构造出相应的移入-归约语法分析器的文法类。L: 对输入进行从左到右的扫描；R: 反向构造出一个最右推导序列。LR(k)分析：需要向前查看k个输入符号的LR分析。k = 0 和 k = 1 这两种情况具有实践意义。当省略(k)时，表示k =1。</p>
+<figure data-type="image" tabindex="9"><img src="C:%5CUsers%5CReticence%5CDocuments%5CGridea%5Cpost-images%5Cimage-20210809222228209.png" alt="image-20210809222228209" loading="lazy"></figure>
+<p>关键是分析表的构造。动作表有两种动作</p>
+<ul>
+<li>sn：将符号a、状态n 压入栈</li>
+<li>rn：用第n个产生式进行归约</li>
+</ul>
+<p>文法中的<strong>项目</strong> :</p>
+<p>右部某位置标有圆点的产生式称为相应文法的一个LR(0)项目（简称为项目）。项目描述了句柄识别的状态。例如，<code>S-&gt;bBB</code>对应的项目：</p>
+<pre><code>S-&gt;·bBB    移进项目
+S-&gt;b·BB    \待约
+S-&gt;bB·B    /项目
+S-&gt;bBB·    归约项目
+</code></pre>
+<p>可以把<strong>等价</strong>的项目组成一个项目集( I ) ，称为<strong>项目集闭包(Closure of Item Sets)</strong>，<strong>每个项目集闭包对应着自动机的一个状态</strong>。等价简单的说，就是如果有项目<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>A</mi><mo>→</mo><mi>α</mi><mo separator="true">⋅</mo><mi>B</mi><mi>β</mi></mrow><annotation encoding="application/x-tex">A \rightarrow \alpha · B\beta</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault">A</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">→</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.0037em;">α</span><span class="mpunct">⋅</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.05017em;">B</span><span class="mord mathdefault" style="margin-right:0.05278em;">β</span></span></span></span>​，并且有<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>B</mi><mo>→</mo><mo separator="true">⋅</mo><mi>γ</mi></mrow><annotation encoding="application/x-tex">B\rightarrow · \gamma</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.05017em;">B</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">→</span></span><span class="base"><span class="strut" style="height:0.63889em;vertical-align:-0.19444em;"></span><span class="mpunct">⋅</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.05556em;">γ</span></span></span></span>​​，（这个<code>·</code>可以理解做等待，如果在等待<code>B</code>，那么不就是在等待B后面的东西么）那么这两个项目是等价的，等价是自反、传递、互逆的。有了等价状态就可以构造自动机了。</p>
+<h3 id="lr0">LR(0)</h3>
+<figure data-type="image" tabindex="10"><img src="C:%5CUsers%5CReticence%5CDocuments%5CGridea%5Cpost-images%5Cimage-20210809225250039.png" alt="image-20210809225250039" loading="lazy"></figure>
+<p>算法：计算<strong>状态（项目集闭包）</strong></p>
+<pre><code>SetOfltems CLOSURE ( I ) {
+	J = I;
+	repeat
+		for ( J中的每个项A → α·Bβ ) 
+			for ( G的每个产生式B → γ ) 
+				if ( 项B → · γ不在J中 ) 
+				将B → · γ加入J中;
+	until 在某一轮中没有新的项被加入到J中;
+	return J； 
+}
+</code></pre>
+<p>计算GOTO（返回项目集<code>I</code>对应于文法符号<code>X</code>的后继项目集闭包）</p>
+<pre><code>SetOfltems GOTO ( I，X ) {
+	将J 初始化为空集;
+	for ( I 中的每个项A → α·Xβ ) 
+		将项 A → αX·β 加入到集合J 中;
+	return CLOSURE ( J );
+}
+</code></pre>
+<p>构造LR(0)自动机的状态集</p>
+<pre><code>void items( G' ) {
+	C＝{ CLOSURE ({[ S'→ ·S ] } ) }；
+	repeat
+		for (C中的每个项集 I )
+			for(每个文法符号X )
+				if ( GOTO ( I，X )非空且不在C中) 将GOTO ( I，X )加入C中；
+	until在某一轮中没有新的项集被加入到C中；
+}
+</code></pre>
+<figure data-type="image" tabindex="11"><img src="C:%5CUsers%5CReticence%5CDocuments%5CGridea%5Cpost-images%5Cimage-20210809230625504.png" alt="image-20210809230625504" loading="lazy"></figure>
+<p>对于LR(0)文法，以上处理方式不会产生<strong>冲突</strong>。准确来说，以上处理方式不会产生冲突的我们称为LR(0)文法。</p>
+<h3 id="lr1">LR(1)</h3>
+<p>大多数程序设计语言是LR(1)，需要向前展望一个符号。</p>
+<p><strong>二义性文法</strong>可能是LR1文法，但是也可以采用LR1分析技术，往往需要结合<strong>优先级</strong>。</p>
+<p>错误恢复：</p>
+<ol>
+<li>恐慌模式错误恢复</li>
+<li>短语层次错误恢复</li>
+</ol>
 <h2 id="词法分析">词法分析</h2>
 <h3 id="正则表达式">正则表达式</h3>
 <p>这个是老朋友了。正则文法。C语言中标识符的正则定义</p>
@@ -143,11 +240,29 @@ for ( 从1到n的每个i ) {
 <pre><code>B -&gt; Aabb | abb
 A -&gt; Aa | Ab | a | b
 </code></pre>
-<figure data-type="image" tabindex="4"><img src="https://reticenceji.github.io/post-images/image-20210805193358750.png" alt="image-20210805193358750" loading="lazy"></figure>
+<figure data-type="image" tabindex="12"><img src="https://reticenceji.github.io/post-images/image-20210805193358750.png" alt="image-20210805193358750" loading="lazy"></figure>
 <p>从正则表达式到DFA</p>
 <p>一般来说，我们采用这样的方式： <code>RE-&gt;NFA-&gt;DFA-&gt;program language</code></p>
-<figure data-type="image" tabindex="5"><img src="https://reticenceji.github.io/post-images/image-20210805195257921.png" alt="image-20210805195257921" loading="lazy"></figure>
-<figure data-type="image" tabindex="6"><img src="C:%5CUsers%5CReticence%5CDocuments%5CGridea%5Cpost-images%5Cimage-20210805200748692.png" alt="image-20210805200748692" loading="lazy"></figure>
+<figure data-type="image" tabindex="13"><img src="https://reticenceji.github.io/post-images/image-20210805195257921.png" alt="image-20210805195257921" loading="lazy"></figure>
+<figure data-type="image" tabindex="14"><img src="C:%5CUsers%5CReticence%5CDocuments%5CGridea%5Cpost-images%5Cimage-20210805200748692.png" alt="image-20210805200748692" loading="lazy"></figure>
+<h3 id="lex">Lex</h3>
+<p>Rust也有<a href="https://docs.rs/lex/0.3.0/lex/">Lex库</a>。</p>
+<h2 id="语法制导翻译">语法制导翻译</h2>
+<p><strong>语法制导定义SDD</strong> : 将每个<strong>文法符号</strong>和一个<strong>语义属性集合</strong>相关联，将每个产生式和一组<strong>语义规则</strong>相关联，这些规则用<br>
+于计算该产生式中各文法符号的属性值。</p>
+<p>综合属性：分析树节点N上的 <strong>非终结符</strong>A的继承属性只能通过 <strong>N的子节点和N本身</strong> 来决定。</p>
+<p>继承属性：分析树节点N上的 <strong>非终结符</strong>A的继承属性只能通过 <strong>N的父节点、兄弟节点和N本身</strong> 来决定。</p>
+<h3 id="s-sdd">S-SDD</h3>
+<p>仅使用综合属性的SDD称为S-SDD，如果一个SDD是S属性的，可以按照语法分析树节点的任何<strong>自底向上顺序</strong>来计算它的各个属性值。S-属性定义可以在自底向上的语法分析过程中实现。</p>
+<h3 id="l-sdd">L-SDD</h3>
+<p>直观含义：在一个<strong>产生式</strong>所关联的各属性之间，依赖图的边可以从左到右，但不能从右到左(因此称为L属性的，L是Left的首字母)。是S-SDD的扩展。</p>
+<h3 id="语法制导翻译方案sdt">语法制导翻译方案SDT</h3>
+<p>语法制导翻译方案(SDT )是在产生式右部中嵌入了程序片段(称为语义动作)的CFG。</p>
+<figure data-type="image" tabindex="15"><img src="C:%5CUsers%5CReticence%5CDocuments%5CGridea%5Cpost-images%5Cimage-20210810212804056.png" alt="image-20210810212804056" loading="lazy"></figure>
+<p>如果一个S-SDD的基本文法可以使用LR分析技术，那么它的SDT可以在LR语法分析过程中实现。</p>
+<p><strong>语义动作中的抽象定义式改写成具体可执行的栈操作</strong>，在遇到归约操作的时候，应用SDT。</p>
+<figure data-type="image" tabindex="16"><img src="C:%5CUsers%5CReticence%5CDocuments%5CGridea%5Cpost-images%5Cimage-20210810214530593.png" alt="image-20210810214530593" loading="lazy"></figure>
+<p>so</p>
 
 <span id="footnote"></span>
 <div id = "warn"></div>
@@ -159,12 +274,27 @@ A -&gt; Aa | Ab | a | b
 <ul>
 <li><a href="#%E8%87%AA%E9%A1%B6%E5%90%91%E4%B8%8B%E7%9A%84%E5%88%86%E6%9E%90%E6%96%B9%E6%B3%95">自顶向下的分析方法</a></li>
 <li><a href="#ll1%E6%96%87%E6%B3%95">LL1文法</a></li>
+<li><a href="#%E8%AE%A1%E7%AE%97">计算</a></li>
+<li><a href="#%E9%80%92%E5%BD%92%E4%B8%8B%E9%99%8D%E6%B3%95">递归下降法</a></li>
+<li><a href="#%E9%9D%9E%E9%80%92%E5%BD%92%E7%9A%84%E9%A2%84%E6%B5%8B%E5%88%86%E6%9E%90%E6%B3%95">非递归的预测分析法</a></li>
+<li><a href="#%E8%87%AA%E5%BA%95%E5%90%91%E4%B8%8A%E7%9A%84%E5%88%86%E6%9E%90%E6%96%B9%E6%B3%95">自底向上的分析方法</a></li>
+<li><a href="#lr%E6%96%87%E6%B3%95">LR文法</a></li>
+<li><a href="#lr0">LR(0)</a></li>
+<li><a href="#lr1">LR(1)</a></li>
 </ul>
 </li>
 <li><a href="#%E8%AF%8D%E6%B3%95%E5%88%86%E6%9E%90">词法分析</a>
 <ul>
 <li><a href="#%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F">正则表达式</a></li>
 <li><a href="#%E6%9C%89%E7%A9%B7%E8%87%AA%E5%8A%A8%E6%9C%BA">有穷自动机</a></li>
+<li><a href="#lex">Lex</a></li>
+</ul>
+</li>
+<li><a href="#%E8%AF%AD%E6%B3%95%E5%88%B6%E5%AF%BC%E7%BF%BB%E8%AF%91">语法制导翻译</a>
+<ul>
+<li><a href="#s-sdd">S-SDD</a></li>
+<li><a href="#l-sdd">L-SDD</a></li>
+<li><a href="#%E8%AF%AD%E6%B3%95%E5%88%B6%E5%AF%BC%E7%BF%BB%E8%AF%91%E6%96%B9%E6%A1%88sdt">语法制导翻译方案SDT</a></li>
 </ul>
 </li>
 </ul>
@@ -188,7 +318,7 @@ var h=document.documentElement,b=document.body,st="scrollTop",sh="scrollHeight",
 var wxScale=new WxScale({fullPage:document.querySelector("#fullPage"),canvas:document.querySelector("#canvas")});var imgBox=document.querySelectorAll("#md_block img");for(var i=0;i<imgBox.length;i++){imgBox[i].onclick=function(e){wxScale.start(this)}};
 </script>
 <a id="scrollUp" href="#top" style="position: fixed; z-index: 2147483647; display: block;"></a><div class="footer animated fadeInDown"><div class="site_footer"><div class="mysocials"><div class="my_socials"><a href="https://github.com/reticenceji"title="github"><i class="iconfont icon-github"></i></a><a href="reticenceji@qq.com"title="envelope"><i class="iconfont icon-envelope"></i></a><a href="https://www.zhihu.com/people/reticenceji"title="zhihu"><i class="iconfont icon-zhihu"></i></a></div></div><div class="copyright"id="copyright">Copyright © 2018-2020 <a href="https://reticenceji.github.io" style="margin:0;">Reticence</a>.</div>
-<span style="display: inline;margin-right:15px;">👁<strong><span id="busuanzi_value_site_uv"></span></strong></span><span id="busuanzi_container_page_pv" style="display: inline;"><span>📚<strong>181</strong> posts</span></div></div>
+<span style="display: inline;margin-right:15px;">👁<strong><span id="busuanzi_value_site_uv"></span></strong></span><span id="busuanzi_container_page_pv" style="display: inline;"><span>📚<strong>180</strong> posts</span></div></div>
 <script>
 console.log("\n %c \u26a1Theme: Bitcron-pro Author's Blog:https://blog.blinkstar.cn  Writen By Serence  \n\n", "color: #ffffff; background: rgba(49, 49, 49, 0.85); padding:5px 0;border-radius:5px;", );
 </script>

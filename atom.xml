@@ -2,13 +2,27 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://reticenceji.github.io</id>
     <title>Reticence</title>
-    <updated>2021-08-07T15:54:53.347Z</updated>
+    <updated>2021-08-12T14:45:32.910Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://reticenceji.github.io"/>
     <link rel="self" href="https://reticenceji.github.io/atom.xml"/>
     <logo>https://reticenceji.github.io/images/avatar.png</logo>
     <icon>https://reticenceji.github.io/favicon.ico</icon>
     <rights>All rights reserved 2021, Reticence</rights>
+    <entry>
+        <title type="html"><![CDATA[Socket编程]]></title>
+        <id>https://reticenceji.github.io/post/socket-bian-cheng/</id>
+        <link href="https://reticenceji.github.io/post/socket-bian-cheng/">
+        </link>
+        <updated>2021-08-11T11:37:48.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Rust中的宏]]></title>
+        <id>https://reticenceji.github.io/post/rust-zhong-de-hong/</id>
+        <link href="https://reticenceji.github.io/post/rust-zhong-de-hong/">
+        </link>
+        <updated>2021-08-08T06:36:00.000Z</updated>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Rust程序的调试]]></title>
         <id>https://reticenceji.github.io/post/rust-cheng-xu-de-diao-shi/</id>
@@ -52,13 +66,6 @@
         <updated>2021-08-01T16:13:50.000Z</updated>
     </entry>
     <entry>
-        <title type="html"><![CDATA[装机必备]]></title>
-        <id>https://reticenceji.github.io/post/zhuang-ji-bi-bei/</id>
-        <link href="https://reticenceji.github.io/post/zhuang-ji-bi-bei/">
-        </link>
-        <updated>2021-07-30T01:49:06.000Z</updated>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[Rust中的模式匹配]]></title>
         <id>https://reticenceji.github.io/post/rust-zhong-de-mo-shi-pi-pei/</id>
         <link href="https://reticenceji.github.io/post/rust-zhong-de-mo-shi-pi-pei/">
@@ -71,12 +78,5 @@
         <link href="https://reticenceji.github.io/post/rust-zhong-de-sheng-ming-zhou-qi-biao-ji/">
         </link>
         <updated>2021-07-26T14:12:38.000Z</updated>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Rust中的函数参数匹配，deref和*]]></title>
-        <id>https://reticenceji.github.io/post/rust-zhong-de-he-deref/</id>
-        <link href="https://reticenceji.github.io/post/rust-zhong-de-he-deref/">
-        </link>
-        <updated>2021-07-26T09:02:32.000Z</updated>
     </entry>
 </feed>
