@@ -2,13 +2,37 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://reticenceji.github.io</id>
     <title>Reticence</title>
-    <updated>2021-08-12T14:45:32.910Z</updated>
+    <updated>2021-08-18T08:07:27.271Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://reticenceji.github.io"/>
     <link rel="self" href="https://reticenceji.github.io/atom.xml"/>
     <logo>https://reticenceji.github.io/images/avatar.png</logo>
     <icon>https://reticenceji.github.io/favicon.ico</icon>
     <rights>All rights reserved 2021, Reticence</rights>
+    <entry>
+        <title type="html"><![CDATA[设计模式]]></title>
+        <id>https://reticenceji.github.io/post/she-ji-mo-shi/</id>
+        <link href="https://reticenceji.github.io/post/she-ji-mo-shi/">
+        </link>
+        <updated>2021-08-15T11:41:33.000Z</updated>
+        <summary type="html"><![CDATA[<p>尽量从Rust编程的角度去理解设计模式。设计模式是为了提高程序的<strong>可复用性</strong>。</p>
+<blockquote>
+<p>使用场景非常重要。因为如果你学了个东西，都不知道用来解决什么问题，你说有什么用？理解使用场景的的重要性要远高于你是不是会实现这个模式，因为只要你知道什么问题可以使用builder模式来解决，那你即使不会写，也可以在调查相关资料后完成。</p>
+</blockquote>
+]]></summary>
+        <content type="html"><![CDATA[<p>尽量从Rust编程的角度去理解设计模式。设计模式是为了提高程序的<strong>可复用性</strong>。</p>
+<blockquote>
+<p>使用场景非常重要。因为如果你学了个东西，都不知道用来解决什么问题，你说有什么用？理解使用场景的的重要性要远高于你是不是会实现这个模式，因为只要你知道什么问题可以使用builder模式来解决，那你即使不会写，也可以在调查相关资料后完成。</p>
+</blockquote>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Format String Bug2 Writeup]]></title>
+        <id>https://reticenceji.github.io/post/format-string-bug2-writeup/</id>
+        <link href="https://reticenceji.github.io/post/format-string-bug2-writeup/">
+        </link>
+        <updated>2021-08-15T07:15:23.000Z</updated>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Socket编程]]></title>
         <id>https://reticenceji.github.io/post/socket-bian-cheng/</id>
@@ -64,19 +88,5 @@
         <link href="https://reticenceji.github.io/post/rust-zhong-rong-qi-de-zeng-shan-gai-cha/">
         </link>
         <updated>2021-08-01T16:13:50.000Z</updated>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Rust中的模式匹配]]></title>
-        <id>https://reticenceji.github.io/post/rust-zhong-de-mo-shi-pi-pei/</id>
-        <link href="https://reticenceji.github.io/post/rust-zhong-de-mo-shi-pi-pei/">
-        </link>
-        <updated>2021-07-29T08:10:17.000Z</updated>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Rust中的生命周期标记]]></title>
-        <id>https://reticenceji.github.io/post/rust-zhong-de-sheng-ming-zhou-qi-biao-ji/</id>
-        <link href="https://reticenceji.github.io/post/rust-zhong-de-sheng-ming-zhou-qi-biao-ji/">
-        </link>
-        <updated>2021-07-26T14:12:38.000Z</updated>
     </entry>
 </feed>
