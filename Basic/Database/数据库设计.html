@@ -1,0 +1,427 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Database-数据库设计 - Reticence&#x27;s Notes</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../../favicon.svg">
+        <link rel="shortcut icon" href="../../favicon.png">
+        <link rel="stylesheet" href="../../css/variables.css">
+        <link rel="stylesheet" href="../../css/general.css">
+        <link rel="stylesheet" href="../../css/chrome.css">
+        <link rel="stylesheet" href="../../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../../highlight.css">
+        <link rel="stylesheet" href="../../tomorrow-night.css">
+        <link rel="stylesheet" href="../../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+        <!-- MathJax -->
+        <script async type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item affix "><a href="../../index.html">Index</a></li><li class="chapter-item "><a href="../../Advanced/index.html">Advanced</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../Advanced/Blockchain/index.html">Block Chain</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../Advanced/Blockchain/Basic/index.html">区块链技术</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../Advanced/Blockchain/Basic/Consensus.html">共识机制</a></li><li class="chapter-item "><a href="../../Advanced/Blockchain/Basic/Crypto.html">加密</a></li><li class="chapter-item "><a href="../../Advanced/Blockchain/Basic/Distribute.html">分布式存储</a></li><li class="chapter-item "><a href="../../Advanced/Blockchain/Basic/P2P.html">P2P</a></li><li class="chapter-item "><a href="../../Advanced/Blockchain/Basic/SmartContract.html">如何执行智能合约</a></li></ol></li><li class="chapter-item "><a href="../../Advanced/Blockchain/Defi/index.html">DeFi</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../Advanced/Blockchain/Defi/DAO.html">Decentralized Autonomous Organization</a></li><li class="chapter-item "><a href="../../Advanced/Blockchain/Defi/Derivative.html">Decentralized Derivative</a></li><li class="chapter-item "><a href="../../Advanced/Blockchain/Defi/Exchange.html">Decentralized Exchange</a></li><li class="chapter-item "><a href="../../Advanced/Blockchain/Defi/FundManagement.html">Decentralized Fund Management</a></li><li class="chapter-item "><a href="../../Advanced/Blockchain/Defi/Insurance.html">Decentralized Insurance</a></li><li class="chapter-item "><a href="../../Advanced/Blockchain/Defi/LendBorrow.html">Decentralized Lending & Borrowing</a></li><li class="chapter-item "><a href="../../Advanced/Blockchain/Defi/Lottery.html">Decentralized Lottery</a></li><li class="chapter-item "><a href="../../Advanced/Blockchain/Defi/Payments.html">Decentralized Payments</a></li><li class="chapter-item "><a href="../../Advanced/Blockchain/Defi/StableCoin.html">Stable Coins</a></li></ol></li><li class="chapter-item "><a href="../../Advanced/Blockchain/Ethernet/index.html">Ethernet</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../Advanced/Blockchain/Ethernet/Solidity.html">Solidity简介</a></li></ol></li><li class="chapter-item "><a href="../../Advanced/Blockchain/NEAR/index.html">Hello NEAR</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../Advanced/Blockchain/NEAR/PoS.html">Proof-of-Stake</a></li><li class="chapter-item "><a href="../../Advanced/Blockchain/NEAR/Promise.html">异步模型</a></li><li class="chapter-item "><a href="../../Advanced/Blockchain/NEAR/Secure.html">Secure</a></li><li class="chapter-item "><a href="../../Advanced/Blockchain/NEAR/Snippets.html">Snippets</a></li><li class="chapter-item "><a href="../../Advanced/Blockchain/NEAR/Standards.html">标准实现代码分析</a></li><li class="chapter-item "><a href="../../Advanced/Blockchain/NEAR/dao.html">dao</a></li><li class="chapter-item "><a href="../../Advanced/Blockchain/NEAR/wasm.html">wasm</a></li></ol></li></ol></li><li class="chapter-item "><a href="../../Advanced/Linux/index.html">Linux</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../Advanced/Linux/LinuxKernel/index.html">Linux</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../Advanced/Linux/LinuxKernel/Credential.html">Credential</a></li><li class="chapter-item "><a href="../../Advanced/Linux/LinuxKernel/Debug笔记.html">Debug笔记</a></li><li class="chapter-item "><a href="../../Advanced/Linux/LinuxKernel/File_System.html">File System</a></li><li class="chapter-item "><a href="../../Advanced/Linux/LinuxKernel/Linux内核设计与实现笔记.html">《Linux内核设计与实现》笔记</a></li><li class="chapter-item "><a href="../../Advanced/Linux/LinuxKernel/Linux设备驱动笔记.html">《Linux设备驱动》笔记</a></li><li class="chapter-item "><a href="../../Advanced/Linux/LinuxKernel/RCU.html">RCU</a></li><li class="chapter-item "><a href="../../Advanced/Linux/LinuxKernel/Rust_for_linux.html">Rust for linux</a></li><li class="chapter-item "><a href="../../Advanced/Linux/LinuxKernel/System_Call.html">System Call</a></li><li class="chapter-item "><a href="../../Advanced/Linux/LinuxKernel/context_switch.html">进程调度时的context_switch</a></li><li class="chapter-item "><a href="../../Advanced/Linux/LinuxKernel/内核编程笔记.html">Linux内核编程笔记</a></li><li class="chapter-item "><a href="../../Advanced/Linux/LinuxKernel/数据结构.html">数据结构</a></li><li class="chapter-item "><a href="../../Advanced/Linux/LinuxKernel/调试Linux内核环境搭建.html">调试Linux内核环境搭建</a></li><li class="chapter-item "><a href="../../Advanced/Linux/LinuxKernel/调试时如何获取current.html">调试Linux内核，寻找current</a></li></ol></li><li class="chapter-item "><a href="../../Advanced/Linux/LinuxPlay/index.html">LinuxPlay</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../Advanced/Linux/LinuxPlay/Linux使用笔记.html">Linux使用笔记</a></li><li class="chapter-item "><a href="../../Advanced/Linux/LinuxPlay/使用SSH远程登录.html">Linux使用SSH远程登录</a></li><li class="chapter-item "><a href="../../Advanced/Linux/LinuxPlay/在Linux中找到可用的网络接口.html">在Linux中找到可用的网络接口</a></li></ol></li><li class="chapter-item "><a href="../../Advanced/Linux/LinuxProgram/index.html">Linux Program</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../Advanced/Linux/LinuxProgram/Deamon.html">Daemon</a></li><li class="chapter-item "><a href="../../Advanced/Linux/LinuxProgram/Fanotify.html">Fanotify</a></li><li class="chapter-item "><a href="../../Advanced/Linux/LinuxProgram/File.html">File Program</a></li><li class="chapter-item "><a href="../../Advanced/Linux/LinuxProgram/IObound.html">I/O bound 程序优化</a></li><li class="chapter-item "><a href="../../Advanced/Linux/LinuxProgram/Linux目录结构.html">Linux目录结构</a></li><li class="chapter-item "><a href="../../Advanced/Linux/LinuxProgram/NetLink.html">Netlink</a></li><li class="chapter-item "><a href="../../Advanced/Linux/LinuxProgram/Socket.html">Socket</a></li><li class="chapter-item "><a href="../../Advanced/Linux/LinuxProgram/eBPF.html">eBPF</a></li><li class="chapter-item "><a href="../../Advanced/Linux/LinuxProgram/prctl.html">进程</a></li><li class="chapter-item "><a href="../../Advanced/Linux/LinuxProgram/信号.html">信号</a></li><li class="chapter-item "><a href="../../Advanced/Linux/LinuxProgram/共享库.html">共享库</a></li><li class="chapter-item "><a href="../../Advanced/Linux/LinuxProgram/凭证.html">Credential 凭证</a></li><li class="chapter-item "><a href="../../Advanced/Linux/LinuxProgram/反向Shell和伪终端.html">反向Shell和伪终端</a></li><li class="chapter-item "><a href="../../Advanced/Linux/LinuxProgram/性能监控.html">性能监控</a></li><li class="chapter-item "><a href="../../Advanced/Linux/LinuxProgram/桌面应用开发.html">桌面应用开发</a></li><li class="chapter-item "><a href="../../Advanced/Linux/LinuxProgram/管道和重定向.html">管道和重定向</a></li><li class="chapter-item "><a href="../../Advanced/Linux/LinuxProgram/系统限制和选项.html">系统限制和选项</a></li><li class="chapter-item "><a href="../../Advanced/Linux/LinuxProgram/终端.html">终端</a></li><li class="chapter-item "><a href="../../Advanced/Linux/LinuxProgram/进程间通信.html">进程间通信</a></li></ol></li></ol></li><li class="chapter-item "><a href="../../Advanced/Windows/index.html">Windows Programming</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../Advanced/Windows/Unicode.html">Unicode</a></li><li class="chapter-item "><a href="../../Advanced/Windows/hungarian.html">匈牙利命名法</a></li><li class="chapter-item "><a href="../../Advanced/Windows/文件.html">文件</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../../Basic/index.html">Basic</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../Basic/8086汇编笔记.html">8086汇编笔记</a></li><li class="chapter-item "><a href="../../Basic/Architecture/index.html">Architecture</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../Basic/Architecture/ARM内存管理.html">AArch64 memory management</a></li><li class="chapter-item "><a href="../../Basic/Architecture/ARM寄存器.html">ARM中的寄存器</a></li><li class="chapter-item "><a href="../../Basic/Architecture/ARM异常.html">AArch64 Exception Model</a></li><li class="chapter-item "><a href="../../Basic/Architecture/ARM虚拟化.html">Armv8-A virtualization</a></li><li class="chapter-item "><a href="../../Basic/Architecture/ARM调试.html">ARM self-hosted debug</a></li><li class="chapter-item "><a href="../../Basic/Architecture/CPU设计.html">CPU设计</a></li><li class="chapter-item "><a href="../../Basic/Architecture/Cache.html">Cache</a></li><li class="chapter-item "><a href="../../Basic/Architecture/ILP.html">ILP</a></li><li class="chapter-item "><a href="../../Basic/Architecture/SIMD和MIMD.html">SIMD和MIMD</a></li><li class="chapter-item "><a href="../../Basic/Architecture/TLP.html">TLP</a></li><li class="chapter-item "><a href="../../Basic/Architecture/存储器设计.html">存储器设计</a></li><li class="chapter-item "><a href="../../Basic/Architecture/数字逻辑.html">Notes-数字逻辑</a></li><li class="chapter-item "><a href="../../Basic/Architecture/计算机体系结构.html">计算机组成&计算机体系结构</a></li></ol></li><li class="chapter-item "><a href="../../Basic/C/index.html">C/C++</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../Basic/C/Cpp标准库.html">C++_标准库</a></li><li class="chapter-item "><a href="../../Basic/C/Cpp课程笔记.html">C++ 基础知识</a></li><li class="chapter-item "><a href="../../Basic/C/GCC内嵌汇编.html">C-内嵌汇编</a></li><li class="chapter-item "><a href="../../Basic/C/变量在ELF段中的位置.html">变量在ELF段中的位置</a></li><li class="chapter-item "><a href="../../Basic/C/可变参数的使用和原理.html">可变参数的使用和原理</a></li><li class="chapter-item "><a href="../../Basic/C/在C程序中调用汇编程序.html">在C程序中调用汇编程序</a></li><li class="chapter-item "><a href="../../Basic/C/链接器.html">链接器</a></li></ol></li><li class="chapter-item "><a href="../../Basic/Client/index.html">Client Development</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../Basic/Client/Chromium.html">Chromium</a></li><li class="chapter-item "><a href="../../Basic/Client/CodeReview.html">CodeReview</a></li><li class="chapter-item "><a href="../../Basic/Client/Config.html">Config</a></li><li class="chapter-item "><a href="../../Basic/Client/CrossLanguage.html">跨语言</a></li><li class="chapter-item "><a href="../../Basic/Client/DataStore.html">本地存储</a></li><li class="chapter-item "><a href="../../Basic/Client/Database.html">Database</a></li><li class="chapter-item "><a href="../../Basic/Client/Flutter.html">Flutter</a></li><li class="chapter-item "><a href="../../Basic/Client/Log.html">日志</a></li><li class="chapter-item "><a href="../../Basic/Client/Multimedia/index.html">Multimedia</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../Basic/Client/Multimedia/Graph.html">图形学</a></li><li class="chapter-item "><a href="../../Basic/Client/Multimedia/Image.html">图像处理技术</a></li><li class="chapter-item "><a href="../../Basic/Client/Multimedia/Video.html">视频</a></li><li class="chapter-item "><a href="../../Basic/Client/Multimedia/Voice.html">Voice</a></li></ol></li><li class="chapter-item "><a href="../../Basic/Client/Network.html">网络能力</a></li><li class="chapter-item "><a href="../../Basic/Client/Performance.html">性能监控</a></li><li class="chapter-item "><a href="../../Basic/Client/Platform/index.html">Platform</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../Basic/Client/Platform/Android.html">Android</a></li><li class="chapter-item "><a href="../../Basic/Client/Platform/iOS.html">iOS</a></li></ol></li><li class="chapter-item "><a href="../../Basic/Client/SQLite.html">SQLite</a></li></ol></li><li class="chapter-item "><a href="../../Basic/Compiler/index.html">Compiler</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../Basic/Compiler/Codegen.html">代码生成</a></li><li class="chapter-item "><a href="../../Basic/Compiler/Lex.html">Lex</a></li><li class="chapter-item "><a href="../../Basic/Compiler/Lexical.html">Lexical Analyze</a></li><li class="chapter-item "><a href="../../Basic/Compiler/Runtime.html">Runtime</a></li><li class="chapter-item "><a href="../../Basic/Compiler/Sematic.html">Sematic Analyzing</a></li><li class="chapter-item "><a href="../../Basic/Compiler/Syntax.html">Syntax Analyzer</a></li><li class="chapter-item "><a href="../../Basic/Compiler/llvm-ir.html">LLVM-IR</a></li><li class="chapter-item "><a href="../../Basic/Compiler/llvm.html">LLVM</a></li><li class="chapter-item "><a href="../../Basic/Compiler/pest.html">PEST</a></li><li class="chapter-item "><a href="../../Basic/Compiler/yacc.html">Yacc</a></li></ol></li><li class="chapter-item "><a href="../../Basic/DataStructure/index.html">Data Structure And Algorithm</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../Basic/DataStructure/Algorithm/index.html">Algorithm</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../Basic/DataStructure/Algorithm/Approximation.html">近似算法</a></li><li class="chapter-item "><a href="../../Basic/DataStructure/Algorithm/Backtracking.html">递归回溯</a></li><li class="chapter-item "><a href="../../Basic/DataStructure/Algorithm/DivideAndConquer.html">分治算法</a></li><li class="chapter-item "><a href="../../Basic/DataStructure/Algorithm/DynamicProgramming.html">动态规划</a></li><li class="chapter-item "><a href="../../Basic/DataStructure/Algorithm/Greedy.html">贪心算法</a></li><li class="chapter-item "><a href="../../Basic/DataStructure/Algorithm/LocalSearch.html">本地搜索</a></li><li class="chapter-item "><a href="../../Basic/DataStructure/Algorithm/Parallel.html">并行算法</a></li><li class="chapter-item "><a href="../../Basic/DataStructure/Algorithm/Randomized.html">随机化算法</a></li><li class="chapter-item "><a href="../../Basic/DataStructure/Algorithm/Sort.html">排序算法</a></li></ol></li><li class="chapter-item "><a href="../../Basic/DataStructure/Graph/index.html">Graph</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../Basic/DataStructure/Graph/Bipartite.html">Bipartite</a></li><li class="chapter-item "><a href="../../Basic/DataStructure/Graph/NetworkFlow.html">NetworkFlow</a></li><li class="chapter-item "><a href="../../Basic/DataStructure/Graph/ShortPath.html">最短路</a></li><li class="chapter-item "><a href="../../Basic/DataStructure/Graph/SpanningTree.html">最小生成树</a></li><li class="chapter-item "><a href="../../Basic/DataStructure/Graph/关键路径.html">关键路径</a></li><li class="chapter-item "><a href="../../Basic/DataStructure/Graph/拓扑排序.html">拓扑排序</a></li></ol></li><li class="chapter-item "><a href="../../Basic/DataStructure/Hash/index.html">Hash</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../Basic/DataStructure/Hash/HashTree.html">HashTree</a></li><li class="chapter-item "><a href="../../Basic/DataStructure/Hash/Hashing.html">Hashing</a></li></ol></li><li class="chapter-item "><a href="../../Basic/DataStructure/Heap/index.html">Heap</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../Basic/DataStructure/Heap/BinomialHeap.html">Binomial Heap</a></li><li class="chapter-item "><a href="../../Basic/DataStructure/Heap/FibonacciHeap.html">FibonacciHeap</a></li><li class="chapter-item "><a href="../../Basic/DataStructure/Heap/Heap.html">DS-Heap</a></li><li class="chapter-item "><a href="../../Basic/DataStructure/Heap/斜堆.html">Leftist_Heap_and_Skew_Heap</a></li></ol></li><li class="chapter-item "><a href="../../Basic/DataStructure/Inverted_File_Index.html">Inverted_File_Index</a></li><li class="chapter-item "><a href="../../Basic/DataStructure/Linear/index.html">Linear</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../Basic/DataStructure/Linear/Bitmap.html">DS-Bitmap</a></li><li class="chapter-item "><a href="../../Basic/DataStructure/Linear/List.html">DS-Linear_List</a></li></ol></li><li class="chapter-item "><a href="../../Basic/DataStructure/NPProblem.html">DS-NP_problem</a></li><li class="chapter-item "><a href="../../Basic/DataStructure/String/index.html">字符串匹配相关算法</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../Basic/DataStructure/String/match.html">字符串匹配算法</a></li></ol></li><li class="chapter-item "><a href="../../Basic/DataStructure/Tree/index.html">Tree and BST</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../Basic/DataStructure/Tree/BTree.html">B Tree and B+ Tree</a></li><li class="chapter-item "><a href="../../Basic/DataStructure/Tree/BalancedTree.html">AVL Tree and Splay Tree</a></li><li class="chapter-item "><a href="../../Basic/DataStructure/Tree/DisjointSet.html">Disjoint Set</a></li><li class="chapter-item "><a href="../../Basic/DataStructure/Tree/HuffmanTree.html">Huffman Tree</a></li><li class="chapter-item "><a href="../../Basic/DataStructure/Tree/RBTree.html">红黑树 B树 B+树</a></li><li class="chapter-item "><a href="../../Basic/DataStructure/Tree/ThreadedTree.html">Threaded Binary Tree</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../../Basic/Database/index.html">Database</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../Basic/Database/Object.html">Database-Object-Based_Databases</a></li><li class="chapter-item "><a href="../../Basic/Database/PostgreSQL-Conflict-reticenceji_Win10.html">Database-PostgreSQL</a></li><li class="chapter-item "><a href="../../Basic/Database/PostgreSQL.html">Database-PostgreSQL</a></li><li class="chapter-item "><a href="../../Basic/Database/SQL-Conflict-reticenceji_Win10.html">基础SQL</a></li><li class="chapter-item "><a href="../../Basic/Database/SQL.html">基础SQL</a></li><li class="chapter-item "><a href="../../Basic/Database/XML-Conflict-reticenceji_Win10.html">Database,Web-XML</a></li><li class="chapter-item "><a href="../../Basic/Database/XML.html">Database,Web-XML</a></li><li class="chapter-item "><a href="../../Basic/Database/事务.html">Database-事务</a></li><li class="chapter-item "><a href="../../Basic/Database/关系代数.html">Database-关系代数</a></li><li class="chapter-item "><a href="../../Basic/Database/存储和查询.html">Database-存储和查询</a></li><li class="chapter-item "><a href="../../Basic/Database/导论.html">Database-导论</a></li><li class="chapter-item expanded "><a href="../../Basic/Database/数据库设计.html" class="active">Database-数据库设计</a></li></ol></li><li class="chapter-item "><a href="../../Basic/Maths/index.html">Maths</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../Basic/Maths/大数定理和中心极限定理.html">大数定理和中心极限定理</a></li><li class="chapter-item "><a href="../../Basic/Maths/微积分下.html">微积分下</a></li><li class="chapter-item "><a href="../../Basic/Maths/数值计算方法.html">数值计算方法</a></li><li class="chapter-item "><a href="../../Basic/Maths/最小二乘法.html">最小二乘法</a></li><li class="chapter-item "><a href="../../Basic/Maths/有限自动机介绍.html">有限自动机介绍</a></li><li class="chapter-item "><a href="../../Basic/Maths/概统复习.html">概统复习</a></li><li class="chapter-item "><a href="../../Basic/Maths/群论简介.html">群论简介</a></li></ol></li><li class="chapter-item "><a href="../../Basic/Networking/index.html">Networking</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../Basic/Networking/ARP.html">Networking-ARP</a></li><li class="chapter-item "><a href="../../Basic/Networking/CDN.html">CDN</a></li><li class="chapter-item "><a href="../../Basic/Networking/DNS.html">DNS</a></li><li class="chapter-item "><a href="../../Basic/Networking/FTP.html">FTP</a></li><li class="chapter-item "><a href="../../Basic/Networking/HTTP.html">HTTP</a></li><li class="chapter-item "><a href="../../Basic/Networking/ICMP.html">Internet Control Message Protocol</a></li><li class="chapter-item "><a href="../../Basic/Networking/Mail.html">邮件协议</a></li><li class="chapter-item "><a href="../../Basic/Networking/NAT.html">Network Address Translation</a></li><li class="chapter-item "><a href="../../Basic/Networking/P2P.html">P2P</a></li><li class="chapter-item "><a href="../../Basic/Networking/QUIC.html">QUIC</a></li><li class="chapter-item "><a href="../../Basic/Networking/RTC.html">RTC</a></li><li class="chapter-item "><a href="../../Basic/Networking/Socket.html">Socket</a></li><li class="chapter-item "><a href="../../Basic/Networking/TCP.html">TCP</a></li><li class="chapter-item "><a href="../../Basic/Networking/UDP.html">UDP</a></li><li class="chapter-item "><a href="../../Basic/Networking/VMWare虚拟机网络配置.html">VMWare虚拟机网络配置</a></li><li class="chapter-item "><a href="../../Basic/Networking/VPN.html">VPN</a></li><li class="chapter-item "><a href="../../Basic/Networking/WebSocket.html">WebSocket</a></li><li class="chapter-item "><a href="../../Basic/Networking/介质访问子层.html">Medium Access Sublayer</a></li><li class="chapter-item "><a href="../../Basic/Networking/可靠传输.html">可靠传输</a></li><li class="chapter-item "><a href="../../Basic/Networking/差错控制.html">差错控制</a></li><li class="chapter-item "><a href="../../Basic/Networking/拥塞控制和流量控制.html">拥塞控制和流量控制</a></li><li class="chapter-item "><a href="../../Basic/Networking/物理层.html">物理层</a></li><li class="chapter-item "><a href="../../Basic/Networking/网络层.html">网络层 IP</a></li><li class="chapter-item "><a href="../../Basic/Networking/网络设备.html">Networking-网络设备</a></li><li class="chapter-item "><a href="../../Basic/Networking/路由协议.html">路由协议</a></li><li class="chapter-item "><a href="../../Basic/Networking/链路层.html">链路层</a></li></ol></li><li class="chapter-item "><a href="../../Basic/OS/index.html">OS</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../Basic/OS/Bootloader.html">OS-Bootloader</a></li><li class="chapter-item "><a href="../../Basic/OS/Buddy_System&Slub.html">OS-Buddy_System&Slub</a></li><li class="chapter-item "><a href="../../Basic/OS/Deadlock.html">OS-Deadlock</a></li><li class="chapter-item "><a href="../../Basic/OS/IO.html">OS-IO</a></li><li class="chapter-item "><a href="../../Basic/OS/Introduction.html">OS-Introduction</a></li><li class="chapter-item "><a href="../../Basic/OS/Memory_Management.html">OS-Memory_Management</a></li><li class="chapter-item "><a href="../../Basic/OS/Process.html">OS-Process</a></li><li class="chapter-item "><a href="../../Basic/OS/Q&A.html">OS-Q&A</a></li><li class="chapter-item "><a href="../../Basic/OS/RISCV学习笔记.html">OS-RISCV学习笔记</a></li><li class="chapter-item "><a href="../../Basic/OS/SBI.html">OS-SBI</a></li><li class="chapter-item "><a href="../../Basic/OS/Synchronization.html">OS-Synchronization</a></li><li class="chapter-item "><a href="../../Basic/OS/Thread.html">OS-Thread</a></li><li class="chapter-item "><a href="../../Basic/OS/UnixLinux中的IO模型.html">Linux中的I/O模型</a></li><li class="chapter-item "><a href="../../Basic/OS/在K210运行裸机程序.html">OS-在K210运行裸机程序</a></li><li class="chapter-item "><a href="../../Basic/OS/地址空间(一).html">OS-地址空间(一)</a></li><li class="chapter-item "><a href="../../Basic/OS/操作系统.html">OS-操作系统</a></li></ol></li><li class="chapter-item "><a href="../../Basic/Secure/index.html">Secure</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../Basic/Secure/Crypto/index.html">Crypto</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../Basic/Secure/Crypto/Federated_Learning.html">Federated Learning</a></li><li class="chapter-item "><a href="../../Basic/Secure/Crypto/Oblivious_RAM.html">Oblivious RAM</a></li><li class="chapter-item "><a href="../../Basic/Secure/Crypto/PIR.html">PIR</a></li><li class="chapter-item "><a href="../../Basic/Secure/Crypto/PSI.html">Private set intersection</a></li><li class="chapter-item "><a href="../../Basic/Secure/Crypto/加密和哈希.html">Crypto-加密和哈希</a></li><li class="chapter-item "><a href="../../Basic/Secure/Crypto/加密数据库.html">Encrypted Database</a></li><li class="chapter-item "><a href="../../Basic/Secure/Crypto/区块链技术.html">Bitcoin-区块链技术</a></li><li class="chapter-item "><a href="../../Basic/Secure/Crypto/可证明安全.html">可证明安全</a></li><li class="chapter-item "><a href="../../Basic/Secure/Crypto/安全多方计算.html">安全多方计算</a></li><li class="chapter-item "><a href="../../Basic/Secure/Crypto/密码学基础.html">密码学算法介绍</a></li><li class="chapter-item "><a href="../../Basic/Secure/Crypto/密码学进阶.html">密码学进阶</a></li><li class="chapter-item "><a href="../../Basic/Secure/Crypto/差分隐私.html">差分隐私</a></li></ol></li><li class="chapter-item "><a href="../../Basic/Secure/CryptoBasic.html">密码学基础</a></li><li class="chapter-item "><a href="../../Basic/Secure/CtyptoProtocol.html">密码学协议</a></li><li class="chapter-item "><a href="../../Basic/Secure/Forensics/index.html">电子取证</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../Basic/Secure/Forensics/FAT.html">FAT文件系统</a></li><li class="chapter-item "><a href="../../Basic/Secure/Forensics/FileCarving.html">文件雕复</a></li><li class="chapter-item "><a href="../../Basic/Secure/Forensics/Linux取证.html">Linux取证</a></li><li class="chapter-item "><a href="../../Basic/Secure/Forensics/Memory.html">内存取证</a></li><li class="chapter-item "><a href="../../Basic/Secure/Forensics/NTFS.html">NTFS文件系统</a></li><li class="chapter-item "><a href="../../Basic/Secure/Forensics/Windows取证.html">Windows取证</a></li><li class="chapter-item "><a href="../../Basic/Secure/Forensics/数据隐藏.html">数据隐藏</a></li><li class="chapter-item "><a href="../../Basic/Secure/Forensics/文件系统取证.html">文件系统取证</a></li><li class="chapter-item "><a href="../../Basic/Secure/Forensics/硬盘分析.html">硬盘分析</a></li><li class="chapter-item "><a href="../../Basic/Secure/Forensics/移动设备取证.html">移动设备取证</a></li><li class="chapter-item "><a href="../../Basic/Secure/Forensics/网络取证.html">网络取证</a></li></ol></li><li class="chapter-item "><a href="../../Basic/Secure/IoT.html">无线与物联网安全</a></li><li class="chapter-item "><a href="../../Basic/Secure/Network.html">网络安全</a></li><li class="chapter-item "><a href="../../Basic/Secure/OperatingSystem.html">操作系统安全</a></li><li class="chapter-item "><a href="../../Basic/Secure/Software/index.html">软件安全</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../Basic/Secure/Software/ASLR.html">ASLR</a></li><li class="chapter-item "><a href="../../Basic/Secure/Software/CodeQL.html">CodeQL</a></li><li class="chapter-item "><a href="../../Basic/Secure/Software/GlibcHeap.html">glibc heap allocator</a></li><li class="chapter-item "><a href="../../Basic/Secure/Software/PIC.html">位置无关代码和共享库</a></li><li class="chapter-item "><a href="../../Basic/Secure/Software/RELRO.html">RELRO</a></li><li class="chapter-item "><a href="../../Basic/Secure/Software/pwntools.html">pwntools</a></li><li class="chapter-item "><a href="../../Basic/Secure/Software/攻击视角.html">攻击软件安全</a></li><li class="chapter-item "><a href="../../Basic/Secure/Software/程序分析.html">程序分析</a></li><li class="chapter-item "><a href="../../Basic/Secure/Software/防御视角.html">软件安全防护</a></li></ol></li><li class="chapter-item "><a href="../../Basic/Secure/SupplyChain.html">供应链安全</a></li></ol></li><li class="chapter-item "><a href="../../Basic/软件保护技术.html">Reverse</a></li></ol></li><li class="chapter-item "><a href="../../Language/index.html">Language</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../Language/Java/index.html">Java</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../Language/Java/基础.html">Java</a></li><li class="chapter-item "><a href="../../Language/Java/鸿蒙应用开发.html">Java-鸿蒙应用开发</a></li></ol></li><li class="chapter-item "><a href="../../Language/JavaScript/index.html">JavaScript</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../Language/JavaScript/Electron.html">Electron</a></li><li class="chapter-item "><a href="../../Language/JavaScript/JavaScript简介.html">JavaScript简介</a></li><li class="chapter-item "><a href="../../Language/JavaScript/Runtime.html">Runtime</a></li></ol></li><li class="chapter-item "><a href="../../Language/Python/index.html">Python</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../Language/Python/0内置类型/index.html">内置对象</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../Language/Python/0内置类型/1字符串.html">字符串和字节串</a></li><li class="chapter-item "><a href="../../Language/Python/0内置类型/2数值.html">数值</a></li><li class="chapter-item "><a href="../../Language/Python/0内置类型/3列表和元组.html">序列</a></li><li class="chapter-item "><a href="../../Language/Python/0内置类型/4字典和集合.html">映射</a></li><li class="chapter-item "><a href="../../Language/Python/0内置类型/5迭代器和生成器.html">迭代器和生成器</a></li><li class="chapter-item "><a href="../../Language/Python/0内置类型/6上下文管理器.html">上下文管理器</a></li></ol></li><li class="chapter-item "><a href="../../Language/Python/1工作原理/index.html">工作原理</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../Language/Python/1工作原理/0对象模型.html">OOP模型</a></li><li class="chapter-item "><a href="../../Language/Python/1工作原理/1类型.html">类型</a></li><li class="chapter-item "><a href="../../Language/Python/1工作原理/2变量.html">变量</a></li><li class="chapter-item "><a href="../../Language/Python/1工作原理/3特殊方法和重载.html">特殊方法和重载</a></li><li class="chapter-item "><a href="../../Language/Python/1工作原理/4参数.html">参数</a></li><li class="chapter-item "><a href="../../Language/Python/1工作原理/5多继承.html">多继承</a></li></ol></li><li class="chapter-item "><a href="../../Language/Python/3高级写法/index.html">高级写法</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../Language/Python/3高级写法/1异常.html">Exception</a></li><li class="chapter-item "><a href="../../Language/Python/3高级写法/2装饰器.html">装饰器</a></li></ol></li><li class="chapter-item "><a href="../../Language/Python/4好用的库/index.html">PythonLib</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../Language/Python/4好用的库/Argparse.html">命令行参数</a></li><li class="chapter-item "><a href="../../Language/Python/4好用的库/Bisect.html">Bisect</a></li><li class="chapter-item "><a href="../../Language/Python/4好用的库/Builtin.html">Builtin</a></li><li class="chapter-item "><a href="../../Language/Python/4好用的库/Container.html">Container</a></li><li class="chapter-item "><a href="../../Language/Python/4好用的库/Crypto.html">Crypto</a></li><li class="chapter-item "><a href="../../Language/Python/4好用的库/Enum.html">enum</a></li><li class="chapter-item "><a href="../../Language/Python/4好用的库/FS.html">File System</a></li><li class="chapter-item "><a href="../../Language/Python/4好用的库/Flask.html">Python-Flask</a></li><li class="chapter-item "><a href="../../Language/Python/4好用的库/HTTP.html">Internet</a></li><li class="chapter-item "><a href="../../Language/Python/4好用的库/IO.html">File IO</a></li><li class="chapter-item "><a href="../../Language/Python/4好用的库/PyQt5.html">PySide2</a></li><li class="chapter-item "><a href="../../Language/Python/4好用的库/Regex.html">Regex</a></li><li class="chapter-item "><a href="../../Language/Python/4好用的库/Socket.html">Socket编程</a></li><li class="chapter-item "><a href="../../Language/Python/4好用的库/Thread.html">多线程</a></li><li class="chapter-item "><a href="../../Language/Python/4好用的库/Time.html">时间和日期</a></li><li class="chapter-item "><a href="../../Language/Python/4好用的库/Trio.html">Trio</a></li><li class="chapter-item "><a href="../../Language/Python/4好用的库/format.html">Format String</a></li><li class="chapter-item "><a href="../../Language/Python/4好用的库/venv.html">Virtual Environment</a></li><li class="chapter-item "><a href="../../Language/Python/4好用的库/数据持久化.html">简单的数据持久化</a></li><li class="chapter-item "><a href="../../Language/Python/4好用的库/文档和测试.html">文档和测试</a></li><li class="chapter-item "><a href="../../Language/Python/4好用的库/计算器.html">把Python当计算器</a></li></ol></li><li class="chapter-item "><a href="../../Language/Python/运算符.html">运算符</a></li></ol></li><li class="chapter-item "><a href="../../Language/Rust/index.html">Rust</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../Language/Rust/Basic/index.html">Basic</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../Language/Rust/Basic/Any.html">Any</a></li><li class="chapter-item "><a href="../../Language/Rust/Basic/Async.html">异步编程</a></li><li class="chapter-item "><a href="../../Language/Rust/Basic/Casting.html">Casting</a></li><li class="chapter-item "><a href="../../Language/Rust/Basic/ClosureAndIter.html">迭代器和闭包</a></li><li class="chapter-item "><a href="../../Language/Rust/Basic/CratesAndModules.html">Crates and Modules</a></li><li class="chapter-item "><a href="../../Language/Rust/Basic/Error.html">Rust-错误处理</a></li><li class="chapter-item "><a href="../../Language/Rust/Basic/Macro.html">宏</a></li><li class="chapter-item "><a href="../../Language/Rust/Basic/Trait.html">Trait</a></li><li class="chapter-item "><a href="../../Language/Rust/Basic/TypeAndLifetime.html">从类型系统看生命周期</a></li><li class="chapter-item "><a href="../../Language/Rust/Basic/Unsafe.html">Unsafe</a></li><li class="chapter-item "><a href="../../Language/Rust/Basic/pattern.html">模式匹配</a></li></ol></li><li class="chapter-item "><a href="../../Language/Rust/Build.html">Build</a></li><li class="chapter-item "><a href="../../Language/Rust/Cargo/index.html">Cargo</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../Language/Rust/Cargo/clippy.html">Clippy</a></li><li class="chapter-item "><a href="../../Language/Rust/Cargo/fix.html">Cargo fix</a></li><li class="chapter-item "><a href="../../Language/Rust/Cargo/make.html">Cargo make</a></li></ol></li><li class="chapter-item "><a href="../../Language/Rust/Compiler.html">Compiler</a></li><li class="chapter-item "><a href="../../Language/Rust/Crate/index.html">Crates</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../Language/Rust/Crate/Anyhow.html">AnyHow & ThisError</a></li><li class="chapter-item "><a href="../../Language/Rust/Crate/Cell.html">Cell</a></li><li class="chapter-item "><a href="../../Language/Rust/Crate/Diesel.html">Diesel</a></li><li class="chapter-item "><a href="../../Language/Rust/Crate/Dioxus.html">Dioxus</a></li><li class="chapter-item "><a href="../../Language/Rust/Crate/EnumDispatch.html">Dispatch</a></li><li class="chapter-item "><a href="../../Language/Rust/Crate/IO.html">IO</a></li><li class="chapter-item "><a href="../../Language/Rust/Crate/collections.html">容器的增删改查</a></li><li class="chapter-item "><a href="../../Language/Rust/Crate/gtk-rs.html">gtk-rs</a></li><li class="chapter-item "><a href="../../Language/Rust/Crate/r2d2.html">r2d2</a></li><li class="chapter-item "><a href="../../Language/Rust/Crate/stdsync.html">std::sync</a></li><li class="chapter-item "><a href="../../Language/Rust/Crate/字符串.html">字符串/字节流</a></li><li class="chapter-item "><a href="../../Language/Rust/Crate/打包.html">打包</a></li><li class="chapter-item "><a href="../../Language/Rust/Crate/智能指针.html">Rust-智能指针</a></li></ol></li><li class="chapter-item "><a href="../../Language/Rust/FFI.html">FFI</a></li><li class="chapter-item "><a href="../../Language/Rust/IO.html">Rust-IO</a></li><li class="chapter-item "><a href="../../Language/Rust/Practice/index.html">Practice</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../Language/Rust/Practice/BestPractice.html">Rust最佳实践</a></li><li class="chapter-item "><a href="../../Language/Rust/Practice/Debug.html">调试</a></li><li class="chapter-item "><a href="../../Language/Rust/Practice/DesignPattern.html">设计模式</a></li><li class="chapter-item "><a href="../../Language/Rust/Practice/Performance.html">性能优化</a></li><li class="chapter-item "><a href="../../Language/Rust/Practice/Size.html">代码体积优化</a></li><li class="chapter-item "><a href="../../Language/Rust/Practice/Test.html">测试最佳实践</a></li><li class="chapter-item "><a href="../../Language/Rust/Practice/Type.html">类型转换</a></li><li class="chapter-item "><a href="../../Language/Rust/Practice/Unsafe.html">Unsafe最佳实践</a></li></ol></li><li class="chapter-item "><a href="../../Language/Rust/gtk.html">Rust-gtk-rs介绍</a></li><li class="chapter-item "><a href="../../Language/Rust/函数参数匹配.html">函数参数匹配</a></li><li class="chapter-item "><a href="../../Language/Rust/基础知识.html">基础知识</a></li><li class="chapter-item "><a href="../../Language/Rust/多线程.html">多线程支持</a></li><li class="chapter-item "><a href="../../Language/Rust/混合编程.html">混合编程</a></li><li class="chapter-item "><a href="../../Language/Rust/精髓.html">Rust-精髓</a></li></ol></li><li class="chapter-item "><a href="../../Language/Scala/index.html">Scala</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../Language/Scala/0控制结构.html">控制结构</a></li><li class="chapter-item "><a href="../../Language/Scala/1数据结构.html">数据结构</a></li><li class="chapter-item "><a href="../../Language/Scala/2_0类和对象.html">Class</a></li><li class="chapter-item "><a href="../../Language/Scala/2_1继承.html">继承</a></li><li class="chapter-item "><a href="../../Language/Scala/2_2特质.html">Trait</a></li><li class="chapter-item "><a href="../../Language/Scala/3_1花里胡哨的函数.html">花里胡哨的函数</a></li><li class="chapter-item "><a href="../../Language/Scala/3_2匿名函数和闭包.html">函数</a></li><li class="chapter-item "><a href="../../Language/Scala/3_3模式匹配.html">模式匹配</a></li><li class="chapter-item "><a href="../../Language/Scala/3_4容器的函数式操作.html">容器的函数式操作</a></li><li class="chapter-item "><a href="../../Language/Scala/ScalaDepth/index.html">ScalaDepth</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../Language/Scala/ScalaDepth/Class文件.html">Class文件</a></li><li class="chapter-item "><a href="../../Language/Scala/ScalaDepth/ScalaInDepth.html">Scala in Depth 读书笔记</a></li><li class="chapter-item "><a href="../../Language/Scala/ScalaDepth/Spark.html">Spark</a></li><li class="chapter-item "><a href="../../Language/Scala/ScalaDepth/jvm.html">《深入理解Java虚拟机读书》笔记</a></li><li class="chapter-item "><a href="../../Language/Scala/ScalaDepth/函数式的一些概念.html">Scala中一些函数式概念</a></li><li class="chapter-item "><a href="../../Language/Scala/ScalaDepth/泛型擦除.html">泛型擦除</a></li><li class="chapter-item "><a href="../../Language/Scala/ScalaDepth/简单的类型原理.html">类型</a></li></ol></li><li class="chapter-item "><a href="../../Language/Scala/sbt.html">sbt</a></li><li class="chapter-item "><a href="../../Language/Scala/trait.html">trait</a></li><li class="chapter-item "><a href="../../Language/Scala/枚举.html">枚举</a></li><li class="chapter-item "><a href="../../Language/Scala/样例类和模式匹配.html">样例类和模式匹配</a></li><li class="chapter-item "><a href="../../Language/Scala/测试和文档.html">测试和文档</a></li><li class="chapter-item "><a href="../../Language/Scala/组合和继承.html">类的组合和继承</a></li></ol></li><li class="chapter-item "><a href="../../Language/Snippet/index.html">Snippets</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../Language/Snippet/c.html">c</a></li><li class="chapter-item "><a href="../../Language/Snippet/linux.html">linux</a></li><li class="chapter-item "><a href="../../Language/Snippet/python.html">python</a></li><li class="chapter-item "><a href="../../Language/Snippet/rust.html">rust</a></li></ol></li></ol></li><li class="chapter-item "><a href="../../Tools/index.html">Tools</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../Tools/Docker.html">Docker</a></li><li class="chapter-item "><a href="../../Tools/GDB.html">GDB</a></li><li class="chapter-item "><a href="../../Tools/Git/index.html">Git</a></li><li class="chapter-item "><a href="../../Tools/Git.html">Git</a></li><li class="chapter-item "><a href="../../Tools/Githook.html">Githook</a></li><li class="chapter-item "><a href="../../Tools/GithubCI.html">Github-CI</a></li><li class="chapter-item "><a href="../../Tools/Latex.html">Latex</a></li><li class="chapter-item "><a href="../../Tools/Make.html">Make与Makefile</a></li><li class="chapter-item "><a href="../../Tools/VSCode.html">VSCode</a></li><li class="chapter-item "><a href="../../Tools/Vim.html">Vim</a></li><li class="chapter-item "><a href="../../Tools/WSL.html">WSL</a></li><li class="chapter-item "><a href="../../Tools/双系统.html">双系统使用经历</a></li><li class="chapter-item "><a href="../../Tools/软件打包.html">软件打包</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Reticence&#x27;s Notes</h1>
+
+                    <div class="right-buttons">
+                        <a href="../../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="database-数据库设计"><a class="header" href="#database-数据库设计">Database-数据库设计</a></h1>
+<ol>
+<li>
+<p>Requirement analysis
+What data, applications, and operations needed</p>
+</li>
+<li>
+<p><strong>Conceptual database design</strong></p>
+<p>A high-level description of data, constraints using <strong>E - R model</strong> or a similar high level data model</p>
+</li>
+<li>
+<p><strong>Logical database design</strong></p>
+<p>Convert the conceptual design into a DB schema <strong>Relation Schema</strong></p>
+</li>
+<li>
+<p>Schema refinement</p>
+<p>Normalization of relations: Check relational schema for redundancies and related anomalies.</p>
+</li>
+<li>
+<p>Physical database design:</p>
+<p>Indexing, clustering and database tuning</p>
+</li>
+<li>
+<p>Create/initialize the database &amp; Security design</p>
+<p>Load initial data, testing. Identify different user groups and their roles</p>
+</li>
+</ol>
+<h2 id="一conceptual-database-design--e-r-model"><a class="header" href="#一conceptual-database-design--e-r-model">一、Conceptual database design &amp; E-R model</a></h2>
+<h3 id="概念"><a class="header" href="#概念">概念</a></h3>
+<p><strong>Entity</strong>：实体是客观存在的对象并且与其他对象可区分，实体具有属性。</p>
+<p><strong>Entity set</strong>：实体集是相同类型的实体的集合，他们具有相同的性质。</p>
+<p><strong>Relationship</strong>：联系是指多个实体之间的相互关联，联系也可以有属性。</p>
+<p><strong>Relationship set</strong>：联系集是相同类型联系的集合。一个联系集包含多个同类联系（或联系实例，relationship instance），一个联系集表示二个或多个实体集之间的关联。用数学的语言描述联系集就是$R\in {(e_1,e_2,...e_n)|e_1 \in E_1,e_2 \in E_2,...e_n\in E_n}$，具体的$(e_1,e_2,...e_n)$就是relationship。</p>
+<p><strong>Attribute</strong> 属性</p>
+<ul>
+<li>每一个属性都有可取值的集合，称为<strong>domain</strong>。</li>
+<li>简单属性和复合属性。比如名字可以包括姓+名两个属性，就称为复合属性。如果有些时候我们单独的需要提取人的姓，那么把属性拆分成复合属性是一个好的选择。</li>
+<li>单值属性和多值属性。一个人的身份证号只有一个，但是一个人可以拥有很多电话号码，所以身份证号是单值属性，电话号码是多值属性。</li>
+<li>派生属性，比如，生日派生出年龄。</li>
+<li>relationship也可以有属性</li>
+</ul>
+<p>我们说entity set$E_1,E_2$<strong>参与</strong>relationship set$R$。</p>
+<p>举一个例子。这里有$E_1=instructor, E_2=student$，他们参与了关系$R=takes$。关系R是联系集，也可以有属性，比如下面的date。只有两个实体的关系（或者说**$degree=2$**）的relationship我们称之为binary relationship，这也是大多数的情况。</p>
+<p><img src="../images/image-20210401125108768.png" alt="image-20210401125108768" /></p>
+<h3 id="约束"><a class="header" href="#约束">约束</a></h3>
+<p>ER图是可以反应约束条件的，比如主码，外码等。</p>
+<p><strong>mapping cardinality</strong>映射基数，表示一个entity通过一个relationship能关联的entity的数量。对于一个binary relationship，有下面几种情况：</p>
+<ul>
+<li>1-1：可以通过任意一个entity来作为relationship set的primary key。</li>
+<li>1-N(N-1)：可以选择N作为relationship set的primary key。</li>
+<li>N-N：需要用tuple作为relationship set的primary key。</li>
+</ul>
+<p>对于entity set的primary key，我们要求他的attribute一定要可以唯一的表示每一个entity。</p>
+<p><strong>参与约束</strong>：如果entity set $E$ 中的每一个entity都参与到了relationship set $R$ 中，那么我们称 $E$ 在  $R$ 中是<strong>total</strong>。如果只有部分那么称为<strong>partial</strong>。</p>
+<h3 id="构建e-r图"><a class="header" href="#构建e-r图">构建E-R图</a></h3>
+<p>E-R是一个非常好的对现实世界建模的方式，可以很好的应对很多不同的现实情况。</p>
+<p><img src="../images/image-20210401111839425.png" alt="image-20210401111839425" /></p>
+<p>关系集</p>
+<p><img src="../images/image-20210401111900345.png" alt="image-20210401111900345" /></p>
+<p>ER图也可以很好的表示非二元关系。</p>
+<p><img src="../images/image-20210403145727770.png" alt="image-20210403145727770" /></p>
+<p>这是带了<strong>描述性属性</strong>的<strong>relationship</strong> advisor, data表示instructor和students匹配的时间。</p>
+<p><img src="../images/image-20210403145914375.png" alt="image-20210403145914375" /></p>
+<p>被relationship set连接的两个两个entity set不一定是要不一样的，如果是一样的话，我们可能需要表明他们在关系中扮演的角色<strong>role</strong>。比如下面这个例子，course和course之间的联系，一个课程是另一个课程的预修要求。</p>
+<p><img src="../images/image-20210618160152192.png" alt="image-20210618160152192" /></p>
+<p><strong>弱实体集</strong>是指没有primary key的entity set。比如这个开课情况关系，要唯一确定section本来应该需要<code>{course_id,sec_id,semester,year}</code>，但是如果section中包含course_id那么就出现了冗余。一个办法是删除sec_course，把section和course的关系隐含到一个属性中，但这不是我们需要的。</p>
+<p>所以我们选择删除section中的<code>course_id</code>属性，但是这样section就没有足够的属性标识一个指定的section了（没有primary key了）为此我们将sec_course视为一个特殊的联系，他为唯一表示section实体提供额外信息，即<code>course_id</code>。</p>
+<p>那么相应的有primary key的entity set就是强实体集。他们之间的relationship set就叫做identifying relationship，是多对一的，并且weak entity set的参与是全部的。identifying relationship不应该有描述性属性，因为都可以放在弱实体集中。</p>
+<p>弱实体集没有主码，但是我们仍然要区分依赖于特定强实体集中某entity的弱实体集中的entity。这就通过分辨符<strong>discriminator</strong>(比如下面的sec_id,semester,year)。</p>
+<p><img src="../images/image-20210618161827474.png" alt="image-20210618161827474" /></p>
+<h3 id="从er图到逻辑表"><a class="header" href="#从er图到逻辑表">从ER图到逻辑表</a></h3>
+<ul>
+<li>
+<p>对于一般的<strong>强 Entity Set</strong> ，我们可以对他直接创建一张表。</p>
+<ul>
+<li>简单属性没什么好说的；对于复合的属性，把他每一个子属性都作为属性放进去。</li>
+<li>对于<strong>多值型的属性</strong>，需要为它再建立一张表。他的primary key由属性的所有者和属性共同完成，并且把属性的所有者作为forgien key。</li>
+<li>对于派生属性，我们并不在直接表中反映出来。</li>
+</ul>
+</li>
+<li>
+<p>对于<strong>relationship</strong>，要把双方的primary key和自己的属性都带过来。</p>
+<ul>
+<li>不过对于relationship自己的primary key，取决于是1-1/1-N/N-N。如果是N-N的话我们需要tuple作为primary key，1-N取N就可以了，1-1任取一个。如果不是Binary relationship，</li>
+</ul>
+</li>
+<li>
+<p>对于<strong>弱 Entity set</strong>，因为仅仅依靠自己的属性无法确定primary key，所以还需要包括他所依赖的强 Entity set的属性（往往是primary key），并将他作为foreign key。</p>
+<ul>
+<li>我们往往还需要做级联删除的约束。</li>
+</ul>
+</li>
+</ul>
+<p>按照上面的模式创建的表会存在冗余，我们可以合并冗余：</p>
+<ol>
+<li>
+<p>弱实体集需要包含强实体集的primary key，所以他们之间的relationship这张表就没有存在的意义。</p>
+</li>
+<li>
+<p>1-N可以merge。考虑这样一个例子，学生$E_1=student$，学院$E_2=department$。$E_1$对$E_2$是一个<strong>多对一</strong>的关系，并且在这个关系中$E_1$是total的。那么我们可以把department作为$E_1=student$的一个属性，同时作为foreign key。
+即使$E_1$是partial的，我们仍然可以通过NULL来完成。</p>
+</li>
+<li>
+<p>1-1就更可以merge了。而且可以把relationship合并到任意一个entity set中。</p>
+</li>
+</ol>
+<h3 id="进阶er图"><a class="header" href="#进阶er图">进阶ER图</a></h3>
+<h4 id="specialize--generalize"><a class="header" href="#specialize--generalize">specialize &amp; generalize</a></h4>
+<p>感觉有点像基类和子类的关系。比如<code>person</code>可能可以specialize为<code>student</code>和<code>employ</code>，<code>students</code>可能有<code>GPA</code>等属性，<code>employ</code>可能有<code>salary</code>属性，这是基类没有的。这就是specialize的过程，反过来看，就是generalize的过程。主要的目的，就是<strong>属性继承</strong>。</p>
+<ul>
+<li>total generalization/specialization: 每个高层entity必须属于一个底层entity set.	(比如人分成男女)</li>
+<li>partial generalization/specialization: 某些高层entity可以不属于任何一个低层entity set (比如职业统计，但是可能有人无业？)</li>
+<li>disjoint: 每个entity最多属于一个低层entity set</li>
+<li>overlapping: 一个entity可以属于多个entity set</li>
+</ul>
+<p><img src="../images/image-20210619151246010.png" alt="image-20210619151246010" /></p>
+<h4 id="aggregate"><a class="header" href="#aggregate">aggregate</a></h4>
+<p>因为ER图不能表达关系之间的关系。设想下面这个场景，本来我们有一个三元关系 <code>instructor指导student完成project</code>，然后我们现在要对他进行评价。那么我们就需要把这个三元关系aggregate，然后和<code>evaluation</code>建立联系。</p>
+<p><img src="../images/image-20210619152213134.png" alt="image-20210619152213134" /></p>
+<h3 id="总结"><a class="header" href="#总结">总结</a></h3>
+<p>一个大学数据库的例子：</p>
+<p><img src="../images/image-20210619153535444.png" alt="image-20210619153535444" /></p>
+<h2 id="二范式"><a class="header" href="#二范式">二、范式</a></h2>
+<p>我们要合理的数据数据库，要避免下面的一些陷阱pitfalls</p>
+<ul>
+<li>Redundant storage。数据冗余</li>
+<li>insert/delete/update anomalies。插入/删除/修改异常。</li>
+</ul>
+<h3 id="第一范式-1nf"><a class="header" href="#第一范式-1nf">第一范式 1NF</a></h3>
+<p>第一范式，要求所有的属性的域是<strong>原子的</strong>。也就是说域的元素是不可分的单元。</p>
+<p>比如一个人的名字，包含姓和名，我们认为这不是原子的。比如一个数字123，如果我们把他看成一个数字他就是原子的，如果我们把它看成一个字符序列，那么他就不是原子的。有时候使用组合值可以得到更好的效果，第一范式并不一定是最好的。</p>
+<p>对于组合属性：让每个子属性本身成为成为一个属性
+对于多值属性：为多值集合中的每个项创建一条元组</p>
+<h3 id="第三范式-3nf"><a class="header" href="#第三范式-3nf">第三范式 3NF</a></h3>
+<p>我们首先要理解<strong>函数依赖</strong>。属性的集合用希腊字母如$\alpha$表示，R表示一个关系模式。t表示元组。</p>
+<h4 id="函数依赖"><a class="header" href="#函数依赖">函数依赖</a></h4>
+<p>函数依赖：$\alpha$和$\beta$指的是属性集。 $f=\alpha \rightarrow \beta$的意思是$t_1[\alpha] = t_2[\alpha] \Rightarrow t_1[\beta]=t_2[\beta]$。我们说$\alpha$决定$\beta$。是不是感觉和之前的key非常相似。如果R上的所有的元组t满足f，我们说f在R上hold。</p>
+<p>有下面几条公理（前三）和定理（后三）</p>
+<blockquote>
+<p>自反率 $\beta \subseteq \alpha \Rightarrow \alpha \rightarrow \beta$</p>
+<p>增补率 $\alpha \rightarrow \beta \Rightarrow \gamma \alpha \rightarrow \gamma  \beta$</p>
+<p>传递率 $\alpha \rightarrow \beta ,\beta\rightarrow \gamma \Rightarrow \alpha \rightarrow \gamma$</p>
+</blockquote>
+<h4 id="闭包"><a class="header" href="#闭包">闭包</a></h4>
+<p>由此，我们可以给出一个<strong>函数依赖集</strong>$F$的closure $F^+$。$F^+$是$F$ **能推导出的(或者说逻辑蕴含)**所有函数依赖$f$的集合。这是求closure的算法1：所以我们判断一个$\alpha$是否是关系R的superkey，就可以判断$\alpha$能不能唯一确定一个tuple，也即是$\alpha^+ \rightarrow R$。</p>
+<p><img src="../images/image-20210410160244335.png" alt="image-20210410160244335" /></p>
+<p>计算属性集合的closure，就是看属性集里面的元素还能推导出什么然后不断的加入就可以了。</p>
+<p><img src="../images/image-20210410161614336.png" alt="image-20210410161614336" /></p>
+<h4 id="正则覆盖"><a class="header" href="#正则覆盖">正则覆盖</a></h4>
+<p>直观地说，F的正则覆盖（记做$F_c$ ）是指与F等价的“极小的”函数依赖集合</p>
+<p>如何计算Fc ：删除多余属性，存在以下三种情况</p>
+<ul>
+<li>
+<p>函数依赖集中存在可由其他函数依赖推导出的函数依赖$F = {A\rightarrow C, A\rightarrow  B, B \rightarrow  C } \Rightarrow F_c = {A\rightarrow  B, B \rightarrow  C }$</p>
+</li>
+<li>
+<p>函数依赖左边部分存在属性冗余。比如在这个例子中，A可以推导出C </p>
+<p>$F = {A\rightarrow B, B\rightarrow  C, AC \rightarrow  D } \Rightarrow 
+F_c = {A\rightarrow  B, B \rightarrow  C,A \rightarrow  D }$</p>
+</li>
+<li>
+<p>函数依赖右边部分存在属性冗余</p>
+<p>$F = {A\rightarrow B, B\rightarrow  C, A \rightarrow  CD } \Rightarrow F_c = {A\rightarrow  B, B \rightarrow  C,A \rightarrow  D }$</p>
+</li>
+</ul>
+<p>无关属性，分别对应上面提到的后面两个</p>
+<p><img src="../images/image-20210410164307838.png" alt="image-20210410164307838" /></p>
+<p>计算F的正则覆盖：</p>
+<p><img src="../images/image-20210410164439736.png" alt="iom" /></p>
+<h4 id="无损分解保持依赖boyce-codd范式"><a class="header" href="#无损分解保持依赖boyce-codd范式">无损分解、保持依赖、Boyce-Codd范式</a></h4>
+<ul>
+<li>
+<p>$R_1,R_2$是关系r的分解，如果满足${\textstyle \prod_{R_1} (r)} \bowtie  {\textstyle \prod_{R_2} (r)} =r$，那么我们说$R_1,R_2$是r的<strong>无损分解lossless decompositio</strong>n。BCNF和3NF都要满足这个条件。</p>
+<p>判断是否是无损分解，可以将</p>
+</li>
+<li>
+<p><strong>保持依赖</strong>：$(F_1\cup F_2 \cup F_3...\cup F_4)^+ = F^+$	</p>
+<p>如果直接计算$F^+$，计算量很大。求解办法，对$F$的<strong>每一个函数依赖$\alpha \rightarrow \beta$进行下面的过程：如果result包含$\beta$的话，说明该依赖被保持。如果所有的都满足，那么该分解保持依赖</strong></p>
+<p>其实，这个是在研究属性集合$\alpha$的闭包。</p>
+<p><img src="../images/image-20210420203919897.png" alt="image-20210420203919897" /></p>
+</li>
+<li>
+<p>关系R具有函数依赖集合F，<strong>R属于BCNF</strong>当且仅当对 $F^+$中所有的函数依赖$\alpha \rightarrow \beta$，下面至少有一项成立：</p>
+<ul>
+<li>$\alpha \rightarrow \beta$ 是平凡的函数依赖，也就是说 $\beta \subseteq \alpha$。</li>
+<li>$\alpha$是R的superkey。</li>
+</ul>
+</li>
+</ul>
+<p>为检查具有函数依赖集合$F$的关系模式$R$是否属于BCNF，只需检查$F$中的函数依赖是否违反BCNF即可，而不需检查$F^+$中的所有函数依赖。可在$F$下判别R 是否违反BCNF，但须在$F
+^+$下判别R的分解式是否违反BCNF。BCNF分解算法：</p>
+<p><img src="../images/image-20210410193603914.png" alt="image-20210410193603914" /></p>
+<p>BCNF分解<strong>不总是保持依赖</strong>的。所以我们提出了3NF。</p>
+<h4 id="第三范式"><a class="header" href="#第三范式">第三范式</a></h4>
+<p>关系R具有函数依赖集合F，R属于3NF当且仅当对 $F^+$中所有的函数依赖$\alpha \rightarrow \beta$，下面至少有一项成立：</p>
+<ul>
+<li>$\alpha \rightarrow \beta$ 是平凡的函数依赖，也就是说 $\beta \subseteq \alpha$。</li>
+<li>$\alpha$是R的superkey。</li>
+<li>$\beta - \alpha$的每个属性A都包含于R的一个candidate key中。（回顾，candidate key是最小的superkey，去掉任何一个属性就不是superkey了）</li>
+</ul>
+<p>很明显的看出3NF比BCNF要弱一点，因此存在一定的信息冗余。其实上面说的三条是我们分解的目标，但是因为不能保证同时达成依赖保持和BCNF，所以我们提出了3NF。</p>
+<p>3NF的分解方法：</p>
+<p><img src="../images/image-20210410195854899.png" alt="image-20210410195854899" /></p>
+<p>检测3NF</p>
+<ul>
+<li>对于每一个$\alpha \rightarrow \beta$检测$\alpha$是否是superkey，如果否
+<ul>
+<li>检查$\beta$中的每个属性是否包含在R 的某个candidate key中</li>
+<li>所以我们对于给定的R，我们要找出所有的candidate key。<strong>这是一个NP-hard的问题</strong>。</li>
+</ul>
+</li>
+</ul>
+<p><img src="../images/20200516174600750.jpg" alt="img" /></p>
+<h3 id="第四范式-4nf"><a class="header" href="#第四范式-4nf">第四范式 4NF</a></h3>
+<h4 id="多值依赖-multivalue-dependencies"><a class="header" href="#多值依赖-multivalue-dependencies">多值依赖 Multivalue Dependencies</a></h4>
+<p>比如，一门课程确定了，那么上这门课的**老师们(是一个集合)**就确定了。</p>
+<h4 id="第四范式"><a class="header" href="#第四范式">第四范式</a></h4>
+<p>分解方法：</p>
+<p><img src="../images/image-20210420214753923.png" alt="image-20210420214753923" /></p>
+<h2 id="总结-1"><a class="header" href="#总结-1">总结</a></h2>
+<p>设计方法一：</p>
+<ol>
+<li>把所有的属性先放到一张表中，称为universal relation。</li>
+<li>然后用各种范式把冗余去除</li>
+</ol>
+<p>设计方法二：</p>
+<ol>
+<li>用ER图。一般我们通过ER图就能得到较好的结果。</li>
+</ol>
+<p>去除冗余可以节约空间，但是我们不总是要把冗余都去除。而且，也不是所有满足范式的设计都是好的。</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../../Basic/Database/导论.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next" href="../../Basic/Maths/index.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../../Basic/Database/导论.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next" href="../../Basic/Maths/index.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../searcher.js" type="text/javascript" charset="utf-8"></script>
+
+        <script src="../../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </body>
+</html>

@@ -1,0 +1,1041 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Java - Reticence&#x27;s Notes</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../../favicon.svg">
+        <link rel="shortcut icon" href="../../favicon.png">
+        <link rel="stylesheet" href="../../css/variables.css">
+        <link rel="stylesheet" href="../../css/general.css">
+        <link rel="stylesheet" href="../../css/chrome.css">
+        <link rel="stylesheet" href="../../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../../highlight.css">
+        <link rel="stylesheet" href="../../tomorrow-night.css">
+        <link rel="stylesheet" href="../../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+        <!-- MathJax -->
+        <script async type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item affix "><a href="../../index.html">Index</a></li><li class="chapter-item "><a href="../../Advanced/index.html">Advanced</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../Advanced/Blockchain/index.html">Block Chain</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../Advanced/Blockchain/Basic/index.html">区块链技术</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../Advanced/Blockchain/Basic/Consensus.html">共识机制</a></li><li class="chapter-item "><a href="../../Advanced/Blockchain/Basic/Crypto.html">加密</a></li><li class="chapter-item "><a href="../../Advanced/Blockchain/Basic/Distribute.html">分布式存储</a></li><li class="chapter-item "><a href="../../Advanced/Blockchain/Basic/P2P.html">P2P</a></li><li class="chapter-item "><a href="../../Advanced/Blockchain/Basic/SmartContract.html">如何执行智能合约</a></li></ol></li><li class="chapter-item "><a href="../../Advanced/Blockchain/Defi/index.html">DeFi</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../Advanced/Blockchain/Defi/DAO.html">Decentralized Autonomous Organization</a></li><li class="chapter-item "><a href="../../Advanced/Blockchain/Defi/Derivative.html">Decentralized Derivative</a></li><li class="chapter-item "><a href="../../Advanced/Blockchain/Defi/Exchange.html">Decentralized Exchange</a></li><li class="chapter-item "><a href="../../Advanced/Blockchain/Defi/FundManagement.html">Decentralized Fund Management</a></li><li class="chapter-item "><a href="../../Advanced/Blockchain/Defi/Insurance.html">Decentralized Insurance</a></li><li class="chapter-item "><a href="../../Advanced/Blockchain/Defi/LendBorrow.html">Decentralized Lending & Borrowing</a></li><li class="chapter-item "><a href="../../Advanced/Blockchain/Defi/Lottery.html">Decentralized Lottery</a></li><li class="chapter-item "><a href="../../Advanced/Blockchain/Defi/Payments.html">Decentralized Payments</a></li><li class="chapter-item "><a href="../../Advanced/Blockchain/Defi/StableCoin.html">Stable Coins</a></li></ol></li><li class="chapter-item "><a href="../../Advanced/Blockchain/Ethernet/index.html">Ethernet</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../Advanced/Blockchain/Ethernet/Solidity.html">Solidity简介</a></li></ol></li><li class="chapter-item "><a href="../../Advanced/Blockchain/NEAR/index.html">Hello NEAR</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../Advanced/Blockchain/NEAR/PoS.html">Proof-of-Stake</a></li><li class="chapter-item "><a href="../../Advanced/Blockchain/NEAR/Promise.html">异步模型</a></li><li class="chapter-item "><a href="../../Advanced/Blockchain/NEAR/Secure.html">Secure</a></li><li class="chapter-item "><a href="../../Advanced/Blockchain/NEAR/Snippets.html">Snippets</a></li><li class="chapter-item "><a href="../../Advanced/Blockchain/NEAR/Standards.html">标准实现代码分析</a></li><li class="chapter-item "><a href="../../Advanced/Blockchain/NEAR/dao.html">dao</a></li><li class="chapter-item "><a href="../../Advanced/Blockchain/NEAR/wasm.html">wasm</a></li></ol></li></ol></li><li class="chapter-item "><a href="../../Advanced/Linux/index.html">Linux</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../Advanced/Linux/LinuxKernel/index.html">Linux</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../Advanced/Linux/LinuxKernel/Credential.html">Credential</a></li><li class="chapter-item "><a href="../../Advanced/Linux/LinuxKernel/Debug笔记.html">Debug笔记</a></li><li class="chapter-item "><a href="../../Advanced/Linux/LinuxKernel/File_System.html">File System</a></li><li class="chapter-item "><a href="../../Advanced/Linux/LinuxKernel/Linux内核设计与实现笔记.html">《Linux内核设计与实现》笔记</a></li><li class="chapter-item "><a href="../../Advanced/Linux/LinuxKernel/Linux设备驱动笔记.html">《Linux设备驱动》笔记</a></li><li class="chapter-item "><a href="../../Advanced/Linux/LinuxKernel/RCU.html">RCU</a></li><li class="chapter-item "><a href="../../Advanced/Linux/LinuxKernel/Rust_for_linux.html">Rust for linux</a></li><li class="chapter-item "><a href="../../Advanced/Linux/LinuxKernel/System_Call.html">System Call</a></li><li class="chapter-item "><a href="../../Advanced/Linux/LinuxKernel/context_switch.html">进程调度时的context_switch</a></li><li class="chapter-item "><a href="../../Advanced/Linux/LinuxKernel/内核编程笔记.html">Linux内核编程笔记</a></li><li class="chapter-item "><a href="../../Advanced/Linux/LinuxKernel/数据结构.html">数据结构</a></li><li class="chapter-item "><a href="../../Advanced/Linux/LinuxKernel/调试Linux内核环境搭建.html">调试Linux内核环境搭建</a></li><li class="chapter-item "><a href="../../Advanced/Linux/LinuxKernel/调试时如何获取current.html">调试Linux内核，寻找current</a></li></ol></li><li class="chapter-item "><a href="../../Advanced/Linux/LinuxPlay/index.html">LinuxPlay</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../Advanced/Linux/LinuxPlay/Linux使用笔记.html">Linux使用笔记</a></li><li class="chapter-item "><a href="../../Advanced/Linux/LinuxPlay/使用SSH远程登录.html">Linux使用SSH远程登录</a></li><li class="chapter-item "><a href="../../Advanced/Linux/LinuxPlay/在Linux中找到可用的网络接口.html">在Linux中找到可用的网络接口</a></li></ol></li><li class="chapter-item "><a href="../../Advanced/Linux/LinuxProgram/index.html">Linux Program</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../Advanced/Linux/LinuxProgram/Deamon.html">Daemon</a></li><li class="chapter-item "><a href="../../Advanced/Linux/LinuxProgram/Fanotify.html">Fanotify</a></li><li class="chapter-item "><a href="../../Advanced/Linux/LinuxProgram/File.html">File Program</a></li><li class="chapter-item "><a href="../../Advanced/Linux/LinuxProgram/IObound.html">I/O bound 程序优化</a></li><li class="chapter-item "><a href="../../Advanced/Linux/LinuxProgram/Linux目录结构.html">Linux目录结构</a></li><li class="chapter-item "><a href="../../Advanced/Linux/LinuxProgram/NetLink.html">Netlink</a></li><li class="chapter-item "><a href="../../Advanced/Linux/LinuxProgram/Socket.html">Socket</a></li><li class="chapter-item "><a href="../../Advanced/Linux/LinuxProgram/eBPF.html">eBPF</a></li><li class="chapter-item "><a href="../../Advanced/Linux/LinuxProgram/prctl.html">进程</a></li><li class="chapter-item "><a href="../../Advanced/Linux/LinuxProgram/信号.html">信号</a></li><li class="chapter-item "><a href="../../Advanced/Linux/LinuxProgram/共享库.html">共享库</a></li><li class="chapter-item "><a href="../../Advanced/Linux/LinuxProgram/凭证.html">Credential 凭证</a></li><li class="chapter-item "><a href="../../Advanced/Linux/LinuxProgram/反向Shell和伪终端.html">反向Shell和伪终端</a></li><li class="chapter-item "><a href="../../Advanced/Linux/LinuxProgram/性能监控.html">性能监控</a></li><li class="chapter-item "><a href="../../Advanced/Linux/LinuxProgram/桌面应用开发.html">桌面应用开发</a></li><li class="chapter-item "><a href="../../Advanced/Linux/LinuxProgram/管道和重定向.html">管道和重定向</a></li><li class="chapter-item "><a href="../../Advanced/Linux/LinuxProgram/系统限制和选项.html">系统限制和选项</a></li><li class="chapter-item "><a href="../../Advanced/Linux/LinuxProgram/终端.html">终端</a></li><li class="chapter-item "><a href="../../Advanced/Linux/LinuxProgram/进程间通信.html">进程间通信</a></li></ol></li></ol></li><li class="chapter-item "><a href="../../Advanced/Windows/index.html">Windows Programming</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../Advanced/Windows/Unicode.html">Unicode</a></li><li class="chapter-item "><a href="../../Advanced/Windows/hungarian.html">匈牙利命名法</a></li><li class="chapter-item "><a href="../../Advanced/Windows/文件.html">文件</a></li></ol></li></ol></li><li class="chapter-item "><a href="../../Basic/index.html">Basic</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../Basic/8086汇编笔记.html">8086汇编笔记</a></li><li class="chapter-item "><a href="../../Basic/Architecture/index.html">Architecture</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../Basic/Architecture/ARM内存管理.html">AArch64 memory management</a></li><li class="chapter-item "><a href="../../Basic/Architecture/ARM寄存器.html">ARM中的寄存器</a></li><li class="chapter-item "><a href="../../Basic/Architecture/ARM异常.html">AArch64 Exception Model</a></li><li class="chapter-item "><a href="../../Basic/Architecture/ARM虚拟化.html">Armv8-A virtualization</a></li><li class="chapter-item "><a href="../../Basic/Architecture/ARM调试.html">ARM self-hosted debug</a></li><li class="chapter-item "><a href="../../Basic/Architecture/CPU设计.html">CPU设计</a></li><li class="chapter-item "><a href="../../Basic/Architecture/Cache.html">Cache</a></li><li class="chapter-item "><a href="../../Basic/Architecture/ILP.html">ILP</a></li><li class="chapter-item "><a href="../../Basic/Architecture/SIMD和MIMD.html">SIMD和MIMD</a></li><li class="chapter-item "><a href="../../Basic/Architecture/TLP.html">TLP</a></li><li class="chapter-item "><a href="../../Basic/Architecture/存储器设计.html">存储器设计</a></li><li class="chapter-item "><a href="../../Basic/Architecture/数字逻辑.html">Notes-数字逻辑</a></li><li class="chapter-item "><a href="../../Basic/Architecture/计算机体系结构.html">计算机组成&计算机体系结构</a></li></ol></li><li class="chapter-item "><a href="../../Basic/C/index.html">C/C++</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../Basic/C/Cpp标准库.html">C++_标准库</a></li><li class="chapter-item "><a href="../../Basic/C/Cpp课程笔记.html">C++ 基础知识</a></li><li class="chapter-item "><a href="../../Basic/C/GCC内嵌汇编.html">C-内嵌汇编</a></li><li class="chapter-item "><a href="../../Basic/C/变量在ELF段中的位置.html">变量在ELF段中的位置</a></li><li class="chapter-item "><a href="../../Basic/C/可变参数的使用和原理.html">可变参数的使用和原理</a></li><li class="chapter-item "><a href="../../Basic/C/在C程序中调用汇编程序.html">在C程序中调用汇编程序</a></li><li class="chapter-item "><a href="../../Basic/C/链接器.html">链接器</a></li></ol></li><li class="chapter-item "><a href="../../Basic/Client/index.html">Client Development</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../Basic/Client/Chromium.html">Chromium</a></li><li class="chapter-item "><a href="../../Basic/Client/CodeReview.html">CodeReview</a></li><li class="chapter-item "><a href="../../Basic/Client/Config.html">Config</a></li><li class="chapter-item "><a href="../../Basic/Client/CrossLanguage.html">跨语言</a></li><li class="chapter-item "><a href="../../Basic/Client/DataStore.html">本地存储</a></li><li class="chapter-item "><a href="../../Basic/Client/Database.html">Database</a></li><li class="chapter-item "><a href="../../Basic/Client/Flutter.html">Flutter</a></li><li class="chapter-item "><a href="../../Basic/Client/Log.html">日志</a></li><li class="chapter-item "><a href="../../Basic/Client/Multimedia/index.html">Multimedia</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../Basic/Client/Multimedia/Graph.html">图形学</a></li><li class="chapter-item "><a href="../../Basic/Client/Multimedia/Image.html">图像处理技术</a></li><li class="chapter-item "><a href="../../Basic/Client/Multimedia/Video.html">视频</a></li><li class="chapter-item "><a href="../../Basic/Client/Multimedia/Voice.html">Voice</a></li></ol></li><li class="chapter-item "><a href="../../Basic/Client/Network.html">网络能力</a></li><li class="chapter-item "><a href="../../Basic/Client/Performance.html">性能监控</a></li><li class="chapter-item "><a href="../../Basic/Client/Platform/index.html">Platform</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../Basic/Client/Platform/Android.html">Android</a></li><li class="chapter-item "><a href="../../Basic/Client/Platform/iOS.html">iOS</a></li></ol></li><li class="chapter-item "><a href="../../Basic/Client/SQLite.html">SQLite</a></li></ol></li><li class="chapter-item "><a href="../../Basic/Compiler/index.html">Compiler</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../Basic/Compiler/Codegen.html">代码生成</a></li><li class="chapter-item "><a href="../../Basic/Compiler/Lex.html">Lex</a></li><li class="chapter-item "><a href="../../Basic/Compiler/Lexical.html">Lexical Analyze</a></li><li class="chapter-item "><a href="../../Basic/Compiler/Runtime.html">Runtime</a></li><li class="chapter-item "><a href="../../Basic/Compiler/Sematic.html">Sematic Analyzing</a></li><li class="chapter-item "><a href="../../Basic/Compiler/Syntax.html">Syntax Analyzer</a></li><li class="chapter-item "><a href="../../Basic/Compiler/llvm-ir.html">LLVM-IR</a></li><li class="chapter-item "><a href="../../Basic/Compiler/llvm.html">LLVM</a></li><li class="chapter-item "><a href="../../Basic/Compiler/pest.html">PEST</a></li><li class="chapter-item "><a href="../../Basic/Compiler/yacc.html">Yacc</a></li></ol></li><li class="chapter-item "><a href="../../Basic/DataStructure/index.html">Data Structure And Algorithm</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../Basic/DataStructure/Algorithm/index.html">Algorithm</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../Basic/DataStructure/Algorithm/Approximation.html">近似算法</a></li><li class="chapter-item "><a href="../../Basic/DataStructure/Algorithm/Backtracking.html">递归回溯</a></li><li class="chapter-item "><a href="../../Basic/DataStructure/Algorithm/DivideAndConquer.html">分治算法</a></li><li class="chapter-item "><a href="../../Basic/DataStructure/Algorithm/DynamicProgramming.html">动态规划</a></li><li class="chapter-item "><a href="../../Basic/DataStructure/Algorithm/Greedy.html">贪心算法</a></li><li class="chapter-item "><a href="../../Basic/DataStructure/Algorithm/LocalSearch.html">本地搜索</a></li><li class="chapter-item "><a href="../../Basic/DataStructure/Algorithm/Parallel.html">并行算法</a></li><li class="chapter-item "><a href="../../Basic/DataStructure/Algorithm/Randomized.html">随机化算法</a></li><li class="chapter-item "><a href="../../Basic/DataStructure/Algorithm/Sort.html">排序算法</a></li></ol></li><li class="chapter-item "><a href="../../Basic/DataStructure/Graph/index.html">Graph</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../Basic/DataStructure/Graph/Bipartite.html">Bipartite</a></li><li class="chapter-item "><a href="../../Basic/DataStructure/Graph/NetworkFlow.html">NetworkFlow</a></li><li class="chapter-item "><a href="../../Basic/DataStructure/Graph/ShortPath.html">最短路</a></li><li class="chapter-item "><a href="../../Basic/DataStructure/Graph/SpanningTree.html">最小生成树</a></li><li class="chapter-item "><a href="../../Basic/DataStructure/Graph/关键路径.html">关键路径</a></li><li class="chapter-item "><a href="../../Basic/DataStructure/Graph/拓扑排序.html">拓扑排序</a></li></ol></li><li class="chapter-item "><a href="../../Basic/DataStructure/Hash/index.html">Hash</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../Basic/DataStructure/Hash/HashTree.html">HashTree</a></li><li class="chapter-item "><a href="../../Basic/DataStructure/Hash/Hashing.html">Hashing</a></li></ol></li><li class="chapter-item "><a href="../../Basic/DataStructure/Heap/index.html">Heap</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../Basic/DataStructure/Heap/BinomialHeap.html">Binomial Heap</a></li><li class="chapter-item "><a href="../../Basic/DataStructure/Heap/FibonacciHeap.html">FibonacciHeap</a></li><li class="chapter-item "><a href="../../Basic/DataStructure/Heap/Heap.html">DS-Heap</a></li><li class="chapter-item "><a href="../../Basic/DataStructure/Heap/斜堆.html">Leftist_Heap_and_Skew_Heap</a></li></ol></li><li class="chapter-item "><a href="../../Basic/DataStructure/Inverted_File_Index.html">Inverted_File_Index</a></li><li class="chapter-item "><a href="../../Basic/DataStructure/Linear/index.html">Linear</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../Basic/DataStructure/Linear/Bitmap.html">DS-Bitmap</a></li><li class="chapter-item "><a href="../../Basic/DataStructure/Linear/List.html">DS-Linear_List</a></li></ol></li><li class="chapter-item "><a href="../../Basic/DataStructure/NPProblem.html">DS-NP_problem</a></li><li class="chapter-item "><a href="../../Basic/DataStructure/String/index.html">字符串匹配相关算法</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../Basic/DataStructure/String/match.html">字符串匹配算法</a></li></ol></li><li class="chapter-item "><a href="../../Basic/DataStructure/Tree/index.html">Tree and BST</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../Basic/DataStructure/Tree/BTree.html">B Tree and B+ Tree</a></li><li class="chapter-item "><a href="../../Basic/DataStructure/Tree/BalancedTree.html">AVL Tree and Splay Tree</a></li><li class="chapter-item "><a href="../../Basic/DataStructure/Tree/DisjointSet.html">Disjoint Set</a></li><li class="chapter-item "><a href="../../Basic/DataStructure/Tree/HuffmanTree.html">Huffman Tree</a></li><li class="chapter-item "><a href="../../Basic/DataStructure/Tree/RBTree.html">红黑树 B树 B+树</a></li><li class="chapter-item "><a href="../../Basic/DataStructure/Tree/ThreadedTree.html">Threaded Binary Tree</a></li></ol></li></ol></li><li class="chapter-item "><a href="../../Basic/Database/index.html">Database</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../Basic/Database/Object.html">Database-Object-Based_Databases</a></li><li class="chapter-item "><a href="../../Basic/Database/PostgreSQL-Conflict-reticenceji_Win10.html">Database-PostgreSQL</a></li><li class="chapter-item "><a href="../../Basic/Database/PostgreSQL.html">Database-PostgreSQL</a></li><li class="chapter-item "><a href="../../Basic/Database/SQL-Conflict-reticenceji_Win10.html">基础SQL</a></li><li class="chapter-item "><a href="../../Basic/Database/SQL.html">基础SQL</a></li><li class="chapter-item "><a href="../../Basic/Database/XML-Conflict-reticenceji_Win10.html">Database,Web-XML</a></li><li class="chapter-item "><a href="../../Basic/Database/XML.html">Database,Web-XML</a></li><li class="chapter-item "><a href="../../Basic/Database/事务.html">Database-事务</a></li><li class="chapter-item "><a href="../../Basic/Database/关系代数.html">Database-关系代数</a></li><li class="chapter-item "><a href="../../Basic/Database/存储和查询.html">Database-存储和查询</a></li><li class="chapter-item "><a href="../../Basic/Database/导论.html">Database-导论</a></li><li class="chapter-item "><a href="../../Basic/Database/数据库设计.html">Database-数据库设计</a></li></ol></li><li class="chapter-item "><a href="../../Basic/Maths/index.html">Maths</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../Basic/Maths/大数定理和中心极限定理.html">大数定理和中心极限定理</a></li><li class="chapter-item "><a href="../../Basic/Maths/微积分下.html">微积分下</a></li><li class="chapter-item "><a href="../../Basic/Maths/数值计算方法.html">数值计算方法</a></li><li class="chapter-item "><a href="../../Basic/Maths/最小二乘法.html">最小二乘法</a></li><li class="chapter-item "><a href="../../Basic/Maths/有限自动机介绍.html">有限自动机介绍</a></li><li class="chapter-item "><a href="../../Basic/Maths/概统复习.html">概统复习</a></li><li class="chapter-item "><a href="../../Basic/Maths/群论简介.html">群论简介</a></li></ol></li><li class="chapter-item "><a href="../../Basic/Networking/index.html">Networking</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../Basic/Networking/ARP.html">Networking-ARP</a></li><li class="chapter-item "><a href="../../Basic/Networking/CDN.html">CDN</a></li><li class="chapter-item "><a href="../../Basic/Networking/DNS.html">DNS</a></li><li class="chapter-item "><a href="../../Basic/Networking/FTP.html">FTP</a></li><li class="chapter-item "><a href="../../Basic/Networking/HTTP.html">HTTP</a></li><li class="chapter-item "><a href="../../Basic/Networking/ICMP.html">Internet Control Message Protocol</a></li><li class="chapter-item "><a href="../../Basic/Networking/Mail.html">邮件协议</a></li><li class="chapter-item "><a href="../../Basic/Networking/NAT.html">Network Address Translation</a></li><li class="chapter-item "><a href="../../Basic/Networking/P2P.html">P2P</a></li><li class="chapter-item "><a href="../../Basic/Networking/QUIC.html">QUIC</a></li><li class="chapter-item "><a href="../../Basic/Networking/RTC.html">RTC</a></li><li class="chapter-item "><a href="../../Basic/Networking/Socket.html">Socket</a></li><li class="chapter-item "><a href="../../Basic/Networking/TCP.html">TCP</a></li><li class="chapter-item "><a href="../../Basic/Networking/UDP.html">UDP</a></li><li class="chapter-item "><a href="../../Basic/Networking/VMWare虚拟机网络配置.html">VMWare虚拟机网络配置</a></li><li class="chapter-item "><a href="../../Basic/Networking/VPN.html">VPN</a></li><li class="chapter-item "><a href="../../Basic/Networking/WebSocket.html">WebSocket</a></li><li class="chapter-item "><a href="../../Basic/Networking/介质访问子层.html">Medium Access Sublayer</a></li><li class="chapter-item "><a href="../../Basic/Networking/可靠传输.html">可靠传输</a></li><li class="chapter-item "><a href="../../Basic/Networking/差错控制.html">差错控制</a></li><li class="chapter-item "><a href="../../Basic/Networking/拥塞控制和流量控制.html">拥塞控制和流量控制</a></li><li class="chapter-item "><a href="../../Basic/Networking/物理层.html">物理层</a></li><li class="chapter-item "><a href="../../Basic/Networking/网络层.html">网络层 IP</a></li><li class="chapter-item "><a href="../../Basic/Networking/网络设备.html">Networking-网络设备</a></li><li class="chapter-item "><a href="../../Basic/Networking/路由协议.html">路由协议</a></li><li class="chapter-item "><a href="../../Basic/Networking/链路层.html">链路层</a></li></ol></li><li class="chapter-item "><a href="../../Basic/OS/index.html">OS</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../Basic/OS/Bootloader.html">OS-Bootloader</a></li><li class="chapter-item "><a href="../../Basic/OS/Buddy_System&Slub.html">OS-Buddy_System&Slub</a></li><li class="chapter-item "><a href="../../Basic/OS/Deadlock.html">OS-Deadlock</a></li><li class="chapter-item "><a href="../../Basic/OS/IO.html">OS-IO</a></li><li class="chapter-item "><a href="../../Basic/OS/Introduction.html">OS-Introduction</a></li><li class="chapter-item "><a href="../../Basic/OS/Memory_Management.html">OS-Memory_Management</a></li><li class="chapter-item "><a href="../../Basic/OS/Process.html">OS-Process</a></li><li class="chapter-item "><a href="../../Basic/OS/Q&A.html">OS-Q&A</a></li><li class="chapter-item "><a href="../../Basic/OS/RISCV学习笔记.html">OS-RISCV学习笔记</a></li><li class="chapter-item "><a href="../../Basic/OS/SBI.html">OS-SBI</a></li><li class="chapter-item "><a href="../../Basic/OS/Synchronization.html">OS-Synchronization</a></li><li class="chapter-item "><a href="../../Basic/OS/Thread.html">OS-Thread</a></li><li class="chapter-item "><a href="../../Basic/OS/UnixLinux中的IO模型.html">Linux中的I/O模型</a></li><li class="chapter-item "><a href="../../Basic/OS/在K210运行裸机程序.html">OS-在K210运行裸机程序</a></li><li class="chapter-item "><a href="../../Basic/OS/地址空间(一).html">OS-地址空间(一)</a></li><li class="chapter-item "><a href="../../Basic/OS/操作系统.html">OS-操作系统</a></li></ol></li><li class="chapter-item "><a href="../../Basic/Secure/index.html">Secure</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../Basic/Secure/Crypto/index.html">Crypto</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../Basic/Secure/Crypto/Federated_Learning.html">Federated Learning</a></li><li class="chapter-item "><a href="../../Basic/Secure/Crypto/Oblivious_RAM.html">Oblivious RAM</a></li><li class="chapter-item "><a href="../../Basic/Secure/Crypto/PIR.html">PIR</a></li><li class="chapter-item "><a href="../../Basic/Secure/Crypto/PSI.html">Private set intersection</a></li><li class="chapter-item "><a href="../../Basic/Secure/Crypto/加密和哈希.html">Crypto-加密和哈希</a></li><li class="chapter-item "><a href="../../Basic/Secure/Crypto/加密数据库.html">Encrypted Database</a></li><li class="chapter-item "><a href="../../Basic/Secure/Crypto/区块链技术.html">Bitcoin-区块链技术</a></li><li class="chapter-item "><a href="../../Basic/Secure/Crypto/可证明安全.html">可证明安全</a></li><li class="chapter-item "><a href="../../Basic/Secure/Crypto/安全多方计算.html">安全多方计算</a></li><li class="chapter-item "><a href="../../Basic/Secure/Crypto/密码学基础.html">密码学算法介绍</a></li><li class="chapter-item "><a href="../../Basic/Secure/Crypto/密码学进阶.html">密码学进阶</a></li><li class="chapter-item "><a href="../../Basic/Secure/Crypto/差分隐私.html">差分隐私</a></li></ol></li><li class="chapter-item "><a href="../../Basic/Secure/CryptoBasic.html">密码学基础</a></li><li class="chapter-item "><a href="../../Basic/Secure/CtyptoProtocol.html">密码学协议</a></li><li class="chapter-item "><a href="../../Basic/Secure/Forensics/index.html">电子取证</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../Basic/Secure/Forensics/FAT.html">FAT文件系统</a></li><li class="chapter-item "><a href="../../Basic/Secure/Forensics/FileCarving.html">文件雕复</a></li><li class="chapter-item "><a href="../../Basic/Secure/Forensics/Linux取证.html">Linux取证</a></li><li class="chapter-item "><a href="../../Basic/Secure/Forensics/Memory.html">内存取证</a></li><li class="chapter-item "><a href="../../Basic/Secure/Forensics/NTFS.html">NTFS文件系统</a></li><li class="chapter-item "><a href="../../Basic/Secure/Forensics/Windows取证.html">Windows取证</a></li><li class="chapter-item "><a href="../../Basic/Secure/Forensics/数据隐藏.html">数据隐藏</a></li><li class="chapter-item "><a href="../../Basic/Secure/Forensics/文件系统取证.html">文件系统取证</a></li><li class="chapter-item "><a href="../../Basic/Secure/Forensics/硬盘分析.html">硬盘分析</a></li><li class="chapter-item "><a href="../../Basic/Secure/Forensics/移动设备取证.html">移动设备取证</a></li><li class="chapter-item "><a href="../../Basic/Secure/Forensics/网络取证.html">网络取证</a></li></ol></li><li class="chapter-item "><a href="../../Basic/Secure/IoT.html">无线与物联网安全</a></li><li class="chapter-item "><a href="../../Basic/Secure/Network.html">网络安全</a></li><li class="chapter-item "><a href="../../Basic/Secure/OperatingSystem.html">操作系统安全</a></li><li class="chapter-item "><a href="../../Basic/Secure/Software/index.html">软件安全</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../Basic/Secure/Software/ASLR.html">ASLR</a></li><li class="chapter-item "><a href="../../Basic/Secure/Software/CodeQL.html">CodeQL</a></li><li class="chapter-item "><a href="../../Basic/Secure/Software/GlibcHeap.html">glibc heap allocator</a></li><li class="chapter-item "><a href="../../Basic/Secure/Software/PIC.html">位置无关代码和共享库</a></li><li class="chapter-item "><a href="../../Basic/Secure/Software/RELRO.html">RELRO</a></li><li class="chapter-item "><a href="../../Basic/Secure/Software/pwntools.html">pwntools</a></li><li class="chapter-item "><a href="../../Basic/Secure/Software/攻击视角.html">攻击软件安全</a></li><li class="chapter-item "><a href="../../Basic/Secure/Software/程序分析.html">程序分析</a></li><li class="chapter-item "><a href="../../Basic/Secure/Software/防御视角.html">软件安全防护</a></li></ol></li><li class="chapter-item "><a href="../../Basic/Secure/SupplyChain.html">供应链安全</a></li></ol></li><li class="chapter-item "><a href="../../Basic/软件保护技术.html">Reverse</a></li></ol></li><li class="chapter-item expanded "><a href="../../Language/index.html">Language</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../Language/Java/index.html">Java</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../Language/Java/基础.html" class="active">Java</a></li><li class="chapter-item "><a href="../../Language/Java/鸿蒙应用开发.html">Java-鸿蒙应用开发</a></li></ol></li><li class="chapter-item "><a href="../../Language/JavaScript/index.html">JavaScript</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../Language/JavaScript/Electron.html">Electron</a></li><li class="chapter-item "><a href="../../Language/JavaScript/JavaScript简介.html">JavaScript简介</a></li><li class="chapter-item "><a href="../../Language/JavaScript/Runtime.html">Runtime</a></li></ol></li><li class="chapter-item "><a href="../../Language/Python/index.html">Python</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../Language/Python/0内置类型/index.html">内置对象</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../Language/Python/0内置类型/1字符串.html">字符串和字节串</a></li><li class="chapter-item "><a href="../../Language/Python/0内置类型/2数值.html">数值</a></li><li class="chapter-item "><a href="../../Language/Python/0内置类型/3列表和元组.html">序列</a></li><li class="chapter-item "><a href="../../Language/Python/0内置类型/4字典和集合.html">映射</a></li><li class="chapter-item "><a href="../../Language/Python/0内置类型/5迭代器和生成器.html">迭代器和生成器</a></li><li class="chapter-item "><a href="../../Language/Python/0内置类型/6上下文管理器.html">上下文管理器</a></li></ol></li><li class="chapter-item "><a href="../../Language/Python/1工作原理/index.html">工作原理</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../Language/Python/1工作原理/0对象模型.html">OOP模型</a></li><li class="chapter-item "><a href="../../Language/Python/1工作原理/1类型.html">类型</a></li><li class="chapter-item "><a href="../../Language/Python/1工作原理/2变量.html">变量</a></li><li class="chapter-item "><a href="../../Language/Python/1工作原理/3特殊方法和重载.html">特殊方法和重载</a></li><li class="chapter-item "><a href="../../Language/Python/1工作原理/4参数.html">参数</a></li><li class="chapter-item "><a href="../../Language/Python/1工作原理/5多继承.html">多继承</a></li></ol></li><li class="chapter-item "><a href="../../Language/Python/3高级写法/index.html">高级写法</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../Language/Python/3高级写法/1异常.html">Exception</a></li><li class="chapter-item "><a href="../../Language/Python/3高级写法/2装饰器.html">装饰器</a></li></ol></li><li class="chapter-item "><a href="../../Language/Python/4好用的库/index.html">PythonLib</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../Language/Python/4好用的库/Argparse.html">命令行参数</a></li><li class="chapter-item "><a href="../../Language/Python/4好用的库/Bisect.html">Bisect</a></li><li class="chapter-item "><a href="../../Language/Python/4好用的库/Builtin.html">Builtin</a></li><li class="chapter-item "><a href="../../Language/Python/4好用的库/Container.html">Container</a></li><li class="chapter-item "><a href="../../Language/Python/4好用的库/Crypto.html">Crypto</a></li><li class="chapter-item "><a href="../../Language/Python/4好用的库/Enum.html">enum</a></li><li class="chapter-item "><a href="../../Language/Python/4好用的库/FS.html">File System</a></li><li class="chapter-item "><a href="../../Language/Python/4好用的库/Flask.html">Python-Flask</a></li><li class="chapter-item "><a href="../../Language/Python/4好用的库/HTTP.html">Internet</a></li><li class="chapter-item "><a href="../../Language/Python/4好用的库/IO.html">File IO</a></li><li class="chapter-item "><a href="../../Language/Python/4好用的库/PyQt5.html">PySide2</a></li><li class="chapter-item "><a href="../../Language/Python/4好用的库/Regex.html">Regex</a></li><li class="chapter-item "><a href="../../Language/Python/4好用的库/Socket.html">Socket编程</a></li><li class="chapter-item "><a href="../../Language/Python/4好用的库/Thread.html">多线程</a></li><li class="chapter-item "><a href="../../Language/Python/4好用的库/Time.html">时间和日期</a></li><li class="chapter-item "><a href="../../Language/Python/4好用的库/Trio.html">Trio</a></li><li class="chapter-item "><a href="../../Language/Python/4好用的库/format.html">Format String</a></li><li class="chapter-item "><a href="../../Language/Python/4好用的库/venv.html">Virtual Environment</a></li><li class="chapter-item "><a href="../../Language/Python/4好用的库/数据持久化.html">简单的数据持久化</a></li><li class="chapter-item "><a href="../../Language/Python/4好用的库/文档和测试.html">文档和测试</a></li><li class="chapter-item "><a href="../../Language/Python/4好用的库/计算器.html">把Python当计算器</a></li></ol></li><li class="chapter-item "><a href="../../Language/Python/运算符.html">运算符</a></li></ol></li><li class="chapter-item "><a href="../../Language/Rust/index.html">Rust</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../Language/Rust/Basic/index.html">Basic</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../Language/Rust/Basic/Any.html">Any</a></li><li class="chapter-item "><a href="../../Language/Rust/Basic/Async.html">异步编程</a></li><li class="chapter-item "><a href="../../Language/Rust/Basic/Casting.html">Casting</a></li><li class="chapter-item "><a href="../../Language/Rust/Basic/ClosureAndIter.html">迭代器和闭包</a></li><li class="chapter-item "><a href="../../Language/Rust/Basic/CratesAndModules.html">Crates and Modules</a></li><li class="chapter-item "><a href="../../Language/Rust/Basic/Error.html">Rust-错误处理</a></li><li class="chapter-item "><a href="../../Language/Rust/Basic/Macro.html">宏</a></li><li class="chapter-item "><a href="../../Language/Rust/Basic/Trait.html">Trait</a></li><li class="chapter-item "><a href="../../Language/Rust/Basic/TypeAndLifetime.html">从类型系统看生命周期</a></li><li class="chapter-item "><a href="../../Language/Rust/Basic/Unsafe.html">Unsafe</a></li><li class="chapter-item "><a href="../../Language/Rust/Basic/pattern.html">模式匹配</a></li></ol></li><li class="chapter-item "><a href="../../Language/Rust/Build.html">Build</a></li><li class="chapter-item "><a href="../../Language/Rust/Cargo/index.html">Cargo</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../Language/Rust/Cargo/clippy.html">Clippy</a></li><li class="chapter-item "><a href="../../Language/Rust/Cargo/fix.html">Cargo fix</a></li><li class="chapter-item "><a href="../../Language/Rust/Cargo/make.html">Cargo make</a></li></ol></li><li class="chapter-item "><a href="../../Language/Rust/Compiler.html">Compiler</a></li><li class="chapter-item "><a href="../../Language/Rust/Crate/index.html">Crates</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../Language/Rust/Crate/Anyhow.html">AnyHow & ThisError</a></li><li class="chapter-item "><a href="../../Language/Rust/Crate/Cell.html">Cell</a></li><li class="chapter-item "><a href="../../Language/Rust/Crate/Diesel.html">Diesel</a></li><li class="chapter-item "><a href="../../Language/Rust/Crate/Dioxus.html">Dioxus</a></li><li class="chapter-item "><a href="../../Language/Rust/Crate/EnumDispatch.html">Dispatch</a></li><li class="chapter-item "><a href="../../Language/Rust/Crate/IO.html">IO</a></li><li class="chapter-item "><a href="../../Language/Rust/Crate/collections.html">容器的增删改查</a></li><li class="chapter-item "><a href="../../Language/Rust/Crate/gtk-rs.html">gtk-rs</a></li><li class="chapter-item "><a href="../../Language/Rust/Crate/r2d2.html">r2d2</a></li><li class="chapter-item "><a href="../../Language/Rust/Crate/stdsync.html">std::sync</a></li><li class="chapter-item "><a href="../../Language/Rust/Crate/字符串.html">字符串/字节流</a></li><li class="chapter-item "><a href="../../Language/Rust/Crate/打包.html">打包</a></li><li class="chapter-item "><a href="../../Language/Rust/Crate/智能指针.html">Rust-智能指针</a></li></ol></li><li class="chapter-item "><a href="../../Language/Rust/FFI.html">FFI</a></li><li class="chapter-item "><a href="../../Language/Rust/IO.html">Rust-IO</a></li><li class="chapter-item "><a href="../../Language/Rust/Practice/index.html">Practice</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../Language/Rust/Practice/BestPractice.html">Rust最佳实践</a></li><li class="chapter-item "><a href="../../Language/Rust/Practice/Debug.html">调试</a></li><li class="chapter-item "><a href="../../Language/Rust/Practice/DesignPattern.html">设计模式</a></li><li class="chapter-item "><a href="../../Language/Rust/Practice/Performance.html">性能优化</a></li><li class="chapter-item "><a href="../../Language/Rust/Practice/Size.html">代码体积优化</a></li><li class="chapter-item "><a href="../../Language/Rust/Practice/Test.html">测试最佳实践</a></li><li class="chapter-item "><a href="../../Language/Rust/Practice/Type.html">类型转换</a></li><li class="chapter-item "><a href="../../Language/Rust/Practice/Unsafe.html">Unsafe最佳实践</a></li></ol></li><li class="chapter-item "><a href="../../Language/Rust/gtk.html">Rust-gtk-rs介绍</a></li><li class="chapter-item "><a href="../../Language/Rust/函数参数匹配.html">函数参数匹配</a></li><li class="chapter-item "><a href="../../Language/Rust/基础知识.html">基础知识</a></li><li class="chapter-item "><a href="../../Language/Rust/多线程.html">多线程支持</a></li><li class="chapter-item "><a href="../../Language/Rust/混合编程.html">混合编程</a></li><li class="chapter-item "><a href="../../Language/Rust/精髓.html">Rust-精髓</a></li></ol></li><li class="chapter-item "><a href="../../Language/Scala/index.html">Scala</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../Language/Scala/0控制结构.html">控制结构</a></li><li class="chapter-item "><a href="../../Language/Scala/1数据结构.html">数据结构</a></li><li class="chapter-item "><a href="../../Language/Scala/2_0类和对象.html">Class</a></li><li class="chapter-item "><a href="../../Language/Scala/2_1继承.html">继承</a></li><li class="chapter-item "><a href="../../Language/Scala/2_2特质.html">Trait</a></li><li class="chapter-item "><a href="../../Language/Scala/3_1花里胡哨的函数.html">花里胡哨的函数</a></li><li class="chapter-item "><a href="../../Language/Scala/3_2匿名函数和闭包.html">函数</a></li><li class="chapter-item "><a href="../../Language/Scala/3_3模式匹配.html">模式匹配</a></li><li class="chapter-item "><a href="../../Language/Scala/3_4容器的函数式操作.html">容器的函数式操作</a></li><li class="chapter-item "><a href="../../Language/Scala/ScalaDepth/index.html">ScalaDepth</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../Language/Scala/ScalaDepth/Class文件.html">Class文件</a></li><li class="chapter-item "><a href="../../Language/Scala/ScalaDepth/ScalaInDepth.html">Scala in Depth 读书笔记</a></li><li class="chapter-item "><a href="../../Language/Scala/ScalaDepth/Spark.html">Spark</a></li><li class="chapter-item "><a href="../../Language/Scala/ScalaDepth/jvm.html">《深入理解Java虚拟机读书》笔记</a></li><li class="chapter-item "><a href="../../Language/Scala/ScalaDepth/函数式的一些概念.html">Scala中一些函数式概念</a></li><li class="chapter-item "><a href="../../Language/Scala/ScalaDepth/泛型擦除.html">泛型擦除</a></li><li class="chapter-item "><a href="../../Language/Scala/ScalaDepth/简单的类型原理.html">类型</a></li></ol></li><li class="chapter-item "><a href="../../Language/Scala/sbt.html">sbt</a></li><li class="chapter-item "><a href="../../Language/Scala/trait.html">trait</a></li><li class="chapter-item "><a href="../../Language/Scala/枚举.html">枚举</a></li><li class="chapter-item "><a href="../../Language/Scala/样例类和模式匹配.html">样例类和模式匹配</a></li><li class="chapter-item "><a href="../../Language/Scala/测试和文档.html">测试和文档</a></li><li class="chapter-item "><a href="../../Language/Scala/组合和继承.html">类的组合和继承</a></li></ol></li><li class="chapter-item "><a href="../../Language/Snippet/index.html">Snippets</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../Language/Snippet/c.html">c</a></li><li class="chapter-item "><a href="../../Language/Snippet/linux.html">linux</a></li><li class="chapter-item "><a href="../../Language/Snippet/python.html">python</a></li><li class="chapter-item "><a href="../../Language/Snippet/rust.html">rust</a></li></ol></li></ol></li><li class="chapter-item "><a href="../../Tools/index.html">Tools</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../Tools/Docker.html">Docker</a></li><li class="chapter-item "><a href="../../Tools/GDB.html">GDB</a></li><li class="chapter-item "><a href="../../Tools/Git/index.html">Git</a></li><li class="chapter-item "><a href="../../Tools/Git.html">Git</a></li><li class="chapter-item "><a href="../../Tools/Githook.html">Githook</a></li><li class="chapter-item "><a href="../../Tools/GithubCI.html">Github-CI</a></li><li class="chapter-item "><a href="../../Tools/Latex.html">Latex</a></li><li class="chapter-item "><a href="../../Tools/Make.html">Make与Makefile</a></li><li class="chapter-item "><a href="../../Tools/VSCode.html">VSCode</a></li><li class="chapter-item "><a href="../../Tools/Vim.html">Vim</a></li><li class="chapter-item "><a href="../../Tools/WSL.html">WSL</a></li><li class="chapter-item "><a href="../../Tools/双系统.html">双系统使用经历</a></li><li class="chapter-item "><a href="../../Tools/软件打包.html">软件打包</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Reticence&#x27;s Notes</h1>
+
+                    <div class="right-buttons">
+                        <a href="../../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="java"><a class="header" href="#java">Java</a></h1>
+<h2 id="1-about-java"><a class="header" href="#1-about-java">1. About Java</a></h2>
+<h3 id="11-java-project"><a class="header" href="#11-java-project">1.1. Java Project</a></h3>
+<p>最简单的方式当然是用IDE啦。比如Eclipse。
+Java源码本质上是一个文本文件，我们需要先用javac把Hello.java编译成字节码文件Hello.class，然后，用java命令执行这个字节码文件。</p>
+<p><a href="https://www.liaoxuefeng.com/wiki/1252599548343744/1260467032946976">包package</a>.一个包就是一个名称空间，这样子可以解决类名重复的问题。所有Java文件对应的目录层次要和包的层次一致。所以显然，包没有父子关系，只是目录的索引。
+default(friendly)：即不加任何访问修饰符，通常称为“默认访问模式“。该模式下，只允许在同一个包中进行访问。（包作用域）</p>
+<pre><code class="language-java">//我们在调用 类class 的时候，可以使用 import
+//当前package存在的类，或者java.lang中存在的class，不需要再Import。
+import mr.jun.Arrays;      //import可以导入包中的类 
+import static java.lang.Math.*;    //静态导入，只导入静态方法 
+public class Person {
+    public void run() {
+        Arrays arrays = new Arrays();    //这样就只用写简单类名了
+    }
+class Hello {
+	public static void main(String args[]) {
+		System.out.print(sqrt(5));
+	}
+}
+</code></pre>
+<p>编译单元：可以认为是一个java文件。一个编译单元可以有多个Class，但最多只有一个public的Class，并且与Java文件同名。通常情况下，我们让一个java文件只有一个类。</p>
+<h3 id="12-different-java"><a class="header" href="#12-different-java">1.2. Different Java</a></h3>
+<ul>
+<li>Java SE：Standard Edition</li>
+<li>Java EE：Enterprise Edition</li>
+<li>Java ME：Micro Edition</li>
+</ul>
+<p>首先要学习Java SE，掌握Java语言本身、Java核心开发技术以及Java标准库的使用；如果继续学习Java EE，那么Spring框架、数据库开发、分布式架构就是需要学习的；如果要学习大数据开发，那么Hadoop、Spark、Flink这些大数据平台就是需要学习的，他们都基于Java或Scala开发；如果想要学习移动开发，那么就深入Android平台，掌握Android App开发。</p>
+<h3 id="13-java-clitools"><a class="header" href="#13-java-clitools">1.3. Java CLITools</a></h3>
+<ul>
+<li>java：这个可执行程序其实就是JVM，运行Java程序，就是启动JVM，然后让JVM执行指定的编译后的代码；</li>
+<li>javac：这是Java的编译器，它用于把Java源码文件（以.java后缀结尾）编译为Java字节码文件（以.class后缀结尾）；</li>
+<li>jar：用于把一组.class文件打包成一个.jar文件，便于发布；</li>
+<li>javadoc：用于从Java源码中自动提取注释并生成文档；</li>
+<li>jdb：Java调试器，用于开发阶段的运行调试。</li>
+</ul>
+<p>JDK：Java Development Kit JRE：Java Runtime Environment</p>
+<h2 id="2-java-basic"><a class="header" href="#2-java-basic">2. Java Basic</a></h2>
+<h3 id="21-basic-io"><a class="header" href="#21-basic-io">2.1. Basic IO</a></h3>
+<pre><code class="language-java">Scanner in = new Scanner(System.in);
+int num;
+num = in.nextInt();    //简单读入
+double f;
+f = in.nextDouble();
+System.out.println(&quot;float=&quot;+f+&quot;,&quot;+&quot;int=&quot;+num);    //简单输出。+，字符串连接
+</code></pre>
+<h3 id="22-compute"><a class="header" href="#22-compute">2.2. Compute</a></h3>
+<p>和C语言完全差不多，甚至连强制类型转换的格式都一样。四则运算，自增自减，位运算，都和C语言一样。在java中，<code>&gt;&gt;&gt;</code>表示算数右移，<code>&gt;&gt;</code>表示逻辑右移。</p>
+<h3 id="23-comment"><a class="header" href="#23-comment">2.3. Comment</a></h3>
+<p>和C语言完全差不多，也是<code>//</code> 或 <code>/**/</code>。</p>
+<pre><code class="language-java">/**    
+* This is a comment
+* and it will be doc
+*/
+@param 变量描述
+</code></pre>
+<h3 id="24-compare-and-logic"><a class="header" href="#24-compare-and-logic">2.4. Compare and Logic</a></h3>
+<p>Java提供了六个关系运算符，和C语言一样。逻辑运算符与或非和C语言一样。短路逻辑也和C语言一样。甚至Java也有<code>?:</code>表达式。</p>
+<pre><code class="language-java">boolean x;
+x = true;
+</code></pre>
+<p>注意其中有两个字符的运算符：==、&gt;=和&lt;=的两个字符必须紧紧连在一起，中间不能插入空格。
+关系运算的结果是一个逻辑值，逻辑值只有两种可能的值：true（真，表示成立）或false（假，表示不成立）。当两个值的关系符合关系运算符的预期时，关系运算的结果为true，否则为false。
+在Java中不要把True和False当做1,0
+If-else语句和C语言一模一样，Switch语句也和C语言一模一样。</p>
+<h3 id="25-loop"><a class="header" href="#25-loop">2.5. Loop</a></h3>
+<p><code>while</code> 循环和C语言一模一样。<code>do while</code> 循环和C语言一模一样。<code>for</code> 循环可以和C语言一模一样。但是也有另一种For Each循环，可以遍历<em>可迭代</em>数据类型的每一个数据。</p>
+<pre><code class="language-java">int[] ns = { 1, 4, 9, 16, 25 };
+for (int n : ns) {
+    System.out.println(n);
+    //要注意的是，这里的n是可迭代类型中每个元素的副本。
+</code></pre>
+<h3 id="26-array"><a class="header" href="#26-array">2.6. Array</a></h3>
+<pre><code class="language-java">int [] numbers = new int[100];    	//new创建的数组会得到默认的0
+int [] bak = numbers;    			//bak和numbers指向同一个数组
+System.out.println(numbers[10]);
+</code></pre>
+<p>在Java中，数组是对象。numbers是一个引用。</p>
+<h3 id="27-character-and-string"><a class="header" href="#27-character-and-string">2.7. character and String</a></h3>
+<p>在Java中，用<em>单引号</em>表示字符。用Unicode表示字符，所以无论是汉字和英文等等都没问题。用<em>双引号</em>表示字符串。</p>
+<pre><code class="language-java">char a = '\u0041';     //用十六进制编码表示字符
+char b = 'a';
+String s = new String(&quot;a string&quot;);
+String s2 ;
+Scanner in = new Scanner(System.in);
+s2 = in.next();    //读入一个单词
+s2 = in.nextLine();    //读入一行，之前s2指向被垃圾回收了。
+</code></pre>
+<p>一些字符串方法和属性</p>
+<pre><code class="language-java">String s = new String(&quot;a string&quot;);
+System.out.println(s.charAt(1));    //字符串的索引
+System.out.println(s.sub(1));
+System.out.println(s.indexOf(1));
+</code></pre>
+<h3 id="28-function"><a class="header" href="#28-function">2.8. Function</a></h3>
+<pre><code class="language-java">public class Hello {
+    public static boolean isprime(int i)
+    {	
+        int k;
+        if (i&lt;=1) return false;
+        for (k=2;k&lt;(int)Math.sqrt(i)+1;k++)
+            if (i % k==0) return false;
+        return true;
+    }
+    public static void main(String[] args) {
+        // TODO Auto-generated method stub
+        System.out.println(isprime(5));
+    }
+}
+</code></pre>
+<p>函数需要定义在Class里头。需要规定返回值的类型。</p>
+<p>可变参数个数的函数：</p>
+<pre><code class="language-java">public class PrintStream{
+    //注意这里的...，表示参数可变。
+    public PrintStream printf(String fmt,Object... args){
+        //对函数的编写者来说，args就是一个数组Object[]
+        ......
+    }
+}
+</code></pre>
+<h2 id="3-java-oop"><a class="header" href="#3-java-oop">3. Java-&gt;OOP</a></h2>
+<h3 id="31-class-and-instance"><a class="header" href="#31-class-and-instance">3.1. Class and Instance</a></h3>
+<p>对象是实体，需要被创建。类(class)是定义，我们根据类来创建对象。<code>new</code>操作符可以创建一个实例。我们常说，类 = 属性＋方法。</p>
+<p>封装(encapsulation)：把数据和对数据的操作放在一起，对使用者隐藏具体的实现方式。绝对不能让类中的方法访问其他类的实例字段。只能通过方法和对象交互数据。</p>
+<h3 id="32-different-variables"><a class="header" href="#32-different-variables">3.2. Different Variables</a></h3>
+<ul>
+<li>成员变量：定义在函数外部。成员变量的生存期是对象的生存期，作用域是对象内部的成员函数。在函数中可以直接写成员变量的名字访问成员变量。（Java会自动垃圾回收）</li>
+<li>本地变量：定义在函数内部。生存期和作用域都是函数内部。本地变量会“覆盖”成员变量，想要用成员变量需要用如：<code>this.name = name;</code></li>
+</ul>
+<h3 id="33-modifier-of-function-and-variable"><a class="header" href="#33-modifier-of-function-and-variable">3.3. Modifier of function and variable</a></h3>
+<p>访问修饰符（access modifier）：</p>
+<ul>
+<li>public：Java语言中访问限制最宽的修饰符，一般称之为“公共的”。被其修饰的类、属性以及方法不仅可以跨类访问，而且允许跨包（package）访问。</li>
+<li>private： Java语言中对访问权限限制的最窄的修饰符，一般称之为“私有的”。被其修饰的类、属性以及方法只能<strong>被该类的对象</strong>访问，其子类不能访问，更不能允许跨包访问。(换句话说，同一个类的不同对象，相互之间也可以访问私有变量)强烈建议对类内的变量设置为private类型。</li>
+<li>protected：介于public 和 private 之间的一种访问修饰符，一般称之为“保护形”。被其修饰的类、属性以及方法只能<strong>被类本身的方法及子类访问</strong>，即使子类在不同的包中也可以访问。</li>
+<li>default(friendly)：即不加任何访问修饰符，通常称为“默认访问模式“。该模式下，只允许在同一个包中进行访问。</li>
+</ul>
+<p>一般情况下，类中所有的变量都要用private。如果要确实需要访问、修改，可以用get,set函数。</p>
+<ul>
+<li>static: 被static修饰的变量或函数，就不是<strong>对象</strong>所有的，而是被<strong>类</strong>所有了。换句话说，每个<strong>该类的每个对象</strong>都拥有它，并且是同一个。并且不能访问直接一个<strong>对象的变量或函数</strong>，因为它不知道要访问谁。</li>
+<li>final：被final修饰的变量只能在初始化的时候赋值（有点像const），赋值后不能改变。被final修饰的方法不能被子类覆盖。（参考：https://www.cnblogs.com/xuelisheng/p/11158110.html）</li>
+</ul>
+<p>this是一个特殊的变量,代表自己这个对象。</p>
+<h3 id="34-initialization-constructor"><a class="header" href="#34-initialization-constructor">3.4. Initialization-&gt;Constructor</a></h3>
+<p>默认初始化：没有在构造方法中初始化字段时，引用类型的字段默认是null，数值类型的字段用默认值，int类型默认值是0，布尔类型默认值false。不要使用默认初始化，这是不好的习惯。</p>
+<p>构造函数：有一个成员函数的名字和类的名字完全相同，则在创建这个类的每一个对象的时候会自动调用这个函数(<strong>初始化操作</strong>)，在完成初始化变量动作之后（也就是说，在构造函数中的初始化操作会覆盖创建变量的初始化操作）。这个函数不能有返回类型。</p>
+<p>一个构造方法可以调用其他构造方法，这样做的目的是便于代码复用。调用其他构造方法的语法是this(…)
+初始化顺序：调用super() -&gt; 字段赋初值 -&gt; 构造函数</p>
+<p>工厂方法：可以给类定义一个静态方法，返回值是该类的对象。可以生成特定的对象。</p>
+<pre><code class="language-java">public class VM{
+    int　price;
+
+    VM()    //构造函数
+    {
+
+    }        
+    VM(String name,int price) //另一个构造函数,重载。
+    {
+        this.name = name;
+        this.price = price;
+    }
+    VM(String name)    //另一个构造函数,重载。
+    {
+        this(name,10);    //调用别的构造函数
+    }
+}
+</code></pre>
+<h3 id="35-overload重载"><a class="header" href="#35-overload重载">3.5. Overload重载</a></h3>
+<p>一个类中同名但是<strong>参数表不同</strong>的函数构成了重载关系。</p>
+<p>方法重载的目的是，功能类似的方法使用同一名字，更容易记住，因此，调用起来更简单。</p>
+<p>在Java中，一个方法由**方法名和参数类型(称为签名signature)**唯一确定，返回类型不是方法签名的一部分。所以不能有两个名字相同、参数类型相同却有不同返回类型的方法。事实上，我们一般让相同名字的函数都返回相同的类型。</p>
+<h3 id="36-inheritance-and-polymorphisms"><a class="header" href="#36-inheritance-and-polymorphisms">3.6. Inheritance and Polymorphisms</a></h3>
+<p>Java使用extends关键字来实现继承。Java不支持多继承。</p>
+<p>对理解继承来说，最重要的事情是，知道哪些东西被继承了，或者说，子类从父类那里得到了什么。答案是：所有的东西，所有的父类的成员，包括变量和方法，都成为了子类的成员，<strong>除了构造方法</strong>。构造方法是父类所独有的，因为它们的名字就是类的名字，所以父类的构造方法在子类中不存在。除此之外，子类继承得到了父类所有的成员。</p>
+<p>覆盖：当子类和父类存在<strong>名称和参数（签名）完全相同</strong>的函数，子类的会覆盖父类的。</p>
+<p>super关键字表示父类（超类）。子类引用父类的字段时，可以用<code>super.fieldName</code>。使用父类的方法,<code>super.func()</code>。调用父类的变量时，private仍然是不能调用的。<code>super()</code>调用父类的构造函数，应该在构造函数的最之前调用。super和this有很多相似之处，但是super不是对一个对象的引用，而this是。</p>
+<p>多态：Java的对象变量是多态的。<strong>一个对象变量</strong>可以指示<strong>多种实际对象</strong>的现象称为<strong>多态</strong>。子类的对象可以赋给父类的变量。（父类的<em>管理者</em>，也可以管理子类）反之不然。并且，在运行时能自动的选择恰当的方法，称为<strong>动态绑定</strong>。虽然可以通过强制类型转换把父类的对象赋给子类的变量，但是这样不好。可能会出现异常<code>ClassCastException</code>。向上造型是安全的，反之不然。</p>
+<p>A instanceof B :这个是一个二元运算，判断A是不是B类的实例，或者是其直接、间接子类的实例，或者是实现了B接口的类的实例。</p>
+<pre><code class="language-java">//比如，Students继承了Person。然后getgrade()是Students类特有的方法。
+Person ji = new Students();
+//ji.getgrade();    错误，不可以使用特有方法
+if (ji instanceof Students)    //超类强制类型转换成子类前，先instanceof是好习惯。
+    ((Students)ji).getgrade();
+</code></pre>
+<h3 id="37-abstract-class抽象类"><a class="header" href="#37-abstract-class抽象类">3.7. Abstract Class抽象类</a></h3>
+<p>我们用abstract关键字表达抽象类。</p>
+<p>抽象函数：表达概念而无法实现具体代码的函数。如果父类的方法本身不需要实现任何功能，仅仅是为了定义方法签名，目的是让子类去覆写它，那么，可以把父类的方法声明为抽象方法。</p>
+<p>抽象类不能实例化，换句话说，我们不希望通过抽象类创建对象。</p>
+<p>抽象类用于继承，<strong>子类必须覆盖抽象类的抽象函数</strong>（称为实现）。不然子类也是抽象类了。有抽象函数的类就是抽象类。但是我们可以用抽象类来定义变量，当然，用于管理非抽象的子类的对象。</p>
+<h3 id="38-generics泛型"><a class="header" href="#38-generics泛型">3.8. Generics泛型</a></h3>
+<p>参考 ：https://www.cnblogs.com/coprince/p/8603492.html</p>
+<p>泛型类<code>ArrayList a = new ArrayList&lt;Integer&gt;</code></p>
+<p>泛型方法<code>public static &lt;T extends Comparable&gt; T min(T[] a){}</code>,表示T要满足这个接口/继承这个类。</p>
+<p><strong>java 中泛型标记符：</strong></p>
+<ul>
+<li><strong>E</strong> - Element (在集合中使用，因为集合中存放的是元素)</li>
+<li><strong>T</strong> - Type（Java 类）</li>
+<li><strong>K</strong> - Key（键）</li>
+<li><strong>V</strong> - Value（值）</li>
+<li><strong>N</strong> - Number（数值类型）</li>
+<li><strong>？</strong> - 表示不确定的 java 类型</li>
+</ul>
+<p>例子</p>
+<pre><code class="language-java">public static &lt;T extends Comparable&lt;T&gt;&gt; T maximum(T x, T y, T z)
+{
+    T max = x; // 假设x是初始最大值
+    if ( y.compareTo( max ) &gt; 0 ){
+        max = y; //y 更大
+    }
+    if ( z.compareTo( max ) &gt; 0 ){
+        max = z; // 现在 z 更大           
+    }
+    return max; // 返回最大对象
+}
+</code></pre>
+<h3 id="39-interface接口"><a class="header" href="#39-interface接口">3.9. Interface接口</a></h3>
+<p>在Java中，使用interface可以声明一个接口：接口不是类，而是对类的一组需求描述。</p>
+<p>如果一个抽象类没有实例字段，所有方法全部都是抽象方法，就可以把该抽象类改写为接口：interface。当一个具体的class去实现一个interface时，需要使用implements关键字。在Java中，一个类只能继承自另一个类，不能从多个类继承。但是，一个类可以实现多个interface。 正是这两个特点让我们决定什么时候使用接口，什么时候使用抽象类。</p>
+<p>interface的变量只能是public static final类型；函数只能是 public abstrct类型。所以可以省略。如何标记我的方法需要对象满足xx接口呢？用instanceof运算符！</p>
+<pre><code class="language-java">package hello;
+
+import java.util.Arrays;
+//我也不知道为什么这里直接写Comparable不行。
+
+public class Main implements java.lang.Comparable&lt;Main&gt;{ 
+	private int number;
+	private int level;
+  
+	public Main(int number,int level) {
+      	this.number = number;
+      	this.level = level;
+    }
+    //接口的实现
+	@Override
+	public int compareTo(Main other) {
+		int ret;
+		ret = Integer.compare(this.number, other.number);
+		ret = (ret==0 ? Integer.compare(this.level, other.level):ret);
+		return ret;
+	}
+	
+	public static void main(String... args) {
+		Main[] h = new Main[3];
+		h[0]=new Main(1,3);
+		h[1]=new Main(2,4);
+		h[2]=new Main(1,1);
+		System.out.println(h);
+		Arrays.sort(h);
+		for (Main i:h)
+			System.out.println(i.number+&quot;  &quot;+i.level);
+	}
+}
+</code></pre>
+<p>定义接口示例代码：</p>
+<p>实现回调，我们需要利用接口。
+实现ActionListener接口。
+如果接口的默认方法和父类之间发生了冲突怎么办？</p>
+<ol>
+<li>父类优先，如果父类提供了具体方法，采用父类的具体方法。</li>
+<li>如果接口之间的默认方法产生了冲突，我们必须覆盖接口的方法。</li>
+</ol>
+<h3 id="310-接口和回调"><a class="header" href="#310-接口和回调">3.10. 接口和回调</a></h3>
+<p>回调和界面设计息息相关。</p>
+<pre><code class="language-java">package hello;
+
+import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.time.Instant;
+import java.util.Arrays;
+
+import javax.swing.JOptionPane;
+import javax.swing.Timer;       
+
+public class Main { 	
+	public static void main(String... args) {
+		TimePrinter listener = new TimePrinter();
+        //可以给Timer传入一个类，这个类满足了ActionListener接口。那么每隔1000ms就会调用一次listener.actionPerformed()
+		Timer timer = new Timer(1000,listener);
+		timer.start();
+		//这个可以弹出一个对话框，有点像WIN中的MessageBox。
+		JOptionPane.showMessageDialog(null, &quot;Quit?&quot;);
+		System.exit(0);
+	}
+}
+
+class TimePrinter implements ActionListener{
+	@Override
+	public void actionPerformed(ActionEvent event) {
+		// TODO Auto-generated method stub
+		System.out.println(&quot;At the tone,the time is &quot;+Instant.ofEpochMilli(event.getWhen()));
+		Toolkit.getDefaultToolkit().beep();
+	}
+}
+</code></pre>
+<h3 id="311-lambda-expression--method-reference"><a class="header" href="#311-lambda-expression--method-reference">3.11. lambda expression &amp;&amp; method reference</a></h3>
+<p>对于只有一个抽象方法的接口，在需要这种接口的对象时，就可以提供一个Lambda表达式。构造器引用：和方法引用一模一样，不过方法名换成了new。如：<code>Integet::new</code>。
+代码示例：</p>
+<pre><code class="language-java">//下面三个方法都可以
+public class Main { 	
+	public static void main(String... args) {
+		Integer[] a = {1,3,2,4,5};
+
+        //一般的接口调用，传递一个满足了接口的对象
+        Arrays.sort(a, new IntComparator())  ;
+        //lambda表达式，由于Comparator接口只有一个抽象方法，就可以用Lambda表达式代替。
+		Arrays.sort(a, (x,y)-&gt;x-y ); 
+        //方法引用，当lambda表达式只调用一个方法而不做其他操作时，可以重写为方法应用。会自动调用Integer.compare(arg0,arg1)。
+        Arrays.sort(a,Integer::compare);
+
+		for (int i:a)
+			System.out.println(i);
+	}
+}
+
+class IntComparator implements Comparator&lt;Integer&gt;{
+
+	@Override
+	public int compare(Integer arg0, Integer arg1) {
+		// TODO Auto-generated method stub
+		return arg0-arg1;
+	}
+}
+</code></pre>
+<p><strong>闭包closure</strong>：（参考《Java核心编程》第六章 6.2.6）.总之，可以放心的引用外部的变量，但是不要在任何地方（lambda里头或外头）修改它。</p>
+<h3 id="312-inner-classes"><a class="header" href="#312-inner-classes">3.12. Inner classes</a></h3>
+<p>定义在别的函数、对象内部的类，称为内部类。好处是可以访问类的所有方法。内部类是编译器现象，和虚拟机无关。</p>
+<pre><code class="language-java">import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.time.Instant;
+import javax.swing.*;
+
+public class Clock {
+	private int interval;
+	private boolean beep;
+	
+	public Clock(int interval,boolean beep) {
+		this.interval = interval;
+		this.beep = beep;
+	}
+	
+	public void start1() {
+		TimePrinter listener = new TimePrinter(this);
+		Timer timer = new Timer(interval,listener);
+		timer.start();
+	}
+	/*	这就是内部类
+	 * 	内部类的好处是可以方便的访问外部的变量，无论是用什么修饰符。比如你看这里的beep。
+	 * 	你可以把内部类声明为private类型。
+	 */
+	private class TimePrinter implements ActionListener{
+		Clock outer;
+		//这是默认的内部类Constructor.
+		public TimePrinter(Clock clock) {
+			outer = clock;
+		}
+		
+		@Override
+		public void actionPerformed(ActionEvent event) {
+			System.out.println(&quot;At the tone,the time is&quot;+
+					Instant.ofEpochMilli(event.getWhen()));
+			if (outer.beep) Toolkit.getDefaultToolkit().beep();
+	}
+
+	public void start2() {
+		TimePrinter listener = new TimePrinter(this);
+		Timer timer = new Timer(interval,listener);
+		class TimePrinter implements ActionListener{
+			@Override
+		    public void actionPerformed(ActionEvent event) {
+			System.out.println(&quot;At the tone,the time is&quot;+
+					Instant.ofEpochMilli(event.getWhen()));
+			if (outer.beep) Toolkit.getDefaultToolkit().beep();
+			}
+		}
+	}
+	
+	public static void main(String...args) {
+		Clock clock = new Clock(1000,true);
+		clock.start1();
+		JOptionPane.showMessageDialog(null, &quot;Exit now&quot;);
+		System.exit(0);
+	}
+}
+还有局部内部类和匿名内部类。
+</code></pre>
+<h3 id="313-reflection"><a class="header" href="#313-reflection">3.13. Reflection</a></h3>
+<hr />
+<h2 id="4-java核心类"><a class="header" href="#4-java核心类">4. Java核心类</a></h2>
+<h3 id="41-collectioncontainer"><a class="header" href="#41-collectioncontainer">4.1. Collection/Container</a></h3>
+<p>关于迭代器的参考链接：https://www.liaoxuefeng.com/wiki/1252599548343744/1265112034799552
+关于“相等”：https://www.liaoxuefeng.com/wiki/1252599548343744/1265116446975264</p>
+<p>不同于C语言，你可以在程序的运行过程中动态的创建数组对象。一般常用容器的有三个：</p>
+<ul>
+<li>List：一种有序列表的集合，例如，按索引排列的Student的List；</li>
+</ul>
+<pre><code class="language-java">ArrayList &lt;E&gt;()    
+    ArrayList &lt;E&gt;(int initialCapacity)    //用指定容量构造一个空数组列表，可以提高运行效率
+    int size()    //返回当前存储在数组列表中的元素个数
+    boolean add(E obj)    //添加元素，返回true
+    E set(int index,E obj)    //
+    E get(int index)    //
+    void add(int index, E obj)    //在index后面将obj插入，插入是低效率的。
+    E remove(int index)    //删除index的元素，后面的元素前移，删除是低效率的。返回删除的元素（像pop）
+</code></pre>
+<ul>
+<li>Set：一种保证没有重复元素的集合，例如，所有无重复名称的Student的Set；</li>
+<li>Map：一种通过键值（key-value）查找的映射表集合，例如，根据Student的name查找对应Student的Map。</li>
+</ul>
+<pre><code class="language-java">package hello;
+//用IDE的好处就是，他会自动帮你import
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;    
+
+public class Hello {
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+	//创建容器，尖括号制定了保存元素的类型
+		ArrayList&lt;String&gt; names = new ArrayList&lt;String&gt;();
+		HashMap&lt;String, String&gt; prime = new HashMap&lt;String, String&gt;();
+		HashSet&lt;Integer&gt; numbers = new HashSet&lt;Integer&gt;();
+	//对顺序容器的一些操作
+        //add默认在最后添加元素，也可以指定Index
+		names.add(&quot;朱启月&quot;);
+		names.add(&quot;季高强&quot;);
+        //ArrayList和数组的转换常用办法
+        String[] namebak = names.toArray(new String[names.size()]);
+		System.out.println(names.toString()+&quot; &quot;+ names.size());
+		//老师说print会自动调用对象的toString方法。
+		System.out.println(names+&quot; &quot;+ names.size());
+		names.remove(0);
+		System.out.println(names.get(0));
+	//对哈希表的一些操作
+		prime.put(&quot;Ji&quot;,&quot;Gaoqiang&quot;);
+		prime.put(&quot;Zhu&quot;,&quot;Yaye&quot;);
+		//键是唯一的，后面会覆盖前面。
+		prime.put(&quot;Zhu&quot;, &quot;Qiyue&quot;);	
+		//遍历的一般方法
+		for (String i: prime.keySet())
+			System.out.println(&quot;姓&quot;+i+&quot; 名&quot;+prime.get(i));	
+	//对集合的一些操作
+		numbers.add(1);		
+		numbers.add(1);
+		numbers.add(4);
+		numbers.add(2);
+		//满足集合的无序性和唯一性
+		for (int i:numbers)
+			System.out.println(i);
+	}
+}
+</code></pre>
+<h3 id="42-wrap"><a class="header" href="#42-wrap">4.2. Wrap</a></h3>
+<p>对于基本数据类型，Java提供了对应的包裹(wrap)类型。这些包裹类型将一个基本数据类型的数据转换成对象的形式，从而使得它们可以像对象一样参与运算和传递。下表列出了基本数据类型所对应的包裹类型：
+在使用Wrap类型和基本类型时，基本没有什么区别。<strong>编译器</strong>会自动的帮你装箱和拆箱。不过在用 == 要注意，包装类型最好用equals。</p>
+<div class="table-wrapper"><table><thead><tr><th>基本类型</th><th>包裹类型</th></tr></thead><tbody>
+<tr><td>boolean</td><td>Boolean</td></tr>
+<tr><td>char</td><td>Character</td></tr>
+<tr><td>byte</td><td>Byte</td></tr>
+<tr><td>short</td><td>Short</td></tr>
+<tr><td>int</td><td>Integer</td></tr>
+<tr><td>long</td><td>Long</td></tr>
+<tr><td>float</td><td>Float</td></tr>
+<tr><td>double</td><td>Double</td></tr>
+</tbody></table>
+</div>
+<p>然后你就可以利用一些属性和方法了。一般我们都是让类的首字母大写。</p>
+<pre><code class="language-java">//Interger类中的一些方法
+int intValue()        
+static String toString(int i)    
+static String toString(int i,int radix)    //返回i的radix进制表示字符串。
+static int parseInt(String s)
+static int parseInt(String s,int radix)    //解析radix进制数s 
+</code></pre>
+<h3 id="43-exception"><a class="header" href="#43-exception">4.3. Exception</a></h3>
+<p>视频：https://www.icourse163.org/learn/ZJU-1001542001?tid=1458169441#/learn/content?type=detail&amp;id=1232785035&amp;cid=1251276117&amp;replay=true
+如果你的函数可能抛出异常，可以加throws。子类不能比父类声明更多的throws。
+父类异常可以捕捉子类异常，catch会按顺序捕捉异常。
+try-catch可以处理异常。throw来抛出异常。</p>
+<pre><code>                     ┌───────────┐
+                     │  Object   │
+                     └───────────┘
+                           ▲
+                           │
+                     ┌───────────┐
+                     │ Throwable │
+                     └───────────┘
+                           ▲
+                 ┌─────────┴─────────┐
+                 │                   │
+           ┌───────────┐       ┌───────────┐
+           │   Error   │       │ Exception │
+           └───────────┘       └───────────┘
+                 ▲                   ▲
+         ┌───────┘              ┌────┴──────────┐
+         │                      │               │
+┌─────────────────┐    ┌─────────────────┐┌───────────┐
+│OutOfMemoryError │... │RuntimeException ││IOException│...
+└─────────────────┘    └─────────────────┘└───────────┘
+                                ▲
+                    ┌───────────┴─────────────┐
+                    │                         │
+         ┌─────────────────────┐ ┌─────────────────────────┐
+         │NullPointerException │ │IllegalArgumentException │...
+         └─────────────────────┘ └─────────────────────────┘
+</code></pre>
+<p>示例代码：</p>
+<pre><code class="language-java">public static void main(String[] args) {
+    //用throws声明可能出现的异常
+    public static void process1() throws UnsupportedEncodingException {   
+        //向上层抛出异常
+        throw new UnsupportedEncodingException()    
+    }
+    //捕获异常
+    //一套完整的业务逻辑
+    try {    
+        process1();
+        process2();
+        process3();    
+    //子类异常要写在前面，否则永远捕获不到 catch (UnsupportedEncodingException e) {    
+        System.out.println(&quot;Bad encoding&quot;);
+    } catch (IOException e) {
+        System.out.println(&quot;IO error&quot;);
+    }
+
+}
+}
+</code></pre>
+<p>有一个很有用的语句：try-with-Resource。如果Resource实现了AutoCloseable接口<code>void close throws Exception</code>，那么对于打开Resource的操作可以这样写：</p>
+<pre><code class="language-java">try (Resource res = ...)
+{
+    work with res...
+}
+catch (){}
+finally(){}
+</code></pre>
+<p>当try块退出时(异常、正常退出)，会自动调用res.close()</p>
+<h3 id="44-stream"><a class="header" href="#44-stream">4.4. Stream</a></h3>
+<h3 id="45-math-class"><a class="header" href="#45-math-class">4.5. Math Class</a></h3>
+<h3 id="46-big-number"><a class="header" href="#46-big-number">4.6. Big number</a></h3>
+<p>BigInteger库实现了任意精度的整数运算。
+BigDecimal库实现了任意精度的浮点数运算。</p>
+<h3 id="47-string-class"><a class="header" href="#47-string-class">4.7. String Class</a></h3>
+<p>常用方法：</p>
+<div class="table-wrapper"><table><thead><tr><th>方法名</th><th>说明</th></tr></thead><tbody>
+<tr><td>int length()</td><td></td></tr>
+<tr><td>String replace(CharSequence old,CharSequence new)</td><td>这里的CharSequence可以是String或StringBuilder</td></tr>
+<tr><td>boolean startWith(String prefix)</td><td>如果字符串以prefix开头，返回true</td></tr>
+<tr><td>String toLowerCase()</td><td></td></tr>
+<tr><td>String toUpperCase()</td><td></td></tr>
+<tr><td>String trim()</td><td>删除头尾的空格</td></tr>
+<tr><td>boolean equals(Object other)</td><td>如果字符串相等返回true</td></tr>
+<tr><td>int compareTo(String other)</td><td>按字典序，如果在other前返回-1，后返回1，同返回0</td></tr>
+<tr><td>int indexOf(String str)</td><td></td></tr>
+<tr><td>int indexOf(String str,int fromindex)</td><td>返回字符串str匹配的第一个子串开始的位置。从fromindex或0开始寻找。</td></tr>
+</tbody></table>
+</div>
+<h3 id="48-array-class"><a class="header" href="#48-array-class">4.8. Array Class</a></h3>
+<h3 id="49-object-class"><a class="header" href="#49-object-class">4.9. Object Class</a></h3>
+<p>Java的继承只允许单继承，即一个类只能有一个父类，并且除了Object，每个类都有一个父类。
+注意到我们在定义Person的时候，没有写extends。在Java中，没有明确写extends的类，编译器会自动加上extends Object。所以，任何类，除了Object，都会继承自某个类。
+Object里面有一些默认的方法，比如
+equals():判断是否相同，返回boolean。
+正确的equals方法应该满足</p>
+<ol>
+<li>自反性 x.equals(x)为true</li>
+<li>传递性 若x.equals(y)为true,y.equals(z)为true,那么x.equals(z)也应该为true</li>
+<li>对称性 x.equals(y) == y.equals(x)</li>
+<li>一致性 如果x和y引用的对象没有变化，x.equals(y)也不应该有变化</li>
+<li>x.equals(null) == false</li>
+</ol>
+<pre><code class="language-java">//正确的equal方法
+public boolean equals(Object otherObject){
+    //如果指向同一个对象，显然equals。用于优化。
+    if (this == otherObject) return true;    
+    if (otherObject == null) return false;
+//  下面两句，如果要求同类比较请用第一句，如果要求所有的子类都可以相互比较请用第二句
+//  if (this.getClass() != otherObject.getClass()) return false;
+//  if (!otherObject instanceof ClassName) return false;
+    //强制类型转换
+    ClassName other = (ClassName) otherObject;
+    //接下来比较对应的字段
+    return this.filed1 == other.filed1 &amp;&amp; this.filed2 == other.filed2    ....
+}
+</code></pre>
+<p>toString():转换成字符串类型。如果你用+（字符串加），会自动调用这个方法。</p>
+<pre><code class="language-java">//一般来说，自定义的toString方法都长这样：
+public toString(){
+    return getClass().getName()
+    + &quot;[name&quot; + name
+    + &quot;,salary&quot; + salary
+    + &quot;]&quot;;
+}
+//返回 类名[一些键值对]
+//&quot;&quot;+x    或者 x.toString    
+</code></pre>
+<p><code>getClass()</code>:获取对象的<strong>运行时类</strong>，返回一个Class类。（这个类还是很神奇的）</p>
+<p><code>hashcode()</code>：返回哈希值，int。<strong>如果两个对象x.equals(y)返回true，那么他们一个有相同的hashcode。</strong>
+示例代码：</p>
+<h3 id="410-objects-class"><a class="header" href="#410-objects-class">4.10. Objects Class</a></h3>
+<p>该类提供了很多静态方法。
+static T requireNonNull(T obj)
+如果T不是NULL，返回T，如果T是NULL，抛出一个异常。用于参数检查。
+static T requireNonNullElse(T obj,T defaultObj)
+如果T不是Null返回T，如果T是Null，返回一个默认对象</p>
+<h3 id="411-random-class"><a class="header" href="#411-random-class">4.11. Random Class</a></h3>
+<p>java.util.Random
+int nextInt(int n)
+返回一个0～n-1之间的随机数。</p>
+<h3 id="412-logger"><a class="header" href="#412-logger">4.12. Logger</a></h3>
+<h2 id="5-design-principles"><a class="header" href="#5-design-principles">5. Design principles</a></h2>
+<ul>
+<li>消除代码复制————整合成函数</li>
+<li>降低耦合度————封装
+方便日后的修改维护
+尽可能让所有变量都是private</li>
+<li>可扩展性————使用容器
+可扩展性的意思就是代码的某些部分不需要经过修改就能适应将来可能的变化。</li>
+<li>数据和表现分离</li>
+<li>设计程序时先定义接口，再实现类</li>
+<li>在函数间传入传出的一定是接口而不是具体的类</li>
+</ul>
+<h3 id="51-relation-between-class"><a class="header" href="#51-relation-between-class">5.1. Relation between Class</a></h3>
+<p>依赖：一个类的方法，操纵另一个类的对象。
+聚合：一个类的对象，包含另一个类的对象。
+继承：特殊和一般的关系。</p>
+<h3 id="52-design-tactics-of-class"><a class="header" href="#52-design-tactics-of-class">5.2. Design tactics of Class</a></h3>
+<ol>
+<li>保证数据私有 private</li>
+<li>保证对数据初始化，不要依赖于系统的默认值</li>
+<li>不要使用过多的基本类型</li>
+<li>对职责过多的类进行分解</li>
+<li>命名符合规范</li>
+</ol>
+<h3 id="53-design-tactics-of-inheritance"><a class="header" href="#53-design-tactics-of-inheritance">5.3. Design tactics of Inheritance</a></h3>
+<ol>
+<li>将公共操作和字段放在超类中</li>
+<li>不要使用protected修饰。不过protected对指示那些不提供一般用途而在子类中重新定义的方法很有用。</li>
+<li>使用继承实现&quot;is-a&quot;关系，子类应该是特殊的父类。</li>
+<li>除非所有继承的方法都有意义，否则不要使用继承。就是说如果存在父类的方法 不是子类应该具备的，就不要使用继承。</li>
+<li>在覆盖方法时，不要改变预期的行为。就是说父类和子类的方法应该统一。</li>
+<li>使用多态，而不要使用类型信息。</li>
+<li>不要滥用反射。</li>
+</ol>
+<h3 id="54-design-tactics-of-exception"><a class="header" href="#54-design-tactics-of-exception">5.4. design tactics of Exception</a></h3>
+<ol>
+<li>异常处理不能代替简单的测试。尽量通过检查避免异常而不是通过异常处理。</li>
+<li>不要过分的细化异常。在一套完整的业务逻辑之后处理异常。</li>
+<li>充分利用异常结构。能用子类异常不用父类异常。</li>
+<li>不要压制异常。</li>
+<li>早抛出，晚捕获。</li>
+</ol>
+<h2 id="6-homework"><a class="header" href="#6-homework">6. Homework</a></h2>
+<p>作业1：</p>
+<pre><code class="language-java">public class Fraction {
+	private int a;
+	private int b;
+	
+	Fraction(int a,int b)    //构造函数
+	{
+		this.a = a;
+		this.b = b;
+	}
+	
+	double toDouble()
+	{
+		return (double)a/(double)b;
+	}
+
+	Fraction plus(Fraction r)
+	{
+		int a = r.a*this.b + r.b*this.a;
+		int b = r.b*this.b;
+		Fraction x = new Fraction(a,b);
+		return x;
+	}
+	Fraction multiply(Fraction r)
+	{
+		int a = r.a*this.a;
+		int b = r.b*this.b;
+		Fraction x = new Fraction(a,b);
+		return x;
+	}
+	void print()
+	{
+		int max = this.a&gt;this.b?this.a:this.b;
+		int min = this.a&gt;this.b?this.b:this.a;
+		int x = this.gcd(max,min);
+		if (x==this.b)
+			System.out.println(this.a);
+		else 
+			System.out.println(this.a/x+&quot;/&quot;+this.b/x);
+	}
+	private int gcd(int x,int y)
+	{
+		x = x % y;
+		if (x==0) return y;
+		else return gcd (y,x);
+	}
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Fraction num=new Fraction(24,36);
+		Fraction num2 = num.multiply(num);
+		num2.print();
+	}
+</code></pre>
+<p>作业2：（关于类的应用）</p>
+<pre><code class="language-java">//Display.java
+package clock;
+
+public class Clock {
+	private Display minute;
+	private Display hour;
+	
+	Clock()
+	{
+		this.minute = new Display(60);
+		this.hour= new Display(24);
+	}
+	
+	public void showtime()
+	{
+		System.out.printf(&quot;%02d:%02d\n&quot;,hour.getnum(),minute.getnum());
+	}
+	public void increase()
+	{
+		minute.increase();
+		if (minute.getnum()==0)
+			hour.increase();
+	}
+	
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		int i;
+		Clock clock = new Clock();
+		for (i=0;i&lt;1000;i++)
+		{
+			clock.showtime();
+			clock.increase();
+		}
+	}
+}
+//Clock.java
+package clock;
+
+public class Display {
+	private int num;
+	private int limit;
+	
+	Display(int limit)
+	{
+		this.num = 0;
+		this.limit = limit;
+	}
+	public int getnum()
+	{
+		return this.num;
+	}
+	public void increase()
+	{
+		num++;		//this是可以省略的
+		if (num==limit)
+			num = 0;
+	}
+}
+</code></pre>
+<p>作业4：</p>
+<pre><code class="language-java">package jicheng;
+
+import java.util.ArrayList;
+
+//一个图书馆的数据库
+public class Database {
+	private ArrayList&lt;Item&gt; list = new ArrayList&lt;Item&gt;();
+	
+	public void addItem(Item item) {
+		list.add(item);
+	}
+	
+	public void showItem() {
+		for (Item i: list) {
+			i.showInfo();
+		}
+	}
+	
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Database data = new Database();
+        //子类的对象可以赋给父类的变量。（父类的*管理者*，也可以管理子类）反之不然。
+		Item item = new Book(&quot;CSAPP&quot;,&quot;001&quot;,&quot;123-123-123-123&quot;);
+		data.addItem(item);
+		data.showItem();
+	}
+
+}
+//---------------------------------
+package jicheng;
+
+public class Item {
+	private String name;
+	private String number;
+	private boolean borrowed;
+	
+    //其实默认继承了Object类
+	public Item(String name, String number) {
+		super();
+		this.name = name;
+		this.number = number;
+		this.borrowed = false;
+	}
+	
+	public void showInfo()
+	{
+		String b = new String();
+		b = borrowed?&quot;Borrowed&quot;:&quot;Not Borrowed&quot;;
+		System.out.print(this.name+&quot; &quot;+this.number+&quot; &quot;+b+&quot; &quot;);
+	}
+}
+
+//----------------------
+package jicheng;
+
+//通过extends关键字实现继承
+public class Book extends Item{
+	private String ISBN;
+	
+	public Book(String name, String number, String ISBN) {
+		//调用父类的构造函数
+        super(name, number);
+		this.ISBN = ISBN;
+	}
+
+    //覆盖了父类的showInfo
+	public void showInfo()
+	{
+		super.showInfo();
+		System.out.println(ISBN);
+	}
+}
+</code></pre>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../../Language/Java/index.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next" href="../../Language/Java/鸿蒙应用开发.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../../Language/Java/index.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next" href="../../Language/Java/鸿蒙应用开发.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../searcher.js" type="text/javascript" charset="utf-8"></script>
+
+        <script src="../../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </body>
+</html>

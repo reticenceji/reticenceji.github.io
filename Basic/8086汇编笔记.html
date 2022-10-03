@@ -1,0 +1,1350 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>8086汇编笔记 - Reticence&#x27;s Notes</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+        <!-- MathJax -->
+        <script async type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item affix "><a href="../index.html">Index</a></li><li class="chapter-item "><a href="../Advanced/index.html">Advanced</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../Advanced/Blockchain/index.html">Block Chain</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../Advanced/Blockchain/Basic/index.html">区块链技术</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../Advanced/Blockchain/Basic/Consensus.html">共识机制</a></li><li class="chapter-item "><a href="../Advanced/Blockchain/Basic/Crypto.html">加密</a></li><li class="chapter-item "><a href="../Advanced/Blockchain/Basic/Distribute.html">分布式存储</a></li><li class="chapter-item "><a href="../Advanced/Blockchain/Basic/P2P.html">P2P</a></li><li class="chapter-item "><a href="../Advanced/Blockchain/Basic/SmartContract.html">如何执行智能合约</a></li></ol></li><li class="chapter-item "><a href="../Advanced/Blockchain/Defi/index.html">DeFi</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../Advanced/Blockchain/Defi/DAO.html">Decentralized Autonomous Organization</a></li><li class="chapter-item "><a href="../Advanced/Blockchain/Defi/Derivative.html">Decentralized Derivative</a></li><li class="chapter-item "><a href="../Advanced/Blockchain/Defi/Exchange.html">Decentralized Exchange</a></li><li class="chapter-item "><a href="../Advanced/Blockchain/Defi/FundManagement.html">Decentralized Fund Management</a></li><li class="chapter-item "><a href="../Advanced/Blockchain/Defi/Insurance.html">Decentralized Insurance</a></li><li class="chapter-item "><a href="../Advanced/Blockchain/Defi/LendBorrow.html">Decentralized Lending & Borrowing</a></li><li class="chapter-item "><a href="../Advanced/Blockchain/Defi/Lottery.html">Decentralized Lottery</a></li><li class="chapter-item "><a href="../Advanced/Blockchain/Defi/Payments.html">Decentralized Payments</a></li><li class="chapter-item "><a href="../Advanced/Blockchain/Defi/StableCoin.html">Stable Coins</a></li></ol></li><li class="chapter-item "><a href="../Advanced/Blockchain/Ethernet/index.html">Ethernet</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../Advanced/Blockchain/Ethernet/Solidity.html">Solidity简介</a></li></ol></li><li class="chapter-item "><a href="../Advanced/Blockchain/NEAR/index.html">Hello NEAR</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../Advanced/Blockchain/NEAR/PoS.html">Proof-of-Stake</a></li><li class="chapter-item "><a href="../Advanced/Blockchain/NEAR/Promise.html">异步模型</a></li><li class="chapter-item "><a href="../Advanced/Blockchain/NEAR/Secure.html">Secure</a></li><li class="chapter-item "><a href="../Advanced/Blockchain/NEAR/Snippets.html">Snippets</a></li><li class="chapter-item "><a href="../Advanced/Blockchain/NEAR/Standards.html">标准实现代码分析</a></li><li class="chapter-item "><a href="../Advanced/Blockchain/NEAR/dao.html">dao</a></li><li class="chapter-item "><a href="../Advanced/Blockchain/NEAR/wasm.html">wasm</a></li></ol></li></ol></li><li class="chapter-item "><a href="../Advanced/Linux/index.html">Linux</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../Advanced/Linux/LinuxKernel/index.html">Linux</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../Advanced/Linux/LinuxKernel/Credential.html">Credential</a></li><li class="chapter-item "><a href="../Advanced/Linux/LinuxKernel/Debug笔记.html">Debug笔记</a></li><li class="chapter-item "><a href="../Advanced/Linux/LinuxKernel/File_System.html">File System</a></li><li class="chapter-item "><a href="../Advanced/Linux/LinuxKernel/Linux内核设计与实现笔记.html">《Linux内核设计与实现》笔记</a></li><li class="chapter-item "><a href="../Advanced/Linux/LinuxKernel/Linux设备驱动笔记.html">《Linux设备驱动》笔记</a></li><li class="chapter-item "><a href="../Advanced/Linux/LinuxKernel/RCU.html">RCU</a></li><li class="chapter-item "><a href="../Advanced/Linux/LinuxKernel/Rust_for_linux.html">Rust for linux</a></li><li class="chapter-item "><a href="../Advanced/Linux/LinuxKernel/System_Call.html">System Call</a></li><li class="chapter-item "><a href="../Advanced/Linux/LinuxKernel/context_switch.html">进程调度时的context_switch</a></li><li class="chapter-item "><a href="../Advanced/Linux/LinuxKernel/内核编程笔记.html">Linux内核编程笔记</a></li><li class="chapter-item "><a href="../Advanced/Linux/LinuxKernel/数据结构.html">数据结构</a></li><li class="chapter-item "><a href="../Advanced/Linux/LinuxKernel/调试Linux内核环境搭建.html">调试Linux内核环境搭建</a></li><li class="chapter-item "><a href="../Advanced/Linux/LinuxKernel/调试时如何获取current.html">调试Linux内核，寻找current</a></li></ol></li><li class="chapter-item "><a href="../Advanced/Linux/LinuxPlay/index.html">LinuxPlay</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../Advanced/Linux/LinuxPlay/Linux使用笔记.html">Linux使用笔记</a></li><li class="chapter-item "><a href="../Advanced/Linux/LinuxPlay/使用SSH远程登录.html">Linux使用SSH远程登录</a></li><li class="chapter-item "><a href="../Advanced/Linux/LinuxPlay/在Linux中找到可用的网络接口.html">在Linux中找到可用的网络接口</a></li></ol></li><li class="chapter-item "><a href="../Advanced/Linux/LinuxProgram/index.html">Linux Program</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../Advanced/Linux/LinuxProgram/Deamon.html">Daemon</a></li><li class="chapter-item "><a href="../Advanced/Linux/LinuxProgram/Fanotify.html">Fanotify</a></li><li class="chapter-item "><a href="../Advanced/Linux/LinuxProgram/File.html">File Program</a></li><li class="chapter-item "><a href="../Advanced/Linux/LinuxProgram/IObound.html">I/O bound 程序优化</a></li><li class="chapter-item "><a href="../Advanced/Linux/LinuxProgram/Linux目录结构.html">Linux目录结构</a></li><li class="chapter-item "><a href="../Advanced/Linux/LinuxProgram/NetLink.html">Netlink</a></li><li class="chapter-item "><a href="../Advanced/Linux/LinuxProgram/Socket.html">Socket</a></li><li class="chapter-item "><a href="../Advanced/Linux/LinuxProgram/eBPF.html">eBPF</a></li><li class="chapter-item "><a href="../Advanced/Linux/LinuxProgram/prctl.html">进程</a></li><li class="chapter-item "><a href="../Advanced/Linux/LinuxProgram/信号.html">信号</a></li><li class="chapter-item "><a href="../Advanced/Linux/LinuxProgram/共享库.html">共享库</a></li><li class="chapter-item "><a href="../Advanced/Linux/LinuxProgram/凭证.html">Credential 凭证</a></li><li class="chapter-item "><a href="../Advanced/Linux/LinuxProgram/反向Shell和伪终端.html">反向Shell和伪终端</a></li><li class="chapter-item "><a href="../Advanced/Linux/LinuxProgram/性能监控.html">性能监控</a></li><li class="chapter-item "><a href="../Advanced/Linux/LinuxProgram/桌面应用开发.html">桌面应用开发</a></li><li class="chapter-item "><a href="../Advanced/Linux/LinuxProgram/管道和重定向.html">管道和重定向</a></li><li class="chapter-item "><a href="../Advanced/Linux/LinuxProgram/系统限制和选项.html">系统限制和选项</a></li><li class="chapter-item "><a href="../Advanced/Linux/LinuxProgram/终端.html">终端</a></li><li class="chapter-item "><a href="../Advanced/Linux/LinuxProgram/进程间通信.html">进程间通信</a></li></ol></li></ol></li><li class="chapter-item "><a href="../Advanced/Windows/index.html">Windows Programming</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../Advanced/Windows/Unicode.html">Unicode</a></li><li class="chapter-item "><a href="../Advanced/Windows/hungarian.html">匈牙利命名法</a></li><li class="chapter-item "><a href="../Advanced/Windows/文件.html">文件</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../Basic/index.html">Basic</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../Basic/8086汇编笔记.html" class="active">8086汇编笔记</a></li><li class="chapter-item "><a href="../Basic/Architecture/index.html">Architecture</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../Basic/Architecture/ARM内存管理.html">AArch64 memory management</a></li><li class="chapter-item "><a href="../Basic/Architecture/ARM寄存器.html">ARM中的寄存器</a></li><li class="chapter-item "><a href="../Basic/Architecture/ARM异常.html">AArch64 Exception Model</a></li><li class="chapter-item "><a href="../Basic/Architecture/ARM虚拟化.html">Armv8-A virtualization</a></li><li class="chapter-item "><a href="../Basic/Architecture/ARM调试.html">ARM self-hosted debug</a></li><li class="chapter-item "><a href="../Basic/Architecture/CPU设计.html">CPU设计</a></li><li class="chapter-item "><a href="../Basic/Architecture/Cache.html">Cache</a></li><li class="chapter-item "><a href="../Basic/Architecture/ILP.html">ILP</a></li><li class="chapter-item "><a href="../Basic/Architecture/SIMD和MIMD.html">SIMD和MIMD</a></li><li class="chapter-item "><a href="../Basic/Architecture/TLP.html">TLP</a></li><li class="chapter-item "><a href="../Basic/Architecture/存储器设计.html">存储器设计</a></li><li class="chapter-item "><a href="../Basic/Architecture/数字逻辑.html">Notes-数字逻辑</a></li><li class="chapter-item "><a href="../Basic/Architecture/计算机体系结构.html">计算机组成&计算机体系结构</a></li></ol></li><li class="chapter-item "><a href="../Basic/C/index.html">C/C++</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../Basic/C/Cpp标准库.html">C++_标准库</a></li><li class="chapter-item "><a href="../Basic/C/Cpp课程笔记.html">C++ 基础知识</a></li><li class="chapter-item "><a href="../Basic/C/GCC内嵌汇编.html">C-内嵌汇编</a></li><li class="chapter-item "><a href="../Basic/C/变量在ELF段中的位置.html">变量在ELF段中的位置</a></li><li class="chapter-item "><a href="../Basic/C/可变参数的使用和原理.html">可变参数的使用和原理</a></li><li class="chapter-item "><a href="../Basic/C/在C程序中调用汇编程序.html">在C程序中调用汇编程序</a></li><li class="chapter-item "><a href="../Basic/C/链接器.html">链接器</a></li></ol></li><li class="chapter-item "><a href="../Basic/Client/index.html">Client Development</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../Basic/Client/Chromium.html">Chromium</a></li><li class="chapter-item "><a href="../Basic/Client/CodeReview.html">CodeReview</a></li><li class="chapter-item "><a href="../Basic/Client/Config.html">Config</a></li><li class="chapter-item "><a href="../Basic/Client/CrossLanguage.html">跨语言</a></li><li class="chapter-item "><a href="../Basic/Client/DataStore.html">本地存储</a></li><li class="chapter-item "><a href="../Basic/Client/Database.html">Database</a></li><li class="chapter-item "><a href="../Basic/Client/Flutter.html">Flutter</a></li><li class="chapter-item "><a href="../Basic/Client/Log.html">日志</a></li><li class="chapter-item "><a href="../Basic/Client/Multimedia/index.html">Multimedia</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../Basic/Client/Multimedia/Graph.html">图形学</a></li><li class="chapter-item "><a href="../Basic/Client/Multimedia/Image.html">图像处理技术</a></li><li class="chapter-item "><a href="../Basic/Client/Multimedia/Video.html">视频</a></li><li class="chapter-item "><a href="../Basic/Client/Multimedia/Voice.html">Voice</a></li></ol></li><li class="chapter-item "><a href="../Basic/Client/Network.html">网络能力</a></li><li class="chapter-item "><a href="../Basic/Client/Performance.html">性能监控</a></li><li class="chapter-item "><a href="../Basic/Client/Platform/index.html">Platform</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../Basic/Client/Platform/Android.html">Android</a></li><li class="chapter-item "><a href="../Basic/Client/Platform/iOS.html">iOS</a></li></ol></li><li class="chapter-item "><a href="../Basic/Client/SQLite.html">SQLite</a></li></ol></li><li class="chapter-item "><a href="../Basic/Compiler/index.html">Compiler</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../Basic/Compiler/Codegen.html">代码生成</a></li><li class="chapter-item "><a href="../Basic/Compiler/Lex.html">Lex</a></li><li class="chapter-item "><a href="../Basic/Compiler/Lexical.html">Lexical Analyze</a></li><li class="chapter-item "><a href="../Basic/Compiler/Runtime.html">Runtime</a></li><li class="chapter-item "><a href="../Basic/Compiler/Sematic.html">Sematic Analyzing</a></li><li class="chapter-item "><a href="../Basic/Compiler/Syntax.html">Syntax Analyzer</a></li><li class="chapter-item "><a href="../Basic/Compiler/llvm-ir.html">LLVM-IR</a></li><li class="chapter-item "><a href="../Basic/Compiler/llvm.html">LLVM</a></li><li class="chapter-item "><a href="../Basic/Compiler/pest.html">PEST</a></li><li class="chapter-item "><a href="../Basic/Compiler/yacc.html">Yacc</a></li></ol></li><li class="chapter-item "><a href="../Basic/DataStructure/index.html">Data Structure And Algorithm</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../Basic/DataStructure/Algorithm/index.html">Algorithm</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../Basic/DataStructure/Algorithm/Approximation.html">近似算法</a></li><li class="chapter-item "><a href="../Basic/DataStructure/Algorithm/Backtracking.html">递归回溯</a></li><li class="chapter-item "><a href="../Basic/DataStructure/Algorithm/DivideAndConquer.html">分治算法</a></li><li class="chapter-item "><a href="../Basic/DataStructure/Algorithm/DynamicProgramming.html">动态规划</a></li><li class="chapter-item "><a href="../Basic/DataStructure/Algorithm/Greedy.html">贪心算法</a></li><li class="chapter-item "><a href="../Basic/DataStructure/Algorithm/LocalSearch.html">本地搜索</a></li><li class="chapter-item "><a href="../Basic/DataStructure/Algorithm/Parallel.html">并行算法</a></li><li class="chapter-item "><a href="../Basic/DataStructure/Algorithm/Randomized.html">随机化算法</a></li><li class="chapter-item "><a href="../Basic/DataStructure/Algorithm/Sort.html">排序算法</a></li></ol></li><li class="chapter-item "><a href="../Basic/DataStructure/Graph/index.html">Graph</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../Basic/DataStructure/Graph/Bipartite.html">Bipartite</a></li><li class="chapter-item "><a href="../Basic/DataStructure/Graph/NetworkFlow.html">NetworkFlow</a></li><li class="chapter-item "><a href="../Basic/DataStructure/Graph/ShortPath.html">最短路</a></li><li class="chapter-item "><a href="../Basic/DataStructure/Graph/SpanningTree.html">最小生成树</a></li><li class="chapter-item "><a href="../Basic/DataStructure/Graph/关键路径.html">关键路径</a></li><li class="chapter-item "><a href="../Basic/DataStructure/Graph/拓扑排序.html">拓扑排序</a></li></ol></li><li class="chapter-item "><a href="../Basic/DataStructure/Hash/index.html">Hash</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../Basic/DataStructure/Hash/HashTree.html">HashTree</a></li><li class="chapter-item "><a href="../Basic/DataStructure/Hash/Hashing.html">Hashing</a></li></ol></li><li class="chapter-item "><a href="../Basic/DataStructure/Heap/index.html">Heap</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../Basic/DataStructure/Heap/BinomialHeap.html">Binomial Heap</a></li><li class="chapter-item "><a href="../Basic/DataStructure/Heap/FibonacciHeap.html">FibonacciHeap</a></li><li class="chapter-item "><a href="../Basic/DataStructure/Heap/Heap.html">DS-Heap</a></li><li class="chapter-item "><a href="../Basic/DataStructure/Heap/斜堆.html">Leftist_Heap_and_Skew_Heap</a></li></ol></li><li class="chapter-item "><a href="../Basic/DataStructure/Inverted_File_Index.html">Inverted_File_Index</a></li><li class="chapter-item "><a href="../Basic/DataStructure/Linear/index.html">Linear</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../Basic/DataStructure/Linear/Bitmap.html">DS-Bitmap</a></li><li class="chapter-item "><a href="../Basic/DataStructure/Linear/List.html">DS-Linear_List</a></li></ol></li><li class="chapter-item "><a href="../Basic/DataStructure/NPProblem.html">DS-NP_problem</a></li><li class="chapter-item "><a href="../Basic/DataStructure/String/index.html">字符串匹配相关算法</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../Basic/DataStructure/String/match.html">字符串匹配算法</a></li></ol></li><li class="chapter-item "><a href="../Basic/DataStructure/Tree/index.html">Tree and BST</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../Basic/DataStructure/Tree/BTree.html">B Tree and B+ Tree</a></li><li class="chapter-item "><a href="../Basic/DataStructure/Tree/BalancedTree.html">AVL Tree and Splay Tree</a></li><li class="chapter-item "><a href="../Basic/DataStructure/Tree/DisjointSet.html">Disjoint Set</a></li><li class="chapter-item "><a href="../Basic/DataStructure/Tree/HuffmanTree.html">Huffman Tree</a></li><li class="chapter-item "><a href="../Basic/DataStructure/Tree/RBTree.html">红黑树 B树 B+树</a></li><li class="chapter-item "><a href="../Basic/DataStructure/Tree/ThreadedTree.html">Threaded Binary Tree</a></li></ol></li></ol></li><li class="chapter-item "><a href="../Basic/Database/index.html">Database</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../Basic/Database/Object.html">Database-Object-Based_Databases</a></li><li class="chapter-item "><a href="../Basic/Database/PostgreSQL-Conflict-reticenceji_Win10.html">Database-PostgreSQL</a></li><li class="chapter-item "><a href="../Basic/Database/PostgreSQL.html">Database-PostgreSQL</a></li><li class="chapter-item "><a href="../Basic/Database/SQL-Conflict-reticenceji_Win10.html">基础SQL</a></li><li class="chapter-item "><a href="../Basic/Database/SQL.html">基础SQL</a></li><li class="chapter-item "><a href="../Basic/Database/XML-Conflict-reticenceji_Win10.html">Database,Web-XML</a></li><li class="chapter-item "><a href="../Basic/Database/XML.html">Database,Web-XML</a></li><li class="chapter-item "><a href="../Basic/Database/事务.html">Database-事务</a></li><li class="chapter-item "><a href="../Basic/Database/关系代数.html">Database-关系代数</a></li><li class="chapter-item "><a href="../Basic/Database/存储和查询.html">Database-存储和查询</a></li><li class="chapter-item "><a href="../Basic/Database/导论.html">Database-导论</a></li><li class="chapter-item "><a href="../Basic/Database/数据库设计.html">Database-数据库设计</a></li></ol></li><li class="chapter-item "><a href="../Basic/Maths/index.html">Maths</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../Basic/Maths/大数定理和中心极限定理.html">大数定理和中心极限定理</a></li><li class="chapter-item "><a href="../Basic/Maths/微积分下.html">微积分下</a></li><li class="chapter-item "><a href="../Basic/Maths/数值计算方法.html">数值计算方法</a></li><li class="chapter-item "><a href="../Basic/Maths/最小二乘法.html">最小二乘法</a></li><li class="chapter-item "><a href="../Basic/Maths/有限自动机介绍.html">有限自动机介绍</a></li><li class="chapter-item "><a href="../Basic/Maths/概统复习.html">概统复习</a></li><li class="chapter-item "><a href="../Basic/Maths/群论简介.html">群论简介</a></li></ol></li><li class="chapter-item "><a href="../Basic/Networking/index.html">Networking</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../Basic/Networking/ARP.html">Networking-ARP</a></li><li class="chapter-item "><a href="../Basic/Networking/CDN.html">CDN</a></li><li class="chapter-item "><a href="../Basic/Networking/DNS.html">DNS</a></li><li class="chapter-item "><a href="../Basic/Networking/FTP.html">FTP</a></li><li class="chapter-item "><a href="../Basic/Networking/HTTP.html">HTTP</a></li><li class="chapter-item "><a href="../Basic/Networking/ICMP.html">Internet Control Message Protocol</a></li><li class="chapter-item "><a href="../Basic/Networking/Mail.html">邮件协议</a></li><li class="chapter-item "><a href="../Basic/Networking/NAT.html">Network Address Translation</a></li><li class="chapter-item "><a href="../Basic/Networking/P2P.html">P2P</a></li><li class="chapter-item "><a href="../Basic/Networking/QUIC.html">QUIC</a></li><li class="chapter-item "><a href="../Basic/Networking/RTC.html">RTC</a></li><li class="chapter-item "><a href="../Basic/Networking/Socket.html">Socket</a></li><li class="chapter-item "><a href="../Basic/Networking/TCP.html">TCP</a></li><li class="chapter-item "><a href="../Basic/Networking/UDP.html">UDP</a></li><li class="chapter-item "><a href="../Basic/Networking/VMWare虚拟机网络配置.html">VMWare虚拟机网络配置</a></li><li class="chapter-item "><a href="../Basic/Networking/VPN.html">VPN</a></li><li class="chapter-item "><a href="../Basic/Networking/WebSocket.html">WebSocket</a></li><li class="chapter-item "><a href="../Basic/Networking/介质访问子层.html">Medium Access Sublayer</a></li><li class="chapter-item "><a href="../Basic/Networking/可靠传输.html">可靠传输</a></li><li class="chapter-item "><a href="../Basic/Networking/差错控制.html">差错控制</a></li><li class="chapter-item "><a href="../Basic/Networking/拥塞控制和流量控制.html">拥塞控制和流量控制</a></li><li class="chapter-item "><a href="../Basic/Networking/物理层.html">物理层</a></li><li class="chapter-item "><a href="../Basic/Networking/网络层.html">网络层 IP</a></li><li class="chapter-item "><a href="../Basic/Networking/网络设备.html">Networking-网络设备</a></li><li class="chapter-item "><a href="../Basic/Networking/路由协议.html">路由协议</a></li><li class="chapter-item "><a href="../Basic/Networking/链路层.html">链路层</a></li></ol></li><li class="chapter-item "><a href="../Basic/OS/index.html">OS</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../Basic/OS/Bootloader.html">OS-Bootloader</a></li><li class="chapter-item "><a href="../Basic/OS/Buddy_System&Slub.html">OS-Buddy_System&Slub</a></li><li class="chapter-item "><a href="../Basic/OS/Deadlock.html">OS-Deadlock</a></li><li class="chapter-item "><a href="../Basic/OS/IO.html">OS-IO</a></li><li class="chapter-item "><a href="../Basic/OS/Introduction.html">OS-Introduction</a></li><li class="chapter-item "><a href="../Basic/OS/Memory_Management.html">OS-Memory_Management</a></li><li class="chapter-item "><a href="../Basic/OS/Process.html">OS-Process</a></li><li class="chapter-item "><a href="../Basic/OS/Q&A.html">OS-Q&A</a></li><li class="chapter-item "><a href="../Basic/OS/RISCV学习笔记.html">OS-RISCV学习笔记</a></li><li class="chapter-item "><a href="../Basic/OS/SBI.html">OS-SBI</a></li><li class="chapter-item "><a href="../Basic/OS/Synchronization.html">OS-Synchronization</a></li><li class="chapter-item "><a href="../Basic/OS/Thread.html">OS-Thread</a></li><li class="chapter-item "><a href="../Basic/OS/UnixLinux中的IO模型.html">Linux中的I/O模型</a></li><li class="chapter-item "><a href="../Basic/OS/在K210运行裸机程序.html">OS-在K210运行裸机程序</a></li><li class="chapter-item "><a href="../Basic/OS/地址空间(一).html">OS-地址空间(一)</a></li><li class="chapter-item "><a href="../Basic/OS/操作系统.html">OS-操作系统</a></li></ol></li><li class="chapter-item "><a href="../Basic/Secure/index.html">Secure</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../Basic/Secure/Crypto/index.html">Crypto</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../Basic/Secure/Crypto/Federated_Learning.html">Federated Learning</a></li><li class="chapter-item "><a href="../Basic/Secure/Crypto/Oblivious_RAM.html">Oblivious RAM</a></li><li class="chapter-item "><a href="../Basic/Secure/Crypto/PIR.html">PIR</a></li><li class="chapter-item "><a href="../Basic/Secure/Crypto/PSI.html">Private set intersection</a></li><li class="chapter-item "><a href="../Basic/Secure/Crypto/加密和哈希.html">Crypto-加密和哈希</a></li><li class="chapter-item "><a href="../Basic/Secure/Crypto/加密数据库.html">Encrypted Database</a></li><li class="chapter-item "><a href="../Basic/Secure/Crypto/区块链技术.html">Bitcoin-区块链技术</a></li><li class="chapter-item "><a href="../Basic/Secure/Crypto/可证明安全.html">可证明安全</a></li><li class="chapter-item "><a href="../Basic/Secure/Crypto/安全多方计算.html">安全多方计算</a></li><li class="chapter-item "><a href="../Basic/Secure/Crypto/密码学基础.html">密码学算法介绍</a></li><li class="chapter-item "><a href="../Basic/Secure/Crypto/密码学进阶.html">密码学进阶</a></li><li class="chapter-item "><a href="../Basic/Secure/Crypto/差分隐私.html">差分隐私</a></li></ol></li><li class="chapter-item "><a href="../Basic/Secure/CryptoBasic.html">密码学基础</a></li><li class="chapter-item "><a href="../Basic/Secure/CtyptoProtocol.html">密码学协议</a></li><li class="chapter-item "><a href="../Basic/Secure/Forensics/index.html">电子取证</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../Basic/Secure/Forensics/FAT.html">FAT文件系统</a></li><li class="chapter-item "><a href="../Basic/Secure/Forensics/FileCarving.html">文件雕复</a></li><li class="chapter-item "><a href="../Basic/Secure/Forensics/Linux取证.html">Linux取证</a></li><li class="chapter-item "><a href="../Basic/Secure/Forensics/Memory.html">内存取证</a></li><li class="chapter-item "><a href="../Basic/Secure/Forensics/NTFS.html">NTFS文件系统</a></li><li class="chapter-item "><a href="../Basic/Secure/Forensics/Windows取证.html">Windows取证</a></li><li class="chapter-item "><a href="../Basic/Secure/Forensics/数据隐藏.html">数据隐藏</a></li><li class="chapter-item "><a href="../Basic/Secure/Forensics/文件系统取证.html">文件系统取证</a></li><li class="chapter-item "><a href="../Basic/Secure/Forensics/硬盘分析.html">硬盘分析</a></li><li class="chapter-item "><a href="../Basic/Secure/Forensics/移动设备取证.html">移动设备取证</a></li><li class="chapter-item "><a href="../Basic/Secure/Forensics/网络取证.html">网络取证</a></li></ol></li><li class="chapter-item "><a href="../Basic/Secure/IoT.html">无线与物联网安全</a></li><li class="chapter-item "><a href="../Basic/Secure/Network.html">网络安全</a></li><li class="chapter-item "><a href="../Basic/Secure/OperatingSystem.html">操作系统安全</a></li><li class="chapter-item "><a href="../Basic/Secure/Software/index.html">软件安全</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../Basic/Secure/Software/ASLR.html">ASLR</a></li><li class="chapter-item "><a href="../Basic/Secure/Software/CodeQL.html">CodeQL</a></li><li class="chapter-item "><a href="../Basic/Secure/Software/GlibcHeap.html">glibc heap allocator</a></li><li class="chapter-item "><a href="../Basic/Secure/Software/PIC.html">位置无关代码和共享库</a></li><li class="chapter-item "><a href="../Basic/Secure/Software/RELRO.html">RELRO</a></li><li class="chapter-item "><a href="../Basic/Secure/Software/pwntools.html">pwntools</a></li><li class="chapter-item "><a href="../Basic/Secure/Software/攻击视角.html">攻击软件安全</a></li><li class="chapter-item "><a href="../Basic/Secure/Software/程序分析.html">程序分析</a></li><li class="chapter-item "><a href="../Basic/Secure/Software/防御视角.html">软件安全防护</a></li></ol></li><li class="chapter-item "><a href="../Basic/Secure/SupplyChain.html">供应链安全</a></li></ol></li><li class="chapter-item "><a href="../Basic/软件保护技术.html">Reverse</a></li></ol></li><li class="chapter-item "><a href="../Language/index.html">Language</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../Language/Java/index.html">Java</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../Language/Java/基础.html">Java</a></li><li class="chapter-item "><a href="../Language/Java/鸿蒙应用开发.html">Java-鸿蒙应用开发</a></li></ol></li><li class="chapter-item "><a href="../Language/JavaScript/index.html">JavaScript</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../Language/JavaScript/Electron.html">Electron</a></li><li class="chapter-item "><a href="../Language/JavaScript/JavaScript简介.html">JavaScript简介</a></li><li class="chapter-item "><a href="../Language/JavaScript/Runtime.html">Runtime</a></li></ol></li><li class="chapter-item "><a href="../Language/Python/index.html">Python</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../Language/Python/0内置类型/index.html">内置对象</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../Language/Python/0内置类型/1字符串.html">字符串和字节串</a></li><li class="chapter-item "><a href="../Language/Python/0内置类型/2数值.html">数值</a></li><li class="chapter-item "><a href="../Language/Python/0内置类型/3列表和元组.html">序列</a></li><li class="chapter-item "><a href="../Language/Python/0内置类型/4字典和集合.html">映射</a></li><li class="chapter-item "><a href="../Language/Python/0内置类型/5迭代器和生成器.html">迭代器和生成器</a></li><li class="chapter-item "><a href="../Language/Python/0内置类型/6上下文管理器.html">上下文管理器</a></li></ol></li><li class="chapter-item "><a href="../Language/Python/1工作原理/index.html">工作原理</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../Language/Python/1工作原理/0对象模型.html">OOP模型</a></li><li class="chapter-item "><a href="../Language/Python/1工作原理/1类型.html">类型</a></li><li class="chapter-item "><a href="../Language/Python/1工作原理/2变量.html">变量</a></li><li class="chapter-item "><a href="../Language/Python/1工作原理/3特殊方法和重载.html">特殊方法和重载</a></li><li class="chapter-item "><a href="../Language/Python/1工作原理/4参数.html">参数</a></li><li class="chapter-item "><a href="../Language/Python/1工作原理/5多继承.html">多继承</a></li></ol></li><li class="chapter-item "><a href="../Language/Python/3高级写法/index.html">高级写法</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../Language/Python/3高级写法/1异常.html">Exception</a></li><li class="chapter-item "><a href="../Language/Python/3高级写法/2装饰器.html">装饰器</a></li></ol></li><li class="chapter-item "><a href="../Language/Python/4好用的库/index.html">PythonLib</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../Language/Python/4好用的库/Argparse.html">命令行参数</a></li><li class="chapter-item "><a href="../Language/Python/4好用的库/Bisect.html">Bisect</a></li><li class="chapter-item "><a href="../Language/Python/4好用的库/Builtin.html">Builtin</a></li><li class="chapter-item "><a href="../Language/Python/4好用的库/Container.html">Container</a></li><li class="chapter-item "><a href="../Language/Python/4好用的库/Crypto.html">Crypto</a></li><li class="chapter-item "><a href="../Language/Python/4好用的库/Enum.html">enum</a></li><li class="chapter-item "><a href="../Language/Python/4好用的库/FS.html">File System</a></li><li class="chapter-item "><a href="../Language/Python/4好用的库/Flask.html">Python-Flask</a></li><li class="chapter-item "><a href="../Language/Python/4好用的库/HTTP.html">Internet</a></li><li class="chapter-item "><a href="../Language/Python/4好用的库/IO.html">File IO</a></li><li class="chapter-item "><a href="../Language/Python/4好用的库/PyQt5.html">PySide2</a></li><li class="chapter-item "><a href="../Language/Python/4好用的库/Regex.html">Regex</a></li><li class="chapter-item "><a href="../Language/Python/4好用的库/Socket.html">Socket编程</a></li><li class="chapter-item "><a href="../Language/Python/4好用的库/Thread.html">多线程</a></li><li class="chapter-item "><a href="../Language/Python/4好用的库/Time.html">时间和日期</a></li><li class="chapter-item "><a href="../Language/Python/4好用的库/Trio.html">Trio</a></li><li class="chapter-item "><a href="../Language/Python/4好用的库/format.html">Format String</a></li><li class="chapter-item "><a href="../Language/Python/4好用的库/venv.html">Virtual Environment</a></li><li class="chapter-item "><a href="../Language/Python/4好用的库/数据持久化.html">简单的数据持久化</a></li><li class="chapter-item "><a href="../Language/Python/4好用的库/文档和测试.html">文档和测试</a></li><li class="chapter-item "><a href="../Language/Python/4好用的库/计算器.html">把Python当计算器</a></li></ol></li><li class="chapter-item "><a href="../Language/Python/运算符.html">运算符</a></li></ol></li><li class="chapter-item "><a href="../Language/Rust/index.html">Rust</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../Language/Rust/Basic/index.html">Basic</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../Language/Rust/Basic/Any.html">Any</a></li><li class="chapter-item "><a href="../Language/Rust/Basic/Async.html">异步编程</a></li><li class="chapter-item "><a href="../Language/Rust/Basic/Casting.html">Casting</a></li><li class="chapter-item "><a href="../Language/Rust/Basic/ClosureAndIter.html">迭代器和闭包</a></li><li class="chapter-item "><a href="../Language/Rust/Basic/CratesAndModules.html">Crates and Modules</a></li><li class="chapter-item "><a href="../Language/Rust/Basic/Error.html">Rust-错误处理</a></li><li class="chapter-item "><a href="../Language/Rust/Basic/Macro.html">宏</a></li><li class="chapter-item "><a href="../Language/Rust/Basic/Trait.html">Trait</a></li><li class="chapter-item "><a href="../Language/Rust/Basic/TypeAndLifetime.html">从类型系统看生命周期</a></li><li class="chapter-item "><a href="../Language/Rust/Basic/Unsafe.html">Unsafe</a></li><li class="chapter-item "><a href="../Language/Rust/Basic/pattern.html">模式匹配</a></li></ol></li><li class="chapter-item "><a href="../Language/Rust/Build.html">Build</a></li><li class="chapter-item "><a href="../Language/Rust/Cargo/index.html">Cargo</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../Language/Rust/Cargo/clippy.html">Clippy</a></li><li class="chapter-item "><a href="../Language/Rust/Cargo/fix.html">Cargo fix</a></li><li class="chapter-item "><a href="../Language/Rust/Cargo/make.html">Cargo make</a></li></ol></li><li class="chapter-item "><a href="../Language/Rust/Compiler.html">Compiler</a></li><li class="chapter-item "><a href="../Language/Rust/Crate/index.html">Crates</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../Language/Rust/Crate/Anyhow.html">AnyHow & ThisError</a></li><li class="chapter-item "><a href="../Language/Rust/Crate/Cell.html">Cell</a></li><li class="chapter-item "><a href="../Language/Rust/Crate/Diesel.html">Diesel</a></li><li class="chapter-item "><a href="../Language/Rust/Crate/Dioxus.html">Dioxus</a></li><li class="chapter-item "><a href="../Language/Rust/Crate/EnumDispatch.html">Dispatch</a></li><li class="chapter-item "><a href="../Language/Rust/Crate/IO.html">IO</a></li><li class="chapter-item "><a href="../Language/Rust/Crate/collections.html">容器的增删改查</a></li><li class="chapter-item "><a href="../Language/Rust/Crate/gtk-rs.html">gtk-rs</a></li><li class="chapter-item "><a href="../Language/Rust/Crate/r2d2.html">r2d2</a></li><li class="chapter-item "><a href="../Language/Rust/Crate/stdsync.html">std::sync</a></li><li class="chapter-item "><a href="../Language/Rust/Crate/字符串.html">字符串/字节流</a></li><li class="chapter-item "><a href="../Language/Rust/Crate/打包.html">打包</a></li><li class="chapter-item "><a href="../Language/Rust/Crate/智能指针.html">Rust-智能指针</a></li></ol></li><li class="chapter-item "><a href="../Language/Rust/FFI.html">FFI</a></li><li class="chapter-item "><a href="../Language/Rust/IO.html">Rust-IO</a></li><li class="chapter-item "><a href="../Language/Rust/Practice/index.html">Practice</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../Language/Rust/Practice/BestPractice.html">Rust最佳实践</a></li><li class="chapter-item "><a href="../Language/Rust/Practice/Debug.html">调试</a></li><li class="chapter-item "><a href="../Language/Rust/Practice/DesignPattern.html">设计模式</a></li><li class="chapter-item "><a href="../Language/Rust/Practice/Performance.html">性能优化</a></li><li class="chapter-item "><a href="../Language/Rust/Practice/Size.html">代码体积优化</a></li><li class="chapter-item "><a href="../Language/Rust/Practice/Test.html">测试最佳实践</a></li><li class="chapter-item "><a href="../Language/Rust/Practice/Type.html">类型转换</a></li><li class="chapter-item "><a href="../Language/Rust/Practice/Unsafe.html">Unsafe最佳实践</a></li></ol></li><li class="chapter-item "><a href="../Language/Rust/gtk.html">Rust-gtk-rs介绍</a></li><li class="chapter-item "><a href="../Language/Rust/函数参数匹配.html">函数参数匹配</a></li><li class="chapter-item "><a href="../Language/Rust/基础知识.html">基础知识</a></li><li class="chapter-item "><a href="../Language/Rust/多线程.html">多线程支持</a></li><li class="chapter-item "><a href="../Language/Rust/混合编程.html">混合编程</a></li><li class="chapter-item "><a href="../Language/Rust/精髓.html">Rust-精髓</a></li></ol></li><li class="chapter-item "><a href="../Language/Scala/index.html">Scala</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../Language/Scala/0控制结构.html">控制结构</a></li><li class="chapter-item "><a href="../Language/Scala/1数据结构.html">数据结构</a></li><li class="chapter-item "><a href="../Language/Scala/2_0类和对象.html">Class</a></li><li class="chapter-item "><a href="../Language/Scala/2_1继承.html">继承</a></li><li class="chapter-item "><a href="../Language/Scala/2_2特质.html">Trait</a></li><li class="chapter-item "><a href="../Language/Scala/3_1花里胡哨的函数.html">花里胡哨的函数</a></li><li class="chapter-item "><a href="../Language/Scala/3_2匿名函数和闭包.html">函数</a></li><li class="chapter-item "><a href="../Language/Scala/3_3模式匹配.html">模式匹配</a></li><li class="chapter-item "><a href="../Language/Scala/3_4容器的函数式操作.html">容器的函数式操作</a></li><li class="chapter-item "><a href="../Language/Scala/ScalaDepth/index.html">ScalaDepth</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../Language/Scala/ScalaDepth/Class文件.html">Class文件</a></li><li class="chapter-item "><a href="../Language/Scala/ScalaDepth/ScalaInDepth.html">Scala in Depth 读书笔记</a></li><li class="chapter-item "><a href="../Language/Scala/ScalaDepth/Spark.html">Spark</a></li><li class="chapter-item "><a href="../Language/Scala/ScalaDepth/jvm.html">《深入理解Java虚拟机读书》笔记</a></li><li class="chapter-item "><a href="../Language/Scala/ScalaDepth/函数式的一些概念.html">Scala中一些函数式概念</a></li><li class="chapter-item "><a href="../Language/Scala/ScalaDepth/泛型擦除.html">泛型擦除</a></li><li class="chapter-item "><a href="../Language/Scala/ScalaDepth/简单的类型原理.html">类型</a></li></ol></li><li class="chapter-item "><a href="../Language/Scala/sbt.html">sbt</a></li><li class="chapter-item "><a href="../Language/Scala/trait.html">trait</a></li><li class="chapter-item "><a href="../Language/Scala/枚举.html">枚举</a></li><li class="chapter-item "><a href="../Language/Scala/样例类和模式匹配.html">样例类和模式匹配</a></li><li class="chapter-item "><a href="../Language/Scala/测试和文档.html">测试和文档</a></li><li class="chapter-item "><a href="../Language/Scala/组合和继承.html">类的组合和继承</a></li></ol></li><li class="chapter-item "><a href="../Language/Snippet/index.html">Snippets</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../Language/Snippet/c.html">c</a></li><li class="chapter-item "><a href="../Language/Snippet/linux.html">linux</a></li><li class="chapter-item "><a href="../Language/Snippet/python.html">python</a></li><li class="chapter-item "><a href="../Language/Snippet/rust.html">rust</a></li></ol></li></ol></li><li class="chapter-item "><a href="../Tools/index.html">Tools</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../Tools/Docker.html">Docker</a></li><li class="chapter-item "><a href="../Tools/GDB.html">GDB</a></li><li class="chapter-item "><a href="../Tools/Git/index.html">Git</a></li><li class="chapter-item "><a href="../Tools/Git.html">Git</a></li><li class="chapter-item "><a href="../Tools/Githook.html">Githook</a></li><li class="chapter-item "><a href="../Tools/GithubCI.html">Github-CI</a></li><li class="chapter-item "><a href="../Tools/Latex.html">Latex</a></li><li class="chapter-item "><a href="../Tools/Make.html">Make与Makefile</a></li><li class="chapter-item "><a href="../Tools/VSCode.html">VSCode</a></li><li class="chapter-item "><a href="../Tools/Vim.html">Vim</a></li><li class="chapter-item "><a href="../Tools/WSL.html">WSL</a></li><li class="chapter-item "><a href="../Tools/双系统.html">双系统使用经历</a></li><li class="chapter-item "><a href="../Tools/软件打包.html">软件打包</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Reticence&#x27;s Notes</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="8086汇编笔记"><a class="header" href="#8086汇编笔记">8086汇编笔记</a></h1>
+<blockquote>
+<p>这篇文章是在我还不懂Markdown的时候写的，排版很乱。而且水平也很菜，只是因为内容很多舍不得删，留作纪念。</p>
+</blockquote>
+<p>8086汇编，王爽的《汇编语言（第三版）》阅读笔记。</p>
+<h2 id="代码片段示例"><a class="header" href="#代码片段示例">代码片段示例</a></h2>
+<h3 id="修改fl寄存器"><a class="header" href="#修改fl寄存器">修改FL寄存器</a></h3>
+<pre><code class="language-assembly">pushf		;FL入栈
+pop ax		;AX=FL
+or ax,100h	;
+push ax		;AX入栈
+popf		;FL=AX
+</code></pre>
+<h3 id="循环四次"><a class="header" href="#循环四次">循环四次</a></h3>
+<pre><code class="language-assembly">mov cx,4
+loop:
+  ...
+  sub cx,1
+jne loop
+</code></pre>
+<h3 id="函数"><a class="header" href="#函数">函数</a></h3>
+<pre><code class="language-assembly">functionname proc near
+;(word arg1 4,word arg2 6)	
+	push bp
+	mov bp,sp		        ;bp栈帧,方便参数的调用.构造堆栈框架(stack frame)
+	push another register   ;保护寄存器
+    sub sp,16               ;比如，我要开辟16个字节给临时变量（比如16个char）
+
+    [bp+4]      ;使用传入的参数
+    [bp-8]      ;使用开辟的变量
+    
+    add sp,16               ;释放我为临时变量开辟的的空间
+	pop another register    ;恢复寄存器
+    mov sp,bp               
+	pop bp                  ;恢复bp
+	ret 
+functionname endp
+</code></pre>
+<p>这里并没有开辟局部变量，其实还少了。为什么这里不用恢复esp呢，因为没有给内存开辟位置，pop完就回去了。CSAPP这一部分讲的也很好。 调用:</p>
+<pre><code class="language-assembly">mov ax,...
+push ax
+mov ax,...
+push ax			;参数压栈,从右到左,上次作业写反了.便于可变参数函数的实现
+call functionname
+add sp,4		;栈指针回归,相当于出栈了
+</code></pre>
+<h3 id="地址的引用"><a class="header" href="#地址的引用">地址的引用</a></h3>
+<pre><code class="language-assembly">data segment
+  abc db 1,2,3,4
+  xyz bw 1234h,5678h,9ABCh      ;内存真实情况：34h,12h,78h,56h
+data ends
+
+code segment
+assume ds:data cs:code      ;这个也是伪指令，让编译器在缺省是自动填充
+main:
+  mov ax,data
+  mov ds,ax                         ;开头先把段寄存器定义好了
+  ;引用abc的元素2
+  mov ah,abc[1]		;\直接引用
+  mov ah,[abc+1]	;/
+  ;引用xyz的元素5678h
+  mov bx, offset xyz	;首地址
+  mov ah,[bx+2]		;为啥+2？注意汇编语言是很老实的，+1就是地址+1,C语言中指针+1是和类型有关的
+  ;引用abc的元素2
+  mov bx,1		;下标
+  mov ah,abc[bx]	;\
+  mov ah,[abc+bx]	;/
+  ;引用abc的元素2
+  mov bx,offset abc	;首地址
+  mov si,1		    ;下标
+  mov ah,[bx+si]	;
+</code></pre>
+<h3 id="屏幕控制"><a class="header" href="#屏幕控制">屏幕控制</a></h3>
+<p>在dos中可以直接控制硬件，现在的操作系统都是会保护的</p>
+<ol>
+<li>
+<p>文本模式：text mode</p>
+<pre><code class="language-assembly">;调用int 10中断，将显卡切换到文本模式（默认）：
+mov ah,0
+mov al,3h
+int 10h         ;80×25
+显示文字（ASCII字符）：
+</code></pre>
+<pre><code class="language-assembly">mov ax,0b800h		    ;显存对应的地址
+mov es,ax
+mov byte ptr es:[0],'A'	;想要显示的字符
+mov byte ptr es:[1],70h	;7-&gt;白色背景 0-&gt;黑色前景
+			            ;一般的对于(x,y)坐标，偏移地址=(y×80+x)×2
+</code></pre>
+</li>
+<li>
+<p>图形模式：graphic mode</p>
+<pre><code class="language-assembly">;调用int 10中断，将显卡切换到图形模式：
+mov ah,0
+mov al,13h
+int 10h                 ;320×200分辨率,256色
+mov ax,0A000h           ;显存对应的地址
+mov es,ax               
+mov byte ptr es:[0],4   ;在（0,0）画一个红点
+</code></pre>
+</li>
+</ol>
+<h3 id="空循环"><a class="header" href="#空循环">空循环</a></h3>
+<pre><code class="language-assembly">   mov bx, 200h
+wait_wait:
+   mov dx, 0
+wait_a_while:
+   sub dx, 1
+   jnz wait_a_while
+   sub bx, 1
+   jnz wait_wait
+</code></pre>
+<h3 id="对齐"><a class="header" href="#对齐">对齐</a></h3>
+<pre><code class="language-assembly">data segment
+        ......
+date ends
+;当程序刚开始运行运行时，DOS会分配psp内存。psp段长度为100h，位置在程序的首段前。psp存放了关于程序的一些有用信息，比如命令行参数在psp:80h。
+;DOS会把自动ds与es赋值为psp段址（program segment prefix）
+;再赋值ss:sp=堆栈地址：堆栈长度      ;如果程序没有定义堆栈段，操作系统默认赋值 ss=程序首段的段地址，sp=0（最长）
+;再赋值cs:ip=代码段地址：main的偏移地址
+
+;对齐：如果data（前一个）段后的地址不能成为段地址（地址的末位非0），那么code（后一个）段会对齐到下一个能成为段地址的地址，中间用0填充
+code segment 
+        ......
+code ends
+
+stk segment stack
+        db 200h dup(0)
+stk ends        ;定义堆栈段
+;操作系统会自动把ss赋值为stk,sp赋值为栈长度
+;不要在堆栈段定义数据，操作系统不保证栈指针之前（上？）的数据完好。
+</code></pre>
+<h3 id="字母转大写"><a class="header" href="#字母转大写">字母转大写</a></h3>
+<pre><code class="language-assembly">and byte ptr [si],0dfh  ;因为大写字母和小写字母就差了一个位 
+</code></pre>
+<h3 id="修改中断函数"><a class="header" href="#修改中断函数">修改中断函数</a></h3>
+<pre><code class="language-assembly">assume cs:code
+code segment
+start:	mov ax,cx
+	mov ds,ax	
+	mov si,offset do0	;设置ds:si指向源地址
+	mov ax,0
+	mov es,ax
+	mov di,200h		;es:di指向目标写地址
+	mov cx,offset do0end-offset do0	;写长度，常量算数表达式
+
+	loop1:
+	  mov ax,ds:[si]
+	  mov es:[di],ax
+	  add si,1
+	  add di,1
+	  sub cx
+	  ja loop1
+	
+	mov ax,0
+	mov es,ax
+	mov word ptr es:[0*4],200h
+	mov word ptr es:[0*4+2],0h	;设置中断表
+;这一段，称为安装过程，把中断代码写到内存，首地址写到中断表
+	mov ax,4c00h
+	int 21h
+
+do0:	jmp short do0start
+	str db &quot;overflow&quot;		;把数据和代码混在同一个段的技巧
+do0start:
+	mov ax,cs
+	mov ds,ax
+	mov si,202h		;设置ds:si指向安装后的字符串首
+	
+	mov ax,0b800h
+	mov es,ax
+	mov di,0		;设置es:di指向显存映射的地址
+
+	mov cx,9		;字符串长度
+s:	mov al,ds:[si]
+	mov es:[di],al
+	add si,1
+	add di,2		;回忆显存映射，两个字节什么意思
+	sub cx,1
+	ja s
+
+	mov ax,4c00hh
+	int 21h
+do0end:	nop
+code ends
+end start
+</code></pre>
+<h3 id="短跳的反向跳跃"><a class="header" href="#短跳的反向跳跃">短跳的反向跳跃</a></h3>
+<pre><code class="language-assembly">je not_equal
+jmp euqal   ;所有的条件跳转都是短跳，无条件跳转编译器会帮你决定
+not_equal:
+...		中间距离太长,短跳跳不到
+equal:
+</code></pre>
+<h2 id="寄存器参考"><a class="header" href="#寄存器参考">寄存器参考</a></h2>
+<ul>
+<li>
+<p>通用寄存器ax,bx,cx,dx     ;这个是有高8位和低8位的，高位ah,低位al (针对通用寄存器)</p>
+</li>
+<li>
+<p>地址寄存器bx,bp,si,di      ;除了Si，其他3个也可以参加计算</p>
+</li>
+<li>
+<p>段寄存器  cs,ds,ss,es       （通过寄存器赋值）</p>
+<ul>
+<li>cs : code segment</li>
+<li>ds : data segment （决定了要读取内存的段地址<code>ds:[addr];</code>我们只能通过寄存器给ds赋值）</li>
+<li>ss : stack segment （ss&amp;si   栈指针）</li>
+<li>es : extra segment</li>
+</ul>
+</li>
+<li>
+<p>IP和CS配合使用，决定了当前要读取指令的地址，</p>
+</li>
+<li>
+<p>FL标志寄存器。flag是按照位起作用的，mov指令不影响任何标志位。inc,dec也不会。</p>
+</li>
+</ul>
+<div class="table-wrapper"><table><thead><tr><th>位数</th><th>名称</th><th>意义</th><th>备注</th></tr></thead><tbody>
+<tr><td>第0位</td><td>CF：进位标志</td><td>执行结果若向（虚空最高位）进位，CF置1：如97H-98H<br/>位移运算会把移出来的存到CF，加法进位/减法借位会让CF置1,位移运算移出来的位也会改变CF<br/>其实CF就是无符号数的溢出，对有符号数意义不大</td><td>jc:jump if c	jnc:jump if not CF	jc和jb等价<br/>adc ah,0:AH=AH+0+CF	add_with_carry<br/>clc:clear carry flag	stc:set carry flag	cmc:complement carry flag(取反)</td></tr>
+<tr><td>第2位</td><td>PF：奇偶标志</td><td>结果的低8bit 中1的个数，若为偶数，PF置1</td><td>jp 或 jpe (even) ; jnp,jpo (odd) ; 用于早期通讯的奇偶校验</td></tr>
+<tr><td>第4位</td><td>AF：辅助进位标志auxiliary flag</td><td>低4位是否向高4位进位或借位,和BCD码(Binary Coded Decimal)有关</td><td>19h ==&gt; 00010011，而BCD的19 <em>0001 1001</em>   +1 <em>0001 1010</em> = 1A   。但实际上我想要20(0010 0000),要调整，+6<br/>;daa:decimal adjust for add     因为BCD码加减的时候会出现错误，所以需要调整。只针对AL寄存器中的值进行调整。 aaa:ascii adjust for add</td></tr>
+<tr><td>第6位</td><td>ZF：零标志位</td><td>;执行相关指令的结果，若为0，ZF置1</td><td>jz:jump if zero ; jnz:jump if not zero  je和jz完全等价</td></tr>
+<tr><td>第7位</td><td>SF：符号标志</td><td>;执行结果中若结果为负（补码而言），SF置1。跟随运算结果的最高位（符号位）</td><td>;js:jumo if signflag（负）  jns:</td></tr>
+<tr><td>第8位</td><td>TF：跟踪标志，陷阱标志(Trace/Trap Flag)</td><td>若TF为1，CPU在执行完指令后会调用单步中断的中断处理程序int 1h</td><td></td></tr>
+<tr><td>第9位</td><td>IF：</td><td>当CPU检测到可屏蔽的中断信息时，如果IF=1，CPU在执行完当前指令后响应中断；如果IF=0，则不响应可屏蔽中断</td><td>IF=1允许硬件中断，允许计算机硬件向CPU发出中断请求。硬件中断一定是由某一个事件触发的，如用户敲键盘、时钟中断，而不是程序员写int指令实现的。<br/>cli:让IF=0，禁止中断，sti:让IF=1，允许中断</td></tr>
+<tr><td>第11位</td><td>OF：溢出标志</td><td>;执行结果超出数据范围（最高位）（有符号数而言），OF置1</td><td>OF对无符号数意义不大<br/>正+正=负、负+负=正，称为溢出；正负相加不会溢出。<br/>;jo:jump if overflow  jno:</td></tr>
+<tr><td>第10位</td><td>DF:方向标志(Direction flag)</td><td>DF=0为正方向（低地址到高地址）</td><td>cld:让DF=0;      std:让DF=1<br/>源首地址&lt;目标首地址，赋值按照反方向，源首地址&gt;目标首地址，赋值按照正方向。当然，这只在地址有重叠的时候重要</td></tr>
+<tr><td></td><td></td><td></td><td></td></tr>
+</tbody></table>
+</div>
+<pre><code>	adc ax,bx	;ax=ax+bx+CF
+		用以实现加法的进位
+	sbb ax,bx	;ax=ax-bx-CF
+		用以实现减法的借位
+    clc stc :clear/set CF
+    cli sti : clear/set IF
+    cld std : clear/set DF
+</code></pre>
+<ol start="5">
+<li>memory
+地址寄存器register： bx,bp,si,di表示地址
+8086寻址模式：地址=段地址*16+偏移地址
+逻辑地址：  1000h:0ffffh ，物理地址：1ffffh。
+显然，一个逻辑地址对应一个物理地址，但是一个物理地址可以对应多个逻辑地址。</li>
+</ol>
+<pre><code>ds:[bx].idata[si/di]    
+ss:[bp].idata[si/di]    ;寻址组合方式，段地址不能用常数表示
+    bp默认和ss对应，这就是栈
+</code></pre>
+<p>偏移地址可以用常数表示，称为直接寻址
+偏移地址可以用上述四个寄存器表示
+register/ b?+?i / b?+?i+idata，称为间接寻址
+在没有寄存器确定操作内存单元大小时，要显示指明：
+mov <em>word ptr</em> ds:[0],1
+inc <em>byte ptr</em> [bx]
+段跨越：通过在操作数钱添加一个段前缀（segment prefix），如cs:[bx]，强制改变操作数的段地址，否则的话bp默认对应ss，其他默认是ds</p>
+<!-- 没有疑问，确实如此 -->
+<ol start="6">
+<li>“开辟”内存，这些都是伪指令，给编译器用的。</li>
+</ol>
+<pre><code>  db	 define byte		1byte	char，  例：length db 10h
+  dw	 define word		2byte
+  dd	 define double		4byte	float,int
+  dq	 define quad word	8byte	double/__int64(long long int) %I64d		
+  dt	 define ten byte		10byte	long double %Lf
+  dup 重复定义 如：db 10 dup {0}
+</code></pre>
+<ol start="7">
+<li>
+<p>小端规则little endian(Intel) 
+低地址存低位
+任何指令的源操作数和目标操作数的宽度一定一样。常数是没有宽度的。</p>
+</li>
+<li>
+<p>ptr 
+byte ptr        1字节
+word ptr        2字节
+dword ptr       4字节
+fword ptr	48bit 16bit段地址+32bit偏移地址
+qword ptr	8word
+tword ptr	10word</p>
+</li>
+</ol>
+<p>near ptr 近，当前指令和目标地址在同一个段内
+far ptr 远，跨段跳
+一般和jump，call连用，这两个修饰标号</p>
+<h2 id="指令参考"><a class="header" href="#指令参考">指令参考</a></h2>
+<h3 id="计算指令"><a class="header" href="#计算指令">计算指令</a></h3>
+<p>加减法指令</p>
+<pre><code>add，sub 不能地址+地址
+inc ax	;++指令，比add快,而且不会影响CF寄存器
+adc ax,bx	;带进位加ax=ax+bx+CF
+dec ax	;--不影响CF寄存器
+sbb ax,bx	;带借位减ax=ax-bx-CF
+neg ax	;求相反数,会影响CF,ZF,SF等标志位,ax=0-ax
+cmp ax,bx	;只改变标志位的sub
+</code></pre>
+<p>idiv符号除法，div除法指令</p>
+<pre><code>    div bl			;16bit/8bit  商在AL，余数在AH，被除数默认在AX
+    div word ptr ds:[bx]	;32bit/16bit 商在AX，余数在DX，被除数默认在DX:AX
+    ;在80386下，还可以64bit/32bit：
+    div ax          ;商在EAX，余数在EDX，被除数默认在EDX:EAX
+</code></pre>
+<p>imul符号乘法，mul乘法指令</p>
+<pre><code>	mul bl			;8bit*8bit	结果在AX，另一个乘数默认在AL
+	mul word ptr ds:[bx]	;16bit*16bit	结果在DX:AX，另一个乘数默认在AX
+    ;在80386下，还可以32bit*32bit：
+	mul ecx          ;结果在EDX:EAX，另一个乘数默认在EAX
+</code></pre>
+<h3 id="位运算指令"><a class="header" href="#位运算指令">位运算指令</a></h3>
+<p>在8086中，位移数大于1需要通过寄存器cl；在80386中没有这个限制</p>
+<p>and     &amp;				使得1位不变，0位变0
+or	    |				使得0位不变，1位变1
+xor	    ^		<code>xor ax,bx</code>	使得0位不变，1位取反
+not	    ~		<code>not ax	</code>	
+shl	    &lt;&lt;	逻辑左移	<code>shl ax,1</code><br />
+shr	    &gt;&gt;	逻辑右移<br />
+rol 	_rotl()	循环左移    <code>rol ax,cl	x&lt;&lt;n | x&gt;&gt; sizeof(x)*8-n</code>
+ror	    _rotr()	循环右移
+sal		算数左移,算数左移和逻辑左移是等价的
+sar		算数右移
+rcl		带进位循环左移
+rcr		带进位循环右移
+test    和and一样，但是丢弃结果</p>
+<h3 id="转移指令"><a class="header" href="#转移指令">转移指令</a></h3>
+<ul>
+<li>无条件跳转 jmp </li>
+</ul>
+<!--疑惑之处：这里近跳和短跳是不是相对寻址，可以试一下 -->
+<pre><code>jmp short flag		;转移范围在127		短跳,跳跃距离只有一个字节.故指令一共四位
+						    ;所有的条件跳转都是短跳,所以可能会出现跳不到的情况.可以用反向跳跃
+
+jmp near ptr flag	;转移范围在32767	近跳,跳跃距离两个字节,后面除了跟标号还可以跟16bit寄存器或16bit变量
+jmp reg			//IP=reg 16bit
+jmp word ptr ds:[0]	//IP
+
+jmp far	ptr flag	 ;远跳,jmp 段地址:偏移地址,是直接寻址了不是相对了
+					        ;jmp dword ptr/32 bit 变量,同样也是直接寻址.
+					        ;但是jmp 1234:5678 常数跳转直接这样写会报错要用机器编码
+					        ;db ea		;long jmp的机器码
+				            ;dw 1234h
+					        ;dw 5678h
+					        ;标号跳转,不需要加标号,编译器会自动判断.
+jmp dword ptr ds:[0]	//CS高地址 IP低地址
+</code></pre>
+<ul>
+<li>loop flag	;和下面的代码等效
+<pre><code>  cx--;
+  if (cx!=0) goto flag;
+</code></pre>
+</li>
+<li>条件跳转(都是短跳)
+ja  jb  jae jbe	针对非符号数比较的跳转		根据CF判断(ZF)
+jg,jl,jge,jle       针对符号数比较的跳转		根据<code>SF==OF</code>判断(ZF)（jl SF!=OF）
+je   jne   jz  jnz  判断是否相等（je和jz等价）
+jc  jnc     根据CF判断，换句话说jc和jb等价
+js  jns     根据SF判断，js就是说如果是负数就跳转，不知有什么用
+jo  jno    根据OF判断，jo就是说如果溢出就跳转，不知有什么用
+jcxz        根据CX（不是标志寄存器哦）判断，如果<code>cx==0</code>就跳转。多半和循环配合使用。
+格式: jxxx flag
+调用指令：
+int     中断
+iret    中断的返回（详见后面的中断部分）</li>
+</ul>
+<p>call dest   近调用，需要压入偏移地址</p>
+<pre><code>    call flag	    ;push ip;jmp short ptr flag
+    call word ptr ds:[dx] ;push ip;jmp short ptr ds:[dx]
+    call reg      ;感觉这个有函数指针的味了
+</code></pre>
+<p>ret/retn	    //pop ip，近返回
+ret/retn count  //pop ip,SP+=count，用于被调用者清理参数的情况。</p>
+<p>call dest   远调用，需要压入完整的位置 push CS,push IP,CS:IP = dest</p>
+<pre><code>call far ptr flag	    ;push cs;push ip;jmp far ptr flag 
+call dword ptr ds:[dx]      ;低位存低地址，高位存高地址
+</code></pre>
+<p>retf		//pop ip，pop cs，远返回</p>
+<h3 id="和栈有关的指令"><a class="header" href="#和栈有关的指令">和栈有关的指令</a></h3>
+<p>push 压栈</p>
+<p>push 后面只可以跟一个16位的寄存器或者word ptr的内存地址</p>
+<pre><code>		sp=sp-2;
+		ss:[sp]=word ptr source;
+</code></pre>
+<p>pop出栈</p>
+<pre><code>		desti=word ptr ss:[sp];
+		sp=sp+2;
+</code></pre>
+<p>pushf	把标志寄存器压栈
+popf	把标志寄存器出栈,不可以pop FL</p>
+<p>注意 push FL,IP	错误,任何指令都不可以 <em>直接引用</em> 这两个寄存器
+注意 pop FL,IP,CS	错误,CS不能 <em>直接修改</em></p>
+<p>8086  push/pop后面可以跟16位的寄存器和变量。
+80386 push/pop后面可以跟32位的寄存器，变量，常数。上面变成±4</p>
+<h3 id="地址传送指令"><a class="header" href="#地址传送指令">地址传送指令</a></h3>
+<ul>
+<li>取地址LEA最常用
+格式 lea reg,mem</li>
+</ul>
+<pre><code>		lea dx,ds:[1000h]	&lt;=&gt;	mov dx,1000h
+		lea dx,abc		&lt;=&gt;	mov dx,offset abc
+		lea dx,ds:[bx+si+3]	&lt;=&gt;	dx=bx+si+3,简化加法运算,是mov不可取代的.	
+		lea eax,[eax+eax*4]	&lt;=&gt;	eax=eax*5,简化乘法运算
+</code></pre>
+<ul>
+<li>lds和les
+格式 lds reg,mem</li>
+</ul>
+<pre><code>les si,[]		;从内存中读出远指针地址存放到 es:si，同下咯
+lds di,es:[1000h]		;从内存中读出远指针地址存放到 ds:di。就是
+    ;mov di , word ptr es:[1000h]
+    ;mov ds, word ptr es:[1002h] ,意会一下，不可以对ds这么操作。
+les edi,[]		;从内存中读出48位远指针(16:32)存放到es:edi
+</code></pre>
+<ul>
+<li>LAHF,SAHF,PUSHF,POPF，标志寄存器传送指令</li>
+</ul>
+<pre><code>    lahf    ;Load AH with Flags，把FL的低8位装到AH。
+    sahf    ;Store AH in Flags，把AH存入FL的低八位。
+    pushf   ;把FL压入堆栈，这就不止8位了。
+    popf    
+</code></pre>
+<h3 id="其他指令"><a class="header" href="#其他指令">其他指令</a></h3>
+<ul>
+<li>
+<p>xchg ax,bx	交换ax,bx的值.</p>
+</li>
+<li>
+<p>符号扩充指令 和idiv指令配合。没有操作数
+cbw	把AL扩充成AX		convert byte to word
+cwd	把AX扩充成DX:AX		convert word to dword
+cdq	把EAX扩充成EDX:EAX	convert dword to qword</p>
+</li>
+<li>
+<p>扩充指令	mov by zero extention &amp; mov by sign extension
+movzx ax,al	&lt;=&gt; mov ah,0
+movzx ax,bl	;零扩充
+movsx eax,al	;符号扩充
+上面那三个指令相形见绌</p>
+</li>
+</ul>
+<p>换码指令:xlat (translate)或叫查表指令,用法如下。没有操作数</p>
+<pre><code>{
+    char t[]=&quot;0123456789ABCDEF&quot;
+    int i=10;
+    i=t[i];    
+} //C语言代码，翻译如下
+	mov ax,seg t
+	mov ds,ax
+	mov bx,offset t	;让ds:bx指向表t首地址
+	mov al,10	;al为下标
+	xlat		;al=ds:[bx+al]
+</code></pre>
+<p>in,out  对端口进行读写</p>
+<h3 id="字符串指令"><a class="header" href="#字符串指令">字符串指令</a></h3>
+<p>movs 字符串传送
+cmps 字符串比较
+scas 字符串扫描
+stos 存入字符串
+lods 从字符串取
+一些前缀：
+rep 重复
+repe、repz 如果相等则重复
+repne、repnz    如果不相等则重复
+<code>es:[di]多半被写，ds[si]多半被读</code></p>
+<ul>
+<li><strong>movsb</strong>字符串传送指令(strncpy) </li>
+</ul>
+<pre><code>	rep movsb	;repeat move string by byte
+	;相当于如下指令
+    again:
+    	if (cx==0) goto done;	cx规定了repeat的次数
+	    
+        byte ptr es:[di] = byte ptr ds:[si]
+	    if (df == 0)	;df 方向flag,cld&amp;std操作df	
+		    {si++; di++}
+	    else	
+		    {si--; di--}    //中间这一块是movsb
+	    
+        cx--;
+	goto again
+	;如果没有rep,执行一次,不改变cx
+	;类似的也有movsw,movsd
+</code></pre>
+<ul>
+<li><strong>cmpsb</strong>字符串比较指令</li>
+</ul>
+<pre><code>	cmpsb   ;比较byte ptr ds:[si] 
+
+	repe cmpsb	;repe: repeat if equal,有两个循环条件 
+	again:
+	if (cx==0) goto done
+	
+    cmp byte ptr ds:[si], es:[di]       //注意repe/repne所依据的ZF就是这一句决定的
+	if (df == 0)	;df 方向flag,cld&amp;std操作df	
+		{si++; di++;}
+	else	
+        {si--; di--;}
+    
+    cx--;
+	if (ZF == 1) goto again
+	done:
+</code></pre>
+<ul>
+<li><strong>stosb</strong>		;存入字符串指令  store byte，自然也有stosw--ax;stosd--eax</li>
+</ul>
+<pre><code>	es:[di] = al;
+	if (df == 0)
+        di++;		
+    else 
+        di --;
+	同样的也能和rep配合使用
+</code></pre>
+<ul>
+<li><strong>lodsb</strong>		;加载al的内容</li>
+</ul>
+<pre><code>	al = ds:[si]
+    if (df == 0)
+	    si++;
+    else 
+        si --;
+	一般不和rep连用... 自然也有lodsw,lodsd
+</code></pre>
+<ul>
+<li><strong>scasb</strong>  字符串扫描指令，用于在字符串中查找一个字符。
+<code>repne scasb</code> 等价于如下指令</li>
+</ul>
+<pre><code>agian:
+    if (cx==0) goto done;
+    cmp al,es:[di];  //这一句决定FL
+    if (df == 0)
+        inc di  ;
+    else 
+        dec di  ;
+    cx--;
+    if (ZF == 0) goto again;
+done:
+</code></pre>
+<h2 id="中断"><a class="header" href="#中断">中断</a></h2>
+<p>中断表的初始化由bios和dos负责填入
+用户可以修改中断向量,但是保存的时候通常需要保存原来的中断向量以便让我们的代码和老代码链接起来 
+比如,在前面加一个判断执行自己的私货,再跳到原本的中断
+<em>hook技术</em>:改变系统功能</p>
+<p>在8086CPU中,中断表在0000:0000-0000:03FF,占400h个字节,保存100h个中断向量(一个4字节,远指针)
+int 21h是DOS系统的内核,其代码是微软写的,代码保存在磁盘上.与视频的输出有关.函数地址保存在0:84h处
+int 16h,与键盘的输入有关
+int 13h,与磁盘的输入输出有关
+int 10h是BIOS的一部分，其代码是主板的厂家写的，代码保存在ROM中。
+（1）内中断
+int指令都执行了什么动作</p>
+<pre><code>	取得中断类型码
+	pushf		;标志寄存器入栈
+	TF=0 IF=0	;设置TF与IF位为0 ,禁止外部中断和单步中断
+	push CS
+	push IP
+	IP=0000h:[4*N] 
+    CS)=0000h:[N*4+2]	;读取存放在 中断表的 中断处理程序 的入口地址
+</code></pre>
+<p>iret执行了什么动作</p>
+<pre><code>	pop IP
+	pop CS
+	popf		
+</code></pre>
+<p>中断过程：</p>
+<ul>
+<li>保存用到的寄存器，转移控制（隐含在int）</li>
+<li>处理中断</li>
+<li>恢复用到的寄存器，转移控制（隐含在iret）</li>
+</ul>
+<p>可屏蔽中断是CPU可以不响应的外中断，不可屏蔽中断是CPU必须响应的外中断。
+中断函数要求保护每个寄存器,普通的函数只需要保护四个就可以了bx,bp,....
+常用中断</p>
+<pre><code>exit：
+    AH = 4Ch
+    AL = return code
+    int 21h		
+getchar：
+    AH = 01h
+    int 21h		
+    AL = read char
+putchar：
+    AH = 02h
+    DL = write char
+    int 21h
+puts：
+    AH = 09h
+    DS:DX -&gt; the addr of string,    以$作为字符串结尾
+    int 21h
+gets：
+    AH = 10h
+    DS:DX -&gt; the addr of buffer     但是buffer从第二位开始才是读入的内容，第0位是最大长度，第1位是读入长度。换行符被舍弃，回车符被读入但是不算在计数中。
+    int 21h
+</code></pre>
+<h1 id="笔记二"><a class="header" href="#笔记二">笔记(二)</a></h1>
+<h3 id="8086cpu"><a class="header" href="#8086cpu">8086CPU</a></h3>
+<p>A000-F000段均不是用户的内存空间
+POST（Power On Self Test）（开机引导程序）位于ROM中，映射到F000段，可读可执行不可写。
+DOS留给用户的内存空间：0000:0000-9000：FFFF 640K的空间</p>
+<h3 id="bios和dos提供的中断例程的安装"><a class="header" href="#bios和dos提供的中断例程的安装">BIOS和DOS提供的中断例程的安装</a></h3>
+<p>(1)开机后，CPU加电，初始化 CS=0ffffh,IP=0,自动从FFFF:0000开始执行程序。
+FFFF:0000有一段跳转指令，CPU执行该指令后，转去执行BIOS中的硬件系统检测和初始化程序。
+(2)初始化程序将建立BIOS所支持的中断向量，即将BIOS提供的中断例程入口地址登记在中断向量表中。
+注意，对于BIOS所提供的中断例程，只需将入口地址登记在中断向量表中即可，因为他们是固化到ROM中的程序，在内存中一直存在。
+(3)硬件系统检测和初始化完成后，调用int 19h进行操作系统的引导。从此将计算机交给操作系统控制。
+(4)DOS启动后，除完成其他工作外，还将它所提供的中断例程装入内存，并建立相应的中断向量。</p>
+<h3 id="端口port"><a class="header" href="#端口port">端口port</a></h3>
+<p>CPU -- port -- I/O
+端口编号就是端口地址，范围在[0000h,0FFFFh]。
+是不是有点奇怪为什么端口号和中断表的地址重合了？因为在8086中采用了独立编址，I/O地址与存储器地址分开，采用专门指令来访问I/O。LC3采用了统一编址，I/O占用存储器地址空间，无须专门的I/O指令。
+<a href="https://blog.csdn.net/yinwei520/article/details/6114027?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.add_param_isCf&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.add_param_isCf">参考链接</a>
+<img src="../images/1596179819014.png" alt="王爽汇编" />
+约定的，60h与键盘相关，70h\71h与cmos相关
+用in和out指令控制</p>
+<pre><code>        in al,60h       ;从60h端口中读取一个字节到AL
+        in ah,dx        ;第一个操作数只能是ah/al，第二个只能是dx或00h-0ffh之间的立即数
+        out 70h,al    ;把AL的内容发送给端口71h
+</code></pre>
+<p>汇编语言级别 高级--中级--低级	;调用方式越来越难，功能越来越强
+①DOS级别</p>
+<pre><code>	如：c=getchar();
+	mov ah,1
+	int 21h
+</code></pre>
+<p>②BIOS级别</p>
+<pre><code>	如：key=bioskey(0);
+	mov ah,0
+	int 16h
+	能读取F1-F12功能键，Home/Up/Down/End等功能键
+</code></pre>
+<p>③端口级别</p>
+<pre><code>	如：key=inport(0x60)
+	in al,60h		;这里只是核心代码，其实还有很多准备工作。
+	能读取到Ctrl键等
+</code></pre>
+<h3 id="386与use16"><a class="header" href="#386与use16">.386与use16</a></h3>
+<p>开始的时候加一个.386,每个segment后面加一个use16，表示仍然是16位寻址模式</p>
+<ol>
+<li>32位比16位多了<code>[reg+reg*n+im]</code>这种寻址方式。
+其中n=2/4/8
+reg可以 ebx,ebp,esi,edi  eax,ecx,edx,esp 里任选
+如：<code>mov eax,[ebx+esi*4]</code>
+符合C语言的寻址方式 如 <code>long a[4]</code>
+ebx:数组a的首地址，esi:下标，4:sizeof(long)	</li>
+<li>mul指令
+;如果参数是 r8/m8,   将把  AL 做乘数, 结果放在 AX
+;如果参数是 r16/m16, 将把  AX 做乘数, 结果放在 DX:AX
+;如果参数是 r32/m32, 将把 EAX 做乘数, 结果放在 EDX:EAX
+imul 符号乘法
+imul 有和mul相同的用法</li>
+</ol>
+<pre><code>imul eax,ebx	;eax*=ebx	①
+imul eax,ebx,3	;eax=ebx*3	②
+</code></pre>
+<p>①②中第二个操作数可以使用寄存器或者变量,②中第三个操作数一定是常数</p>
+<ol start="3">
+<li>
+<p>DIV指令
+无符号除法指令div
+操作数为8位（二进制）：ax除以操作数，商放在al中，余数放在ah中
+操作数为16位（二进制）：dx:ax除以操作数，商放在ax中，余数放在dx中
+操作数为32位（二进制）：edx:eax除以操作数，商放在eax中，余数放在edx中
+不难发现,这里是很可能溢出的。除法溢出会引发优先级高的内中断.安全起见,用高位的除法.如7FFF FFFFh / 10h
+mov eax,7FFFFFFFh
+xor edx,edx	;高位清零
+mov ebx,10h
+div ebx</p>
+</li>
+<li>
+<p>push/pop
+push和pop后面不可以跟一个8位的寄存器或变量.
+push和pop后面可以跟常数了	.386特性</p>
+</li>
+<li>
+<p>FL升级为EFL,如果要把EFL压入堆栈要用pushfd,相应的有popfd</p>
+</li>
+</ol>
+<h4 id="小数指令80387现在已经基本被淘汰了"><a class="header" href="#小数指令80387现在已经基本被淘汰了">小数指令80387，现在已经基本被淘汰了</a></h4>
+<p>pi dd 3.14	;相当于C语言的float	%f
+r dq 3.14159	;相当于double		%lf
+s dt 3.1415926	;相当于long double	%Lf tbyte ptr
+result dd 0</p>
+<p>小数寄存器st(0),st(1)...st(7),80 bits
+例子:</p>
+<pre><code>	fld pi		;把pi加载到st(0)	;这里不用 xxx ptr,可能是编译器自动识别吧
+	fld r		;把r加载到st(0),pi被挤到st(1),好迷惑的操作
+	fmul st,st(1)	;st(0)*=st(1)
+	fstp result	;把st(0)的内容弹出到result
+	fstp st		;我弹我自己,把栈清空
+</code></pre>
+<p>fild x	:把x里面的整数转换成浮点数再载入
+fadd，fsub，fmul，fdiv 顾名思义</p>
+<p>intel的新的浮点数指令集:
+mmx:multi-media extention
+sse:streaming simd extention
+avx:advanced vector extension
+simd:single instruction multi-data
+avx512:</p>
+<h5 id="除法溢出"><a class="header" href="#除法溢出">除法溢出</a></h5>
+<p>(1) div 0 
+(2) 除以一个较小的数,存不下
+发生除法溢出,CPU会在div的前面执行int 00h指令</p>
+<h3 id="函数参数传递的方式"><a class="header" href="#函数参数传递的方式">函数参数传递的方式</a></h3>
+<p>(1)寄存器传递	系统调用	线程切换时,系统会保存寄存器的值
+(2)变量传递	用(2),函数不能重入(reentrant),即不支持多线程.
+(3)堆栈传递★
+1.__cdecl	C语言的堆栈传递法,从右到左压入堆栈.由调用者负责清理堆栈.也就是上面提到的函数编写范式。个人觉得好。
+2.__pascal	从左到右压入堆栈,由被调用者负责清理堆栈
+3.__stdcall	WINDOWS API常用,参数从右到左压入堆栈,由被调用者清理堆栈
+需要用栈帧bp,见上
+可变参数个数函数,需要根据第n个参数推断出参数的个数(n为定值)
+int f(int i,...);</p>
+<p>局部变量内存开辟：栈；
+其他信息：栈
+返回值：EAX、AX，AL</p>
+<!--思考一下返回值不在栈里怎么实现递归程序 -->
+<h3 id="混合语言编程"><a class="header" href="#混合语言编程">混合语言编程</a></h3>
+<p>可以用于逆向工程或者硬件编程
+把别人的.exe改造成.dll动态链接库,再把他的某个函数导出(命名)或直接调用相对地址.就可以在自己的程序里使用.
+在调用他人 class中的成员函数时,用汇编
+(1)C源代码嵌入汇编指令</p>
+<pre><code>    在tc中,在汇编指令前面加上asm
+	在vc中,
+	__asm
+	{
+		汇编代码
+	}
+	在vc中一个汇编函数
+	__declspec(naked) int f(int a,int b)	;这个naked是禁止生成堆栈框架 ebp 左边这个可以算伪指令吧,给编译器用的
+	{
+		__asm
+		{
+			汇编函数范式
+		}
+	}
+	在命令行通过tcc filename 编译
+</code></pre>
+<p>(2)把.c和.asm分别编译成.obj,再通过Link生成.exe可执行文件
+在白老师主页的asm_c.txt</p>
+<h3 id="怎么找c语言的main"><a class="header" href="#怎么找c语言的main">怎么找C语言的main</a></h3>
+<p>C语言main的特征:push push push call</p>
+<pre><code>    int main(int argc,char *argv[],char *env[])
+	{
+	}
+	;env[i]指向诸如path这样的信息,前两个是参数个数和参数地址
+</code></pre>
+<p>如果自己写,可以用int 3插个眼,直接执行调试器会停在int 3
+int 3,机器码CC,就是调试器的断点的原理.
+会把断点处机器码的第一个字节改成CC,执行的时候恢复原状,顺利执行后再改回CC
+但是你在调试器里是看不出来的</p>
+<h3 id="32位系统下的远调用"><a class="header" href="#32位系统下的远调用">32位系统下的远调用</a></h3>
+<p>call far ptr 或 call fword ptr
+16位
+call far ptr 或 call dword ptr</p>
+<h3 id="缓冲区溢出"><a class="header" href="#缓冲区溢出">缓冲区溢出</a></h3>
+<p>可以利用不检查边界的strcpy修改返回地址
+在白老师主页的overflow.cpp</p>
+<h3 id="asm_sumdoc-考试重点"><a class="header" href="#asm_sumdoc-考试重点">asm_sum.doc 考试重点</a></h3>
+<h2 id="hexdump-reader"><a class="header" href="#hexdump-reader">hexdump reader</a></h2>
+<p>突然看到了这个东西，当时写了好久的时间。
+功能是读取一个文件的二进制，用键盘翻页，Intel80386汇编(还是8086?)
+版权所有，未经允许禁止在任何场合使用以下代码。</p>
+<pre><code>.386
+;相当于c语言中的#define
+PageUp 	 = 4900h
+PageDown = 5100h
+Home 	 = 4700h
+_End 	 = 4F00h
+_Esc 	 = 011Bh
+
+data segment use16
+filename 	 db 100, ?, 100 dup(0)
+buf 	   	 db 256 dup(0)
+handle		 dw 0
+bytes_in_buf dw 0
+file_size	 dd 0
+_offset		 dd 0
+n			 dd 0
+sentence1	 db &quot;Please input filename:&quot;, '$'
+sentence2	 db &quot;Cannot open file!&quot;, '$'
+t			 db &quot;0123456789ABCDEF&quot;
+s			 db &quot;00000000: xx xx xx xx|xx xx xx xx|xx xx xx xx|xx xx xx xx  ................&quot;
+pattern		 db &quot;00000000:            |           |           |                             &quot;
+data ends
+code segment use16
+assume cs:code, ds:data
+
+char_hex:		;把8位数转化成16进制格式
+	push ax
+	push di
+	push si
+	mov ax, data
+	mov ds, ax
+	push bp
+	mov bp, sp
+	mov si, [bp+10]
+	mov ax, [bp+12]
+	shr ax, 4
+	and al, 0Fh
+	mov ah, 0
+	mov di, ax
+	mov al, t[di]
+	mov byte ptr ds:[si], al
+	inc si
+	mov ax, [bp+12]
+	and al, 0Fh
+	mov ah, 0
+	mov di, ax
+	mov al, t[di]
+	mov byte ptr ds:[si], al
+	pop bp
+	pop si
+	pop di
+	pop ax
+	ret 4
+	
+long_hex:		;把32位数转化成16进制格式
+	push eax
+	push cx
+	
+	mov eax, _offset
+	mov cx, 0
+convert:
+	rol eax, 8		;循环左移8位, 把高8位移到低8位
+	push eax		; 保存此时的_offset
+	and eax, 0FFh	;高24位置0, 保留低8位
+	push ax			; char2hex函数的第一个参数
+	mov ax, offset s
+	add ax, cx
+	add ax, cx
+	push ax			; char2hex函数的第二个参数
+	
+	call char_hex	;把8位数转化成16进制格式
+	
+	pop eax
+	inc cx
+	cmp cx, 4	; 共循环4次
+	jb convert
+	pop cx
+	pop eax
+	ret
+	
+show_this_row:
+	; i -&gt; cx   for循环的上界 -&gt; bx
+	push ax
+	push bx
+	push cx
+	push si
+	push di
+
+; 复制字符串
+	mov ax, data
+	mov ds, ax
+	mov si, offset pattern
+	mov es, ax
+	mov di, offset s
+	mov cx, 75		; pattern 共有75个字符
+	cld
+	rep movsb
+	
+	call long_hex	;把32位偏移地址转化成16进制格式填入s左侧8个'0'处
+	
+	push bp
+	mov bp, sp
+	mov bx, [bp+22]
+	cmp bx, 0
+	je for2
+	
+	mov cx, 0
+for1:
+	mov ax, offset s + 10
+	add ax, cx
+	add ax, cx
+	add ax, cx
+	push ax		; char2hex函数的第二个参数
+	
+	mov di, cx
+	mov ax,  word ptr buf[di]
+	push ax		; char2hex函数的第一个参数
+	call char_hex
+	
+	inc cx
+	cmp cx, bx
+	jb for1
+for2:
+	mov ax, data
+	mov ds, ax
+	mov si, offset buf
+	mov es, ax
+	mov di, offset s + 59
+	mov cx, bx
+	cld
+	rep movsb
+	
+;计算s数组的长度
+	mov ax, data
+	mov es, ax
+	mov di, offset s	; ES:DI目标串
+	mov cx, 0FFFFh		; CX=最多找FFFF次
+	mov al, 0			; AL=待找的字符(0表示字符串结束)
+	cld       			; DF=0，表示正方向
+	repne scasb			; again:
+	not cx				; 相当于cx=FFFF-cx
+	sub cx, 2			; 因为此处求sizeof(s)-1，故直接sub2
+	mov bx, cx
+	cmp bx, 0
+	je finished
+	push bx				; 保存bx
+	mov cx, 0
+	
+	mov ax, 0B800h
+	mov es, ax
+	mov ax, [bp+14]		; 行号
+	mov di, 80*2
+	mul di
+	mov bx, ax			; bx = row*80*2
+for3:
+	mov si, cx
+	mov al, s[si]
+	mov di, si
+	add di, di
+	cmp cx, 59
+	jnb white
+	cmp al, '|'
+	jne white
+	mov ah, 0Fh
+	jmp output
+white:
+	mov ah, 07h
+output:
+	mov word ptr es:[bx+di], ax
+	inc cx
+	pop bx
+	cmp cx, bx
+	jb for3
+finished:	
+	pop bp
+	pop di
+	pop si
+	pop cx
+	pop bx
+	pop ax
+	ret 10
+	
+clear_this_page:	;清除屏幕0~15行
+	push ax
+	push es
+	push di
+	push cx
+	mov ax, 0B800h
+	mov es, ax
+	mov di, 0
+	mov cx, 80*16	 ;汇编中可以使用rep stosw填入80*16个0020h
+	cld
+	mov ax, 0020h
+	rep stosw
+	
+	pop cx
+	pop di
+	pop es
+	pop ax
+	ret
+	
+show_this_page:
+	;  i -&gt; cx   rows -&gt; ax  bytes_on_row -&gt; bx
+	push ax
+	push bx
+	push cx
+	push dx
+	push si
+	call clear_this_page
+	push bp
+	mov bp, sp
+	mov ax, bytes_in_buf
+	add ax, 15
+	shr ax, 4		; 相当于除以16
+	cmp ax, 0
+	je done
+	mov cx, 0
+loop1:
+	push ax		; 保存ax的值（rows）
+	mov ax, cx
+	mov si, 16
+	mul si		; DX:AX=AX*SI 而且此处可以确保dx=0
+	mov dx, ax	; dx存放cx*16的值，还会多次用到，因此比较方便
+	pop ax
+	dec ax		; 为了比较cx和ax-1
+	cmp cx, ax
+	jne not_last_row
+	mov bx, bytes_in_buf
+	sub bx, dx
+	jmp ok
+not_last_row:
+	mov bx, 16		
+ok:	
+	inc ax ;   将ax恢复原值（开始在比较cx和ax-1的时候把ax减了一的）
+	push ax			; 保存此时ax的值（存放循环上限）
+	
+	push bx			; show_this_row函数的第四个参数
+	lea ax, buf
+	add ax, dx
+	push ax			; show_this_row函数的第三个参数
+	mov eax, _offset
+	adc ax, dx		; 可能有溢出的问题？
+	push eax		; show_this_row函数的第二个参数
+	push cx			; show_this_row函数的第一个参数
+	call show_this_row
+	
+	pop ax	;  弹出ax（作为循环上界）
+	cmp cx, ax
+	jb loop1
+done:
+	pop bp
+	pop si
+	pop dx
+	pop cx
+	pop bx
+	pop ax
+	ret 8
+
+
+main:
+	mov ax, data
+	mov ds, ax
+	
+	mov ah, 9
+	mov dx, offset sentence1
+	int 21h				; 输出字符串sentence1：&quot;Please input filename:&quot;
+	
+	mov ah, 0Ah
+	mov dx, offset filename
+	int 21h				;输入文件名
+
+;打开文件，返回句柄
+	mov ah, 3Dh
+    mov al, 0; 对应_open()的第2个参数, 表示只读方式
+    mov bh,0
+    mov bl, filename[1]
+    mov filename[bx],0
+    mov dx, offset filename+2
+    int 21h
+    mov handle, ax
+		
+	
+	jnc open_success	;汇编中可以通过检查CF==1来判断上述打开文件有否成功
+	mov ah, 9
+	mov dx, offset sentence2
+	int 21h				;输出字符串sentence2:&quot;Cannot open file!&quot;
+;以下语句相当于c语言中的exit(0)
+	mov ah, 4Ch
+    mov al, 0; 对应exit()中的参数
+    int 21h
+open_success:
+;移动文件指针
+	mov ah, 42h
+    mov al, 2; 对应lseek()的第3个参数,
+             ; 表示以EOF为参照点进行移动
+    mov bx, handle
+    mov cx, 0; \ 对应lseek()的第2个参数
+    mov dx, 0; /
+    int 21h
+    mov word ptr file_size[2], dx
+    mov word ptr file_size[0], ax
+	
+	mov _offset, 0
+again:
+	mov eax, file_size
+	sub eax, _offset
+	mov n, eax
+	cmp n, 256
+	jb other
+	mov bytes_in_buf, 256
+	jmp mfp
+other:
+	mov eax, n
+	mov bytes_in_buf, ax ;  由于此情况下n&lt;256，因此eax的高十六位一定是0
+mfp:
+;移动文件指针
+    mov ah, 42h
+    mov al, 0; 对应lseek()的第3个参数,
+             ; 表示以偏移0作为参照点进行移动
+    mov bx, handle
+    mov cx, word ptr _offset[2]; \cx:dx合一起构成
+    mov dx, word ptr _offset[0]; /32位值=_offset
+    int 21h
+
+;读取文件中的bytes_in_buf个字节到buf中 
+    mov ah, 3Fh
+    mov bx, handle
+    mov cx, bytes_in_buf
+    mov dx, data
+    mov ds, dx
+    mov dx, offset buf
+    int 21h
+
+	call show_this_page
+
+;键盘输入
+    mov ah, 0
+    int 16h		; 返回值AX=键盘的编码
+	push ax		; 保存ax的值（key）
+	cmp ax, PageUp
+	je casePageUp
+	cmp ax, PageDown
+	je casePageDown
+	cmp ax, Home
+	je caseHome
+	cmp ax, _End
+	je caseEnd
+	jmp exit
+casePageUp:
+	sub _offset, 256
+	cmp _offset, 0
+	jb zero
+	jmp exit
+zero:
+	mov _offset, 0
+	jmp exit
+casePageDown:
+	add _offset, 256
+	mov eax, file_size	; eax存放file_size的值
+	cmp _offset, eax
+	jb addtion
+	sub _offset, 256	; 还原_offset的原值
+	jmp exit
+addtion:
+	jmp exit
+caseHome:
+	jmp zero		; 这里要进行的操作和zero对应的操作正好一样
+caseEnd:
+	mov _offset, eax
+	push eax		;  保存file_size的值
+	and eax, 255	;  file_size = file_size % 256
+	sub _offset, eax
+	pop eax
+	cmp _offset, eax
+	je subtraction
+	jmp exit
+subtraction:
+	mov _offset, eax
+	sub _offset, 256
+exit:
+	pop ax			; 弹出ax（key）
+	cmp ax, _Esc	; 循环条件
+	jne again
+
+;关闭文件
+	mov ah, 3Eh			
+    mov bx, handle
+    int 21h
+	mov ah, 4Ch
+	int 21h
+code ends
+end main
+</code></pre>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../Basic/index.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next" href="../Basic/Architecture/index.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../Basic/index.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next" href="../Basic/Architecture/index.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
+
+        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </body>
+</html>

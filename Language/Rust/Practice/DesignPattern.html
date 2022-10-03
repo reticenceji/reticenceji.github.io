@@ -1,0 +1,1062 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>设计模式 - Reticence&#x27;s Notes</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../../../favicon.svg">
+        <link rel="shortcut icon" href="../../../favicon.png">
+        <link rel="stylesheet" href="../../../css/variables.css">
+        <link rel="stylesheet" href="../../../css/general.css">
+        <link rel="stylesheet" href="../../../css/chrome.css">
+        <link rel="stylesheet" href="../../../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../../../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../../../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../../../highlight.css">
+        <link rel="stylesheet" href="../../../tomorrow-night.css">
+        <link rel="stylesheet" href="../../../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+        <!-- MathJax -->
+        <script async type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../../../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item affix "><a href="../../../index.html">Index</a></li><li class="chapter-item "><a href="../../../Advanced/index.html">Advanced</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../Advanced/Blockchain/index.html">Block Chain</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../Advanced/Blockchain/Basic/index.html">区块链技术</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../Advanced/Blockchain/Basic/Consensus.html">共识机制</a></li><li class="chapter-item "><a href="../../../Advanced/Blockchain/Basic/Crypto.html">加密</a></li><li class="chapter-item "><a href="../../../Advanced/Blockchain/Basic/Distribute.html">分布式存储</a></li><li class="chapter-item "><a href="../../../Advanced/Blockchain/Basic/P2P.html">P2P</a></li><li class="chapter-item "><a href="../../../Advanced/Blockchain/Basic/SmartContract.html">如何执行智能合约</a></li></ol></li><li class="chapter-item "><a href="../../../Advanced/Blockchain/Defi/index.html">DeFi</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../Advanced/Blockchain/Defi/DAO.html">Decentralized Autonomous Organization</a></li><li class="chapter-item "><a href="../../../Advanced/Blockchain/Defi/Derivative.html">Decentralized Derivative</a></li><li class="chapter-item "><a href="../../../Advanced/Blockchain/Defi/Exchange.html">Decentralized Exchange</a></li><li class="chapter-item "><a href="../../../Advanced/Blockchain/Defi/FundManagement.html">Decentralized Fund Management</a></li><li class="chapter-item "><a href="../../../Advanced/Blockchain/Defi/Insurance.html">Decentralized Insurance</a></li><li class="chapter-item "><a href="../../../Advanced/Blockchain/Defi/LendBorrow.html">Decentralized Lending & Borrowing</a></li><li class="chapter-item "><a href="../../../Advanced/Blockchain/Defi/Lottery.html">Decentralized Lottery</a></li><li class="chapter-item "><a href="../../../Advanced/Blockchain/Defi/Payments.html">Decentralized Payments</a></li><li class="chapter-item "><a href="../../../Advanced/Blockchain/Defi/StableCoin.html">Stable Coins</a></li></ol></li><li class="chapter-item "><a href="../../../Advanced/Blockchain/Ethernet/index.html">Ethernet</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../Advanced/Blockchain/Ethernet/Solidity.html">Solidity简介</a></li></ol></li><li class="chapter-item "><a href="../../../Advanced/Blockchain/NEAR/index.html">Hello NEAR</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../Advanced/Blockchain/NEAR/PoS.html">Proof-of-Stake</a></li><li class="chapter-item "><a href="../../../Advanced/Blockchain/NEAR/Promise.html">异步模型</a></li><li class="chapter-item "><a href="../../../Advanced/Blockchain/NEAR/Secure.html">Secure</a></li><li class="chapter-item "><a href="../../../Advanced/Blockchain/NEAR/Snippets.html">Snippets</a></li><li class="chapter-item "><a href="../../../Advanced/Blockchain/NEAR/Standards.html">标准实现代码分析</a></li><li class="chapter-item "><a href="../../../Advanced/Blockchain/NEAR/dao.html">dao</a></li><li class="chapter-item "><a href="../../../Advanced/Blockchain/NEAR/wasm.html">wasm</a></li></ol></li></ol></li><li class="chapter-item "><a href="../../../Advanced/Linux/index.html">Linux</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../Advanced/Linux/LinuxKernel/index.html">Linux</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../Advanced/Linux/LinuxKernel/Credential.html">Credential</a></li><li class="chapter-item "><a href="../../../Advanced/Linux/LinuxKernel/Debug笔记.html">Debug笔记</a></li><li class="chapter-item "><a href="../../../Advanced/Linux/LinuxKernel/File_System.html">File System</a></li><li class="chapter-item "><a href="../../../Advanced/Linux/LinuxKernel/Linux内核设计与实现笔记.html">《Linux内核设计与实现》笔记</a></li><li class="chapter-item "><a href="../../../Advanced/Linux/LinuxKernel/Linux设备驱动笔记.html">《Linux设备驱动》笔记</a></li><li class="chapter-item "><a href="../../../Advanced/Linux/LinuxKernel/RCU.html">RCU</a></li><li class="chapter-item "><a href="../../../Advanced/Linux/LinuxKernel/Rust_for_linux.html">Rust for linux</a></li><li class="chapter-item "><a href="../../../Advanced/Linux/LinuxKernel/System_Call.html">System Call</a></li><li class="chapter-item "><a href="../../../Advanced/Linux/LinuxKernel/context_switch.html">进程调度时的context_switch</a></li><li class="chapter-item "><a href="../../../Advanced/Linux/LinuxKernel/内核编程笔记.html">Linux内核编程笔记</a></li><li class="chapter-item "><a href="../../../Advanced/Linux/LinuxKernel/数据结构.html">数据结构</a></li><li class="chapter-item "><a href="../../../Advanced/Linux/LinuxKernel/调试Linux内核环境搭建.html">调试Linux内核环境搭建</a></li><li class="chapter-item "><a href="../../../Advanced/Linux/LinuxKernel/调试时如何获取current.html">调试Linux内核，寻找current</a></li></ol></li><li class="chapter-item "><a href="../../../Advanced/Linux/LinuxPlay/index.html">LinuxPlay</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../Advanced/Linux/LinuxPlay/Linux使用笔记.html">Linux使用笔记</a></li><li class="chapter-item "><a href="../../../Advanced/Linux/LinuxPlay/使用SSH远程登录.html">Linux使用SSH远程登录</a></li><li class="chapter-item "><a href="../../../Advanced/Linux/LinuxPlay/在Linux中找到可用的网络接口.html">在Linux中找到可用的网络接口</a></li></ol></li><li class="chapter-item "><a href="../../../Advanced/Linux/LinuxProgram/index.html">Linux Program</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../Advanced/Linux/LinuxProgram/Deamon.html">Daemon</a></li><li class="chapter-item "><a href="../../../Advanced/Linux/LinuxProgram/Fanotify.html">Fanotify</a></li><li class="chapter-item "><a href="../../../Advanced/Linux/LinuxProgram/File.html">File Program</a></li><li class="chapter-item "><a href="../../../Advanced/Linux/LinuxProgram/IObound.html">I/O bound 程序优化</a></li><li class="chapter-item "><a href="../../../Advanced/Linux/LinuxProgram/Linux目录结构.html">Linux目录结构</a></li><li class="chapter-item "><a href="../../../Advanced/Linux/LinuxProgram/NetLink.html">Netlink</a></li><li class="chapter-item "><a href="../../../Advanced/Linux/LinuxProgram/Socket.html">Socket</a></li><li class="chapter-item "><a href="../../../Advanced/Linux/LinuxProgram/eBPF.html">eBPF</a></li><li class="chapter-item "><a href="../../../Advanced/Linux/LinuxProgram/prctl.html">进程</a></li><li class="chapter-item "><a href="../../../Advanced/Linux/LinuxProgram/信号.html">信号</a></li><li class="chapter-item "><a href="../../../Advanced/Linux/LinuxProgram/共享库.html">共享库</a></li><li class="chapter-item "><a href="../../../Advanced/Linux/LinuxProgram/凭证.html">Credential 凭证</a></li><li class="chapter-item "><a href="../../../Advanced/Linux/LinuxProgram/反向Shell和伪终端.html">反向Shell和伪终端</a></li><li class="chapter-item "><a href="../../../Advanced/Linux/LinuxProgram/性能监控.html">性能监控</a></li><li class="chapter-item "><a href="../../../Advanced/Linux/LinuxProgram/桌面应用开发.html">桌面应用开发</a></li><li class="chapter-item "><a href="../../../Advanced/Linux/LinuxProgram/管道和重定向.html">管道和重定向</a></li><li class="chapter-item "><a href="../../../Advanced/Linux/LinuxProgram/系统限制和选项.html">系统限制和选项</a></li><li class="chapter-item "><a href="../../../Advanced/Linux/LinuxProgram/终端.html">终端</a></li><li class="chapter-item "><a href="../../../Advanced/Linux/LinuxProgram/进程间通信.html">进程间通信</a></li></ol></li></ol></li><li class="chapter-item "><a href="../../../Advanced/Windows/index.html">Windows Programming</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../Advanced/Windows/Unicode.html">Unicode</a></li><li class="chapter-item "><a href="../../../Advanced/Windows/hungarian.html">匈牙利命名法</a></li><li class="chapter-item "><a href="../../../Advanced/Windows/文件.html">文件</a></li></ol></li></ol></li><li class="chapter-item "><a href="../../../Basic/index.html">Basic</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../Basic/8086汇编笔记.html">8086汇编笔记</a></li><li class="chapter-item "><a href="../../../Basic/Architecture/index.html">Architecture</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../Basic/Architecture/ARM内存管理.html">AArch64 memory management</a></li><li class="chapter-item "><a href="../../../Basic/Architecture/ARM寄存器.html">ARM中的寄存器</a></li><li class="chapter-item "><a href="../../../Basic/Architecture/ARM异常.html">AArch64 Exception Model</a></li><li class="chapter-item "><a href="../../../Basic/Architecture/ARM虚拟化.html">Armv8-A virtualization</a></li><li class="chapter-item "><a href="../../../Basic/Architecture/ARM调试.html">ARM self-hosted debug</a></li><li class="chapter-item "><a href="../../../Basic/Architecture/CPU设计.html">CPU设计</a></li><li class="chapter-item "><a href="../../../Basic/Architecture/Cache.html">Cache</a></li><li class="chapter-item "><a href="../../../Basic/Architecture/ILP.html">ILP</a></li><li class="chapter-item "><a href="../../../Basic/Architecture/SIMD和MIMD.html">SIMD和MIMD</a></li><li class="chapter-item "><a href="../../../Basic/Architecture/TLP.html">TLP</a></li><li class="chapter-item "><a href="../../../Basic/Architecture/存储器设计.html">存储器设计</a></li><li class="chapter-item "><a href="../../../Basic/Architecture/数字逻辑.html">Notes-数字逻辑</a></li><li class="chapter-item "><a href="../../../Basic/Architecture/计算机体系结构.html">计算机组成&计算机体系结构</a></li></ol></li><li class="chapter-item "><a href="../../../Basic/C/index.html">C/C++</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../Basic/C/Cpp标准库.html">C++_标准库</a></li><li class="chapter-item "><a href="../../../Basic/C/Cpp课程笔记.html">C++ 基础知识</a></li><li class="chapter-item "><a href="../../../Basic/C/GCC内嵌汇编.html">C-内嵌汇编</a></li><li class="chapter-item "><a href="../../../Basic/C/变量在ELF段中的位置.html">变量在ELF段中的位置</a></li><li class="chapter-item "><a href="../../../Basic/C/可变参数的使用和原理.html">可变参数的使用和原理</a></li><li class="chapter-item "><a href="../../../Basic/C/在C程序中调用汇编程序.html">在C程序中调用汇编程序</a></li><li class="chapter-item "><a href="../../../Basic/C/链接器.html">链接器</a></li></ol></li><li class="chapter-item "><a href="../../../Basic/Client/index.html">Client Development</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../Basic/Client/Chromium.html">Chromium</a></li><li class="chapter-item "><a href="../../../Basic/Client/CodeReview.html">CodeReview</a></li><li class="chapter-item "><a href="../../../Basic/Client/Config.html">Config</a></li><li class="chapter-item "><a href="../../../Basic/Client/CrossLanguage.html">跨语言</a></li><li class="chapter-item "><a href="../../../Basic/Client/DataStore.html">本地存储</a></li><li class="chapter-item "><a href="../../../Basic/Client/Database.html">Database</a></li><li class="chapter-item "><a href="../../../Basic/Client/Flutter.html">Flutter</a></li><li class="chapter-item "><a href="../../../Basic/Client/Log.html">日志</a></li><li class="chapter-item "><a href="../../../Basic/Client/Multimedia/index.html">Multimedia</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../Basic/Client/Multimedia/Graph.html">图形学</a></li><li class="chapter-item "><a href="../../../Basic/Client/Multimedia/Image.html">图像处理技术</a></li><li class="chapter-item "><a href="../../../Basic/Client/Multimedia/Video.html">视频</a></li><li class="chapter-item "><a href="../../../Basic/Client/Multimedia/Voice.html">Voice</a></li></ol></li><li class="chapter-item "><a href="../../../Basic/Client/Network.html">网络能力</a></li><li class="chapter-item "><a href="../../../Basic/Client/Performance.html">性能监控</a></li><li class="chapter-item "><a href="../../../Basic/Client/Platform/index.html">Platform</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../Basic/Client/Platform/Android.html">Android</a></li><li class="chapter-item "><a href="../../../Basic/Client/Platform/iOS.html">iOS</a></li></ol></li><li class="chapter-item "><a href="../../../Basic/Client/SQLite.html">SQLite</a></li></ol></li><li class="chapter-item "><a href="../../../Basic/Compiler/index.html">Compiler</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../Basic/Compiler/Codegen.html">代码生成</a></li><li class="chapter-item "><a href="../../../Basic/Compiler/Lex.html">Lex</a></li><li class="chapter-item "><a href="../../../Basic/Compiler/Lexical.html">Lexical Analyze</a></li><li class="chapter-item "><a href="../../../Basic/Compiler/Runtime.html">Runtime</a></li><li class="chapter-item "><a href="../../../Basic/Compiler/Sematic.html">Sematic Analyzing</a></li><li class="chapter-item "><a href="../../../Basic/Compiler/Syntax.html">Syntax Analyzer</a></li><li class="chapter-item "><a href="../../../Basic/Compiler/llvm-ir.html">LLVM-IR</a></li><li class="chapter-item "><a href="../../../Basic/Compiler/llvm.html">LLVM</a></li><li class="chapter-item "><a href="../../../Basic/Compiler/pest.html">PEST</a></li><li class="chapter-item "><a href="../../../Basic/Compiler/yacc.html">Yacc</a></li></ol></li><li class="chapter-item "><a href="../../../Basic/DataStructure/index.html">Data Structure And Algorithm</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../Basic/DataStructure/Algorithm/index.html">Algorithm</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../Basic/DataStructure/Algorithm/Approximation.html">近似算法</a></li><li class="chapter-item "><a href="../../../Basic/DataStructure/Algorithm/Backtracking.html">递归回溯</a></li><li class="chapter-item "><a href="../../../Basic/DataStructure/Algorithm/DivideAndConquer.html">分治算法</a></li><li class="chapter-item "><a href="../../../Basic/DataStructure/Algorithm/DynamicProgramming.html">动态规划</a></li><li class="chapter-item "><a href="../../../Basic/DataStructure/Algorithm/Greedy.html">贪心算法</a></li><li class="chapter-item "><a href="../../../Basic/DataStructure/Algorithm/LocalSearch.html">本地搜索</a></li><li class="chapter-item "><a href="../../../Basic/DataStructure/Algorithm/Parallel.html">并行算法</a></li><li class="chapter-item "><a href="../../../Basic/DataStructure/Algorithm/Randomized.html">随机化算法</a></li><li class="chapter-item "><a href="../../../Basic/DataStructure/Algorithm/Sort.html">排序算法</a></li></ol></li><li class="chapter-item "><a href="../../../Basic/DataStructure/Graph/index.html">Graph</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../Basic/DataStructure/Graph/Bipartite.html">Bipartite</a></li><li class="chapter-item "><a href="../../../Basic/DataStructure/Graph/NetworkFlow.html">NetworkFlow</a></li><li class="chapter-item "><a href="../../../Basic/DataStructure/Graph/ShortPath.html">最短路</a></li><li class="chapter-item "><a href="../../../Basic/DataStructure/Graph/SpanningTree.html">最小生成树</a></li><li class="chapter-item "><a href="../../../Basic/DataStructure/Graph/关键路径.html">关键路径</a></li><li class="chapter-item "><a href="../../../Basic/DataStructure/Graph/拓扑排序.html">拓扑排序</a></li></ol></li><li class="chapter-item "><a href="../../../Basic/DataStructure/Hash/index.html">Hash</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../Basic/DataStructure/Hash/HashTree.html">HashTree</a></li><li class="chapter-item "><a href="../../../Basic/DataStructure/Hash/Hashing.html">Hashing</a></li></ol></li><li class="chapter-item "><a href="../../../Basic/DataStructure/Heap/index.html">Heap</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../Basic/DataStructure/Heap/BinomialHeap.html">Binomial Heap</a></li><li class="chapter-item "><a href="../../../Basic/DataStructure/Heap/FibonacciHeap.html">FibonacciHeap</a></li><li class="chapter-item "><a href="../../../Basic/DataStructure/Heap/Heap.html">DS-Heap</a></li><li class="chapter-item "><a href="../../../Basic/DataStructure/Heap/斜堆.html">Leftist_Heap_and_Skew_Heap</a></li></ol></li><li class="chapter-item "><a href="../../../Basic/DataStructure/Inverted_File_Index.html">Inverted_File_Index</a></li><li class="chapter-item "><a href="../../../Basic/DataStructure/Linear/index.html">Linear</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../Basic/DataStructure/Linear/Bitmap.html">DS-Bitmap</a></li><li class="chapter-item "><a href="../../../Basic/DataStructure/Linear/List.html">DS-Linear_List</a></li></ol></li><li class="chapter-item "><a href="../../../Basic/DataStructure/NPProblem.html">DS-NP_problem</a></li><li class="chapter-item "><a href="../../../Basic/DataStructure/String/index.html">字符串匹配相关算法</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../Basic/DataStructure/String/match.html">字符串匹配算法</a></li></ol></li><li class="chapter-item "><a href="../../../Basic/DataStructure/Tree/index.html">Tree and BST</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../Basic/DataStructure/Tree/BTree.html">B Tree and B+ Tree</a></li><li class="chapter-item "><a href="../../../Basic/DataStructure/Tree/BalancedTree.html">AVL Tree and Splay Tree</a></li><li class="chapter-item "><a href="../../../Basic/DataStructure/Tree/DisjointSet.html">Disjoint Set</a></li><li class="chapter-item "><a href="../../../Basic/DataStructure/Tree/HuffmanTree.html">Huffman Tree</a></li><li class="chapter-item "><a href="../../../Basic/DataStructure/Tree/RBTree.html">红黑树 B树 B+树</a></li><li class="chapter-item "><a href="../../../Basic/DataStructure/Tree/ThreadedTree.html">Threaded Binary Tree</a></li></ol></li></ol></li><li class="chapter-item "><a href="../../../Basic/Database/index.html">Database</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../Basic/Database/Object.html">Database-Object-Based_Databases</a></li><li class="chapter-item "><a href="../../../Basic/Database/PostgreSQL-Conflict-reticenceji_Win10.html">Database-PostgreSQL</a></li><li class="chapter-item "><a href="../../../Basic/Database/PostgreSQL.html">Database-PostgreSQL</a></li><li class="chapter-item "><a href="../../../Basic/Database/SQL-Conflict-reticenceji_Win10.html">基础SQL</a></li><li class="chapter-item "><a href="../../../Basic/Database/SQL.html">基础SQL</a></li><li class="chapter-item "><a href="../../../Basic/Database/XML-Conflict-reticenceji_Win10.html">Database,Web-XML</a></li><li class="chapter-item "><a href="../../../Basic/Database/XML.html">Database,Web-XML</a></li><li class="chapter-item "><a href="../../../Basic/Database/事务.html">Database-事务</a></li><li class="chapter-item "><a href="../../../Basic/Database/关系代数.html">Database-关系代数</a></li><li class="chapter-item "><a href="../../../Basic/Database/存储和查询.html">Database-存储和查询</a></li><li class="chapter-item "><a href="../../../Basic/Database/导论.html">Database-导论</a></li><li class="chapter-item "><a href="../../../Basic/Database/数据库设计.html">Database-数据库设计</a></li></ol></li><li class="chapter-item "><a href="../../../Basic/Maths/index.html">Maths</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../Basic/Maths/大数定理和中心极限定理.html">大数定理和中心极限定理</a></li><li class="chapter-item "><a href="../../../Basic/Maths/微积分下.html">微积分下</a></li><li class="chapter-item "><a href="../../../Basic/Maths/数值计算方法.html">数值计算方法</a></li><li class="chapter-item "><a href="../../../Basic/Maths/最小二乘法.html">最小二乘法</a></li><li class="chapter-item "><a href="../../../Basic/Maths/有限自动机介绍.html">有限自动机介绍</a></li><li class="chapter-item "><a href="../../../Basic/Maths/概统复习.html">概统复习</a></li><li class="chapter-item "><a href="../../../Basic/Maths/群论简介.html">群论简介</a></li></ol></li><li class="chapter-item "><a href="../../../Basic/Networking/index.html">Networking</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../Basic/Networking/ARP.html">Networking-ARP</a></li><li class="chapter-item "><a href="../../../Basic/Networking/CDN.html">CDN</a></li><li class="chapter-item "><a href="../../../Basic/Networking/DNS.html">DNS</a></li><li class="chapter-item "><a href="../../../Basic/Networking/FTP.html">FTP</a></li><li class="chapter-item "><a href="../../../Basic/Networking/HTTP.html">HTTP</a></li><li class="chapter-item "><a href="../../../Basic/Networking/ICMP.html">Internet Control Message Protocol</a></li><li class="chapter-item "><a href="../../../Basic/Networking/Mail.html">邮件协议</a></li><li class="chapter-item "><a href="../../../Basic/Networking/NAT.html">Network Address Translation</a></li><li class="chapter-item "><a href="../../../Basic/Networking/P2P.html">P2P</a></li><li class="chapter-item "><a href="../../../Basic/Networking/QUIC.html">QUIC</a></li><li class="chapter-item "><a href="../../../Basic/Networking/RTC.html">RTC</a></li><li class="chapter-item "><a href="../../../Basic/Networking/Socket.html">Socket</a></li><li class="chapter-item "><a href="../../../Basic/Networking/TCP.html">TCP</a></li><li class="chapter-item "><a href="../../../Basic/Networking/UDP.html">UDP</a></li><li class="chapter-item "><a href="../../../Basic/Networking/VMWare虚拟机网络配置.html">VMWare虚拟机网络配置</a></li><li class="chapter-item "><a href="../../../Basic/Networking/VPN.html">VPN</a></li><li class="chapter-item "><a href="../../../Basic/Networking/WebSocket.html">WebSocket</a></li><li class="chapter-item "><a href="../../../Basic/Networking/介质访问子层.html">Medium Access Sublayer</a></li><li class="chapter-item "><a href="../../../Basic/Networking/可靠传输.html">可靠传输</a></li><li class="chapter-item "><a href="../../../Basic/Networking/差错控制.html">差错控制</a></li><li class="chapter-item "><a href="../../../Basic/Networking/拥塞控制和流量控制.html">拥塞控制和流量控制</a></li><li class="chapter-item "><a href="../../../Basic/Networking/物理层.html">物理层</a></li><li class="chapter-item "><a href="../../../Basic/Networking/网络层.html">网络层 IP</a></li><li class="chapter-item "><a href="../../../Basic/Networking/网络设备.html">Networking-网络设备</a></li><li class="chapter-item "><a href="../../../Basic/Networking/路由协议.html">路由协议</a></li><li class="chapter-item "><a href="../../../Basic/Networking/链路层.html">链路层</a></li></ol></li><li class="chapter-item "><a href="../../../Basic/OS/index.html">OS</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../Basic/OS/Bootloader.html">OS-Bootloader</a></li><li class="chapter-item "><a href="../../../Basic/OS/Buddy_System&Slub.html">OS-Buddy_System&Slub</a></li><li class="chapter-item "><a href="../../../Basic/OS/Deadlock.html">OS-Deadlock</a></li><li class="chapter-item "><a href="../../../Basic/OS/IO.html">OS-IO</a></li><li class="chapter-item "><a href="../../../Basic/OS/Introduction.html">OS-Introduction</a></li><li class="chapter-item "><a href="../../../Basic/OS/Memory_Management.html">OS-Memory_Management</a></li><li class="chapter-item "><a href="../../../Basic/OS/Process.html">OS-Process</a></li><li class="chapter-item "><a href="../../../Basic/OS/Q&A.html">OS-Q&A</a></li><li class="chapter-item "><a href="../../../Basic/OS/RISCV学习笔记.html">OS-RISCV学习笔记</a></li><li class="chapter-item "><a href="../../../Basic/OS/SBI.html">OS-SBI</a></li><li class="chapter-item "><a href="../../../Basic/OS/Synchronization.html">OS-Synchronization</a></li><li class="chapter-item "><a href="../../../Basic/OS/Thread.html">OS-Thread</a></li><li class="chapter-item "><a href="../../../Basic/OS/UnixLinux中的IO模型.html">Linux中的I/O模型</a></li><li class="chapter-item "><a href="../../../Basic/OS/在K210运行裸机程序.html">OS-在K210运行裸机程序</a></li><li class="chapter-item "><a href="../../../Basic/OS/地址空间(一).html">OS-地址空间(一)</a></li><li class="chapter-item "><a href="../../../Basic/OS/操作系统.html">OS-操作系统</a></li></ol></li><li class="chapter-item "><a href="../../../Basic/Secure/index.html">Secure</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../Basic/Secure/Crypto/index.html">Crypto</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../Basic/Secure/Crypto/Federated_Learning.html">Federated Learning</a></li><li class="chapter-item "><a href="../../../Basic/Secure/Crypto/Oblivious_RAM.html">Oblivious RAM</a></li><li class="chapter-item "><a href="../../../Basic/Secure/Crypto/PIR.html">PIR</a></li><li class="chapter-item "><a href="../../../Basic/Secure/Crypto/PSI.html">Private set intersection</a></li><li class="chapter-item "><a href="../../../Basic/Secure/Crypto/加密和哈希.html">Crypto-加密和哈希</a></li><li class="chapter-item "><a href="../../../Basic/Secure/Crypto/加密数据库.html">Encrypted Database</a></li><li class="chapter-item "><a href="../../../Basic/Secure/Crypto/区块链技术.html">Bitcoin-区块链技术</a></li><li class="chapter-item "><a href="../../../Basic/Secure/Crypto/可证明安全.html">可证明安全</a></li><li class="chapter-item "><a href="../../../Basic/Secure/Crypto/安全多方计算.html">安全多方计算</a></li><li class="chapter-item "><a href="../../../Basic/Secure/Crypto/密码学基础.html">密码学算法介绍</a></li><li class="chapter-item "><a href="../../../Basic/Secure/Crypto/密码学进阶.html">密码学进阶</a></li><li class="chapter-item "><a href="../../../Basic/Secure/Crypto/差分隐私.html">差分隐私</a></li></ol></li><li class="chapter-item "><a href="../../../Basic/Secure/CryptoBasic.html">密码学基础</a></li><li class="chapter-item "><a href="../../../Basic/Secure/CtyptoProtocol.html">密码学协议</a></li><li class="chapter-item "><a href="../../../Basic/Secure/Forensics/index.html">电子取证</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../Basic/Secure/Forensics/FAT.html">FAT文件系统</a></li><li class="chapter-item "><a href="../../../Basic/Secure/Forensics/FileCarving.html">文件雕复</a></li><li class="chapter-item "><a href="../../../Basic/Secure/Forensics/Linux取证.html">Linux取证</a></li><li class="chapter-item "><a href="../../../Basic/Secure/Forensics/Memory.html">内存取证</a></li><li class="chapter-item "><a href="../../../Basic/Secure/Forensics/NTFS.html">NTFS文件系统</a></li><li class="chapter-item "><a href="../../../Basic/Secure/Forensics/Windows取证.html">Windows取证</a></li><li class="chapter-item "><a href="../../../Basic/Secure/Forensics/数据隐藏.html">数据隐藏</a></li><li class="chapter-item "><a href="../../../Basic/Secure/Forensics/文件系统取证.html">文件系统取证</a></li><li class="chapter-item "><a href="../../../Basic/Secure/Forensics/硬盘分析.html">硬盘分析</a></li><li class="chapter-item "><a href="../../../Basic/Secure/Forensics/移动设备取证.html">移动设备取证</a></li><li class="chapter-item "><a href="../../../Basic/Secure/Forensics/网络取证.html">网络取证</a></li></ol></li><li class="chapter-item "><a href="../../../Basic/Secure/IoT.html">无线与物联网安全</a></li><li class="chapter-item "><a href="../../../Basic/Secure/Network.html">网络安全</a></li><li class="chapter-item "><a href="../../../Basic/Secure/OperatingSystem.html">操作系统安全</a></li><li class="chapter-item "><a href="../../../Basic/Secure/Software/index.html">软件安全</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../Basic/Secure/Software/ASLR.html">ASLR</a></li><li class="chapter-item "><a href="../../../Basic/Secure/Software/CodeQL.html">CodeQL</a></li><li class="chapter-item "><a href="../../../Basic/Secure/Software/GlibcHeap.html">glibc heap allocator</a></li><li class="chapter-item "><a href="../../../Basic/Secure/Software/PIC.html">位置无关代码和共享库</a></li><li class="chapter-item "><a href="../../../Basic/Secure/Software/RELRO.html">RELRO</a></li><li class="chapter-item "><a href="../../../Basic/Secure/Software/pwntools.html">pwntools</a></li><li class="chapter-item "><a href="../../../Basic/Secure/Software/攻击视角.html">攻击软件安全</a></li><li class="chapter-item "><a href="../../../Basic/Secure/Software/程序分析.html">程序分析</a></li><li class="chapter-item "><a href="../../../Basic/Secure/Software/防御视角.html">软件安全防护</a></li></ol></li><li class="chapter-item "><a href="../../../Basic/Secure/SupplyChain.html">供应链安全</a></li></ol></li><li class="chapter-item "><a href="../../../Basic/软件保护技术.html">Reverse</a></li></ol></li><li class="chapter-item expanded "><a href="../../../Language/index.html">Language</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../Language/Java/index.html">Java</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../Language/Java/基础.html">Java</a></li><li class="chapter-item "><a href="../../../Language/Java/鸿蒙应用开发.html">Java-鸿蒙应用开发</a></li></ol></li><li class="chapter-item "><a href="../../../Language/JavaScript/index.html">JavaScript</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../Language/JavaScript/Electron.html">Electron</a></li><li class="chapter-item "><a href="../../../Language/JavaScript/JavaScript简介.html">JavaScript简介</a></li><li class="chapter-item "><a href="../../../Language/JavaScript/Runtime.html">Runtime</a></li></ol></li><li class="chapter-item "><a href="../../../Language/Python/index.html">Python</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../Language/Python/0内置类型/index.html">内置对象</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../Language/Python/0内置类型/1字符串.html">字符串和字节串</a></li><li class="chapter-item "><a href="../../../Language/Python/0内置类型/2数值.html">数值</a></li><li class="chapter-item "><a href="../../../Language/Python/0内置类型/3列表和元组.html">序列</a></li><li class="chapter-item "><a href="../../../Language/Python/0内置类型/4字典和集合.html">映射</a></li><li class="chapter-item "><a href="../../../Language/Python/0内置类型/5迭代器和生成器.html">迭代器和生成器</a></li><li class="chapter-item "><a href="../../../Language/Python/0内置类型/6上下文管理器.html">上下文管理器</a></li></ol></li><li class="chapter-item "><a href="../../../Language/Python/1工作原理/index.html">工作原理</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../Language/Python/1工作原理/0对象模型.html">OOP模型</a></li><li class="chapter-item "><a href="../../../Language/Python/1工作原理/1类型.html">类型</a></li><li class="chapter-item "><a href="../../../Language/Python/1工作原理/2变量.html">变量</a></li><li class="chapter-item "><a href="../../../Language/Python/1工作原理/3特殊方法和重载.html">特殊方法和重载</a></li><li class="chapter-item "><a href="../../../Language/Python/1工作原理/4参数.html">参数</a></li><li class="chapter-item "><a href="../../../Language/Python/1工作原理/5多继承.html">多继承</a></li></ol></li><li class="chapter-item "><a href="../../../Language/Python/3高级写法/index.html">高级写法</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../Language/Python/3高级写法/1异常.html">Exception</a></li><li class="chapter-item "><a href="../../../Language/Python/3高级写法/2装饰器.html">装饰器</a></li></ol></li><li class="chapter-item "><a href="../../../Language/Python/4好用的库/index.html">PythonLib</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../Language/Python/4好用的库/Argparse.html">命令行参数</a></li><li class="chapter-item "><a href="../../../Language/Python/4好用的库/Bisect.html">Bisect</a></li><li class="chapter-item "><a href="../../../Language/Python/4好用的库/Builtin.html">Builtin</a></li><li class="chapter-item "><a href="../../../Language/Python/4好用的库/Container.html">Container</a></li><li class="chapter-item "><a href="../../../Language/Python/4好用的库/Crypto.html">Crypto</a></li><li class="chapter-item "><a href="../../../Language/Python/4好用的库/Enum.html">enum</a></li><li class="chapter-item "><a href="../../../Language/Python/4好用的库/FS.html">File System</a></li><li class="chapter-item "><a href="../../../Language/Python/4好用的库/Flask.html">Python-Flask</a></li><li class="chapter-item "><a href="../../../Language/Python/4好用的库/HTTP.html">Internet</a></li><li class="chapter-item "><a href="../../../Language/Python/4好用的库/IO.html">File IO</a></li><li class="chapter-item "><a href="../../../Language/Python/4好用的库/PyQt5.html">PySide2</a></li><li class="chapter-item "><a href="../../../Language/Python/4好用的库/Regex.html">Regex</a></li><li class="chapter-item "><a href="../../../Language/Python/4好用的库/Socket.html">Socket编程</a></li><li class="chapter-item "><a href="../../../Language/Python/4好用的库/Thread.html">多线程</a></li><li class="chapter-item "><a href="../../../Language/Python/4好用的库/Time.html">时间和日期</a></li><li class="chapter-item "><a href="../../../Language/Python/4好用的库/Trio.html">Trio</a></li><li class="chapter-item "><a href="../../../Language/Python/4好用的库/format.html">Format String</a></li><li class="chapter-item "><a href="../../../Language/Python/4好用的库/venv.html">Virtual Environment</a></li><li class="chapter-item "><a href="../../../Language/Python/4好用的库/数据持久化.html">简单的数据持久化</a></li><li class="chapter-item "><a href="../../../Language/Python/4好用的库/文档和测试.html">文档和测试</a></li><li class="chapter-item "><a href="../../../Language/Python/4好用的库/计算器.html">把Python当计算器</a></li></ol></li><li class="chapter-item "><a href="../../../Language/Python/运算符.html">运算符</a></li></ol></li><li class="chapter-item expanded "><a href="../../../Language/Rust/index.html">Rust</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../Language/Rust/Basic/index.html">Basic</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../Language/Rust/Basic/Any.html">Any</a></li><li class="chapter-item "><a href="../../../Language/Rust/Basic/Async.html">异步编程</a></li><li class="chapter-item "><a href="../../../Language/Rust/Basic/Casting.html">Casting</a></li><li class="chapter-item "><a href="../../../Language/Rust/Basic/ClosureAndIter.html">迭代器和闭包</a></li><li class="chapter-item "><a href="../../../Language/Rust/Basic/CratesAndModules.html">Crates and Modules</a></li><li class="chapter-item "><a href="../../../Language/Rust/Basic/Error.html">Rust-错误处理</a></li><li class="chapter-item "><a href="../../../Language/Rust/Basic/Macro.html">宏</a></li><li class="chapter-item "><a href="../../../Language/Rust/Basic/Trait.html">Trait</a></li><li class="chapter-item "><a href="../../../Language/Rust/Basic/TypeAndLifetime.html">从类型系统看生命周期</a></li><li class="chapter-item "><a href="../../../Language/Rust/Basic/Unsafe.html">Unsafe</a></li><li class="chapter-item "><a href="../../../Language/Rust/Basic/pattern.html">模式匹配</a></li></ol></li><li class="chapter-item "><a href="../../../Language/Rust/Build.html">Build</a></li><li class="chapter-item "><a href="../../../Language/Rust/Cargo/index.html">Cargo</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../Language/Rust/Cargo/clippy.html">Clippy</a></li><li class="chapter-item "><a href="../../../Language/Rust/Cargo/fix.html">Cargo fix</a></li><li class="chapter-item "><a href="../../../Language/Rust/Cargo/make.html">Cargo make</a></li></ol></li><li class="chapter-item "><a href="../../../Language/Rust/Compiler.html">Compiler</a></li><li class="chapter-item "><a href="../../../Language/Rust/Crate/index.html">Crates</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../Language/Rust/Crate/Anyhow.html">AnyHow & ThisError</a></li><li class="chapter-item "><a href="../../../Language/Rust/Crate/Cell.html">Cell</a></li><li class="chapter-item "><a href="../../../Language/Rust/Crate/Diesel.html">Diesel</a></li><li class="chapter-item "><a href="../../../Language/Rust/Crate/Dioxus.html">Dioxus</a></li><li class="chapter-item "><a href="../../../Language/Rust/Crate/EnumDispatch.html">Dispatch</a></li><li class="chapter-item "><a href="../../../Language/Rust/Crate/IO.html">IO</a></li><li class="chapter-item "><a href="../../../Language/Rust/Crate/collections.html">容器的增删改查</a></li><li class="chapter-item "><a href="../../../Language/Rust/Crate/gtk-rs.html">gtk-rs</a></li><li class="chapter-item "><a href="../../../Language/Rust/Crate/r2d2.html">r2d2</a></li><li class="chapter-item "><a href="../../../Language/Rust/Crate/stdsync.html">std::sync</a></li><li class="chapter-item "><a href="../../../Language/Rust/Crate/字符串.html">字符串/字节流</a></li><li class="chapter-item "><a href="../../../Language/Rust/Crate/打包.html">打包</a></li><li class="chapter-item "><a href="../../../Language/Rust/Crate/智能指针.html">Rust-智能指针</a></li></ol></li><li class="chapter-item "><a href="../../../Language/Rust/FFI.html">FFI</a></li><li class="chapter-item "><a href="../../../Language/Rust/IO.html">Rust-IO</a></li><li class="chapter-item expanded "><a href="../../../Language/Rust/Practice/index.html">Practice</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../Language/Rust/Practice/BestPractice.html">Rust最佳实践</a></li><li class="chapter-item "><a href="../../../Language/Rust/Practice/Debug.html">调试</a></li><li class="chapter-item expanded "><a href="../../../Language/Rust/Practice/DesignPattern.html" class="active">设计模式</a></li><li class="chapter-item "><a href="../../../Language/Rust/Practice/Performance.html">性能优化</a></li><li class="chapter-item "><a href="../../../Language/Rust/Practice/Size.html">代码体积优化</a></li><li class="chapter-item "><a href="../../../Language/Rust/Practice/Test.html">测试最佳实践</a></li><li class="chapter-item "><a href="../../../Language/Rust/Practice/Type.html">类型转换</a></li><li class="chapter-item "><a href="../../../Language/Rust/Practice/Unsafe.html">Unsafe最佳实践</a></li></ol></li><li class="chapter-item "><a href="../../../Language/Rust/gtk.html">Rust-gtk-rs介绍</a></li><li class="chapter-item "><a href="../../../Language/Rust/函数参数匹配.html">函数参数匹配</a></li><li class="chapter-item "><a href="../../../Language/Rust/基础知识.html">基础知识</a></li><li class="chapter-item "><a href="../../../Language/Rust/多线程.html">多线程支持</a></li><li class="chapter-item "><a href="../../../Language/Rust/混合编程.html">混合编程</a></li><li class="chapter-item "><a href="../../../Language/Rust/精髓.html">Rust-精髓</a></li></ol></li><li class="chapter-item "><a href="../../../Language/Scala/index.html">Scala</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../Language/Scala/0控制结构.html">控制结构</a></li><li class="chapter-item "><a href="../../../Language/Scala/1数据结构.html">数据结构</a></li><li class="chapter-item "><a href="../../../Language/Scala/2_0类和对象.html">Class</a></li><li class="chapter-item "><a href="../../../Language/Scala/2_1继承.html">继承</a></li><li class="chapter-item "><a href="../../../Language/Scala/2_2特质.html">Trait</a></li><li class="chapter-item "><a href="../../../Language/Scala/3_1花里胡哨的函数.html">花里胡哨的函数</a></li><li class="chapter-item "><a href="../../../Language/Scala/3_2匿名函数和闭包.html">函数</a></li><li class="chapter-item "><a href="../../../Language/Scala/3_3模式匹配.html">模式匹配</a></li><li class="chapter-item "><a href="../../../Language/Scala/3_4容器的函数式操作.html">容器的函数式操作</a></li><li class="chapter-item "><a href="../../../Language/Scala/ScalaDepth/index.html">ScalaDepth</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../Language/Scala/ScalaDepth/Class文件.html">Class文件</a></li><li class="chapter-item "><a href="../../../Language/Scala/ScalaDepth/ScalaInDepth.html">Scala in Depth 读书笔记</a></li><li class="chapter-item "><a href="../../../Language/Scala/ScalaDepth/Spark.html">Spark</a></li><li class="chapter-item "><a href="../../../Language/Scala/ScalaDepth/jvm.html">《深入理解Java虚拟机读书》笔记</a></li><li class="chapter-item "><a href="../../../Language/Scala/ScalaDepth/函数式的一些概念.html">Scala中一些函数式概念</a></li><li class="chapter-item "><a href="../../../Language/Scala/ScalaDepth/泛型擦除.html">泛型擦除</a></li><li class="chapter-item "><a href="../../../Language/Scala/ScalaDepth/简单的类型原理.html">类型</a></li></ol></li><li class="chapter-item "><a href="../../../Language/Scala/sbt.html">sbt</a></li><li class="chapter-item "><a href="../../../Language/Scala/trait.html">trait</a></li><li class="chapter-item "><a href="../../../Language/Scala/枚举.html">枚举</a></li><li class="chapter-item "><a href="../../../Language/Scala/样例类和模式匹配.html">样例类和模式匹配</a></li><li class="chapter-item "><a href="../../../Language/Scala/测试和文档.html">测试和文档</a></li><li class="chapter-item "><a href="../../../Language/Scala/组合和继承.html">类的组合和继承</a></li></ol></li><li class="chapter-item "><a href="../../../Language/Snippet/index.html">Snippets</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../Language/Snippet/c.html">c</a></li><li class="chapter-item "><a href="../../../Language/Snippet/linux.html">linux</a></li><li class="chapter-item "><a href="../../../Language/Snippet/python.html">python</a></li><li class="chapter-item "><a href="../../../Language/Snippet/rust.html">rust</a></li></ol></li></ol></li><li class="chapter-item "><a href="../../../Tools/index.html">Tools</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../Tools/Docker.html">Docker</a></li><li class="chapter-item "><a href="../../../Tools/GDB.html">GDB</a></li><li class="chapter-item "><a href="../../../Tools/Git/index.html">Git</a></li><li class="chapter-item "><a href="../../../Tools/Git.html">Git</a></li><li class="chapter-item "><a href="../../../Tools/Githook.html">Githook</a></li><li class="chapter-item "><a href="../../../Tools/GithubCI.html">Github-CI</a></li><li class="chapter-item "><a href="../../../Tools/Latex.html">Latex</a></li><li class="chapter-item "><a href="../../../Tools/Make.html">Make与Makefile</a></li><li class="chapter-item "><a href="../../../Tools/VSCode.html">VSCode</a></li><li class="chapter-item "><a href="../../../Tools/Vim.html">Vim</a></li><li class="chapter-item "><a href="../../../Tools/WSL.html">WSL</a></li><li class="chapter-item "><a href="../../../Tools/双系统.html">双系统使用经历</a></li><li class="chapter-item "><a href="../../../Tools/软件打包.html">软件打包</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Reticence&#x27;s Notes</h1>
+
+                    <div class="right-buttons">
+                        <a href="../../../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="设计模式"><a class="header" href="#设计模式">设计模式</a></h1>
+<p>尽量从Rust编程的角度去理解设计模式。设计模式是为了提高程序的<strong>可复用性</strong>。</p>
+<blockquote>
+<p>使用场景非常重要。因为如果你学了个东西，都不知道用来解决什么问题，你说有什么用？理解使用场景的的重要性要远高于你是不是会实现这个模式，因为只要你知道什么问题可以使用builder模式来解决，那你即使不会写，也可以在调查相关资料后完成。</p>
+</blockquote>
+<p>参考链接 </p>
+<ul>
+<li>
+<p>https://chercher.tech/rust/decorator-design-pattern-rust</p>
+</li>
+<li>
+<p>http://c.biancheng.net/view/1400.html</p>
+</li>
+</ul>
+<h2 id="基础知识"><a class="header" href="#基础知识">基础知识</a></h2>
+<h3 id="uml"><a class="header" href="#uml">UML</a></h3>
+<p>UML是让系统可视化，让规格和设计文档化的表现方法，是Unified Modeling Language的简写。</p>
+<h3 id="类的层次结构"><a class="header" href="#类的层次结构">类的层次结构</a></h3>
+<img src="../images/image-20210815194448437.png" alt="image-20210815194448437" style="zoom:50%;" />
+<ul>
+<li>从上到下，类名-字段-方法。表示的是子类和父类的关系。</li>
+<li>abstract 类（抽象类）的名字以斜体方式显示。例如，ParentClass 是抽象类，因此它的名字以斜体方式显示。</li>
+<li>static字段（静态字段）的名字带有下划线。例如，field2 是静态字段，因此名字带有下划线。</li>
+<li>abstract方法（抽象方法）的名字以斜体方式显示。例如，methodA是抽象方法，因此它以斜体方式显示。</li>
+<li>static方法（静态方法）的名字以下划线显示。例如，ChildClass类的 methodC 是类的静态方法，因此它的名字带有下划线。</li>
+</ul>
+<blockquote>
+<p>【Rust】中的类可以当作是struct。</p>
+<p>【Rust】中的静态方法就是在<strong>impl中</strong>没有self参数的方法，普通方法就是<strong>impl中</strong>有self参数的方法。抽象方法就是定义在<strong>Trait中</strong>的方法名，也可以有实现。</p>
+<p>【Rust】静态字段，是属于类的字段，Rust中没有直接对应的概念。但是感觉可以定义一个普通变量，但是只能通过一个类来访问进行模拟。普通变量就是普通类的变量。</p>
+<p>【Rust】没有继承。但是简单的继承可以通过枚举来方便的模拟。</p>
+</blockquote>
+<h3 id="接口和实现"><a class="header" href="#接口和实现">接口和实现</a></h3>
+<img src="../images/image-20210815195417295.png" alt="image-20210815195417295" style="zoom:50%;" />
+<ul>
+<li>表示的是PrintClass实现了接口Printable。</li>
+</ul>
+<blockquote>
+<p>【Rust】的Interface就是Trait，Trait比Interface更强大。实现Interface就是实现Trait。</p>
+</blockquote>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>// rust要求方法snake命名
+trait Printable {
+    fn print(&amp;self);
+    fn new_page(&amp;self);
+}
+
+struct PrintClass {
+    ...
+}
+
+impl Printable for PrintClass {
+    fn print(&amp;self){
+        ...
+    }
+    fn new_page(&amp;self){
+        ...
+    }
+}
+<span class="boring">}
+</span></code></pre></pre>
+<h3 id="聚合组合"><a class="header" href="#聚合组合">聚合/组合</a></h3>
+<img src="../images/image-20210815195803563.png" alt="image-20210815195803563" style="zoom:50%;" />
+<p>该图展示了Color（颜色）、Fruit（水果）、Basket（果篮）这 3个类之间的关系。Basket类中的 fruits字段是可以存放 Fruit 类型数据的数组，在一个Basket类的实例中可以持有多个Fruit 类的实例;Fruit 类中的 color字段是Color类型，一个Fruit类实例中只能持有一个 Color 类的实例。通俗地说就是在篮子中可以放入多个水果，每个水果都有其自身的颜色。</p>
+<p>组合和聚合的区别在于前者持有所有权，后者持有引用。在Java/Python等语言中这没什么区别，不过在Rust中这区别大了。</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>struct Color {...}
+struct Fruit {
+    color : Color,
+    ...
+}
+struct Basket {
+    fruit : Vec&lt;Fruit&gt;,
+}
+<span class="boring">}
+</span></code></pre></pre>
+<h3 id="可见性"><a class="header" href="#可见性">可见性</a></h3>
+<p><img src="../images/image-20210815200601109.png" alt="image-20210815200601109" /></p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>// 我觉得Rust只有两种可以和上面的对应。不过Rust的Pub其实更加复杂 
+// https://doc.rust-lang.org/reference/visibility-and-privacy.html
+struct Something{
+    pub public_filed : i64,
+    package_field : i64,
+}
+<span class="boring">}
+</span></code></pre></pre>
+<h3 id="类的关联"><a class="header" href="#类的关联">类的关联</a></h3>
+<p><img src="../images/image-20210815202939185.png" alt="image-20210815202939185" /></p>
+<h3 id="时序图"><a class="header" href="#时序图">时序图</a></h3>
+<p><img src="../images/image-20210815203131431.png" alt="image-20210815203131431" /></p>
+<h2 id="solid原则"><a class="header" href="#solid原则">SOLID原则</a></h2>
+<ul>
+<li>Single Responsibility Principle: </li>
+<li>Open/closed Principle: 对于扩展类应该是开放的，对于修改类应该是封闭的。</li>
+<li>Liskov Substitution Principle: 当你扩展一个类时， 记住你应该要能在不修改客户端代码的情况下将子类的对象作为父类对象进行传递。</li>
+<li>Interface Segregation Principle: 尽量缩小接口的范围，使得客户端的类不必实现其不需要的行为。</li>
+<li>Dependency Inversion Principle: 高层次的类不应该依赖于低层次的类。 两者都应该依赖于抽象接口。抽象接口不应依赖于具体实现。具体实现应该依赖于抽象接口。</li>
+</ul>
+<h2 id="23个设计模式"><a class="header" href="#23个设计模式">23个设计模式</a></h2>
+<h3 id="1-iterator-模式"><a class="header" href="#1-iterator-模式">1. Iterator 模式</a></h3>
+<h4 id="介绍"><a class="header" href="#介绍">介绍</a></h4>
+<p><img src="../images/image-20210815212823688.png" alt="image-20210815212823688" /></p>
+<p>可以将遍历和实现分开来。这样<strong>无论底层的容器实现</strong>是什么，都可以用一样的方法遍历。</p>
+<h4 id="代码"><a class="header" href="#代码">代码</a></h4>
+<p>参考<a href="https://doc.rust-lang.org/src/core/iter/traits/iterator.rs.html#59-3437">Rust标准库</a>。两个抽象类的定义</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>// &lt;&lt;interface&gt;&gt; Aggregate 
+// iterator -&gt; into_iter
+impl&lt;I: Iterator&gt; IntoIterator for I {
+    type Item = I::Item;
+    type IntoIter = I;
+    fn into_iter(self) -&gt; I {
+        self
+    }
+}
+// &lt;&lt;interface&gt;&gt; Iterator
+// 因为有Option所以只需要一个next足矣
+trait Iterator {
+    type Item;
+    fn next(&amp;mut self) -&gt; Option&lt;Self::Item&gt;;
+
+    // ...
+}
+<span class="boring">}
+</span></code></pre></pre>
+<p>具体实现的例子，这里是Rust中的数组。所以我们自己实现的话，不需要定义抽象类，这个Rust已经帮我们定义好了就是<code>Iterator</code>，我们需要做的事帮我们的类型规定好<code>Iterator</code>怎么实现（主要就是<code>next</code>方法），然后我们的类（多半是容器）怎么<code>IntoIterator</code>。</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>// ConcreteIterator -&gt; IntoIter
+pub struct IntoIter&lt;T, const N: usize&gt; {
+    data: [MaybeUninit&lt;T&gt;; N],
+    alive: Range&lt;usize&gt;,
+}
+impl&lt;T, const N: usize&gt; Iterator for IntoIter&lt;T, N&gt; {
+    type Item = T;
+    fn next(&amp;mut self) -&gt; Option&lt;Self::Item&gt; {
+        self.alive.next().map(|idx| {
+            unsafe { self.data.get_unchecked(idx).assume_init_read() }
+        })
+    }
+}
+
+// ConcreteAggregate -&gt; [T;N] &amp;[T,N] &amp;mut[T,N]
+// iterator -&gt; into_iter
+// https://doc.rust-lang.org/src/core/array/mod.rs.html#160
+// Rust由于存在所有权的概念，所以一般的方法都有into_iter,iter,iter_mut三个具体的实现
+impl&lt;T, const N: usize&gt; IntoIterator for [T; N] {
+    type Item = T;
+    type IntoIter = IntoIter&lt;T, N&gt;;
+    fn into_iter(self) -&gt; Self::IntoIter {
+        IntoIter::new(self)
+    }
+}
+impl&lt;'a, T, const N: usize&gt; IntoIterator for &amp;'a [T; N] {
+    type Item = &amp;'a T;
+    type IntoIter = Iter&lt;'a, T&gt;;
+
+    fn into_iter(self) -&gt; Iter&lt;'a, T&gt; {
+        self.iter()
+    }
+}
+impl&lt;'a, T, const N: usize&gt; IntoIterator for &amp;'a mut [T; N] {
+    type Item = &amp;'a mut T;
+    type IntoIter = IterMut&lt;'a, T&gt;;
+
+    fn into_iter(self) -&gt; IterMut&lt;'a, T&gt; {
+        self.iter_mut()
+    }
+} 
+<span class="boring">}
+</span></code></pre></pre>
+<p>虽然说<code>Iterator</code>只用实现最基础的<code>next</code>方法，然后自动实现其他的方法如<code>nth()</code>。但是你完全可以根据数据的组织形式，为你的<code>ConcreteIterator</code>实现更高效的其他方法，比如如果数据是连续的就可以用<code>O(1)</code>的代价实现<code>nth()</code>，但是为了接口的一致性还是要消耗掉之前的元素。</p>
+<h3 id="2-adapter-模式"><a class="header" href="#2-adapter-模式">2. Adapter 模式</a></h3>
+<h4 id="使用场景"><a class="header" href="#使用场景">使用场景</a></h4>
+<p>适配器模式是一种事后的补救策略，用来补救设计上的缺陷。应用这种模式算是“无奈之举”。如果在设计初期，我们就能规避接口不兼容的问题，那这种模式就无用武之地了。在实际的开发中，什么情况下才会出现接口不兼容呢？下面这5种场景：</p>
+<ul>
+<li>封装有缺陷的接口设计</li>
+<li>统一多个类的接口设计</li>
+<li>替换依赖的外部系统</li>
+<li>兼容老版本接口</li>
+<li>适配不同格式的数据</li>
+</ul>
+<h4 id="介绍-1"><a class="header" href="#介绍-1">介绍</a></h4>
+<p>类似“HDMI转VGA线”一样，我们原来的电脑上是HDMI接口（原来的实现），但是现在<strong>需求发生了变化</strong>需要VGA接口，我们不想把电脑拆了把接口换成VGA接口（修改原来的代码），那么我们就用一根线来把HDMI转换成VGA（适配器），这样原来的HDMI接口可以接着使用，使用者就对着转接线提供的VGA插就完事了。</p>
+<p><img src="../images/image-20210815223328663.png" alt="image-20210815223328663" /></p>
+<h4 id="代码-1"><a class="header" href="#代码-1">代码</a></h4>
+<p>一下子没有想到很好的例子。我觉得在Rust中就直接考虑第二种了。</p>
+<h3 id="3-template-method-模式"><a class="header" href="#3-template-method-模式">3. Template Method 模式</a></h3>
+<h4 id="介绍-2"><a class="header" href="#介绍-2">介绍</a></h4>
+<p><img src="../images/image-20210815230232566.png" alt="image-20210815230232566" /></p>
+<p>之前望文生义，以为模板方法对应的就是C++中的模板。不过仔细一看，其实这就是简单的一个父类定义接口、子类实现接口的过程。在Rust中，这就是定义一个trait然后去实现它。下面是我之前以为的模板的作用</p>
+<blockquote>
+<p>模板模式有两大作用：复用和扩展。其中复用指的是，所有的子类可以复用父类中提供的模板方法的代码。扩展指的是，框架通过模板模式提供功能扩展点，让框架用户可以在不修改框架源码的情况下，基于扩展点定制化框架的功能。</p>
+<p>如果两个类的方法有共同点，那就可以抽出来。比如上面的迭代器模式。在Rust中，这其实有两种实现方法，分别是静态分发的模板和动态分发的Trait对象。</p>
+</blockquote>
+<h3 id="4-factory-method-模式"><a class="header" href="#4-factory-method-模式">4. Factory Method 模式</a></h3>
+<h4 id="介绍-3"><a class="header" href="#介绍-3">介绍</a></h4>
+<p><img src="../images/image-20210816100759308.png" alt="image-20210816100759308" /></p>
+<p>简单的说，工厂ConcreteCreator根据传递的不同参数，返回不同的类实例Concrete。如果只有一个Concrete的话意义不大，如果有多个Concrete，而且每个Concrete都有相似之处会比较合理，method就是相似之处。</p>
+<h4 id="代码-2"><a class="header" href="#代码-2">代码</a></h4>
+<p>假设我们有两个很类似的Product。</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>// Abstract Product
+trait Color{
+    fn output_color(&amp;self);  
+}
+enum ColorType {
+    Red,
+    Blue,
+}
+// Concrete Product
+struct RedColor;
+struct BlueColor;
+
+// method
+impl Color for RedColor {
+    fn output_color(&amp;self) {
+        println!(&quot;red color.&quot;);
+    }
+}
+impl Color for BlueColor {
+    fn output_color(&amp;self) {
+        println!(&quot;blue color.&quot;);
+    }
+}
+<span class="boring">}
+</span></code></pre></pre>
+<p>那么工厂就是</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>struct ColorFactory; 
+impl ColorFactory{
+    // 注意这里的动态派发
+    // 不能直接返回Color，因为是大小不定的。要用Box包装，或者其他的指针。
+    fn new_color(&amp;self, color_type: ColorType) -&gt; Box&lt;dyn Color&gt; {
+        match color_type {
+            ColorType::Red =&gt; Box::new(RedColor{}),
+            ColorType::Blue =&gt; Box::new(BlueColor{}),
+        }
+    }
+    fn new() -&gt; Self {
+        ColorFactory{}
+    }
+}
+<span class="boring">}
+</span></code></pre></pre>
+<h3 id="5-singleton-模式"><a class="header" href="#5-singleton-模式">5. Singleton 模式</a></h3>
+<h4 id="介绍及使用场景"><a class="header" href="#介绍及使用场景">介绍及使用场景</a></h4>
+<p>在整个运行过程中只会产生一个实例。比如对某些硬件资源的抽象就可能会使用，或者是一些全局性的管理的变量。</p>
+<p><img src="../images/image-20210816105852525.png" alt="image-20210816105852525" /></p>
+<h4 id="代码-3"><a class="header" href="#代码-3">代码</a></h4>
+<blockquote>
+<p>【Rust】如果单例不需要修改，直接用全局变量就好了。但是【Rust】全局变量初始化中的函数调用是有限制的：“The only functions that can be called in static or constant expressions are <code>const</code> functions, and struct/enum constructors.”。</p>
+<p>所以，可以<a href="https://doc.rust-lang.org/error-index.html#E0015">把构造函数（Rust其实没有直接的概念）声明成const</a>，或者使用<a href="https://crates.io/crates/lazy_static">lazy_static</a>。</p>
+<p>【Rust】如果单例需要修改，那用全局变量就是一个Unsafe的行为了（线程不安全）。</p>
+<ol>
+<li>
+<p>你可以用锁</p>
+</li>
+<li>
+<p>也可以使用标准库<a href="https://doc.rust-lang.org/std/cell/index.html">Cell</a>和第三方库<a href="https://crates.io/crates/once_cell">once_cell</a>的帮助来帮我们实现单例模式，他的使用场景是ffi，调用外部函数完成初始化，或者是在程序运行到某个节点才初始化。他提供了线程安全的版本。</p>
+</li>
+</ol>
+</blockquote>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>// 不可变版本
+#[macro_use]
+extern crate lazy_static;
+// FILE_NAME 就可以当作一个正常的全局变量使用了
+lazy_static!{
+    static ref FILE_NAME : String = String::from(&quot;1234&quot;);
+}
+<span class="boring">}
+</span></code></pre></pre>
+<pre><pre class="playground"><code class="language-rust">use once_cell::sync::OnceCell;
+// 这就是一个全局可变的变量了，只能设置一次值（构造），无限制的get
+static CELL: OnceCell&lt;String&gt; = OnceCell::new();
+
+fn main() {
+    assert_eq!(&quot;a&quot;, CELL.get_or_init(|| &quot;a&quot;.to_string()));
+    assert_eq!(&quot;a&quot;, CELL.get_or_init(|| &quot;b&quot;.to_string()));
+    assert!(CELL.set(&quot;b&quot;.to_string()).is_err());
+    assert_eq!(&quot;a&quot;, CELL.get_or_init(|| &quot;b&quot;.to_string()));
+    assert_eq!(&quot;a&quot;, CELL.get().unwrap());
+}
+</code></pre></pre>
+<h3 id="6-prototype-模式"><a class="header" href="#6-prototype-模式">6. Prototype 模式</a></h3>
+<h4 id="介绍及使用场景-1"><a class="header" href="#介绍及使用场景-1">介绍及使用场景</a></h4>
+<p>在 Java 中，我们可以使用<code>new</code>关键字指定类名来生成类的实例。像这样使用new来生成实例时，是必须指定类名的。但是，在开发过程中，有时候也会有&quot;在不指定类名的前提下生成实例&quot;的需求。例如，在以下情况下，我们就不能根据类来生成实例，而要根据现有的实例来生成新的实例。</p>
+<ol>
+<li>对象种类繁多，无法将它们整合到一个类中时。第一种情况是需要处理的对象太多，如果将它们分别作为—个类。必须要编写很多个类文件。</li>
+<li>难以根据类生成实例时。第二种情况是生成实例的过程太过复杂，很难根据类来生成实例。例如，我们假设这里有一个实例，即表示用户在图形编辑器中使用鼠标制作出的图形的实例。想在程序中创建这样的实例是非常困难的。通常，在想生成一个和之前用户通过操作所创建出的实例完全一样的实例的时候，我们会事先将用户通过操作所创建出的实例保存起来，然后在需要时通过复制来生成新的实例。</li>
+<li>想解耦框架与生成的实例时。第三种情况是想要让生成实例的框架不依赖干具体的类。这时。不能指定类名来生成实例，而要事先&quot;注册&quot;一个&quot;原型&quot;实例，然后通过复制该实例来生成新的实例。</li>
+</ol>
+<p>说实话我还没有很理解这个使用场景。</p>
+<p><img src="../images/image-20210816121254911.png" alt="image-20210816121254911" /></p>
+<h4 id="代码-4"><a class="header" href="#代码-4">代码</a></h4>
+<p>对于一般的<strong>浅拷贝</strong>，<code>#[derive(Clone)]</code>还可以自动生成。甚至clone也不是必须的，还可以 序列化-反序列化 来实现。</p>
+<h3 id="7-builder-模式-star2"><a class="header" href="#7-builder-模式-star2">7. Builder 模式 :star2:</a></h3>
+<h4 id="介绍及使用场景-2"><a class="header" href="#介绍及使用场景-2">介绍及使用场景</a></h4>
+<p>使用多个简单的对象构造一个复杂的对象。当一个类的构造函数参数个数超过4个，而且这些参数有些是可选的参数，考虑使用构造者模式。</p>
+<p><img src="../images/image-20210816142454266.png" alt="image-20210816142454266" /></p>
+<h4 id="代码-5"><a class="header" href="#代码-5">代码</a></h4>
+<p>没有必要构造抽象类，和上面的UML图其实不太一样。建造者模式在Rust中有两种写法，注意传参的类型。第二种写起来更爽，但是如果结构体很大的话意味着更多的栈上的复制，我不知道这个会不会被优化掉，不过在<code>build_x</code>,<code>build_y</code>前面加上<code>#[inline]</code>肯定是可以避免掉栈复制的。然而，我觉得创建结构体应该一般不会成为性能的瓶颈吧，具体问题具体分析。</p>
+<pre><pre class="playground"><code class="language-rust">struct ConcreteBuilder {
+    x: i32,
+    y: i32,
+}
+
+struct ConcreteStruct {
+    x: i32,
+    y: i32,
+}
+
+impl ConcreteBuilder {
+    fn new() -&gt; Self {
+        Self { x: 0, y: 0 }
+    }
+    // 其实代码分成两种情况，参考https://doc.rust-lang.org/1.0.0/style/ownership/builders.html，分别是字段不可复制和可复制的版本
+    // 实际上这个代码可能非常复杂，不是简单的赋值，否则也就没有意义了
+    fn build_x(&amp;mut self, x: i32) -&gt; &amp;mut Self {
+        self.x = x;
+        self
+    }
+    fn build_y(&amp;mut self, y: i32) -&gt; &amp;mut Self {
+        self.y = y;
+        self
+    }
+    fn build(self) -&gt; ConcreteStruct {
+        ConcreteStruct {
+            x: self.x,
+            y: self.y,
+        }
+    }
+}
+
+fn main() {
+    let mut builder = ConcreteBuilder::new();
+    builder.build_x(11).build_y(22);
+    let instance = builder.build();
+    assert_eq!(instance.x, 11);
+    assert_eq!(instance.y, 22);
+}
+</code></pre></pre>
+<pre><pre class="playground"><code class="language-rust">struct ConcreteBuilder {
+    x: i32,
+    y: i32,
+}
+
+struct ConcreteStruct {
+    x: i32,
+    y: i32,
+}
+
+impl ConcreteBuilder {
+    fn new() -&gt; Self {
+        Self { x: 0, y: 0 }
+    }
+    // 其实代码分成两种情况，参考https://doc.rust-lang.org/1.0.0/style/ownership/builders.html，分别是字段不可复制和可复制的版本
+    // 实际上这个代码可能非常复杂，不是简单的赋值，否则也就没有意义了
+    fn build_x(mut self, x: i32) -&gt; Self {
+        self.x = x;
+        self
+    }
+    fn build_y(mut self, y: i32) -&gt; Self {
+        self.y = y;
+        self
+    }
+    fn build(self) -&gt; ConcreteStruct {
+        ConcreteStruct {
+            x: self.x,
+            y: self.y,
+        }
+    }
+}
+
+fn main() {
+    let instance = ConcreteBuilder::new().build_x(11).build_y(22).build();
+    assert_eq!(instance.x, 11);
+    assert_eq!(instance.y, 22);
+}
+</code></pre></pre>
+<h3 id="8-abstract-factory-模式"><a class="header" href="#8-abstract-factory-模式">8. Abstract Factory 模式</a></h3>
+<p>这个不知道干啥用。生产工厂的工厂。</p>
+<h3 id="9-bridge-模式"><a class="header" href="#9-bridge-模式">9. Bridge 模式</a></h3>
+<p>在Rust中桥接模式根本就不是问题。为一个struct实现多个trait是基本操作。</p>
+<h3 id="10-strategy-模式"><a class="header" href="#10-strategy-模式">10. Strategy 模式</a></h3>
+<h4 id="介绍-4"><a class="header" href="#介绍-4">介绍</a></h4>
+<p>将算法和其他部分分开来，定义了算法的API在程序中以委托的方式来使用算法。让我想起了操作系统中的调度算法，可以通过这种方式来选择算法，书上举了象棋AI强度的例子。</p>
+<p><img src="../images/image-20210816200043023.png" alt="image-20210816200043023" /></p>
+<p>Context提供算法需要的参数，Strategy只是描述了接口，具体的实现有Concrete Strategy实现。</p>
+<p>如果你觉的当前的算法不具有普适性，将来可能会修改或为不同场景添加不同算法就比较适合使用这种设计模式。否则的话也不用分那么细。一个很好的Rust例子是<code>serde</code>库的实现。参考<a href="https://serde.rs/data-model.html">Serde Data Model</a>。</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>pub trait Serialize {
+    fn serialize&lt;S&gt;(&amp;self, serializer: S) -&gt; Result&lt;S::Ok, S::Error&gt;
+    where
+        S: Serializer;
+}
+// 定义了具体结构化每个类型的方法，比如
+pub trait ser::Serializer: Sized {
+    fn serialize_bool(self, v: bool) -&gt; Result&lt;Self::Ok, Self::Error&gt;;
+    ...
+}
+
+// 具体的结构化的方法会去
+impl ser::Serializer for &amp;'a mut serde_json::Serializer {
+    fn serialize_bool(self, value: bool) -&gt; Result&lt;()&gt; {
+        self.formatter.write_bool(&amp;mut self.writer, value).map_err(Error::io))?
+        Ok(())
+    }
+}
+<span class="boring">}
+</span></code></pre></pre>
+<p>当我们为我们的struct <code>#[derive(Serialize)]</code>的时候，他并不是帮我们将我们的struct转换成了一个中间的表示结构，然后再交给具体的方法。为了高效性，<code>Serialize::setialize</code>实际上做的事情，是将当前的数据<code>self</code>，分发给具体的<code>serializer</code>，调用<code>serializer</code>不同的方法。不过由于Rust并不能运行时反射，类型信息只在编译器存有，所以用宏是唯一的选择。如果忽略封装，考虑设计模式的运用，可以有如下的Demo，也算是<code>serde_json::to_string</code>的简化版了</p>
+<pre><pre class="playground"><code class="language-rust">use serde::Serialize;
+
+#[derive(Serialize)]
+struct MyStruct {
+    x: i32,
+    y: i32,
+}
+
+impl MyStruct {
+    fn new() -&gt; Self {
+        Self { x: 1, y: 2 }
+    }
+}
+
+fn to_json&lt;T&gt;(my_struct: T) -&gt; String
+where
+    T: Serialize,
+{
+    let mut writer = Vec::new();
+    let mut serializer = serde_json::Serializer::new(&amp;mut writer);
+    my_struct.serialize(&amp;mut serializer).unwrap();
+    String::from_utf8(writer).unwrap()
+}
+fn main() {
+    let my_struct = MyStruct::new();
+    // {&quot;x&quot;:1,&quot;y&quot;:2}
+    println!(&quot;{}&quot;, to_json(my_struct))
+}
+</code></pre></pre>
+<h3 id="11-composite-模式"><a class="header" href="#11-composite-模式">11. Composite 模式</a></h3>
+<p>结构里面有一个容器，可以包含子类和其他的容器。形成一个树形结构。这个让我想起了语法树啊。<a href="../Compiler/pest.html"><code>pest</code>库里面的Pair</a>类应该是一个很典型的例子。</p>
+<h3 id="12-decorator-模式--star"><a class="header" href="#12-decorator-模式--star">12. Decorator 模式  :star:</a></h3>
+<h4 id="介绍及使用场景-3"><a class="header" href="#介绍及使用场景-3">介绍及使用场景</a></h4>
+<p>看到这个名字第一反应是Python中的装饰器，想到装饰器之后又想到了<code>#[derive()]</code>，所以是不是这样呢。原来不止我有这个想法，参考https://users.rust-lang.org/t/are-derive-macros-in-rust-similar-to-decorators-in-python/46686，意思是说两者目的相似，但是前者是函数闭包，后者是代码生成。</p>
+<p>decorator模式的定义是<strong>动态地</strong>给一个<strong>对象</strong>添加一些<strong>额外的职责</strong>。这个模式的好处：认证，权限检查，记日志，检查参数，加锁，等等等等，这些功能和系统业务无关，但又是系统所必须的，说的更明白一点，就是面向方面的编程（AOP）。所以，Python的Decorator就是Decorator模式的语言级支持。</p>
+<p>在Rust中也许可以用宏魔法来实现和Python类似的效果。我看网上的代码感觉实现起来没有Python优雅，如果能用类似于<code>#[derive()]</code>的方式实现就好了，确实可以用过程宏来实现！</p>
+<h4 id="代码-6"><a class="header" href="#代码-6">代码</a></h4>
+<p>一个还不稳定的库 pydeco 提供了类似于Python decorator的宏。</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>use pydeco::deco;
+
+fn logging&lt;F&gt;(func: F) -&gt; impl Fn(i32) -&gt; i32
+where
+    F: Fn(i32) -&gt; i32,
+{
+    move |i| {
+        println!(&quot;Input = {}&quot;, i);
+        let out = func(i);
+        println!(&quot;Output = {}&quot;, out);
+        out
+    }
+}
+
+#[deco(logging)]
+fn add2(i: i32) -&gt; i32 {
+    i + 2
+}
+
+add2(2);
+<span class="boring">}
+</span></code></pre></pre>
+<p>事实上整个库的代码刨去注释和测试才不到100行，可惜我不会宏，先放在这里。https://github.com/termoshtt/deco/blob/master/src/lib.rs。光是想一下的话，是把 <em>原函数</em> 当成一个参数传递给 <em>装饰函数</em>，然后用 <em>装饰函数</em> 替换 <em>原函数</em>。</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>use anyhow::{bail, Result};
+use proc_macro::TokenStream;
+use proc_macro2::TokenTree;
+use syn::*;
+
+#[proc_macro_attribute]
+pub fn deco(attr: TokenStream, func: TokenStream) -&gt; TokenStream {
+    let func = func.into();
+    let item_fn: ItemFn = syn::parse(func).expect(&quot;Input is not a function&quot;);
+    let vis = &amp;item_fn.vis;
+    let ident = &amp;item_fn.sig.ident;
+    let block = &amp;item_fn.block;
+
+    let inputs = item_fn.sig.inputs;
+    let output = item_fn.sig.output;
+
+    let input_values: Vec&lt;_&gt; = inputs
+        .iter()
+        .map(|arg| match arg {
+            &amp;FnArg::Typed(ref val) =&gt; &amp;val.pat,
+            _ =&gt; unimplemented!(&quot;#[deco] cannot be used with associated function&quot;),
+        })
+        .collect();
+
+    let attr = DecoratorAttr::parse(attr.into()).expect(&quot;Failed to parse attribute&quot;);
+    let caller = match attr {
+        DecoratorAttr::Fixed { name } =&gt; {
+            quote::quote! {
+<span class="boring">                vis fn #ident(#inputs) #output {
+</span>                    let f = #name(deco_internal);
+                    return f(#(#input_values,) *);
+
+                    fn deco_internal(#inputs) #output #block
+                }
+            }
+        }
+        DecoratorAttr::Parametric { name, args } =&gt; {
+            quote::quote! {
+<span class="boring">                vis fn #ident(#inputs) #output {
+</span>                    let deco = #name(#(#args,) *);
+                    let f = deco(deco_internal);
+                    return f(#(#input_values,) *);
+
+                    fn deco_internal(#inputs) #output #block
+                }
+            }
+        }
+    };
+    caller.into()
+}
+
+#[derive(Debug, PartialEq)]
+enum DecoratorAttr {
+    Fixed { name: Ident },
+    Parametric { name: Ident, args: Vec&lt;Expr&gt; },
+}
+
+impl DecoratorAttr {
+    fn parse(attr: proc_macro2::TokenStream) -&gt; Result&lt;Self&gt; {
+        let mut ident = None;
+        let mut args = Vec::new();
+        for at in attr {
+            match at {
+                TokenTree::Ident(id) =&gt; {
+                    ident = Some(id);
+                }
+                TokenTree::Group(grp) =&gt; {
+                    if ident.is_none() {
+                        bail!(&quot;Invalid token stream&quot;);
+                    }
+                    for t in grp.stream() {
+                        if let Ok(expr) = syn::parse2(t.into()) {
+                            args.push(expr);
+                        }
+                    }
+                }
+                _ =&gt; bail!(&quot;Invalid token stream&quot;),
+            }
+        }
+        if let Some(name) = ident {
+            if args.is_empty() {
+                Ok(DecoratorAttr::Fixed { name })
+            } else {
+                Ok(DecoratorAttr::Parametric { name, args })
+            }
+        } else {
+            bail!(&quot;Decorator name not found&quot;);
+        }
+    }
+}
+<span class="boring">}
+</span></code></pre></pre>
+<h3 id="13--visitor-模式-star2"><a class="header" href="#13--visitor-模式-star2">13.  Visitor 模式 :star2:</a></h3>
+<h4 id="使用场景-1"><a class="header" href="#使用场景-1">使用场景</a></h4>
+<ul>
+<li>一个数据结构如（List/Set/Map等）包含很多类型对象</li>
+<li>数据结构与数据操作分离</li>
+</ul>
+<h4 id="介绍-5"><a class="header" href="#介绍-5">介绍</a></h4>
+<ul>
+<li>
+<p>定义：将作用于某种数据结构中的各元素的操作分离出来封装成独立的类，使其在不改变数据结构的前提下可以添加作用于这些元素的新的操作，为数据结构中的每个元素提供多种访问方式。它将对数据的操作与数据结构进行分离，是行为类模式中最复杂的一种模式。可以在不改变各元素的类的前提下，定义作用于这些元素的操作。</p>
+</li>
+<li>
+<p>访问者模式建议将新行为放入一个名为访问者的独立类中，不是试图将其整合到已有类中。现在，需要执行操作的原
+始对象将作为参数被传递给访问者中的方法，让方法能访问对象所包含的一切必要数据。</p>
+<p><img src="../images/image-20210816231734025.png" alt="image-20210816231734025" /></p>
+</li>
+</ul>
+<h4 id="代码-7"><a class="header" href="#代码-7">代码</a></h4>
+<p>以下内容参考《Rust编程之道》 By 张汉东</p>
+<p>访问者模式一般包含两个层次：</p>
+<ol>
+<li>定义需要操作的元素</li>
+<li>定义相关的操作</li>
+</ol>
+<p>再看<a href="https://rust-unofficial.github.io/patterns/patterns/behavioural/visitor.html">链接</a>给出的代码(其实就在下面)。<code>Element</code>是抽象语法树，他的种类是非常稳定的，只有<code>Statement</code>, <code>Name</code>, <code>Expression</code>三种。但是我们在分析语言的时候，肯定是把他们存在一起。也就是说有很多<strong>异构的数据存在一起</strong>，我们给每种数据定义统一的visit方法——<code>visit_expr</code>,<code>visit_name</code>,<code>visit_expr</code>。这时候，我们按照不同访问需求——比如为了Intepreter，再去定义具体的visit行为。</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>// element
+mod ast {
+    pub enum Stmt {
+        Expr(Expr),
+        Let(Name, Expr),
+    }
+
+    pub struct Name {
+        value: String,
+    }
+
+    pub enum Expr {
+        IntLit(i64),
+        Add(Box&lt;Expr&gt;, Box&lt;Expr&gt;),
+        Sub(Box&lt;Expr&gt;, Box&lt;Expr&gt;),
+    }
+}
+
+// The abstract visitor
+mod visit {
+    use ast::*;
+
+    pub trait Visitor&lt;T&gt; {
+        fn visit_name(&amp;mut self, n: &amp;Name) -&gt; T;
+        fn visit_stmt(&amp;mut self, s: &amp;Stmt) -&gt; T;
+        fn visit_expr(&amp;mut self, e: &amp;Expr) -&gt; T;
+    }
+}
+
+use visit::*;
+use ast::*;
+
+// An example concrete visitor - walks the AST interpreting it as code.
+struct Interpreter;
+impl Visitor&lt;i64&gt; for Interpreter {
+    fn visit_name(&amp;mut self, n: &amp;Name) -&gt; i64 { panic!() }
+    fn visit_stmt(&amp;mut self, s: &amp;Stmt) -&gt; i64 {
+        match *s {
+            Stmt::Expr(ref e) =&gt; self.visit_expr(e),
+            Stmt::Let(..) =&gt; unimplemented!(),
+        }
+    }
+
+    fn visit_expr(&amp;mut self, e: &amp;Expr) -&gt; i64 {
+        match *e {
+            Expr::IntLit(n) =&gt; n,
+            Expr::Add(ref lhs, ref rhs) =&gt; self.visit_expr(lhs) + self.visit_expr(rhs),
+            Expr::Sub(ref lhs, ref rhs) =&gt; self.visit_expr(lhs) - self.visit_expr(rhs),
+        }
+    }
+}
+
+pub fn walk_expr(visitor: &amp;mut dyn Visitor, e: &amp;Expr) {
+    match *e {
+        Expr::IntLit(_) =&gt; {},
+        Expr::Add(ref lhs, ref rhs) =&gt; {
+            visitor.visit_expr(lhs);
+            visitor.visit_expr(rhs);
+        }
+        Expr::Sub(ref lhs, ref rhs) =&gt; {
+            visitor.visit_expr(lhs);
+            visitor.visit_expr(rhs);
+        }
+    }
+}
+<span class="boring">}
+</span></code></pre></pre>
+<p>总结上面两个例子，不难发现有共同点啊。</p>
+<ol>
+<li>数据Element是多样的，语法树的三个要素。</li>
+<li>Visit的抽象定义是简单的，每一种Element来一个就好了。因为我们认为element是稳定的。</li>
+<li>Visitor的具体实现是关键。为每一种不同的用途实现一批visit方法。</li>
+<li>再真正使用的时候，用的是concrete element的accept方法，比如上面的<code>walk_expr</code>还是<code>walk_name</code>啥的。</li>
+</ol>
+<h3 id="14-chain-of-responsibility-模式"><a class="header" href="#14-chain-of-responsibility-模式">14. Chain of Responsibility 模式</a></h3>
+<h4 id="介绍-6"><a class="header" href="#介绍-6">介绍</a></h4>
+<p>推卸责任模式。Rust的错误处理就挺符合这个模式的。</p>
+<h3 id="15-facade-模式"><a class="header" href="#15-facade-模式">15. Facade 模式</a></h3>
+<h4 id="介绍及使用场景-4"><a class="header" href="#介绍及使用场景-4">介绍及使用场景</a></h4>
+<p>当一个系统的功能越来越强，子系统会越来越多，客户对系统的访问也变得越来越复杂。这时如果系统内部发生改变，客户端也要跟着改变，这违背了“开闭原则”，也违背了“迪米特法则”，所以有必要为多个子系统提供一个统一的接口，从而降低系统的耦合度，这就是外观模式的目标。 </p>
+<p>它通过封装细粒度的接口，提供组合各个细粒度接口的高层次接口，来提高接口的易用性，或者解决性能、分布式事务等问题。</p>
+<h3 id="16-mediator-模式"><a class="header" href="#16-mediator-模式">16. Mediator 模式</a></h3>
+<h4 id="使用场景-2"><a class="header" href="#使用场景-2">使用场景</a></h4>
+<p>将一组对象之间的交互关系（或者说依赖关系）从多对多（网状关系）转换为一对多（星状关系）。原来一个对象要跟n个对象交互，现在只需要跟一个中介对象交互，从而最小化对象之间的交互关系，降低了代码的复杂度，提高了代码的可读性和可维护性。</p>
+<p>《图解设计模式》举得例子很好。一个GUI程序，每个组件的状态都会影响其他组件的状态，比如选择了显示密码那么密码输入框就要显示字符，否则显示<code>*</code>。这时候如果有一个统一的管理者，每个组件向他发送消息就好了，然后他发送消息通知每个组件。</p>
+<p>这个思想还有一个很重要的应用，是防止并发死锁。让一个中介对象来管理全部资源，需要资源的其他对象向中介请求。比如一个聊天客户端，每一个用户有两个进程负责收、发。那么当一个用户群发的时候，难道需要同时获得所有的<code>发进程</code>？可以不用。而是创建一个<code>中介进程</code>，把群发变成N个向单个用户发送消息的Message，通过channal传输，再让中介进程通知<code>发进程</code>发消息。</p>
+<h3 id="17-observer-模式"><a class="header" href="#17-observer-模式">17. Observer 模式</a></h3>
+<h4 id="使用场景-3"><a class="header" href="#使用场景-3">使用场景</a></h4>
+<p>参考 https://zhuanlan.zhihu.com/p/158537313 。不是很懂这个和Mediator的关系。他们肯定有相似之处。</p>
+<p>比如，最早智能手机上的3D平衡球游戏，我们要检测球有没有碰到洞口。那么，我们可以把洞口当作一个观察者，把这个观察者注册给球<code>addObserver</code>，每当球移动的时候，我们都把球当前的坐标发给注册者<code>notifyObserver</code>，Observer的会接受消息并作出相应的动作<code>update</code>。</p>
+<h4 id="介绍-7"><a class="header" href="#介绍-7">介绍</a></h4>
+<p><img src="../images/image-20210817220518006.png" alt="image-20210817220518006" /></p>
+<h4 id="代码-8"><a class="header" href="#代码-8">代码</a></h4>
+<p><a href="https://dev.to/brookzerker/observer-pattern-in-rust-57hl">https://dev.to/brookzerker/observer-pattern-in-rust-57hl</a> 用Rust写并不是这么简单的事情，因为往Subject里面添加observer注定要涉及到observer生命周期的问题，根据下面的需求，subject持有弱引用，object用强引用挺合适的。（逃避生命周期的做法）</p>
+<blockquote>
+<p>当subject析构的时候，observer不能持有一个subject的野指针。但是subject是可以先于observer析构的。</p>
+</blockquote>
+<p>看了网上很多不同的实现方法，其实围绕的不同场景也有不同的做法——有时候Observer和Subject可能会一一对应，或者一对多，或者多对多。</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>use std::rc::Weak;
+// 通知的事件
+struct Event{x: i32};
+// Subject
+// 这里没有删除。通过弱引用的方式，如果指向的对象被析构了会返回None，这个时候我们再删除，相当于是惰性删除。
+trait Subject {
+    fn register(&amp;mut self, observer: Weak&lt;dyn Observer&gt;);
+    fn notify(&amp;mut self);
+}
+// Observer on_notify=update
+trait Observer {
+    fn on_notify(&amp;self, event: &amp;Event);
+}
+<span class="boring">}
+</span></code></pre></pre>
+<p>下面这个例子是上面那个球进洞的例子，不过是一维的</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>// Concrete subject
+struct Ball{
+    observers : Vec&lt;Weak&lt;dyn Observer&gt;&gt;,
+    x : i32,
+}
+// Concrete observer
+struct Hole {
+    x : i32,
+}
+<span class="boring">}
+</span></code></pre></pre>
+<p>接口的实现</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>impl Subject for Ball {
+    fn register(&amp;mut self, observer: Weak&lt;dyn Observer&gt;) {
+        self.observers.push(observer);
+    }
+
+    fn notify(&amp;mut self, event: Event) {
+        for index in 0..self.observers.len() {
+            if let Some(observer) = self.observers[index].upgrade() {
+                observer.on_notify(&amp;event)
+            } else {
+                self.observers.swap_remove(index);
+            }            
+        }
+        // 用迭代器会违反Rust的借用原则
+        // for observer in self.observers.iter().enumerate() {
+        //     if let Some(observer) = observer.1.upgrade() {
+        //         observer.on_notify(&amp;event);
+        //     } else {    
+        //         self.observers.swap_remove(observer.0);
+        //     }
+        // }
+    }
+}
+impl Observer for Hole {
+    fn on_notify(&amp;self, event: &amp;Event) {
+        if event.x == self.x {
+            println!(&quot;Ball in Hole&quot;);
+        };
+    }
+}
+<span class="boring">}
+</span></code></pre></pre>
+<p>其他的代码。需要注意的是Rust中的弱引用，是从强引用中延伸出来的。如果强引用计数为0的话，就会返回None。</p>
+<pre><pre class="playground"><code class="language-rust">impl Ball {
+    fn go(&amp;mut self, delta: i32){
+        self.x += delta;
+        self.notify(Event{x:self.x});
+    }
+}
+fn main(){
+    let mut ball = Ball{ observers: vec![], x: 0 };
+    let hole1 = Rc::new(Hole{ x: 1 });
+    let hole2 = Rc::new(Hole{ x: -1 });
+    let weak1 = Rc::downgrade(&amp;hole1.clone());
+    let weak2 = Rc::downgrade(&amp;hole2.clone());
+    ball.register(weak1);
+    ball.register(weak2);
+    ball.go(2);
+    ball.go(-1);
+    drop(hole2);
+    ball.go(-2);
+}
+</code></pre></pre>
+<h3 id="18-memento-模式"><a class="header" href="#18-memento-模式">18. Memento 模式</a></h3>
+<h4 id="使用场景-4"><a class="header" href="#使用场景-4">使用场景</a></h4>
+<p>实现如 Undo Redo History Snapshot 的功能</p>
+<h4 id="介绍-8"><a class="header" href="#介绍-8">介绍</a></h4>
+<p>备忘录（Memento）模式的定义：在不破坏封装性的前提下，捕获一个对象的内部状态，并在该对象之外保存这个状态，以便以后当需要时能将该对象恢复到原先保存的状态。该模式又叫快照模式。</p>
+<p>备忘录模式的主要角色如下。</p>
+<ol>
+<li>
+<p>发起人（Originator）角色：记录当前时刻的内部状态信息，提供创建备忘录和恢复备忘录数据的功能，实现其他业务功能，它可以访问备忘录里的所有信息。</p>
+</li>
+<li>
+<p>备忘录（Memento）角色：负责存储发起人的内部状态，在需要的时候提供这些内部状态给发起人。</p>
+</li>
+<li>
+<p>管理者（Caretaker）角色：对备忘录进行管理，提供保存与获取备忘录的功能（通知Originator），但其不能对备忘录的内容进行访问与修改。</p>
+<p><img src="../images/3-1Q119130413927.gif" alt="备忘录模式的结构图" /></p>
+</li>
+</ol>
+<h4 id="代码-9"><a class="header" href="#代码-9">代码</a></h4>
+<h3 id="19-state-模式"><a class="header" href="#19-state-模式">19. State 模式</a></h3>
+<h4 id="使用场景-5"><a class="header" href="#使用场景-5">使用场景</a></h4>
+<p>存在复杂状态和复杂处理的时候。</p>
+<h4 id="介绍-9"><a class="header" href="#介绍-9">介绍</a></h4>
+<p>在软件开发过程中，应用程序中的部分对象可能会根据不同的情况做出不同的行为，我们把这种对象称为有状态的对象，而把影响对象行为的一个或多个动态变化的属性称为状态。当有状态的对象与外部事件产生互动时，其内部状态就会发生改变，从而使其行为也发生改变。像是有限状态机。根据之前的编程经验，用一个 <code>enum State</code>表示状态在结合<code>match</code>可以完成。</p>
+<p>状态模式的解决思想是：当控制一个对象状态转换的条件表达式过于复杂时，把相关“判断逻辑”提取出来，用各个不同的类进行表示，系统处于哪种情况，直接使用相应的状态类对象进行处理，这样能把原来复杂的逻辑判断简单化，消除了 if-else、switch-case 等冗余语句，代码更有层次性，并且具备良好的扩展力。但是代码也随之复杂了。</p>
+<p><img src="../images/3-1Q11615412U55.gif" alt="状态模式的结构图" /></p>
+<p>状态之间的转移，可以用程序来生成代码。</p>
+<h3 id="20--flyweight-模式"><a class="header" href="#20--flyweight-模式">20.  Flyweight 模式</a></h3>
+<h4 id="使用场景-6"><a class="header" href="#使用场景-6">使用场景</a></h4>
+<p>当一个系统中存在大量重复对象的时候，我们就可以利用享元模式，将对象设计成享元，在内存中只保留一份实例，供多处代码引用，这样可以减少内存中对象的数量，以起到节省内存的目的。实际上，不仅仅相同对象可以设计成享元，对于相似对象，我们也可以将这些对象中相同的部分（字段），提取出来设计成享元，让这些大量相似对象引用这些享元。</p>
+<h3 id="21-proxy-模式"><a class="header" href="#21-proxy-模式">21. Proxy 模式</a></h3>
+<h4 id="使用场景-7"><a class="header" href="#使用场景-7">使用场景</a></h4>
+<p><strong>想在访问一个类时做一些控制</strong>。通常有以下使用场景： 1、远程代理。 2、虚拟代理。 3、Copy-on-Write 代理。 4、保护（Protect or Access）代理。 5、<strong>Cache代理</strong>。 6、防火墙（Firewall）代理。 7、同步化（Synchronization）代理。 8、智能引用（Smart Reference）代理。 </p>
+<p>其实和适配器模式差不多，再封装一套接口出来，适配器是为了让原先的接口适应不同的场景，代理模式是并不是改变原先的接口，而是在原先接口的基础上在做一些额外的控制。这么看倒是很像装饰模式。</p>
+<p><strong>代理与其服务对象</strong>遵循同一接口，使得自己和服务对象可以互换。例子的话，我想起了trait<code>Read</code>和trait <code>BufRead</code>。如果你的类实现了<code>Read</code>，就可以先套一个<code>BufReader</code>（实现了<code>BufRead</code>）在去read，当然你的类也可以直接去read。</p>
+<h3 id="22-command-模式"><a class="header" href="#22-command-模式">22. Command 模式</a></h3>
+<p>将方法的请求者与实现者解耦</p>
+<h4 id="使用场景-8"><a class="header" href="#使用场景-8">使用场景</a></h4>
+<ol>
+<li><strong>请求调用者</strong>需要与<strong>请求接收者</strong>解耦时，命令模式可以使调用者和接收者不直接交互。</li>
+<li>系统随机请求命令或经常增加、删除命令时，命令模式可以方便地实现这些功能。</li>
+<li>当系统需要执行一组操作时，命令模式可以定义宏命令来实现该功能。</li>
+<li>当系统需要支持命令的撤销（Undo）操作和恢复（Redo）操作时，可以将命令对象存储起来，采用备忘录模式来实现。</li>
+</ol>
+<h3 id="23-interpreter-模式"><a class="header" href="#23-interpreter-模式">23. Interpreter 模式</a></h3>
+<h4 id="使用场景-9"><a class="header" href="#使用场景-9">使用场景</a></h4>
+<p>在软件开发中，会遇到有些问题多次重复出现，而且有一定的相似性和规律性。如果将它们归纳成一种简单的语言(DSL)，那么这些问题实例将是该语言的一些句子，这样就可以用“编译原理”中的解释器模式来实现了。</p>
+<h2 id="总结"><a class="header" href="#总结">总结</a></h2>
+<p>http://c.biancheng.net/view/8462.html</p>
+<div class="table-wrapper"><table><thead><tr><th>分类</th><th>设计模式</th><th>简述</th><th>一句话归纳</th><th>目的</th><th>生活案例</th></tr></thead><tbody>
+<tr><td>创建型设计模式 （简单来说就是用来创建对象的）</td><td>工厂模式（Factory Pattern）</td><td>不同条件下创建不同实例</td><td>产品标准化，生产更高效</td><td>封装创建细节</td><td>实体工厂</td></tr>
+<tr><td>单例模式（Singleton Pattern）</td><td>保证一个类仅有一个实例，并且提供一个全局访问点</td><td>世上只有一个我</td><td>保证独一无二</td><td>CEO</td><td></td></tr>
+<tr><td>原型模式（Prototype Pattern）</td><td>通过拷贝原型创建新的对象</td><td>拔一根猴毛，吹出千万个</td><td>高效创建对象</td><td>克隆</td><td></td></tr>
+<tr><td>建造者模式（Builder Pattern）</td><td>用来创建复杂的复合对象</td><td>高配中配和低配，想选哪配就哪配</td><td>开放个性配置步骤</td><td>选配</td><td></td></tr>
+<tr><td>结构型设计模式 （关注类和对象的组合）</td><td>代理模式（Proxy Pattern）</td><td>为其他对象提供一种代理以控制对这个对象的访问</td><td>没有资源没时间，得找别人来帮忙</td><td>增强职责</td><td>媒婆</td></tr>
+<tr><td>外观模式（Facade Pattern）</td><td>对外提供一个统一的接口用来访问子系统</td><td>打开一扇门，通向全世界</td><td>统一访问入口</td><td>前台</td><td></td></tr>
+<tr><td>装饰器模式（Decorator Pattern）</td><td>为对象添加新功能</td><td>他大舅他二舅都是他舅</td><td>灵活扩展、同宗同源</td><td>煎饼</td><td></td></tr>
+<tr><td>享元模式（Flyweight Pattern）</td><td>使用对象池来减少重复对象的创建</td><td>优化资源配置，减少重复浪费</td><td>共享资源池</td><td>全国社保联网</td><td></td></tr>
+<tr><td>组合模式（Composite Pattern）</td><td>将整体与局部（树形结构）进行递归组合，让客户端能够以一种的方式对其进行处理</td><td>人在一起叫团伙，心在一起叫团队</td><td>统一整体和个体</td><td>组织架构树</td><td></td></tr>
+<tr><td>适配器模式（Adapter Pattern）</td><td>将原来不兼容的两个类融合在一起</td><td>万能充电器</td><td>兼容转换</td><td>电源适配</td><td></td></tr>
+<tr><td>桥接模式（Bridge Pattern）</td><td>将两个能够独立变化的部分分离开来</td><td>约定优于配置</td><td>不允许用继承</td><td>桥</td><td></td></tr>
+<tr><td>行为型设计模式 （关注对象之间的通信）</td><td>模板模式（Template Pattern）</td><td>定义一套流程模板，根据需要实现模板中的操作</td><td>流程全部标准化，需要微调请覆盖</td><td>逻辑复用</td><td>把大象装进冰箱</td></tr>
+<tr><td>策略模式（Strategy Pattern）</td><td>封装不同的算法，算法之间能互相替换</td><td>条条大道通罗马，具体哪条你来定</td><td>把选择权交给用户</td><td>选择支付方式</td><td></td></tr>
+<tr><td>责任链模式（Chain of Responsibility Pattern）</td><td>拦截的类都实现统一接口，每个接收者都包含对下一个接收者的引用。将这些对象连接成一条链，并且沿着这条链传递请求，直到有对象处理它为止。</td><td>各人自扫门前雪，莫管他们瓦上霜</td><td>解耦处理逻辑</td><td>踢皮球</td><td></td></tr>
+<tr><td>迭代器模式（Iterator Pattern）</td><td>提供一种方法顺序访问一个聚合对象中的各个元素</td><td>流水线上坐一天，每个包裹扫一遍</td><td>统一对集合的访问方式</td><td>逐个检票进站</td><td></td></tr>
+<tr><td>命令模式（Command Pattern）</td><td>将请求封装成命令，并记录下来，能够撤销与重做</td><td>运筹帷幄之中，决胜千里之外</td><td>解耦请求和处理</td><td>遥控器</td><td></td></tr>
+<tr><td>状态模式（State Pattern）</td><td>根据不同的状态做出不同的行为</td><td>状态驱动行为，行为决定状态</td><td>绑定状态和行为</td><td>订单状态跟踪</td><td></td></tr>
+<tr><td>备忘录模式（Memento Pattern）</td><td>保存对象的状态，在需要时进行恢复</td><td>失足不成千古恨，想重来时就重来</td><td>备份、后悔机制</td><td>草稿箱</td><td></td></tr>
+<tr><td>中介者模式（Mediator Pattern）</td><td>将对象之间的通信关联关系封装到一个中介类中单独处理，从而使其耦合松散</td><td>联系方式我给你，怎么搞定我不管</td><td>统一管理网状资源</td><td>朋友圈</td><td></td></tr>
+<tr><td>解释器模式（Interpreter Pattern）</td><td>给定一个语言，定义它的语法表示，并定义一个解释器，这个解释器使用该标识来解释语言中的句子</td><td>我想说”方言“，一切解释权都归我</td><td>实现特定语法解析</td><td>摩斯密码</td><td></td></tr>
+<tr><td>观察者模式（Observer Pattern）</td><td>状态发生改变时通知观察者，一对多的关系</td><td>到点就通知我</td><td>解耦观察者与被观察者</td><td>闹钟</td><td></td></tr>
+<tr><td>访问者模式（Visitor Pattern）</td><td>稳定数据结构，定义新的操作行为</td><td>横看成岭侧成峰，远近高低各不同</td><td>解耦数据结构和数据操作</td><td>KPI考核</td><td></td></tr>
+<tr><td></td><td>委派模式（Delegate Pattern）</td><td>允许对象组合实现与继承相同的代码重用，负责任务的调用和分配</td><td>这个需求很简单，怎么实现我不管</td><td>只对结果负责</td><td>授权委托书</td></tr>
+</tbody></table>
+</div>
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../../../Language/Rust/Practice/Debug.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next" href="../../../Language/Rust/Practice/Performance.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../../../Language/Rust/Practice/Debug.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next" href="../../../Language/Rust/Practice/Performance.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../../../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../../searcher.js" type="text/javascript" charset="utf-8"></script>
+
+        <script src="../../../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </body>
+</html>

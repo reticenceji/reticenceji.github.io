@@ -1,0 +1,819 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Linux使用笔记 - Reticence&#x27;s Notes</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../../../favicon.svg">
+        <link rel="shortcut icon" href="../../../favicon.png">
+        <link rel="stylesheet" href="../../../css/variables.css">
+        <link rel="stylesheet" href="../../../css/general.css">
+        <link rel="stylesheet" href="../../../css/chrome.css">
+        <link rel="stylesheet" href="../../../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../../../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../../../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../../../highlight.css">
+        <link rel="stylesheet" href="../../../tomorrow-night.css">
+        <link rel="stylesheet" href="../../../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+        <!-- MathJax -->
+        <script async type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../../../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item affix "><a href="../../../index.html">Index</a></li><li class="chapter-item expanded "><a href="../../../Advanced/index.html">Advanced</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../Advanced/Blockchain/index.html">Block Chain</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../Advanced/Blockchain/Basic/index.html">区块链技术</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../Advanced/Blockchain/Basic/Consensus.html">共识机制</a></li><li class="chapter-item "><a href="../../../Advanced/Blockchain/Basic/Crypto.html">加密</a></li><li class="chapter-item "><a href="../../../Advanced/Blockchain/Basic/Distribute.html">分布式存储</a></li><li class="chapter-item "><a href="../../../Advanced/Blockchain/Basic/P2P.html">P2P</a></li><li class="chapter-item "><a href="../../../Advanced/Blockchain/Basic/SmartContract.html">如何执行智能合约</a></li></ol></li><li class="chapter-item "><a href="../../../Advanced/Blockchain/Defi/index.html">DeFi</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../Advanced/Blockchain/Defi/DAO.html">Decentralized Autonomous Organization</a></li><li class="chapter-item "><a href="../../../Advanced/Blockchain/Defi/Derivative.html">Decentralized Derivative</a></li><li class="chapter-item "><a href="../../../Advanced/Blockchain/Defi/Exchange.html">Decentralized Exchange</a></li><li class="chapter-item "><a href="../../../Advanced/Blockchain/Defi/FundManagement.html">Decentralized Fund Management</a></li><li class="chapter-item "><a href="../../../Advanced/Blockchain/Defi/Insurance.html">Decentralized Insurance</a></li><li class="chapter-item "><a href="../../../Advanced/Blockchain/Defi/LendBorrow.html">Decentralized Lending & Borrowing</a></li><li class="chapter-item "><a href="../../../Advanced/Blockchain/Defi/Lottery.html">Decentralized Lottery</a></li><li class="chapter-item "><a href="../../../Advanced/Blockchain/Defi/Payments.html">Decentralized Payments</a></li><li class="chapter-item "><a href="../../../Advanced/Blockchain/Defi/StableCoin.html">Stable Coins</a></li></ol></li><li class="chapter-item "><a href="../../../Advanced/Blockchain/Ethernet/index.html">Ethernet</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../Advanced/Blockchain/Ethernet/Solidity.html">Solidity简介</a></li></ol></li><li class="chapter-item "><a href="../../../Advanced/Blockchain/NEAR/index.html">Hello NEAR</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../Advanced/Blockchain/NEAR/PoS.html">Proof-of-Stake</a></li><li class="chapter-item "><a href="../../../Advanced/Blockchain/NEAR/Promise.html">异步模型</a></li><li class="chapter-item "><a href="../../../Advanced/Blockchain/NEAR/Secure.html">Secure</a></li><li class="chapter-item "><a href="../../../Advanced/Blockchain/NEAR/Snippets.html">Snippets</a></li><li class="chapter-item "><a href="../../../Advanced/Blockchain/NEAR/Standards.html">标准实现代码分析</a></li><li class="chapter-item "><a href="../../../Advanced/Blockchain/NEAR/dao.html">dao</a></li><li class="chapter-item "><a href="../../../Advanced/Blockchain/NEAR/wasm.html">wasm</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../../../Advanced/Linux/index.html">Linux</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../Advanced/Linux/LinuxKernel/index.html">Linux</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../Advanced/Linux/LinuxKernel/Credential.html">Credential</a></li><li class="chapter-item "><a href="../../../Advanced/Linux/LinuxKernel/Debug笔记.html">Debug笔记</a></li><li class="chapter-item "><a href="../../../Advanced/Linux/LinuxKernel/File_System.html">File System</a></li><li class="chapter-item "><a href="../../../Advanced/Linux/LinuxKernel/Linux内核设计与实现笔记.html">《Linux内核设计与实现》笔记</a></li><li class="chapter-item "><a href="../../../Advanced/Linux/LinuxKernel/Linux设备驱动笔记.html">《Linux设备驱动》笔记</a></li><li class="chapter-item "><a href="../../../Advanced/Linux/LinuxKernel/RCU.html">RCU</a></li><li class="chapter-item "><a href="../../../Advanced/Linux/LinuxKernel/Rust_for_linux.html">Rust for linux</a></li><li class="chapter-item "><a href="../../../Advanced/Linux/LinuxKernel/System_Call.html">System Call</a></li><li class="chapter-item "><a href="../../../Advanced/Linux/LinuxKernel/context_switch.html">进程调度时的context_switch</a></li><li class="chapter-item "><a href="../../../Advanced/Linux/LinuxKernel/内核编程笔记.html">Linux内核编程笔记</a></li><li class="chapter-item "><a href="../../../Advanced/Linux/LinuxKernel/数据结构.html">数据结构</a></li><li class="chapter-item "><a href="../../../Advanced/Linux/LinuxKernel/调试Linux内核环境搭建.html">调试Linux内核环境搭建</a></li><li class="chapter-item "><a href="../../../Advanced/Linux/LinuxKernel/调试时如何获取current.html">调试Linux内核，寻找current</a></li></ol></li><li class="chapter-item expanded "><a href="../../../Advanced/Linux/LinuxPlay/index.html">LinuxPlay</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../../Advanced/Linux/LinuxPlay/Linux使用笔记.html" class="active">Linux使用笔记</a></li><li class="chapter-item "><a href="../../../Advanced/Linux/LinuxPlay/使用SSH远程登录.html">Linux使用SSH远程登录</a></li><li class="chapter-item "><a href="../../../Advanced/Linux/LinuxPlay/在Linux中找到可用的网络接口.html">在Linux中找到可用的网络接口</a></li></ol></li><li class="chapter-item "><a href="../../../Advanced/Linux/LinuxProgram/index.html">Linux Program</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../Advanced/Linux/LinuxProgram/Deamon.html">Daemon</a></li><li class="chapter-item "><a href="../../../Advanced/Linux/LinuxProgram/Fanotify.html">Fanotify</a></li><li class="chapter-item "><a href="../../../Advanced/Linux/LinuxProgram/File.html">File Program</a></li><li class="chapter-item "><a href="../../../Advanced/Linux/LinuxProgram/IObound.html">I/O bound 程序优化</a></li><li class="chapter-item "><a href="../../../Advanced/Linux/LinuxProgram/Linux目录结构.html">Linux目录结构</a></li><li class="chapter-item "><a href="../../../Advanced/Linux/LinuxProgram/NetLink.html">Netlink</a></li><li class="chapter-item "><a href="../../../Advanced/Linux/LinuxProgram/Socket.html">Socket</a></li><li class="chapter-item "><a href="../../../Advanced/Linux/LinuxProgram/eBPF.html">eBPF</a></li><li class="chapter-item "><a href="../../../Advanced/Linux/LinuxProgram/prctl.html">进程</a></li><li class="chapter-item "><a href="../../../Advanced/Linux/LinuxProgram/信号.html">信号</a></li><li class="chapter-item "><a href="../../../Advanced/Linux/LinuxProgram/共享库.html">共享库</a></li><li class="chapter-item "><a href="../../../Advanced/Linux/LinuxProgram/凭证.html">Credential 凭证</a></li><li class="chapter-item "><a href="../../../Advanced/Linux/LinuxProgram/反向Shell和伪终端.html">反向Shell和伪终端</a></li><li class="chapter-item "><a href="../../../Advanced/Linux/LinuxProgram/性能监控.html">性能监控</a></li><li class="chapter-item "><a href="../../../Advanced/Linux/LinuxProgram/桌面应用开发.html">桌面应用开发</a></li><li class="chapter-item "><a href="../../../Advanced/Linux/LinuxProgram/管道和重定向.html">管道和重定向</a></li><li class="chapter-item "><a href="../../../Advanced/Linux/LinuxProgram/系统限制和选项.html">系统限制和选项</a></li><li class="chapter-item "><a href="../../../Advanced/Linux/LinuxProgram/终端.html">终端</a></li><li class="chapter-item "><a href="../../../Advanced/Linux/LinuxProgram/进程间通信.html">进程间通信</a></li></ol></li></ol></li><li class="chapter-item "><a href="../../../Advanced/Windows/index.html">Windows Programming</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../Advanced/Windows/Unicode.html">Unicode</a></li><li class="chapter-item "><a href="../../../Advanced/Windows/hungarian.html">匈牙利命名法</a></li><li class="chapter-item "><a href="../../../Advanced/Windows/文件.html">文件</a></li></ol></li></ol></li><li class="chapter-item "><a href="../../../Basic/index.html">Basic</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../Basic/8086汇编笔记.html">8086汇编笔记</a></li><li class="chapter-item "><a href="../../../Basic/Architecture/index.html">Architecture</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../Basic/Architecture/ARM内存管理.html">AArch64 memory management</a></li><li class="chapter-item "><a href="../../../Basic/Architecture/ARM寄存器.html">ARM中的寄存器</a></li><li class="chapter-item "><a href="../../../Basic/Architecture/ARM异常.html">AArch64 Exception Model</a></li><li class="chapter-item "><a href="../../../Basic/Architecture/ARM虚拟化.html">Armv8-A virtualization</a></li><li class="chapter-item "><a href="../../../Basic/Architecture/ARM调试.html">ARM self-hosted debug</a></li><li class="chapter-item "><a href="../../../Basic/Architecture/CPU设计.html">CPU设计</a></li><li class="chapter-item "><a href="../../../Basic/Architecture/Cache.html">Cache</a></li><li class="chapter-item "><a href="../../../Basic/Architecture/ILP.html">ILP</a></li><li class="chapter-item "><a href="../../../Basic/Architecture/SIMD和MIMD.html">SIMD和MIMD</a></li><li class="chapter-item "><a href="../../../Basic/Architecture/TLP.html">TLP</a></li><li class="chapter-item "><a href="../../../Basic/Architecture/存储器设计.html">存储器设计</a></li><li class="chapter-item "><a href="../../../Basic/Architecture/数字逻辑.html">Notes-数字逻辑</a></li><li class="chapter-item "><a href="../../../Basic/Architecture/计算机体系结构.html">计算机组成&计算机体系结构</a></li></ol></li><li class="chapter-item "><a href="../../../Basic/C/index.html">C/C++</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../Basic/C/Cpp标准库.html">C++_标准库</a></li><li class="chapter-item "><a href="../../../Basic/C/Cpp课程笔记.html">C++ 基础知识</a></li><li class="chapter-item "><a href="../../../Basic/C/GCC内嵌汇编.html">C-内嵌汇编</a></li><li class="chapter-item "><a href="../../../Basic/C/变量在ELF段中的位置.html">变量在ELF段中的位置</a></li><li class="chapter-item "><a href="../../../Basic/C/可变参数的使用和原理.html">可变参数的使用和原理</a></li><li class="chapter-item "><a href="../../../Basic/C/在C程序中调用汇编程序.html">在C程序中调用汇编程序</a></li><li class="chapter-item "><a href="../../../Basic/C/链接器.html">链接器</a></li></ol></li><li class="chapter-item "><a href="../../../Basic/Client/index.html">Client Development</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../Basic/Client/Chromium.html">Chromium</a></li><li class="chapter-item "><a href="../../../Basic/Client/CodeReview.html">CodeReview</a></li><li class="chapter-item "><a href="../../../Basic/Client/Config.html">Config</a></li><li class="chapter-item "><a href="../../../Basic/Client/CrossLanguage.html">跨语言</a></li><li class="chapter-item "><a href="../../../Basic/Client/DataStore.html">本地存储</a></li><li class="chapter-item "><a href="../../../Basic/Client/Database.html">Database</a></li><li class="chapter-item "><a href="../../../Basic/Client/Flutter.html">Flutter</a></li><li class="chapter-item "><a href="../../../Basic/Client/Log.html">日志</a></li><li class="chapter-item "><a href="../../../Basic/Client/Multimedia/index.html">Multimedia</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../Basic/Client/Multimedia/Graph.html">图形学</a></li><li class="chapter-item "><a href="../../../Basic/Client/Multimedia/Image.html">图像处理技术</a></li><li class="chapter-item "><a href="../../../Basic/Client/Multimedia/Video.html">视频</a></li><li class="chapter-item "><a href="../../../Basic/Client/Multimedia/Voice.html">Voice</a></li></ol></li><li class="chapter-item "><a href="../../../Basic/Client/Network.html">网络能力</a></li><li class="chapter-item "><a href="../../../Basic/Client/Performance.html">性能监控</a></li><li class="chapter-item "><a href="../../../Basic/Client/Platform/index.html">Platform</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../Basic/Client/Platform/Android.html">Android</a></li><li class="chapter-item "><a href="../../../Basic/Client/Platform/iOS.html">iOS</a></li></ol></li><li class="chapter-item "><a href="../../../Basic/Client/SQLite.html">SQLite</a></li></ol></li><li class="chapter-item "><a href="../../../Basic/Compiler/index.html">Compiler</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../Basic/Compiler/Codegen.html">代码生成</a></li><li class="chapter-item "><a href="../../../Basic/Compiler/Lex.html">Lex</a></li><li class="chapter-item "><a href="../../../Basic/Compiler/Lexical.html">Lexical Analyze</a></li><li class="chapter-item "><a href="../../../Basic/Compiler/Runtime.html">Runtime</a></li><li class="chapter-item "><a href="../../../Basic/Compiler/Sematic.html">Sematic Analyzing</a></li><li class="chapter-item "><a href="../../../Basic/Compiler/Syntax.html">Syntax Analyzer</a></li><li class="chapter-item "><a href="../../../Basic/Compiler/llvm-ir.html">LLVM-IR</a></li><li class="chapter-item "><a href="../../../Basic/Compiler/llvm.html">LLVM</a></li><li class="chapter-item "><a href="../../../Basic/Compiler/pest.html">PEST</a></li><li class="chapter-item "><a href="../../../Basic/Compiler/yacc.html">Yacc</a></li></ol></li><li class="chapter-item "><a href="../../../Basic/DataStructure/index.html">Data Structure And Algorithm</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../Basic/DataStructure/Algorithm/index.html">Algorithm</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../Basic/DataStructure/Algorithm/Approximation.html">近似算法</a></li><li class="chapter-item "><a href="../../../Basic/DataStructure/Algorithm/Backtracking.html">递归回溯</a></li><li class="chapter-item "><a href="../../../Basic/DataStructure/Algorithm/DivideAndConquer.html">分治算法</a></li><li class="chapter-item "><a href="../../../Basic/DataStructure/Algorithm/DynamicProgramming.html">动态规划</a></li><li class="chapter-item "><a href="../../../Basic/DataStructure/Algorithm/Greedy.html">贪心算法</a></li><li class="chapter-item "><a href="../../../Basic/DataStructure/Algorithm/LocalSearch.html">本地搜索</a></li><li class="chapter-item "><a href="../../../Basic/DataStructure/Algorithm/Parallel.html">并行算法</a></li><li class="chapter-item "><a href="../../../Basic/DataStructure/Algorithm/Randomized.html">随机化算法</a></li><li class="chapter-item "><a href="../../../Basic/DataStructure/Algorithm/Sort.html">排序算法</a></li></ol></li><li class="chapter-item "><a href="../../../Basic/DataStructure/Graph/index.html">Graph</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../Basic/DataStructure/Graph/Bipartite.html">Bipartite</a></li><li class="chapter-item "><a href="../../../Basic/DataStructure/Graph/NetworkFlow.html">NetworkFlow</a></li><li class="chapter-item "><a href="../../../Basic/DataStructure/Graph/ShortPath.html">最短路</a></li><li class="chapter-item "><a href="../../../Basic/DataStructure/Graph/SpanningTree.html">最小生成树</a></li><li class="chapter-item "><a href="../../../Basic/DataStructure/Graph/关键路径.html">关键路径</a></li><li class="chapter-item "><a href="../../../Basic/DataStructure/Graph/拓扑排序.html">拓扑排序</a></li></ol></li><li class="chapter-item "><a href="../../../Basic/DataStructure/Hash/index.html">Hash</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../Basic/DataStructure/Hash/HashTree.html">HashTree</a></li><li class="chapter-item "><a href="../../../Basic/DataStructure/Hash/Hashing.html">Hashing</a></li></ol></li><li class="chapter-item "><a href="../../../Basic/DataStructure/Heap/index.html">Heap</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../Basic/DataStructure/Heap/BinomialHeap.html">Binomial Heap</a></li><li class="chapter-item "><a href="../../../Basic/DataStructure/Heap/FibonacciHeap.html">FibonacciHeap</a></li><li class="chapter-item "><a href="../../../Basic/DataStructure/Heap/Heap.html">DS-Heap</a></li><li class="chapter-item "><a href="../../../Basic/DataStructure/Heap/斜堆.html">Leftist_Heap_and_Skew_Heap</a></li></ol></li><li class="chapter-item "><a href="../../../Basic/DataStructure/Inverted_File_Index.html">Inverted_File_Index</a></li><li class="chapter-item "><a href="../../../Basic/DataStructure/Linear/index.html">Linear</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../Basic/DataStructure/Linear/Bitmap.html">DS-Bitmap</a></li><li class="chapter-item "><a href="../../../Basic/DataStructure/Linear/List.html">DS-Linear_List</a></li></ol></li><li class="chapter-item "><a href="../../../Basic/DataStructure/NPProblem.html">DS-NP_problem</a></li><li class="chapter-item "><a href="../../../Basic/DataStructure/String/index.html">字符串匹配相关算法</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../Basic/DataStructure/String/match.html">字符串匹配算法</a></li></ol></li><li class="chapter-item "><a href="../../../Basic/DataStructure/Tree/index.html">Tree and BST</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../Basic/DataStructure/Tree/BTree.html">B Tree and B+ Tree</a></li><li class="chapter-item "><a href="../../../Basic/DataStructure/Tree/BalancedTree.html">AVL Tree and Splay Tree</a></li><li class="chapter-item "><a href="../../../Basic/DataStructure/Tree/DisjointSet.html">Disjoint Set</a></li><li class="chapter-item "><a href="../../../Basic/DataStructure/Tree/HuffmanTree.html">Huffman Tree</a></li><li class="chapter-item "><a href="../../../Basic/DataStructure/Tree/RBTree.html">红黑树 B树 B+树</a></li><li class="chapter-item "><a href="../../../Basic/DataStructure/Tree/ThreadedTree.html">Threaded Binary Tree</a></li></ol></li></ol></li><li class="chapter-item "><a href="../../../Basic/Database/index.html">Database</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../Basic/Database/Object.html">Database-Object-Based_Databases</a></li><li class="chapter-item "><a href="../../../Basic/Database/PostgreSQL-Conflict-reticenceji_Win10.html">Database-PostgreSQL</a></li><li class="chapter-item "><a href="../../../Basic/Database/PostgreSQL.html">Database-PostgreSQL</a></li><li class="chapter-item "><a href="../../../Basic/Database/SQL-Conflict-reticenceji_Win10.html">基础SQL</a></li><li class="chapter-item "><a href="../../../Basic/Database/SQL.html">基础SQL</a></li><li class="chapter-item "><a href="../../../Basic/Database/XML-Conflict-reticenceji_Win10.html">Database,Web-XML</a></li><li class="chapter-item "><a href="../../../Basic/Database/XML.html">Database,Web-XML</a></li><li class="chapter-item "><a href="../../../Basic/Database/事务.html">Database-事务</a></li><li class="chapter-item "><a href="../../../Basic/Database/关系代数.html">Database-关系代数</a></li><li class="chapter-item "><a href="../../../Basic/Database/存储和查询.html">Database-存储和查询</a></li><li class="chapter-item "><a href="../../../Basic/Database/导论.html">Database-导论</a></li><li class="chapter-item "><a href="../../../Basic/Database/数据库设计.html">Database-数据库设计</a></li></ol></li><li class="chapter-item "><a href="../../../Basic/Maths/index.html">Maths</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../Basic/Maths/大数定理和中心极限定理.html">大数定理和中心极限定理</a></li><li class="chapter-item "><a href="../../../Basic/Maths/微积分下.html">微积分下</a></li><li class="chapter-item "><a href="../../../Basic/Maths/数值计算方法.html">数值计算方法</a></li><li class="chapter-item "><a href="../../../Basic/Maths/最小二乘法.html">最小二乘法</a></li><li class="chapter-item "><a href="../../../Basic/Maths/有限自动机介绍.html">有限自动机介绍</a></li><li class="chapter-item "><a href="../../../Basic/Maths/概统复习.html">概统复习</a></li><li class="chapter-item "><a href="../../../Basic/Maths/群论简介.html">群论简介</a></li></ol></li><li class="chapter-item "><a href="../../../Basic/Networking/index.html">Networking</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../Basic/Networking/ARP.html">Networking-ARP</a></li><li class="chapter-item "><a href="../../../Basic/Networking/CDN.html">CDN</a></li><li class="chapter-item "><a href="../../../Basic/Networking/DNS.html">DNS</a></li><li class="chapter-item "><a href="../../../Basic/Networking/FTP.html">FTP</a></li><li class="chapter-item "><a href="../../../Basic/Networking/HTTP.html">HTTP</a></li><li class="chapter-item "><a href="../../../Basic/Networking/ICMP.html">Internet Control Message Protocol</a></li><li class="chapter-item "><a href="../../../Basic/Networking/Mail.html">邮件协议</a></li><li class="chapter-item "><a href="../../../Basic/Networking/NAT.html">Network Address Translation</a></li><li class="chapter-item "><a href="../../../Basic/Networking/P2P.html">P2P</a></li><li class="chapter-item "><a href="../../../Basic/Networking/QUIC.html">QUIC</a></li><li class="chapter-item "><a href="../../../Basic/Networking/RTC.html">RTC</a></li><li class="chapter-item "><a href="../../../Basic/Networking/Socket.html">Socket</a></li><li class="chapter-item "><a href="../../../Basic/Networking/TCP.html">TCP</a></li><li class="chapter-item "><a href="../../../Basic/Networking/UDP.html">UDP</a></li><li class="chapter-item "><a href="../../../Basic/Networking/VMWare虚拟机网络配置.html">VMWare虚拟机网络配置</a></li><li class="chapter-item "><a href="../../../Basic/Networking/VPN.html">VPN</a></li><li class="chapter-item "><a href="../../../Basic/Networking/WebSocket.html">WebSocket</a></li><li class="chapter-item "><a href="../../../Basic/Networking/介质访问子层.html">Medium Access Sublayer</a></li><li class="chapter-item "><a href="../../../Basic/Networking/可靠传输.html">可靠传输</a></li><li class="chapter-item "><a href="../../../Basic/Networking/差错控制.html">差错控制</a></li><li class="chapter-item "><a href="../../../Basic/Networking/拥塞控制和流量控制.html">拥塞控制和流量控制</a></li><li class="chapter-item "><a href="../../../Basic/Networking/物理层.html">物理层</a></li><li class="chapter-item "><a href="../../../Basic/Networking/网络层.html">网络层 IP</a></li><li class="chapter-item "><a href="../../../Basic/Networking/网络设备.html">Networking-网络设备</a></li><li class="chapter-item "><a href="../../../Basic/Networking/路由协议.html">路由协议</a></li><li class="chapter-item "><a href="../../../Basic/Networking/链路层.html">链路层</a></li></ol></li><li class="chapter-item "><a href="../../../Basic/OS/index.html">OS</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../Basic/OS/Bootloader.html">OS-Bootloader</a></li><li class="chapter-item "><a href="../../../Basic/OS/Buddy_System&Slub.html">OS-Buddy_System&Slub</a></li><li class="chapter-item "><a href="../../../Basic/OS/Deadlock.html">OS-Deadlock</a></li><li class="chapter-item "><a href="../../../Basic/OS/IO.html">OS-IO</a></li><li class="chapter-item "><a href="../../../Basic/OS/Introduction.html">OS-Introduction</a></li><li class="chapter-item "><a href="../../../Basic/OS/Memory_Management.html">OS-Memory_Management</a></li><li class="chapter-item "><a href="../../../Basic/OS/Process.html">OS-Process</a></li><li class="chapter-item "><a href="../../../Basic/OS/Q&A.html">OS-Q&A</a></li><li class="chapter-item "><a href="../../../Basic/OS/RISCV学习笔记.html">OS-RISCV学习笔记</a></li><li class="chapter-item "><a href="../../../Basic/OS/SBI.html">OS-SBI</a></li><li class="chapter-item "><a href="../../../Basic/OS/Synchronization.html">OS-Synchronization</a></li><li class="chapter-item "><a href="../../../Basic/OS/Thread.html">OS-Thread</a></li><li class="chapter-item "><a href="../../../Basic/OS/UnixLinux中的IO模型.html">Linux中的I/O模型</a></li><li class="chapter-item "><a href="../../../Basic/OS/在K210运行裸机程序.html">OS-在K210运行裸机程序</a></li><li class="chapter-item "><a href="../../../Basic/OS/地址空间(一).html">OS-地址空间(一)</a></li><li class="chapter-item "><a href="../../../Basic/OS/操作系统.html">OS-操作系统</a></li></ol></li><li class="chapter-item "><a href="../../../Basic/Secure/index.html">Secure</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../Basic/Secure/Crypto/index.html">Crypto</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../Basic/Secure/Crypto/Federated_Learning.html">Federated Learning</a></li><li class="chapter-item "><a href="../../../Basic/Secure/Crypto/Oblivious_RAM.html">Oblivious RAM</a></li><li class="chapter-item "><a href="../../../Basic/Secure/Crypto/PIR.html">PIR</a></li><li class="chapter-item "><a href="../../../Basic/Secure/Crypto/PSI.html">Private set intersection</a></li><li class="chapter-item "><a href="../../../Basic/Secure/Crypto/加密和哈希.html">Crypto-加密和哈希</a></li><li class="chapter-item "><a href="../../../Basic/Secure/Crypto/加密数据库.html">Encrypted Database</a></li><li class="chapter-item "><a href="../../../Basic/Secure/Crypto/区块链技术.html">Bitcoin-区块链技术</a></li><li class="chapter-item "><a href="../../../Basic/Secure/Crypto/可证明安全.html">可证明安全</a></li><li class="chapter-item "><a href="../../../Basic/Secure/Crypto/安全多方计算.html">安全多方计算</a></li><li class="chapter-item "><a href="../../../Basic/Secure/Crypto/密码学基础.html">密码学算法介绍</a></li><li class="chapter-item "><a href="../../../Basic/Secure/Crypto/密码学进阶.html">密码学进阶</a></li><li class="chapter-item "><a href="../../../Basic/Secure/Crypto/差分隐私.html">差分隐私</a></li></ol></li><li class="chapter-item "><a href="../../../Basic/Secure/CryptoBasic.html">密码学基础</a></li><li class="chapter-item "><a href="../../../Basic/Secure/CtyptoProtocol.html">密码学协议</a></li><li class="chapter-item "><a href="../../../Basic/Secure/Forensics/index.html">电子取证</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../Basic/Secure/Forensics/FAT.html">FAT文件系统</a></li><li class="chapter-item "><a href="../../../Basic/Secure/Forensics/FileCarving.html">文件雕复</a></li><li class="chapter-item "><a href="../../../Basic/Secure/Forensics/Linux取证.html">Linux取证</a></li><li class="chapter-item "><a href="../../../Basic/Secure/Forensics/Memory.html">内存取证</a></li><li class="chapter-item "><a href="../../../Basic/Secure/Forensics/NTFS.html">NTFS文件系统</a></li><li class="chapter-item "><a href="../../../Basic/Secure/Forensics/Windows取证.html">Windows取证</a></li><li class="chapter-item "><a href="../../../Basic/Secure/Forensics/数据隐藏.html">数据隐藏</a></li><li class="chapter-item "><a href="../../../Basic/Secure/Forensics/文件系统取证.html">文件系统取证</a></li><li class="chapter-item "><a href="../../../Basic/Secure/Forensics/硬盘分析.html">硬盘分析</a></li><li class="chapter-item "><a href="../../../Basic/Secure/Forensics/移动设备取证.html">移动设备取证</a></li><li class="chapter-item "><a href="../../../Basic/Secure/Forensics/网络取证.html">网络取证</a></li></ol></li><li class="chapter-item "><a href="../../../Basic/Secure/IoT.html">无线与物联网安全</a></li><li class="chapter-item "><a href="../../../Basic/Secure/Network.html">网络安全</a></li><li class="chapter-item "><a href="../../../Basic/Secure/OperatingSystem.html">操作系统安全</a></li><li class="chapter-item "><a href="../../../Basic/Secure/Software/index.html">软件安全</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../Basic/Secure/Software/ASLR.html">ASLR</a></li><li class="chapter-item "><a href="../../../Basic/Secure/Software/CodeQL.html">CodeQL</a></li><li class="chapter-item "><a href="../../../Basic/Secure/Software/GlibcHeap.html">glibc heap allocator</a></li><li class="chapter-item "><a href="../../../Basic/Secure/Software/PIC.html">位置无关代码和共享库</a></li><li class="chapter-item "><a href="../../../Basic/Secure/Software/RELRO.html">RELRO</a></li><li class="chapter-item "><a href="../../../Basic/Secure/Software/pwntools.html">pwntools</a></li><li class="chapter-item "><a href="../../../Basic/Secure/Software/攻击视角.html">攻击软件安全</a></li><li class="chapter-item "><a href="../../../Basic/Secure/Software/程序分析.html">程序分析</a></li><li class="chapter-item "><a href="../../../Basic/Secure/Software/防御视角.html">软件安全防护</a></li></ol></li><li class="chapter-item "><a href="../../../Basic/Secure/SupplyChain.html">供应链安全</a></li></ol></li><li class="chapter-item "><a href="../../../Basic/软件保护技术.html">Reverse</a></li></ol></li><li class="chapter-item "><a href="../../../Language/index.html">Language</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../Language/Java/index.html">Java</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../Language/Java/基础.html">Java</a></li><li class="chapter-item "><a href="../../../Language/Java/鸿蒙应用开发.html">Java-鸿蒙应用开发</a></li></ol></li><li class="chapter-item "><a href="../../../Language/JavaScript/index.html">JavaScript</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../Language/JavaScript/Electron.html">Electron</a></li><li class="chapter-item "><a href="../../../Language/JavaScript/JavaScript简介.html">JavaScript简介</a></li><li class="chapter-item "><a href="../../../Language/JavaScript/Runtime.html">Runtime</a></li></ol></li><li class="chapter-item "><a href="../../../Language/Python/index.html">Python</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../Language/Python/0内置类型/index.html">内置对象</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../Language/Python/0内置类型/1字符串.html">字符串和字节串</a></li><li class="chapter-item "><a href="../../../Language/Python/0内置类型/2数值.html">数值</a></li><li class="chapter-item "><a href="../../../Language/Python/0内置类型/3列表和元组.html">序列</a></li><li class="chapter-item "><a href="../../../Language/Python/0内置类型/4字典和集合.html">映射</a></li><li class="chapter-item "><a href="../../../Language/Python/0内置类型/5迭代器和生成器.html">迭代器和生成器</a></li><li class="chapter-item "><a href="../../../Language/Python/0内置类型/6上下文管理器.html">上下文管理器</a></li></ol></li><li class="chapter-item "><a href="../../../Language/Python/1工作原理/index.html">工作原理</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../Language/Python/1工作原理/0对象模型.html">OOP模型</a></li><li class="chapter-item "><a href="../../../Language/Python/1工作原理/1类型.html">类型</a></li><li class="chapter-item "><a href="../../../Language/Python/1工作原理/2变量.html">变量</a></li><li class="chapter-item "><a href="../../../Language/Python/1工作原理/3特殊方法和重载.html">特殊方法和重载</a></li><li class="chapter-item "><a href="../../../Language/Python/1工作原理/4参数.html">参数</a></li><li class="chapter-item "><a href="../../../Language/Python/1工作原理/5多继承.html">多继承</a></li></ol></li><li class="chapter-item "><a href="../../../Language/Python/3高级写法/index.html">高级写法</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../Language/Python/3高级写法/1异常.html">Exception</a></li><li class="chapter-item "><a href="../../../Language/Python/3高级写法/2装饰器.html">装饰器</a></li></ol></li><li class="chapter-item "><a href="../../../Language/Python/4好用的库/index.html">PythonLib</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../Language/Python/4好用的库/Argparse.html">命令行参数</a></li><li class="chapter-item "><a href="../../../Language/Python/4好用的库/Bisect.html">Bisect</a></li><li class="chapter-item "><a href="../../../Language/Python/4好用的库/Builtin.html">Builtin</a></li><li class="chapter-item "><a href="../../../Language/Python/4好用的库/Container.html">Container</a></li><li class="chapter-item "><a href="../../../Language/Python/4好用的库/Crypto.html">Crypto</a></li><li class="chapter-item "><a href="../../../Language/Python/4好用的库/Enum.html">enum</a></li><li class="chapter-item "><a href="../../../Language/Python/4好用的库/FS.html">File System</a></li><li class="chapter-item "><a href="../../../Language/Python/4好用的库/Flask.html">Python-Flask</a></li><li class="chapter-item "><a href="../../../Language/Python/4好用的库/HTTP.html">Internet</a></li><li class="chapter-item "><a href="../../../Language/Python/4好用的库/IO.html">File IO</a></li><li class="chapter-item "><a href="../../../Language/Python/4好用的库/PyQt5.html">PySide2</a></li><li class="chapter-item "><a href="../../../Language/Python/4好用的库/Regex.html">Regex</a></li><li class="chapter-item "><a href="../../../Language/Python/4好用的库/Socket.html">Socket编程</a></li><li class="chapter-item "><a href="../../../Language/Python/4好用的库/Thread.html">多线程</a></li><li class="chapter-item "><a href="../../../Language/Python/4好用的库/Time.html">时间和日期</a></li><li class="chapter-item "><a href="../../../Language/Python/4好用的库/Trio.html">Trio</a></li><li class="chapter-item "><a href="../../../Language/Python/4好用的库/format.html">Format String</a></li><li class="chapter-item "><a href="../../../Language/Python/4好用的库/venv.html">Virtual Environment</a></li><li class="chapter-item "><a href="../../../Language/Python/4好用的库/数据持久化.html">简单的数据持久化</a></li><li class="chapter-item "><a href="../../../Language/Python/4好用的库/文档和测试.html">文档和测试</a></li><li class="chapter-item "><a href="../../../Language/Python/4好用的库/计算器.html">把Python当计算器</a></li></ol></li><li class="chapter-item "><a href="../../../Language/Python/运算符.html">运算符</a></li></ol></li><li class="chapter-item "><a href="../../../Language/Rust/index.html">Rust</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../Language/Rust/Basic/index.html">Basic</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../Language/Rust/Basic/Any.html">Any</a></li><li class="chapter-item "><a href="../../../Language/Rust/Basic/Async.html">异步编程</a></li><li class="chapter-item "><a href="../../../Language/Rust/Basic/Casting.html">Casting</a></li><li class="chapter-item "><a href="../../../Language/Rust/Basic/ClosureAndIter.html">迭代器和闭包</a></li><li class="chapter-item "><a href="../../../Language/Rust/Basic/CratesAndModules.html">Crates and Modules</a></li><li class="chapter-item "><a href="../../../Language/Rust/Basic/Error.html">Rust-错误处理</a></li><li class="chapter-item "><a href="../../../Language/Rust/Basic/Macro.html">宏</a></li><li class="chapter-item "><a href="../../../Language/Rust/Basic/Trait.html">Trait</a></li><li class="chapter-item "><a href="../../../Language/Rust/Basic/TypeAndLifetime.html">从类型系统看生命周期</a></li><li class="chapter-item "><a href="../../../Language/Rust/Basic/Unsafe.html">Unsafe</a></li><li class="chapter-item "><a href="../../../Language/Rust/Basic/pattern.html">模式匹配</a></li></ol></li><li class="chapter-item "><a href="../../../Language/Rust/Build.html">Build</a></li><li class="chapter-item "><a href="../../../Language/Rust/Cargo/index.html">Cargo</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../Language/Rust/Cargo/clippy.html">Clippy</a></li><li class="chapter-item "><a href="../../../Language/Rust/Cargo/fix.html">Cargo fix</a></li><li class="chapter-item "><a href="../../../Language/Rust/Cargo/make.html">Cargo make</a></li></ol></li><li class="chapter-item "><a href="../../../Language/Rust/Compiler.html">Compiler</a></li><li class="chapter-item "><a href="../../../Language/Rust/Crate/index.html">Crates</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../Language/Rust/Crate/Anyhow.html">AnyHow & ThisError</a></li><li class="chapter-item "><a href="../../../Language/Rust/Crate/Cell.html">Cell</a></li><li class="chapter-item "><a href="../../../Language/Rust/Crate/Diesel.html">Diesel</a></li><li class="chapter-item "><a href="../../../Language/Rust/Crate/Dioxus.html">Dioxus</a></li><li class="chapter-item "><a href="../../../Language/Rust/Crate/EnumDispatch.html">Dispatch</a></li><li class="chapter-item "><a href="../../../Language/Rust/Crate/IO.html">IO</a></li><li class="chapter-item "><a href="../../../Language/Rust/Crate/collections.html">容器的增删改查</a></li><li class="chapter-item "><a href="../../../Language/Rust/Crate/gtk-rs.html">gtk-rs</a></li><li class="chapter-item "><a href="../../../Language/Rust/Crate/r2d2.html">r2d2</a></li><li class="chapter-item "><a href="../../../Language/Rust/Crate/stdsync.html">std::sync</a></li><li class="chapter-item "><a href="../../../Language/Rust/Crate/字符串.html">字符串/字节流</a></li><li class="chapter-item "><a href="../../../Language/Rust/Crate/打包.html">打包</a></li><li class="chapter-item "><a href="../../../Language/Rust/Crate/智能指针.html">Rust-智能指针</a></li></ol></li><li class="chapter-item "><a href="../../../Language/Rust/FFI.html">FFI</a></li><li class="chapter-item "><a href="../../../Language/Rust/IO.html">Rust-IO</a></li><li class="chapter-item "><a href="../../../Language/Rust/Practice/index.html">Practice</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../Language/Rust/Practice/BestPractice.html">Rust最佳实践</a></li><li class="chapter-item "><a href="../../../Language/Rust/Practice/Debug.html">调试</a></li><li class="chapter-item "><a href="../../../Language/Rust/Practice/DesignPattern.html">设计模式</a></li><li class="chapter-item "><a href="../../../Language/Rust/Practice/Performance.html">性能优化</a></li><li class="chapter-item "><a href="../../../Language/Rust/Practice/Size.html">代码体积优化</a></li><li class="chapter-item "><a href="../../../Language/Rust/Practice/Test.html">测试最佳实践</a></li><li class="chapter-item "><a href="../../../Language/Rust/Practice/Type.html">类型转换</a></li><li class="chapter-item "><a href="../../../Language/Rust/Practice/Unsafe.html">Unsafe最佳实践</a></li></ol></li><li class="chapter-item "><a href="../../../Language/Rust/gtk.html">Rust-gtk-rs介绍</a></li><li class="chapter-item "><a href="../../../Language/Rust/函数参数匹配.html">函数参数匹配</a></li><li class="chapter-item "><a href="../../../Language/Rust/基础知识.html">基础知识</a></li><li class="chapter-item "><a href="../../../Language/Rust/多线程.html">多线程支持</a></li><li class="chapter-item "><a href="../../../Language/Rust/混合编程.html">混合编程</a></li><li class="chapter-item "><a href="../../../Language/Rust/精髓.html">Rust-精髓</a></li></ol></li><li class="chapter-item "><a href="../../../Language/Scala/index.html">Scala</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../Language/Scala/0控制结构.html">控制结构</a></li><li class="chapter-item "><a href="../../../Language/Scala/1数据结构.html">数据结构</a></li><li class="chapter-item "><a href="../../../Language/Scala/2_0类和对象.html">Class</a></li><li class="chapter-item "><a href="../../../Language/Scala/2_1继承.html">继承</a></li><li class="chapter-item "><a href="../../../Language/Scala/2_2特质.html">Trait</a></li><li class="chapter-item "><a href="../../../Language/Scala/3_1花里胡哨的函数.html">花里胡哨的函数</a></li><li class="chapter-item "><a href="../../../Language/Scala/3_2匿名函数和闭包.html">函数</a></li><li class="chapter-item "><a href="../../../Language/Scala/3_3模式匹配.html">模式匹配</a></li><li class="chapter-item "><a href="../../../Language/Scala/3_4容器的函数式操作.html">容器的函数式操作</a></li><li class="chapter-item "><a href="../../../Language/Scala/ScalaDepth/index.html">ScalaDepth</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../Language/Scala/ScalaDepth/Class文件.html">Class文件</a></li><li class="chapter-item "><a href="../../../Language/Scala/ScalaDepth/ScalaInDepth.html">Scala in Depth 读书笔记</a></li><li class="chapter-item "><a href="../../../Language/Scala/ScalaDepth/Spark.html">Spark</a></li><li class="chapter-item "><a href="../../../Language/Scala/ScalaDepth/jvm.html">《深入理解Java虚拟机读书》笔记</a></li><li class="chapter-item "><a href="../../../Language/Scala/ScalaDepth/函数式的一些概念.html">Scala中一些函数式概念</a></li><li class="chapter-item "><a href="../../../Language/Scala/ScalaDepth/泛型擦除.html">泛型擦除</a></li><li class="chapter-item "><a href="../../../Language/Scala/ScalaDepth/简单的类型原理.html">类型</a></li></ol></li><li class="chapter-item "><a href="../../../Language/Scala/sbt.html">sbt</a></li><li class="chapter-item "><a href="../../../Language/Scala/trait.html">trait</a></li><li class="chapter-item "><a href="../../../Language/Scala/枚举.html">枚举</a></li><li class="chapter-item "><a href="../../../Language/Scala/样例类和模式匹配.html">样例类和模式匹配</a></li><li class="chapter-item "><a href="../../../Language/Scala/测试和文档.html">测试和文档</a></li><li class="chapter-item "><a href="../../../Language/Scala/组合和继承.html">类的组合和继承</a></li></ol></li><li class="chapter-item "><a href="../../../Language/Snippet/index.html">Snippets</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../Language/Snippet/c.html">c</a></li><li class="chapter-item "><a href="../../../Language/Snippet/linux.html">linux</a></li><li class="chapter-item "><a href="../../../Language/Snippet/python.html">python</a></li><li class="chapter-item "><a href="../../../Language/Snippet/rust.html">rust</a></li></ol></li></ol></li><li class="chapter-item "><a href="../../../Tools/index.html">Tools</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../Tools/Docker.html">Docker</a></li><li class="chapter-item "><a href="../../../Tools/GDB.html">GDB</a></li><li class="chapter-item "><a href="../../../Tools/Git/index.html">Git</a></li><li class="chapter-item "><a href="../../../Tools/Git.html">Git</a></li><li class="chapter-item "><a href="../../../Tools/Githook.html">Githook</a></li><li class="chapter-item "><a href="../../../Tools/GithubCI.html">Github-CI</a></li><li class="chapter-item "><a href="../../../Tools/Latex.html">Latex</a></li><li class="chapter-item "><a href="../../../Tools/Make.html">Make与Makefile</a></li><li class="chapter-item "><a href="../../../Tools/VSCode.html">VSCode</a></li><li class="chapter-item "><a href="../../../Tools/Vim.html">Vim</a></li><li class="chapter-item "><a href="../../../Tools/WSL.html">WSL</a></li><li class="chapter-item "><a href="../../../Tools/双系统.html">双系统使用经历</a></li><li class="chapter-item "><a href="../../../Tools/软件打包.html">软件打包</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Reticence&#x27;s Notes</h1>
+
+                    <div class="right-buttons">
+                        <a href="../../../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="linux使用笔记"><a class="header" href="#linux使用笔记">Linux使用笔记</a></h1>
+<p>——主要是看了鸟哥的书的笔记
+——如果你记不住指令，也没关系。知道有执行这个功能的指令就好。
+——其实我没有看完，实在是太多了。但是先就这样子吧。
+——结合<code>Ctrl+F</code>食用</p>
+<h2 id="鸟哥的读书笔记"><a class="header" href="#鸟哥的读书笔记">鸟哥的读书笔记</a></h2>
+<h3 id="开机"><a class="header" href="#开机">开机</a></h3>
+<p>BIOS：根据使用者的设定去指定的硬盘读取第一个扇区的MBR位置。
+【主引导记录（MBR，Master Boot Record）是装有Linux系统的硬盘的第一个扇区，即C/H/S地址的0柱面0磁头1扇区，也叫做MBR扇区。】
+BIOS-&gt;MBR-&gt;启动代码-&gt;核心文件（操作系统）
+启动代码也可以装在各个分区的启动扇区。每个分区有自己的启动扇区，核心文件可以放在各个分区。
+UEFI：</p>
+<h3 id="挂载"><a class="header" href="#挂载">挂载</a></h3>
+<p>挂载：利用一个目录当做进入点（挂载点），将磁盘分区的数据存放在该目录下。
+根目录一定要挂载到某个分区。
+还需要一个swap分区</p>
+<h3 id="x-window和-console"><a class="header" href="#x-window和-console">X window和 console</a></h3>
+<p>Ctrl+Alt+F1 X window模式
+Ctrl+Alt+F2-6 console模式
+以上分别是tty1,tty2...tty6,（可以认为tty=terminal)
+所谓的X window模式，不过是在命令行模式下打开了图形界面。用startx命令即可。不过不要在已经有其他X window被启动的情况下用startx。
+sudo systemctl disable lightdm	#取消开机进入图形模式，enable恢复</p>
+<h3 id="一些键盘操作"><a class="header" href="#一些键盘操作">一些键盘操作</a></h3>
+<p>TabTab		命令补全、文件补全
+Ctrl+C		中断当前程序
+Ctrl+D		EOF
+如果文件名里有空格，用\ ，想换一行接着输命令，用<br />
+;可以让你在一行输入好几个命令</p>
+<p>man			查看manual			空格翻页，q退出，/string?string向下向上搜索，n,N正向反向。
+info			在线求助				n下一个节点，p上一个节点，s搜索</p>
+<h3 id="科学关机"><a class="header" href="#科学关机">科学关机</a></h3>
+<p>who			查看当前用户在线状况
+netstat		查看网络的联机状态
+sync			把内存中尚未写入硬盘的数据写入硬盘中，shutdown前也会使用。sudo
+shutdown	关机。sudo</p>
+<h3 id="权限"><a class="header" href="#权限">权限</a></h3>
+<p><strong>User，Group，Other</strong>，		万能的root
+/etc/group		记录群组信息
+/etc/shadow		记录用户密码
+/etc/passwd		记录用户信息</p>
+<h3 id="ls--l的显示详解"><a class="header" href="#ls--l的显示详解">ls -l的显示详解：</a></h3>
+<p>1.第一栏的十个位	文件类型-User权限-Group权限-Other权限 
+2.有多少档名连结到此节点（i-node）
+3.表示文件（目录）的所有者账号
+4.表示文件的所属群组
+5.文件大小，默认单位byte
+6.修改日期
+7.文件名，带.的是隐藏文件
+权限为----的，就是root才能用了，因为他不受权限限制
+###改变文件属性和权限
+chgrp		修改群组
+chown		修改所有者,群组		chown User:Group filename
+chmod		修改文件权限			chmod -R 755	AppImage	(-R表示递归的修改目录下的所有文件）
+chmod u=rwx,g+r,o-r PPTX\ 演示文稿.pptx
+###权限rwx，对文件来说读、写、执行
+对于目录来说，分别为：能否看到该目录内容，能否修改该目录内容，能否进入该目录。一般开放的目录需要rx权限。
+种类：
+-：正规文件，纯文本，二进制文件，数据格式文件
+d：目录（directory）
+l：链接（link）
+b：区块设备档（block）			在/dev目录下常见
+c：字符设备文件（character）		在/dev目录下常见
+s：资料接口文件（socket）		在/run或/tmp目录下常见
+p：数据输送文件（pipe）
+和文件扩展名没有任何关系，文件扩展名只是给人看的。
+###默认权限
+文件的默认权限为-rw-rw-rw,666.目录的默认权限为drwxrwxrwx,777.
+当新建一个文件时，文件的权限要“减去”umask中的权限。（umask顾名思义就是掩码）
+直接在umask后面输入数字即可修改
+###文件的隐藏属性
+chattr [+-=][ASacdistu] 文件或目录名称		：修改隐藏属性
++添加属性 -去除属性 =设定属性
+i：让一个文件 不能被删除、改名、设定连结也无法写入或新增数据。只有 root 能设定。
+a：文件将只能增加数据，而不能删除也不能修改数据，只有 root 才能设定这属性。
+lsattr [adR] （文件或目录名称）	查看隐藏属性
+###特殊权限（插眼，之后回来填坑）
+当 s 这个标志出现在文件拥有者的 x 权限上时，例如刚刚提到的 /usr/bin/passwd 这个文件的权限状态：『-rwsr-xr-x』，此时就被称为 Set UID，简称为 SUID 的特殊权限。用于文件。
+那么，其他用户在执行该文件的时候（要求其他用户对该文件有x权限），可以获得该程序拥有者的权限，在程序的执行过程中有效。
+当 s 标志在文件拥有者的 x 项目为 SUID，那 s 在群组的 x 时则称为 Set GID，SGID
+当t，SBIT，用于目录。
+chmod 4755 filename	第一个数字就是上面三个特殊权限，依次为421.</p>
+<h3 id="文件系统"><a class="header" href="#文件系统">文件系统</a></h3>
+<p>根据FHS(filesystem hierarchy standard)
+/根目录
+/var			与系统运作有关
+/usr			unix software resource与软件安装执行有关
+/bin			可执行命令文件 
+/boot		放置着系统核心文件和开机所需文件
+/dev			系统设备（device）相关文件
+/etc			系统主要配置文件
+/home 		除了根用户外其他用户的家目录
+/lib			系统和程序运行所要调用的库函数文件
+/root		根用户家目录
+/sbin		根用户才能执行的命令
+/srv			服务启动后需要访问的数据
+/tmp		程序临时储存目录，任何人都可访问
+/opt			第三方软件建议安装目录
+/media		移动设备相关文件
+/lost+found	当文件系统发生错误时一些遗失的片段放置的目录，在deepin里也是回收站？
+/proc		虚拟文件系统，内存信息
+/sys			虚拟文件系统，记录核心与系统硬件信息相关的信息</p>
+<p>#文件和目录
+###相对路径：
+.	当前目录
+..	上级目录
+~	当前用户的家目录</p>
+<ul>
+<li>前一个目录，就像windows中的后退</li>
+</ul>
+<p>Linux中文件的时间戳信息，主要有三个。第一个最重要。
+mtime : modification time	文件的修改时间
+ctime : status time			文件的权限、属性被更改时间
+atime : access time			文件的读取时间
+ls默认显示第一个mtime，查看下面两个加上选项--time=atime/ctime</p>
+<h4 id="目录操作命令"><a class="header" href="#目录操作命令">目录操作命令：</a></h4>
+<pre><code>cd		change directory切换目录
+pwd		显示当前目录
+mkdir	创建新的空目录
+rmdir	删除空目录
+
+ls		列出文件	-R递归列出子文件	-l详细信息
+cp		复制（建立链接，更新文件）	-a完全复制，权限不变	-l创建硬链接	-s创建软链接 -r目录复制 
+在默认情况下，会改变群组和权限
+mv		移动目录，重命名	
+mv source1 source2 ... destination, cp也一样
+rm		移除文件		-r递归删除目录 -i删除前询问 -f强制删除，忽略不存在的文件
+
+basename	路径中的档名
+dirname		路径中的目录名
+touch	改变文件时间戳，创建新文件	-a只修改atime -m只修改mtime -t修改成任意时间（默认为现在）
+</code></pre>
+<h4 id="文件读取命令"><a class="header" href="#文件读取命令">文件读取命令：</a></h4>
+<pre><code>cat 		从第一行开始显示文件内容 -n显示行号
+tac		从最后一行开始显示文件内容
+nl		显示文件内容的时候输出行号
+less		分页显示，比more好用
+[Space][PgDown]向下翻页	[PgUp]向上翻页	/向下字符串搜索	？向上字符串搜索	q离开	
+G最后一行	g第一行	n/N切换搜索结果
+od		以二进制方式读取文件内容 	-t xCc：ASCII对照表
+head	看文件头几行
+tail		看文件末几行
+head和tail可以配合使用，如查看11-20行：head -n 20 filename | tail -n 10
+</code></pre>
+<h4 id="文件操作命令"><a class="header" href="#文件操作命令">文件操作命令</a></h4>
+<pre><code>grep		在输入中寻找匹配的字符(RE)，输出匹配的行		grep [option] pattern file1 file2 ...
+cut		-d后面接分隔字符，与 -f 一起使用		-f依据-d的分隔字符将一段讯息分区成为数段，用 -f取出第几段
+-c以字符 (characters) 的单位取出固定字符区，用于排列整齐的输出，比如ls -l | cut -c 1-10
+sort		排序，默认为字典序。
+uniq		对连续重复的条目去重计数
+Note: 'uniq' does not detect repeated lines unless they are adjacent.
+You may want to sort the input first, or use 'sort -u' without 'uniq'.
+wc		对文件的行数、字数、字符数进行统计。
+
+tr		进行字符的删除替换		tr ... old new	把...中的old换成new
+tr ... -b old	删除...中的old
+col		把tab换成对应个数的空格
+split		把一个大文件拆成若干个小文件 	-b按大小拆分		-l按行数拆分		split [option] filename prefix
+xargs	给命令提供参数，对于不能用Pipe的命令。
+-n一次接受的最大参数	-p执行命令前询问
+xargs [option] command ,然后从标准输入获得arguments	
+printf	格式化输出，有点像C语言，但是分隔符是空格
+awk		一个处理行数据的工具，会把file的行根据空白符拆分成字段，$1 $2 ...，$0代表整行
+awk ‘条件表达式{指令} 条件表达式{指令}...’	filename		条件表达式为真会执行指令
+diff		顾名思义，比较两个文本文件或目录的差异，逐行比较 	diff from-file to-file
+-b忽略空白数不同的差异		-B忽略空白行的差异		-i忽略大小写的差异
+cmp		比较两个文件的差异，逐字节比较
+patch	更新指令，插眼
+pr		打印准备指令、略
+</code></pre>
+<h4 id="文件信息和查找命令"><a class="header" href="#文件信息和查找命令">文件信息和查找命令</a></h4>
+<pre><code>file		查看文件类型
+which	查找脚本文件
+whereis	在特定的目录下查找文件	-l列出特定的目录
+locate	在系统的数据库中查找文件
+deepin系统默认没有安装locate.
+updatedb更新数据库
+find		根据条件寻找文件，并可以对找到的结果执行action脚本。
+find [PATH] [Option] [Action] 
+例如：find -name 'DOC*' -exec ls -l {} \;		这里还有正则表达式
+</code></pre>
+<p>环境变量PATH，提供上下文</p>
+<h1 id="磁盘管理这里头学问太深这里是皮毛中的尖尖"><a class="header" href="#磁盘管理这里头学问太深这里是皮毛中的尖尖">磁盘管理（这里头学问太深，这里是皮毛中的尖尖）</a></h1>
+<p>对一块硬盘的操作流程：
+1.对磁盘进行分区，建立可用的partition
+2.对partion进行格式化，建立可用的file system
+3.可以对刚刚建立的file system进行检验
+4.在Linux系统中，把硬盘挂在到某个目录上
+分区表格式：MBR/GPT
+file system
+Windows的操作系统使用NTFS文件系统。
+Linux使用Ext2/3/4算是官方文件格式，除此之外/proc/filesystems可以查看已经被加载到内存中支持的文件系统。
+当然还有很多其他的文件系统。</p>
+<p>文件数据除了本身的内容之外，还包括很多属性。
+在 Linux 系统下，每个文件(不管是一般文件还是目录文件)都会占用一个inode ， 且可依据文件内容的大小来分配多个 block 给该文件使用。
+大致可以这么理解。
+目录中的文件文件名存在目录对应的块中。
+df：列出文件系统中的整体磁盘使用情况
+du：列出文件的磁盘使用情况</p>
+<p>硬链接：我们访问文件的方式是 通过文件名找到inode从而访问其内容。硬链接就是不同目录下的文件指向同一个inode的情况。可想而知，修改其中一个所有的都会改变，删除其中一个不影响其他的打开。不能链接目录，不能跨file system.
+软链接：就像快捷方式。</p>
+<p>lsblk		列出系统上所有的磁盘列表，以及信息。
+blkid	也是查看磁盘信息的</p>
+<p>磁盘分区：
+对于分区表是MBR的使用fdisk分区，GPT的使用gdisk。
+可以使用fdisk -l devicename 查看分区类型。
+parted两者都可。
+<strong>格式化</strong>建立file system：
+mkfs		make file system,双击tab看看。
+挂载：
+mount	挂载命令	[设备名][挂载目录]	
+也可以把目录挂载到目录上，--bind dir1 dir2，dir2是挂载点
+umont	卸载命令
+/etc/fstab中存储了开机挂载信息。六个字段分别为# Device Mount | point | filesystem | parameters | dump | fs
+/etc/fstab 是开机时的配置文件，不过，实际 filesystem 的挂载是记录到 /etc/mtab 与 /proc/mounts 这两个文件当中的。每次我们在更动 filesystem 的挂载时，也会同时更动这两个文件喔！</p>
+<p>关于Swap分区：
+mkswap	格式化为swap格式
+free		查看内存与swap使用情况
+swapon	打开、查看swap分区对应的文件？设备？
+swapoff	关闭某个打开的swap分区	这两个就像mount和umount</p>
+<h1 id="压缩文件"><a class="header" href="#压缩文件">压缩文件</a></h1>
+<p>虽然扩展名没什么用，Linux上常见的压缩文件一般用这些标示。
+*.Z 		compress 程序压缩的文件；
+*.zip 	zip 程序压缩的文件；
+*.gz 		gzip 程序压缩的文件；
+*.bz2 	bzip2 程序压缩的文件；
+*.xz 		xz 程序压缩的文件；
+*.tar 		tar 程序打包的数据，并没有压缩过；
+*.tar.gz 	tar 程序打包的文件，其中并且经过 gzip 的压缩
+*.tar.bz2 	tar 程序打包的文件，其中并且经过 bzip2 的压缩
+<em>.tar.xz 	tar 程序打包的文件，其中并且经过 xz 的压缩
+1.gzip
+压缩文件之后，默认会产生</em>.gz的文件，并且源文件消失。
+-1~9表示压缩等级		-d表示解压缩		-k表示源文件不消失		-v显示压缩信息</p>
+<p>zcat		如果被压缩的是文本文件，可以考虑使用zcat读取
+类似的还有zgrep , zless
+2.bzip2
+用法和gzip很像，默认产生.bz2文件，压缩比比gzip大
+3.xz
+用法依然很像，默认产生.xz文件，压缩比更大
+相应的有xzcat , xzless , xzgrep
+4.tar
+这是打包指令，功能很强大，指令很多。
+tar -cv -f filename.tar 要被打包的文件或目录名称				打包命令
+tar -zcv -f filename.tar.gz 要被压缩的文件或目录名称			压缩命令
+tar -ztv -f filename.tar.gz								查询命令
+tar -zxv -f filename.tar.gz -C 欲解压缩的目录					解压缩命令
+tar -zxv -f filename.tar.gz 要解压的文件名 -C 欲解压缩的目录	部分解压缩命令</p>
+<p>上面的z表示压缩成.gz，换成j表示.bz2，换成J表示.xz
+-p保留原来的权限设置，常用于备份配置文件
+当已绝对路径指定文件时，tar会删除开头根目录/ -P可以保留路径的根目录
+--exclude=filename 指定不打包的文件名
+5.dd
+dd if=”input file” of=”output file”
+file除了可以是文件，也可以是装置
+dd会单纯的记录磁盘的信息，所以和文件系统无关。
+6.cpio
+7.7z
+.7z也是常见的压缩文件
+7z x filename		解压缩</p>
+<p>#vi和vim
+vi有三个模式：
+command mode：		按ESC进入			移动光标、复制粘贴、删除		一
+insert mode：			在一般模式下i/a/o/r	进入，编辑					二
+command-line mode：	在一般模式下按 : / ? 	进入，搜索、保存、退出等		三</p>
+<p>基本操作：
+三	:wq保存退出		:q!强制离开不保存		:w [filename]另存为
+:r [filename]将filename里的内容添加到光标后面
+一	hjkl 左下上右		[n]hjkl上下左右n个单位		gg回到第一行		[n]G到第[n]行
+三	/word向下搜索word		?word向上搜索word	
+:[n1],[n2]s/word1/word2	/g	在[n1]~[n2]之间搜索word1并替换成word2
+:[n1],[n2]s/word1/word2	/g	在[n1]~[n2]之间搜索word1并替换成word2，替换前确认
+x&lt;=&gt;delete	X&lt;=&gt;backspace
+dd删除整行	[n]dd删除光标向下[n]行
+yy复制整行	[n]yy复制光标向下[n]行
+p将已经复制的数据粘贴到光标下一行	P将已经复制的数据粘贴到光标上一行
+u撤销 		Ctrl+r取消撤销		.重复前一个指令
+v字符选择	V行选择		Ctrl+V区块选择		然后结合ydp进行复制删除粘贴操作～
+三	:sp {filename} 分窗口显示，没有filename就是当前文件
+Ctrl+w+jk	上下切换窗口		Ctrl+w+q		退出窗口
+三	:set xxx设定vim的环境</p>
+<p>dos2unix		转换windows的换行格式为unix的换行格式
+unix2dos		转换unix的换行格式为windows的换行格式
+iconv		转换文件的编码格式 
+iconv -f 原来的编码 -t 目标编码 文件 -o 输出文件</p>
+<p>#Bash
+bash是预设的shell，很好用。
+一些功能：
+双tab命令补全	历史命令记录↑
+shell脚本
+工作前景背景控制	
+通配符 
+history	历史命令记录 history 10 最近的10个历史记录
+alias		设置命令别名 alias name=“指令” 		-p输出已经定义的别名
+ulimit	限制用户对某些系统资源的使用
+source	在当前shell中直接执行命令，让配置文件立即生效而不需要注销		source filename
+stty		-a查看键盘快捷键对应的作用</p>
+<p>一些默认的快捷键：
+Ctrl + C 		终止目前的命令
+Ctrl + D 		输入结束 (EOF)，例如邮件结束的时
+Ctrl + S 		暂停屏幕的输出
+Ctrl + Q 		恢复屏幕的输出
+Ctrl + U 		在提示字符下，将整列命令删除
+Ctrl + Z 		『暂停』目前的</p>
+<p>login shell &amp; non-login shell:
+tty1~tty6属于login shell，你需要先登录才能输入指令。
+在X window下打开的bash窗口属于non-login shell，你不需要再次登录。</p>
+<p>指令运行顺序：
+1.以相对、绝对路径指明
+2.用alias指明
+3.bash的builtin内建指令
+4.通过$PATH指明的路径寻找指令</p>
+<p>一些bash中的变量：
+HOME：代表用户家目录		LANG：代表当前系统语言	PATH：执行文件搜寻的目录
+HISTSIZE：代表记录的历史命令最大值
+?：上一次操作的返回值，0为正常		$：shell进程的PID</p>
+<p>一些bash的配置文件：（插眼，现在还看不懂这些配置文件）
+/etc/issue			保存bash的进站欢迎信息
+/etc/profile		login shell会读取，会设定环境变量和呼叫其他配置文件
+~/.bash_profile或~/.bash_login或~/.profile	
+会依次读取三者中的一个，在我的电脑里是.profile。这是使用者的配置文件，也是login shell。
+~/.bashrc			non-login shell会读取
+~/.bash_logout	当我注销 bash 后，系统再帮我做完什么动作后才离开
+~/.bash_history	记录历史指令</p>
+<p>数据的重定向：
+标准输入 (stdin) ：		代码为 0 		键盘
+标准输出 (stdout)：		代码为 1 		屏幕
+标准错误输出(stderr)：	代码为 2 		屏幕</p>
+<pre><code>&gt;		覆盖重定向		
+&gt;&gt;		累加重定向
+&lt;		输入重定向
+&lt;&lt;		指定字符作为eof
+tee		将标准输入复制到每个指定文件，并显示到标准输出。 -a追加模式
+</code></pre>
+<p>cmd1 &amp;&amp; cmd2	1. 若 cmd1 执行完毕且正确执行($?=0)，则开始执行 cmd2</p>
+<ol>
+<li>若 cmd1 执行完毕且为错误 ($?≠0)，则 cmd2 不执行。
+cmd1 || cmd2		1. 若 cmd1 执行完毕且正确执行($?=0)，则 cmd2 不执行。
+2.若 cmd1 执行完毕且为错误 ($?≠0)，则开始执行 cmd2
+cmd1 &amp;&amp; cmd2 || cmd3		正确执行cmd2，错误执行cmd3
+；				就是都执行啦
+管道pipe：
+left | right		把左边的stdout输送到右边的stdin
+某些指令需要用到文件名 (例如 tar) 来进行处理时，该 stdin 与 stdout 可以利用减号 &quot;-&quot;
+tar -cv -f - aaa bbb | tar -xv -C ~		这里的-就代表标准输出</li>
+</ol>
+<p>通配符：这是bash内置的通配符，不是正则表达式</p>
+<pre><code>* 		代表『 0 个到无穷多个』任意字符
+? 		代表『一定有一个』任意字符
+[ ]		同样代表『一定有一个在括号内』的字符(非任意字符)。[abcd] 代表一定有一个abcd中的字符
+[ - ]		若有减号在中括号内时，代表『在编码顺序内的所有字符』。例如 [0-9] 代表 0 到 9 之间的所有数字
+[^ ]		若中括号内的第一个字符为指数符号 (^) ，那表示『反向选择』，例如 [^abc] 代表一定有一个非abc字符
+</code></pre>
+<h1 id="shell脚本"><a class="header" href="#shell脚本">shell脚本</a></h1>
+<p>就像Windows里的.bat	里头就是Linux指令，多以.sh为后缀
+# 后面跟注释
+鸟哥建议在开头注释的内容：script 的功能；script 的版本信息；script 的作者与联络方式；script 的版权宣告方式；script 的 History (历史纪录)；script 内较特殊的指令，使用『绝对路径』的方式来下达；script 运作时需要的环境变量预先宣告与设定。
+变量：
+变量的命名和C语言十分类似，一般系统的变量都是大写字母。
+使用变量的值：	$var	或 ${var}
+删除变量：	unset var
+字符串：				没有引号也是字符串，就是空格要转义</p>
+<pre><code>“”		双引号，里头可以有命令替换$(command)和变量${variable}
+‘’		单引号，里头的字符就是单纯的字符，raw
+``              反引号，里头放命令，会被执行
+</code></pre>
+<p>数组：		var=(value1 value2 value3)	中间用空格隔开，或者 var[n]=value
+使用数组的值${a[1]}
+变量有环境变量和局部变量两种。环境变量可以理解为全局变量。</p>
+<p>修改字符串：</p>
+<pre><code>#		${var#keyword}		如果变量从头开始的数据符合关键字，将符合的最短数据删
+##		${var##keyword}		如果变量从头开始的数据符合关键字，将符合的最长数据删
+%		${var%keyword}		如果变量从尾开始的数据符合关键字，将符合的最短数据删
+%%		${var%%keyword}		如果变量从尾开始的数据符合关键字，将符合的最长数据删
+/		${var/oldstr//newstr}	将变量符合的第一个oldstr换成newstr
+${var//oldstr/newstr}	将变量符合的所有oldstr换成newstr
+</code></pre>
+<p>这里似乎是可以用正则表达式的
+整数运算：
+var=$((运算内容))				感觉有点像eval?
+declare -i var=运算内容</p>
+<p>shell脚本的参数：</p>
+<pre><code>${number}		第几个参数
+$#				参数个数
+$@				全部参数，空格隔开
+shift				变量偏移，把前面的变量移走	shift 3
+</code></pre>
+<p>变量测试：（不知道有什么用。。）P448插眼</p>
+<p>env		查看环境变量
+set		查看所有变量
+export	把局部变量转换成环境变量	export var 
+read		读取变量的值 		-p提示字符 	read -p “please input xx: ” var
+declare	设置变量类型和属性		-i整数
+echo		输出
+test		检查当前文件的属性和权限，逻辑判断。没有输出，与&amp;&amp; || if配合使用，
+[  ]是test命令的另一种形式，注意两边有空格，中间输test的表达式
+sh		shell的debug命令</p>
+<p>条件表达式：
+if	[test-expr]; then
+...
+else
+...
+fi
+函数：
+function name(){
+...
+}
+循环：
+while [ test-expr ]
+do
+...
+done</p>
+<p>until [ test-expr ]
+do
+...
+done</p>
+<p>for var in xx,xxx,
+do
+...
+done</p>
+<p>for (( i=1; i&lt;=${nu}; i=i+1 ))
+do
+...
+done</p>
+<h1 id="正则表达式regular-expression略"><a class="header" href="#正则表达式regular-expression略">正则表达式regular expression（略）</a></h1>
+<p>有些命令是支持正则表达式的，如果不支持的话也可以用bash内建的通配符。
+比如grep/vim都是支持RE的</p>
+<h1 id="网络"><a class="header" href="#网络">网络</a></h1>
+<pre><code>netstat		显示所有打开的服务以及Socket
+telnet          远程登录到网络上的某一台服务器主机
+nc
+ping        
+ifconfig        网卡配置
+</code></pre>
+<h1 id="例行性工作"><a class="header" href="#例行性工作">例行性工作</a></h1>
+<p>at ：at 是个可以处理仅执行一次就结束排程的指令，不过要执行 at 时， 必须要有 atd 这个服务 (第十七章) 的支援才行。在某些新版的 distributions 中，atd 可能预设并没有启动，那么 at 这个指令就会失效呢！不过我们的 CentOS 预设是启动的！	crontab ：crontab 这个指令所设定的工作将会循环的一直进行下去！ 可循环的时间为分钟、小时、每周、每月或每年等。crontab 除了可以使用指令执行外，亦可编辑 /etc/crontab 来支持。 至于让 crontab 可以生效的服务则是 crond 这个服务</p>
+<h1 id="进程管理"><a class="header" href="#进程管理">进程管理</a></h1>
+<p>进程 (process)：程序被触发后，执行者的权限与属性、程序的程序代码与所需数据等都会被加载内存中， 操作系统并给予这个内存内的单元一个标识符 (PID)。
+子进程：子进程可以继承父进程的环境变量，通过PPID判断父进程是什么。
+进程都会藉由父进程以fork的方式产生一个一模一样的子进程， 然后被复制出来的子进程再以exec的方式来执行实际要进行的程序，最终就成为一个子进程的存在。
+服务(daemon)：常驻在内存当中的进程通常都是负责一些系统所提供的功能以服务用户各项任务，因此这些常驻程序就会被我们称为服务。</p>
+<p>ps			列出进程		-l列出详细信息		-lA或aux列出系统中的所有进程（默认是bash中的进程）
+axjf列出进程树
+F：代表这个进程旗标 (process flags)，说明这个进程的总结权限，常见号码有： 
+若为 4 表示此进程的权限为 root。 
+若为 1 则表示此子进程仅进行复制(fork)而没有实际执行(exec)。
+S：代表这个进程的状态 (STAT)，主要的状态有： 
+R (Running)：该程序正在运作中；。
+S (Sleep)：该程序目前正在睡眠状态(idle)，但可以被唤醒(signal)。 
+D：不可被唤醒的睡眠状态，通常这支程序可能在等待 I/O 的情况(ex&gt;打印)。 
+T：停止状态(stop)，可能是在工作控制(背景暂停)或除错 (traced) 状态。 
+Z (Zombie)：僵尸状态，进程已经终止但却无法被移除至内存。
+C：代表 CPU 使用率，单位为百分比
+PRI/NI：Priority/Nice 的缩写，代表此进程被 CPU 所执行的优先级，数值越小代表该进程越快被 CPU 执行。	ADDR：是 kernel function，指出该进程在内存的哪个部分，如果是个running 的进程，一般就会显示-
+SZ：代表此进程用掉多少内存 。
+WCHAN：表示目前进程是否运作中，同样的， 若为 - 表示正在运行
+TIME：使用掉的 CPU 时间
+pstree		画出进程树
+top			动态监测进程
+-p PID 观察指定进程
+在命令行的最后输入 &amp;，可以让命令在背景中执行	
+Ctrl+z		将进程放到bash后台中并暂停(Ctrl+D表示EOF)
+jobs			查看bash后台运行的进程
+fg			将后台的进程放到前台运行		fg %jobnumber
+bg			将后台暂停的进程在后台继续运行	bg %jobnumber
+kill			给进程发信号signal				kill -signal %jobnumber/PID
+-l列出kill中的信号有哪些
+nohup		将进程放到系统后台执行，配合&amp;
+renice		赋给进程新的nice值，影响程序执行的优先级		renice -n number -p PID
+nice 值可调整的范围为 -20 ~ 19 ；	
+root 可随意调整自己或他人进程的 Nice 值，且范围为 -20 ~ 19 
+一般使用者仅可调整自己进程的 Nice 值，且范围仅为 0 ~ 19 (避免一般用户抢占系统资源)
+nice			赋给进程nice值	nice -n number command
+free			观察内存和Swap的使用情况
+vmstat 		可以侦测『 CPU / 内存 / 磁盘输入输出状态 』等等，
+fuser		藉由文件(或文件系统)找出正在使用该文件的进程
+-m,--mount            show all processes using the named filesystems or block device
+fuser -uvm filename列出占用文件的进程	fuser -mki filename杀死占用文件的进程
+lsof			查看进程开启的文件（不加选项多的一匹）
+-p指定PID 		-u指定User		+d指定目录</p>
+<h1 id="软件安装"><a class="header" href="#软件安装">软件安装</a></h1>
+<p>执行configure来建立Makefile
+用make指令执行Makefile完成编译
+sudo apt-get autoremove xxx 卸载软件</p>
+<h1 id="gdb"><a class="header" href="#gdb">GDB</a></h1>
+<p>1<br />
+list	l	显示多行源代码
+break	b	设置断点,程序运行到断点的位置会停下来
+info	i	描述程序的状态
+run	r	开始运行程序
+display	disp	跟踪查看某个变量,每次停下来都显示它的值
+step	s	执行下一条语句,如果该语句为函数调用,则进入函数执行其中的第一条语句
+next	n	执行下一条语句,如果该语句为函数调用,不会进入函数内部执行(即不会一步步地调试函数内部语句)
+print	p	打印内部变量值
+continue	c	继续程序的运行,直到遇到下一个断点
+set var name=v	 	设置变量的值
+start	st	开始执行程序,在main函数的第一条语句前面停下来
+file	 	装入需要调试的程序
+kill	k	终止正在调试的程序
+watch	 	监视变量值的变化
+backtrace	bt	产看函数调用信息(堆栈)
+frame	f	查看栈帧
+quit	q	退出GDB环境</p>
+<h2 id="gcc"><a class="header" href="#gcc">GCC</a></h2>
+<p>基本操作
+gcc -c file1.c file2.c			把文件编译成可重定位目标文件 .o
+gcc -o out file1.o file2.o		把可重定位目标文件、静态库、动态链接库链接成为可执行目标文件
+静态库在Linux中以存档（archive）.a的形式储存
+动态链接库在Linux中以.so的形式储存
+-Onumber				优化</p>
+<p>gcc -shared -fpic -o libname.so file1.c file2.c		编译一个动态链接库
+ar rcs libname.a file1.o file2.o						编译一个静态库</p>
+<p>makefile这个内容太多了，先略过。可以认为是自动化编译的脚本。
+target... : prerequisites ...
+command</p>
+<p>target也就是一个目标文件，可以是Object File，也可以是执行文件。还可以是一个标签（Label），对于标签这种特性，在后续的“伪目标”章节中会有叙述。
+ prerequisites就是，要生成那个target所需要的文件或是目标。
+command也就是make需要执行的命令，前面要有个Tab。（任意的Shell命令）</p>
+<h2 id="日常使用"><a class="header" href="#日常使用">日常使用</a></h2>
+<ul>
+<li>本地DNS服务器：
+查看 <code>cat /etc/resolv.conf</code>，你可以自己修改，也可能被<a href="https://baike.baidu.com/item/DHCP/218195?fr=aladdin">DHCP</a>协议分配。</li>
+<li>设置代理：</li>
+</ul>
+<pre><code> export http_proxy=&quot;http://proxy-XXXXX&quot;
+ export https_proxy=&quot;https://proxy-XXXXX:&quot;
+</code></pre>
+<p>取消代理：</p>
+<pre><code>unset http_proxy
+unset https_proxy
+</code></pre>
+<p>（这个环境变量的改变都是临时的，只在当前的shell下生效。）</p>
+<ul>
+<li>
+<p>生成一对秘钥-使用 ssh-keygen</p>
+</li>
+<li>
+<p>把ls的结果按照文件大小排序：ls -l | sort  +4 -n</p>
+</li>
+</ul>
+<p>lspci:在系统中显示有关pci总线的信息以及连接到它们的设备。</p>
+<p>寻找文件：<strong>find</strong>指令
+<code>find -name *demo* #寻找文件名中带有demo的文件，有些目录的查找需要root权限</code></p>
+<ul>
+<li>计算文件的SHA
+sha双击Tab之后，顾名思义啦
+sha1sum          sha256sum        sha512sum        shapeclustering  sharesec<br />
+sha224sum        sha384sum        shadowconfig     shar             shasum</li>
+</ul>
+<h2 id="指令"><a class="header" href="#指令">指令</a></h2>
+<h3 id="kill命令对进程发信号"><a class="header" href="#kill命令对进程发信号">kill命令————对进程发信号</a></h3>
+<p>kill -signal pid
+kill -l显示所有信号，常用的有下面几个：
+1 (HUP)：重新加载进程。
+9 (KILL)：杀死一个进程。
+15 (TERM)：正常停止一个进程。</p>
+<h3 id="file命令查看文件类型"><a class="header" href="#file命令查看文件类型">file命令————查看文件类型</a></h3>
+<h3 id="目录操作命令-1"><a class="header" href="#目录操作命令-1">目录操作命令：</a></h3>
+<pre><code>cd		change directory切换目录
+pwd		显示当前目录
+mkdir	创建新的空目录
+rmdir	删除空目录
+
+ls		列出文件	-R递归列出子文件	-l详细信息
+cp		复制（建立链接，更新文件）	-a完全复制，权限不变	-l创建硬链接	-s创建软链接 -r目录复制 
+在默认情况下，会改变群组和权限
+mv		移动目录，重命名	
+mv source1 source2 ... destination, cp也一样
+rm		移除文件		-r递归删除目录 -i删除前询问 -f强制删除，忽略不存在的文件
+
+basename	路径中的档名
+dirname		路径中的目录名
+touch	改变文件时间戳，创建新文件	-a只修改atime -m只修改mtime -t修改成任意时间（默认为现在）
+</code></pre>
+<h3 id="文件读取命令-1"><a class="header" href="#文件读取命令-1">文件读取命令：</a></h3>
+<pre><code>cat 		从第一行开始显示文件内容 -n显示行号
+tac		从最后一行开始显示文件内容
+nl		显示文件内容的时候输出行号
+less		分页显示，比more好用
+[Space][PgDown]向下翻页	[PgUp]向上翻页	/向下字符串搜索	？向上字符串搜索	q离开	
+G最后一行	g第一行	n/N切换搜索结果
+od		以二进制方式读取文件内容 	-t xCc：ASCII对照表
+head	看文件头几行
+tail		看文件末几行
+head和tail可以配合使用，如查看11-20行：head -n 20 filename | tail -n 10
+</code></pre>
+<h3 id="文件操作命令-1"><a class="header" href="#文件操作命令-1">文件操作命令</a></h3>
+<pre><code>grep		在输入中寻找匹配的字符(RE)，输出匹配的行		grep [option] pattern file1 file2 ...
+cut		-d后面接分隔字符，与 -f 一起使用		-f依据-d的分隔字符将一段讯息分区成为数段，用 -f取出第几段
+-c以字符 (characters) 的单位取出固定字符区，用于排列整齐的输出，比如ls -l | cut -c 1-10
+sort		排序，默认为字典序。
+uniq		对连续重复的条目去重计数
+Note: 'uniq' does not detect repeated lines unless they are adjacent.
+You may want to sort the input first, or use 'sort -u' without 'uniq'.
+wc		对文件的行数、字数、字符数进行统计。
+
+tr		进行字符的删除替换		tr ... old new	把...中的old换成new
+tr ... -b old	删除...中的old
+col		把tab换成对应个数的空格
+split		把一个大文件拆成若干个小文件 	-b按大小拆分		-l按行数拆分		split [option] filename prefix
+xargs	给命令提供参数，对于不能用Pipe的命令。
+-n一次接受的最大参数	-p执行命令前询问
+xargs [option] command ,然后从标准输入获得arguments	
+printf	格式化输出，有点像C语言，但是分隔符是空格
+awk		一个处理行数据的工具，会把file的行根据空白符拆分成字段，$1 $2 ...，$0代表整行
+awk ‘条件表达式{指令} 条件表达式{指令}...’	filename		条件表达式为真会执行指令
+diff		顾名思义，比较两个文本文件或目录的差异，逐行比较 	diff from-file to-file
+-b忽略空白数不同的差异		-B忽略空白行的差异		-i忽略大小写的差异
+cmp		比较两个文件的差异，逐字节比较
+patch	更新指令，插眼
+pr		打印准备指令、略
+</code></pre>
+<h3 id="文件信息和查找命令-1"><a class="header" href="#文件信息和查找命令-1">文件信息和查找命令</a></h3>
+<pre><code>file		查看文件类型
+which	查找脚本文件
+whereis	在特定的目录下查找文件	-l列出特定的目录
+locate	在系统的数据库中查找文件
+deepin系统默认没有安装locate.
+updatedb更新数据库
+find		根据条件寻找文件，并可以对找到的结果执行action脚本。
+find [PATH] [Option] [Action] 
+例如：find -name 'DOC*' -exec ls -l {} \;		这里还有正则表达式
+</code></pre>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../../../Advanced/Linux/LinuxPlay/index.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next" href="../../../Advanced/Linux/LinuxPlay/使用SSH远程登录.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../../../Advanced/Linux/LinuxPlay/index.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next" href="../../../Advanced/Linux/LinuxPlay/使用SSH远程登录.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../../../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../../searcher.js" type="text/javascript" charset="utf-8"></script>
+
+        <script src="../../../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </body>
+</html>

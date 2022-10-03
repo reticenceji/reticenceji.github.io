@@ -1,0 +1,386 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>CPU设计 - Reticence&#x27;s Notes</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../../favicon.svg">
+        <link rel="shortcut icon" href="../../favicon.png">
+        <link rel="stylesheet" href="../../css/variables.css">
+        <link rel="stylesheet" href="../../css/general.css">
+        <link rel="stylesheet" href="../../css/chrome.css">
+        <link rel="stylesheet" href="../../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../../highlight.css">
+        <link rel="stylesheet" href="../../tomorrow-night.css">
+        <link rel="stylesheet" href="../../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+        <!-- MathJax -->
+        <script async type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item affix "><a href="../../index.html">Index</a></li><li class="chapter-item "><a href="../../Advanced/index.html">Advanced</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../Advanced/Blockchain/index.html">Block Chain</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../Advanced/Blockchain/Basic/index.html">区块链技术</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../Advanced/Blockchain/Basic/Consensus.html">共识机制</a></li><li class="chapter-item "><a href="../../Advanced/Blockchain/Basic/Crypto.html">加密</a></li><li class="chapter-item "><a href="../../Advanced/Blockchain/Basic/Distribute.html">分布式存储</a></li><li class="chapter-item "><a href="../../Advanced/Blockchain/Basic/P2P.html">P2P</a></li><li class="chapter-item "><a href="../../Advanced/Blockchain/Basic/SmartContract.html">如何执行智能合约</a></li></ol></li><li class="chapter-item "><a href="../../Advanced/Blockchain/Defi/index.html">DeFi</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../Advanced/Blockchain/Defi/DAO.html">Decentralized Autonomous Organization</a></li><li class="chapter-item "><a href="../../Advanced/Blockchain/Defi/Derivative.html">Decentralized Derivative</a></li><li class="chapter-item "><a href="../../Advanced/Blockchain/Defi/Exchange.html">Decentralized Exchange</a></li><li class="chapter-item "><a href="../../Advanced/Blockchain/Defi/FundManagement.html">Decentralized Fund Management</a></li><li class="chapter-item "><a href="../../Advanced/Blockchain/Defi/Insurance.html">Decentralized Insurance</a></li><li class="chapter-item "><a href="../../Advanced/Blockchain/Defi/LendBorrow.html">Decentralized Lending & Borrowing</a></li><li class="chapter-item "><a href="../../Advanced/Blockchain/Defi/Lottery.html">Decentralized Lottery</a></li><li class="chapter-item "><a href="../../Advanced/Blockchain/Defi/Payments.html">Decentralized Payments</a></li><li class="chapter-item "><a href="../../Advanced/Blockchain/Defi/StableCoin.html">Stable Coins</a></li></ol></li><li class="chapter-item "><a href="../../Advanced/Blockchain/Ethernet/index.html">Ethernet</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../Advanced/Blockchain/Ethernet/Solidity.html">Solidity简介</a></li></ol></li><li class="chapter-item "><a href="../../Advanced/Blockchain/NEAR/index.html">Hello NEAR</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../Advanced/Blockchain/NEAR/PoS.html">Proof-of-Stake</a></li><li class="chapter-item "><a href="../../Advanced/Blockchain/NEAR/Promise.html">异步模型</a></li><li class="chapter-item "><a href="../../Advanced/Blockchain/NEAR/Secure.html">Secure</a></li><li class="chapter-item "><a href="../../Advanced/Blockchain/NEAR/Snippets.html">Snippets</a></li><li class="chapter-item "><a href="../../Advanced/Blockchain/NEAR/Standards.html">标准实现代码分析</a></li><li class="chapter-item "><a href="../../Advanced/Blockchain/NEAR/dao.html">dao</a></li><li class="chapter-item "><a href="../../Advanced/Blockchain/NEAR/wasm.html">wasm</a></li></ol></li></ol></li><li class="chapter-item "><a href="../../Advanced/Linux/index.html">Linux</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../Advanced/Linux/LinuxKernel/index.html">Linux</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../Advanced/Linux/LinuxKernel/Credential.html">Credential</a></li><li class="chapter-item "><a href="../../Advanced/Linux/LinuxKernel/Debug笔记.html">Debug笔记</a></li><li class="chapter-item "><a href="../../Advanced/Linux/LinuxKernel/File_System.html">File System</a></li><li class="chapter-item "><a href="../../Advanced/Linux/LinuxKernel/Linux内核设计与实现笔记.html">《Linux内核设计与实现》笔记</a></li><li class="chapter-item "><a href="../../Advanced/Linux/LinuxKernel/Linux设备驱动笔记.html">《Linux设备驱动》笔记</a></li><li class="chapter-item "><a href="../../Advanced/Linux/LinuxKernel/RCU.html">RCU</a></li><li class="chapter-item "><a href="../../Advanced/Linux/LinuxKernel/Rust_for_linux.html">Rust for linux</a></li><li class="chapter-item "><a href="../../Advanced/Linux/LinuxKernel/System_Call.html">System Call</a></li><li class="chapter-item "><a href="../../Advanced/Linux/LinuxKernel/context_switch.html">进程调度时的context_switch</a></li><li class="chapter-item "><a href="../../Advanced/Linux/LinuxKernel/内核编程笔记.html">Linux内核编程笔记</a></li><li class="chapter-item "><a href="../../Advanced/Linux/LinuxKernel/数据结构.html">数据结构</a></li><li class="chapter-item "><a href="../../Advanced/Linux/LinuxKernel/调试Linux内核环境搭建.html">调试Linux内核环境搭建</a></li><li class="chapter-item "><a href="../../Advanced/Linux/LinuxKernel/调试时如何获取current.html">调试Linux内核，寻找current</a></li></ol></li><li class="chapter-item "><a href="../../Advanced/Linux/LinuxPlay/index.html">LinuxPlay</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../Advanced/Linux/LinuxPlay/Linux使用笔记.html">Linux使用笔记</a></li><li class="chapter-item "><a href="../../Advanced/Linux/LinuxPlay/使用SSH远程登录.html">Linux使用SSH远程登录</a></li><li class="chapter-item "><a href="../../Advanced/Linux/LinuxPlay/在Linux中找到可用的网络接口.html">在Linux中找到可用的网络接口</a></li></ol></li><li class="chapter-item "><a href="../../Advanced/Linux/LinuxProgram/index.html">Linux Program</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../Advanced/Linux/LinuxProgram/Deamon.html">Daemon</a></li><li class="chapter-item "><a href="../../Advanced/Linux/LinuxProgram/Fanotify.html">Fanotify</a></li><li class="chapter-item "><a href="../../Advanced/Linux/LinuxProgram/File.html">File Program</a></li><li class="chapter-item "><a href="../../Advanced/Linux/LinuxProgram/IObound.html">I/O bound 程序优化</a></li><li class="chapter-item "><a href="../../Advanced/Linux/LinuxProgram/Linux目录结构.html">Linux目录结构</a></li><li class="chapter-item "><a href="../../Advanced/Linux/LinuxProgram/NetLink.html">Netlink</a></li><li class="chapter-item "><a href="../../Advanced/Linux/LinuxProgram/Socket.html">Socket</a></li><li class="chapter-item "><a href="../../Advanced/Linux/LinuxProgram/eBPF.html">eBPF</a></li><li class="chapter-item "><a href="../../Advanced/Linux/LinuxProgram/prctl.html">进程</a></li><li class="chapter-item "><a href="../../Advanced/Linux/LinuxProgram/信号.html">信号</a></li><li class="chapter-item "><a href="../../Advanced/Linux/LinuxProgram/共享库.html">共享库</a></li><li class="chapter-item "><a href="../../Advanced/Linux/LinuxProgram/凭证.html">Credential 凭证</a></li><li class="chapter-item "><a href="../../Advanced/Linux/LinuxProgram/反向Shell和伪终端.html">反向Shell和伪终端</a></li><li class="chapter-item "><a href="../../Advanced/Linux/LinuxProgram/性能监控.html">性能监控</a></li><li class="chapter-item "><a href="../../Advanced/Linux/LinuxProgram/桌面应用开发.html">桌面应用开发</a></li><li class="chapter-item "><a href="../../Advanced/Linux/LinuxProgram/管道和重定向.html">管道和重定向</a></li><li class="chapter-item "><a href="../../Advanced/Linux/LinuxProgram/系统限制和选项.html">系统限制和选项</a></li><li class="chapter-item "><a href="../../Advanced/Linux/LinuxProgram/终端.html">终端</a></li><li class="chapter-item "><a href="../../Advanced/Linux/LinuxProgram/进程间通信.html">进程间通信</a></li></ol></li></ol></li><li class="chapter-item "><a href="../../Advanced/Windows/index.html">Windows Programming</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../Advanced/Windows/Unicode.html">Unicode</a></li><li class="chapter-item "><a href="../../Advanced/Windows/hungarian.html">匈牙利命名法</a></li><li class="chapter-item "><a href="../../Advanced/Windows/文件.html">文件</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../../Basic/index.html">Basic</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../Basic/8086汇编笔记.html">8086汇编笔记</a></li><li class="chapter-item expanded "><a href="../../Basic/Architecture/index.html">Architecture</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../Basic/Architecture/ARM内存管理.html">AArch64 memory management</a></li><li class="chapter-item "><a href="../../Basic/Architecture/ARM寄存器.html">ARM中的寄存器</a></li><li class="chapter-item "><a href="../../Basic/Architecture/ARM异常.html">AArch64 Exception Model</a></li><li class="chapter-item "><a href="../../Basic/Architecture/ARM虚拟化.html">Armv8-A virtualization</a></li><li class="chapter-item "><a href="../../Basic/Architecture/ARM调试.html">ARM self-hosted debug</a></li><li class="chapter-item expanded "><a href="../../Basic/Architecture/CPU设计.html" class="active">CPU设计</a></li><li class="chapter-item "><a href="../../Basic/Architecture/Cache.html">Cache</a></li><li class="chapter-item "><a href="../../Basic/Architecture/ILP.html">ILP</a></li><li class="chapter-item "><a href="../../Basic/Architecture/SIMD和MIMD.html">SIMD和MIMD</a></li><li class="chapter-item "><a href="../../Basic/Architecture/TLP.html">TLP</a></li><li class="chapter-item "><a href="../../Basic/Architecture/存储器设计.html">存储器设计</a></li><li class="chapter-item "><a href="../../Basic/Architecture/数字逻辑.html">Notes-数字逻辑</a></li><li class="chapter-item "><a href="../../Basic/Architecture/计算机体系结构.html">计算机组成&计算机体系结构</a></li></ol></li><li class="chapter-item "><a href="../../Basic/C/index.html">C/C++</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../Basic/C/Cpp标准库.html">C++_标准库</a></li><li class="chapter-item "><a href="../../Basic/C/Cpp课程笔记.html">C++ 基础知识</a></li><li class="chapter-item "><a href="../../Basic/C/GCC内嵌汇编.html">C-内嵌汇编</a></li><li class="chapter-item "><a href="../../Basic/C/变量在ELF段中的位置.html">变量在ELF段中的位置</a></li><li class="chapter-item "><a href="../../Basic/C/可变参数的使用和原理.html">可变参数的使用和原理</a></li><li class="chapter-item "><a href="../../Basic/C/在C程序中调用汇编程序.html">在C程序中调用汇编程序</a></li><li class="chapter-item "><a href="../../Basic/C/链接器.html">链接器</a></li></ol></li><li class="chapter-item "><a href="../../Basic/Client/index.html">Client Development</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../Basic/Client/Chromium.html">Chromium</a></li><li class="chapter-item "><a href="../../Basic/Client/CodeReview.html">CodeReview</a></li><li class="chapter-item "><a href="../../Basic/Client/Config.html">Config</a></li><li class="chapter-item "><a href="../../Basic/Client/CrossLanguage.html">跨语言</a></li><li class="chapter-item "><a href="../../Basic/Client/DataStore.html">本地存储</a></li><li class="chapter-item "><a href="../../Basic/Client/Database.html">Database</a></li><li class="chapter-item "><a href="../../Basic/Client/Flutter.html">Flutter</a></li><li class="chapter-item "><a href="../../Basic/Client/Log.html">日志</a></li><li class="chapter-item "><a href="../../Basic/Client/Multimedia/index.html">Multimedia</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../Basic/Client/Multimedia/Graph.html">图形学</a></li><li class="chapter-item "><a href="../../Basic/Client/Multimedia/Image.html">图像处理技术</a></li><li class="chapter-item "><a href="../../Basic/Client/Multimedia/Video.html">视频</a></li><li class="chapter-item "><a href="../../Basic/Client/Multimedia/Voice.html">Voice</a></li></ol></li><li class="chapter-item "><a href="../../Basic/Client/Network.html">网络能力</a></li><li class="chapter-item "><a href="../../Basic/Client/Performance.html">性能监控</a></li><li class="chapter-item "><a href="../../Basic/Client/Platform/index.html">Platform</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../Basic/Client/Platform/Android.html">Android</a></li><li class="chapter-item "><a href="../../Basic/Client/Platform/iOS.html">iOS</a></li></ol></li><li class="chapter-item "><a href="../../Basic/Client/SQLite.html">SQLite</a></li></ol></li><li class="chapter-item "><a href="../../Basic/Compiler/index.html">Compiler</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../Basic/Compiler/Codegen.html">代码生成</a></li><li class="chapter-item "><a href="../../Basic/Compiler/Lex.html">Lex</a></li><li class="chapter-item "><a href="../../Basic/Compiler/Lexical.html">Lexical Analyze</a></li><li class="chapter-item "><a href="../../Basic/Compiler/Runtime.html">Runtime</a></li><li class="chapter-item "><a href="../../Basic/Compiler/Sematic.html">Sematic Analyzing</a></li><li class="chapter-item "><a href="../../Basic/Compiler/Syntax.html">Syntax Analyzer</a></li><li class="chapter-item "><a href="../../Basic/Compiler/llvm-ir.html">LLVM-IR</a></li><li class="chapter-item "><a href="../../Basic/Compiler/llvm.html">LLVM</a></li><li class="chapter-item "><a href="../../Basic/Compiler/pest.html">PEST</a></li><li class="chapter-item "><a href="../../Basic/Compiler/yacc.html">Yacc</a></li></ol></li><li class="chapter-item "><a href="../../Basic/DataStructure/index.html">Data Structure And Algorithm</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../Basic/DataStructure/Algorithm/index.html">Algorithm</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../Basic/DataStructure/Algorithm/Approximation.html">近似算法</a></li><li class="chapter-item "><a href="../../Basic/DataStructure/Algorithm/Backtracking.html">递归回溯</a></li><li class="chapter-item "><a href="../../Basic/DataStructure/Algorithm/DivideAndConquer.html">分治算法</a></li><li class="chapter-item "><a href="../../Basic/DataStructure/Algorithm/DynamicProgramming.html">动态规划</a></li><li class="chapter-item "><a href="../../Basic/DataStructure/Algorithm/Greedy.html">贪心算法</a></li><li class="chapter-item "><a href="../../Basic/DataStructure/Algorithm/LocalSearch.html">本地搜索</a></li><li class="chapter-item "><a href="../../Basic/DataStructure/Algorithm/Parallel.html">并行算法</a></li><li class="chapter-item "><a href="../../Basic/DataStructure/Algorithm/Randomized.html">随机化算法</a></li><li class="chapter-item "><a href="../../Basic/DataStructure/Algorithm/Sort.html">排序算法</a></li></ol></li><li class="chapter-item "><a href="../../Basic/DataStructure/Graph/index.html">Graph</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../Basic/DataStructure/Graph/Bipartite.html">Bipartite</a></li><li class="chapter-item "><a href="../../Basic/DataStructure/Graph/NetworkFlow.html">NetworkFlow</a></li><li class="chapter-item "><a href="../../Basic/DataStructure/Graph/ShortPath.html">最短路</a></li><li class="chapter-item "><a href="../../Basic/DataStructure/Graph/SpanningTree.html">最小生成树</a></li><li class="chapter-item "><a href="../../Basic/DataStructure/Graph/关键路径.html">关键路径</a></li><li class="chapter-item "><a href="../../Basic/DataStructure/Graph/拓扑排序.html">拓扑排序</a></li></ol></li><li class="chapter-item "><a href="../../Basic/DataStructure/Hash/index.html">Hash</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../Basic/DataStructure/Hash/HashTree.html">HashTree</a></li><li class="chapter-item "><a href="../../Basic/DataStructure/Hash/Hashing.html">Hashing</a></li></ol></li><li class="chapter-item "><a href="../../Basic/DataStructure/Heap/index.html">Heap</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../Basic/DataStructure/Heap/BinomialHeap.html">Binomial Heap</a></li><li class="chapter-item "><a href="../../Basic/DataStructure/Heap/FibonacciHeap.html">FibonacciHeap</a></li><li class="chapter-item "><a href="../../Basic/DataStructure/Heap/Heap.html">DS-Heap</a></li><li class="chapter-item "><a href="../../Basic/DataStructure/Heap/斜堆.html">Leftist_Heap_and_Skew_Heap</a></li></ol></li><li class="chapter-item "><a href="../../Basic/DataStructure/Inverted_File_Index.html">Inverted_File_Index</a></li><li class="chapter-item "><a href="../../Basic/DataStructure/Linear/index.html">Linear</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../Basic/DataStructure/Linear/Bitmap.html">DS-Bitmap</a></li><li class="chapter-item "><a href="../../Basic/DataStructure/Linear/List.html">DS-Linear_List</a></li></ol></li><li class="chapter-item "><a href="../../Basic/DataStructure/NPProblem.html">DS-NP_problem</a></li><li class="chapter-item "><a href="../../Basic/DataStructure/String/index.html">字符串匹配相关算法</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../Basic/DataStructure/String/match.html">字符串匹配算法</a></li></ol></li><li class="chapter-item "><a href="../../Basic/DataStructure/Tree/index.html">Tree and BST</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../Basic/DataStructure/Tree/BTree.html">B Tree and B+ Tree</a></li><li class="chapter-item "><a href="../../Basic/DataStructure/Tree/BalancedTree.html">AVL Tree and Splay Tree</a></li><li class="chapter-item "><a href="../../Basic/DataStructure/Tree/DisjointSet.html">Disjoint Set</a></li><li class="chapter-item "><a href="../../Basic/DataStructure/Tree/HuffmanTree.html">Huffman Tree</a></li><li class="chapter-item "><a href="../../Basic/DataStructure/Tree/RBTree.html">红黑树 B树 B+树</a></li><li class="chapter-item "><a href="../../Basic/DataStructure/Tree/ThreadedTree.html">Threaded Binary Tree</a></li></ol></li></ol></li><li class="chapter-item "><a href="../../Basic/Database/index.html">Database</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../Basic/Database/Object.html">Database-Object-Based_Databases</a></li><li class="chapter-item "><a href="../../Basic/Database/PostgreSQL-Conflict-reticenceji_Win10.html">Database-PostgreSQL</a></li><li class="chapter-item "><a href="../../Basic/Database/PostgreSQL.html">Database-PostgreSQL</a></li><li class="chapter-item "><a href="../../Basic/Database/SQL-Conflict-reticenceji_Win10.html">基础SQL</a></li><li class="chapter-item "><a href="../../Basic/Database/SQL.html">基础SQL</a></li><li class="chapter-item "><a href="../../Basic/Database/XML-Conflict-reticenceji_Win10.html">Database,Web-XML</a></li><li class="chapter-item "><a href="../../Basic/Database/XML.html">Database,Web-XML</a></li><li class="chapter-item "><a href="../../Basic/Database/事务.html">Database-事务</a></li><li class="chapter-item "><a href="../../Basic/Database/关系代数.html">Database-关系代数</a></li><li class="chapter-item "><a href="../../Basic/Database/存储和查询.html">Database-存储和查询</a></li><li class="chapter-item "><a href="../../Basic/Database/导论.html">Database-导论</a></li><li class="chapter-item "><a href="../../Basic/Database/数据库设计.html">Database-数据库设计</a></li></ol></li><li class="chapter-item "><a href="../../Basic/Maths/index.html">Maths</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../Basic/Maths/大数定理和中心极限定理.html">大数定理和中心极限定理</a></li><li class="chapter-item "><a href="../../Basic/Maths/微积分下.html">微积分下</a></li><li class="chapter-item "><a href="../../Basic/Maths/数值计算方法.html">数值计算方法</a></li><li class="chapter-item "><a href="../../Basic/Maths/最小二乘法.html">最小二乘法</a></li><li class="chapter-item "><a href="../../Basic/Maths/有限自动机介绍.html">有限自动机介绍</a></li><li class="chapter-item "><a href="../../Basic/Maths/概统复习.html">概统复习</a></li><li class="chapter-item "><a href="../../Basic/Maths/群论简介.html">群论简介</a></li></ol></li><li class="chapter-item "><a href="../../Basic/Networking/index.html">Networking</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../Basic/Networking/ARP.html">Networking-ARP</a></li><li class="chapter-item "><a href="../../Basic/Networking/CDN.html">CDN</a></li><li class="chapter-item "><a href="../../Basic/Networking/DNS.html">DNS</a></li><li class="chapter-item "><a href="../../Basic/Networking/FTP.html">FTP</a></li><li class="chapter-item "><a href="../../Basic/Networking/HTTP.html">HTTP</a></li><li class="chapter-item "><a href="../../Basic/Networking/ICMP.html">Internet Control Message Protocol</a></li><li class="chapter-item "><a href="../../Basic/Networking/Mail.html">邮件协议</a></li><li class="chapter-item "><a href="../../Basic/Networking/NAT.html">Network Address Translation</a></li><li class="chapter-item "><a href="../../Basic/Networking/P2P.html">P2P</a></li><li class="chapter-item "><a href="../../Basic/Networking/QUIC.html">QUIC</a></li><li class="chapter-item "><a href="../../Basic/Networking/RTC.html">RTC</a></li><li class="chapter-item "><a href="../../Basic/Networking/Socket.html">Socket</a></li><li class="chapter-item "><a href="../../Basic/Networking/TCP.html">TCP</a></li><li class="chapter-item "><a href="../../Basic/Networking/UDP.html">UDP</a></li><li class="chapter-item "><a href="../../Basic/Networking/VMWare虚拟机网络配置.html">VMWare虚拟机网络配置</a></li><li class="chapter-item "><a href="../../Basic/Networking/VPN.html">VPN</a></li><li class="chapter-item "><a href="../../Basic/Networking/WebSocket.html">WebSocket</a></li><li class="chapter-item "><a href="../../Basic/Networking/介质访问子层.html">Medium Access Sublayer</a></li><li class="chapter-item "><a href="../../Basic/Networking/可靠传输.html">可靠传输</a></li><li class="chapter-item "><a href="../../Basic/Networking/差错控制.html">差错控制</a></li><li class="chapter-item "><a href="../../Basic/Networking/拥塞控制和流量控制.html">拥塞控制和流量控制</a></li><li class="chapter-item "><a href="../../Basic/Networking/物理层.html">物理层</a></li><li class="chapter-item "><a href="../../Basic/Networking/网络层.html">网络层 IP</a></li><li class="chapter-item "><a href="../../Basic/Networking/网络设备.html">Networking-网络设备</a></li><li class="chapter-item "><a href="../../Basic/Networking/路由协议.html">路由协议</a></li><li class="chapter-item "><a href="../../Basic/Networking/链路层.html">链路层</a></li></ol></li><li class="chapter-item "><a href="../../Basic/OS/index.html">OS</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../Basic/OS/Bootloader.html">OS-Bootloader</a></li><li class="chapter-item "><a href="../../Basic/OS/Buddy_System&Slub.html">OS-Buddy_System&Slub</a></li><li class="chapter-item "><a href="../../Basic/OS/Deadlock.html">OS-Deadlock</a></li><li class="chapter-item "><a href="../../Basic/OS/IO.html">OS-IO</a></li><li class="chapter-item "><a href="../../Basic/OS/Introduction.html">OS-Introduction</a></li><li class="chapter-item "><a href="../../Basic/OS/Memory_Management.html">OS-Memory_Management</a></li><li class="chapter-item "><a href="../../Basic/OS/Process.html">OS-Process</a></li><li class="chapter-item "><a href="../../Basic/OS/Q&A.html">OS-Q&A</a></li><li class="chapter-item "><a href="../../Basic/OS/RISCV学习笔记.html">OS-RISCV学习笔记</a></li><li class="chapter-item "><a href="../../Basic/OS/SBI.html">OS-SBI</a></li><li class="chapter-item "><a href="../../Basic/OS/Synchronization.html">OS-Synchronization</a></li><li class="chapter-item "><a href="../../Basic/OS/Thread.html">OS-Thread</a></li><li class="chapter-item "><a href="../../Basic/OS/UnixLinux中的IO模型.html">Linux中的I/O模型</a></li><li class="chapter-item "><a href="../../Basic/OS/在K210运行裸机程序.html">OS-在K210运行裸机程序</a></li><li class="chapter-item "><a href="../../Basic/OS/地址空间(一).html">OS-地址空间(一)</a></li><li class="chapter-item "><a href="../../Basic/OS/操作系统.html">OS-操作系统</a></li></ol></li><li class="chapter-item "><a href="../../Basic/Secure/index.html">Secure</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../Basic/Secure/Crypto/index.html">Crypto</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../Basic/Secure/Crypto/Federated_Learning.html">Federated Learning</a></li><li class="chapter-item "><a href="../../Basic/Secure/Crypto/Oblivious_RAM.html">Oblivious RAM</a></li><li class="chapter-item "><a href="../../Basic/Secure/Crypto/PIR.html">PIR</a></li><li class="chapter-item "><a href="../../Basic/Secure/Crypto/PSI.html">Private set intersection</a></li><li class="chapter-item "><a href="../../Basic/Secure/Crypto/加密和哈希.html">Crypto-加密和哈希</a></li><li class="chapter-item "><a href="../../Basic/Secure/Crypto/加密数据库.html">Encrypted Database</a></li><li class="chapter-item "><a href="../../Basic/Secure/Crypto/区块链技术.html">Bitcoin-区块链技术</a></li><li class="chapter-item "><a href="../../Basic/Secure/Crypto/可证明安全.html">可证明安全</a></li><li class="chapter-item "><a href="../../Basic/Secure/Crypto/安全多方计算.html">安全多方计算</a></li><li class="chapter-item "><a href="../../Basic/Secure/Crypto/密码学基础.html">密码学算法介绍</a></li><li class="chapter-item "><a href="../../Basic/Secure/Crypto/密码学进阶.html">密码学进阶</a></li><li class="chapter-item "><a href="../../Basic/Secure/Crypto/差分隐私.html">差分隐私</a></li></ol></li><li class="chapter-item "><a href="../../Basic/Secure/CryptoBasic.html">密码学基础</a></li><li class="chapter-item "><a href="../../Basic/Secure/CtyptoProtocol.html">密码学协议</a></li><li class="chapter-item "><a href="../../Basic/Secure/Forensics/index.html">电子取证</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../Basic/Secure/Forensics/FAT.html">FAT文件系统</a></li><li class="chapter-item "><a href="../../Basic/Secure/Forensics/FileCarving.html">文件雕复</a></li><li class="chapter-item "><a href="../../Basic/Secure/Forensics/Linux取证.html">Linux取证</a></li><li class="chapter-item "><a href="../../Basic/Secure/Forensics/Memory.html">内存取证</a></li><li class="chapter-item "><a href="../../Basic/Secure/Forensics/NTFS.html">NTFS文件系统</a></li><li class="chapter-item "><a href="../../Basic/Secure/Forensics/Windows取证.html">Windows取证</a></li><li class="chapter-item "><a href="../../Basic/Secure/Forensics/数据隐藏.html">数据隐藏</a></li><li class="chapter-item "><a href="../../Basic/Secure/Forensics/文件系统取证.html">文件系统取证</a></li><li class="chapter-item "><a href="../../Basic/Secure/Forensics/硬盘分析.html">硬盘分析</a></li><li class="chapter-item "><a href="../../Basic/Secure/Forensics/移动设备取证.html">移动设备取证</a></li><li class="chapter-item "><a href="../../Basic/Secure/Forensics/网络取证.html">网络取证</a></li></ol></li><li class="chapter-item "><a href="../../Basic/Secure/IoT.html">无线与物联网安全</a></li><li class="chapter-item "><a href="../../Basic/Secure/Network.html">网络安全</a></li><li class="chapter-item "><a href="../../Basic/Secure/OperatingSystem.html">操作系统安全</a></li><li class="chapter-item "><a href="../../Basic/Secure/Software/index.html">软件安全</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../Basic/Secure/Software/ASLR.html">ASLR</a></li><li class="chapter-item "><a href="../../Basic/Secure/Software/CodeQL.html">CodeQL</a></li><li class="chapter-item "><a href="../../Basic/Secure/Software/GlibcHeap.html">glibc heap allocator</a></li><li class="chapter-item "><a href="../../Basic/Secure/Software/PIC.html">位置无关代码和共享库</a></li><li class="chapter-item "><a href="../../Basic/Secure/Software/RELRO.html">RELRO</a></li><li class="chapter-item "><a href="../../Basic/Secure/Software/pwntools.html">pwntools</a></li><li class="chapter-item "><a href="../../Basic/Secure/Software/攻击视角.html">攻击软件安全</a></li><li class="chapter-item "><a href="../../Basic/Secure/Software/程序分析.html">程序分析</a></li><li class="chapter-item "><a href="../../Basic/Secure/Software/防御视角.html">软件安全防护</a></li></ol></li><li class="chapter-item "><a href="../../Basic/Secure/SupplyChain.html">供应链安全</a></li></ol></li><li class="chapter-item "><a href="../../Basic/软件保护技术.html">Reverse</a></li></ol></li><li class="chapter-item "><a href="../../Language/index.html">Language</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../Language/Java/index.html">Java</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../Language/Java/基础.html">Java</a></li><li class="chapter-item "><a href="../../Language/Java/鸿蒙应用开发.html">Java-鸿蒙应用开发</a></li></ol></li><li class="chapter-item "><a href="../../Language/JavaScript/index.html">JavaScript</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../Language/JavaScript/Electron.html">Electron</a></li><li class="chapter-item "><a href="../../Language/JavaScript/JavaScript简介.html">JavaScript简介</a></li><li class="chapter-item "><a href="../../Language/JavaScript/Runtime.html">Runtime</a></li></ol></li><li class="chapter-item "><a href="../../Language/Python/index.html">Python</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../Language/Python/0内置类型/index.html">内置对象</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../Language/Python/0内置类型/1字符串.html">字符串和字节串</a></li><li class="chapter-item "><a href="../../Language/Python/0内置类型/2数值.html">数值</a></li><li class="chapter-item "><a href="../../Language/Python/0内置类型/3列表和元组.html">序列</a></li><li class="chapter-item "><a href="../../Language/Python/0内置类型/4字典和集合.html">映射</a></li><li class="chapter-item "><a href="../../Language/Python/0内置类型/5迭代器和生成器.html">迭代器和生成器</a></li><li class="chapter-item "><a href="../../Language/Python/0内置类型/6上下文管理器.html">上下文管理器</a></li></ol></li><li class="chapter-item "><a href="../../Language/Python/1工作原理/index.html">工作原理</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../Language/Python/1工作原理/0对象模型.html">OOP模型</a></li><li class="chapter-item "><a href="../../Language/Python/1工作原理/1类型.html">类型</a></li><li class="chapter-item "><a href="../../Language/Python/1工作原理/2变量.html">变量</a></li><li class="chapter-item "><a href="../../Language/Python/1工作原理/3特殊方法和重载.html">特殊方法和重载</a></li><li class="chapter-item "><a href="../../Language/Python/1工作原理/4参数.html">参数</a></li><li class="chapter-item "><a href="../../Language/Python/1工作原理/5多继承.html">多继承</a></li></ol></li><li class="chapter-item "><a href="../../Language/Python/3高级写法/index.html">高级写法</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../Language/Python/3高级写法/1异常.html">Exception</a></li><li class="chapter-item "><a href="../../Language/Python/3高级写法/2装饰器.html">装饰器</a></li></ol></li><li class="chapter-item "><a href="../../Language/Python/4好用的库/index.html">PythonLib</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../Language/Python/4好用的库/Argparse.html">命令行参数</a></li><li class="chapter-item "><a href="../../Language/Python/4好用的库/Bisect.html">Bisect</a></li><li class="chapter-item "><a href="../../Language/Python/4好用的库/Builtin.html">Builtin</a></li><li class="chapter-item "><a href="../../Language/Python/4好用的库/Container.html">Container</a></li><li class="chapter-item "><a href="../../Language/Python/4好用的库/Crypto.html">Crypto</a></li><li class="chapter-item "><a href="../../Language/Python/4好用的库/Enum.html">enum</a></li><li class="chapter-item "><a href="../../Language/Python/4好用的库/FS.html">File System</a></li><li class="chapter-item "><a href="../../Language/Python/4好用的库/Flask.html">Python-Flask</a></li><li class="chapter-item "><a href="../../Language/Python/4好用的库/HTTP.html">Internet</a></li><li class="chapter-item "><a href="../../Language/Python/4好用的库/IO.html">File IO</a></li><li class="chapter-item "><a href="../../Language/Python/4好用的库/PyQt5.html">PySide2</a></li><li class="chapter-item "><a href="../../Language/Python/4好用的库/Regex.html">Regex</a></li><li class="chapter-item "><a href="../../Language/Python/4好用的库/Socket.html">Socket编程</a></li><li class="chapter-item "><a href="../../Language/Python/4好用的库/Thread.html">多线程</a></li><li class="chapter-item "><a href="../../Language/Python/4好用的库/Time.html">时间和日期</a></li><li class="chapter-item "><a href="../../Language/Python/4好用的库/Trio.html">Trio</a></li><li class="chapter-item "><a href="../../Language/Python/4好用的库/format.html">Format String</a></li><li class="chapter-item "><a href="../../Language/Python/4好用的库/venv.html">Virtual Environment</a></li><li class="chapter-item "><a href="../../Language/Python/4好用的库/数据持久化.html">简单的数据持久化</a></li><li class="chapter-item "><a href="../../Language/Python/4好用的库/文档和测试.html">文档和测试</a></li><li class="chapter-item "><a href="../../Language/Python/4好用的库/计算器.html">把Python当计算器</a></li></ol></li><li class="chapter-item "><a href="../../Language/Python/运算符.html">运算符</a></li></ol></li><li class="chapter-item "><a href="../../Language/Rust/index.html">Rust</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../Language/Rust/Basic/index.html">Basic</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../Language/Rust/Basic/Any.html">Any</a></li><li class="chapter-item "><a href="../../Language/Rust/Basic/Async.html">异步编程</a></li><li class="chapter-item "><a href="../../Language/Rust/Basic/Casting.html">Casting</a></li><li class="chapter-item "><a href="../../Language/Rust/Basic/ClosureAndIter.html">迭代器和闭包</a></li><li class="chapter-item "><a href="../../Language/Rust/Basic/CratesAndModules.html">Crates and Modules</a></li><li class="chapter-item "><a href="../../Language/Rust/Basic/Error.html">Rust-错误处理</a></li><li class="chapter-item "><a href="../../Language/Rust/Basic/Macro.html">宏</a></li><li class="chapter-item "><a href="../../Language/Rust/Basic/Trait.html">Trait</a></li><li class="chapter-item "><a href="../../Language/Rust/Basic/TypeAndLifetime.html">从类型系统看生命周期</a></li><li class="chapter-item "><a href="../../Language/Rust/Basic/Unsafe.html">Unsafe</a></li><li class="chapter-item "><a href="../../Language/Rust/Basic/pattern.html">模式匹配</a></li></ol></li><li class="chapter-item "><a href="../../Language/Rust/Build.html">Build</a></li><li class="chapter-item "><a href="../../Language/Rust/Cargo/index.html">Cargo</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../Language/Rust/Cargo/clippy.html">Clippy</a></li><li class="chapter-item "><a href="../../Language/Rust/Cargo/fix.html">Cargo fix</a></li><li class="chapter-item "><a href="../../Language/Rust/Cargo/make.html">Cargo make</a></li></ol></li><li class="chapter-item "><a href="../../Language/Rust/Compiler.html">Compiler</a></li><li class="chapter-item "><a href="../../Language/Rust/Crate/index.html">Crates</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../Language/Rust/Crate/Anyhow.html">AnyHow & ThisError</a></li><li class="chapter-item "><a href="../../Language/Rust/Crate/Cell.html">Cell</a></li><li class="chapter-item "><a href="../../Language/Rust/Crate/Diesel.html">Diesel</a></li><li class="chapter-item "><a href="../../Language/Rust/Crate/Dioxus.html">Dioxus</a></li><li class="chapter-item "><a href="../../Language/Rust/Crate/EnumDispatch.html">Dispatch</a></li><li class="chapter-item "><a href="../../Language/Rust/Crate/IO.html">IO</a></li><li class="chapter-item "><a href="../../Language/Rust/Crate/collections.html">容器的增删改查</a></li><li class="chapter-item "><a href="../../Language/Rust/Crate/gtk-rs.html">gtk-rs</a></li><li class="chapter-item "><a href="../../Language/Rust/Crate/r2d2.html">r2d2</a></li><li class="chapter-item "><a href="../../Language/Rust/Crate/stdsync.html">std::sync</a></li><li class="chapter-item "><a href="../../Language/Rust/Crate/字符串.html">字符串/字节流</a></li><li class="chapter-item "><a href="../../Language/Rust/Crate/打包.html">打包</a></li><li class="chapter-item "><a href="../../Language/Rust/Crate/智能指针.html">Rust-智能指针</a></li></ol></li><li class="chapter-item "><a href="../../Language/Rust/FFI.html">FFI</a></li><li class="chapter-item "><a href="../../Language/Rust/IO.html">Rust-IO</a></li><li class="chapter-item "><a href="../../Language/Rust/Practice/index.html">Practice</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../Language/Rust/Practice/BestPractice.html">Rust最佳实践</a></li><li class="chapter-item "><a href="../../Language/Rust/Practice/Debug.html">调试</a></li><li class="chapter-item "><a href="../../Language/Rust/Practice/DesignPattern.html">设计模式</a></li><li class="chapter-item "><a href="../../Language/Rust/Practice/Performance.html">性能优化</a></li><li class="chapter-item "><a href="../../Language/Rust/Practice/Size.html">代码体积优化</a></li><li class="chapter-item "><a href="../../Language/Rust/Practice/Test.html">测试最佳实践</a></li><li class="chapter-item "><a href="../../Language/Rust/Practice/Type.html">类型转换</a></li><li class="chapter-item "><a href="../../Language/Rust/Practice/Unsafe.html">Unsafe最佳实践</a></li></ol></li><li class="chapter-item "><a href="../../Language/Rust/gtk.html">Rust-gtk-rs介绍</a></li><li class="chapter-item "><a href="../../Language/Rust/函数参数匹配.html">函数参数匹配</a></li><li class="chapter-item "><a href="../../Language/Rust/基础知识.html">基础知识</a></li><li class="chapter-item "><a href="../../Language/Rust/多线程.html">多线程支持</a></li><li class="chapter-item "><a href="../../Language/Rust/混合编程.html">混合编程</a></li><li class="chapter-item "><a href="../../Language/Rust/精髓.html">Rust-精髓</a></li></ol></li><li class="chapter-item "><a href="../../Language/Scala/index.html">Scala</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../Language/Scala/0控制结构.html">控制结构</a></li><li class="chapter-item "><a href="../../Language/Scala/1数据结构.html">数据结构</a></li><li class="chapter-item "><a href="../../Language/Scala/2_0类和对象.html">Class</a></li><li class="chapter-item "><a href="../../Language/Scala/2_1继承.html">继承</a></li><li class="chapter-item "><a href="../../Language/Scala/2_2特质.html">Trait</a></li><li class="chapter-item "><a href="../../Language/Scala/3_1花里胡哨的函数.html">花里胡哨的函数</a></li><li class="chapter-item "><a href="../../Language/Scala/3_2匿名函数和闭包.html">函数</a></li><li class="chapter-item "><a href="../../Language/Scala/3_3模式匹配.html">模式匹配</a></li><li class="chapter-item "><a href="../../Language/Scala/3_4容器的函数式操作.html">容器的函数式操作</a></li><li class="chapter-item "><a href="../../Language/Scala/ScalaDepth/index.html">ScalaDepth</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../Language/Scala/ScalaDepth/Class文件.html">Class文件</a></li><li class="chapter-item "><a href="../../Language/Scala/ScalaDepth/ScalaInDepth.html">Scala in Depth 读书笔记</a></li><li class="chapter-item "><a href="../../Language/Scala/ScalaDepth/Spark.html">Spark</a></li><li class="chapter-item "><a href="../../Language/Scala/ScalaDepth/jvm.html">《深入理解Java虚拟机读书》笔记</a></li><li class="chapter-item "><a href="../../Language/Scala/ScalaDepth/函数式的一些概念.html">Scala中一些函数式概念</a></li><li class="chapter-item "><a href="../../Language/Scala/ScalaDepth/泛型擦除.html">泛型擦除</a></li><li class="chapter-item "><a href="../../Language/Scala/ScalaDepth/简单的类型原理.html">类型</a></li></ol></li><li class="chapter-item "><a href="../../Language/Scala/sbt.html">sbt</a></li><li class="chapter-item "><a href="../../Language/Scala/trait.html">trait</a></li><li class="chapter-item "><a href="../../Language/Scala/枚举.html">枚举</a></li><li class="chapter-item "><a href="../../Language/Scala/样例类和模式匹配.html">样例类和模式匹配</a></li><li class="chapter-item "><a href="../../Language/Scala/测试和文档.html">测试和文档</a></li><li class="chapter-item "><a href="../../Language/Scala/组合和继承.html">类的组合和继承</a></li></ol></li><li class="chapter-item "><a href="../../Language/Snippet/index.html">Snippets</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../Language/Snippet/c.html">c</a></li><li class="chapter-item "><a href="../../Language/Snippet/linux.html">linux</a></li><li class="chapter-item "><a href="../../Language/Snippet/python.html">python</a></li><li class="chapter-item "><a href="../../Language/Snippet/rust.html">rust</a></li></ol></li></ol></li><li class="chapter-item "><a href="../../Tools/index.html">Tools</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../Tools/Docker.html">Docker</a></li><li class="chapter-item "><a href="../../Tools/GDB.html">GDB</a></li><li class="chapter-item "><a href="../../Tools/Git/index.html">Git</a></li><li class="chapter-item "><a href="../../Tools/Git.html">Git</a></li><li class="chapter-item "><a href="../../Tools/Githook.html">Githook</a></li><li class="chapter-item "><a href="../../Tools/GithubCI.html">Github-CI</a></li><li class="chapter-item "><a href="../../Tools/Latex.html">Latex</a></li><li class="chapter-item "><a href="../../Tools/Make.html">Make与Makefile</a></li><li class="chapter-item "><a href="../../Tools/VSCode.html">VSCode</a></li><li class="chapter-item "><a href="../../Tools/Vim.html">Vim</a></li><li class="chapter-item "><a href="../../Tools/WSL.html">WSL</a></li><li class="chapter-item "><a href="../../Tools/双系统.html">双系统使用经历</a></li><li class="chapter-item "><a href="../../Tools/软件打包.html">软件打包</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Reticence&#x27;s Notes</h1>
+
+                    <div class="right-buttons">
+                        <a href="../../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="第一章衡量cpu的效率"><a class="header" href="#第一章衡量cpu的效率">第一章——衡量CPU的效率</a></h1>
+<p>CPU的8个设计原则：</p>
+<ol>
+<li>Design for Moore's Law</li>
+<li>Use Abstraction to Simplify Desgin</li>
+<li>Make the Common Case Fast</li>
+<li>Performance via Parallelism</li>
+<li>Performance via Pipelining</li>
+<li>Performance via Prediction</li>
+<li>Hierarchy of Memories</li>
+<li>Dependability via Redundancy</li>
+</ol>
+<p>衡量CPU的效率：</p>
+<p>CPU时间 = 指令数量×IPC = IC×CPI×时钟周期长度 = IC×CPI/时钟频率</p>
+<p>CPI，指令平均时钟周期数clock cycle per instruction</p>
+<p>IC，指令数量，Instruction count</p>
+<h1 id="第二章riscv指令"><a class="header" href="#第二章riscv指令">第二章——RISCV指令</a></h1>
+<p>基础的RV64I一共有6种类型的指令：</p>
+<img src="../post-images/opcode_format.jpg" alt="opcode_format" style="zoom:80%;" />
+<img src="../post-images/opcode.jpg" alt="opcode" style="zoom:150%;" />
+<p>学会汇编看这些东西都没什么问题。不过需要注意的是，RISCV的寻址方式。</p>
+<ol>
+<li>
+<p>PC相对寻址。无论是beq，还是jal，都是以PC当前的地址作为基址来进行相对偏移寻址。这个和X86是不同的。至于原理，看下面CPU的设计图就一目了然了。另外，RISCV的指令要求是2字节对齐的，所以你看到那些跳转指令的立即数都是从1开始的。</p>
+</li>
+<li>
+<p>基址寻址，操作数在内存中，地址是寄存器和指令中的常量之和。<code>jalr rd, offset(rs1)</code>，是把<code>pc=rs1+offset</code>。<code>ld rs,offset(rd)</code></p>
+</li>
+<li>
+<p>寄存器寻址，操作数全部都在寄存器中。比如<code>add rd,rs1,rs2</code>，</p>
+</li>
+<li>
+<p>立即数寻址，操作数是指令本身的常量。比如<code>addi rd,rs,imm</code>。<code>sd rs,offset(rd)</code>应该是吧？</p>
+<img src="../post-images/image-20210428091126744.png" alt="image-20210428091126744" style="zoom:67%;" />
+</li>
+</ol>
+<p>还有两条加锁指令：</p>
+<p><code>lr.d rd, (rs1) x[rd] = LoadReserved64(M[x[rs1]])</code>加载保留双字(Load-Reserved Doubleword). R-type, RV64A.
+从内存中地址为 x[rs1]中加载八个字节，写入 x[rd]，并对这个内存双字注册保留。</p>
+<p><code>sc.d rd, rs2, (rs1) x[rd] = StoreConditonal64(M[x[rs1], x[rs2])</code>条件存入双字(Store-Conditional Doubleword). R-type, RV64A only
+如果内存地址 x[rs1]上存在加载保留，将 x[rs2]寄存器中的 8 字节数存入该地址。如果存入成功，向寄存器 x[rd]中存入 0，否则存入一个非 0 的错误码。</p>
+<p>据说从C翻译汇编/汇编翻译成C是必考题啊。这些指令容易被我忽视：</p>
+<div class="table-wrapper"><table><thead><tr><th>指令</th><th>含义</th></tr></thead><tbody>
+<tr><td>sltu rd, rs1, rs2</td><td>x[rd] = (x[rs1] &lt;𝑢 x[rs2])</td></tr>
+<tr><td>sltiu rd, rs1, immediate</td><td>x[rd] = (x[rs1] &lt;𝑢 sext(immediate))</td></tr>
+<tr><td>srai rd, rs1, shamt</td><td>x[rd] = (x[rs1] ≫𝑠 shamt)，算数</td></tr>
+<tr><td>srl rd, rs1, rs2</td><td>x[rd] = (x[rs1] ≫𝑢 x[rs2])，逻辑</td></tr>
+<tr><td>slli rd, rs1, shamt</td><td>x[rd] = x[rs1] ≪ shamt</td></tr>
+</tbody></table>
+</div>
+<h1 id="第三章算数运算"><a class="header" href="#第三章算数运算">第三章——算数运算</a></h1>
+<p>这一章节我在书上做了很多笔记，就不搬运了。</p>
+<h2 id="加减法"><a class="header" href="#加减法">加减法</a></h2>
+<p>这个没啥好说的，数字逻辑就学过了。</p>
+<p>溢出的判断条件 <code>次高位进位 xor 最高位进位 = 1</code>，说明有符号数溢出。</p>
+<h2 id="乘法"><a class="header" href="#乘法">乘法</a></h2>
+<p><img src="../post-images/image-20210428092218374.png" alt="image-20210428092218374" /></p>
+<h2 id="除法"><a class="header" href="#除法">除法</a></h2>
+<p><img src="../post-images/image-20210428092302149.png" alt="image-20210428092302149" /></p>
+<h2 id="浮点加法"><a class="header" href="#浮点加法">浮点加法</a></h2>
+<h3 id="ieee的浮点数"><a class="header" href="#ieee的浮点数">IEEE的浮点数</a></h3>
+<p>32位：1bit+8bit+23bit。64位：1bit+11bit+52bit。</p>
+<p>尾数是省略了默认的前导1的。指数要减去127/1023。不过这都是针对 normalized number，还有 denormalized number。</p>
+<p><img src="../post-images/image-20210430181618172.png" alt="image-20210430181618172" /></p>
+<p>浮点数加法：首先要把浮点数的Exponent统一成其中较大的那个，然后把他们的Fraction相加，对和进行normalize的同时改变Exponent。</p>
+<p><img src="../post-images/image-20210428092442706.png" alt="image-20210428092442706" /></p>
+<p>最后要知道提高精度的一些办法。</p>
+<h1 id="第四章cpu设计"><a class="header" href="#第四章cpu设计">第四章——CPU设计</a></h1>
+<p>书上的设计满足的指令有：</p>
+<ul>
+<li>R-type：add sub ...</li>
+<li>I-type：addi, subi, ... ld</li>
+<li>S-type：sd</li>
+<li>B-type：beq</li>
+</ul>
+<p>我们的实验加上了Jal</p>
+<h2 id="单周期cpu"><a class="header" href="#单周期cpu">单周期CPU</a></h2>
+<p><img src="../post-images/2021-04-24_20-27.png" alt="2021-04-24_20-27" /></p>
+<p>R-Type指令的数据通路。包括add,sub,and,or,xor,not,slt,shr<img src="../post-images/R-type.png" alt="R-type" /></p>
+<p>LD：</p>
+<p><img src="../post-images/LD-type.png" alt="LD-type" /></p>
+<p>I-Type：addi, subi, ori,</p>
+<p><img src="../post-images/I-type.png" alt="I-type" /></p>
+<p>S-type：sd</p>
+<p><img src="../post-images/S-type.png" alt="S-type" /></p>
+<p>B-type：beq</p>
+<p><img src="../post-images/B-type.png" alt="B-type" /></p>
+<h2 id="流水线cpu"><a class="header" href="#流水线cpu">流水线CPU</a></h2>
+<p>经典的五阶段流水线CPU：</p>
+<ol>
+<li>IF: Instruction fetch</li>
+<li>ID: Instruction decode and register file read</li>
+<li>EX: Execution or address calculation</li>
+<li>MEM: Data memory access</li>
+<li>WB: Write back</li>
+</ol>
+<center>
+    IF - ID - EX - MEM - WB
+</center>
+<p><img src="../post-images/pipeline_example.png" alt="pipeline_example" /></p>
+<p>这是没有考虑冒险的Pipeline CPU设计图。</p>
+<p>我们要保存很多信息以备之后使用。比如要保存rd作为写回阶段的目标寄存器，比如ld。</p>
+<p>Control信号中，在ID阶段除了ALU Control都可以确定了。所以ID阶段把control信号传递给后面的阶段，这样就不用把整条指令往后面传递了。</p>
+<p><img src="../post-images/%E4%B8%8D%E8%80%83%E8%99%91%E5%86%92%E9%99%A9%E7%9A%84%E6%B5%81%E6%B0%B4%E7%BA%BF.png" alt="image-20210425121135376" /></p>
+<p>可以来看一下Sd的数据通路，</p>
+<p><img src="../post-images/%E6%B5%81%E6%B0%B4%E7%BA%BFS.png" alt="流水线S" /></p>
+<ul>
+<li>我们要传递到WB的信号（MEM/WB保存的信号）：RegWrite决定要不要写回，MemtoReg决定是从Mem还是ALU中写回。</li>
+<li>我们要传递到MEM的信号（EX/MEM保存的信号）：要保存上述的两个信号。Branch、MemRead、MemWrite需要。</li>
+</ul>
+<h3 id="冒险"><a class="header" href="#冒险">冒险</a></h3>
+<h4 id="数据冒险star"><a class="header" href="#数据冒险star">数据冒险:star:</a></h4>
+<p>红色：第一种数据竞争。但其实在第一条指令的EX后数据就已经产生，在第二条指令的EX数据才真正被使用。所以可以将数据forward。也就是说，在ALU的Src1和Src2之前要加上MUX来选择。</p>
+<p>粉色：第二种数据竞争。同样的在第一条指令的EX后数据就已经产生，在第三条指令的EX数据才真正被使用。也可以将数据forward</p>
+<p><img src="../post-images/image-20210425222220300.png" alt="image-20210425222220300" /></p>
+<p>红色冲突<strong>EX冒险</strong>的解决方案：</p>
+<pre><code>if (EX/MEM.RegWrite								//一定是之后要写回才要forward
+and EX/MEM.RegWrite != 0 						//x0不需要forward，否则反而是错的
+and EX/MEM.RegisterRd == ID/EX.RegisterR1) 		//发生了冲突
+ForwardA = 10;
+
+if (EX/MEM.RegWrite
+and EX/MEM.RegWrite != 0 
+and EX/MEM.RegisterRd == ID/EX.RegisterR2) 
+ForwardB = 10;
+</code></pre>
+<p>粉色冲突的<strong>MEM冒险</strong>解决方案：</p>
+<pre><code>if (EX/MEM.RegWrite								//一定是之后要写回才要forward
+and EX/MEM.RegWrite != 0 						//x0不需要forward，否则反而是错的
+and not (EX/MEM.RegWrite and EX/MEM.RegWrite != 0 and EX/MEM.RegisterRd == ID/EX.RegisterR1)	//如果是红色冲突发生，红色优先。
+												//在上图中，就是第二条指令和第三条指令之间出现了冒险	
+and EX/MEM.RegisterRd == ID/EX.RegisterR1) 		//发生了冲突
+ForwardA = 01;
+
+if (EX/MEM.RegWrite
+and EX/MEM.RegWrite != 0 
+and not (EX/MEM.RegWrite and EX/MEM.RegWrite != 0 and EX/MEM.RegisterRd == ID/EX.RegisterR2)
+and EX/MEM.RegisterRd == ID/EX.RegisterR2) 
+ForwardB = 01;
+</code></pre>
+<p>数据冒险的另一种情况：ld指令。</p>
+<p><img src="../post-images/image-20210427184354070.png" alt="image-20210427184354070" /></p>
+<p>红色冒险可以用forward的办法和之前一样解决，但是我们显然无法把绿色冒险forward。因为ld指令的数据在MEM/WB阶段才真正产生。所以对于绿色冒险，我们必须用stall的办法：</p>
+<pre><code>if (ID/EX.MemRead and 							//我发现我要Load内容了，趁早发现，否则就2条指令开始执行了
+	ID/EX.RegisterRd = IF/ID.RegisterRs)		//要load的目标和要用的寄存器冲突了，Rs1/Rs2
+	stall the pipeline							
+</code></pre>
+<p>如果我们多stall几个就可以完全避免问题，但事实上我们就stall一个周期，之后再用forward来解决问题。</p>
+<pre><code>if (MEM/WB.RegisterRd == ID/EX.RegisterRs 
+	MEM/WB.RegisterRd != 0)
+	forward
+</code></pre>
+<h4 id="控制冒险"><a class="header" href="#控制冒险">控制冒险</a></h4>
+<p>如图所示，我们到EX/MEM阶段才知道我们是不是需要跳转，这个时候好2/3条指令都执行完了，不过不会造成不好的影响（没有写内存和寄存器），可以直接丢弃信号。</p>
+<p><img src="../post-images/image-20210427193907426.png" alt="image-20210427193907426" /></p>
+<p>有这些解决方案：</p>
+<ol>
+<li>假设分支不发生。这样分支不发生的时候没有代价；如果分支发生，我们需要丢弃三条指令的结果。因为他们还没有到达MEM和WB，所以直接把他们的信号清空即可。还可以更早的时候EX/MEM知道，这样只需要丢弃两条指令。</li>
+<li>事实上我们还可以更早的时候知道，在ID/EX的时候就可以知道，这样就只需要丢弃一条指令。但是这个就十分复杂了。
+<ol>
+<li>这意味着之前的forward要考虑更多，因为可能都要forward到ID阶段用了。</li>
+<li>在ID阶段添加检测是否需要跳转的XOR</li>
+</ol>
+</li>
+<li>动态分支预测。用更高级的策略预测是否分支。</li>
+<li>停顿到出结果为止23333。</li>
+</ol>
+<p>在ID/EX阶段知道：</p>
+<p>是出于<code>beq</code>设计的，所以添加了<code>=</code>逻辑。需要注意的是，在之前的数据竞争中，都是假设EX阶段是真正需要寄存器值的地方，但是现在我们还要添加额外的逻辑判断这里有没有产生数据竞争。</p>
+<p><img src="../post-images/image-20210703204625972.png" alt="image-20210703204625972" /></p>
+<h4 id="结构冒险"><a class="header" href="#结构冒险">结构冒险</a></h4>
+<p>硬件不支持多条指令在同一个时钟周期执行。我们在设计流水线CPU时就应该避免出现结构冒险。</p>
+<h3 id="总结"><a class="header" href="#总结">总结</a></h3>
+<p>这是最终的流水线CPU设计图</p>
+<p><img src="../post-images/image-20210427200349469.png" alt="image-20210427200349469" /></p>
+<p>举一个ld的例子，来说明如何工作。我觉得上面那个图不太对，虽然下面这个图也是一个半成品。</p>
+<p><img src="../post-images/ld-pipeline.png" alt="ld-pipeline" /></p>
+<h3 id="超越"><a class="header" href="#超越">超越</a></h3>
+<p>这个是完备的<a href="http://x.dii.unisi.it:8098/~giorgi/WebRISC-V/index.php">五级流水线图</a>：</p>
+<p><img src="../post-images/image-20210703211928460.png" alt="image-20210703211928460" /></p>
+<h2 id="trap"><a class="header" href="#trap">Trap</a></h2>
+<p>Trap包括Exception和Interrupt。是更高级的控制冒险了。</p>
+<p>一个是确定地址+scause的异常处理，一个是根据不同类型跳转到不同地址的异常处理。</p>
+<h2 id="multiple-issue"><a class="header" href="#multiple-issue">Multiple Issue</a></h2>
+<p>如果出现了冒险，就不好双发了。</p>
+<p>静态多发：由编译器来打包<strong>发射指令包</strong>（一个周期同时执行的指令们），书上举了例子是lw/sw和算数指令的一起发射，编译器要负责不能让他们冲突。</p>
+<p>动态多发处理器，也叫做<strong>超标量superscalar</strong>处理器。</p>
+<p>经典的动态多发示意图：Reservation station存放指令的操作和所需的操作数，只要他们准备好，并且Funcitional units准备就绪，就可以执行指令。指令执行结束，结果被传送给Reservation station中正在等待使用该结果的指令，同时也传送到Commit unit中进行保存。Commit Unit中保存了已完成指令的执行结果，并在指令真正提交的时候才使用他们更新寄存器或写入内存。</p>
+<p>位于Commit unit的buffer，通常叫做reorder buffer，也可以为其他指令提供操作数。一旦指令提交，寄存器就得到更新，就可以像正常流水线一样直接从寄存器中获取最新的数据。</p>
+<img src="../post-images/image-20210426102047948.png" alt="image-20210426102047948" style="zoom:50%;" />
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../../Basic/Architecture/ARM调试.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next" href="../../Basic/Architecture/Cache.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../../Basic/Architecture/ARM调试.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next" href="../../Basic/Architecture/Cache.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../searcher.js" type="text/javascript" charset="utf-8"></script>
+
+        <script src="../../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </body>
+</html>

@@ -1,0 +1,1123 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>标准实现代码分析 - Reticence&#x27;s Notes</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../../../favicon.svg">
+        <link rel="shortcut icon" href="../../../favicon.png">
+        <link rel="stylesheet" href="../../../css/variables.css">
+        <link rel="stylesheet" href="../../../css/general.css">
+        <link rel="stylesheet" href="../../../css/chrome.css">
+        <link rel="stylesheet" href="../../../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../../../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../../../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../../../highlight.css">
+        <link rel="stylesheet" href="../../../tomorrow-night.css">
+        <link rel="stylesheet" href="../../../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+        <!-- MathJax -->
+        <script async type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../../../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item affix "><a href="../../../index.html">Index</a></li><li class="chapter-item expanded "><a href="../../../Advanced/index.html">Advanced</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../../Advanced/Blockchain/index.html">Block Chain</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../Advanced/Blockchain/Basic/index.html">区块链技术</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../Advanced/Blockchain/Basic/Consensus.html">共识机制</a></li><li class="chapter-item "><a href="../../../Advanced/Blockchain/Basic/Crypto.html">加密</a></li><li class="chapter-item "><a href="../../../Advanced/Blockchain/Basic/Distribute.html">分布式存储</a></li><li class="chapter-item "><a href="../../../Advanced/Blockchain/Basic/P2P.html">P2P</a></li><li class="chapter-item "><a href="../../../Advanced/Blockchain/Basic/SmartContract.html">如何执行智能合约</a></li></ol></li><li class="chapter-item "><a href="../../../Advanced/Blockchain/Defi/index.html">DeFi</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../Advanced/Blockchain/Defi/DAO.html">Decentralized Autonomous Organization</a></li><li class="chapter-item "><a href="../../../Advanced/Blockchain/Defi/Derivative.html">Decentralized Derivative</a></li><li class="chapter-item "><a href="../../../Advanced/Blockchain/Defi/Exchange.html">Decentralized Exchange</a></li><li class="chapter-item "><a href="../../../Advanced/Blockchain/Defi/FundManagement.html">Decentralized Fund Management</a></li><li class="chapter-item "><a href="../../../Advanced/Blockchain/Defi/Insurance.html">Decentralized Insurance</a></li><li class="chapter-item "><a href="../../../Advanced/Blockchain/Defi/LendBorrow.html">Decentralized Lending & Borrowing</a></li><li class="chapter-item "><a href="../../../Advanced/Blockchain/Defi/Lottery.html">Decentralized Lottery</a></li><li class="chapter-item "><a href="../../../Advanced/Blockchain/Defi/Payments.html">Decentralized Payments</a></li><li class="chapter-item "><a href="../../../Advanced/Blockchain/Defi/StableCoin.html">Stable Coins</a></li></ol></li><li class="chapter-item "><a href="../../../Advanced/Blockchain/Ethernet/index.html">Ethernet</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../Advanced/Blockchain/Ethernet/Solidity.html">Solidity简介</a></li></ol></li><li class="chapter-item expanded "><a href="../../../Advanced/Blockchain/NEAR/index.html">Hello NEAR</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../Advanced/Blockchain/NEAR/PoS.html">Proof-of-Stake</a></li><li class="chapter-item "><a href="../../../Advanced/Blockchain/NEAR/Promise.html">异步模型</a></li><li class="chapter-item "><a href="../../../Advanced/Blockchain/NEAR/Secure.html">Secure</a></li><li class="chapter-item "><a href="../../../Advanced/Blockchain/NEAR/Snippets.html">Snippets</a></li><li class="chapter-item expanded "><a href="../../../Advanced/Blockchain/NEAR/Standards.html" class="active">标准实现代码分析</a></li><li class="chapter-item "><a href="../../../Advanced/Blockchain/NEAR/dao.html">dao</a></li><li class="chapter-item "><a href="../../../Advanced/Blockchain/NEAR/wasm.html">wasm</a></li></ol></li></ol></li><li class="chapter-item "><a href="../../../Advanced/Linux/index.html">Linux</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../Advanced/Linux/LinuxKernel/index.html">Linux</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../Advanced/Linux/LinuxKernel/Credential.html">Credential</a></li><li class="chapter-item "><a href="../../../Advanced/Linux/LinuxKernel/Debug笔记.html">Debug笔记</a></li><li class="chapter-item "><a href="../../../Advanced/Linux/LinuxKernel/File_System.html">File System</a></li><li class="chapter-item "><a href="../../../Advanced/Linux/LinuxKernel/Linux内核设计与实现笔记.html">《Linux内核设计与实现》笔记</a></li><li class="chapter-item "><a href="../../../Advanced/Linux/LinuxKernel/Linux设备驱动笔记.html">《Linux设备驱动》笔记</a></li><li class="chapter-item "><a href="../../../Advanced/Linux/LinuxKernel/RCU.html">RCU</a></li><li class="chapter-item "><a href="../../../Advanced/Linux/LinuxKernel/Rust_for_linux.html">Rust for linux</a></li><li class="chapter-item "><a href="../../../Advanced/Linux/LinuxKernel/System_Call.html">System Call</a></li><li class="chapter-item "><a href="../../../Advanced/Linux/LinuxKernel/context_switch.html">进程调度时的context_switch</a></li><li class="chapter-item "><a href="../../../Advanced/Linux/LinuxKernel/内核编程笔记.html">Linux内核编程笔记</a></li><li class="chapter-item "><a href="../../../Advanced/Linux/LinuxKernel/数据结构.html">数据结构</a></li><li class="chapter-item "><a href="../../../Advanced/Linux/LinuxKernel/调试Linux内核环境搭建.html">调试Linux内核环境搭建</a></li><li class="chapter-item "><a href="../../../Advanced/Linux/LinuxKernel/调试时如何获取current.html">调试Linux内核，寻找current</a></li></ol></li><li class="chapter-item "><a href="../../../Advanced/Linux/LinuxPlay/index.html">LinuxPlay</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../Advanced/Linux/LinuxPlay/Linux使用笔记.html">Linux使用笔记</a></li><li class="chapter-item "><a href="../../../Advanced/Linux/LinuxPlay/使用SSH远程登录.html">Linux使用SSH远程登录</a></li><li class="chapter-item "><a href="../../../Advanced/Linux/LinuxPlay/在Linux中找到可用的网络接口.html">在Linux中找到可用的网络接口</a></li></ol></li><li class="chapter-item "><a href="../../../Advanced/Linux/LinuxProgram/index.html">Linux Program</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../Advanced/Linux/LinuxProgram/Deamon.html">Daemon</a></li><li class="chapter-item "><a href="../../../Advanced/Linux/LinuxProgram/Fanotify.html">Fanotify</a></li><li class="chapter-item "><a href="../../../Advanced/Linux/LinuxProgram/File.html">File Program</a></li><li class="chapter-item "><a href="../../../Advanced/Linux/LinuxProgram/IObound.html">I/O bound 程序优化</a></li><li class="chapter-item "><a href="../../../Advanced/Linux/LinuxProgram/Linux目录结构.html">Linux目录结构</a></li><li class="chapter-item "><a href="../../../Advanced/Linux/LinuxProgram/NetLink.html">Netlink</a></li><li class="chapter-item "><a href="../../../Advanced/Linux/LinuxProgram/Socket.html">Socket</a></li><li class="chapter-item "><a href="../../../Advanced/Linux/LinuxProgram/eBPF.html">eBPF</a></li><li class="chapter-item "><a href="../../../Advanced/Linux/LinuxProgram/prctl.html">进程</a></li><li class="chapter-item "><a href="../../../Advanced/Linux/LinuxProgram/信号.html">信号</a></li><li class="chapter-item "><a href="../../../Advanced/Linux/LinuxProgram/共享库.html">共享库</a></li><li class="chapter-item "><a href="../../../Advanced/Linux/LinuxProgram/凭证.html">Credential 凭证</a></li><li class="chapter-item "><a href="../../../Advanced/Linux/LinuxProgram/反向Shell和伪终端.html">反向Shell和伪终端</a></li><li class="chapter-item "><a href="../../../Advanced/Linux/LinuxProgram/性能监控.html">性能监控</a></li><li class="chapter-item "><a href="../../../Advanced/Linux/LinuxProgram/桌面应用开发.html">桌面应用开发</a></li><li class="chapter-item "><a href="../../../Advanced/Linux/LinuxProgram/管道和重定向.html">管道和重定向</a></li><li class="chapter-item "><a href="../../../Advanced/Linux/LinuxProgram/系统限制和选项.html">系统限制和选项</a></li><li class="chapter-item "><a href="../../../Advanced/Linux/LinuxProgram/终端.html">终端</a></li><li class="chapter-item "><a href="../../../Advanced/Linux/LinuxProgram/进程间通信.html">进程间通信</a></li></ol></li></ol></li><li class="chapter-item "><a href="../../../Advanced/Windows/index.html">Windows Programming</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../Advanced/Windows/Unicode.html">Unicode</a></li><li class="chapter-item "><a href="../../../Advanced/Windows/hungarian.html">匈牙利命名法</a></li><li class="chapter-item "><a href="../../../Advanced/Windows/文件.html">文件</a></li></ol></li></ol></li><li class="chapter-item "><a href="../../../Basic/index.html">Basic</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../Basic/8086汇编笔记.html">8086汇编笔记</a></li><li class="chapter-item "><a href="../../../Basic/Architecture/index.html">Architecture</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../Basic/Architecture/ARM内存管理.html">AArch64 memory management</a></li><li class="chapter-item "><a href="../../../Basic/Architecture/ARM寄存器.html">ARM中的寄存器</a></li><li class="chapter-item "><a href="../../../Basic/Architecture/ARM异常.html">AArch64 Exception Model</a></li><li class="chapter-item "><a href="../../../Basic/Architecture/ARM虚拟化.html">Armv8-A virtualization</a></li><li class="chapter-item "><a href="../../../Basic/Architecture/ARM调试.html">ARM self-hosted debug</a></li><li class="chapter-item "><a href="../../../Basic/Architecture/CPU设计.html">CPU设计</a></li><li class="chapter-item "><a href="../../../Basic/Architecture/Cache.html">Cache</a></li><li class="chapter-item "><a href="../../../Basic/Architecture/ILP.html">ILP</a></li><li class="chapter-item "><a href="../../../Basic/Architecture/SIMD和MIMD.html">SIMD和MIMD</a></li><li class="chapter-item "><a href="../../../Basic/Architecture/TLP.html">TLP</a></li><li class="chapter-item "><a href="../../../Basic/Architecture/存储器设计.html">存储器设计</a></li><li class="chapter-item "><a href="../../../Basic/Architecture/数字逻辑.html">Notes-数字逻辑</a></li><li class="chapter-item "><a href="../../../Basic/Architecture/计算机体系结构.html">计算机组成&计算机体系结构</a></li></ol></li><li class="chapter-item "><a href="../../../Basic/C/index.html">C/C++</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../Basic/C/Cpp标准库.html">C++_标准库</a></li><li class="chapter-item "><a href="../../../Basic/C/Cpp课程笔记.html">C++ 基础知识</a></li><li class="chapter-item "><a href="../../../Basic/C/GCC内嵌汇编.html">C-内嵌汇编</a></li><li class="chapter-item "><a href="../../../Basic/C/变量在ELF段中的位置.html">变量在ELF段中的位置</a></li><li class="chapter-item "><a href="../../../Basic/C/可变参数的使用和原理.html">可变参数的使用和原理</a></li><li class="chapter-item "><a href="../../../Basic/C/在C程序中调用汇编程序.html">在C程序中调用汇编程序</a></li><li class="chapter-item "><a href="../../../Basic/C/链接器.html">链接器</a></li></ol></li><li class="chapter-item "><a href="../../../Basic/Client/index.html">Client Development</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../Basic/Client/Chromium.html">Chromium</a></li><li class="chapter-item "><a href="../../../Basic/Client/CodeReview.html">CodeReview</a></li><li class="chapter-item "><a href="../../../Basic/Client/Config.html">Config</a></li><li class="chapter-item "><a href="../../../Basic/Client/CrossLanguage.html">跨语言</a></li><li class="chapter-item "><a href="../../../Basic/Client/DataStore.html">本地存储</a></li><li class="chapter-item "><a href="../../../Basic/Client/Database.html">Database</a></li><li class="chapter-item "><a href="../../../Basic/Client/Flutter.html">Flutter</a></li><li class="chapter-item "><a href="../../../Basic/Client/Log.html">日志</a></li><li class="chapter-item "><a href="../../../Basic/Client/Multimedia/index.html">Multimedia</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../Basic/Client/Multimedia/Graph.html">图形学</a></li><li class="chapter-item "><a href="../../../Basic/Client/Multimedia/Image.html">图像处理技术</a></li><li class="chapter-item "><a href="../../../Basic/Client/Multimedia/Video.html">视频</a></li><li class="chapter-item "><a href="../../../Basic/Client/Multimedia/Voice.html">Voice</a></li></ol></li><li class="chapter-item "><a href="../../../Basic/Client/Network.html">网络能力</a></li><li class="chapter-item "><a href="../../../Basic/Client/Performance.html">性能监控</a></li><li class="chapter-item "><a href="../../../Basic/Client/Platform/index.html">Platform</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../Basic/Client/Platform/Android.html">Android</a></li><li class="chapter-item "><a href="../../../Basic/Client/Platform/iOS.html">iOS</a></li></ol></li><li class="chapter-item "><a href="../../../Basic/Client/SQLite.html">SQLite</a></li></ol></li><li class="chapter-item "><a href="../../../Basic/Compiler/index.html">Compiler</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../Basic/Compiler/Codegen.html">代码生成</a></li><li class="chapter-item "><a href="../../../Basic/Compiler/Lex.html">Lex</a></li><li class="chapter-item "><a href="../../../Basic/Compiler/Lexical.html">Lexical Analyze</a></li><li class="chapter-item "><a href="../../../Basic/Compiler/Runtime.html">Runtime</a></li><li class="chapter-item "><a href="../../../Basic/Compiler/Sematic.html">Sematic Analyzing</a></li><li class="chapter-item "><a href="../../../Basic/Compiler/Syntax.html">Syntax Analyzer</a></li><li class="chapter-item "><a href="../../../Basic/Compiler/llvm-ir.html">LLVM-IR</a></li><li class="chapter-item "><a href="../../../Basic/Compiler/llvm.html">LLVM</a></li><li class="chapter-item "><a href="../../../Basic/Compiler/pest.html">PEST</a></li><li class="chapter-item "><a href="../../../Basic/Compiler/yacc.html">Yacc</a></li></ol></li><li class="chapter-item "><a href="../../../Basic/DataStructure/index.html">Data Structure And Algorithm</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../Basic/DataStructure/Algorithm/index.html">Algorithm</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../Basic/DataStructure/Algorithm/Approximation.html">近似算法</a></li><li class="chapter-item "><a href="../../../Basic/DataStructure/Algorithm/Backtracking.html">递归回溯</a></li><li class="chapter-item "><a href="../../../Basic/DataStructure/Algorithm/DivideAndConquer.html">分治算法</a></li><li class="chapter-item "><a href="../../../Basic/DataStructure/Algorithm/DynamicProgramming.html">动态规划</a></li><li class="chapter-item "><a href="../../../Basic/DataStructure/Algorithm/Greedy.html">贪心算法</a></li><li class="chapter-item "><a href="../../../Basic/DataStructure/Algorithm/LocalSearch.html">本地搜索</a></li><li class="chapter-item "><a href="../../../Basic/DataStructure/Algorithm/Parallel.html">并行算法</a></li><li class="chapter-item "><a href="../../../Basic/DataStructure/Algorithm/Randomized.html">随机化算法</a></li><li class="chapter-item "><a href="../../../Basic/DataStructure/Algorithm/Sort.html">排序算法</a></li></ol></li><li class="chapter-item "><a href="../../../Basic/DataStructure/Graph/index.html">Graph</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../Basic/DataStructure/Graph/Bipartite.html">Bipartite</a></li><li class="chapter-item "><a href="../../../Basic/DataStructure/Graph/NetworkFlow.html">NetworkFlow</a></li><li class="chapter-item "><a href="../../../Basic/DataStructure/Graph/ShortPath.html">最短路</a></li><li class="chapter-item "><a href="../../../Basic/DataStructure/Graph/SpanningTree.html">最小生成树</a></li><li class="chapter-item "><a href="../../../Basic/DataStructure/Graph/关键路径.html">关键路径</a></li><li class="chapter-item "><a href="../../../Basic/DataStructure/Graph/拓扑排序.html">拓扑排序</a></li></ol></li><li class="chapter-item "><a href="../../../Basic/DataStructure/Hash/index.html">Hash</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../Basic/DataStructure/Hash/HashTree.html">HashTree</a></li><li class="chapter-item "><a href="../../../Basic/DataStructure/Hash/Hashing.html">Hashing</a></li></ol></li><li class="chapter-item "><a href="../../../Basic/DataStructure/Heap/index.html">Heap</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../Basic/DataStructure/Heap/BinomialHeap.html">Binomial Heap</a></li><li class="chapter-item "><a href="../../../Basic/DataStructure/Heap/FibonacciHeap.html">FibonacciHeap</a></li><li class="chapter-item "><a href="../../../Basic/DataStructure/Heap/Heap.html">DS-Heap</a></li><li class="chapter-item "><a href="../../../Basic/DataStructure/Heap/斜堆.html">Leftist_Heap_and_Skew_Heap</a></li></ol></li><li class="chapter-item "><a href="../../../Basic/DataStructure/Inverted_File_Index.html">Inverted_File_Index</a></li><li class="chapter-item "><a href="../../../Basic/DataStructure/Linear/index.html">Linear</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../Basic/DataStructure/Linear/Bitmap.html">DS-Bitmap</a></li><li class="chapter-item "><a href="../../../Basic/DataStructure/Linear/List.html">DS-Linear_List</a></li></ol></li><li class="chapter-item "><a href="../../../Basic/DataStructure/NPProblem.html">DS-NP_problem</a></li><li class="chapter-item "><a href="../../../Basic/DataStructure/String/index.html">字符串匹配相关算法</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../Basic/DataStructure/String/match.html">字符串匹配算法</a></li></ol></li><li class="chapter-item "><a href="../../../Basic/DataStructure/Tree/index.html">Tree and BST</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../Basic/DataStructure/Tree/BTree.html">B Tree and B+ Tree</a></li><li class="chapter-item "><a href="../../../Basic/DataStructure/Tree/BalancedTree.html">AVL Tree and Splay Tree</a></li><li class="chapter-item "><a href="../../../Basic/DataStructure/Tree/DisjointSet.html">Disjoint Set</a></li><li class="chapter-item "><a href="../../../Basic/DataStructure/Tree/HuffmanTree.html">Huffman Tree</a></li><li class="chapter-item "><a href="../../../Basic/DataStructure/Tree/RBTree.html">红黑树 B树 B+树</a></li><li class="chapter-item "><a href="../../../Basic/DataStructure/Tree/ThreadedTree.html">Threaded Binary Tree</a></li></ol></li></ol></li><li class="chapter-item "><a href="../../../Basic/Database/index.html">Database</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../Basic/Database/Object.html">Database-Object-Based_Databases</a></li><li class="chapter-item "><a href="../../../Basic/Database/PostgreSQL-Conflict-reticenceji_Win10.html">Database-PostgreSQL</a></li><li class="chapter-item "><a href="../../../Basic/Database/PostgreSQL.html">Database-PostgreSQL</a></li><li class="chapter-item "><a href="../../../Basic/Database/SQL-Conflict-reticenceji_Win10.html">基础SQL</a></li><li class="chapter-item "><a href="../../../Basic/Database/SQL.html">基础SQL</a></li><li class="chapter-item "><a href="../../../Basic/Database/XML-Conflict-reticenceji_Win10.html">Database,Web-XML</a></li><li class="chapter-item "><a href="../../../Basic/Database/XML.html">Database,Web-XML</a></li><li class="chapter-item "><a href="../../../Basic/Database/事务.html">Database-事务</a></li><li class="chapter-item "><a href="../../../Basic/Database/关系代数.html">Database-关系代数</a></li><li class="chapter-item "><a href="../../../Basic/Database/存储和查询.html">Database-存储和查询</a></li><li class="chapter-item "><a href="../../../Basic/Database/导论.html">Database-导论</a></li><li class="chapter-item "><a href="../../../Basic/Database/数据库设计.html">Database-数据库设计</a></li></ol></li><li class="chapter-item "><a href="../../../Basic/Maths/index.html">Maths</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../Basic/Maths/大数定理和中心极限定理.html">大数定理和中心极限定理</a></li><li class="chapter-item "><a href="../../../Basic/Maths/微积分下.html">微积分下</a></li><li class="chapter-item "><a href="../../../Basic/Maths/数值计算方法.html">数值计算方法</a></li><li class="chapter-item "><a href="../../../Basic/Maths/最小二乘法.html">最小二乘法</a></li><li class="chapter-item "><a href="../../../Basic/Maths/有限自动机介绍.html">有限自动机介绍</a></li><li class="chapter-item "><a href="../../../Basic/Maths/概统复习.html">概统复习</a></li><li class="chapter-item "><a href="../../../Basic/Maths/群论简介.html">群论简介</a></li></ol></li><li class="chapter-item "><a href="../../../Basic/Networking/index.html">Networking</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../Basic/Networking/ARP.html">Networking-ARP</a></li><li class="chapter-item "><a href="../../../Basic/Networking/CDN.html">CDN</a></li><li class="chapter-item "><a href="../../../Basic/Networking/DNS.html">DNS</a></li><li class="chapter-item "><a href="../../../Basic/Networking/FTP.html">FTP</a></li><li class="chapter-item "><a href="../../../Basic/Networking/HTTP.html">HTTP</a></li><li class="chapter-item "><a href="../../../Basic/Networking/ICMP.html">Internet Control Message Protocol</a></li><li class="chapter-item "><a href="../../../Basic/Networking/Mail.html">邮件协议</a></li><li class="chapter-item "><a href="../../../Basic/Networking/NAT.html">Network Address Translation</a></li><li class="chapter-item "><a href="../../../Basic/Networking/P2P.html">P2P</a></li><li class="chapter-item "><a href="../../../Basic/Networking/QUIC.html">QUIC</a></li><li class="chapter-item "><a href="../../../Basic/Networking/RTC.html">RTC</a></li><li class="chapter-item "><a href="../../../Basic/Networking/Socket.html">Socket</a></li><li class="chapter-item "><a href="../../../Basic/Networking/TCP.html">TCP</a></li><li class="chapter-item "><a href="../../../Basic/Networking/UDP.html">UDP</a></li><li class="chapter-item "><a href="../../../Basic/Networking/VMWare虚拟机网络配置.html">VMWare虚拟机网络配置</a></li><li class="chapter-item "><a href="../../../Basic/Networking/VPN.html">VPN</a></li><li class="chapter-item "><a href="../../../Basic/Networking/WebSocket.html">WebSocket</a></li><li class="chapter-item "><a href="../../../Basic/Networking/介质访问子层.html">Medium Access Sublayer</a></li><li class="chapter-item "><a href="../../../Basic/Networking/可靠传输.html">可靠传输</a></li><li class="chapter-item "><a href="../../../Basic/Networking/差错控制.html">差错控制</a></li><li class="chapter-item "><a href="../../../Basic/Networking/拥塞控制和流量控制.html">拥塞控制和流量控制</a></li><li class="chapter-item "><a href="../../../Basic/Networking/物理层.html">物理层</a></li><li class="chapter-item "><a href="../../../Basic/Networking/网络层.html">网络层 IP</a></li><li class="chapter-item "><a href="../../../Basic/Networking/网络设备.html">Networking-网络设备</a></li><li class="chapter-item "><a href="../../../Basic/Networking/路由协议.html">路由协议</a></li><li class="chapter-item "><a href="../../../Basic/Networking/链路层.html">链路层</a></li></ol></li><li class="chapter-item "><a href="../../../Basic/OS/index.html">OS</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../Basic/OS/Bootloader.html">OS-Bootloader</a></li><li class="chapter-item "><a href="../../../Basic/OS/Buddy_System&Slub.html">OS-Buddy_System&Slub</a></li><li class="chapter-item "><a href="../../../Basic/OS/Deadlock.html">OS-Deadlock</a></li><li class="chapter-item "><a href="../../../Basic/OS/IO.html">OS-IO</a></li><li class="chapter-item "><a href="../../../Basic/OS/Introduction.html">OS-Introduction</a></li><li class="chapter-item "><a href="../../../Basic/OS/Memory_Management.html">OS-Memory_Management</a></li><li class="chapter-item "><a href="../../../Basic/OS/Process.html">OS-Process</a></li><li class="chapter-item "><a href="../../../Basic/OS/Q&A.html">OS-Q&A</a></li><li class="chapter-item "><a href="../../../Basic/OS/RISCV学习笔记.html">OS-RISCV学习笔记</a></li><li class="chapter-item "><a href="../../../Basic/OS/SBI.html">OS-SBI</a></li><li class="chapter-item "><a href="../../../Basic/OS/Synchronization.html">OS-Synchronization</a></li><li class="chapter-item "><a href="../../../Basic/OS/Thread.html">OS-Thread</a></li><li class="chapter-item "><a href="../../../Basic/OS/UnixLinux中的IO模型.html">Linux中的I/O模型</a></li><li class="chapter-item "><a href="../../../Basic/OS/在K210运行裸机程序.html">OS-在K210运行裸机程序</a></li><li class="chapter-item "><a href="../../../Basic/OS/地址空间(一).html">OS-地址空间(一)</a></li><li class="chapter-item "><a href="../../../Basic/OS/操作系统.html">OS-操作系统</a></li></ol></li><li class="chapter-item "><a href="../../../Basic/Secure/index.html">Secure</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../Basic/Secure/Crypto/index.html">Crypto</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../Basic/Secure/Crypto/Federated_Learning.html">Federated Learning</a></li><li class="chapter-item "><a href="../../../Basic/Secure/Crypto/Oblivious_RAM.html">Oblivious RAM</a></li><li class="chapter-item "><a href="../../../Basic/Secure/Crypto/PIR.html">PIR</a></li><li class="chapter-item "><a href="../../../Basic/Secure/Crypto/PSI.html">Private set intersection</a></li><li class="chapter-item "><a href="../../../Basic/Secure/Crypto/加密和哈希.html">Crypto-加密和哈希</a></li><li class="chapter-item "><a href="../../../Basic/Secure/Crypto/加密数据库.html">Encrypted Database</a></li><li class="chapter-item "><a href="../../../Basic/Secure/Crypto/区块链技术.html">Bitcoin-区块链技术</a></li><li class="chapter-item "><a href="../../../Basic/Secure/Crypto/可证明安全.html">可证明安全</a></li><li class="chapter-item "><a href="../../../Basic/Secure/Crypto/安全多方计算.html">安全多方计算</a></li><li class="chapter-item "><a href="../../../Basic/Secure/Crypto/密码学基础.html">密码学算法介绍</a></li><li class="chapter-item "><a href="../../../Basic/Secure/Crypto/密码学进阶.html">密码学进阶</a></li><li class="chapter-item "><a href="../../../Basic/Secure/Crypto/差分隐私.html">差分隐私</a></li></ol></li><li class="chapter-item "><a href="../../../Basic/Secure/CryptoBasic.html">密码学基础</a></li><li class="chapter-item "><a href="../../../Basic/Secure/CtyptoProtocol.html">密码学协议</a></li><li class="chapter-item "><a href="../../../Basic/Secure/Forensics/index.html">电子取证</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../Basic/Secure/Forensics/FAT.html">FAT文件系统</a></li><li class="chapter-item "><a href="../../../Basic/Secure/Forensics/FileCarving.html">文件雕复</a></li><li class="chapter-item "><a href="../../../Basic/Secure/Forensics/Linux取证.html">Linux取证</a></li><li class="chapter-item "><a href="../../../Basic/Secure/Forensics/Memory.html">内存取证</a></li><li class="chapter-item "><a href="../../../Basic/Secure/Forensics/NTFS.html">NTFS文件系统</a></li><li class="chapter-item "><a href="../../../Basic/Secure/Forensics/Windows取证.html">Windows取证</a></li><li class="chapter-item "><a href="../../../Basic/Secure/Forensics/数据隐藏.html">数据隐藏</a></li><li class="chapter-item "><a href="../../../Basic/Secure/Forensics/文件系统取证.html">文件系统取证</a></li><li class="chapter-item "><a href="../../../Basic/Secure/Forensics/硬盘分析.html">硬盘分析</a></li><li class="chapter-item "><a href="../../../Basic/Secure/Forensics/移动设备取证.html">移动设备取证</a></li><li class="chapter-item "><a href="../../../Basic/Secure/Forensics/网络取证.html">网络取证</a></li></ol></li><li class="chapter-item "><a href="../../../Basic/Secure/IoT.html">无线与物联网安全</a></li><li class="chapter-item "><a href="../../../Basic/Secure/Network.html">网络安全</a></li><li class="chapter-item "><a href="../../../Basic/Secure/OperatingSystem.html">操作系统安全</a></li><li class="chapter-item "><a href="../../../Basic/Secure/Software/index.html">软件安全</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../Basic/Secure/Software/ASLR.html">ASLR</a></li><li class="chapter-item "><a href="../../../Basic/Secure/Software/CodeQL.html">CodeQL</a></li><li class="chapter-item "><a href="../../../Basic/Secure/Software/GlibcHeap.html">glibc heap allocator</a></li><li class="chapter-item "><a href="../../../Basic/Secure/Software/PIC.html">位置无关代码和共享库</a></li><li class="chapter-item "><a href="../../../Basic/Secure/Software/RELRO.html">RELRO</a></li><li class="chapter-item "><a href="../../../Basic/Secure/Software/pwntools.html">pwntools</a></li><li class="chapter-item "><a href="../../../Basic/Secure/Software/攻击视角.html">攻击软件安全</a></li><li class="chapter-item "><a href="../../../Basic/Secure/Software/程序分析.html">程序分析</a></li><li class="chapter-item "><a href="../../../Basic/Secure/Software/防御视角.html">软件安全防护</a></li></ol></li><li class="chapter-item "><a href="../../../Basic/Secure/SupplyChain.html">供应链安全</a></li></ol></li><li class="chapter-item "><a href="../../../Basic/软件保护技术.html">Reverse</a></li></ol></li><li class="chapter-item "><a href="../../../Language/index.html">Language</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../Language/Java/index.html">Java</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../Language/Java/基础.html">Java</a></li><li class="chapter-item "><a href="../../../Language/Java/鸿蒙应用开发.html">Java-鸿蒙应用开发</a></li></ol></li><li class="chapter-item "><a href="../../../Language/JavaScript/index.html">JavaScript</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../Language/JavaScript/Electron.html">Electron</a></li><li class="chapter-item "><a href="../../../Language/JavaScript/JavaScript简介.html">JavaScript简介</a></li><li class="chapter-item "><a href="../../../Language/JavaScript/Runtime.html">Runtime</a></li></ol></li><li class="chapter-item "><a href="../../../Language/Python/index.html">Python</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../Language/Python/0内置类型/index.html">内置对象</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../Language/Python/0内置类型/1字符串.html">字符串和字节串</a></li><li class="chapter-item "><a href="../../../Language/Python/0内置类型/2数值.html">数值</a></li><li class="chapter-item "><a href="../../../Language/Python/0内置类型/3列表和元组.html">序列</a></li><li class="chapter-item "><a href="../../../Language/Python/0内置类型/4字典和集合.html">映射</a></li><li class="chapter-item "><a href="../../../Language/Python/0内置类型/5迭代器和生成器.html">迭代器和生成器</a></li><li class="chapter-item "><a href="../../../Language/Python/0内置类型/6上下文管理器.html">上下文管理器</a></li></ol></li><li class="chapter-item "><a href="../../../Language/Python/1工作原理/index.html">工作原理</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../Language/Python/1工作原理/0对象模型.html">OOP模型</a></li><li class="chapter-item "><a href="../../../Language/Python/1工作原理/1类型.html">类型</a></li><li class="chapter-item "><a href="../../../Language/Python/1工作原理/2变量.html">变量</a></li><li class="chapter-item "><a href="../../../Language/Python/1工作原理/3特殊方法和重载.html">特殊方法和重载</a></li><li class="chapter-item "><a href="../../../Language/Python/1工作原理/4参数.html">参数</a></li><li class="chapter-item "><a href="../../../Language/Python/1工作原理/5多继承.html">多继承</a></li></ol></li><li class="chapter-item "><a href="../../../Language/Python/3高级写法/index.html">高级写法</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../Language/Python/3高级写法/1异常.html">Exception</a></li><li class="chapter-item "><a href="../../../Language/Python/3高级写法/2装饰器.html">装饰器</a></li></ol></li><li class="chapter-item "><a href="../../../Language/Python/4好用的库/index.html">PythonLib</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../Language/Python/4好用的库/Argparse.html">命令行参数</a></li><li class="chapter-item "><a href="../../../Language/Python/4好用的库/Bisect.html">Bisect</a></li><li class="chapter-item "><a href="../../../Language/Python/4好用的库/Builtin.html">Builtin</a></li><li class="chapter-item "><a href="../../../Language/Python/4好用的库/Container.html">Container</a></li><li class="chapter-item "><a href="../../../Language/Python/4好用的库/Crypto.html">Crypto</a></li><li class="chapter-item "><a href="../../../Language/Python/4好用的库/Enum.html">enum</a></li><li class="chapter-item "><a href="../../../Language/Python/4好用的库/FS.html">File System</a></li><li class="chapter-item "><a href="../../../Language/Python/4好用的库/Flask.html">Python-Flask</a></li><li class="chapter-item "><a href="../../../Language/Python/4好用的库/HTTP.html">Internet</a></li><li class="chapter-item "><a href="../../../Language/Python/4好用的库/IO.html">File IO</a></li><li class="chapter-item "><a href="../../../Language/Python/4好用的库/PyQt5.html">PySide2</a></li><li class="chapter-item "><a href="../../../Language/Python/4好用的库/Regex.html">Regex</a></li><li class="chapter-item "><a href="../../../Language/Python/4好用的库/Socket.html">Socket编程</a></li><li class="chapter-item "><a href="../../../Language/Python/4好用的库/Thread.html">多线程</a></li><li class="chapter-item "><a href="../../../Language/Python/4好用的库/Time.html">时间和日期</a></li><li class="chapter-item "><a href="../../../Language/Python/4好用的库/Trio.html">Trio</a></li><li class="chapter-item "><a href="../../../Language/Python/4好用的库/format.html">Format String</a></li><li class="chapter-item "><a href="../../../Language/Python/4好用的库/venv.html">Virtual Environment</a></li><li class="chapter-item "><a href="../../../Language/Python/4好用的库/数据持久化.html">简单的数据持久化</a></li><li class="chapter-item "><a href="../../../Language/Python/4好用的库/文档和测试.html">文档和测试</a></li><li class="chapter-item "><a href="../../../Language/Python/4好用的库/计算器.html">把Python当计算器</a></li></ol></li><li class="chapter-item "><a href="../../../Language/Python/运算符.html">运算符</a></li></ol></li><li class="chapter-item "><a href="../../../Language/Rust/index.html">Rust</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../Language/Rust/Basic/index.html">Basic</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../Language/Rust/Basic/Any.html">Any</a></li><li class="chapter-item "><a href="../../../Language/Rust/Basic/Async.html">异步编程</a></li><li class="chapter-item "><a href="../../../Language/Rust/Basic/Casting.html">Casting</a></li><li class="chapter-item "><a href="../../../Language/Rust/Basic/ClosureAndIter.html">迭代器和闭包</a></li><li class="chapter-item "><a href="../../../Language/Rust/Basic/CratesAndModules.html">Crates and Modules</a></li><li class="chapter-item "><a href="../../../Language/Rust/Basic/Error.html">Rust-错误处理</a></li><li class="chapter-item "><a href="../../../Language/Rust/Basic/Macro.html">宏</a></li><li class="chapter-item "><a href="../../../Language/Rust/Basic/Trait.html">Trait</a></li><li class="chapter-item "><a href="../../../Language/Rust/Basic/TypeAndLifetime.html">从类型系统看生命周期</a></li><li class="chapter-item "><a href="../../../Language/Rust/Basic/Unsafe.html">Unsafe</a></li><li class="chapter-item "><a href="../../../Language/Rust/Basic/pattern.html">模式匹配</a></li></ol></li><li class="chapter-item "><a href="../../../Language/Rust/Build.html">Build</a></li><li class="chapter-item "><a href="../../../Language/Rust/Cargo/index.html">Cargo</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../Language/Rust/Cargo/clippy.html">Clippy</a></li><li class="chapter-item "><a href="../../../Language/Rust/Cargo/fix.html">Cargo fix</a></li><li class="chapter-item "><a href="../../../Language/Rust/Cargo/make.html">Cargo make</a></li></ol></li><li class="chapter-item "><a href="../../../Language/Rust/Compiler.html">Compiler</a></li><li class="chapter-item "><a href="../../../Language/Rust/Crate/index.html">Crates</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../Language/Rust/Crate/Anyhow.html">AnyHow & ThisError</a></li><li class="chapter-item "><a href="../../../Language/Rust/Crate/Cell.html">Cell</a></li><li class="chapter-item "><a href="../../../Language/Rust/Crate/Diesel.html">Diesel</a></li><li class="chapter-item "><a href="../../../Language/Rust/Crate/Dioxus.html">Dioxus</a></li><li class="chapter-item "><a href="../../../Language/Rust/Crate/EnumDispatch.html">Dispatch</a></li><li class="chapter-item "><a href="../../../Language/Rust/Crate/IO.html">IO</a></li><li class="chapter-item "><a href="../../../Language/Rust/Crate/collections.html">容器的增删改查</a></li><li class="chapter-item "><a href="../../../Language/Rust/Crate/gtk-rs.html">gtk-rs</a></li><li class="chapter-item "><a href="../../../Language/Rust/Crate/r2d2.html">r2d2</a></li><li class="chapter-item "><a href="../../../Language/Rust/Crate/stdsync.html">std::sync</a></li><li class="chapter-item "><a href="../../../Language/Rust/Crate/字符串.html">字符串/字节流</a></li><li class="chapter-item "><a href="../../../Language/Rust/Crate/打包.html">打包</a></li><li class="chapter-item "><a href="../../../Language/Rust/Crate/智能指针.html">Rust-智能指针</a></li></ol></li><li class="chapter-item "><a href="../../../Language/Rust/FFI.html">FFI</a></li><li class="chapter-item "><a href="../../../Language/Rust/IO.html">Rust-IO</a></li><li class="chapter-item "><a href="../../../Language/Rust/Practice/index.html">Practice</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../Language/Rust/Practice/BestPractice.html">Rust最佳实践</a></li><li class="chapter-item "><a href="../../../Language/Rust/Practice/Debug.html">调试</a></li><li class="chapter-item "><a href="../../../Language/Rust/Practice/DesignPattern.html">设计模式</a></li><li class="chapter-item "><a href="../../../Language/Rust/Practice/Performance.html">性能优化</a></li><li class="chapter-item "><a href="../../../Language/Rust/Practice/Size.html">代码体积优化</a></li><li class="chapter-item "><a href="../../../Language/Rust/Practice/Test.html">测试最佳实践</a></li><li class="chapter-item "><a href="../../../Language/Rust/Practice/Type.html">类型转换</a></li><li class="chapter-item "><a href="../../../Language/Rust/Practice/Unsafe.html">Unsafe最佳实践</a></li></ol></li><li class="chapter-item "><a href="../../../Language/Rust/gtk.html">Rust-gtk-rs介绍</a></li><li class="chapter-item "><a href="../../../Language/Rust/函数参数匹配.html">函数参数匹配</a></li><li class="chapter-item "><a href="../../../Language/Rust/基础知识.html">基础知识</a></li><li class="chapter-item "><a href="../../../Language/Rust/多线程.html">多线程支持</a></li><li class="chapter-item "><a href="../../../Language/Rust/混合编程.html">混合编程</a></li><li class="chapter-item "><a href="../../../Language/Rust/精髓.html">Rust-精髓</a></li></ol></li><li class="chapter-item "><a href="../../../Language/Scala/index.html">Scala</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../Language/Scala/0控制结构.html">控制结构</a></li><li class="chapter-item "><a href="../../../Language/Scala/1数据结构.html">数据结构</a></li><li class="chapter-item "><a href="../../../Language/Scala/2_0类和对象.html">Class</a></li><li class="chapter-item "><a href="../../../Language/Scala/2_1继承.html">继承</a></li><li class="chapter-item "><a href="../../../Language/Scala/2_2特质.html">Trait</a></li><li class="chapter-item "><a href="../../../Language/Scala/3_1花里胡哨的函数.html">花里胡哨的函数</a></li><li class="chapter-item "><a href="../../../Language/Scala/3_2匿名函数和闭包.html">函数</a></li><li class="chapter-item "><a href="../../../Language/Scala/3_3模式匹配.html">模式匹配</a></li><li class="chapter-item "><a href="../../../Language/Scala/3_4容器的函数式操作.html">容器的函数式操作</a></li><li class="chapter-item "><a href="../../../Language/Scala/ScalaDepth/index.html">ScalaDepth</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../Language/Scala/ScalaDepth/Class文件.html">Class文件</a></li><li class="chapter-item "><a href="../../../Language/Scala/ScalaDepth/ScalaInDepth.html">Scala in Depth 读书笔记</a></li><li class="chapter-item "><a href="../../../Language/Scala/ScalaDepth/Spark.html">Spark</a></li><li class="chapter-item "><a href="../../../Language/Scala/ScalaDepth/jvm.html">《深入理解Java虚拟机读书》笔记</a></li><li class="chapter-item "><a href="../../../Language/Scala/ScalaDepth/函数式的一些概念.html">Scala中一些函数式概念</a></li><li class="chapter-item "><a href="../../../Language/Scala/ScalaDepth/泛型擦除.html">泛型擦除</a></li><li class="chapter-item "><a href="../../../Language/Scala/ScalaDepth/简单的类型原理.html">类型</a></li></ol></li><li class="chapter-item "><a href="../../../Language/Scala/sbt.html">sbt</a></li><li class="chapter-item "><a href="../../../Language/Scala/trait.html">trait</a></li><li class="chapter-item "><a href="../../../Language/Scala/枚举.html">枚举</a></li><li class="chapter-item "><a href="../../../Language/Scala/样例类和模式匹配.html">样例类和模式匹配</a></li><li class="chapter-item "><a href="../../../Language/Scala/测试和文档.html">测试和文档</a></li><li class="chapter-item "><a href="../../../Language/Scala/组合和继承.html">类的组合和继承</a></li></ol></li><li class="chapter-item "><a href="../../../Language/Snippet/index.html">Snippets</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../Language/Snippet/c.html">c</a></li><li class="chapter-item "><a href="../../../Language/Snippet/linux.html">linux</a></li><li class="chapter-item "><a href="../../../Language/Snippet/python.html">python</a></li><li class="chapter-item "><a href="../../../Language/Snippet/rust.html">rust</a></li></ol></li></ol></li><li class="chapter-item "><a href="../../../Tools/index.html">Tools</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../Tools/Docker.html">Docker</a></li><li class="chapter-item "><a href="../../../Tools/GDB.html">GDB</a></li><li class="chapter-item "><a href="../../../Tools/Git/index.html">Git</a></li><li class="chapter-item "><a href="../../../Tools/Git.html">Git</a></li><li class="chapter-item "><a href="../../../Tools/Githook.html">Githook</a></li><li class="chapter-item "><a href="../../../Tools/GithubCI.html">Github-CI</a></li><li class="chapter-item "><a href="../../../Tools/Latex.html">Latex</a></li><li class="chapter-item "><a href="../../../Tools/Make.html">Make与Makefile</a></li><li class="chapter-item "><a href="../../../Tools/VSCode.html">VSCode</a></li><li class="chapter-item "><a href="../../../Tools/Vim.html">Vim</a></li><li class="chapter-item "><a href="../../../Tools/WSL.html">WSL</a></li><li class="chapter-item "><a href="../../../Tools/双系统.html">双系统使用经历</a></li><li class="chapter-item "><a href="../../../Tools/软件打包.html">软件打包</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Reticence&#x27;s Notes</h1>
+
+                    <div class="right-buttons">
+                        <a href="../../../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="标准实现代码分析"><a class="header" href="#标准实现代码分析">标准实现代码分析</a></h1>
+<p>发现一些智能合约实现的规律，和普通编程的区别：</p>
+<ol>
+<li>避免使用遍历操作。</li>
+<li>用空间换取时间，存储很多本来通过计算可以得到的结果。所以编程的时候要注意状态的更新。</li>
+<li>由于Panic可以回滚，会大量使用Panic，和日常编程不同。</li>
+</ol>
+<h2 id="fungible-token--storage"><a class="header" href="#fungible-token--storage">Fungible Token &amp; Storage</a></h2>
+<p><a href="https://nomicon.io/Standards/Tokens/FungibleToken/Core">标准介绍</a> <a href="https://github.com/near/near-sdk-rs/tree/4.0.0/near-contract-standards/src/fungible_token">标准实现</a> <a href="https://github.com/near/near-sdk-rs/tree/4.0.0/examples/fungible-token">例子</a></p>
+<p>NEP141为NEAR公链上的Fungible Token （以下均用FT简称）标准 。大部分NEAR上的FT都遵循NEP141标准。可以简单的认为FT就是一种虚拟货币，类似于人民币、美元等等。所有人都可以发行自己的FT，只不过有没有价值另说。</p>
+<h3 id="corers"><a class="header" href="#corers">core.rs</a></h3>
+<p>在这个文件中，规定了4个接口在<code>trait FungibleTokenCore</code>中。如果我们要自行实现符合NEP141的智能合约，也可以自己去实现这些接口，不过官方已经给出了标准实现，也就是后面将要分析的代码。</p>
+<ul>
+<li><code>ft_transfer()</code>: 转账。</li>
+<li><code>ft_transfer_call()</code>: 转账的同时调用reciever的<code>ft_on_transfer</code>。</li>
+<li><code>ft_total_supply()</code>: 查询FT的发行总量。</li>
+<li><code>ft_balance_of()</code>: 查询用户的FT存款。</li>
+</ul>
+<h3 id="core_implrs"><a class="header" href="#core_implrs">core_impl.rs</a></h3>
+<p>关键是看这里对规定接口的实现。首先是存储信息的数据结构：</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>pub struct FungibleToken {
+    /// 可以视为发行的FT的中央账本，记录了每个用户的存款，最重要的数据结构
+    pub accounts: LookupMap&lt;AccountId, Balance&gt;,
+
+    /// FT的发行总量，其实可以从LookupMap中计算得到，但是那样的话开销太大了
+    pub total_supply: Balance,
+
+    /// 每个Account占用的Storage
+    pub account_storage_usage: StorageUsage,
+}
+<span class="boring">}
+</span></code></pre></pre>
+<p>我们依次看一下<code>FungibleToken</code>方法的实现，对于不重要的函数仅作功能介绍</p>
+<ul>
+<li>
+<p>new: 创建一个新的<code>FungibleToken</code></p>
+</li>
+<li>
+<p>measure_account_storage_usage: 通过临时插入一个Account，来计算我的中央账本中每一个Account会占用的Storage</p>
+</li>
+<li>
+<p><code>internal_unwrap_balance_of(&amp;self, account: &amp;AccountId) -&gt; Balance</code>: 查询account的FT数量，如果account不存在会Panic</p>
+</li>
+<li>
+<p><code>internal_deposit(&amp;mut self, account: &amp;AccountId, amount: Balance)</code>: 给account增加amount个FT，注意发行总量也要随之改变，注意这里涉及到加法运算，小心溢出。</p>
+</li>
+<li>
+<p><code>internal_withdraw(&amp;mut self, account_id: &amp;AccountId, amount: Balance)</code>: 给account减少amount个FT，注意发行总量也要随之改变，注意这里涉及到减法运算，小心溢出。</p>
+</li>
+<li>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>pub fn internal_transfer(
+    &amp;mut self,
+    sender: &amp;AccountId,
+    receiver: &amp;AccountId,
+    amount: Balance,
+    memo: Option&lt;String&gt;,
+)
+<span class="boring">}
+</span></code></pre></pre>
+<p>sender转账receiver amount个FT。memo是记日志的备注，不重要。发行总量不需要改变，同时涉及到加法和减法的运算，小心溢出。代码中为了提高效率，当amount为0或者sender=receiver的时候直接退出。</p>
+<blockquote>
+<p>所以为什么之前的internal_deposit和internal_withdraw不判断amount是否为0呢？不过不影响正确性就是了。</p>
+<p>所以为什么之前的internal_deposit和internal_withdraw不记日志但是要修改total_supply呢？</p>
+<p>为什么这两个函数要单独存在呢？</p>
+</blockquote>
+</li>
+<li>
+<p>internal_register_account: 在中央账本中给account开户，如果已经account存在的话panic。</p>
+</li>
+</ul>
+<p>下面介绍最重要的函数，对4个接口的实现进行介绍：</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>fn ft_transfer(&amp;mut self, receiver_id: AccountId, amount: U128, memo: Option&lt;String&gt;) {
+    // 保证attached_deposit == 1 yocto NEAR，为了让只有拥有full-access key才可以转账
+    assert_one_yocto();
+    // env::predeccor_account_id()，可以认为就是这个函数的远程调用者的id
+    let sender_id = env::predecessor_account_id();
+    // 转账的金额，进行一个类型转换
+    let amount: Balance = amount.into();
+    // 调用内部的转账函数
+    self.internal_transfer(&amp;sender_id, &amp;receiver_id, amount, memo);
+}
+<span class="boring">}
+</span></code></pre></pre>
+<div class="footnote-definition" id="1"><sup class="footnote-definition-label">1</sup>
+<p>https://welcome.near.university/developers/contract-patterns/assert_one_yocto-forced-confirmation</p>
+</div>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>fn ft_transfer_call(
+    &amp;mut self,
+    receiver_id: AccountId,
+    amount: U128,
+    memo: Option&lt;String&gt;,
+    msg: String,
+) -&gt; PromiseOrValue&lt;U128&gt; {
+    assert_one_yocto();
+    // 由于要调用receiver的ft_on_transfer，所以正好是ft_transfer_call的Gas肯定是不够的
+    require!(env::prepaid_gas() &gt; GAS_FOR_FT_TRANSFER_CALL, &quot;More gas is required&quot;);
+    let sender_id = env::predecessor_account_id();
+    let amount: Balance = amount.into();
+    self.internal_transfer(&amp;sender_id, &amp;receiver_id, amount, memo);
+	// 上面和之前的ft_transfer类似
+    // Initiating receiver's call and the callback
+    // 这个是进行CrossContractCall的写法，调用receiver_id的方法
+    ext_ft_receiver::ext(receiver_id.clone())
+        // 准备Gas
+    	.with_static_gas(env::prepaid_gas() - GAS_FOR_FT_TRANSFER_CALL)
+        // 调用receiver_id的ft_on_transfer
+    	.ft_on_transfer(sender_id.clone(), amount.into(), msg)
+        // 待ft_on_transfer返回的时候，执行回调函数
+    	.then(
+        	ext_ft_resolver::ext(env::current_account_id())
+        	.with_static_gas(GAS_FOR_RESOLVE_TRANSFER)
+        	.ft_resolve_transfer(sender_id, receiver_id, amount.into()),
+    	)
+    	.into()
+}
+<span class="boring">}
+</span></code></pre></pre>
+<p>来看回调函数是用来做什么的，<code>ft_on_tranfer</code>在执行成功后，会返回一个退款的值，将FT退回给Sender。但是由于<code>ft_on_transfer</code>是用户自定义的函数，所以我们在处理的时候要考虑边界情况。</p>
+<p><code>unused_amount</code>的取值会在下面三者之间：</p>
+<ol>
+<li>{0} -&gt; 不做任何事</li>
+<li>(0, receiver's balance] -&gt; 此时有能力退款，sender += unused_amout, reciver -= unused_amout</li>
+<li>(receiver's balance, +∞) -&gt; 此时无能力退款，尽力退款。 sender += receiver's balance, reciver -= receiver's balance = 0</li>
+</ol>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>pub fn internal_ft_resolve_transfer(
+        &amp;mut self,
+        sender_id: &amp;AccountId,
+        receiver_id: AccountId,
+        amount: U128,
+    ) -&gt; (u128, u128) {
+        let amount: Balance = amount.into();
+
+        // Get the unused amount from the `ft_on_transfer` call result. 
+        // 下面用“声明的退款”表示unused_amount
+        let unused_amount = match env::promise_result(0) {
+            PromiseResult::NotReady =&gt; env::abort(),
+            PromiseResult::Successful(value) =&gt; {
+                // 声明的退款不能大于我的转账
+                if let Ok(unused_amount) = near_sdk::serde_json::from_slice::&lt;U128&gt;(&amp;value) {
+                    std::cmp::min(amount, unused_amount.0)
+                } else {
+                    amount
+                }
+            }
+            PromiseResult::Failed =&gt; amount,
+        };
+		
+        // 如果退款是0的话，不需要特殊处理
+        if unused_amount &gt; 0 {
+            // 获取退款方的FT数量
+            let receiver_balance = self.accounts.get(&amp;receiver_id).unwrap_or(0);
+            // 如果退款方没有FT也不需要特殊处理，他没钱退款
+            if receiver_balance &gt; 0 {
+                // 退款是 退款方的FT 和 声明的退款 的较小值
+                let refund_amount = std::cmp::min(receiver_balance, unused_amount);
+                // 这里肯定不会溢出
+                self.accounts.insert(&amp;receiver_id, &amp;(receiver_balance - refund_amount));
+
+                // 判断接受退款方是否存在，有可能他已经注销了
+                if let Some(sender_balance) = self.accounts.get(sender_id) {
+                    // 如果接受退款方存在，将退款
+                    self.accounts.insert(sender_id, &amp;(sender_balance + refund_amount));
+                    // 记个日志
+                    FtTransfer {
+                        old_owner_id: &amp;receiver_id,
+                        new_owner_id: sender_id,
+                        amount: &amp;U128(refund_amount),
+                        memo: Some(&quot;refund&quot;),
+                    }
+                    .emit();
+                    return (amount - refund_amount, 0);
+                } else {
+                    // Sender's account was deleted, so we need to burn tokens.
+                    // 总发行量减去退款
+                    self.total_supply -= refund_amount;
+                    log!(&quot;The account of the sender was deleted&quot;);
+                    // 记个日志
+                    FtBurn {
+                        owner_id: &amp;receiver_id,
+                        amount: &amp;U128(refund_amount),
+                        memo: Some(&quot;refund&quot;),
+                    }
+                    .emit();
+                    return (amount, refund_amount);
+                }
+            }
+        }
+        (amount, 0)
+    }
+<span class="boring">}
+</span></code></pre></pre>
+<p>下面的两个函数并不复杂</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>fn ft_total_supply(&amp;self) -&gt; U128 {
+    self.total_supply.into()
+}
+fn ft_balance_of(&amp;self, account_id: AccountId) -&gt; U128 {
+    self.accounts.get(&amp;account_id).unwrap_or(0).into()
+}
+<span class="boring">}
+</span></code></pre></pre>
+<h3 id="eventrs"><a class="header" href="#eventrs">event.rs</a></h3>
+<p>这里是对三种事件做日志：</p>
+<p>铸币(mint)：total_supply增加</p>
+<p>熔币(burn): total_supply减少</p>
+<p>转账(transfer): 一个account的FT转移给另一个account的FT</p>
+<h3 id="macrosrs"><a class="header" href="#macrosrs">macros.rs</a></h3>
+<p>提供了两个宏，让你简单的为自己的类实现标准实现。还提供了两个hook。</p>
+<h3 id="metadatars"><a class="header" href="#metadatars">metadata.rs</a></h3>
+<p>关于FT的一些元数据</p>
+<h3 id="receiverrs"><a class="header" href="#receiverrs">receiver.rs</a></h3>
+<p>提供了远程调用<code>ft_on_transfer</code>的方法。</p>
+<h3 id="resolverrs"><a class="header" href="#resolverrs">resolver.rs</a></h3>
+<p>提供了处理<code>ft_on_transfer</code>返回的回调。</p>
+<h3 id="storage_implrs"><a class="header" href="#storage_implrs">storage_impl.rs</a></h3>
+<p>终于来到了最后一个文件。然而要理解这个代码，首先要理解<a href="https://nomicon.io/Standards/StorageManagement">Storage Management NEP145</a>。其核心思想为，对于一个账户<code>example.near</code>，如果上面的合约需要存储数据，就需要**质押(stake)**对应于存储量的NEAR。我们直接分析其接口。那么我们的FT合约，每次添加一个用户需要消耗一定的存储，这个负担显然是要用户来承担的，不然恶意的用户就可以无限注册了。这也就是这个文件要保证的事情。</p>
+<p>我们结合接口和实现进行分析</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>pub trait StorageManagement {
+    fn storage_deposit(
+        &amp;mut self,
+        account_id: Option&lt;AccountId&gt;,
+        registration_only: Option&lt;bool&gt;,
+    ) -&gt; StorageBalance;
+    fn storage_withdraw(&amp;mut self, amount: Option&lt;U128&gt;) -&gt; StorageBalance;
+    fn storage_unregister(&amp;mut self, force: Option&lt;bool&gt;) -&gt; bool;
+    fn storage_balance_bounds(&amp;self) -&gt; StorageBalanceBounds;
+    fn storage_balance_of(&amp;self, account_id: AccountId) -&gt; Option&lt;StorageBalance&gt;;
+}
+<span class="boring">}
+</span></code></pre></pre>
+<p>storage_deposit：为存储付费，在我们的场景其实就是在中央账本上注册帐号。</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>// `registration_only` doesn't affect the implementation for vanilla fungible token.
+#[allow(unused_variables)]
+fn storage_deposit(
+    &amp;mut self,
+    account_id: Option&lt;AccountId&gt;,
+    registration_only: Option&lt;bool&gt;,
+) -&gt; StorageBalance {
+    // 转来的NEAR
+    let amount: Balance = env::attached_deposit();
+    // 看起来只要你付NEAR了，就可以帮别人注册。默认是给合约调用者注册
+    let account_id = account_id.unwrap_or_else(env::predecessor_account_id);
+    // 如果已经存在了这个帐号，就不应该再给他收存储费了
+    if self.accounts.contains_key(&amp;account_id) {
+        log!(&quot;The account is already registered, refunding the deposit&quot;);
+        if amount &gt; 0 {
+            Promise::new(env::predecessor_account_id()).transfer(amount);
+        }
+    } else {
+        // 获取存储帐号信息最少需要的NEAR，其实就是确切的需要的NEAR，因为在我们的场景中数据的大小是固定的。
+        let min_balance = self.storage_balance_bounds().min.0;
+
+        // TODO 为什么这里就是panic而不是退回呢，类似的上面为什么是退回而不是Panic？Panic后是会退回的。
+        // 应该是出于逻辑上的考量：Panic说明中央账本上没有，Success说明中央账本上有
+        if amount &lt; min_balance {
+            env::panic_str(&quot;The attached deposit is less than the minimum storage balance&quot;);
+        }
+
+        // 在中央账本上添加account信息
+        self.internal_register_account(&amp;account_id);
+        // 将多余的NEAR退还
+        let refund = amount - min_balance;
+        if refund &gt; 0 {
+            Promise::new(env::predecessor_account_id()).transfer(refund);
+        }
+    }
+    self.internal_storage_balance_of(&amp;account_id).unwrap()
+}
+<span class="boring">}
+</span></code></pre></pre>
+<p>storage_withdraw：撤回存储。比如原来用户用了10K的存储，后来变成5K了，那么就可以把多质押的NEAR取回。不过在我们的场景下，其实存储量并不会变动，所以这个函数没有什么卵用。你看amount只要大于0就会Panic。。</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>fn storage_withdraw(&amp;mut self, amount: Option&lt;U128&gt;) -&gt; StorageBalance {
+    // 只能本人亲自来
+    assert_one_yocto();
+    let predecessor_account_id = env::predecessor_account_id();
+    if let Some(storage_balance) = self.internal_storage_balance_of(&amp;predecessor_account_id) {
+        match amount {
+            Some(amount) if amount.0 &gt; 0 =&gt; {
+                env::panic_str(&quot;The amount is greater than the available storage balance&quot;);
+            }
+            _ =&gt; storage_balance,
+        }
+    } else {
+        env::panic_str(
+            format!(&quot;The account {} is not registered&quot;, &amp;predecessor_account_id).as_str(),
+        );
+    }
+<span class="boring">}
+</span></code></pre></pre>
+<p>storage_unregister: 与之对应的storage_deposit。取消注册，我们应该把用户为了存储而质押的NEAR返回给他。</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>// 这里我做了一点修改，取消了一层封装
+fn storage_unregister(&amp;mut self, force: Option&lt;bool&gt;) -&gt; bool {
+    // 只能本人亲自来
+    assert_one_yocto();
+    let account_id = env::predecessor_account_id();
+    // force如果是true的话，即使在中央账本中accout还有余额FT，也照样注销
+    let force = force.unwrap_or(false);
+    if let Some(balance) = self.accounts.get(&amp;account_id) {
+        if balance == 0 || force {
+            // 从中央账本中注销帐号
+            self.accounts.remove(&amp;account_id);
+            // 总发行量减少，TODO 这里为什么不需要打一个Burn的日志？
+            self.total_supply -= balance;
+            // 将质押的NEAR转回去
+            Promise::new(account_id.clone()).transfer(self.storage_balance_bounds().min.0 + 1);
+            true
+        } else {
+            // 账户里还有余额并且没有force的话，报错
+            env::panic_str(
+                &quot;Can't unregister the account with the positive balance without force&quot;,
+            )
+        }
+    } else {
+        log!(&quot;The account {} is not registered&quot;, &amp;account_id);
+        false
+    }
+}
+<span class="boring">}
+</span></code></pre></pre>
+<p>storage_balance_bounds: 返回存储需要的NEAR，虽然是一个返回值是一个上下范围，但实际上在我们的场景中存储大小固定，最小值=最大值。算法就是<code>bytes * NEAR/bytes</code>，很简单。</p>
+<p>storage_balance_of: 返回帐号为质押的NEAR中，有多少是质押的，有多少是空闲的。但实际上在我们的场景中存储大小固定，所以全部都会是质押的，没有空闲的。</p>
+<hr />
+<p>我们还可以在这里看到一个非常简单的FT实现，作为重入攻击的例子一部分。他由三部分（三个合约）组成：</p>
+<ul>
+<li>ft_contract: 这是一个非常简单的FT实现。仅仅提供了<code>ft_transfer_call</code>接口，实现转账并调用接受者的<code>ft_on_transfer</code>函数。并且为了简单起见，接受者在这里就是</li>
+<li>victim_contract: 为一个DEX合约，可以认为是Token的交易平台，存在漏洞。</li>
+<li>attack_contract: 攻击者合约。</li>
+</ul>
+<p>我们主要专注存在漏洞的合约。<code>withdraw</code>函数的目的是把DEX合约中attacker_balance账户中的FT支付给FT平台。</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>pub fn withdraw(&amp;mut self, amount: u128) -&gt; Promise {
+    assert!(self.attacker_balance &gt;= amount);
+    // Call Attacker的收币函数
+    let ft_token = AccountId::from_str(FT_TOKEN).unwrap();
+    // 调用`ft_on_transfer`进行支付操作，一个Promise
+    ext_ft_token::ext(ft_token)
+        .with_static_gas(GAS_FOR_SINGLE_CALL)
+        .ft_transfer_call(amount)
+        .then(
+            // 在回调函数中从attacker_balance减去支付的FT，又一个Promise
+            ext_self::ext(env::current_account_id())
+            .with_static_gas(GAS_FOR_SINGLE_CALL)
+            .ft_resolve_transfer(amount.into()),
+        )
+}
+<span class="boring">}
+</span></code></pre></pre>
+<p>乍一看，似乎逻辑没有问题。attacker有足够的FT进行支付，支付成功之后对attacker的FT进行扣除。但是问题在于：</p>
+<p>NEAR合约上，Promise是异步执行的单元——也就是在你的<strong>支付操作<code>ft_transfer_call</code><strong>和</strong>扣款回调函数<code>ft_resolve_transfer</code><strong>执行之间，理论上可以存在其他操作——并且<code>ft_transfer_call</code>中会调用</strong>attacker提供</strong>的<code>ft_on_transfer</code>函数，也就是说这个Bug可以被attacker 100%的利用。</p>
+<p>那么如果我们是攻击者，要如何编写<code>ft_on_transfer</code>以利用这个Bug，最简单的方式就是重入<code>withdraw</code>函数。执行流程如下图所示（每一个方块是单独的执行单元，高度代表了执行先后顺序，同一高度我也不清楚是什么意思）</p>
+<p><img src="../images/reenter.drawio.svg" alt="reenter.drawio" /></p>
+<blockquote>
+<p>NEAR的异步模型我需要做进一步的学习。可以做这样的理解：</p>
+<p>当我抛出一个Promise之后，程序不会阻塞会接着往下执行，而Promise会在之后的某一个块内运行。</p>
+<p>同一个合约内的Promise，不可能同时执行。</p>
+</blockquote>
+<h2 id="upgrade"><a class="header" href="#upgrade">Upgrade</a></h2>
+<p>顾名思义，升级。在NEAR中，一个智能合约分成两个部分，代码(Code)和状态(State，也可以认为是存储的数据)。当我们进行升级的时候，只升级代码就会比较简单。</p>
+<p>这个接口是让我们决定代码的Owner的，只有代码的Owner可以改变代码的Owner。他的实现都很简单。</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>pub trait Ownable {
+    fn assert_owner(&amp;self) {
+        require!(env::predecessor_account_id() == self.get_owner(), &quot;Owner must be predecessor&quot;);
+    }
+    fn get_owner(&amp;self) -&gt; AccountId;
+    fn set_owner(&amp;mut self, owner: AccountId);
+}
+<span class="boring">}
+</span></code></pre></pre>
+<p>来看定义的接口。升级分成两个过程，一个是stage，然后是deploy。如果数据也发生了改变，就需要调用migrate。</p>
+<blockquote>
+<p>TODO 暂时还不清楚为什么要分成两步去完成，是区块链本身的什么限制吗。可能是为了给开发者更高的灵活性。</p>
+<p>我怎么觉得他的stagint_duration有点随意。怪怪的。。</p>
+</blockquote>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>pub trait Upgradable {
+    fn get_staging_duration(&amp;self) -&gt; WrappedDuration;
+    fn stage_code(&amp;mut self, code: Vec&lt;u8&gt;, timestamp: Timestamp);
+    fn deploy_code(&amp;mut self) -&gt; Promise;
+
+    /// Implement migration for the next version.
+    /// Should be `unimplemented` for a new contract.
+    /// TODO: consider adding version of the contract stored in the storage?
+    fn migrate(&amp;mut self) {
+        unimplemented!();
+    }
+}
+<span class="boring">}
+</span></code></pre></pre>
+<p>stage_code: 将代码直接存储到合约中。这里的TimeStamp是做什么用呢？由于升级被分成了两个过程，当我们deploy的时候可能还没有stage完成，所以我们在stage的时候传入了一个timestamp，希望depoly一定在这个timestamp之后才去执行。</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>fn stage_code(&amp;mut self, code: Vec&lt;u8&gt;, timestamp: Timestamp) {
+    self.assert_owner();
+    // 保证timestamp之前，已经stage完成
+    require!(
+        env::block_timestamp() + self.staging_duration &lt; timestamp,
+        &quot;Timestamp must be later than staging duration&quot;
+    );
+    // Writes directly into storage to avoid serialization penalty by using default struct.
+    env::storage_write(b&quot;upgrade&quot;, &amp;code);
+    self.staging_timestamp = timestamp;
+}
+<span class="boring">}
+</span></code></pre></pre>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>fn deploy_code(&amp;mut self) -&gt; Promise {
+    // TODO 这里的staging_duration到底是什么语义呢？
+    if self.staging_timestamp &lt; env::block_timestamp() {
+        env::panic_str(
+            format!(
+                &quot;Deploy code too early: staging ends on {}&quot;,
+                self.staging_timestamp + self.staging_duration
+            )
+            .as_str(),
+        );
+    }
+    let code = env::storage_read(b&quot;upgrade&quot;)
+    .unwrap_or_else(|| env::panic_str(&quot;No upgrade code available&quot;));
+    env::storage_remove(b&quot;upgrade&quot;);
+    Promise::new(env::current_account_id()).deploy_contract(code)
+}
+<span class="boring">}
+</span></code></pre></pre>
+<h2 id="non-fungible-token"><a class="header" href="#non-fungible-token">Non-fungible Token</a></h2>
+<p>NFT翻译为非同质化代币。每个代币可以代表一个独特的数码资料，作为虚拟商品所有权的电子认证或凭证。</p>
+<h3 id="core-functionality"><a class="header" href="#core-functionality">Core Functionality</a></h3>
+<p>感觉看代码更加清楚，先看接口：</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>pub trait NonFungibleTokenCore {
+    fn nft_transfer(
+        &amp;mut self,
+        receiver_id: AccountId,
+        token_id: TokenId,
+        approval_id: Option&lt;u64&gt;,
+        memo: Option&lt;String&gt;,
+    );
+
+    fn nft_transfer_call(
+        &amp;mut self,
+        receiver_id: AccountId,
+        token_id: TokenId,
+        approval_id: Option&lt;u64&gt;,
+        memo: Option&lt;String&gt;,
+        msg: String,
+    ) -&gt; PromiseOrValue&lt;bool&gt;;
+
+    fn nft_token(&amp;self, token_id: TokenId) -&gt; Option&lt;Token&gt;;
+}
+
+<span class="boring">}
+</span></code></pre></pre>
+<p>是不是有一种似曾相识的感觉，就接口而言，基本的转账操作和FT很像。这也是应该的，都是转账有什么区别。</p>
+<ul>
+<li><code>nft_transfer</code>: 将<code>token_id</code>对应的NFT发送给<code>receiver</code>，先不用管<code>appoval_id</code>，后面介绍。</li>
+<li><code>nft_transfer_call</code>: 将<code>token_id</code>对应的NFT发送给<code>receiver</code>，并调用函数``nft_on_transfer<code>，函数参数由</code>msg`决定。</li>
+<li><code>nft_token</code>: 查询<code>token_id</code>对应的Token信息。</li>
+</ul>
+<p>来看实现。首先是数据结构，我发现在智能合约上，用空间换时间是一个普遍的操作，总之要杜绝遍历这个操作，不过这也会让代码变得稍微丑陋：一个状态的改变，需要同时更新所有相关的数据。</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>#[derive(BorshDeserialize, BorshSerialize)]
+pub struct NonFungibleToken {
+    pub owner_id: AccountId,
+    pub extra_storage_in_bytes_per_token: StorageUsage,
+    pub owner_by_id: TreeMap&lt;TokenId, AccountId&gt;,
+
+    pub token_metadata_by_id: Option&lt;LookupMap&lt;TokenId, TokenMetadata&gt;&gt;,
+    pub tokens_per_owner: Option&lt;LookupMap&lt;AccountId, UnorderedSet&lt;TokenId&gt;&gt;&gt;,
+    pub approvals_by_id: Option&lt;LookupMap&lt;TokenId, HashMap&lt;AccountId, u64&gt;&gt;&gt;,
+    pub next_approval_id_by_id: Option&lt;LookupMap&lt;TokenId, u64&gt;&gt;,
+}
+<span class="boring">}
+</span></code></pre></pre>
+<p>我们依然忽略Option的内容。那么和FungibleToken是很相似的，不同在于</p>
+<ul>
+<li>
+<p>NFT不统计发行总量。因为<code>owner_by_id</code>使用的TreeMap获取长度的复杂度是$O(1)$。</p>
+<blockquote>
+<p>这个TreeMap的实现，和Linux上对进程的管理非常像，一个红黑数+一个数组。</p>
+</blockquote>
+</li>
+<li>
+<p>NFT存储了<code>owner_id</code>，TODO 这个还不是很明白，这个标准实现不认为owner就是<code>env::current_account_id</code>吗？</p>
+</li>
+<li>
+<p>NFT存储了TokenID到AccountID的映射。</p>
+</li>
+</ul>
+<h3 id="approval-management"><a class="header" href="#approval-management">Approval Management</a></h3>
+<p><a href="https://nomicon.io/Standards/Tokens/NonFungibleToken/ApprovalManagement">NEP-178</a> 要解决的问题，是要更精细的控制交易过程。基本的交易过程，假设在Alice和Bob之间发生，Bob转Token给Alice，是这样的：Bob调用<code>ft_transfer_call(alice)</code>或<code>ft_transfer(alice)</code>。有了Approval Management，Bob就可以将NFT交给第三方（比如Market）进行管理，授权Market转NFT给Alice。</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>pub trait NonFungibleTokenApproval {
+    fn nft_approve(
+        &amp;mut self,
+        token_id: TokenId,
+        account_id: AccountId,
+        msg: Option&lt;String&gt;,
+    ) -&gt; Option&lt;Promise&gt;;
+    fn nft_revoke(&amp;mut self, token_id: TokenId, account_id: AccountId);
+    fn nft_revoke_all(&amp;mut self, token_id: TokenId);
+    fn nft_is_approved(
+        &amp;self,
+        token_id: TokenId,
+        approved_account_id: AccountId,
+        approval_id: Option&lt;u64&gt;,
+    ) -&gt; bool;
+}
+<span class="boring">}
+</span></code></pre></pre>
+<ul>
+<li><code>nft_approve</code>: 允许特定的account转我的特定的token。</li>
+<li><code>nft_revoke</code>: 不允许特定的account转我的特定的token。</li>
+<li><code>nft_revoke_all</code>: 不允许任何account将我的特定的token转。</li>
+<li><code>nft_is_approved</code>: 检查特定的Token是否允许被特定的account转。有一个可选的approval_id参数。</li>
+</ul>
+<blockquote>
+<p>TODO 现在看起来，他人将NFT转给我我是无法拒绝的，但是我要为支付（质押）NEAR吗（不需要）？ 有时是可以拒绝的，通过nft_on_transfer返回false可以拒绝。</p>
+<p>TODO 我对approval_id的意义感到不解，他有啥使用场景呢？</p>
+</blockquote>
+<h3 id="enumeration"><a class="header" href="#enumeration">Enumeration</a></h3>
+<p>简单的说，Core要求的是TokenID-&gt;AccountID的查询，而Enumeration提供了相反的AccountID-&gt;TokenID的查询。</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>pub trait NonFungibleTokenEnumeration {
+    fn nft_total_supply(&amp;self) -&gt; U128;
+    fn nft_tokens(
+        &amp;self,
+        from_index: Option&lt;U128&gt;, // default: &quot;0&quot;
+        limit: Option&lt;u64&gt;,       // default: unlimited (could fail due to gas limit)
+    ) -&gt; Vec&lt;Token&gt;;
+    fn nft_supply_for_owner(&amp;self, account_id: AccountId) -&gt; U128;
+    fn nft_tokens_for_owner(
+        &amp;self,
+        account_id: AccountId,
+        from_index: Option&lt;U128&gt;, // default: &quot;0&quot;
+        limit: Option&lt;u64&gt;,       // default: unlimited (could fail due to gas limit)
+    ) -&gt; Vec&lt;Token&gt;;
+}
+<span class="boring">}
+</span></code></pre></pre>
+<ul>
+<li><code>nft_total_supply</code>: 返回NFT的总发行量。</li>
+<li><code>nft_tokens</code>: 返回索引在<code>[from_index, from_index+limit)</code>之间的NFT列表。</li>
+<li><code>nft_supply_for_owner</code>: 返回account拥有的NFT数量。</li>
+<li><code>nft_tokens_for_owner</code>: 返回account拥有的NFT列表。</li>
+</ul>
+<h3 id="具体实现"><a class="header" href="#具体实现">具体实现</a></h3>
+<p>在看实现代码之前，复习一下Rust的知识点。Rust提供了非常函数式的代码风格，让我们在处理Option/Result的时候有着很高的灵活性，也在代码中被大量使用以避免match/if let的过分嵌套。如果对此已经很熟悉，可以跳过</p>
+<div class="table-wrapper"><table><thead><tr><th>Option的函数定义</th><th>Option说明</th><th>Result说明</th></tr></thead><tbody>
+<tr><td><code>pub fn and_then&lt;U&gt;(self, optb: Option&lt;U&gt;) -&gt; Option&lt;U&gt;</code></td><td>Some(x) =&gt; f(x),<br/>None =&gt; None,</td><td>Ok(t) =&gt; op(t),<br/>Err(e) =&gt; Err(e),</td></tr>
+<tr><td><code>pub fn or_else&lt;F&gt;(self, f: F) -&gt; Option&lt;T&gt;</code></td><td>Some(x) =&gt; Some(x),<br />None =&gt; f(),</td><td>Ok(t) =&gt; Ok(t),<br/>Err(e) =&gt; op(e),</td></tr>
+<tr><td><code>pub fn map_or&lt;U, F&gt;(self, default: U, f: F) -&gt; U</code> <br />// 我觉得叫做<code>map_or_default</code>更合适</td><td>Some(t) =&gt; f(t),<br />None =&gt; default,</td><td>Ok(t) =&gt; f(t),<br/>Err(_) =&gt; default,</td></tr>
+<tr><td><code>pub fn map_or_else&lt;U, D, F&gt;(self, default: D, f: F) -&gt; U</code></td><td>Some(t) =&gt; f(t),<br />None =&gt; default(),</td><td>Ok(t) =&gt; f(t),<br/>Err(e) =&gt; default(e),</td></tr>
+<tr><td><code>pub const fn ok_or_else&lt;E&gt;(self, err: E) -&gt; Result&lt;T, E&gt;</code><br /><code>pub const fn ok(self) -&gt; Option&lt;T&gt;</code></td><td>Some(v) =&gt; Ok(v),<br/>None =&gt; Err(err()),</td><td>Ok(x) =&gt; Some(x),<br/>Err(x) =&gt; None,</td></tr>
+</tbody></table>
+</div>
+<ul>
+<li>如果方法中带有<code>and</code>，那么是会对Some/Ok进行特殊处理。</li>
+<li>如果方法中带有<code>then</code>，那么对Some/Ok的特殊处理是传入一个函数，实现延迟计算的功能。</li>
+<li>如果方法中带有<code>or</code>，那么是会对None进行特殊处理。</li>
+<li>如果方法中带有<code>else</code>，那么对None的特殊处理是传入一个函数，实现延迟计算的功能。</li>
+<li>如果方法中带有<code>ok</code>，是为了在Result和Option之间做相互转换。</li>
+</ul>
+<h4 id="数据结构"><a class="header" href="#数据结构">数据结构</a></h4>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>pub struct NonFungibleToken {
+    // owner of contract
+    pub owner_id: AccountId,
+
+    // The storage size in bytes for each new token
+    pub extra_storage_in_bytes_per_token: StorageUsage,
+
+    // always required
+    pub owner_by_id: TreeMap&lt;TokenId, AccountId&gt;,
+
+    // required by metadata extension
+    pub token_metadata_by_id: Option&lt;LookupMap&lt;TokenId, TokenMetadata&gt;&gt;,
+
+    // required by enumeration extension
+    pub tokens_per_owner: Option&lt;LookupMap&lt;AccountId, UnorderedSet&lt;TokenId&gt;&gt;&gt;,
+
+    // required by approval extension
+    pub approvals_by_id: Option&lt;LookupMap&lt;TokenId, HashMap&lt;AccountId, u64&gt;&gt;&gt;,
+    pub next_approval_id_by_id: Option&lt;LookupMap&lt;TokenId, u64&gt;&gt;,
+}
+<span class="boring">}
+</span></code></pre></pre>
+<p>Approval Extension使用的数据结构有点奇怪，来理解一下。最Naive的方式实现Approval Extension的方法，是一个邻接矩阵：<code>approve[TokenID][AccountID] == true</code>代表允许，<code>== false</code>代表不允许。但是显然，这个表的大小是我们无法接受的，用邻接表存很大的稀疏图，本是愚蠢的做法，更何况是在区块链上。</p>
+<p>那么，应该使用邻接表——仔细一看，<code>approvals_by_id</code>不就是邻接表吗。</p>
+<p>那<code>next_approval_id_by_id</code>是做什么用的呢？这就要考虑一个问题：其实我们的<code>approve</code>也是有<code>id</code>的，虽然我不知道他有什么用，但是我们要保证一个Token对应的ApprovalID各不相同——那么我们可以存一下当前使用过的ApprovalID（递增的话就只用存最后一个，也就是使用的策略），然后每次分配+1就行——没有回收的必要，$2^{64}$是很大的数，一个一个加是不可能溢出的。</p>
+<h4 id="core实现"><a class="header" href="#core实现">Core实现</a></h4>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>impl NonFungibleTokenCore for NonFungibleToken {
+    // 和ft_transfer逻辑完全一致
+    fn nft_transfer(
+        &amp;mut self,
+        receiver_id: AccountId,
+        token_id: TokenId,
+        approval_id: Option&lt;u64&gt;,
+        memo: Option&lt;String&gt;,
+    ) {
+        // 保证本人亲自操作
+        assert_one_yocto();
+        // 发送者，就是函数调用者
+        let sender_id = env::predecessor_account_id();
+        // 内部转TOKEN函数
+        self.internal_transfer(&amp;sender_id, &amp;receiver_id, &amp;token_id, approval_id, memo);
+    }
+
+    // 和ft_transfer_call逻辑完全一致
+    fn nft_transfer_call(
+        &amp;mut self,
+        receiver_id: AccountId,
+        token_id: TokenId,
+        approval_id: Option&lt;u64&gt;,
+        memo: Option&lt;String&gt;,
+        msg: String,
+    ) -&gt; PromiseOrValue&lt;bool&gt; {
+        assert_one_yocto();
+        require!(env::prepaid_gas() &gt; GAS_FOR_NFT_TRANSFER_CALL, &quot;More gas is required&quot;);
+        let sender_id = env::predecessor_account_id();
+        let (old_owner, old_approvals) =
+            self.internal_transfer(&amp;sender_id, &amp;receiver_id, &amp;token_id, approval_id, memo);
+        // Initiating receiver's call and the callback
+        ext_nft_receiver::ext(receiver_id.clone())
+            .with_static_gas(env::prepaid_gas() - GAS_FOR_NFT_TRANSFER_CALL)
+            // 调用receiver的nft_on_transfer函数，收款函数
+            .nft_on_transfer(sender_id, old_owner.clone(), token_id.clone(), msg)
+            .then(
+                ext_nft_resolver::ext(env::current_account_id())
+                    .with_static_gas(GAS_FOR_RESOLVE_TRANSFER)
+                    // 调用回调函数
+                    .nft_resolve_transfer(old_owner, receiver_id, token_id, old_approvals),
+            )
+            .into()
+    }
+
+    fn nft_token(&amp;self, token_id: TokenId) -&gt; Option&lt;Token&gt; {
+        let owner_id = self.owner_by_id.get(&amp;token_id)?;
+        Some(Token { token_id, owner_id, metadata, approved_account_ids })
+    }
+}
+<span class="boring">}
+</span></code></pre></pre>
+<p>这一块和FT的实现非常相似。区别主要还是要看内部的转账<code>internal_transfer</code>的实现和回调函数<code>nft_resolve_transfer</code>的实现。</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>pub fn internal_transfer(
+    &amp;mut self,
+    sender_id: &amp;AccountId,
+    receiver_id: &amp;AccountId,
+    #[allow(clippy::ptr_arg)] token_id: &amp;TokenId,
+    approval_id: Option&lt;u64&gt;,
+    memo: Option&lt;String&gt;,
+) -&gt; (AccountId, Option&lt;HashMap&lt;AccountId, u64&gt;&gt;) {
+    // 获取Token的Owner，如果没有的话直接Panic
+    let owner_id = self.owner_by_id.get(token_id).unwrap_or_else(|| env::panic_str(&quot;Token not found&quot;));
+
+    // 从approvals_by_id中删除token的所有规则，因为token被转账了，之前的规则应该取消了
+    let approved_account_ids = self.approvals_by_id.as_mut().and_then(|by_id| by_id.remove(token_id));
+
+    // 检查sender_id是不是真的有权限去转账token
+    // 如果sender_id != owner_id
+    let sender_id = if sender_id != &amp;owner_id {
+        // 如果没有使用approval extension，并且sender_id != owner_id，不允许转账
+        let app_acc_ids = approved_account_ids.as_ref().unwrap_or_else(|| env::panic_str(&quot;Unauthorized&quot;));
+
+        // 对于使用了approval extension的情况，我们要判断sender_id是否是否在token授权交易的列表中
+        let actual_approval_id = app_acc_ids.get(sender_id);
+        // 如果不在，不允许转账
+        if actual_approval_id.is_none() {
+            env::panic_str(&quot;Sender not approved&quot;);
+        }
+
+        // TODO 检查提供的approval_id是否与查询到的approval_id相同，要求一定相同或者不提供approval_id
+        require!(
+            approval_id.is_none() || actual_approval_id == approval_id.as_ref(),
+            format!(
+                &quot;The actual approval_id {:?} is different from the given approval_id {:?}&quot;,
+                actual_approval_id, approval_id
+            )
+        );
+        Some(sender_id)
+    } else {
+        None
+    };
+
+    // 如果receiver_id和owner_id一样的话就不需要转了
+    require!(&amp;owner_id != receiver_id, &quot;Current and next owner must differ&quot;);
+
+    // 将token的owner变成receiver，其实真正的转账逻辑就这一句话
+    self.owner_by_id.insert(token_id, receiver_id);
+
+    // 如果使用了Enumeration standard ，还要更新一下统计数据
+    if let Some(tokens_per_owner) = &amp;mut self.tokens_per_owner {
+        // owner_tokens should always exist, so call `unwrap` without guard
+        let mut owner_tokens = tokens_per_owner.get(&amp;owner_id).unwrap_or_else(|| {
+            env::panic_str(&quot;Unable to access tokens per owner in unguarded call.&quot;)
+        });
+        // 从owner拥有的token列表中移除此token
+        owner_tokens.remove(token_id);
+        if owner_tokens.is_empty() {
+            tokens_per_owner.remove(&amp;owner_id);
+        } else {
+            tokens_per_owner.insert(&amp;owner_id, &amp;owner_tokens);
+        }
+        // 从receiver拥有的token列表中添加此token
+        let mut receiver_tokens = tokens_per_owner.get(receiver_id).unwrap_or_else(|| {
+            UnorderedSet::new(StorageKey::TokensPerOwner {
+                account_hash: env::sha256(receiver_id.as_bytes()),
+            })
+        });
+        receiver_tokens.insert(token_id);
+        tokens_per_owner.insert(receiver_id, &amp;receiver_tokens);
+    };
+    
+
+    // 打个日志
+    NonFungibleToken::emit_transfer(&amp;owner_id, receiver_id, token_id, sender_id, memo);
+
+    // 返回 previous owner &amp; approvals 信息，供回调函数使用
+    (owner_id, approved_account_ids)
+}
+<span class="boring">}
+</span></code></pre></pre>
+<p>回调函数实现</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>fn nft_resolve_transfer(
+    &amp;mut self,
+    previous_owner_id: AccountId,
+    receiver_id: AccountId,
+    token_id: TokenId,
+    approved_account_ids: Option&lt;HashMap&lt;AccountId, u64&gt;&gt;,
+) -&gt; bool {
+    // 判断是否要将NFT返回给发送者previous_owner_id
+    let must_revert = match env::promise_result(0) {
+        PromiseResult::NotReady =&gt; env::abort(),
+        PromiseResult::Successful(value) =&gt; {
+            if let Ok(yes_or_no) = near_sdk::serde_json::from_slice::&lt;bool&gt;(&amp;value) {
+                yes_or_no
+            } else {
+                true
+            }
+        }
+        PromiseResult::Failed =&gt; true,
+    };
+
+    // 如果不需要返回NFT，就可以直接退出了
+    if !must_revert {
+        return true;
+    }
+
+    // OTHERWISE, try to set owner back to previous_owner_id and restore approved_account_ids
+	// 否则，我们不仅要吧NFT回交给发送者，还要恢复我们之前修改的数据结构
+    
+    // Check that receiver didn't already transfer it away or burn it.
+    if let Some(current_owner) = self.owner_by_id.get(&amp;token_id) {
+        if current_owner != receiver_id {
+            // The token is not owned by the receiver anymore. Can't return it.
+            return true;
+        }
+    } else {
+        // The token was burned and doesn't exist anymore.
+        // Refund storage cost for storing approvals to original owner and return early.
+        if let Some(approved_account_ids) = approved_account_ids {
+            refund_approved_account_ids(previous_owner_id, &amp;approved_account_ids);
+        }
+        return true;
+    };
+
+    self.internal_transfer_unguarded(&amp;token_id, &amp;receiver_id, &amp;previous_owner_id);
+
+    // If using Approval Management extension,
+    // 1. revert any approvals receiver already set, refunding storage costs
+    // 2. reset approvals to what previous owner had set before call to nft_transfer_call
+    if let Some(by_id) = &amp;mut self.approvals_by_id {
+        if let Some(receiver_approvals) = by_id.get(&amp;token_id) {
+            refund_approved_account_ids(receiver_id.clone(), &amp;receiver_approvals);
+        }
+        if let Some(previous_owner_approvals) = approved_account_ids {
+            by_id.insert(&amp;token_id, &amp;previous_owner_approvals);
+        }
+    }
+    NonFungibleToken::emit_transfer(&amp;receiver_id, &amp;previous_owner_id, &amp;token_id, None, None);
+    false
+}
+<span class="boring">}
+</span></code></pre></pre>
+<p>Mint实现</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span> pub fn internal_mint_with_refund(
+        &amp;mut self,
+        token_id: TokenId,
+        token_owner_id: AccountId,
+        token_metadata: Option&lt;TokenMetadata&gt;,
+        refund_id: Option&lt;AccountId&gt;,
+    ) -&gt; Token {
+        // Remember current storage usage if refund_id is Some
+        let initial_storage_usage = refund_id.map(|account_id| (account_id, env::storage_usage()));
+
+        if self.token_metadata_by_id.is_some() &amp;&amp; token_metadata.is_none() {
+            env::panic_str(&quot;Must provide metadata&quot;);
+        }
+        if self.owner_by_id.get(&amp;token_id).is_some() {
+            env::panic_str(&quot;token_id must be unique&quot;);
+        }
+
+        let owner_id: AccountId = token_owner_id;
+
+        // Core behavior: every token must have an owner
+        self.owner_by_id.insert(&amp;token_id, &amp;owner_id);
+
+        // Metadata extension: Save metadata, keep variable around to return later.
+        // Note that check above already panicked if metadata extension in use but no metadata
+        // provided to call.
+        self.token_metadata_by_id
+            .as_mut()
+            .and_then(|by_id| by_id.insert(&amp;token_id, token_metadata.as_ref().unwrap()));
+
+        // Enumeration extension: Record tokens_per_owner for use with enumeration view methods.
+        if let Some(tokens_per_owner) = &amp;mut self.tokens_per_owner {
+            let mut token_ids = tokens_per_owner.get(&amp;owner_id).unwrap_or_else(|| {
+                UnorderedSet::new(StorageKey::TokensPerOwner {
+                    account_hash: env::sha256(owner_id.as_bytes()),
+                })
+            });
+            token_ids.insert(&amp;token_id);
+            tokens_per_owner.insert(&amp;owner_id, &amp;token_ids);
+        }
+
+        // Approval Management extension: return empty HashMap as part of Token
+        let approved_account_ids =
+            if self.approvals_by_id.is_some() { Some(HashMap::new()) } else { None };
+
+        if let Some((id, storage_usage)) = initial_storage_usage {
+            refund_deposit_to_account(env::storage_usage() - storage_usage, id)
+        }
+
+        // Return any extra attached deposit not used for storage
+
+        Token { token_id, owner_id, metadata: token_metadata, approved_account_ids }
+    }
+<span class="boring">}
+</span></code></pre></pre>
+<h4 id="approval实现"><a class="header" href="#approval实现">Approval实现</a></h4>
+<p>源代码里面的注释非常详细。</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>fn nft_approve(
+    &amp;mut self,
+    token_id: TokenId,
+    account_id: AccountId,
+    msg: Option&lt;String&gt;,
+) -&gt; Option&lt;Promise&gt; {
+    // 授权必须是本人操作
+    assert_at_least_one_yocto();
+    // 首先要开启approvals，获取数据结构
+    let approvals_by_id = self
+    	.approvals_by_id
+    	.as_mut()
+    	.unwrap_or_else(|| env::panic_str(&quot;NFT does not support Approval Management&quot;));
+
+    // 必须是Token的owner才可以给token授权
+    let owner_id = expect_token_found(self.owner_by_id.get(&amp;token_id));
+
+    require!(env::predecessor_account_id() == owner_id, &quot;Predecessor must be token owner.&quot;);
+
+    let next_approval_id_by_id = expect_approval(self.next_approval_id_by_id.as_mut());
+    // update HashMap of approvals for this token
+    let approved_account_ids = &amp;mut approvals_by_id.get(&amp;token_id).unwrap_or_default();
+    // 生成一个approval_id
+    let approval_id: u64 = next_approval_id_by_id.get(&amp;token_id).unwrap_or(1u64);
+    let old_approval_id = approved_account_ids.insert(account_id.clone(), approval_id);
+
+    // save updated approvals HashMap to contract's LookupMap
+    approvals_by_id.insert(&amp;token_id, approved_account_ids);
+
+    // increment next_approval_id for this token
+    next_approval_id_by_id.insert(&amp;token_id, &amp;(approval_id + 1));
+
+    // If this approval replaced existing for same account, no storage was used.
+    // Otherwise, require that enough deposit was attached to pay for storage, and refund
+    // excess.
+    let storage_used = if old_approval_id.is_none() { bytes_for_approved_account_id(&amp;account_id) } else { 0 };
+    refund_deposit(storage_used);
+
+    // if given `msg`, schedule call to `nft_on_approve` and return it. Else, return None.
+    msg.map(|msg| {
+        ext_nft_approval_receiver::ext(account_id)
+        .with_static_gas(env::prepaid_gas() - GAS_FOR_NFT_APPROVE)
+        .nft_on_approve(token_id, owner_id, approval_id, msg)
+    })
+}
+<span class="boring">}
+</span></code></pre></pre>
+<h4 id="enumeration实现"><a class="header" href="#enumeration实现">Enumeration实现</a></h4>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../../../Advanced/Blockchain/NEAR/Snippets.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next" href="../../../Advanced/Blockchain/NEAR/dao.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../../../Advanced/Blockchain/NEAR/Snippets.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next" href="../../../Advanced/Blockchain/NEAR/dao.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../../../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../../searcher.js" type="text/javascript" charset="utf-8"></script>
+
+        <script src="../../../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </body>
+</html>
