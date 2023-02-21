@@ -38,8 +38,8 @@ def scanhtml(path: Path, content) -> dict:
 def git():
     print("=======push to github======")
     os.system("git add .")
-    os.system(f'git commit --amend -m "{ctime()}"')
-    os.system("git push -f origin")
+    os.system(f'git commit -m "{ctime()}"')
+    os.system("git push origin")
 
 
 if __name__ == "__main__":
