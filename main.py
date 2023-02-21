@@ -39,7 +39,7 @@ def git():
     print("=======push to github======")
     os.system("git add .")
     os.system(f'git commit -m "{ctime()}"')
-    os.system("git push origin")
+    os.system("git push -f origin")
 
 
 if __name__ == "__main__":
