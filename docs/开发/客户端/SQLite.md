@@ -1,0 +1,14 @@
+---
+aliases: 
+tags: 
+date_created: Monday, September 30th 2024, 11:40:49 pm
+date_modified: Wednesday, November 13th 2024, 2:15:37 pm
+---
+
+# SQLite
+
+SQLite 是一个广泛使用的**嵌入式数据库管理系统**，它是用 C 语言编写的，提供了自给自足、无需配置、无需服务器和事务性的 SQL 数据库引擎。SQLite 与许多编程语言兼容，并且已经被整合到各种移动和桌面操作系统、应用程序以及浏览器中。SQLite 支持完全的 **ACID 事务**。
+
+SQLite 的测试覆盖率非常高，远远超过了许多商业软件产品。根据官方数据，SQLite 的测试覆盖率接近 100%，这意味着几乎每一行代码都被测试用例覆盖。
+
+## Usage

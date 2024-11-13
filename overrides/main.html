@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block content %}
+    {{ super() }}
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var article = document.querySelector('.md-content__inner');
+            if (article) {
+                var meta = document.createElement('div');
+                meta.className = 'article-meta';
+                
+                var metaContent = [];
+                
+                {% if page.meta.date_created %}
+                    metaContent.push(`<span class="meta-item">
+                        Create At: {{ page.meta.date_created }}
+                    </span>`);
+                {% endif %}
+                
+                {% if page.meta.date_modified %}
+                    metaContent.push(`<span class="meta-item">
+                        Modified At: {{ page.meta.date_modified }}
+                    </span>`);
+                {% endif %}
+                
+                if (metaContent.length > 0) {
+                    meta.innerHTML = `<hr class="meta-divider">` + metaContent.join('<br>');
+                    article.appendChild(meta);
+                }
+            }
+        });
+    </script>
+{% endblock %} 
