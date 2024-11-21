@@ -316,3 +316,30 @@ code {
 .meta-item i {
     margin-right: 0.3rem;
 }
+
+/* 引用样式 */
+.references {
+    margin-top: 3rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--md-default-fg-color--lightest);  /* 只用一条细线分隔 */
+}
+
+.references h2  {
+    font-size: 1rem;
+    margin-top: 0;
+    color: var(--md-default-fg-color);
+}
+
+.references ul {
+    margin: 0.5rem 0;
+    list-style-type: disc;  /* 使用实心圆点 */
+}
+
+.references li {
+    margin: 0.2rem 0;
+    font-size: 0.9rem;
+}
+
+.backlinks, .outbound-links {
+    margin-bottom: 1rem;
+}

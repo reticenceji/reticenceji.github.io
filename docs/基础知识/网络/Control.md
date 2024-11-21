@@ -2,7 +2,7 @@
 aliases: 
 tags: [TODO]
 date_created: Monday, September 30th 2024, 11:40:49 pm
-date_modified: Wednesday, November 20th 2024, 11:41:56 pm
+date_modified: Thursday, November 21st 2024, 12:59:47 pm
 ---
 
 # 流量控制和拥塞控制
@@ -127,9 +127,7 @@ TCP使用的算法和SR算法很接近了，但是实现上还是有细节的优
 
 那么链路层流量控制有什么办法呢？就是上面的办法。
 
-----
+## 参考链接
 
-Reference:
-
-- <https://xiaolincoding.com/network/3_tcp/tcp_feature.html#%E5%BF%AB%E9%80%9F%E6%81%A2%E5%A4%8D>
-- CS114
+- [4.2 TCP 重传、滑动窗口、流量控制、拥塞控制 | 小林coding](https://xiaolincoding.com/network/3_tcp/tcp_feature.html#%E9%87%8D%E4%BC%A0%E6%9C%BA%E5%88%B6)
+- [CS 144: Introduction to Computer Networking](https://cs144.github.io/)

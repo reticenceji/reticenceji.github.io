@@ -2,7 +2,7 @@
 aliases: 
 tags: 
 date_created: Wednesday, November 13th 2024, 1:30:01 pm
-date_modified: Wednesday, November 13th 2024, 3:12:39 pm
+date_modified: Thursday, November 21st 2024, 12:44:49 pm
 ---
 
 # Language
@@ -10,7 +10,7 @@ date_modified: Wednesday, November 13th 2024, 3:12:39 pm
 以下是我喜欢并且常用的编程语言：
 
 - [Golang](Golang/index.md): 简洁高效，静态编译，适合开发并发程序，云原生语言。缺点是语法表达能力弱。
-- [Rust](Rust/index): 零成本抽象，内存安全，静态编译，强类型系统，系统编程新宠。缺点是语法较为繁琐。
+- [Rust](Rust/index.md): 零成本抽象，内存安全，静态编译，强类型系统，系统编程新宠。缺点是语法较为繁琐。
 - [Python](Python/index.md): 简单，动态类型系统，适用于脚本、人工智能、云计算、web应用。缺点是不适合开发大型程序。
 - [Cpp/C](Cpp/index.md): 快速、简单/复杂、底层，弱静态类型系统，适用于系统、嵌入式开发。
 - [Datalog](Datalog/index.md): 声明式语言，适用于数据分析、程序静态分析。生态太弱，不符合一般人的正常思维方式。

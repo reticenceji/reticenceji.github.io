@@ -31,11 +31,15 @@ theme:
   language: zh
   icon:
     repo: fontawesome/brands/github
+  # logo: static/favicon.png
+  favicon: static/favicon.png
 plugins:
   - search
   - tags
   - social
   - meta-descriptions
+  - mkdocs-backlinks:
+      enabled: true
 extra_javascript:
   - javascripts/mathjax.js
   - https://lf26-cdn-tos.bytecdntp.com/cdn/expire-1-M/polyfill-io/3.111.0/polyfill.min.js
@@ -55,6 +59,7 @@ extra_javascript:
   - https://lf9-cdn-tos.bytecdntp.com/cdn/expire-1-M/mathjax/3.2.0/es5/output/chtml/fonts/woff-v2/MathJax_Script-Regular.woff
   - https://lf9-cdn-tos.bytecdntp.com/cdn/expire-1-M/mathjax/3.2.0/es5/output/chtml/fonts/woff-v2/MathJax_Typewriter-Regular.woff
   - https://lf9-cdn-tos.bytecdntp.com/cdn/expire-1-M/mathjax/3.2.0/es5/output/chtml/fonts/woff-v2/MathJax_Vector-Regular.woff
+  - javascripts/extra.js
 extra_css:
   - stylesheets/extra.css
   - https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css

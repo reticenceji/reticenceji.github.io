@@ -2,7 +2,7 @@
 aliases: 
 tags: [TODO]
 date_created: Monday, September 30th 2024, 11:40:49 pm
-date_modified: Wednesday, November 20th 2024, 11:53:36 pm
+date_modified: Thursday, November 21st 2024, 3:08:17 pm
 ---
 
 # HTTP
@@ -49,6 +49,13 @@ Content-Type: text/html
 - 4xx: 客户端错误。这类状态码表示请求可能出错，妨碍了服务器的处理。
 - 5xx: 服务器错误。这类状态码表示服务器在尝试处理请求时发生了错误。
 
+## HTTP的各个版本
+
+HTTP1.0：浏览器的每次请求都需要与服务器建立一个TCP连接，服务器完成请求处理后立即断开TCP连接，服务器不跟踪每个客户也不记录过去的请求。
+
+HTTP1.1：HTTP1.0的缺点很明显。如果用户访问的网页内有大量的图片、JS脚本等资源，每请求一个资源都要建立一个TCP连接，太不现实。HTTP1.1允许多个HTTP请求复用一个TCP连接，同时建立多个连接防止[头阻塞](QUIC.md)问题。
+
+HTTP2.0
 ## 编程
 
 HTTP可能是最流行的应用层协议了。很多库和二进制程序对发送、处理HTTP请求做了封装。

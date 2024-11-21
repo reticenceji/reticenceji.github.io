@@ -6,25 +6,50 @@
         document.addEventListener("DOMContentLoaded", function() {
             var article = document.querySelector('.md-content__inner');
             if (article) {
+                var references = document.createElement('div');
+                references.className = 'references';
+                
+                // 添加反向引用
+                {% if backlinks %}
+                    var backlinks = document.createElement('div');
+                    backlinks.className = 'backlinks';
+                    backlinks.innerHTML = `
+                        <h2>反向引用</h2>
+                        <ul>
+                            {% for backlink in backlinks %}
+                                <li><a href="{{ backlink.url }}">{{ backlink.title }}</a></li>
+                            {% endfor %}
+                        </ul>
+                    `;
+                    references.appendChild(backlinks);
+                {% endif %}
+
+                // 添加元数据（时间信息）
                 var meta = document.createElement('div');
                 meta.className = 'article-meta';
-                
                 var metaContent = [];
                 
                 {% if page.meta.date_created %}
                     metaContent.push(`<span class="meta-item">
-                        Create At: {{ page.meta.date_created }}
+                        📅 创建于 {{ page.meta.date_created }}
                     </span>`);
                 {% endif %}
                 
                 {% if page.meta.date_modified %}
                     metaContent.push(`<span class="meta-item">
-                        Modified At: {{ page.meta.date_modified }}
+                        🔄 更新于 {{ page.meta.date_modified }}
                     </span>`);
                 {% endif %}
                 
                 if (metaContent.length > 0) {
                     meta.innerHTML = `<hr class="meta-divider">` + metaContent.join('<br>');
+                }
+                
+                // 将引用和元数据添加到文章末尾
+                if (references.children.length > 0) {
+                    article.appendChild(references);
+                }
+                if (metaContent.length > 0) {
                     article.appendChild(meta);
                 }
             }
