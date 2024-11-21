@@ -3,7 +3,7 @@ aliases:
 tags:
   - 工具
 date_created: Wednesday, November 13th 2024, 1:30:01 pm
-date_modified: Wednesday, November 13th 2024, 2:15:37 pm
+date_modified: Thursday, November 21st 2024, 11:10:49 am
 ---
 
 # Git
@@ -22,11 +22,13 @@ date_modified: Wednesday, November 13th 2024, 2:15:37 pm
 
 ### Case 2 提交了垃圾文件
 
-不小心把不要的文件commit了，这个时候再添加到.gitignore已经来不及了。
+不小心把不要的文件commit了，这个时候再添加到.gitignore已经来不及了。可以从Git索引中删除文件：
 
 ```sh
 git rm --cache xxx
 ```
+
+然后将文件添加到.gitignore。
 
 ### Case 3 远程服务器拉取私有仓库
 
