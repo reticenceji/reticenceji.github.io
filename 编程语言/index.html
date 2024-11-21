@@ -19,8 +19,8 @@
         <link rel="next" href="Bytecode/">
       
       
-      <link rel="icon" href="../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.44">
+      <link rel="icon" href="../static/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.45">
     
     
       
@@ -768,6 +768,27 @@
             操作系统
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Index
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
             
               
                 
@@ -1573,6 +1594,75 @@
   
   <span class="md-ellipsis">
     ZMQ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_10" id="__nav_2_10_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    计算机体系结构
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_10">
+            <span class="md-nav__icon md-icon"></span>
+            计算机体系结构
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    index
   </span>
   
 
@@ -3084,6 +3174,27 @@
   
   
     <li class="md-nav__item">
+      <a href="Cpp/%E5%9F%BA%E7%A1%80/%E7%B1%BB%E5%9E%8B%E7%B3%BB%E7%BB%9F/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    类型系统
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="Cpp/%E5%9F%BA%E7%A1%80/%E8%B0%83%E7%94%A8%E8%A7%84%E8%8C%83/" class="md-nav__link">
         
   
@@ -4185,7 +4296,7 @@
 <p>以下是我喜欢并且常用的编程语言：</p>
 <ul>
 <li><a href="Golang/">Golang</a>: 简洁高效，静态编译，适合开发并发程序，云原生语言。缺点是语法表达能力弱。</li>
-<li><a href="Rust/index">Rust</a>: 零成本抽象，内存安全，静态编译，强类型系统，系统编程新宠。缺点是语法较为繁琐。</li>
+<li><a href="Rust/">Rust</a>: 零成本抽象，内存安全，静态编译，强类型系统，系统编程新宠。缺点是语法较为繁琐。</li>
 <li><a href="Python/">Python</a>: 简单，动态类型系统，适用于脚本、人工智能、云计算、web应用。缺点是不适合开发大型程序。</li>
 <li><a href="Cpp/">Cpp/C</a>: 快速、简单/复杂、底层，弱静态类型系统，适用于系统、嵌入式开发。</li>
 <li><a href="Datalog/">Datalog</a>: 声明式语言，适用于数据分析、程序静态分析。生态太弱，不符合一般人的正常思维方式。</li>
@@ -4243,25 +4354,38 @@
         document.addEventListener("DOMContentLoaded", function() {
             var article = document.querySelector('.md-content__inner');
             if (article) {
+                var references = document.createElement('div');
+                references.className = 'references';
+                
+                // 添加反向引用
+                
+
+                // 添加元数据（时间信息）
                 var meta = document.createElement('div');
                 meta.className = 'article-meta';
-                
                 var metaContent = [];
                 
                 
                     metaContent.push(`<span class="meta-item">
-                        Create At: Wednesday, November 13th 2024, 1:30:01 pm
+                        📅 创建于 Wednesday, November 13th 2024, 1:30:01 pm
                     </span>`);
                 
                 
                 
                     metaContent.push(`<span class="meta-item">
-                        Modified At: Wednesday, November 13th 2024, 3:12:39 pm
+                        🔄 更新于 Thursday, November 21st 2024, 12:44:49 pm
                     </span>`);
                 
                 
                 if (metaContent.length > 0) {
                     meta.innerHTML = `<hr class="meta-divider">` + metaContent.join('<br>');
+                }
+                
+                // 将引用和元数据添加到文章末尾
+                if (references.children.length > 0) {
+                    article.appendChild(references);
+                }
+                if (metaContent.length > 0) {
                     article.appendChild(meta);
                 }
             }
@@ -4367,6 +4491,8 @@
         <script src="https://lf9-cdn-tos.bytecdntp.com/cdn/expire-1-M/mathjax/3.2.0/es5/output/chtml/fonts/woff-v2/MathJax_Typewriter-Regular.woff"></script>
       
         <script src="https://lf9-cdn-tos.bytecdntp.com/cdn/expire-1-M/mathjax/3.2.0/es5/output/chtml/fonts/woff-v2/MathJax_Vector-Regular.woff"></script>
+      
+        <script src="../javascripts/extra.js"></script>
       
     
   </body>

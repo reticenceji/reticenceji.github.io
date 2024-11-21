@@ -19,8 +19,8 @@
         <link rel="next" href="../IP/">
       
       
-      <link rel="icon" href="../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.44">
+      <link rel="icon" href="../../../static/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.45">
     
     
       
@@ -793,6 +793,27 @@
   
   
     <li class="md-nav__item">
+      <a href="../../%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Index
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/VFS/" class="md-nav__link">
         
   
@@ -1501,6 +1522,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#http_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      HTTP的各个版本
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       编程
@@ -1677,6 +1707,78 @@
   
   <span class="md-ellipsis">
     ZMQ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_10" id="__nav_2_10_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    计算机体系结构
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_10">
+            <span class="md-nav__icon md-icon"></span>
+            计算机体系结构
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    index
   </span>
   
 
@@ -3167,6 +3269,27 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Cpp/%E5%9F%BA%E7%A1%80/%E7%B1%BB%E5%9E%8B%E7%B3%BB%E7%BB%9F/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    类型系统
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Cpp/%E5%9F%BA%E7%A1%80/%E8%B0%83%E7%94%A8%E8%A7%84%E8%8C%83/" class="md-nav__link">
         
   
@@ -4266,6 +4389,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#http_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      HTTP的各个版本
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       编程
@@ -4336,6 +4468,10 @@
 <li>4xx: 客户端错误。这类状态码表示请求可能出错，妨碍了服务器的处理。</li>
 <li>5xx: 服务器错误。这类状态码表示服务器在尝试处理请求时发生了错误。</li>
 </ul>
+<h2 id="http_1">HTTP的各个版本</h2>
+<p>HTTP1.0：浏览器的每次请求都需要与服务器建立一个TCP连接，服务器完成请求处理后立即断开TCP连接，服务器不跟踪每个客户也不记录过去的请求。</p>
+<p>HTTP1.1：HTTP1.0的缺点很明显。如果用户访问的网页内有大量的图片、JS脚本等资源，每请求一个资源都要建立一个TCP连接，太不现实。HTTP1.1允许多个HTTP请求复用一个TCP连接，同时建立多个连接防止<a href="../QUIC/">头阻塞</a>问题。</p>
+<p>HTTP2.0</p>
 <h2 id="_2">编程</h2>
 <p>HTTP可能是最流行的应用层协议了。很多库和二进制程序对发送、处理HTTP请求做了封装。</p>
 <p>发送HTTP请求：</p>
@@ -4367,25 +4503,38 @@
         document.addEventListener("DOMContentLoaded", function() {
             var article = document.querySelector('.md-content__inner');
             if (article) {
+                var references = document.createElement('div');
+                references.className = 'references';
+                
+                // 添加反向引用
+                
+
+                // 添加元数据（时间信息）
                 var meta = document.createElement('div');
                 meta.className = 'article-meta';
-                
                 var metaContent = [];
                 
                 
                     metaContent.push(`<span class="meta-item">
-                        Create At: Monday, September 30th 2024, 11:40:49 pm
+                        📅 创建于 Monday, September 30th 2024, 11:40:49 pm
                     </span>`);
                 
                 
                 
                     metaContent.push(`<span class="meta-item">
-                        Modified At: Wednesday, November 20th 2024, 11:53:36 pm
+                        🔄 更新于 Thursday, November 21st 2024, 3:08:17 pm
                     </span>`);
                 
                 
                 if (metaContent.length > 0) {
                     meta.innerHTML = `<hr class="meta-divider">` + metaContent.join('<br>');
+                }
+                
+                // 将引用和元数据添加到文章末尾
+                if (references.children.length > 0) {
+                    article.appendChild(references);
+                }
+                if (metaContent.length > 0) {
                     article.appendChild(meta);
                 }
             }
@@ -4491,6 +4640,8 @@
         <script src="https://lf9-cdn-tos.bytecdntp.com/cdn/expire-1-M/mathjax/3.2.0/es5/output/chtml/fonts/woff-v2/MathJax_Typewriter-Regular.woff"></script>
       
         <script src="https://lf9-cdn-tos.bytecdntp.com/cdn/expire-1-M/mathjax/3.2.0/es5/output/chtml/fonts/woff-v2/MathJax_Vector-Regular.woff"></script>
+      
+        <script src="../../../javascripts/extra.js"></script>
       
     
   </body>

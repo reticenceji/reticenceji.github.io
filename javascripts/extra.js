@@ -13,18 +13,42 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // 添加外部链接图标
     markExternalLinks();
+    
+    // 查找所有 h2 标题
+    const headers = document.querySelectorAll('h2');
+    
+    headers.forEach(header => {
+        console.log(header.textContent.trim());
+        if (header.textContent.trim() === '参考链接') {
+            // 创建新的 div 元素
+            const wrapperDiv = document.createElement('div');
+            wrapperDiv.className = 'references';
+            
+            // 将标题元素包在新的 div 中
+            header.parentNode.insertBefore(wrapperDiv, header);
+            wrapperDiv.appendChild(header);
+            
+            // 将后续的元素（直到下一个标题）也移到这个 div 中
+            let nextElement = wrapperDiv.nextElementSibling;
+            while (nextElement && !nextElement.matches('h1, h2, h3, h4, h5, h6')) {
+                const currentElement = nextElement;
+                nextElement = nextElement.nextElementSibling;
+                wrapperDiv.appendChild(currentElement);
+            }
+        }
+    });
 });
 
 // 代码块优化
 function enhanceCodeBlocks() {
     const codeBlocks = document.querySelectorAll('pre code');
     codeBlocks.forEach(block => {
-        // 添加行号
-        const lines = block.innerHTML.split('\n');
-        const numberedLines = lines.map((line, index) => 
-            `<span class="line-number">${index + 1}</span>${line}`
-        ).join('\n');
-        block.innerHTML = numberedLines;
+        // // 添加行号
+        // const lines = block.innerHTML.split('\n');
+        // const numberedLines = lines.map((line, index) => 
+        //     `<span class="line-number">${index + 1}</span>${line}`
+        // ).join('\n');
+        // block.innerHTML = numberedLines;
         
         // 添加代码语言标签
         const language = block.className.split(' ')[0].replace('language-', '');
@@ -97,7 +121,7 @@ function addTocHighlight() {
             if (entry.isIntersecting) {
                 tocLinks.forEach(link => {
                     link.classList.remove('active');
-                    if (link.href.split('#')[1] === entry.target.id) {
+                    if (link.href && link.href.split('#')[1] === entry.target.id) {
                         link.classList.add('active');
                     }
                 });
