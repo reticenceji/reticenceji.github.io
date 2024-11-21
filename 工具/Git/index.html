@@ -4358,9 +4358,10 @@
 <p>等待切换回原来的分支，用<code>git stash pop</code>就可以恢复原来工作区的文件。</p>
 <p>这是最基本的用法。事实上<code>git stash</code>可以暂存很多份工作区，使用<code>git stash list</code>查看暂存情况。</p>
 <h3 id="case-2">Case 2 提交了垃圾文件</h3>
-<p>不小心把不要的文件commit了，这个时候再添加到.gitignore已经来不及了。</p>
+<p>不小心把不要的文件commit了，这个时候再添加到.gitignore已经来不及了。可以从Git索引中删除文件：</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>git<span class="w"> </span>rm<span class="w"> </span>--cache<span class="w"> </span>xxx
 </code></pre></div>
+<p>然后将文件添加到.gitignore。</p>
 <h3 id="case-3">Case 3 远程服务器拉取私有仓库</h3>
 <p>需要在服务器拉取私有仓库，但是不想把自己的私钥传到服务器。可以使用<strong>SSH Agent Forwarding</strong></p>
 <p>在本地计算机上启动ssh-agent,并添加你的GitHub私钥:</p>
@@ -4485,7 +4486,7 @@ footer：备注，通常是Breaking changes或者Closed issues</p>
                 
                 
                     metaContent.push(`<span class="meta-item">
-                        Modified At: Wednesday, November 13th 2024, 2:15:37 pm
+                        Modified At: Thursday, November 21st 2024, 11:10:49 am
                     </span>`);
                 
                 
