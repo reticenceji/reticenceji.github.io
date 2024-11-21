@@ -6,6 +6,8 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
+        <meta name="description" content="Rust的原生String类型，并不等价于Vec&lt;u8&gt;，而必须是合法的UTF-8串。如果不和外部交互，这几乎不会带来什么问题。但是如何要和C语言交互、和操作系统交互，就麻烦了。所以有很多meme调侃这一点。类型作为约束数据的规范，正是因为有这么多不统一的规范才有这么多不统一的类型。纵然很多时候不同的字符串规范只有细微的差距，但是为了程序的安全，考虑差距是必要的。">
+      
       
       
         <link rel="canonical" href="https://reticenceji.github.io/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Rust/%E5%BA%93/%E5%AD%97%E7%AC%A6%E4%B8%B2/">
@@ -1356,11 +1358,32 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../../%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E7%BD%91%E7%BB%9C/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    计算机网络
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../../%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E7%BD%91%E7%BB%9C/Control/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Congestion Control and Flow Control
+    流量控制和拥塞控制
   </span>
   
 
@@ -1550,27 +1573,6 @@
   
   <span class="md-ellipsis">
     ZMQ
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../../%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E7%BD%91%E7%BB%9C/_Index/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    _Index
   </span>
   
 
@@ -3031,8 +3033,48 @@
   
   
   
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_3_2" id="__nav_5_3_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    基础
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_5_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            基础
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
     <li class="md-nav__item">
-      <a href="../../../Cpp/%E8%B0%83%E7%94%A8%E8%A7%84%E8%8C%83/" class="md-nav__link">
+      <a href="../../../Cpp/%E5%9F%BA%E7%A1%80/%E8%B0%83%E7%94%A8%E8%A7%84%E8%8C%83/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3041,6 +3083,83 @@
   
 
       </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_3_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_3_3" id="__nav_5_3_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    构建
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_5_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            构建
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Cpp/%E6%9E%84%E5%BB%BA/CMake/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    CMake
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
     </li>
   
 
@@ -3197,7 +3316,68 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../Golang/context/" class="md-nav__link">
+      <a href="../../../Golang/pprof/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    pprof
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_5_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_5_3" id="__nav_5_5_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    库
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_5_5_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_5_3">
+            <span class="md-nav__icon md-icon"></span>
+            库
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Golang/%E5%BA%93/context/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3218,15 +3398,23 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../Golang/pprof/" class="md-nav__link">
+      <a href="../../../Golang/%E5%BA%93/net/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    pprof
+    net
   </span>
   
 
       </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
     </li>
   
 
@@ -3343,6 +3531,27 @@
             库
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Python/%E5%BA%93/HTTP/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    HTTP
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
             
               
                 
@@ -3748,6 +3957,17 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    字符串
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -3757,6 +3977,52 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#string" class="md-nav__link">
+    <span class="md-ellipsis">
+      String
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#regex" class="md-nav__link">
+    <span class="md-ellipsis">
+      Regex
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#serde" class="md-nav__link">
+    <span class="md-ellipsis">
+      Serde
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -3774,7 +4040,7 @@
         
   
   <span class="md-ellipsis">
-    文件
+    文件和IO
   </span>
   
 
@@ -3817,6 +4083,27 @@
   
   <span class="md-ellipsis">
     时间
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E7%BD%91%E7%BB%9C/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    网络
   </span>
   
 
@@ -3938,6 +4225,41 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#string" class="md-nav__link">
+    <span class="md-ellipsis">
+      String
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#regex" class="md-nav__link">
+    <span class="md-ellipsis">
+      Regex
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#serde" class="md-nav__link">
+    <span class="md-ellipsis">
+      Serde
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -3967,6 +4289,44 @@
 
 
 <h1 id="_1">字符串</h1>
+<p>Rust的原生<code>String</code>类型，并不等价于<code>Vec&lt;u8&gt;</code>，而必须是合法的UTF-8串。如果不和外部交互，这几乎不会带来什么问题。但是如何要和C语言交互、和操作系统交互，就麻烦了。所以有很多meme调侃这一点。类型作为约束数据的规范，正是因为有这么多不统一的规范才有这么多不统一的类型。纵然很多时候不同的字符串规范只有细微的差距，但是为了程序的安全，考虑差距是必要的。</p>
+<p><img alt="rust string meme" src="https://i.redd.it/jsh156txovp91.png" /></p>
+<blockquote>
+<p>[!Note] <br />
+UTF-8串中，一个字符占的字节数是不固定的。所以对<code>String</code>进行索引操作的复杂度是O(n)。</p>
+</blockquote>
+<h2 id="string">String</h2>
+<p>几乎所有的编程语言都拥有字符串类型，也都会提供诸如查找、大小写转换等功能。Rust的标准库文档做的很好，此处不做复制粘贴，可以参考<a href="https://doc.rust-lang.org/std/string/struct.String.html"><code>std::string::String</code></a>。</p>
+<p>值得一提的事<code>&amp;str</code>和<code>String</code>的区别。</p>
+<ul>
+<li><code>String</code> 是一个可增长、可变、拥有所有权的 UTF-8 字符串类型。它在堆上分配内存，这意味着它可以在运行时扩展或缩减。</li>
+<li><code>&amp;str</code> 通常称为字符串切片（string slice），是一个指向有效 UTF-8 序列的不可变引用。它通常指向字符串数据的一部分，这些数据本身可以存储在任何地方，如在另一个字符串、常量数据区或 <code>String</code> 中。<code>&amp;str</code> 本身并不拥有它指向的数据。</li>
+<li>所以，从 <code>&amp;str</code> 到 <code>String</code> 的转换需要进行内存分配，通常通过 <code>to_string()</code> 或 <code>String::from()</code> 实现，而将<code>String</code>转换成<code>&amp;str</code>则基本没有开销。</li>
+</ul>
+<p>类似于Python的format string，Rust有<code>format!</code>宏可以完成类似的工作。占位符也是<code>{}</code></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kd">let</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Alice&quot;</span><span class="p">;</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="kd">let</span><span class="w"> </span><span class="n">age</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">30</span><span class="p">;</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="kd">let</span><span class="w"> </span><span class="n">sentence</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="fm">format!</span><span class="p">(</span><span class="s">&quot;My name is {} and I am {} years old.&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">age</span><span class="p">);</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="fm">println!</span><span class="p">(</span><span class="s">&quot;{}&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">sentence</span><span class="p">);</span>
+</code></pre></div>
+<h2 id="regex">Regex</h2>
+<p>Rust并没有将正则表达式放进标准库，而是由第三方库<code>regex</code>实现。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">use</span><span class="w"> </span><span class="n">regex</span><span class="p">::</span><span class="n">Regex</span><span class="p">;</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="k">fn</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">re</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Regex</span><span class="p">::</span><span class="n">new</span><span class="p">(</span><span class="s">r&quot;(\w+)-(\d+)&quot;</span><span class="p">).</span><span class="n">unwrap</span><span class="p">();</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Example-1234&quot;</span><span class="p">;</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="w">    </span><span class="k">match</span><span class="w"> </span><span class="n">re</span><span class="p">.</span><span class="n">captures</span><span class="p">(</span><span class="n">text</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="w">        </span><span class="nb">Some</span><span class="p">(</span><span class="n">caps</span><span class="p">)</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="w">            </span><span class="fm">println!</span><span class="p">(</span><span class="s">&quot;Matched: {} {}&quot;</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">caps</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="w"> </span><span class="o">&amp;</span><span class="n">caps</span><span class="p">[</span><span class="mi">2</span><span class="p">]);</span>
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="w">        </span><span class="p">}</span>
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="w">        </span><span class="nb">None</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="fm">println!</span><span class="p">(</span><span class="s">&quot;No match found&quot;</span><span class="p">),</span>
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="p">}</span>
+</code></pre></div>
+<h2 id="serde">Serde</h2>
+<p><a href="../Serde/">Serde</a> 是序列化和反序列化的“标准框架”。</p>
 
 
 
@@ -4000,7 +4360,7 @@
                 
                 
                     metaContent.push(`<span class="meta-item">
-                        Modified At: Wednesday, November 13th 2024, 2:15:35 pm
+                        Modified At: Wednesday, November 13th 2024, 3:38:54 pm
                     </span>`);
                 
                 

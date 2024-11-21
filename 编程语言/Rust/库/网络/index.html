@@ -6,30 +6,32 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
+        <meta name="description" content="在 Rust 中处理网络通信涉及到多个标准库和第三方库的组件。标准库中的 std::net 模块提供了处理 TCP 和 UDP 网络通信的基本构建块，而第三方库则提供了更高级的异步处理机制和更丰富的网络协议支持。">
       
       
-        <link rel="canonical" href="https://reticenceji.github.io/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Cpp/%E8%B0%83%E7%94%A8%E8%A7%84%E8%8C%83/">
+      
+        <link rel="canonical" href="https://reticenceji.github.io/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Rust/%E5%BA%93/%E7%BD%91%E7%BB%9C/">
       
       
-        <link rel="prev" href="../">
+        <link rel="prev" href="../%E6%97%B6%E9%97%B4/">
       
       
-        <link rel="next" href="../../Datalog/">
+        <link rel="next" href="../../%E6%9E%84%E5%BB%BA/Cargo/">
       
       
-      <link rel="icon" href="../../../assets/images/favicon.png">
+      <link rel="icon" href="../../../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.44">
     
     
       
-        <title>调用规范 - Reticence Ji's Notes</title>
+        <title>网络 - Reticence Ji's Notes</title>
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.0253249f.min.css">
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.0253249f.min.css">
       
         
-        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.06af60db.min.css">
       
       
 
@@ -48,11 +50,11 @@
       
     
     
-      <link rel="stylesheet" href="../../../stylesheets/extra.css">
+      <link rel="stylesheet" href="../../../../stylesheets/extra.css">
     
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
-    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -61,11 +63,11 @@
       
         <meta  property="og:type"  content="website" >
       
-        <meta  property="og:title"  content="调用规范 - Reticence Ji's Notes" >
+        <meta  property="og:title"  content="网络 - Reticence Ji's Notes" >
       
         <meta  property="og:description"  content="None" >
       
-        <meta  property="og:image"  content="https://reticenceji.github.io/assets/images/social/编程语言/Cpp/调用规范.png" >
+        <meta  property="og:image"  content="https://reticenceji.github.io/assets/images/social/编程语言/Rust/库/网络.png" >
       
         <meta  property="og:image:type"  content="image/png" >
       
@@ -73,15 +75,15 @@
       
         <meta  property="og:image:height"  content="630" >
       
-        <meta  property="og:url"  content="https://reticenceji.github.io/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Cpp/%E8%B0%83%E7%94%A8%E8%A7%84%E8%8C%83/" >
+        <meta  property="og:url"  content="https://reticenceji.github.io/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Rust/%E5%BA%93/%E7%BD%91%E7%BB%9C/" >
       
         <meta  name="twitter:card"  content="summary_large_image" >
       
-        <meta  name="twitter:title"  content="调用规范 - Reticence Ji's Notes" >
+        <meta  name="twitter:title"  content="网络 - Reticence Ji's Notes" >
       
         <meta  name="twitter:description"  content="None" >
       
-        <meta  name="twitter:image"  content="https://reticenceji.github.io/assets/images/social/编程语言/Cpp/调用规范.png" >
+        <meta  name="twitter:image"  content="https://reticenceji.github.io/assets/images/social/编程语言/Rust/库/网络.png" >
       
     
     
@@ -118,7 +120,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="页眉">
-    <a href="../../.." title="Reticence Ji&#39;s Notes" class="md-header__button md-logo" aria-label="Reticence Ji's Notes" data-md-component="logo">
+    <a href="../../../.." title="Reticence Ji&#39;s Notes" class="md-header__button md-logo" aria-label="Reticence Ji's Notes" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -138,7 +140,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              调用规范
+              网络
             
           </span>
         </div>
@@ -245,7 +247,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../../.." class="md-tabs__link">
+      <a href="../../../.." class="md-tabs__link">
         
   
     
@@ -264,7 +266,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" class="md-tabs__link">
+        <a href="../../../../%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" class="md-tabs__link">
           
   
   基础知识
@@ -282,7 +284,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../%E5%B7%A5%E5%85%B7/" class="md-tabs__link">
+        <a href="../../../../%E5%B7%A5%E5%85%B7/" class="md-tabs__link">
           
   
   工具
@@ -300,7 +302,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../%E5%BC%80%E5%8F%91/" class="md-tabs__link">
+        <a href="../../../../%E5%BC%80%E5%8F%91/" class="md-tabs__link">
           
   
   开发
@@ -320,7 +322,7 @@
     
     
       <li class="md-tabs__item md-tabs__item--active">
-        <a href="../../" class="md-tabs__link">
+        <a href="../../../" class="md-tabs__link">
           
   
   编程语言
@@ -353,7 +355,7 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../.." title="Reticence Ji&#39;s Notes" class="md-nav__button md-logo" aria-label="Reticence Ji's Notes" data-md-component="logo">
+    <a href="../../../.." title="Reticence Ji&#39;s Notes" class="md-nav__button md-logo" aria-label="Reticence Ji's Notes" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -383,7 +385,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../.." class="md-nav__link">
+      <a href="../../../.." class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -443,7 +445,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" class="md-nav__link">
+      <a href="../../../../%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -504,7 +506,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" class="md-nav__link">
+      <a href="../../../../%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -525,7 +527,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/Deep%20Learning/" class="md-nav__link">
+      <a href="../../../../%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/Deep%20Learning/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -546,7 +548,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/Machine%20Learning/" class="md-nav__link">
+      <a href="../../../../%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/Machine%20Learning/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -567,7 +569,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/Paper%20Reading/" class="md-nav__link">
+      <a href="../../../../%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/Paper%20Reading/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -636,7 +638,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E5%8C%BA%E5%9D%97%E9%93%BE/" class="md-nav__link">
+      <a href="../../../../%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E5%8C%BA%E5%9D%97%E9%93%BE/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -705,7 +707,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E5%AF%86%E7%A0%81%E5%AD%A6/MPC/" class="md-nav__link">
+      <a href="../../../../%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E5%AF%86%E7%A0%81%E5%AD%A6/MPC/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -774,7 +776,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/VFS/" class="md-nav__link">
+      <a href="../../../../%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/VFS/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -843,7 +845,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E6%95%B0%E6%8D%AE%E5%BA%93/PostgreSQL/" class="md-nav__link">
+      <a href="../../../../%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E6%95%B0%E6%8D%AE%E5%BA%93/PostgreSQL/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -864,7 +866,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E6%95%B0%E6%8D%AE%E5%BA%93/_Index/" class="md-nav__link">
+      <a href="../../../../%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E6%95%B0%E6%8D%AE%E5%BA%93/_Index/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -933,7 +935,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" class="md-nav__link">
+      <a href="../../../../%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -954,7 +956,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/LRU/" class="md-nav__link">
+      <a href="../../../../%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/LRU/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -975,7 +977,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/Leetcode/" class="md-nav__link">
+      <a href="../../../../%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/Leetcode/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1036,7 +1038,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/Graph/Betweenness%20Centrality/" class="md-nav__link">
+      <a href="../../../../%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/Graph/Betweenness%20Centrality/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1105,7 +1107,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/Hash/Bloom%20Filter/" class="md-nav__link">
+      <a href="../../../../%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/Hash/Bloom%20Filter/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1126,7 +1128,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/Hash/Hash%20Table/" class="md-nav__link">
+      <a href="../../../../%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/Hash/Hash%20Table/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1203,7 +1205,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E7%A8%8B%E5%BA%8F%E5%88%86%E6%9E%90/Dynamic%20Analysis/" class="md-nav__link">
+      <a href="../../../../%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E7%A8%8B%E5%BA%8F%E5%88%86%E6%9E%90/Dynamic%20Analysis/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1224,7 +1226,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E7%A8%8B%E5%BA%8F%E5%88%86%E6%9E%90/LLVM/" class="md-nav__link">
+      <a href="../../../../%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E7%A8%8B%E5%BA%8F%E5%88%86%E6%9E%90/LLVM/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1245,7 +1247,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E7%A8%8B%E5%BA%8F%E5%88%86%E6%9E%90/%E5%BA%8F%E5%88%97%E5%8C%96/" class="md-nav__link">
+      <a href="../../../../%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E7%A8%8B%E5%BA%8F%E5%88%86%E6%9E%90/%E5%BA%8F%E5%88%97%E5%8C%96/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1266,7 +1268,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E7%A8%8B%E5%BA%8F%E5%88%86%E6%9E%90/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/" class="md-nav__link">
+      <a href="../../../../%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E7%A8%8B%E5%BA%8F%E5%88%86%E6%9E%90/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1287,7 +1289,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E7%A8%8B%E5%BA%8F%E5%88%86%E6%9E%90/%E9%9D%99%E6%80%81%E5%88%86%E6%9E%90/" class="md-nav__link">
+      <a href="../../../../%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E7%A8%8B%E5%BA%8F%E5%88%86%E6%9E%90/%E9%9D%99%E6%80%81%E5%88%86%E6%9E%90/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1356,11 +1358,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E7%BD%91%E7%BB%9C/Control/" class="md-nav__link">
+      <a href="../../../../%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E7%BD%91%E7%BB%9C/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Congestion Control and Flow Control
+    计算机网络
   </span>
   
 
@@ -1377,7 +1379,28 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E7%BD%91%E7%BB%9C/HTTP/" class="md-nav__link">
+      <a href="../../../../%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E7%BD%91%E7%BB%9C/Control/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    流量控制和拥塞控制
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E7%BD%91%E7%BB%9C/HTTP/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1398,7 +1421,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E7%BD%91%E7%BB%9C/IP/" class="md-nav__link">
+      <a href="../../../../%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E7%BD%91%E7%BB%9C/IP/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1419,7 +1442,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E7%BD%91%E7%BB%9C/Link%20Layer/" class="md-nav__link">
+      <a href="../../../../%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E7%BD%91%E7%BB%9C/Link%20Layer/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1440,7 +1463,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E7%BD%91%E7%BB%9C/NAT/" class="md-nav__link">
+      <a href="../../../../%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E7%BD%91%E7%BB%9C/NAT/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1461,7 +1484,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E7%BD%91%E7%BB%9C/QUIC/" class="md-nav__link">
+      <a href="../../../../%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E7%BD%91%E7%BB%9C/QUIC/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1482,7 +1505,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E7%BD%91%E7%BB%9C/TCP/" class="md-nav__link">
+      <a href="../../../../%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E7%BD%91%E7%BB%9C/TCP/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1503,7 +1526,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E7%BD%91%E7%BB%9C/TLS/" class="md-nav__link">
+      <a href="../../../../%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E7%BD%91%E7%BB%9C/TLS/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1524,7 +1547,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E7%BD%91%E7%BB%9C/UDP/" class="md-nav__link">
+      <a href="../../../../%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E7%BD%91%E7%BB%9C/UDP/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1545,32 +1568,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E7%BD%91%E7%BB%9C/ZMQ/" class="md-nav__link">
+      <a href="../../../../%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E7%BD%91%E7%BB%9C/ZMQ/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
     ZMQ
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E7%BD%91%E7%BB%9C/_Index/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    _Index
   </span>
   
 
@@ -1642,7 +1644,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../%E5%B7%A5%E5%85%B7/" class="md-nav__link">
+      <a href="../../../../%E5%B7%A5%E5%85%B7/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1663,7 +1665,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../%E5%B7%A5%E5%85%B7/Docker/" class="md-nav__link">
+      <a href="../../../../%E5%B7%A5%E5%85%B7/Docker/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1684,7 +1686,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../%E5%B7%A5%E5%85%B7/Git/" class="md-nav__link">
+      <a href="../../../../%E5%B7%A5%E5%85%B7/Git/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1705,7 +1707,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../%E5%B7%A5%E5%85%B7/Linux/" class="md-nav__link">
+      <a href="../../../../%E5%B7%A5%E5%85%B7/Linux/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1726,7 +1728,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../%E5%B7%A5%E5%85%B7/SSH/" class="md-nav__link">
+      <a href="../../../../%E5%B7%A5%E5%85%B7/SSH/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1747,7 +1749,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../%E5%B7%A5%E5%85%B7/Website/" class="md-nav__link">
+      <a href="../../../../%E5%B7%A5%E5%85%B7/Website/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1815,7 +1817,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../%E5%BC%80%E5%8F%91/" class="md-nav__link">
+      <a href="../../../../%E5%BC%80%E5%8F%91/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1836,7 +1838,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../%E5%BC%80%E5%8F%91/CICD/" class="md-nav__link">
+      <a href="../../../../%E5%BC%80%E5%8F%91/CICD/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1857,7 +1859,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../%E5%BC%80%E5%8F%91/%E6%97%A5%E5%BF%97/" class="md-nav__link">
+      <a href="../../../../%E5%BC%80%E5%8F%91/%E6%97%A5%E5%BF%97/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1878,7 +1880,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../%E5%BC%80%E5%8F%91/%E7%88%AC%E8%99%AB/" class="md-nav__link">
+      <a href="../../../../%E5%BC%80%E5%8F%91/%E7%88%AC%E8%99%AB/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1939,7 +1941,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../%E5%BC%80%E5%8F%91/Distribute/RabbitMQ/" class="md-nav__link">
+      <a href="../../../../%E5%BC%80%E5%8F%91/Distribute/RabbitMQ/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1960,7 +1962,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../%E5%BC%80%E5%8F%91/Distribute/_Index/" class="md-nav__link">
+      <a href="../../../../%E5%BC%80%E5%8F%91/Distribute/_Index/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2029,7 +2031,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../%E5%BC%80%E5%8F%91/Optimize/Basic/" class="md-nav__link">
+      <a href="../../../../%E5%BC%80%E5%8F%91/Optimize/Basic/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2050,7 +2052,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../%E5%BC%80%E5%8F%91/Optimize/Cache%20and%20Buffer/" class="md-nav__link">
+      <a href="../../../../%E5%BC%80%E5%8F%91/Optimize/Cache%20and%20Buffer/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2071,7 +2073,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../%E5%BC%80%E5%8F%91/Optimize/Optimize/" class="md-nav__link">
+      <a href="../../../../%E5%BC%80%E5%8F%91/Optimize/Optimize/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2140,7 +2142,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../%E5%BC%80%E5%8F%91/PL/LLVM/" class="md-nav__link">
+      <a href="../../../../%E5%BC%80%E5%8F%91/PL/LLVM/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2209,7 +2211,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../%E5%BC%80%E5%8F%91/Web/CRUD/" class="md-nav__link">
+      <a href="../../../../%E5%BC%80%E5%8F%91/Web/CRUD/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2230,7 +2232,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../%E5%BC%80%E5%8F%91/Web/Index/" class="md-nav__link">
+      <a href="../../../../%E5%BC%80%E5%8F%91/Web/Index/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2251,7 +2253,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../%E5%BC%80%E5%8F%91/Web/Open%20Search/" class="md-nav__link">
+      <a href="../../../../%E5%BC%80%E5%8F%91/Web/Open%20Search/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2272,7 +2274,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../%E5%BC%80%E5%8F%91/Web/RPC/" class="md-nav__link">
+      <a href="../../../../%E5%BC%80%E5%8F%91/Web/RPC/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2293,7 +2295,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../%E5%BC%80%E5%8F%91/Web/Redis/" class="md-nav__link">
+      <a href="../../../../%E5%BC%80%E5%8F%91/Web/Redis/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2314,7 +2316,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../%E5%BC%80%E5%8F%91/Web/Server/" class="md-nav__link">
+      <a href="../../../../%E5%BC%80%E5%8F%91/Web/Server/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2383,7 +2385,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../%E5%BC%80%E5%8F%91/%E5%AE%A2%E6%88%B7%E7%AB%AF/API/" class="md-nav__link">
+      <a href="../../../../%E5%BC%80%E5%8F%91/%E5%AE%A2%E6%88%B7%E7%AB%AF/API/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2404,7 +2406,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../%E5%BC%80%E5%8F%91/%E5%AE%A2%E6%88%B7%E7%AB%AF/CLI/" class="md-nav__link">
+      <a href="../../../../%E5%BC%80%E5%8F%91/%E5%AE%A2%E6%88%B7%E7%AB%AF/CLI/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2425,7 +2427,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../%E5%BC%80%E5%8F%91/%E5%AE%A2%E6%88%B7%E7%AB%AF/GUI/" class="md-nav__link">
+      <a href="../../../../%E5%BC%80%E5%8F%91/%E5%AE%A2%E6%88%B7%E7%AB%AF/GUI/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2446,7 +2448,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../%E5%BC%80%E5%8F%91/%E5%AE%A2%E6%88%B7%E7%AB%AF/Package/" class="md-nav__link">
+      <a href="../../../../%E5%BC%80%E5%8F%91/%E5%AE%A2%E6%88%B7%E7%AB%AF/Package/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2467,7 +2469,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../%E5%BC%80%E5%8F%91/%E5%AE%A2%E6%88%B7%E7%AB%AF/SQLite/" class="md-nav__link">
+      <a href="../../../../%E5%BC%80%E5%8F%91/%E5%AE%A2%E6%88%B7%E7%AB%AF/SQLite/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2488,7 +2490,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../%E5%BC%80%E5%8F%91/%E5%AE%A2%E6%88%B7%E7%AB%AF/TUI/" class="md-nav__link">
+      <a href="../../../../%E5%BC%80%E5%8F%91/%E5%AE%A2%E6%88%B7%E7%AB%AF/TUI/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2557,7 +2559,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../%E5%BC%80%E5%8F%91/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6/ThirdWeb/" class="md-nav__link">
+      <a href="../../../../%E5%BC%80%E5%8F%91/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6/ThirdWeb/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2626,7 +2628,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../%E5%BC%80%E5%8F%91/%E7%B3%BB%E7%BB%9F%E7%BC%96%E7%A8%8B/Docker/" class="md-nav__link">
+      <a href="../../../../%E5%BC%80%E5%8F%91/%E7%B3%BB%E7%BB%9F%E7%BC%96%E7%A8%8B/Docker/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2647,7 +2649,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../%E5%BC%80%E5%8F%91/%E7%B3%BB%E7%BB%9F%E7%BC%96%E7%A8%8B/File/" class="md-nav__link">
+      <a href="../../../../%E5%BC%80%E5%8F%91/%E7%B3%BB%E7%BB%9F%E7%BC%96%E7%A8%8B/File/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2668,7 +2670,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../%E5%BC%80%E5%8F%91/%E7%B3%BB%E7%BB%9F%E7%BC%96%E7%A8%8B/Network/" class="md-nav__link">
+      <a href="../../../../%E5%BC%80%E5%8F%91/%E7%B3%BB%E7%BB%9F%E7%BC%96%E7%A8%8B/Network/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2689,7 +2691,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../%E5%BC%80%E5%8F%91/%E7%B3%BB%E7%BB%9F%E7%BC%96%E7%A8%8B/Process/" class="md-nav__link">
+      <a href="../../../../%E5%BC%80%E5%8F%91/%E7%B3%BB%E7%BB%9F%E7%BC%96%E7%A8%8B/Process/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2710,7 +2712,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../%E5%BC%80%E5%8F%91/%E7%B3%BB%E7%BB%9F%E7%BC%96%E7%A8%8B/Signal/" class="md-nav__link">
+      <a href="../../../../%E5%BC%80%E5%8F%91/%E7%B3%BB%E7%BB%9F%E7%BC%96%E7%A8%8B/Signal/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2731,7 +2733,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../%E5%BC%80%E5%8F%91/%E7%B3%BB%E7%BB%9F%E7%BC%96%E7%A8%8B/Time/" class="md-nav__link">
+      <a href="../../../../%E5%BC%80%E5%8F%91/%E7%B3%BB%E7%BB%9F%E7%BC%96%E7%A8%8B/Time/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2752,7 +2754,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../%E5%BC%80%E5%8F%91/%E7%B3%BB%E7%BB%9F%E7%BC%96%E7%A8%8B/Zero%20Copy/" class="md-nav__link">
+      <a href="../../../../%E5%BC%80%E5%8F%91/%E7%B3%BB%E7%BB%9F%E7%BC%96%E7%A8%8B/Zero%20Copy/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2833,7 +2835,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../" class="md-nav__link">
+      <a href="../../../" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2897,7 +2899,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Bytecode/" class="md-nav__link">
+      <a href="../../../Bytecode/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2918,7 +2920,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Bytecode/BPF/" class="md-nav__link">
+      <a href="../../../Bytecode/BPF/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2939,7 +2941,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Bytecode/WASM/" class="md-nav__link">
+      <a href="../../../Bytecode/WASM/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2965,8 +2967,6 @@
                 
   
   
-    
-  
   
   
     
@@ -2981,11 +2981,11 @@
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_3" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_3" >
         
           
           <label class="md-nav__link" for="__nav_5_3" id="__nav_5_3_label" tabindex="">
@@ -2999,7 +2999,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_3_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_3_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_5_3">
             <span class="md-nav__icon md-icon"></span>
             Cpp
@@ -3013,7 +3013,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../" class="md-nav__link">
+      <a href="../../../Cpp/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3031,30 +3031,50 @@
                 
   
   
+  
+  
     
-  
-  
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+    
+    
       
       
         
       
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
       
-        <label class="md-nav__link md-nav__link--active" for="__toc">
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_3_2" >
+        
           
+          <label class="md-nav__link" for="__nav_5_3_2" id="__nav_5_3_2_label" tabindex="0">
+            
   
   <span class="md-ellipsis">
-    调用规范
+    基础
   </span>
   
 
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_5_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            基础
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Cpp/%E5%9F%BA%E7%A1%80/%E8%B0%83%E7%94%A8%E8%A7%84%E8%8C%83/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3063,43 +3083,82 @@
   
 
       </a>
-      
-        
+    </li>
+  
 
-<nav class="md-nav md-nav--secondary" aria-label="目录">
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
   
   
   
     
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      目录
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+    
+    
       
-        <li class="md-nav__item">
-  <a href="#what-happened-in-stack-when-a-function-is-called" class="md-nav__link">
-    <span class="md-ellipsis">
-      What happened in stack when a function is called?
-    </span>
-  </a>
-  
-</li>
       
-        <li class="md-nav__item">
-  <a href="#what-information-does-a-function-stack-frame-generally-contain" class="md-nav__link">
-    <span class="md-ellipsis">
-      What information does a function stack frame generally contain ?
-    </span>
-  </a>
-  
-</li>
+        
       
-    </ul>
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_3_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_3_3" id="__nav_5_3_3_label" tabindex="0">
+            
   
-</nav>
+  <span class="md-ellipsis">
+    构建
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_5_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            构建
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Cpp/%E6%9E%84%E5%BB%BA/CMake/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    CMake
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
       
     </li>
   
@@ -3164,7 +3223,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Datalog/" class="md-nav__link">
+      <a href="../../../Datalog/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3236,7 +3295,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Golang/" class="md-nav__link">
+      <a href="../../../Golang/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3257,7 +3316,68 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Golang/context/" class="md-nav__link">
+      <a href="../../../Golang/pprof/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    pprof
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_5_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_5_3" id="__nav_5_5_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    库
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_5_5_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_5_3">
+            <span class="md-nav__icon md-icon"></span>
+            库
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Golang/%E5%BA%93/context/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3278,15 +3398,23 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Golang/pprof/" class="md-nav__link">
+      <a href="../../../Golang/%E5%BA%93/net/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    pprof
+    net
   </span>
   
 
       </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
     </li>
   
 
@@ -3350,7 +3478,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Python/" class="md-nav__link">
+      <a href="../../../Python/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3411,7 +3539,28 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Python/%E5%BA%93/%E6%96%87%E4%BB%B6/" class="md-nav__link">
+      <a href="../../../Python/%E5%BA%93/HTTP/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    HTTP
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Python/%E5%BA%93/%E6%96%87%E4%BB%B6/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3432,7 +3581,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Python/%E5%BA%93/%E6%97%A5%E5%BF%97/" class="md-nav__link">
+      <a href="../../../Python/%E5%BA%93/%E6%97%A5%E5%BF%97/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3453,7 +3602,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Python/%E5%BA%93/%E6%97%B6%E9%97%B4/" class="md-nav__link">
+      <a href="../../../Python/%E5%BA%93/%E6%97%B6%E9%97%B4/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3522,7 +3671,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Python/%E6%9E%84%E5%BB%BA/" class="md-nav__link">
+      <a href="../../../Python/%E6%9E%84%E5%BB%BA/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3556,6 +3705,8 @@
                 
   
   
+    
+  
   
   
     
@@ -3570,11 +3721,11 @@
       
     
     
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_7" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_7" checked>
         
           
           <label class="md-nav__link" for="__nav_5_7" id="__nav_5_7_label" tabindex="">
@@ -3588,7 +3739,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_7_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_7_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_5_7">
             <span class="md-nav__icon md-icon"></span>
             Rust
@@ -3602,7 +3753,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Rust/" class="md-nav__link">
+      <a href="../../" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3663,7 +3814,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Rust/%E5%AE%9E%E8%B7%B5/%E5%BC%82%E6%AD%A5%E5%92%8C%E5%B9%B6%E5%8F%91/" class="md-nav__link">
+      <a href="../../%E5%AE%9E%E8%B7%B5/%E5%BC%82%E6%AD%A5%E5%92%8C%E5%B9%B6%E5%8F%91/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3684,7 +3835,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Rust/%E5%AE%9E%E8%B7%B5/%E9%94%99%E8%AF%AF%E5%A4%84%E7%90%86/" class="md-nav__link">
+      <a href="../../%E5%AE%9E%E8%B7%B5/%E9%94%99%E8%AF%AF%E5%A4%84%E7%90%86/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3705,7 +3856,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Rust/%E5%AE%9E%E8%B7%B5/%E9%9D%99%E6%80%81%E5%8F%98%E9%87%8F/" class="md-nav__link">
+      <a href="../../%E5%AE%9E%E8%B7%B5/%E9%9D%99%E6%80%81%E5%8F%98%E9%87%8F/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3731,8 +3882,10 @@
                 
   
   
+    
   
   
+  
     
     
     
@@ -3742,11 +3895,11 @@
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_7_3" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_7_3" checked>
         
           
           <label class="md-nav__link" for="__nav_5_7_3" id="__nav_5_7_3_label" tabindex="0">
@@ -3760,7 +3913,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_5_7_3_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_5_7_3_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_5_7_3">
             <span class="md-nav__icon md-icon"></span>
             库
@@ -3774,7 +3927,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Rust/%E5%BA%93/Serde/" class="md-nav__link">
+      <a href="../Serde/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3795,7 +3948,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Rust/%E5%BA%93/%E5%AD%97%E7%AC%A6%E4%B8%B2/" class="md-nav__link">
+      <a href="../%E5%AD%97%E7%AC%A6%E4%B8%B2/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3816,11 +3969,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Rust/%E5%BA%93/%E6%96%87%E4%BB%B6/" class="md-nav__link">
+      <a href="../%E6%96%87%E4%BB%B6/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    文件
+    文件和IO
   </span>
   
 
@@ -3837,7 +3990,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Rust/%E5%BA%93/%E6%97%A5%E5%BF%97/" class="md-nav__link">
+      <a href="../%E6%97%A5%E5%BF%97/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3858,7 +4011,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Rust/%E5%BA%93/%E6%97%B6%E9%97%B4/" class="md-nav__link">
+      <a href="../%E6%97%B6%E9%97%B4/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3867,6 +4020,94 @@
   
 
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    网络
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    网络
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#demo" class="md-nav__link">
+    <span class="md-ellipsis">
+      Demo
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tokio" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tokio
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reqwest" class="md-nav__link">
+    <span class="md-ellipsis">
+      Reqwest
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -3927,7 +4168,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Rust/%E6%9E%84%E5%BB%BA/Cargo/" class="md-nav__link">
+      <a href="../../%E6%9E%84%E5%BB%BA/Cargo/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3991,18 +4232,27 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#what-happened-in-stack-when-a-function-is-called" class="md-nav__link">
+  <a href="#demo" class="md-nav__link">
     <span class="md-ellipsis">
-      What happened in stack when a function is called?
+      Demo
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#what-information-does-a-function-stack-frame-generally-contain" class="md-nav__link">
+  <a href="#tokio" class="md-nav__link">
     <span class="md-ellipsis">
-      What information does a function stack frame generally contain ?
+      Tokio
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reqwest" class="md-nav__link">
+    <span class="md-ellipsis">
+      Reqwest
     </span>
   </a>
   
@@ -4027,72 +4277,84 @@
   
 
 
-<h1 id="_1">调用规范</h1>
-<h2 id="what-happened-in-stack-when-a-function-is-called">What happened in stack when a function is called?</h2>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span>
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="kt">int</span><span class="w"> </span><span class="nf">multiply</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">b</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">multiplication</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">b</span><span class="p">;</span>
-<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">multiplication</span><span class="p">;</span>
-<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="p">}</span>
-<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>
-<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span>
-<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span>
-<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">multiply</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">);</span>
-<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;The result is: %d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">result</span><span class="p">);</span>
-<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
-<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="p">}</span>
+<h1 id="_1">网络</h1>
+<p>在 Rust 中处理网络通信涉及到多个标准库和第三方库的组件。标准库中的 <code>std::net</code> 模块提供了处理 TCP 和 UDP 网络通信的基本构建块，而第三方库则提供了更高级的异步处理机制和更丰富的网络协议支持。</p>
+<h2 id="demo">Demo</h2>
+<p>以下是一个使用 Rust 标准库进行 TCP 服务器和客户端通信的基本示例：</p>
+<p><strong>TCP 服务器</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">use</span><span class="w"> </span><span class="n">std</span><span class="p">::</span><span class="n">net</span><span class="p">::{</span><span class="n">TcpListener</span><span class="p">,</span><span class="w"> </span><span class="n">TcpStream</span><span class="p">};</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="k">use</span><span class="w"> </span><span class="n">std</span><span class="p">::</span><span class="n">io</span><span class="p">::{</span><span class="n">Read</span><span class="p">,</span><span class="w"> </span><span class="n">Write</span><span class="p">};</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="k">fn</span><span class="w"> </span><span class="nf">handle_client</span><span class="p">(</span><span class="k">mut</span><span class="w"> </span><span class="n">stream</span><span class="p">:</span><span class="w"> </span><span class="nc">TcpStream</span><span class="p">)</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="nc">std</span><span class="p">::</span><span class="n">io</span><span class="p">::</span><span class="nb">Result</span><span class="o">&lt;</span><span class="p">()</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">    </span><span class="fm">println!</span><span class="p">(</span><span class="s">&quot;Incoming connection from: {}&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">stream</span><span class="p">.</span><span class="n">peer_addr</span><span class="p">()</span><span class="o">?</span><span class="p">);</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="k">mut</span><span class="w"> </span><span class="n">buffer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="mi">512</span><span class="p">];</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">    </span><span class="k">loop</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="n">bytes_read</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">stream</span><span class="p">.</span><span class="n">read</span><span class="p">(</span><span class="o">&amp;</span><span class="k">mut</span><span class="w"> </span><span class="n">buffer</span><span class="p">)</span><span class="o">?</span><span class="p">;</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="n">bytes_read</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="nb">Ok</span><span class="p">(());</span><span class="w"> </span><span class="p">}</span><span class="w">  </span><span class="c1">// Connection was closed</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="w">        </span><span class="n">stream</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="o">&amp;</span><span class="n">buffer</span><span class="p">[</span><span class="o">..</span><span class="n">bytes_read</span><span class="p">])</span><span class="o">?</span><span class="p">;</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="p">}</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="k">fn</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="nc">std</span><span class="p">::</span><span class="n">io</span><span class="p">::</span><span class="nb">Result</span><span class="o">&lt;</span><span class="p">()</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">listener</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">TcpListener</span><span class="p">::</span><span class="n">bind</span><span class="p">(</span><span class="s">&quot;127.0.0.1:7878&quot;</span><span class="p">)</span><span class="o">?</span><span class="p">;</span>
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="w">    </span><span class="fm">println!</span><span class="p">(</span><span class="s">&quot;Server listening on port 7878&quot;</span><span class="p">);</span>
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="n">stream</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">listener</span><span class="p">.</span><span class="n">incoming</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="n">stream</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">stream</span><span class="o">?</span><span class="p">;</span>
+<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a><span class="w">        </span><span class="n">handle_client</span><span class="p">(</span><span class="n">stream</span><span class="p">)</span><span class="o">?</span><span class="p">;</span>
+<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>
+<a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a><span class="w">    </span><span class="nb">Ok</span><span class="p">(())</span>
+<a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a><span class="p">}</span>
 </code></pre></div>
-<p>compiled with:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>$ gcc --version
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>gcc (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0
-<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>$ gcc -m32 -g hello.c
+<p><strong>TCP 客户端</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">use</span><span class="w"> </span><span class="n">std</span><span class="p">::</span><span class="n">net</span><span class="p">::</span><span class="n">TcpStream</span><span class="p">;</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="k">use</span><span class="w"> </span><span class="n">std</span><span class="p">::</span><span class="n">io</span><span class="p">::{</span><span class="n">Read</span><span class="p">,</span><span class="w"> </span><span class="n">Write</span><span class="p">};</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="k">fn</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="nc">std</span><span class="p">::</span><span class="n">io</span><span class="p">::</span><span class="nb">Result</span><span class="o">&lt;</span><span class="p">()</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="k">mut</span><span class="w"> </span><span class="n">stream</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">TcpStream</span><span class="p">::</span><span class="n">connect</span><span class="p">(</span><span class="s">&quot;127.0.0.1:7878&quot;</span><span class="p">)</span><span class="o">?</span><span class="p">;</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">    </span><span class="fm">println!</span><span class="p">(</span><span class="s">&quot;Connected to the server!&quot;</span><span class="p">);</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="w">    </span><span class="n">stream</span><span class="p">.</span><span class="n">write_all</span><span class="p">(</span><span class="s">b&quot;Hello, server!&quot;</span><span class="p">)</span><span class="o">?</span><span class="p">;</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="k">mut</span><span class="w"> </span><span class="n">buffer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="mi">512</span><span class="p">];</span>
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="w">    </span><span class="n">stream</span><span class="p">.</span><span class="n">read</span><span class="p">(</span><span class="o">&amp;</span><span class="k">mut</span><span class="w"> </span><span class="n">buffer</span><span class="p">)</span><span class="o">?</span><span class="p">;</span>
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="w">    </span><span class="fm">println!</span><span class="p">(</span><span class="s">&quot;Received from server: {}&quot;</span><span class="p">,</span><span class="w"> </span><span class="nb">String</span><span class="p">::</span><span class="n">from_utf8_lossy</span><span class="p">(</span><span class="o">&amp;</span><span class="n">buffer</span><span class="p">));</span>
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="w">    </span><span class="nb">Ok</span><span class="p">(())</span>
+<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="p">}</span>
 </code></pre></div>
-<p>Given that the ISA is 32bit x86:</p>
-<ol>
-<li>CALLER <code>push</code> the arguments into stack, from right to left.</li>
-<li>CALLER <code>call</code> the target function, the <code>%eip</code> is pushed into stack.</li>
-<li>CALLEE <code>push</code> <code>%ebp</code> into stack.</li>
-<li>CALLEE sub <code>%esp</code> to reserve space for local variables and temporary variables.</li>
-<li>CALLEE <code>leave</code> and <code>ret</code>, <ol>
-<li><code>leave</code> -&gt; <code>mov %ebp,%esp;   pop %ebp;</code>. The <code>%ebp</code> and <code>%esp</code> of CALLER is restored.</li>
-<li><code>ret</code> -&gt; <code>pop %eip</code>. The <code>%eip</code> saved is restored.</li>
-</ol>
-</li>
-<li>CALLEE add <code>%esp</code> to clear the space for argument passing.</li>
-</ol>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>int multiply(int a, int b) {
-<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>    119d:       55                      push   %ebp
-<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>    119e:       89 e5                   mov    %esp,%ebp
-<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>    11a0:       83 ec 10                sub    $0x10,%esp
-<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>    11a3:       e8 74 00 00 00          call   121c &lt;__x86.get_pc_thunk.ax&gt;
-<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>    11a8:       05 30 2e 00 00          add    $0x2e30,%eax
-<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>    ...
-<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>    11ba:       c9                      leave
-<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>    11bb:       c3                      ret
-<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>}
-<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>
-<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>int result = multiply(x, y);
-<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>    11e7:       ff 75 f0                push   -0x10(%ebp)
-<a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>    11ea:       ff 75 ec                push   -0x14(%ebp)
-<a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a>    11ed:       e8 ab ff ff ff          call   119d &lt;multiply&gt;
-<a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a>    11f2:       83 c4 08                add    $0x8,%esp
-<a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a>    11f5:       89 45 f4                mov    %eax,-0xc(%ebp)
+<h2 id="tokio">Tokio</h2>
+<p>一般而言，编写网络程序面对的瓶颈往往是IO。在等待IO的时候做更多的工作是最有效的优化办法，所以网络程序大都是并发程序。</p>
+<p>这是使用 <code>tokio</code> 的异步 TCP Echo 服务器 Demo。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">use</span><span class="w"> </span><span class="n">tokio</span><span class="p">::</span><span class="n">net</span><span class="p">::{</span><span class="n">TcpListener</span><span class="p">,</span><span class="w"> </span><span class="n">TcpStream</span><span class="p">};</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="k">use</span><span class="w"> </span><span class="n">tokio</span><span class="p">::</span><span class="n">io</span><span class="p">::{</span><span class="n">AsyncReadExt</span><span class="p">,</span><span class="w"> </span><span class="n">AsyncWriteExt</span><span class="p">};</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="k">async</span><span class="w"> </span><span class="k">fn</span><span class="w"> </span><span class="nf">handle_client</span><span class="p">(</span><span class="k">mut</span><span class="w"> </span><span class="n">stream</span><span class="p">:</span><span class="w"> </span><span class="nc">TcpStream</span><span class="p">)</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="nc">tokio</span><span class="p">::</span><span class="n">io</span><span class="p">::</span><span class="nb">Result</span><span class="o">&lt;</span><span class="p">()</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="k">mut</span><span class="w"> </span><span class="n">buffer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="mi">1024</span><span class="p">];</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">    </span><span class="k">loop</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="n">bytes_read</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">stream</span><span class="p">.</span><span class="n">read</span><span class="p">(</span><span class="o">&amp;</span><span class="k">mut</span><span class="w"> </span><span class="n">buffer</span><span class="p">).</span><span class="k">await</span><span class="o">?</span><span class="p">;</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="n">bytes_read</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">break</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="w">        </span><span class="n">stream</span><span class="p">.</span><span class="n">write_all</span><span class="p">(</span><span class="o">&amp;</span><span class="n">buffer</span><span class="p">[</span><span class="o">..</span><span class="n">bytes_read</span><span class="p">]).</span><span class="k">await</span><span class="o">?</span><span class="p">;</span>
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="w">    </span><span class="nb">Ok</span><span class="p">(())</span>
+<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="p">}</span>
+<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>
+<a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a><span class="cp">#[tokio::main]</span>
+<a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a><span class="k">async</span><span class="w"> </span><span class="k">fn</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="nc">tokio</span><span class="p">::</span><span class="n">io</span><span class="p">::</span><span class="nb">Result</span><span class="o">&lt;</span><span class="p">()</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">listener</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">TcpListener</span><span class="p">::</span><span class="n">bind</span><span class="p">(</span><span class="s">&quot;127.0.0.1:7878&quot;</span><span class="p">).</span><span class="k">await</span><span class="o">?</span><span class="p">;</span>
+<a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a><span class="w">    </span><span class="fm">println!</span><span class="p">(</span><span class="s">&quot;Server listening on port 7878&quot;</span><span class="p">);</span>
+<a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a>
+<a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a><span class="w">    </span><span class="k">loop</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a><span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="p">(</span><span class="n">stream</span><span class="p">,</span><span class="w"> </span><span class="n">_</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">listener</span><span class="p">.</span><span class="n">accept</span><span class="p">().</span><span class="k">await</span><span class="o">?</span><span class="p">;</span>
+<a id="__codelineno-2-21" name="__codelineno-2-21" href="#__codelineno-2-21"></a><span class="w">        </span><span class="n">tokio</span><span class="p">::</span><span class="n">spawn</span><span class="p">(</span><span class="k">async</span><span class="w"> </span><span class="k">move</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-2-22" name="__codelineno-2-22" href="#__codelineno-2-22"></a><span class="w">            </span><span class="n">handle_client</span><span class="p">(</span><span class="n">stream</span><span class="p">).</span><span class="k">await</span><span class="p">.</span><span class="n">unwrap</span><span class="p">();</span>
+<a id="__codelineno-2-23" name="__codelineno-2-23" href="#__codelineno-2-23"></a><span class="w">        </span><span class="p">});</span>
+<a id="__codelineno-2-24" name="__codelineno-2-24" href="#__codelineno-2-24"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-2-25" name="__codelineno-2-25" href="#__codelineno-2-25"></a><span class="p">}</span>
 </code></pre></div>
-<p>We notice that there is a call to <code>__x86.get_pc_thunk.ax</code>. The function is to transfer the contents of the <code>%eip</code> register to the <code>%eax</code> register. It is equivalent to <code>mov %eip, %eax</code>.<br />
-This function is used in <strong>PIC (position independent code) on x86</strong>. It loads the location of <code>%eip</code> into the <code>%eax</code> register, thereby enabling access to the internal data of the module (such as global variables). The reason is that there is no instruction in the x86 instruction set to directly read <code>%eip</code>.</p>
-<h2 id="what-information-does-a-function-stack-frame-generally-contain">What information does a function stack frame generally contain ?</h2>
-<ul>
-<li><strong>Return Address</strong>: The <code>call</code> instruction saves. This is the memory address of the instruction in the calling code where the program should resume execution after the function completes. When the function finishes, the CPU uses this address to transfer control back to the caller.</li>
-<li><strong>Parameters and Local Variables</strong>: The stack frame allocates space for the function's parameters (values passed from the CALLER) and local variables declared within the function (values created in CALLEE). These values are stored on the stack frame and can be accessed and modified by the function during its execution.</li>
-<li><strong>Base Pointer</strong>: The base pointer (<code>%ebp</code> on x86 architectures) is a pointer that references the current stack frame's base address. It is useful for accessing local variables and function parameters through offsets from the base pointer.</li>
-<li><strong>Function State Information</strong>: (Not shown in the example code)Some additional information related to the function's state may be stored on the stack frame, such as callee-saved registers (registers whose values must be preserved across function calls) and other bookkeeping data.</li>
-</ul>
-<blockquote>
-<p>C语言提供了稳定的ABI。C语言函数调用规范叫做<code>cdecl</code>，是被gcc, clang编译器默认被使用的。很多其他语言也依赖C语言的ABI和C编写的库进行交互。<br />
-还有其他的调用规范，如Pascal Call(<code>stdcall</code>), <code>fastcall</code>, linux system call...</p>
-</blockquote>
+<h2 id="reqwest">Reqwest</h2>
+<p>Reqwest 是一个 Rust 语言编写的非常流行的 <strong>HTTP 客户端库</strong>，它支持异步和同步两种请求方式。Reqwest 基于 <code>hyper</code> 这一 HTTP 库构建，便于处理 HTTP 客户端操作，并且集成了 <code>tokio</code> 作为异步运行时。</p>
+<p>他的接口设计和Python的request库很像。</p>
 
 
 
@@ -4120,13 +4382,13 @@ This function is used in <strong>PIC (position independent code) on x86</strong>
                 
                 
                     metaContent.push(`<span class="meta-item">
-                        Create At: Monday, September 30th 2024, 11:40:49 pm
+                        Create At: Wednesday, November 13th 2024, 6:35:56 pm
                     </span>`);
                 
                 
                 
                     metaContent.push(`<span class="meta-item">
-                        Modified At: Wednesday, November 13th 2024, 2:15:36 pm
+                        Modified At: Wednesday, November 13th 2024, 7:01:32 pm
                     </span>`);
                 
                 
@@ -4201,12 +4463,12 @@ This function is used in <strong>PIC (position independent code) on x86</strong>
     </div>
     
     
-    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "navigation.tracking", "content.code.copy", "content.code.annotate"], "search": "../../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
+    <script id="__config" type="application/json">{"base": "../../../..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "navigation.tracking", "content.code.copy", "content.code.annotate"], "search": "../../../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.83f73b43.min.js"></script>
+      <script src="../../../../assets/javascripts/bundle.83f73b43.min.js"></script>
       
-        <script src="../../../javascripts/mathjax.js"></script>
+        <script src="../../../../javascripts/mathjax.js"></script>
       
         <script src="https://lf26-cdn-tos.bytecdntp.com/cdn/expire-1-M/polyfill-io/3.111.0/polyfill.min.js"></script>
       
