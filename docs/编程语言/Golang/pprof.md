@@ -2,7 +2,7 @@
 aliases: 
 tags: 
 date_created: Wednesday, November 13th 2024, 1:30:01 pm
-date_modified: Wednesday, November 13th 2024, 2:15:36 pm
+date_modified: Tuesday, November 26th 2024, 10:27:43 am
 ---
 
 # pprof
@@ -74,6 +74,14 @@ Showing top 10 nodes out of 37
 ```
 
 flat就是这个函数调用仍旧没有被释放的空间。最大的是`(*Set[go.shape.[20]uint8]).Add`这个函数申请的空间，这是我对可疑地址的缓存，是合理的。
+
+## CPU
+
+执行下面的命令，会在60秒内对CPU使用情况进行采样：
+
+```bash
+go tool pprof http://127.0.0.1:7001/debug/pprof/profile?seconds=60
+```
 
 ---
 
