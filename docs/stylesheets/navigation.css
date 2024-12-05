@@ -1,0 +1,58 @@
+/* 导航栏样式 */
+.md-header {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.md-tabs {
+    background-color: var(--md-primary-fg-color--dark);
+}
+
+.md-header__topic {
+    color: rgba(255, 255, 255, 0.95) !important;
+    font-weight: 500;
+}
+
+.md-tabs__link {
+    color: rgba(255, 255, 255, 0.9) !important;
+    font-size: 0.9rem;
+}
+
+.md-tabs__link:hover {
+    color: #ffffff !important;
+}
+
+.md-tabs__link--active {
+    color: #ffffff !important;
+    font-weight: 600;
+}
+
+/* GitHub 仓库链接样式 */
+.md-header__source {
+    background-color: rgba(255, 255, 255, 0.1) !important;
+    padding: 0.2rem 0.4rem !important;
+    border-radius: 0.1rem;
+    margin: 0.2rem;
+}
+
+.md-header__source:hover {
+    background-color: rgba(255, 255, 255, 0.2) !important;
+}
+
+/* 社交链接样式 */
+.md-social__link {
+    width: 2rem !important;
+    height: 2rem !important;
+    margin: 0.2rem !important;
+    padding: 0.3rem !important;
+    background-color: rgba(255, 255, 255, 0.1) !important;
+    border-radius: 0.1rem;
+}
+
+.md-social__link:hover {
+    background-color: rgba(255, 255, 255, 0.2) !important;
+}
+
+.md-social__link svg {
+    width: 1.2rem;
+    height: 1.2rem;
+}

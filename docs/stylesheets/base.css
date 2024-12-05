@@ -1,0 +1,41 @@
+/* 基础变量和字体设置 */
+:root {
+    --md-text-font: "Noto Sans SC", -apple-system, BlinkMacSystemFont, sans-serif;
+    --md-code-font: "JetBrains Mono", "Fira Code", monospace;
+}
+
+body {
+    font-family: 'Noto Sans SC', sans-serif;
+}
+
+code {
+    font-family: 'JetBrains Mono', monospace !important;
+}
+
+strong,
+b {
+    color: #20B2AA;
+    font-weight: bold;
+}
+
+em,
+i {
+    color: #4169E1;
+    font-style: italic;
+}
+
+.md-grid {
+    max-width: 1440px;
+}
+
+.md-typeset {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    word-break: normal;
+    hyphens: auto;
+}
+
+/* 数学公式样式 */
+.md-typeset .MathJax {
+    font-size: 1em !important;
+}

@@ -2,20 +2,20 @@
 aliases: 
 tags: 
 date_created: Monday, September 30th 2024, 11:40:49 pm
-date_modified: Wednesday, November 13th 2024, 2:15:37 pm
+date_modified: Wednesday, December 4th 2024, 5:02:54 pm
 ---
 
-# Machine Learning
+# 机器学习
 
 ## Basic
 
-- supervised learning
-    - classification: 样本属于两个或多个类别，我们希望从已经标记的数据中学习如何预测未标记数据的类别。
-    - regression: 用于估计因变量（dependent variable, outcome, response...）与一个或多个自变量（independent variable, covariates, feature...）之间的关系。
-        - linear regression: 这是一个很典型的例子，它认为因变量和自变量之间的关系是线性的($y=wx+b$，更准确的表达是$y = \vec{w}^T\vec{x} + b$)。线性回归模型可以使用**最小二乘法**拟合。![](../../static/Pasted%20image%2020240312102527.png)
-        - Logistic regression: 结果只有0和1两种情况，类似于分类问题了。
-- unsupervised learning: 
-    - clustering: 在数据中发现相似示例的组，其中称为**聚类**
+- 监督学习（supervised learning）：
+    - 分类（classification）：样本属于两个或多个类别，我们希望从已经标记的数据中学习如何预测未标记数据的类别。
+    - 回归（regression）: 用于估计因变量（dependent variable, outcome, response...）与一个或多个自变量（independent variable, co-variants, feature...）之间的关系。
+        - 线性回归（linear regression）：这是一个很典型的例子，它认为因变量和自变量之间的关系是线性的($y=wx+b$，更准确的表达是$y = \vec{w}^T\vec{x} + b$)。线性回归模型可以使用**最小二乘法**拟合。![](../../static/Pasted%20image%2020240312102527.png)
+        - 逻辑斯谛回归（Logistic regression）：结果只有0和1两种情况，类似于分类问题了。
+- 无监督学习（unsupervised learning）：
+    - 聚类（clustering）: 在数据中发现相似示例的组，其中称为**聚类**。一般我们说无监督学习指的基本上就是聚类。
     - 或者确定输入空间中数据的分布，称为密度估计，或者将数据从高维空间投影到二维或三维以实现可视化。
 
 机器学习在实际操作层面一共分为7步：
@@ -32,11 +32,11 @@ date_modified: Wednesday, November 13th 2024, 2:15:37 pm
 
 - 设计一个带未知参数的函数 （即**模型**）
 - 定义**损失函数** L
-- 求解一个**优化问题**
+- 求解一个**优化问题** （让损失函数在数据集上表现的最好）
 
-## Algorithm
+## 一些算法
 
-### Classification
+### 分类算法
 
 **Decision Tree**: 这也是非常简单经典的Classification算法。
 
@@ -55,7 +55,7 @@ KNN算法，即是给定一个训练数据集，对新的输入实例，在训�
 
 Perceptron
 
-### Regression
+### 回归算法
 
 在我们开始考虑如何用模型拟合（fit）数据之前，我们需要确定一个拟合程度的度量。 **损失函数（loss function）** 能够量化目标的 实际值 与 预测值 之间的差距。 通常我们会选择非负数作为损失，且数值越小表示损失越小，完美预测时的损失为0。 回归问题中最常用的损失函数是平方误差函数。 当样本$i$的预测值为$\hat{y}_i$，其相应的真实标签为$y_i$时， 平方误差可以定义为以下公式：
 
@@ -73,7 +73,11 @@ $$L(args) = \frac{1}{n}\sum_{i=1}^n \frac{1}{2}(\hat{y}_i-y_i)^2 $$
 
 CNN(Convolutional Neural Networks, 卷积神经网络)
 
-## Library
+### 聚类算法
+
+k-min
+
+## 一些库
 
 <https://scikit-learn.org/stable/>
 

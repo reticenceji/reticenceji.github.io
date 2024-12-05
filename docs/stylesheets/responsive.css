@@ -1,0 +1,11 @@
+/* 优化移动端显示 */
+@media screen and (max-width: 76.1875em) {
+    .md-nav--primary .md-nav__title {
+        background-color: var(--md-primary-fg-color);
+        color: var(--md-primary-bg-color);
+    }
+
+    .md-content {
+        padding: 0 0.5rem;
+    }
+}

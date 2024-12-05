@@ -13,7 +13,6 @@ mkdocs-glightbox = "^0.4.0"
 mkdocs-meta-descriptions-plugin = "^3.0.0"
 pillow = "^11.0.0"
 cairosvg = "^2.7.1"
-mkdocs-backlinks = "^0.9.1"
 
 [build-system]
 requires = ["poetry-core"]

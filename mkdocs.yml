@@ -38,8 +38,6 @@ plugins:
   - tags
   - social
   - meta-descriptions
-  - mkdocs-backlinks:
-      enabled: true
 extra_javascript:
   - javascripts/mathjax.js
   - https://lf26-cdn-tos.bytecdntp.com/cdn/expire-1-M/polyfill-io/3.111.0/polyfill.min.js

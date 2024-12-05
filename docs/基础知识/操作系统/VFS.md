@@ -2,10 +2,10 @@
 aliases: 
 tags: 
 date_created: Wednesday, November 13th 2024, 1:30:01 pm
-date_modified: Wednesday, November 13th 2024, 2:15:37 pm
+date_modified: Wednesday, December 4th 2024, 5:04:08 pm
 ---
 
-# VFS
+# 虚拟文件系统
 
 关于 VFS，有一篇 [不错的介绍](https://www.kernel.org/doc/html/latest/filesystems/vfs.html#struct-file-system-type)。这是 2.6.39 的代码，很简洁
 
