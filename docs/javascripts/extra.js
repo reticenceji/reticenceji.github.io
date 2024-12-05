@@ -5,9 +5,6 @@ document.addEventListener('DOMContentLoaded', function () {
     // 图片优化
     enhanceImages();
 
-    // 添加返回顶部按钮
-    addBackToTop();
-
     // 添加目录滚动监听
     addTocHighlight();
 
@@ -43,12 +40,6 @@ document.addEventListener('DOMContentLoaded', function () {
 function enhanceCodeBlocks() {
     const codeBlocks = document.querySelectorAll('pre code');
     codeBlocks.forEach(block => {
-        // // 添加行号
-        // const lines = block.innerHTML.split('\n');
-        // const numberedLines = lines.map((line, index) => 
-        //     `<span class="line-number">${index + 1}</span>${line}`
-        // ).join('\n');
-        // block.innerHTML = numberedLines;
 
         // 添加代码语言标签
         const language = block.className.split(' ')[0].replace('language-', '');
@@ -85,29 +76,6 @@ function enhanceImages() {
 
         // 添加懒加载
         img.loading = 'lazy';
-    });
-}
-
-// 返回顶部按钮
-function addBackToTop() {
-    const button = document.createElement('button');
-    button.className = 'back-to-top';
-    button.innerHTML = '↑';
-    document.body.appendChild(button);
-
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 300) {
-            button.classList.add('visible');
-        } else {
-            button.classList.remove('visible');
-        }
-    });
-
-    button.addEventListener('click', () => {
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-        });
     });
 }
 

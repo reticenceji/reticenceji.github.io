@@ -2,7 +2,7 @@
 aliases: 
 tags: 
 date_created: Wednesday, November 13th 2024, 1:30:01 pm
-date_modified: Wednesday, December 4th 2024, 5:06:00 pm
+date_modified: Thursday, December 5th 2024, 3:19:14 pm
 ---
 
 # 主页
@@ -13,12 +13,12 @@ I’m Reticence Ji. A student in Zhejiang University, Information Security Major
 
  > 种一棵树最好的时间是十年前，其次是现在。
 
-## 编程技能
+## 编程技能 
 
 - 语言：Rust > Python, C > Golang > C++, Scala
 - 领域：Web, OS, Linux Programming, Smart Contract, Client, Static Program Analysis ...
 
-## 编写规范
+## 编写规范 
 
 - 如果标题是专有名词，可以使用英语。否则使用中文。
 - 在一篇文章内，尽量只使用中文完成书写。

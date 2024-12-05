@@ -71,6 +71,7 @@ bool sendTo(const std::string& data, const std::string& ip, uint16_t port) {
 
 > [!NOTE]
 > `select`和 `pool` 是符合 POSIX 标准的，是标准的UNIX接口的一部分。`epoll`是Linux独有的。
+> 显然，这些系统调用是阻塞的。
 
 ## 参考链接
 
