@@ -8,13 +8,13 @@
       
       
       
-        <link rel="canonical" href="https://reticenceji.github.io/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/Machine%20Learning/">
+        <link rel="canonical" href="https://reticenceji.github.io/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/GBDT/">
       
       
-        <link rel="prev" href="../Deep%20Learning/">
+        <link rel="prev" href="../">
       
       
-        <link rel="next" href="../Paper%20Reading/">
+        <link rel="next" href="../ML/">
       
       
       <link rel="icon" href="../../../static/favicon.png">
@@ -22,7 +22,7 @@
     
     
       
-        <title>Machine Learning - Reticence Ji's Notes</title>
+        <title>梯度提升决策树 - Reticence Ji's Notes</title>
       
     
     
@@ -61,11 +61,11 @@
       
         <meta  property="og:type"  content="website" >
       
-        <meta  property="og:title"  content="Machine Learning - Reticence Ji's Notes" >
+        <meta  property="og:title"  content="梯度提升决策树 - Reticence Ji's Notes" >
       
         <meta  property="og:description"  content="None" >
       
-        <meta  property="og:image"  content="https://reticenceji.github.io/assets/images/social/基础知识/人工智能/Machine Learning.png" >
+        <meta  property="og:image"  content="https://reticenceji.github.io/assets/images/social/基础知识/人工智能/GBDT.png" >
       
         <meta  property="og:image:type"  content="image/png" >
       
@@ -73,15 +73,15 @@
       
         <meta  property="og:image:height"  content="630" >
       
-        <meta  property="og:url"  content="https://reticenceji.github.io/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/Machine%20Learning/" >
+        <meta  property="og:url"  content="https://reticenceji.github.io/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/GBDT/" >
       
         <meta  name="twitter:card"  content="summary_large_image" >
       
-        <meta  name="twitter:title"  content="Machine Learning - Reticence Ji's Notes" >
+        <meta  name="twitter:title"  content="梯度提升决策树 - Reticence Ji's Notes" >
       
         <meta  name="twitter:description"  content="None" >
       
-        <meta  name="twitter:image"  content="https://reticenceji.github.io/assets/images/social/基础知识/人工智能/Machine Learning.png" >
+        <meta  name="twitter:image"  content="https://reticenceji.github.io/assets/images/social/基础知识/人工智能/GBDT.png" >
       
     
     
@@ -104,7 +104,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#machine-learning" class="md-skip">
+        <a href="#_1" class="md-skip">
           跳转至
         </a>
       
@@ -138,7 +138,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Machine Learning
+              梯度提升决策树
             
           </span>
         </div>
@@ -245,7 +245,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../../../Index/" class="md-tabs__link">
+      <a href="../../.." class="md-tabs__link">
         
   
     
@@ -383,7 +383,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../Index/" class="md-nav__link">
+      <a href="../../.." class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -532,27 +532,6 @@
                 
   
   
-  
-  
-    <li class="md-nav__item">
-      <a href="../Deep%20Learning/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Deep Learning
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
     
   
   
@@ -569,7 +548,7 @@
           
   
   <span class="md-ellipsis">
-    Machine Learning
+    梯度提升决策树
   </span>
   
 
@@ -580,7 +559,7 @@
         
   
   <span class="md-ellipsis">
-    Machine Learning
+    梯度提升决策树
   </span>
   
 
@@ -602,51 +581,45 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#basic" class="md-nav__link">
+  <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
-      Basic
+      决策树
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#algorithm" class="md-nav__link">
+  <a href="#cart" class="md-nav__link">
     <span class="md-ellipsis">
-      Algorithm
+      CART 分类和回归树
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="Algorithm">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#classification" class="md-nav__link">
-    <span class="md-ellipsis">
-      Classification
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#regression" class="md-nav__link">
-    <span class="md-ellipsis">
-      Regression
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#library" class="md-nav__link">
+  <a href="#boosting" class="md-nav__link">
     <span class="md-ellipsis">
-      Library
+      Boosting
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#gbdt" class="md-nav__link">
+    <span class="md-ellipsis">
+      GBDT 梯度提升决策树
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      参考链接
     </span>
   </a>
   
@@ -668,11 +641,32 @@
   
   
     <li class="md-nav__item">
-      <a href="../Paper%20Reading/" class="md-nav__link">
+      <a href="../ML/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Paper Reading
+    机器学习
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E7%BB%9F%E8%AE%A1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    统计概念
   </span>
   
 
@@ -744,7 +738,7 @@
         
   
   <span class="md-ellipsis">
-    Blockchain
+    区块链
   </span>
   
 
@@ -888,7 +882,7 @@
         
   
   <span class="md-ellipsis">
-    Index
+    操作系统
   </span>
   
 
@@ -909,7 +903,7 @@
         
   
   <span class="md-ellipsis">
-    VFS
+    虚拟文件系统
   </span>
   
 
@@ -4483,51 +4477,45 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#basic" class="md-nav__link">
+  <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
-      Basic
+      决策树
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#algorithm" class="md-nav__link">
+  <a href="#cart" class="md-nav__link">
     <span class="md-ellipsis">
-      Algorithm
+      CART 分类和回归树
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="Algorithm">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#classification" class="md-nav__link">
-    <span class="md-ellipsis">
-      Classification
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#regression" class="md-nav__link">
-    <span class="md-ellipsis">
-      Regression
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#library" class="md-nav__link">
+  <a href="#boosting" class="md-nav__link">
     <span class="md-ellipsis">
-      Library
+      Boosting
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#gbdt" class="md-nav__link">
+    <span class="md-ellipsis">
+      GBDT 梯度提升决策树
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      参考链接
     </span>
   </a>
   
@@ -4552,76 +4540,154 @@
   
 
 
-<h1 id="machine-learning">Machine Learning</h1>
-<h2 id="basic">Basic</h2>
+<h1 id="_1">梯度提升决策树</h1>
+<h2 id="_2">决策树</h2>
+<p>决策树（Decision tree）是<strong>基于已知各种情况（特征取值）</strong> 的基础上，通过构建 <strong>树型决策</strong> 结构来进行分析的一种方式，是常用的简单的<strong>有监督</strong>的分类算法。举个例子就可以清楚的说明模型的预测原理：</p>
+<p>例如，我们想判断非诚勿扰女嘉宾给男嘉宾的留灯概率。男嘉宾的属性有 高、富、帅。每个属性我们可以简单地定义为“是”或“否”。我们可能会有下面的决策树：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>是否帅
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>├── 是
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>│   ├── 是否富
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>│   │   ├── 是
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>│   │   │   ├── 是否高
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>│   │   │   │   ├── 是: 留灯的概率非常高 (90%)
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>│   │   │   │   └── 否: 留灯的概率高 (80%)
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>│   │   │   └── 否
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>│   │   │       ├── 是: 留灯的概率中等 (50%)
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>│   │   │       └── 否: 留灯的概率低 (30%)
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>│   │   └── 否
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>│   │       ├── 是否高
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>│   │       │   ├── 是: 留灯的概率低 (30%)
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>│   │       │   └── 否: 留灯的概率非常低 (10%)
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>│   └── 否
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>│       ├── 是否富
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>│       │   ├── 是
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>│       │   │   ├── 是否高
+<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>│       │   │   │   ├── 是: 留灯的概率低 (30%)
+<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>│       │   │   │   └── 否: 留灯的概率非常低 (10%)
+<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>│       │   │   └── 否
+<a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>│       │   │       ├── 是: 留灯的概率非常低 (10%)
+<a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>│       │   │       └── 否: 留灯的概率极低 (5%)
+<a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>│       │   └── 否
+<a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>│       │       ├── 是否高
+<a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a>│       │       │   ├── 是: 留灯的概率非常低 (10%)
+<a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>│       │       │   └── 否: 留灯的概率极低 (5%)
+</code></pre></div>
+<p>这个例子就是一个典型用决策树解决回归问题。如果最后判断的结果是留灯与否，就是分类问题。<strong>决策树既可以用来解决回归问题，又可以用来解决分类问题</strong>。当然，这个例子过于简单了。</p>
+<h2 id="cart">CART 分类和回归树</h2>
+<p>CART：假设决策树是<strong>二叉</strong>树，内部结点特征的取值为「是」和「否」，右分支是取值为「是」的分支，左分支是取值为「否」的分支。这样的决策树等价于「递归地二分每个特征」，将输入空间（特征空间）划分为有限个单元，并在这些单元上确定预测的概率分布，也就是在输入给定的条件下输出的条件概率分布。（上面的例子就是一个最简单的CART）</p>
+<p>对于上面的例子，我们不难想到模型的训练方式：</p>
+<p>将特征空间（高，富，帅）分成8块，每一块都有一堆男嘉宾以及其是否留灯成功（0,1）。我们要做的就是求每一块留灯成功几率的平均值。</p>
+<p>一般的，特征空间的每一个维度不一定是可数的（例如，“高” 其实可以具体为 187 cm ...），留灯成功也可以是留灯数量。但是总体思路差不多，将特征空间分成<span class="arithmatex">\(J\)</span>份（<span class="arithmatex">\(R_1,R_2...R_j\)</span>），每一份给出的预测结果是相同的，可以用留灯数量的平均值。</p>
+<p>对于回归问题，损失函数可以使用<a href="../%E7%BB%9F%E8%AE%A1/">统计</a>中介绍的<strong>均方差</strong>，对于分类问题，损失函数可以使用<a href="../%E7%BB%9F%E8%AE%A1/">统计</a>中介绍的<strong>基尼系数</strong>。但是CART算法一般都用来做分类问题。</p>
+<blockquote>
+<p>[!NOTE]
+网络上很多文章一边用基尼系数作为损失函数，后面又在求解均方差的最优化问题。看的人云里雾里。</p>
+</blockquote>
+<p>如何让损失函数最小？很容易想到的就是有X个男嘉宾就将空间分成X份，损失函数就是0了。所以决策树很容易过拟合，在解决最优化问题之后，后续还有剪枝步骤。这里不做介绍。</p>
+<p>另外，决策树的<strong>参数个数（即树到底用几个中间节点分割空间）是不确定的</strong>，所以在求解最优化问题上的方法可能不那么直观。</p>
+<h2 id="boosting">Boosting</h2>
+<p>Boosting 是机器学习中一种集成学习（Ensemble Learning）技术，其核心思想是通过<strong>组合多个较弱的学习器（弱分类器或弱学习算法，称为基模型）来创建一个更强的学习器（强分类器）</strong>。例如，基模型为<span class="arithmatex">\(y=f(x)\)</span>，boosting的模型就是迭代多轮之后相加得到的模型<span class="arithmatex">\(y=\sum_{m=1}^M f_m(x)\)</span>，其中<span class="arithmatex">\(f_m\)</span>就是每一轮训练得到的基模型。</p>
+<p>梯度提升（Gradient Boosting）就是以梯度下降的思想为基础，每次迭代都在当前模型的残差方向上构建一个新的弱学习器。不妨让损失函数为均方误差，具体的说</p>
+<p>第M轮的损失函数为</p>
+<div class="arithmatex">\[L(w)=\sum_{i=1}^n (\hat y_i - y_i) ^2 = \sum_{i=1}^n (\hat y_i - \sum_{m=1}^{M-1}f_m(x_i) - f_M(x_i))^2\]</div>
+<p><span class="arithmatex">\(w\)</span>是所有的参数。其中<span class="arithmatex">\(\hat y_i - \sum_{m=1}^{M-1}f_m(x_i)\)</span>即残差，记做<span class="arithmatex">\(r_i\)</span>，那么第M轮的最优化目标就是让下面的公式最小，即预测值接近残差。</p>
+<div class="arithmatex">\[\sum_{i=1}^n (r_i-f_M(x_i))^2\]</div>
+<p>这里是针对损失函数为均方误差的情况。对于更一般的损失函数呢？GBDT规定，<strong>利用损失函数的负梯度在当前模型的值作为残差的近似值</strong>，即</p>
+<div class="arithmatex">\[r_i \approx-[\frac{\partial L(w)}{\partial f_{M-1}(x)}] \]</div>
+<h2 id="gbdt">GBDT 梯度提升决策树</h2>
+<p>梯度提升决策树（Gradient Boosting Decision Tree），是一种迭代的决策树算法，就是之前介绍的 梯度提升+CART决策树 的组合。</p>
+<p>Demo：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># Example code for GBDT algorithm</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">GradientBoostingRegressor</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">mean_squared_error</span><span class="p">,</span> <span class="n">r2_score</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="c1"># 1. Generate sample data</span>
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="k">def</span> <span class="nf">generate_sample_data</span><span class="p">(</span><span class="n">n_samples</span><span class="o">=</span><span class="mi">1000</span><span class="p">):</span>
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>    <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>    <span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">n_samples</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span> <span class="o">*</span> <span class="mi">10</span>  <span class="c1"># Generate 3 features</span>
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>    <span class="c1"># Create a target variable with a nonlinear relationship</span>
+<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>    <span class="n">y</span> <span class="o">=</span> <span class="p">(</span><span class="n">X</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span> <span class="o">+</span><span class="mi">100</span><span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">X</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">])</span> <span class="o">+</span><span class="mi">100</span><span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">X</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="n">n_samples</span><span class="p">)</span>
+<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>    <span class="k">return</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span>
+<a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>
+<a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a><span class="c1"># 2. Data preprocessing and splitting</span>
+<a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a><span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">generate_sample_data</span><span class="p">()</span>
+<a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a><span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+<a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a>
+<a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a><span class="c1"># 3. Create and train GBDT model</span>
+<a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a><span class="n">gbdt</span> <span class="o">=</span> <span class="n">GradientBoostingRegressor</span><span class="p">(</span>
+<a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a>    <span class="n">n_estimators</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>        <span class="c1"># Number of decision trees</span>
+<a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a>    <span class="n">learning_rate</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span>       <span class="c1"># Learning rate</span>
+<a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a>    <span class="n">max_depth</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>             <span class="c1"># Maximum depth of the tree</span>
+<a id="__codelineno-1-26" name="__codelineno-1-26" href="#__codelineno-1-26"></a>    <span class="n">min_samples_split</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>     <span class="c1"># Minimum number of samples required to split an internal node</span>
+<a id="__codelineno-1-27" name="__codelineno-1-27" href="#__codelineno-1-27"></a>    <span class="n">min_samples_leaf</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>      <span class="c1"># Minimum number of samples required to be at a leaf node</span>
+<a id="__codelineno-1-28" name="__codelineno-1-28" href="#__codelineno-1-28"></a>    <span class="n">subsample</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span>           <span class="c1"># Fraction of samples used for fitting the individual learners</span>
+<a id="__codelineno-1-29" name="__codelineno-1-29" href="#__codelineno-1-29"></a>    <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span>
+<a id="__codelineno-1-30" name="__codelineno-1-30" href="#__codelineno-1-30"></a><span class="p">)</span>
+<a id="__codelineno-1-31" name="__codelineno-1-31" href="#__codelineno-1-31"></a>
+<a id="__codelineno-1-32" name="__codelineno-1-32" href="#__codelineno-1-32"></a><span class="c1"># Train the model</span>
+<a id="__codelineno-1-33" name="__codelineno-1-33" href="#__codelineno-1-33"></a><span class="n">gbdt</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<a id="__codelineno-1-34" name="__codelineno-1-34" href="#__codelineno-1-34"></a>
+<a id="__codelineno-1-35" name="__codelineno-1-35" href="#__codelineno-1-35"></a><span class="c1"># 4. Model evaluation</span>
+<a id="__codelineno-1-36" name="__codelineno-1-36" href="#__codelineno-1-36"></a><span class="n">y_pred_train</span> <span class="o">=</span> <span class="n">gbdt</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
+<a id="__codelineno-1-37" name="__codelineno-1-37" href="#__codelineno-1-37"></a><span class="n">y_pred_test</span> <span class="o">=</span> <span class="n">gbdt</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+<a id="__codelineno-1-38" name="__codelineno-1-38" href="#__codelineno-1-38"></a>
+<a id="__codelineno-1-39" name="__codelineno-1-39" href="#__codelineno-1-39"></a><span class="c1"># Calculate evaluation metrics for training and test sets</span>
+<a id="__codelineno-1-40" name="__codelineno-1-40" href="#__codelineno-1-40"></a><span class="n">train_mse</span> <span class="o">=</span> <span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y_train</span><span class="p">,</span> <span class="n">y_pred_train</span><span class="p">)</span>
+<a id="__codelineno-1-41" name="__codelineno-1-41" href="#__codelineno-1-41"></a><span class="n">test_mse</span> <span class="o">=</span> <span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred_test</span><span class="p">)</span>
+<a id="__codelineno-1-42" name="__codelineno-1-42" href="#__codelineno-1-42"></a><span class="n">train_r2</span> <span class="o">=</span> <span class="n">r2_score</span><span class="p">(</span><span class="n">y_train</span><span class="p">,</span> <span class="n">y_pred_train</span><span class="p">)</span>
+<a id="__codelineno-1-43" name="__codelineno-1-43" href="#__codelineno-1-43"></a><span class="n">test_r2</span> <span class="o">=</span> <span class="n">r2_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred_test</span><span class="p">)</span>
+<a id="__codelineno-1-44" name="__codelineno-1-44" href="#__codelineno-1-44"></a>
+<a id="__codelineno-1-45" name="__codelineno-1-45" href="#__codelineno-1-45"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Training set MSE: </span><span class="si">{</span><span class="n">train_mse</span><span class="si">:</span><span class="s1">.4f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<a id="__codelineno-1-46" name="__codelineno-1-46" href="#__codelineno-1-46"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Test set MSE: </span><span class="si">{</span><span class="n">test_mse</span><span class="si">:</span><span class="s1">.4f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<a id="__codelineno-1-47" name="__codelineno-1-47" href="#__codelineno-1-47"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Training set R2: </span><span class="si">{</span><span class="n">train_r2</span><span class="si">:</span><span class="s1">.4f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<a id="__codelineno-1-48" name="__codelineno-1-48" href="#__codelineno-1-48"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Test set R2: </span><span class="si">{</span><span class="n">test_r2</span><span class="si">:</span><span class="s1">.4f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<a id="__codelineno-1-49" name="__codelineno-1-49" href="#__codelineno-1-49"></a>
+<a id="__codelineno-1-50" name="__codelineno-1-50" href="#__codelineno-1-50"></a><span class="c1"># 5. Feature importance analysis</span>
+<a id="__codelineno-1-51" name="__codelineno-1-51" href="#__codelineno-1-51"></a><span class="n">feature_importance</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+<a id="__codelineno-1-52" name="__codelineno-1-52" href="#__codelineno-1-52"></a>    <span class="s1">&#39;Feature&#39;</span><span class="p">:</span> <span class="p">[</span><span class="sa">f</span><span class="s1">&#39;Feature </span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s1">&#39;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])],</span>
+<a id="__codelineno-1-53" name="__codelineno-1-53" href="#__codelineno-1-53"></a>    <span class="s1">&#39;Importance&#39;</span><span class="p">:</span> <span class="n">gbdt</span><span class="o">.</span><span class="n">feature_importances_</span>
+<a id="__codelineno-1-54" name="__codelineno-1-54" href="#__codelineno-1-54"></a><span class="p">})</span>
+<a id="__codelineno-1-55" name="__codelineno-1-55" href="#__codelineno-1-55"></a><span class="n">feature_importance</span> <span class="o">=</span> <span class="n">feature_importance</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">&#39;Importance&#39;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<a id="__codelineno-1-56" name="__codelineno-1-56" href="#__codelineno-1-56"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Feature Importance:&quot;</span><span class="p">)</span>
+<a id="__codelineno-1-57" name="__codelineno-1-57" href="#__codelineno-1-57"></a><span class="nb">print</span><span class="p">(</span><span class="n">feature_importance</span><span class="p">)</span>
+<a id="__codelineno-1-58" name="__codelineno-1-58" href="#__codelineno-1-58"></a>
+<a id="__codelineno-1-59" name="__codelineno-1-59" href="#__codelineno-1-59"></a><span class="c1"># 6. Plot learning curve</span>
+<a id="__codelineno-1-60" name="__codelineno-1-60" href="#__codelineno-1-60"></a><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<a id="__codelineno-1-61" name="__codelineno-1-61" href="#__codelineno-1-61"></a><span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<a id="__codelineno-1-62" name="__codelineno-1-62" href="#__codelineno-1-62"></a><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">gbdt</span><span class="o">.</span><span class="n">train_score_</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Training set score&#39;</span><span class="p">)</span>
+<a id="__codelineno-1-63" name="__codelineno-1-63" href="#__codelineno-1-63"></a><span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Iterations&#39;</span><span class="p">)</span>
+<a id="__codelineno-1-64" name="__codelineno-1-64" href="#__codelineno-1-64"></a><span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Loss&#39;</span><span class="p">)</span>
+<a id="__codelineno-1-65" name="__codelineno-1-65" href="#__codelineno-1-65"></a><span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Learning Curve&#39;</span><span class="p">)</span>
+<a id="__codelineno-1-66" name="__codelineno-1-66" href="#__codelineno-1-66"></a><span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<a id="__codelineno-1-67" name="__codelineno-1-67" href="#__codelineno-1-67"></a>
+<a id="__codelineno-1-68" name="__codelineno-1-68" href="#__codelineno-1-68"></a><span class="c1"># 7. Plot predicted vs actual values</span>
+<a id="__codelineno-1-69" name="__codelineno-1-69" href="#__codelineno-1-69"></a><span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<a id="__codelineno-1-70" name="__codelineno-1-70" href="#__codelineno-1-70"></a><span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred_test</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<a id="__codelineno-1-71" name="__codelineno-1-71" href="#__codelineno-1-71"></a><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">y_test</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">y_test</span><span class="o">.</span><span class="n">max</span><span class="p">()],</span> <span class="p">[</span><span class="n">y_test</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">y_test</span><span class="o">.</span><span class="n">max</span><span class="p">()],</span> <span class="s1">&#39;r--&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<a id="__codelineno-1-72" name="__codelineno-1-72" href="#__codelineno-1-72"></a><span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Actual values&#39;</span><span class="p">)</span>
+<a id="__codelineno-1-73" name="__codelineno-1-73" href="#__codelineno-1-73"></a><span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Predicted values&#39;</span><span class="p">)</span>
+<a id="__codelineno-1-74" name="__codelineno-1-74" href="#__codelineno-1-74"></a><span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Predicted vs Actual&#39;</span><span class="p">)</span>
+<a id="__codelineno-1-75" name="__codelineno-1-75" href="#__codelineno-1-75"></a><span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<a id="__codelineno-1-76" name="__codelineno-1-76" href="#__codelineno-1-76"></a><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<a id="__codelineno-1-77" name="__codelineno-1-77" href="#__codelineno-1-77"></a>
+<a id="__codelineno-1-78" name="__codelineno-1-78" href="#__codelineno-1-78"></a><span class="c1"># 8. Example of model prediction</span>
+<a id="__codelineno-1-79" name="__codelineno-1-79" href="#__codelineno-1-79"></a><span class="k">def</span> <span class="nf">predict_example</span><span class="p">():</span>
+<a id="__codelineno-1-80" name="__codelineno-1-80" href="#__codelineno-1-80"></a>    <span class="c1"># Generate a new sample</span>
+<a id="__codelineno-1-81" name="__codelineno-1-81" href="#__codelineno-1-81"></a>    <span class="n">new_sample</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">5.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">]])</span>
+<a id="__codelineno-1-82" name="__codelineno-1-82" href="#__codelineno-1-82"></a>    <span class="n">prediction</span> <span class="o">=</span> <span class="n">gbdt</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">new_sample</span><span class="p">)</span>
+<a id="__codelineno-1-83" name="__codelineno-1-83" href="#__codelineno-1-83"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Prediction for new sample: </span><span class="si">{</span><span class="n">prediction</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s1">.4f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<a id="__codelineno-1-84" name="__codelineno-1-84" href="#__codelineno-1-84"></a>
+<a id="__codelineno-1-85" name="__codelineno-1-85" href="#__codelineno-1-85"></a><span class="n">predict_example</span><span class="p">()</span>
+</code></pre></div>
+<h2 id="_3">参考链接</h2>
 <ul>
-<li>supervised learning<ul>
-<li>classification: 样本属于两个或多个类别，我们希望从已经标记的数据中学习如何预测未标记数据的类别。</li>
-<li>regression: 用于估计因变量（dependent variable, outcome, response...）与一个或多个自变量（independent variable, covariates, feature...）之间的关系。<ul>
-<li>linear regression: 这是一个很典型的例子，它认为因变量和自变量之间的关系是线性的(<span class="arithmatex">\(y=wx+b\)</span>，更准确的表达是<span class="arithmatex">\(y = \vec{w}^T\vec{x} + b\)</span>)。线性回归模型可以使用<strong>最小二乘法</strong>拟合。<img alt="" src="../../../static/Pasted%20image%2020240312102527.png" /></li>
-<li>Logistic regression: 结果只有0和1两种情况，类似于分类问题了。</li>
+<li><a href="https://www.showmeai.tech/article-detail/193">图解机器学习 | GBDT模型详解</a></li>
+<li><a href="https://www.cnblogs.com/techflow/p/13445042.html">机器学习 | 详解GBDT梯度提升树原理，看完再也不怕面试了 - Coder梁 - 博客园</a></li>
 </ul>
-</li>
-</ul>
-</li>
-<li>unsupervised learning: <ul>
-<li>clustering: 在数据中发现相似示例的组，其中称为<strong>聚类</strong></li>
-<li>或者确定输入空间中数据的分布，称为密度估计，或者将数据从高维空间投影到二维或三维以实现可视化。</li>
-</ul>
-</li>
-</ul>
-<p>机器学习在实际操作层面一共分为7步：</p>
-<ol>
-<li>收集数据</li>
-<li>数据准备</li>
-<li>选择一个模型</li>
-<li>训练</li>
-<li>评估</li>
-<li>参数调整</li>
-<li>预测（开始使用）</li>
-</ol>
-<p>在理论层面分为3步：</p>
-<ul>
-<li>设计一个带未知参数的函数 （即<strong>模型</strong>）</li>
-<li>定义<strong>损失函数</strong> L</li>
-<li>求解一个<strong>优化问题</strong></li>
-</ul>
-<h2 id="algorithm">Algorithm</h2>
-<h3 id="classification">Classification</h3>
-<p><strong>Decision Tree</strong>: 这也是非常简单经典的Classification算法。</p>
-<p><strong>Nearest Neighbor (KNN):</strong> 这是非常简单经典的Classification算法。<br />
-首先我们需要定义“距离”，常用的有欧氏距离，曼哈顿距离，汉明距离等。注意在实际训练中，将不同特征归一化再算距离。<br />
-KNN算法，即是给定一个训练数据集，对新的输入实例，在训练数据集中找到与该实例<strong>最邻近</strong>的K个实例，<strong>这K个实例的多数属于某个类</strong>，就把该输入实例分类到这个类中。（<strong>这就类似于现实生活中少数服从多数的思想</strong>）。<br />
-那么KNN的参数就只是简单的K了。K太小或者太大都会影响模型的效果。</p>
-<p><strong>Bayes Classification Methods</strong></p>
-<p><strong>Support Vector Machine:</strong> 对于SVM来说，数据点被视为 p 维向量，而我们想知道是否可以用 p-1 维超平面来分开这些点，让超平面和最近的点之间的距离最大化。这就是所谓的线性分类器。<br />
-<img alt="维基百科" src="../../../static/Pasted%20image%2020240312191708.png" /><br />
-设样本属于两个类，用该样本训练SVM得到的最大间隔超平面。在边缘上的样本点称为支持向量。我们要求的参数就是<span class="arithmatex">\(w\)</span>和<span class="arithmatex">\(b\)</span>（在二维平面上是数字，p维就是p-1位向量了）。<br />
-通过一些修改，可以使用非线形的方法（也就是说不使用平面分开这些点）对数据进行分类；<br />
-通过一些修改，可以将数据分成大于2类，最直观的方法是使用<span class="arithmatex">\(C^2_n\)</span> 次SVM，然后将<span class="arithmatex">\(C^2_n\)</span>个模型全部应用到数据中，最后看分到哪一类的结果最多。</p>
-<p>Perceptron</p>
-<h3 id="regression">Regression</h3>
-<p>在我们开始考虑如何用模型拟合（fit）数据之前，我们需要确定一个拟合程度的度量。 <strong>损失函数（loss function）</strong> 能够量化目标的 实际值 与 预测值 之间的差距。 通常我们会选择非负数作为损失，且数值越小表示损失越小，完美预测时的损失为0。 回归问题中最常用的损失函数是平方误差函数。 当样本<span class="arithmatex">\(i\)</span>的预测值为<span class="arithmatex">\(\hat{y}_i\)</span>，其相应的真实标签为<span class="arithmatex">\(y_i\)</span>时， 平方误差可以定义为以下公式：</p>
-<p>$$L(args) = \frac{1}{n}\sum_{i=1}^n \frac{1}{2}(\hat{y}_i-y_i)^2 $$<br />
-模型训练的目标就是找到参数<span class="arithmatex">\(args\)</span>使得 Loss 最小。对于线性回归来说，我们是可以使用最小二乘法求出参数的解析解的。但是并不是所有的问题都可以求出解析解，这才是机器学习解决回归问题的用武之地。</p>
-<ul>
-<li>Linear model<ul>
-<li>Linear regression, orthogonal regression</li>
-<li>Lasso, elastic regression, ridge regression, </li>
-<li>Logistic Regression (general linear)</li>
-</ul>
-</li>
-<li>Non-Linear model<ul>
-<li>MLP, DNN, CNN, RNN, LSTM (Deep learning)</li>
-<li>Decision Tree, random forest(ML, 2001)</li>
-<li>Adaboost(JCSS, 1997), Xgboost(KDD, 2016)</li>
-</ul>
-</li>
-</ul>
-<p>CNN(Convolutional Neural Networks, 卷积神经网络)</p>
-<h2 id="library">Library</h2>
-<p><a href="https://scikit-learn.org/stable/">https://scikit-learn.org/stable/</a></p>
-<p><img alt="" src="../../../static/Pasted%20image%2020240312105613.png" /></p>
 
 
 
@@ -4655,13 +4721,13 @@ KNN算法，即是给定一个训练数据集，对新的输入实例，在训�
                 
                 
                     metaContent.push(`<span class="meta-item">
-                        📅 创建于 Monday, September 30th 2024, 11:40:49 pm
+                        📅 创建于 Monday, December 2nd 2024, 4:13:15 pm
                     </span>`);
                 
                 
                 
                     metaContent.push(`<span class="meta-item">
-                        🔄 更新于 Wednesday, November 13th 2024, 2:15:37 pm
+                        🔄 更新于 Wednesday, December 4th 2024, 7:05:04 pm
                     </span>`);
                 
                 

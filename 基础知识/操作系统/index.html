@@ -22,7 +22,7 @@
     
     
       
-        <title>Index - Reticence Ji's Notes</title>
+        <title>操作系统 - Reticence Ji's Notes</title>
       
     
     
@@ -61,7 +61,7 @@
       
         <meta  property="og:type"  content="website" >
       
-        <meta  property="og:title"  content="Index - Reticence Ji's Notes" >
+        <meta  property="og:title"  content="操作系统 - Reticence Ji's Notes" >
       
         <meta  property="og:description"  content="None" >
       
@@ -77,7 +77,7 @@
       
         <meta  name="twitter:card"  content="summary_large_image" >
       
-        <meta  name="twitter:title"  content="Index - Reticence Ji's Notes" >
+        <meta  name="twitter:title"  content="操作系统 - Reticence Ji's Notes" >
       
         <meta  name="twitter:description"  content="None" >
       
@@ -102,6 +102,11 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          跳转至
+        </a>
       
     </div>
     <div data-md-component="announce">
@@ -133,7 +138,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Index
+              操作系统
             
           </span>
         </div>
@@ -240,7 +245,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../../Index/" class="md-tabs__link">
+      <a href="../.." class="md-tabs__link">
         
   
     
@@ -378,7 +383,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Index/" class="md-nav__link">
+      <a href="../.." class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -528,11 +533,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/Deep%20Learning/" class="md-nav__link">
+      <a href="../%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/GBDT/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Deep Learning
+    梯度提升决策树
   </span>
   
 
@@ -549,11 +554,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/Machine%20Learning/" class="md-nav__link">
+      <a href="../%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/ML/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Machine Learning
+    机器学习
   </span>
   
 
@@ -570,11 +575,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/Paper%20Reading/" class="md-nav__link">
+      <a href="../%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E7%BB%9F%E8%AE%A1/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Paper Reading
+    统计概念
   </span>
   
 
@@ -646,7 +651,7 @@
         
   
   <span class="md-ellipsis">
-    Blockchain
+    区块链
   </span>
   
 
@@ -794,12 +799,14 @@
       <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
+        
+      
       
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
-    Index
+    操作系统
   </span>
   
 
@@ -821,7 +828,7 @@
         
   
   <span class="md-ellipsis">
-    VFS
+    虚拟文件系统
   </span>
   
 
@@ -4385,6 +4392,8 @@
   
   
   
+    
+  
   
 </nav>
                   </div>
@@ -4403,9 +4412,7 @@
   
 
 
-  <h1>Index</h1>
-
-
+<h1 id="_1">操作系统</h1>
 
 
 
@@ -4431,18 +4438,6 @@
                 
                 // 添加反向引用
                 
-                    var backlinks = document.createElement('div');
-                    backlinks.className = 'backlinks';
-                    backlinks.innerHTML = `
-                        <h2>反向引用</h2>
-                        <ul>
-                            
-                                <li><a href="%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/">基础知识</a></li>
-                            
-                        </ul>
-                    `;
-                    references.appendChild(backlinks);
-                
 
                 // 添加元数据（时间信息）
                 var meta = document.createElement('div');
@@ -4450,7 +4445,15 @@
                 var metaContent = [];
                 
                 
+                    metaContent.push(`<span class="meta-item">
+                        📅 创建于 Saturday, November 30th 2024, 4:28:05 pm
+                    </span>`);
                 
+                
+                
+                    metaContent.push(`<span class="meta-item">
+                        🔄 更新于 Wednesday, December 4th 2024, 5:03:58 pm
+                    </span>`);
                 
                 
                 if (metaContent.length > 0) {
