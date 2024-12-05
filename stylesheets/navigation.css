@@ -28,14 +28,14 @@
 
 /* GitHub 仓库链接样式 */
 .md-header__source {
-    background-color: rgba(255, 255, 255, 0.1) !important;
+    background-color: rgba(255, 255, 255, 0.5) !important;
     padding: 0.2rem 0.4rem !important;
     border-radius: 0.1rem;
     margin: 0.2rem;
 }
 
 .md-header__source:hover {
-    background-color: rgba(255, 255, 255, 0.2) !important;
+    background-color: rgba(255, 255, 255, 0.6) !important;
 }
 
 /* 社交链接样式 */
