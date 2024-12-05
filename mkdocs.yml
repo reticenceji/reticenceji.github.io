@@ -39,7 +39,6 @@ plugins:
   - social
   - meta-descriptions
 extra_javascript:
-  - javascripts/mathjax.js
   - https://lf26-cdn-tos.bytecdntp.com/cdn/expire-1-M/polyfill-io/3.111.0/polyfill.min.js
   # MathJax 核心文件
   - https://lf9-cdn-tos.bytecdntp.com/cdn/expire-1-M/mathjax/3.2.0/es5/tex-mml-chtml.js

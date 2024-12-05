@@ -2,7 +2,7 @@
 aliases: 
 tags: 
 date_created: Thursday, December 5th 2024, 3:23:32 pm
-date_modified: Thursday, December 5th 2024, 4:13:20 pm
+date_modified: Thursday, December 5th 2024, 4:22:59 pm
 ---
 
 # Mkdocs + Obsidian + Github = Free Publish
@@ -117,11 +117,45 @@ jobs:
 
 在Obsidian中可以使用`$`来书写公式。但是mkdocs没有直接支持。可以通过集成Mathjax来支持。
 
+在`mkdocs.yml`中添加 
+
+```yaml
+extra_javascript:
+  - https://lf26-cdn-tos.bytecdntp.com/cdn/expire-1-M/polyfill-io/3.111.0/polyfill.min.js
+  # MathJax 核心文件
+  - https://lf9-cdn-tos.bytecdntp.com/cdn/expire-1-M/mathjax/3.2.0/es5/tex-mml-chtml.js
+  # 额外的字体文件
+  - https://lf9-cdn-tos.bytecdntp.com/cdn/expire-1-M/mathjax/3.2.0/es5/output/chtml/fonts/woff-v2/MathJax_Main-Regular.woff
+  - https://lf9-cdn-tos.bytecdntp.com/cdn/expire-1-M/mathjax/3.2.0/es5/output/chtml/fonts/woff-v2/MathJax_Math-Italic.woff
+  - https://lf9-cdn-tos.bytecdntp.com/cdn/expire-1-M/mathjax/3.2.0/es5/output/chtml/fonts/woff-v2/MathJax_Size1-Regular.woff
+  - https://lf9-cdn-tos.bytecdntp.com/cdn/expire-1-M/mathjax/3.2.0/es5/output/chtml/fonts/woff-v2/MathJax_Size2-Regular.woff
+  - https://lf9-cdn-tos.bytecdntp.com/cdn/expire-1-M/mathjax/3.2.0/es5/output/chtml/fonts/woff-v2/MathJax_Size3-Regular.woff
+  - https://lf9-cdn-tos.bytecdntp.com/cdn/expire-1-M/mathjax/3.2.0/es5/output/chtml/fonts/woff-v2/MathJax_Size4-Regular.woff
+  - https://lf9-cdn-tos.bytecdntp.com/cdn/expire-1-M/mathjax/3.2.0/es5/output/chtml/fonts/woff-v2/MathJax_AMS-Regular.woff
+  - https://lf9-cdn-tos.bytecdntp.com/cdn/expire-1-M/mathjax/3.2.0/es5/output/chtml/fonts/woff-v2/MathJax_Calligraphic-Regular.woff
+  - https://lf9-cdn-tos.bytecdntp.com/cdn/expire-1-M/mathjax/3.2.0/es5/output/chtml/fonts/woff-v2/MathJax_Fraktur-Regular.woff
+  - https://lf9-cdn-tos.bytecdntp.com/cdn/expire-1-M/mathjax/3.2.0/es5/output/chtml/fonts/woff-v2/MathJax_SansSerif-Regular.woff
+  - https://lf9-cdn-tos.bytecdntp.com/cdn/expire-1-M/mathjax/3.2.0/es5/output/chtml/fonts/woff-v2/MathJax_Script-Regular.woff
+  - https://lf9-cdn-tos.bytecdntp.com/cdn/expire-1-M/mathjax/3.2.0/es5/output/chtml/fonts/woff-v2/MathJax_Typewriter-Regular.woff
+  - https://lf9-cdn-tos.bytecdntp.com/cdn/expire-1-M/mathjax/3.2.0/es5/output/chtml/fonts/woff-v2/MathJax_Vector-Regular.woff
+extra_css:
+  - https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css
+```
+
 ### NOTE 块
 
 在Obisidan中可以使用`>[!NOTE]`来渲染提示块，Mkdocs没有直接支持。
 
-在JS脚本中添加：
+在`mkdocs.yml`中添加：
+
+```yaml
+extra_javascript:
+- javascripts/extra.js
+extra_css:
+- stylesheets/extra.css
+```
+
+在`javascripts/extra.js`脚本中添加：
 
 ```js
 // 渲染[!NOTE]/[!WARN]/[!ERROR]块
@@ -144,7 +178,7 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 ```
 
-然后修改css
+在`stylesheets/extra.css`中添加：
 
 ```css
 blockquote.error {
