@@ -2,7 +2,7 @@
 aliases: 
 tags: 
 date_created: Thursday, December 5th 2024, 3:23:32 pm
-date_modified: Thursday, December 5th 2024, 4:22:59 pm
+date_modified: Thursday, December 5th 2024, 4:25:40 pm
 ---
 
 # Mkdocs + Obsidian + Github = Free Publish
@@ -101,7 +101,7 @@ jobs:
           poetry run mkdocs gh-deploy --force 
 ```
 
-然后就可以将文件上传到Github仓库了。对Github仓库进行如下配置。
+然后就可以将文件上传到Github仓库（`username.github.io`仓库）了。对仓库进行如下配置。
 
 ![](../static/Pasted%20image%2020241205154750.png)
 
