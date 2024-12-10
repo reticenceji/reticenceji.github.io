@@ -16,6 +16,8 @@
         <link rel="prev" href="../../%E5%BA%93/%E7%BD%91%E7%BB%9C/">
       
       
+        <link rel="next" href="../../../../%E9%9A%8F%E7%AC%94/iZumiSwap/">
+      
       
       <link rel="icon" href="../../../../static/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.45">
@@ -324,6 +326,24 @@
           
   
   编程语言
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../%E9%9A%8F%E7%AC%94/iZumiSwap/" class="md-tabs__link">
+          
+  
+  随笔
 
         </a>
       </li>
@@ -2877,6 +2897,27 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../%E5%BC%80%E5%8F%91/%E7%B3%BB%E7%BB%9F%E7%BC%96%E7%A8%8B/errno/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    errno
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -4396,6 +4437,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      依赖冲突
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -4416,6 +4466,74 @@
           </ul>
         </nav>
       
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    随笔
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            随笔
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../%E9%9A%8F%E7%AC%94/iZumiSwap/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    iZumiswap 精度问题探究
+  </span>
+  
+
+      </a>
     </li>
   
 
@@ -4458,6 +4576,15 @@
   <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
       指定依赖项
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      依赖冲突
     </span>
   </a>
   
@@ -4507,6 +4634,15 @@
 所以在编写库的时候，避免使用太具体的版本依赖，不用上传Cargo.lock</p>
 </blockquote>
 <p>除了指定版本，还可以指定本地路径和Git路径。参考<a href="https://doc.rust-lang.org/cargo/reference/specifying-dependencies.html">Cargo Book</a></p>
+<h2 id="_2">依赖冲突</h2>
+<p>依赖可能会因为存在某些问题被维护者从<code>crates.io</code>撤回，被标记成<code>yanked</code>。但是你又不得不去使用，可以使用<code>patch</code>特性解决这个问题。例如依赖的<code>parity-secp256k1</code>被撤回了，可以在 Cargo.toml 添加：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">[patch.crates-io]</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="n">parity-secp256k1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">git</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;https://github.com/paritytech/rust-secp256k1&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">branch</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;master&quot;</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
+<blockquote>
+<p>[!WARN]
+被撤回多半是出于某些原因，如安全问题，不要贸然使用这个办法。这个办法也可以用来强行解决依赖冲突问题。</p>
+</blockquote>
 
 
 
@@ -4546,7 +4682,7 @@
                 
                 
                     metaContent.push(`<span class="meta-item">
-                        🔄 更新于 Wednesday, November 13th 2024, 2:15:35 pm
+                        🔄 更新于 Saturday, December 7th 2024, 1:42:12 pm
                     </span>`);
                 
                 
