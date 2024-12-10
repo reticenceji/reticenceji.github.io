@@ -64,16 +64,17 @@ bool sendTo(const std::string& data, const std::string& ip, uint16_t port) {
 
 在上面介绍的Socket基础中，`read`/`write`/`accept`在没有就绪的时候都会阻塞，直到操作完成或出错。但是Linux也支持非阻塞（non-blocking）模式。如果开启了非阻塞模式，无论操作完成与否都会立即返回，如果没有就绪会返回`EAGAIN`提醒用户态稍后重试。
 
-显然，光有非阻塞模式并不能提高效率——用户总不能在返回EAGAIN之后sleep一会儿，或者是直接重试吧，关键是要知道**操作何时能就绪**。为此，Linux提供了以下几个系统调用：
+显然，光有非阻塞模式并不能提高效率——用户总不能在返回EAGAIN之后sleep一会儿，或者是直接重试吧，关键是要知道**操作何时能就绪**。为此，Linux提供了以下几个系统调用（集）：
 
-- **`select`** 和 **`poll`**: 这两种技术允许程序监视多个文件描述符，以查看哪个或哪些文件描述符已准备好进行非阻塞I/O操作。这使得单个线程能够有效地管理多个I/O流。
-- **`epoll`**: 是一种更高效的I/O事件通知方法，特别是在处理大量文件描述符时。与select和poll相比，epoll通过一种更有效的方式管理大量文件描述符的变化，减少了系统调用的开销。
+- **`select`** 和 **`poll`**: 这两种技术允许程序监视多个文件描述符，以查看哪个或哪些文件描述符已准备好进行非阻塞I/O操作。这使得单个线程能够有效地管理多个I/O流。`select`较老，智能同时监听较少的fd。
+- **`epoll`**: 是一种更高效的I/O事件通知方法，特别是在处理大量文件描述符时。与select和poll相比，epoll通过一种**更有效**的方式管理大量文件描述符的变化，减少了系统调用的开销。
 
 > [!NOTE]
 > `select`和 `pool` 是符合 POSIX 标准的，是标准的UNIX接口的一部分。`epoll`是Linux独有的。
-> 显然，这些系统调用是阻塞的。
+> 显然，这些系统调用是阻塞的。这是很多语言实现异步IO的基础。
 
 ## 参考链接
 
 - [4.20 没有 accept，能建立 TCP 连接吗？ | 小林coding](https://xiaolincoding.com/network/3_tcp/tcp_no_accpet.html#%E6%80%BB%E7%BB%93)
 - [4.19 服务端没有 listen，客户端发起连接建立，会发生什么？ | 小林coding](https://xiaolincoding.com/network/3_tcp/tcp_no_listen.html#_4-19-%E6%9C%8D%E5%8A%A1%E7%AB%AF%E6%B2%A1%E6%9C%89-listen-%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%8F%91%E8%B5%B7%E8%BF%9E%E6%8E%A5%E5%BB%BA%E7%AB%8B-%E4%BC%9A%E5%8F%91%E7%94%9F%E4%BB%80%E4%B9%88)
+- [05. The Event Loop & Nonblocking IO | Build Your Own Redis with C/C++](https://build-your-own.org/redis/05_event_loop_intro)
