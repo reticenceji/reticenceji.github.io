@@ -45,6 +45,7 @@ plugins:
   - blog:
       blog_dir: 随笔
       blog_toc: true
+      draft_on_serve: false
 extra_javascript:
   - https://lf9-cdn-tos.bytecdntp.com/cdn/expire-1-M/mathjax/3.2.0/es5/tex-mml-chtml.js
   - javascripts/extra.js
