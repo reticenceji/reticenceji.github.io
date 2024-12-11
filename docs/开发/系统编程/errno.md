@@ -1,8 +1,8 @@
 ---
 aliases: 
 tags: 
-date_created: Friday, December 6th 2024, 2:10:36 pm
-date_modified: Friday, December 6th 2024, 2:42:23 pm
+date_modified: 2024-12-11
+date: 2024-12-06
 ---
 
 # errno

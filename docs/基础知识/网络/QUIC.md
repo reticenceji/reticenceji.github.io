@@ -1,8 +1,8 @@
 ---
 aliases: 
 tags: 
-date_created: Monday, September 30th 2024, 11:40:49 pm
-date_modified: Thursday, November 28th 2024, 7:45:46 pm
+date_modified: 2024-12-11
+date: 2024-11-30
 ---
 
 # Quick UDP Internet Connections

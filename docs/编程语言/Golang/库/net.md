@@ -1,8 +1,8 @@
 ---
 aliases: 
 tags: 
-date_created: Wednesday, November 20th 2024, 11:50:55 pm
-date_modified: Wednesday, November 20th 2024, 11:52:45 pm
+date_modified: 2024-12-11
+date: 2024-11-30
 ---
 
 # net

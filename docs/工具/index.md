@@ -1,8 +1,8 @@
 ---
 aliases: 
 tags: 
-date_created: Wednesday, November 13th 2024, 1:30:01 pm
-date_modified: Thursday, December 5th 2024, 3:23:54 pm
+date_modified: 2024-12-11
+date: 2024-11-30
 ---
 
 # 工具和教程

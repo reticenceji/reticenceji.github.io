@@ -1,8 +1,8 @@
 ---
 aliases: 
 tags: 
-date_created: Monday, September 30th 2024, 11:40:49 pm
-date_modified: Wednesday, November 20th 2024, 3:30:23 pm
+date_modified: 2024-12-11
+date: 2024-11-30
 ---
 
 # 计算机网络
@@ -25,7 +25,6 @@ date_modified: Wednesday, November 20th 2024, 3:30:23 pm
 吞吐量（Throughput）。指单位时间内通过某个网络（或信道、接口）的数据量。吞吐量受网络带宽或网络额定速率的限制。单位也是比特/秒（b/s）。
 
 > **Throughput** 是指网络中主机（server 和 client）之间的 **实际** 数据传输速率，即单位时间内实际传输的数据量，常用的单位有 Kbps,Mbps。而 **Bandwidth** 是指网络的 **最大** 数据传输速率，常用单位也是 Kbps,Mbps。
- 
 
 时延（Delay）。指数据（一个报文或分组）从网络（或链路）的一端传送到另一端所需要的总时间。它由 4 部分构成∶发送时延、传播时延、处理时延和排队时延。
 

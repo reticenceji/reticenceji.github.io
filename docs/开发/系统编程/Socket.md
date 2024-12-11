@@ -1,8 +1,8 @@
 ---
 aliases: 
 tags: 
-date_created: Thursday, November 21st 2024, 4:22:43 pm
-date_modified: Thursday, December 5th 2024, 3:06:32 pm
+date_modified: 2024-12-11
+date: 2024-11-30
 ---
 
 # Socket

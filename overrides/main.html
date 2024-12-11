@@ -1,58 +1,73 @@
 {% extends "base.html" %}
 
 {% block content %}
-    {{ super() }}
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            var article = document.querySelector('.md-content__inner');
-            if (article) {
-                var references = document.createElement('div');
-                references.className = 'references';
-                
-                // 添加反向引用
-                {% if backlinks %}
-                    var backlinks = document.createElement('div');
-                    backlinks.className = 'backlinks';
-                    backlinks.innerHTML = `
-                        <h2>反向引用</h2>
-                        <ul>
-                            {% for backlink in backlinks %}
-                                <li><a href="{{ backlink.url }}">{{ backlink.title }}</a></li>
-                            {% endfor %}
-                        </ul>
-                    `;
-                    references.appendChild(backlinks);
-                {% endif %}
+{{ super() }}
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var article = document.querySelector('.md-content__inner');
+        if (article) {
+            // 创建一个容器来包裹导航路径和元数据
+            var container = document.createElement('div');
+            container.className = 'nav-meta-container';
 
-                // 添加元数据（时间信息）
-                var meta = document.createElement('div');
-                meta.className = 'article-meta';
-                var metaContent = [];
-                
-                {% if page.meta.date_created %}
-                    metaContent.push(`<span class="meta-item">
-                        📅 创建于 {{ page.meta.date_created }}
-                    </span>`);
-                {% endif %}
-                
-                {% if page.meta.date_modified %}
-                    metaContent.push(`<span class="meta-item">
-                        🔄 更新于 {{ page.meta.date_modified }}
-                    </span>`);
-                {% endif %}
-                
-                if (metaContent.length > 0) {
-                    meta.innerHTML = `<hr class="meta-divider">` + metaContent.join('<br>');
-                }
-                
-                // 将引用和元数据添加到文章末尾
-                if (references.children.length > 0) {
-                    article.appendChild(references);
-                }
-                if (metaContent.length > 0) {
-                    article.appendChild(meta);
-                }
+            // 创建导航路径容器
+            var pathNav = document.createElement('div');
+            pathNav.className = 'navigation-path';
+
+            // 获取当前页面路径
+            var currentPath = document.location.pathname;
+            var pathParts = currentPath.split('/').filter(Boolean);
+
+            // 构建导航路径HTML
+            var pathHTML = '<div class="path-container">';
+            var accumPath = '';
+
+            // 添加首页链接
+            // pathHTML += '<a href="/" class="path-item">主页</a>';
+
+            // 添加中间路径
+            for (var i = 0; i < pathParts.length - 1; i++) {
+                accumPath += '/' + pathParts[i];
+                var decodedPart = decodeURIComponent(pathParts[i]);
+                pathHTML += '<span class="path-separator">/</span>';
+                pathHTML += `<a href="${accumPath}" class="path-item">${decodedPart}</a>`;
             }
-        });
-    </script>
-{% endblock %} 
+
+            // 添加当前页面（最后一项）
+            if (pathParts.length > 0) {
+                var currentPage = decodeURIComponent(pathParts[pathParts.length - 1].replace('.html', ''));
+                pathHTML += '<span class="path-separator">/</span>';
+                pathHTML += `<span class="path-current">${currentPage}</span>`;
+            }
+
+            pathHTML += '</div>';
+            pathNav.innerHTML = pathHTML;
+
+            // 添加元数据（时间信息）
+            var meta = document.createElement('div');
+            meta.className = 'article-meta';
+            var metaContent = [];
+
+            {% if page.meta.date %}
+            metaContent.push(`<span class="meta-item"> ✨ 创建于 {{ page.meta.date }} </span>`);
+            {% endif %}
+
+            {% if page.meta.date_modified %}
+            metaContent.push(`<span class="meta-item"> ✨ 更新于 {{ page.meta.date_modified }} </span>`);
+            {% endif %}
+
+            if (metaContent.length > 0) {
+                meta.innerHTML = metaContent.join(' ');
+            }
+
+            // 将两个元素添加到容器中
+            container.appendChild(pathNav);
+            container.appendChild(meta);
+
+            // 将容器插入到文章开头
+            article.insertBefore(container, article.firstChild);
+        }
+    });
+</script>
+
+{% endblock %}

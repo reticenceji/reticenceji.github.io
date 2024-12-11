@@ -1,8 +1,8 @@
 ---
 aliases: 
 tags: 
-date_created: Monday, December 2nd 2024, 4:13:15 pm
-date_modified: Wednesday, December 4th 2024, 7:05:04 pm
+date_modified: 2024-12-11
+date: 2024-12-02
 ---
 
 # 梯度提升决策树

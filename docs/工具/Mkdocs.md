@@ -1,8 +1,8 @@
 ---
 aliases: 
 tags: 
-date_created: Thursday, December 5th 2024, 3:23:32 pm
-date_modified: Thursday, December 5th 2024, 4:25:40 pm
+date_modified: 2024-12-11
+date: 2024-12-05
 ---
 
 # Mkdocs + Obsidian + Github = Free Publish

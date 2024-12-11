@@ -1,8 +1,8 @@
 ---
 aliases: 
 tags: 
-date_created: Wednesday, November 13th 2024, 1:30:01 pm
-date_modified: Wednesday, November 13th 2024, 2:15:37 pm
+date_modified: 2024-12-11
+date: 2024-11-30
 ---
 
 # CLI

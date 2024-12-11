@@ -1,8 +1,8 @@
 ---
 aliases: 
 tags: 
-date_created: Tuesday, November 12th 2024, 10:39:23 am
-date_modified: Monday, December 9th 2024, 7:35:24 pm
+date_modified: 2024-12-11
+date: 2024-11-30
 ---
 
 # Linux
