@@ -16,8 +16,6 @@
         <link rel="prev" href="../%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Rust/%E6%9E%84%E5%BB%BA/Cargo/">
       
       
-        <link rel="next" href="archive/2024/">
-      
       
       <link rel="icon" href="../static/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.45">
@@ -749,42 +747,16 @@
   
   
   
-    
-    
-      
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
         
-      
-    
-    
-      
-      
-    
-    
-      
-        
-        
-      
-    
-    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
-      
-        
-  
-  
-    <a href="archive/2024/" class="md-nav__link">
-      
   
   <span class="md-ellipsis">
     归档
   </span>
   
 
-      
-        <span class="md-nav__icon md-icon"></span>
-      
-    </a>
-  
-
-      
+      </a>
     </li>
   
 
@@ -817,23 +789,6 @@
     
   
   
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      目录
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#izumiswap" class="md-nav__link">
-    <span class="md-ellipsis">
-      iZumiSwap 精度问题探究
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
 </nav>
                   </div>
                 </div>
@@ -848,75 +803,6 @@
 <p>这里放着一些未归类的文章。</p>
       </header>
       
-        <article class="md-post md-post--excerpt">
-  <header class="md-post__header">
-    
-    <div class="md-post__meta md-meta">
-      <ul class="md-meta__list">
-        <li class="md-meta__item">
-          <time datetime="2024-12-10 00:00:00+00:00">2024年12月10日</time></li>
-        
-        
-          
-          <li class="md-meta__item">
-            
-              需要 2 分钟阅读时间
-            
-          </li>
-        
-      </ul>
-      
-    </div>
-  </header>
-  <div class="md-post__content md-typeset">
-    <h2 id="izumiswap"><a class="toclink" href="2024/12/10/izumiswap-%E7%B2%BE%E5%BA%A6%E9%97%AE%E9%A2%98%E6%8E%A2%E7%A9%B6/">iZumiSwap 精度问题探究</a></h2>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="o">..</span><span class="p">.</span>
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="c1">// result.acquire_y = get_amount_y(liquidity, get_sqrt_price(result.loc_pt), sqrt_price_r_96, sqrt_rate_96(), false);</span>
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="n">ret</span><span class="p">.</span><span class="n">locPt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ret</span><span class="p">.</span><span class="n">locPt</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="n">ret</span><span class="p">.</span><span class="n">sqrtLoc_96</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">LogPowMath</span><span class="p">.</span><span class="n">getSqrtPrice</span><span class="p">(</span><span class="n">ret</span><span class="p">.</span><span class="n">locPt</span><span class="p">);</span>
-<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>
-<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="n">uint160</span><span class="w"> </span><span class="n">sqrtLocA1_96</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">uint160</span><span class="p">(</span>
-<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">    </span><span class="n">uint256</span><span class="p">(</span><span class="n">ret</span><span class="p">.</span><span class="n">sqrtLoc_96</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
-<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">    </span><span class="n">uint256</span><span class="p">(</span><span class="n">ret</span><span class="p">.</span><span class="n">sqrtLoc_96</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="n">uint256</span><span class="p">(</span><span class="n">rg</span><span class="p">.</span><span class="n">sqrtRate_96</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">TwoPower</span><span class="p">.</span><span class="n">Pow96</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">TwoPower</span><span class="p">.</span><span class="n">Pow96</span>
-<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="p">);</span>
-<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="o">..</span><span class="p">.</span>
-</code></pre></div>
-<p>代码此处有点奇怪，为什么不是直接使用<code>getSqrtPrice(ret.locPt)</code>，而是通过<code>ret.locPt - 1</code>算出一个<strong>貌似</strong>和<code>getSqrtPrice(ret.locPt)</code>相等的<code>sqrtLocA1_96</code>？其实这是为了防止溢出。</p>
-<p>记<span class="arithmatex">\(d = \sqrt{1.0001}^2, p_x = [ d^x \times 2^{96} ]\)</span>，这个公式就是<code>getSqrtPrice</code>，他向<strong>某一个方向</strong>取整（不重要）。在某个Tick <span class="arithmatex">\([l,r)\)</span> 添加流动性的时候（假设全是Y），Y的数量为：</p>
-<div class="arithmatex">\[Y = \lceil \frac {p_r - p_l}{p-2^{96}}  \times liq \rceil\]</div>
-<p>对于这些流动性，在Swap的时候其实可以分成两种计算模式。一种是单点的流动性，一种是区域的流动性，分别对应<code>x2YAtPriceLiquidity</code>和<code>x2YRangeComplete</code>。考虑到实际的代码逻辑，如果在区间内先<code>x2YRangeComplete</code>再 <code>x2YAtPriceLiquidity</code>呢，不妨假设前者swap<span class="arithmatex">\([l+1, r)\)</span>的区间，后者将<span class="arithmatex">\(l\)</span>上的流动性全部swap完。</p>
-<p>首先使用非常符合直觉的方式（当前的实现）：</p>
-<div class="arithmatex">\[Y'= (\lfloor \frac{p_{r}-p_{l+1}}{p-2^{96}} \times liq \rfloor + \lfloor \frac{p_{l}}{2^{96}} \times liq \rfloor )  
-\leq \lfloor \frac{2^{96}(p_r-p_{l+1}) + p_l(p-2^{96})}{(p-2^{96}) \times 2^{96}} \times liq \rfloor 
-= \lfloor \frac{(p_r-p_l) +(\frac{p_l\times p}{2^{96}}-p_{l+1})}{(p-2^{96})} \times liq \rfloor\]</div>
-<p>你可以证明<span class="arithmatex">\(Y' \leq Y\)</span>吗，不可以。<strong>因为<span class="arithmatex">\(p_{x+1} 和 \lfloor \frac{p_{x}\times p}{2^{96}} \rfloor\)</span>大小关系不固定</strong>。也就是说最后的值可能会大于<span class="arithmatex">\(Y\)</span>。</p>
-<p>如果使用修改后的略奇怪的公式则是：</p>
-<div class="arithmatex">\[Y'
-= (\lfloor \frac{p_{r}-(p_{l}+ \lfloor \frac{p_l(p-2^{96})}{2^{96}} \rfloor)}{p-2^{96}} \times liq \rfloor + \lfloor \frac{p_{l}}{2^{96}} \times liq \rfloor ) 
-\leq \lfloor \frac{2^{96}(p_r-p_l) - p_l(p-2^{96}) + p_l(p-2^{96})}{(p-2^{96}) \times 2^{96}} \times liq\rfloor 
-\leq Y\]</div>
-<p>将公式通分，很容易证明<span class="arithmatex">\(Y' \leq Y\)</span>，<strong>这保证了Swap的过程换出的Y不会大于流动性添加时添加的Y，从而在移除流动性的时候不会出现下溢</strong>。</p>
-<hr />
-<p>很巧妙不是么，但是实际上还是存在问题。下溢更本质的原因是<strong>处理单点流动性（使用了等比数列通项公式）和处理范围流动性（使用了等比数列求和公式）的不兼容导致的。上面的处理方式仅仅考虑了处理单点流动性和处理范围流动性相邻的情况</strong>。假设连续的处理单点流动性，还是可能会溢出，不妨假设仍考虑一个区间上的情况：</p>
-<p>$$Y' = \sum_i^{i \in [l,r)} \lfloor \frac{p_{i}}{2^{96}} \times liq \rfloor $$，考虑他和 </p>
-<div class="arithmatex">\[Y = \lfloor \frac{p_{r}-p_{l}}{p-2^{96}} \times liq \rfloor\]</div>
-<p>之间的大小关系，结论是 <strong>不一定</strong> ！一个更加科学的修改方式是<strong>将处理单点流动性和处理范围流动性的方法统一</strong>。考虑到添加流动性和移除流动性都使用了处理范围流动性的方式，可以将将处理单点流动性的方式修改为处理范围流动性的方法，即相应的修改<code>x2YAtPriceLiquidity</code>。</p>
-<hr />
-<p>那么 Y Swap X 是否会有类似的问题呢？答案是肯定的。要想彻底规避这个问题，还是要将处理单点流动性和处理范围流动性的方法统一。</p>
-    
-  </div>
-</article>
-      
-      
-        
-          
-
-
-
-<nav class="md-pagination">
-  
-</nav>
-        
       
     </div>
   </div>
