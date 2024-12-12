@@ -1,7 +1,7 @@
 ---
 aliases: 
 tags: 
-date_modified: 2024-12-11
+date_modified: 2024-12-12
 date: 2024-11-30
 ---
 
@@ -70,8 +70,8 @@ bool sendTo(const std::string& data, const std::string& ip, uint16_t port) {
 - **`epoll`**: 是一种更高效的I/O事件通知方法，特别是在处理大量文件描述符时。与select和poll相比，epoll通过一种**更有效**的方式管理大量文件描述符的变化，减少了系统调用的开销。
 
 > [!NOTE]
-> `select`和 `pool` 是符合 POSIX 标准的，是标准的UNIX接口的一部分。`epoll`是Linux独有的。
-> 显然，这些系统调用是阻塞的。这是很多语言实现异步IO的基础。
+> `select`和 `poll` 是符合 POSIX 标准的，是标准的UNIX接口的一部分。`epoll`是Linux独有的。显然，这些系统调用是阻塞的。
+> 这些系统调用是很多语言实现异步IO的基础。简单的说，异步编程的关键是在**IO发生阻塞的时候可以调度到其他任务执行，而在IO完成时继续执行该任务**。异步执行框架的一个非常直观的思路就是，IO操作无法立即完成的任务都放进`poll`等待，执行`poll`完成的任务。
 
 ## 参考链接
 

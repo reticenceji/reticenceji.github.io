@@ -62,3 +62,9 @@ $$Y = \lfloor \frac{p_{r}-p_{l}}{p-2^{96}} \times liq \rfloor$$
 ## 还有别的问题
 
 那么 Y Swap X 是否会有类似的问题呢？答案是肯定的。要想彻底规避这个问题，还是要将处理单点流动性和处理范围流动性的方法统一。
+
+事实上，最简单的处理办法就是忽略这些精度损失。在任何时候（remove liquidity / swap），取计算出的amount和balance的较小值即可。
+
+---
+
+iZumi如何处理限价单
