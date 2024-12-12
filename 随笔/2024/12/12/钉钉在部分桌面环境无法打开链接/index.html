@@ -6,32 +6,28 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="LevelDB is a fast key-value storage library written at Google that provides an ordered mapping from string keys to string values.">
+        <meta name="description" content="我的桌面环境是Linux Mint。钉钉版本7.6.25-Release.4112601，无法通过点击打开链接（之前版本也是）。">
       
       
       
-        <link rel="canonical" href="https://reticenceji.github.io/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Cpp/%E5%BA%93/leveldb/">
+        <link rel="canonical" href="https://reticenceji.github.io/%E9%9A%8F%E7%AC%94/2024/12/12/%E9%92%89%E9%92%89%E5%9C%A8%E9%83%A8%E5%88%86%E6%A1%8C%E9%9D%A2%E7%8E%AF%E5%A2%83%E6%97%A0%E6%B3%95%E6%89%93%E5%BC%80%E9%93%BE%E6%8E%A5/">
       
       
-        <link rel="prev" href="../../%E5%9F%BA%E7%A1%80/%E9%94%99%E8%AF%AF%E5%A4%84%E7%90%86/">
       
       
-        <link rel="next" href="../spdlog/">
-      
-      
-      <link rel="icon" href="../../../../static/favicon.png">
+      <link rel="icon" href="../../../../../static/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.45">
     
     
       
-        <title>LevelDB - Reticence Ji's Notes</title>
+        <title>钉钉在部分桌面环境无法打开链接 - Reticence Ji's Notes</title>
       
     
     
-      <link rel="stylesheet" href="../../../../assets/stylesheets/main.0253249f.min.css">
+      <link rel="stylesheet" href="../../../../../assets/stylesheets/main.0253249f.min.css">
       
         
-        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.06af60db.min.css">
+        <link rel="stylesheet" href="../../../../../assets/stylesheets/palette.06af60db.min.css">
       
       
 
@@ -50,11 +46,11 @@
       
     
     
-      <link rel="stylesheet" href="../../../../stylesheets/extra.css">
+      <link rel="stylesheet" href="../../../../../stylesheets/extra.css">
     
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
-    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -63,11 +59,11 @@
       
         <meta  property="og:type"  content="website" >
       
-        <meta  property="og:title"  content="LevelDB - Reticence Ji's Notes" >
+        <meta  property="og:title"  content="钉钉在部分桌面环境无法打开链接 - Reticence Ji's Notes" >
       
         <meta  property="og:description"  content="None" >
       
-        <meta  property="og:image"  content="https://reticenceji.github.io/assets/images/social/编程语言/Cpp/库/leveldb.png" >
+        <meta  property="og:image"  content="https://reticenceji.github.io/assets/images/social/随笔/posts/dingtalk.png" >
       
         <meta  property="og:image:type"  content="image/png" >
       
@@ -75,15 +71,15 @@
       
         <meta  property="og:image:height"  content="630" >
       
-        <meta  property="og:url"  content="https://reticenceji.github.io/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Cpp/%E5%BA%93/leveldb/" >
+        <meta  property="og:url"  content="https://reticenceji.github.io/%E9%9A%8F%E7%AC%94/2024/12/12/%E9%92%89%E9%92%89%E5%9C%A8%E9%83%A8%E5%88%86%E6%A1%8C%E9%9D%A2%E7%8E%AF%E5%A2%83%E6%97%A0%E6%B3%95%E6%89%93%E5%BC%80%E9%93%BE%E6%8E%A5/" >
       
         <meta  name="twitter:card"  content="summary_large_image" >
       
-        <meta  name="twitter:title"  content="LevelDB - Reticence Ji's Notes" >
+        <meta  name="twitter:title"  content="钉钉在部分桌面环境无法打开链接 - Reticence Ji's Notes" >
       
         <meta  name="twitter:description"  content="None" >
       
-        <meta  name="twitter:image"  content="https://reticenceji.github.io/assets/images/social/编程语言/Cpp/库/leveldb.png" >
+        <meta  name="twitter:image"  content="https://reticenceji.github.io/assets/images/social/随笔/posts/dingtalk.png" >
       
     
     
@@ -106,7 +102,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#leveldb" class="md-skip">
+        <a href="#_1" class="md-skip">
           跳转至
         </a>
       
@@ -120,7 +116,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="页眉">
-    <a href="../../../.." title="Reticence Ji&#39;s Notes" class="md-header__button md-logo" aria-label="Reticence Ji's Notes" data-md-component="logo">
+    <a href="../../../../.." title="Reticence Ji&#39;s Notes" class="md-header__button md-logo" aria-label="Reticence Ji's Notes" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -140,7 +136,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              LevelDB
+              钉钉在部分桌面环境无法打开链接
             
           </span>
         </div>
@@ -247,7 +243,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../../../.." class="md-tabs__link">
+      <a href="../../../../.." class="md-tabs__link">
         
   
     
@@ -266,7 +262,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../../%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" class="md-tabs__link">
+        <a href="../../../../../%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" class="md-tabs__link">
           
   
     
@@ -286,7 +282,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../../%E5%B7%A5%E5%85%B7/" class="md-tabs__link">
+        <a href="../../../../../%E5%B7%A5%E5%85%B7/" class="md-tabs__link">
           
   
     
@@ -306,12 +302,32 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../../%E5%BC%80%E5%8F%91/" class="md-tabs__link">
+        <a href="../../../../../%E5%BC%80%E5%8F%91/" class="md-tabs__link">
           
   
     
   
   开发
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../../%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" class="md-tabs__link">
+          
+  
+    
+  
+  编程语言
 
         </a>
       </li>
@@ -328,27 +344,7 @@
     
     
       <li class="md-tabs__item md-tabs__item--active">
-        <a href="../../../" class="md-tabs__link">
-          
-  
-    
-  
-  编程语言
-
-        </a>
-      </li>
-    
-  
-
-      
-        
-  
-  
-  
-    
-    
-      <li class="md-tabs__item">
-        <a href="../../../../%E9%9A%8F%E7%AC%94/" class="md-tabs__link">
+        <a href="../../../../" class="md-tabs__link">
           
   
     
@@ -372,7 +368,9 @@
           
             
               
-              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" hidden>
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
                     
@@ -383,7 +381,7 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../../.." title="Reticence Ji&#39;s Notes" class="md-nav__button md-logo" aria-label="Reticence Ji's Notes" data-md-component="logo">
+    <a href="../../../../.." title="Reticence Ji&#39;s Notes" class="md-nav__button md-logo" aria-label="Reticence Ji's Notes" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -413,7 +411,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../.." class="md-nav__link">
+      <a href="../../../../.." class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -473,7 +471,7 @@
         
   
   
-    <a href="../../../../%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" class="md-nav__link">
+    <a href="../../../../../%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" class="md-nav__link">
       
   
   <span class="md-ellipsis">
@@ -533,7 +531,7 @@
         
   
   
-    <a href="../../../../%E5%B7%A5%E5%85%B7/" class="md-nav__link">
+    <a href="../../../../../%E5%B7%A5%E5%85%B7/" class="md-nav__link">
       
   
   <span class="md-ellipsis">
@@ -601,7 +599,7 @@
         
   
   
-    <a href="../../../../%E5%BC%80%E5%8F%91/" class="md-nav__link">
+    <a href="../../../../../%E5%BC%80%E5%8F%91/" class="md-nav__link">
       
   
   <span class="md-ellipsis">
@@ -624,8 +622,6 @@
       
   
   
-    
-  
   
   
     
@@ -643,6 +639,58 @@
       
         
       
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../../../../%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    编程语言
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
         
       
         
@@ -662,655 +710,86 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
         
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../../" class="md-nav__link ">
+            <a href="../../../../" class="md-nav__link ">
               
-  
-  <span class="md-ellipsis">
-    编程语言
-  </span>
-  
-
-            </a>
-            
-              
-              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="">
-                <span class="md-nav__icon md-icon"></span>
-              </label>
-            
-          </div>
-        
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
-          <label class="md-nav__title" for="__nav_5">
-            <span class="md-nav__icon md-icon"></span>
-            编程语言
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-            
-              
-                
-  
-  
-  
-  
-    
-    
-      
-        
-          
-        
-      
-        
-      
-        
-      
-    
-    
-      
-      
-    
-    
-      
-        
-        
-      
-    
-    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
-      
-        
-  
-  
-    <a href="../../../Bytecode/" class="md-nav__link">
-      
-  
-  <span class="md-ellipsis">
-    Bytecode
-  </span>
-  
-
-      
-        <span class="md-nav__icon md-icon"></span>
-      
-    </a>
-  
-
-      
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-    
-  
-  
-  
-    
-    
-      
-        
-          
-        
-      
-        
-      
-        
-      
-        
-      
-    
-    
-      
-      
-    
-    
-      
-    
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_3" checked>
-        
-          
-          
-          <div class="md-nav__link md-nav__container">
-            <a href="../../" class="md-nav__link ">
-              
-  
-  <span class="md-ellipsis">
-    Cpp
-  </span>
-  
-
-            </a>
-            
-              
-              <label class="md-nav__link " for="__nav_5_3" id="__nav_5_3_label" tabindex="0">
-                <span class="md-nav__icon md-icon"></span>
-              </label>
-            
-          </div>
-        
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_3_label" aria-expanded="true">
-          <label class="md-nav__title" for="__nav_5_3">
-            <span class="md-nav__icon md-icon"></span>
-            Cpp
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-            
-              
-                
-  
-  
-  
-  
-    
-    
-      
-        
-      
-        
-      
-        
-      
-        
-      
-    
-    
-      
-      
-    
-    
-      
-        
-        
-      
-    
-    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
-      
-        
-  
-  
-    <a href="../../%E5%9F%BA%E7%A1%80/%E4%BF%AE%E9%A5%B0%E7%AC%A6/" class="md-nav__link">
-      
-  
-  <span class="md-ellipsis">
-    基础
-  </span>
-  
-
-      
-        <span class="md-nav__icon md-icon"></span>
-      
-    </a>
-  
-
-      
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-    
-  
-  
-  
-    
-    
-      
-        
-      
-        
-      
-        
-      
-    
-    
-      
-      
-    
-    
-      
-    
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_3_3" checked>
-        
-          
-          <label class="md-nav__link" for="__nav_5_3_3" id="__nav_5_3_3_label" tabindex="0">
-            
-  
-  <span class="md-ellipsis">
-    库
-  </span>
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_5_3_3_label" aria-expanded="true">
-          <label class="md-nav__title" for="__nav_5_3_3">
-            <span class="md-nav__icon md-icon"></span>
-            库
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-    
-  
-  
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
-        
-  
-  <span class="md-ellipsis">
-    LevelDB
-  </span>
-  
-
-      </a>
-      
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../spdlog/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    spdlog
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    标准库-智能指针
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    
-    
-      
-        
-      
-    
-    
-      
-      
-    
-    
-      
-        
-        
-      
-    
-    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
-      
-        
-  
-  
-    <a href="../../%E6%9E%84%E5%BB%BA/CMake/" class="md-nav__link">
-      
-  
-  <span class="md-ellipsis">
-    构建
-  </span>
-  
-
-      
-        <span class="md-nav__icon md-icon"></span>
-      
-    </a>
-  
-
-      
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    
-    
-      
-        
-          
-        
-      
-    
-    
-      
-      
-    
-    
-      
-        
-        
-      
-    
-    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
-      
-        
-  
-  
-    <a href="../../../Datalog/" class="md-nav__link">
-      
-  
-  <span class="md-ellipsis">
-    Datalog
-  </span>
-  
-
-      
-        <span class="md-nav__icon md-icon"></span>
-      
-    </a>
-  
-
-      
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    
-    
-      
-        
-          
-        
-      
-        
-      
-        
-      
-    
-    
-      
-      
-    
-    
-      
-        
-        
-      
-    
-    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
-      
-        
-  
-  
-    <a href="../../../Golang/" class="md-nav__link">
-      
-  
-  <span class="md-ellipsis">
-    Golang
-  </span>
-  
-
-      
-        <span class="md-nav__icon md-icon"></span>
-      
-    </a>
-  
-
-      
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    
-    
-      
-        
-          
-        
-      
-        
-      
-        
-      
-    
-    
-      
-      
-    
-    
-      
-        
-        
-      
-    
-    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
-      
-        
-  
-  
-    <a href="../../../Python/" class="md-nav__link">
-      
-  
-  <span class="md-ellipsis">
-    Python
-  </span>
-  
-
-      
-        <span class="md-nav__icon md-icon"></span>
-      
-    </a>
-  
-
-      
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    
-    
-      
-        
-          
-        
-      
-        
-      
-        
-      
-        
-      
-    
-    
-      
-      
-    
-    
-      
-        
-        
-      
-    
-    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
-      
-        
-  
-  
-    <a href="../../../Rust/" class="md-nav__link">
-      
-  
-  <span class="md-ellipsis">
-    Rust
-  </span>
-  
-
-      
-        <span class="md-nav__icon md-icon"></span>
-      
-    </a>
-  
-
-      
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    
-    
-      
-        
-          
-        
-      
-        
-      
-    
-    
-      
-      
-    
-    
-      
-        
-        
-      
-    
-    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
-      
-        
-  
-  
-    <a href="../../../../%E9%9A%8F%E7%AC%94/" class="md-nav__link">
-      
   
   <span class="md-ellipsis">
     随笔
   </span>
   
 
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_6" id="__nav_6_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            随笔
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../../../archive/2024/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    归档
+  </span>
+  
+
       
         <span class="md-nav__icon md-icon"></span>
       
     </a>
   
 
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
       
     </li>
   
@@ -1323,6 +802,8 @@
               </div>
             
             
+              
+                
               
               <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
                 <div class="md-sidebar__scrollwrap">
@@ -1343,109 +824,111 @@
             
           
           
-            <div class="md-content" data-md-component="content">
-              <article class="md-content__inner md-typeset">
-                
-
-                  
-
-  
-  
-
-
-<h1 id="leveldb">LevelDB</h1>
-<blockquote>
-<p>LevelDB is a fast key-value storage library written at Google that provides an ordered mapping from string keys to string values.</p>
-</blockquote>
-<p>据说写的非常好，必读代码。</p>
-
-
-
-
-
-
-
-  
-  
-
-
-
-
-
-
-                
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        var article = document.querySelector('.md-content__inner');
-        if (article) {
-            // 创建一个容器来包裹导航路径和元数据
-            var container = document.createElement('div');
-            container.className = 'nav-meta-container';
-
-            // 创建导航路径容器
-            var pathNav = document.createElement('div');
-            pathNav.className = 'navigation-path';
-
-            // 获取当前页面路径
-            var currentPath = document.location.pathname;
-            var pathParts = currentPath.split('/').filter(Boolean);
-
-            // 构建导航路径HTML
-            var pathHTML = '<div class="path-container">';
-            var accumPath = '';
-
-            // 添加首页链接
-            // pathHTML += '<a href="/" class="path-item">主页</a>';
-
-            // 添加中间路径
-            for (var i = 0; i < pathParts.length - 1; i++) {
-                accumPath += '/' + pathParts[i];
-                var decodedPart = decodeURIComponent(pathParts[i]);
-                pathHTML += '<span class="path-separator">/</span>';
-                pathHTML += `<a href="${accumPath}" class="path-item">${decodedPart}</a>`;
-            }
-
-            // 添加当前页面（最后一项）
-            if (pathParts.length > 0) {
-                var currentPage = decodeURIComponent(pathParts[pathParts.length - 1].replace('.html', ''));
-                pathHTML += '<span class="path-separator">/</span>';
-                pathHTML += `<span class="path-current">${currentPage}</span>`;
-            }
-
-            pathHTML += '</div>';
-            pathNav.innerHTML = pathHTML;
-
-            // 添加元数据（时间信息）
-            var meta = document.createElement('div');
-            meta.className = 'article-meta';
-            var metaContent = [];
-
-            
-            metaContent.push(`<span class="meta-item"> ✨ 创建于 2024-12-11 </span>`);
-            
-
-            
-            metaContent.push(`<span class="meta-item"> ✨ 更新于 2024-12-11 </span>`);
-            
-
-            if (metaContent.length > 0) {
-                meta.innerHTML = metaContent.join(' ');
-            }
-
-            // 将两个元素添加到容器中
-            container.appendChild(pathNav);
-            container.appendChild(meta);
-
-            // 将容器插入到文章开头
-            article.insertBefore(container, article.firstChild);
-        }
-    });
-</script>
-
-
-              </article>
+  <div class="md-content md-content--post" data-md-component="content">
+    <div class="md-sidebar md-sidebar--post" data-md-component="sidebar" data-md-type="navigation">
+      <div class="md-sidebar__scrollwrap">
+        <div class="md-sidebar__inner md-post">
+          <nav class="md-nav md-nav--primary">
+            <div class="md-post__back">
+              <div class="md-nav__title md-nav__container">
+                <a href="../../../../" class="md-nav__link">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+                  <span class="md-ellipsis">
+                    回到主页
+                  </span>
+                </a>
+              </div>
             </div>
+            
+            <ul class="md-post__meta md-nav__list">
+              <li class="md-nav__item md-nav__item--section">
+                <div class="md-post__title">
+                  <span class="md-ellipsis">
+                    元数据
+                  </span>
+                </div>
+                <nav class="md-nav">
+                  <ul class="md-nav__list">
+                    <li class="md-nav__item">
+                      <div class="md-nav__link">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 19H5V8h14m-3-7v2H8V1H6v2H5c-1.11 0-2 .89-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2h-1V1m-1 11h-5v5h5z"/></svg>
+                        <time datetime="2024-12-12 00:00:00+00:00" class="md-ellipsis">2024年12月12日</time>
+                      </div>
+                    </li>
+                    
+                    
+                    
+                      
+                      <li class="md-nav__item">
+                        <div class="md-nav__link">
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20a8 8 0 0 0 8-8 8 8 0 0 0-8-8 8 8 0 0 0-8 8 8 8 0 0 0 8 8m0-18a10 10 0 0 1 10 10 10 10 0 0 1-10 10C6.47 22 2 17.5 2 12A10 10 0 0 1 12 2m.5 5v5.25l4.5 2.67-.75 1.23L11 13V7z"/></svg>
+                          <span class="md-ellipsis">
+                            
+                              需要 1 分钟阅读时间
+                            
+                          </span>
+                        </div>
+                      </li>
+                    
+                  </ul>
+                </nav>
+              </li>
+            </ul>
+          </nav>
           
+        </div>
+      </div>
+    </div>
+    <article class="md-content__inner md-typeset">
+      
+        
+
+  
+  
+
+
+<h1 id="_1">钉钉在部分桌面环境无法打开链接</h1>
+<p>我的桌面环境是Linux Mint。钉钉版本7.6.25-Release.4112601，无法通过点击打开链接（之前版本也是）。</p>
+<p>钉钉默认安装在<code>/opt/apps/com.alibabainc.dingtalk/files/&lt;version&gt;/com.alibaba.dingtalk</code>，但是一般创建的快捷方式是运行上级目录的<code>Elevator.sh</code>，他里面链接了一个保护的动态链接库<code>libcef.so</code>（我并不知道具体是干啥的），导致无法通过浏览器打开链接。</p>
+<p>可以修改<code>Elevator.sh</code>的这一行，将<code>true</code>改成<code>false</code>。或者通过修改其他地方让它不要被加载就可以了。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>...
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="nv">is_enable_cef109</span><span class="o">=</span><span class="nb">true</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">is_enable_cef109</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;true&quot;</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$os_machine</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;aarch64&quot;</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">libc_lower_29</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;true&quot;</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">            </span><span class="nv">preload_libs</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">preload_libs</span><span class="si">}</span><span class="s2"> ./libm-2.31.so &quot;</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">        </span><span class="k">fi</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">    </span><span class="k">fi</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">    </span><span class="nv">preload_libs</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">preload_libs</span><span class="si">}</span><span class="s2"> ./plugins/dtwebview/libcef.so &quot;</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="k">else</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$os_machine</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;mips64&quot;</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="w">    </span><span class="nb">echo</span><span class="w"> </span>mips64el<span class="w"> </span>branch
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="w">    </span><span class="nv">preload_libs</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">preload_libs</span><span class="si">}</span><span class="s2"> ./plugins/dtwebview/libcef.so &quot;</span>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="k">fi</span>
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="k">fi</span>
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>...
+</code></pre></div>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+  
+
+
+
+      
+    </article>
+  </div>
+
           
 <script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
         </div>
@@ -1506,14 +989,14 @@
     </div>
     
     
-    <script id="__config" type="application/json">{"base": "../../../..", "features": ["navigation.path", "navigation.tabs", "navigation.tracking", "navigation.indexes", "navigation.tracking", "navigation.top", "navigation.prune", "toc.follow", "content.code.copy", "content.code.annotate", "search.highlight"], "search": "../../../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
+    <script id="__config" type="application/json">{"base": "../../../../..", "features": ["navigation.path", "navigation.tabs", "navigation.tracking", "navigation.indexes", "navigation.tracking", "navigation.top", "navigation.prune", "toc.follow", "content.code.copy", "content.code.annotate", "search.highlight"], "search": "../../../../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
     
     
-      <script src="../../../../assets/javascripts/bundle.83f73b43.min.js"></script>
+      <script src="../../../../../assets/javascripts/bundle.83f73b43.min.js"></script>
       
         <script src="https://lf9-cdn-tos.bytecdntp.com/cdn/expire-1-M/mathjax/3.2.0/es5/tex-mml-chtml.js"></script>
       
-        <script src="../../../../javascripts/extra.js"></script>
+        <script src="../../../../../javascripts/extra.js"></script>
       
     
   </body>

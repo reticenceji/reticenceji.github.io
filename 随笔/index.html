@@ -16,6 +16,8 @@
         <link rel="prev" href="../%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Rust/%E6%9E%84%E5%BB%BA/Cargo/">
       
       
+        <link rel="next" href="archive/2024/">
+      
       
       <link rel="icon" href="../static/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.45">
@@ -747,16 +749,42 @@
   
   
   
-    <li class="md-nav__item">
-      <a href=".." class="md-nav__link">
+    
+    
+      
         
+      
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="archive/2024/" class="md-nav__link">
+      
   
   <span class="md-ellipsis">
     归档
   </span>
   
 
-      </a>
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
     </li>
   
 
@@ -789,6 +817,23 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      钉钉在部分桌面环境无法打开链接
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -803,6 +848,62 @@
 <p>这里放着一些未归类的文章。</p>
       </header>
       
+        <article class="md-post md-post--excerpt">
+  <header class="md-post__header">
+    
+    <div class="md-post__meta md-meta">
+      <ul class="md-meta__list">
+        <li class="md-meta__item">
+          <time datetime="2024-12-12 00:00:00+00:00">2024年12月12日</time></li>
+        
+        
+          
+          <li class="md-meta__item">
+            
+              需要 1 分钟阅读时间
+            
+          </li>
+        
+      </ul>
+      
+    </div>
+  </header>
+  <div class="md-post__content md-typeset">
+    <h2 id="_1"><a class="toclink" href="2024/12/12/%E9%92%89%E9%92%89%E5%9C%A8%E9%83%A8%E5%88%86%E6%A1%8C%E9%9D%A2%E7%8E%AF%E5%A2%83%E6%97%A0%E6%B3%95%E6%89%93%E5%BC%80%E9%93%BE%E6%8E%A5/">钉钉在部分桌面环境无法打开链接</a></h2>
+<p>我的桌面环境是Linux Mint。钉钉版本7.6.25-Release.4112601，无法通过点击打开链接（之前版本也是）。</p>
+<p>钉钉默认安装在<code>/opt/apps/com.alibabainc.dingtalk/files/&lt;version&gt;/com.alibaba.dingtalk</code>，但是一般创建的快捷方式是运行上级目录的<code>Elevator.sh</code>，他里面链接了一个保护的动态链接库<code>libcef.so</code>（我并不知道具体是干啥的），导致无法通过浏览器打开链接。</p>
+<p>可以修改<code>Elevator.sh</code>的这一行，将<code>true</code>改成<code>false</code>。或者通过修改其他地方让它不要被加载就可以了。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>...
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="nv">is_enable_cef109</span><span class="o">=</span><span class="nb">true</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">is_enable_cef109</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;true&quot;</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$os_machine</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;aarch64&quot;</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">libc_lower_29</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;true&quot;</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">            </span><span class="nv">preload_libs</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">preload_libs</span><span class="si">}</span><span class="s2"> ./libm-2.31.so &quot;</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">        </span><span class="k">fi</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">    </span><span class="k">fi</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">    </span><span class="nv">preload_libs</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">preload_libs</span><span class="si">}</span><span class="s2"> ./plugins/dtwebview/libcef.so &quot;</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="k">else</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$os_machine</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;mips64&quot;</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="w">    </span><span class="nb">echo</span><span class="w"> </span>mips64el<span class="w"> </span>branch
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="w">    </span><span class="nv">preload_libs</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">preload_libs</span><span class="si">}</span><span class="s2"> ./plugins/dtwebview/libcef.so &quot;</span>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="k">fi</span>
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="k">fi</span>
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>...
+</code></pre></div>
+    
+  </div>
+</article>
+      
+      
+        
+          
+
+
+
+<nav class="md-pagination">
+  
+</nav>
+        
       
     </div>
   </div>
