@@ -1,8 +1,7 @@
 ---
 aliases: 
-tags:
-  - 工具
-date_modified: 2024-12-11
+tags: []
+date_modified: 2024-12-20
 date: 2024-11-30
 ---
 
@@ -27,6 +26,18 @@ ssh -L 8896:C:8895 user@B
 在客户端上，可以通过添加 `-o ServerAliveInterval=30 -o TCPKeepAlive=no` 参数，这意味着每 30 秒，SSH 客户端会发送一个空的数据包到服务器。这个功能主要用来保持 SSH 会话的活跃状态，防止由于长时间无活动而导致的会话超时或被网络设备（如防火墙）断开连接。
 
 在服务端，也可以编辑`/etc/ssh/sshd_config`的`ClientAliveInterval=30`，让SSH 服务器会每隔 30 秒向连接的客户端发送一个空的数据包或消息请求（ `ClientAliveCountMax` 了尝试的最大次数），用以检测客户端是否仍然连接并响应。如果客户端没有响应，服务器可以选择关闭连接，避免悬挂的会话占用资源。
+
+### Proxy
+
+我想在家中，借助VPN，访问公司的电脑。如何给SSH 配置 Proxy？
+
+如果是Mac，可以借助[`corkscrew`](https://formulae.brew.sh/formula/corkscrew)。在`~/.ssh/config`对应的行中添加`ProxyCommand`，假设Proxy在`http://127.0.0.1:7890`。
+
+```
+Host company-machine
+    ProxyCommand corkscrew 127.0.0.1 7890 %h %p
+    ...
+```
 
 ---
 

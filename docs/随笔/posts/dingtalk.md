@@ -1,6 +1,7 @@
 ---
 aliases: 
-tags: 
+tags:
+  - fix
 date: 2024-12-12
 date_modified: 2024-12-12
 ---

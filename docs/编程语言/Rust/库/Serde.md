@@ -1,13 +1,17 @@
 ---
 aliases: 
 tags: 
-date_modified: 2024-12-11
+date_modified: 2024-12-16
 date: 2024-11-30
 ---
 
 # Serde
 
-`Serde` 是一个用于高效且通用地**序列化Serialize**和**反序列化Deserialize** Rust 数据结构的框架。如果对序列化和反序列化的概念不清楚，可以参阅 [Serde](Serde.md)。
+[`serde`](https://github.com/serde-rs/serde) 是一个用于高效且通用地**序列化Serialize**和**反序列化Deserialize** Rust 数据结构的框架。另外，`serde`主要关注于如何将Rust结构体（struct）轻松且准确地映射到`serde`的内部数据模型，而将`serde`的内部数据模型与实际的文件格式进行转换的过程，不是`serde`库本身完成的，而是类似于`serde-json`这种库完成的。
+
+## 使用方式
+
+参考[Using derive · Serde](https://serde.rs/derive.html)。对于一般的情况（如反序列化个JSON文件），只需要简单的定一个一个数据结构，添加个宏就够了。
 
 ## 工作原理
 
@@ -90,9 +94,7 @@ pub trait Deserializer<'de>: Sized {
 
 [pest](https://pest.rs/) 是一个支持[PEG](https://en.wikipedia.org/wiki/Parsing_expression_grammar) 文法的通用 parser。
 
----
-
-参考资料：
+## 参考链接
 
 - <https://github.com/serde-rs/json/tree/v0.6.0/json/src>
 - <https://serde.rs/>
