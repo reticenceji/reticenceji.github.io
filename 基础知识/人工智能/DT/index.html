@@ -8,7 +8,7 @@
       
       
       
-        <link rel="canonical" href="https://reticenceji.github.io/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/GBDT/">
+        <link rel="canonical" href="https://reticenceji.github.io/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/DT/">
       
       
         <link rel="prev" href="../">
@@ -65,7 +65,7 @@
       
         <meta  property="og:description"  content="None" >
       
-        <meta  property="og:image"  content="https://reticenceji.github.io/assets/images/social/基础知识/人工智能/GBDT.png" >
+        <meta  property="og:image"  content="https://reticenceji.github.io/assets/images/social/基础知识/人工智能/DT.png" >
       
         <meta  property="og:image:type"  content="image/png" >
       
@@ -73,7 +73,7 @@
       
         <meta  property="og:image:height"  content="630" >
       
-        <meta  property="og:url"  content="https://reticenceji.github.io/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/GBDT/" >
+        <meta  property="og:url"  content="https://reticenceji.github.io/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/DT/" >
       
         <meta  name="twitter:card"  content="summary_large_image" >
       
@@ -81,7 +81,7 @@
       
         <meta  name="twitter:description"  content="None" >
       
-        <meta  name="twitter:image"  content="https://reticenceji.github.io/assets/images/social/基础知识/人工智能/GBDT.png" >
+        <meta  name="twitter:image"  content="https://reticenceji.github.io/assets/images/social/基础知识/人工智能/DT.png" >
       
     
     
@@ -657,6 +657,15 @@
       
         <li class="md-nav__item">
   <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      缺点和优点
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
       参考链接
     </span>
@@ -1249,6 +1258,8 @@
       
         
       
+        
+      
     
     
       
@@ -1459,6 +1470,15 @@
         <li class="md-nav__item">
   <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
+      缺点和优点
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
       参考链接
     </span>
   </a>
@@ -1627,7 +1647,13 @@
 <a id="__codelineno-1-84" name="__codelineno-1-84" href="#__codelineno-1-84"></a>
 <a id="__codelineno-1-85" name="__codelineno-1-85" href="#__codelineno-1-85"></a><span class="n">predict_example</span><span class="p">()</span>
 </code></pre></div>
-<h2 id="_3">参考链接</h2>
+<h2 id="_3">缺点和优点</h2>
+<ol>
+<li><strong>处理非线性问题的能力有限</strong>：决策树通过顺序地检查字段值是否满足某种条件来做决策，这种分割方式<strong>不适合处理具有高度非线性关系的数据</strong>。假设一个长方体有属性长、宽、高，我们想用决策树训练出可以 判断长方体体积是否大于100 cm3 的模型。显然，如果我们使用 长*宽*高 这个属性，可以较好解决问题，但是使用长、宽、高三个属性，决策树就无法解决问题。如果问题的影响因素过于复杂，可以使用神经网络。</li>
+<li><strong>决策树很容易过拟合</strong>。</li>
+<li>决策树有非常好的可解释性。</li>
+</ol>
+<h2 id="_4">参考链接</h2>
 <ul>
 <li><a href="https://www.showmeai.tech/article-detail/193">图解机器学习 | GBDT模型详解</a></li>
 <li><a href="https://www.cnblogs.com/techflow/p/13445042.html">机器学习 | 详解GBDT梯度提升树原理，看完再也不怕面试了 - Coder梁 - 博客园</a></li>
@@ -1699,7 +1725,7 @@
             
 
             
-            metaContent.push(`<span class="meta-item"> ✨ 更新于 2024-12-11 </span>`);
+            metaContent.push(`<span class="meta-item"> ✨ 更新于 2024-12-16 </span>`);
             
 
             if (metaContent.length > 0) {

@@ -6,14 +6,14 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Serde 是一个用于高效且通用地序列化Serialize和反序列化Deserialize Rust 数据结构的框架。如果对序列化和反序列化的概念不清楚，可以参阅 Serde。">
+        <meta name="description" content="serde 是一个用于高效且通用地序列化Serialize和反序列化Deserialize Rust 数据结构的框架。另外，serde主要关注于如何将Rust结构体（struct）轻松且准确地映射到serde的内部数据模型，而将serde的内部数据模型与实际的文件格式进行转换的过程，不是serde库本身完成的，而是类似于serde-json这种库完成的。">
       
       
       
         <link rel="canonical" href="https://reticenceji.github.io/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Rust/%E5%BA%93/Serde/">
       
       
-        <link rel="prev" href="../../%E5%AE%9E%E8%B7%B5/%E9%9D%99%E6%80%81%E5%8F%98%E9%87%8F/">
+        <link rel="prev" href="../Binrw/">
       
       
         <link rel="next" href="../%E5%AD%97%E7%AC%A6%E4%B8%B2/">
@@ -585,6 +585,8 @@
       
         
       
+        
+      
     
     
       
@@ -1094,6 +1096,8 @@
       
         
       
+        
+      
     
     
       
@@ -1126,6 +1130,27 @@
             库
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Binrw/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Binrw
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
             
               
                 
@@ -1182,6 +1207,15 @@
         <li class="md-nav__item">
   <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
+      使用方式
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
       工作原理
     </span>
   </a>
@@ -1190,7 +1224,7 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
+  <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
       序列化
     </span>
@@ -1199,7 +1233,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
+  <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
       反序列化
     </span>
@@ -1213,7 +1247,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
+  <a href="#_5" class="md-nav__link">
     <span class="md-ellipsis">
       编写自定义规则
     </span>
@@ -1234,6 +1268,15 @@
   <a href="#pest" class="md-nav__link">
     <span class="md-ellipsis">
       PEST
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      参考链接
     </span>
   </a>
   
@@ -1502,6 +1545,15 @@
         <li class="md-nav__item">
   <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
+      使用方式
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
       工作原理
     </span>
   </a>
@@ -1510,7 +1562,7 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
+  <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
       序列化
     </span>
@@ -1519,7 +1571,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
+  <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
       反序列化
     </span>
@@ -1533,7 +1585,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
+  <a href="#_5" class="md-nav__link">
     <span class="md-ellipsis">
       编写自定义规则
     </span>
@@ -1559,6 +1611,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      参考链接
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1579,9 +1640,11 @@
 
 
 <h1 id="serde">Serde</h1>
-<p><code>Serde</code> 是一个用于高效且通用地<strong>序列化Serialize</strong>和<strong>反序列化Deserialize</strong> Rust 数据结构的框架。如果对序列化和反序列化的概念不清楚，可以参阅 <a href="./">Serde</a>。</p>
-<h2 id="_1">工作原理</h2>
-<h3 id="_2">序列化</h3>
+<p><a href="https://github.com/serde-rs/serde"><code>serde</code></a> 是一个用于高效且通用地<strong>序列化Serialize</strong>和<strong>反序列化Deserialize</strong> Rust 数据结构的框架。另外，<code>serde</code>主要关注于如何将Rust结构体（struct）轻松且准确地映射到<code>serde</code>的内部数据模型，而将<code>serde</code>的内部数据模型与实际的文件格式进行转换的过程，不是<code>serde</code>库本身完成的，而是类似于<code>serde-json</code>这种库完成的。</p>
+<h2 id="_1">使用方式</h2>
+<p>参考<a href="https://serde.rs/derive.html">Using derive · Serde</a>。对于一般的情况（如反序列化个JSON文件），只需要简单的定一个一个数据结构，添加个宏就够了。</p>
+<h2 id="_2">工作原理</h2>
+<h3 id="_3">序列化</h3>
 <p>根据库的设计，对一个对象（<code>value</code>）进行序列化的基本方式为：</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1">// 创建一个新的 序列化器，一般会传入一个`io::Write`用来写序列化的结果</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="kd">let</span><span class="w"> </span><span class="k">mut</span><span class="w"> </span><span class="n">ser</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Serializer</span><span class="p">::</span><span class="n">new</span><span class="p">(</span><span class="n">writer</span><span class="p">);</span>
@@ -1603,7 +1666,7 @@
 <p>序列化器要满足<code>pub trait Serializer</code>，它包含了对<a href="https://serde.rs/data-model.html#types">Rust Type System中29种元素</a>的处理方式。例如，<code>serialize_bool</code>，以JSON为例，不难猜测<strong>序列化器</strong>在实现这个接口时，会将<code>v</code>变成<code>true</code>或<code>false</code>的字符串。</p>
 <p>由此，我们不难猜测——自动生成的<code>serialize</code>方法，其实规定了遍历对象的顺序，根据遍历对象的类型递归的调用每个类型相应的方法？由于宏的代码太难读懂了，不妨写一个简单的代码看宏的展开结果（使用<code>cargo-expand</code>）。结论是思路差不多。</p>
 <p>整个序列化的过程是一个状态机的思路，状态机的代码一般由<code>#derive(Serialize)</code>自动生成，状态-&gt;状态之间的转化规则也是。而每个状态转化过程中，造成的副作用，则是由用户的<strong>序列化器</strong>决定。</p>
-<h3 id="_3">反序列化</h3>
+<h3 id="_4">反序列化</h3>
 <p>反序列化的过程似乎没有那么直白。毕竟序列化面对的是Rust的规整数据结构，反序列化面对的则是字节串。类似的，我们从基本用法入手：</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kd">let</span><span class="w"> </span><span class="k">mut</span><span class="w"> </span><span class="n">de</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Deserializer</span><span class="p">::</span><span class="n">new</span><span class="p">(</span><span class="n">read</span><span class="p">);</span>
 <a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="kd">let</span><span class="w"> </span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">de</span><span class="p">::</span><span class="n">Deserialize</span><span class="p">::</span><span class="n">deserialize</span><span class="p">(</span><span class="o">&amp;</span><span class="k">mut</span><span class="w"> </span><span class="n">de</span><span class="p">)</span><span class="o">?</span><span class="p">;</span>
@@ -1631,13 +1694,12 @@
 <p>类似的，反序列化的过程也是一个状态机的思路。状态机的状态转移由<code>#derive(Deserialize)</code>自动生成。我还没有特别搞明白。</p>
 <!--除此之外，还有`deserialize_any`例如传过来一个自解释的编码方式，例如JSON？自然的想法是，先调用统一的`deserialize_any`，之后在分发给具体的`deserialize_xxx`。-->
 
-<h2 id="_4">编写自定义规则</h2>
+<h2 id="_5">编写自定义规则</h2>
 <h2 id="nom">NOM</h2>
 <p><a href="https://docs.rs/nom/latest/nom/">nom</a>是一个解析器组合器库，专注于安全解析、流模式和尽可能多的零复制。</p>
 <h2 id="pest">PEST</h2>
 <p><a href="https://pest.rs/">pest</a> 是一个支持<a href="https://en.wikipedia.org/wiki/Parsing_expression_grammar">PEG</a> 文法的通用 parser。</p>
-<hr />
-<p>参考资料：</p>
+<h2 id="_6">参考链接</h2>
 <ul>
 <li><a href="https://github.com/serde-rs/json/tree/v0.6.0/json/src">https://github.com/serde-rs/json/tree/v0.6.0/json/src</a></li>
 <li><a href="https://serde.rs/">https://serde.rs/</a></li>
@@ -1711,7 +1773,7 @@
             
 
             
-            metaContent.push(`<span class="meta-item"> ✨ 更新于 2024-12-11 </span>`);
+            metaContent.push(`<span class="meta-item"> ✨ 更新于 2024-12-16 </span>`);
             
 
             if (metaContent.length > 0) {
