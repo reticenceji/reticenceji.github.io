@@ -11,7 +11,7 @@
         <link rel="canonical" href="https://reticenceji.github.io/%E9%9A%8F%E7%AC%94/archive/2024/">
       
       
-        <link rel="prev" href="../../">
+        <link rel="prev" href="../2025/">
       
       
       
@@ -513,6 +513,8 @@
       
         
       
+        
+      
     
     
       
@@ -754,6 +756,8 @@
       
         
       
+        
+      
     
     
       
@@ -786,6 +790,29 @@
             归档
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../2025/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2025
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
             
               
                 
@@ -861,6 +888,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      零拷贝
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -924,6 +960,15 @@
   <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
       钉钉在部分桌面环境无法打开链接
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      零拷贝
     </span>
   </a>
   
@@ -1018,6 +1063,82 @@
 <a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a><span class="k">fi</span>
 <a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>...
 </code></pre></div>
+    
+  </div>
+</article>
+      
+        <article class="md-post md-post--excerpt">
+  <header class="md-post__header">
+    
+    <div class="md-post__meta md-meta">
+      <ul class="md-meta__list">
+        <li class="md-meta__item">
+          <time datetime="2024-11-30 00:00:00+00:00">2024年11月30日</time></li>
+        
+        
+          
+          <li class="md-meta__item">
+            
+              需要 2 分钟阅读时间
+            
+          </li>
+        
+      </ul>
+      
+    </div>
+  </header>
+  <div class="md-post__content md-typeset">
+    <h2 id="_1"><a class="toclink" href="../../2024/11/30/%E9%9B%B6%E6%8B%B7%E8%B4%9D/">零拷贝</a></h2>
+<h3 id="_2"><a class="toclink" href="../../2024/11/30/%E9%9B%B6%E6%8B%B7%E8%B4%9D/#_2">减少内核和用户之间的拷贝</a></h3>
+<p>出于安全的考虑，内核不应该直接使用用户指针指向的内存，用户更不可能直接使用内核指针指向的内存。他们之间的信息交换，基本都要涉及拷贝，比如 Linux 上的 <code>copy_to_user</code> 和 <code>copy_from_user</code>。</p>
+<p><a href="https://man7.org/linux/man-pages/man2/mmap.2.html"><code>mmap</code></a> 也是一个非常好用的东西。什么是 mmap？mmap 是一种内存映射文件的方法，即将一个文件或者其它对象映射到进程的地址空间，实现文件磁盘地址和进程虚拟地址空间中一段虚拟地址的一一对映关系。实现这样的映射关系后，进程就可以使用操作内存的方式操作文件，而系统会自动回写脏页面到对应的文件磁盘上，即完成了对文件的操作而不必再调用 read,write 等系统调用函数。相反，内核空间对这段区域的修改也直接反映用户空间，从而可以实现不同进程间的文件共享。</p>
+<p>所以，当你有若干个进程以只读的方式访问一个文件，或者是访问较大文件的大块，用 <code>mmap</code> 都是很好的选择。<code>mmap</code> 还可以用来做进程通信。不过并不是所有的文件都可以用 <code>mmap</code> 来访问，例如 socket 就只能用他专有的接口读写，还有 pipe 类型的文件就只能用 <code>read</code>/<code>write</code> 等。也不是所有能用 <code>mmap</code> 的文件都适合用 <code>mmap</code>，一个和 page 差不多大的文件，或者你就想从文件中读那么几个字节，用 <code>mmap</code> 适得其反。</p>
+<p>使用 mmap</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;fcntl.h&gt;</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;sys/mman.h&gt;</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;sys/stat.h&gt;</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;unistd.h&gt;</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="w">    </span><span class="kt">long</span><span class="w"> </span><span class="n">checksum</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="w">    </span><span class="k">struct</span><span class="w"> </span><span class="nc">stat</span><span class="w"> </span><span class="n">sb</span><span class="p">;</span>
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">fd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">open</span><span class="p">(</span><span class="s">&quot;disk.dd&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">O_RDONLY</span><span class="p">);</span>
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="w">    </span><span class="n">fstat</span><span class="p">(</span><span class="n">fd</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">sb</span><span class="p">);</span>
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">file</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mmap</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">sb</span><span class="p">.</span><span class="n">st_size</span><span class="p">,</span><span class="w"> </span><span class="n">PROT_READ</span><span class="p">,</span><span class="w"> </span><span class="n">MAP_PRIVATE</span><span class="p">,</span><span class="w"> </span><span class="n">fd</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
+<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>
+<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">long</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="p">(</span><span class="n">sb</span><span class="p">.</span><span class="n">st_size</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="mi">3</span><span class="p">);</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a><span class="w">        </span><span class="n">checksum</span><span class="w"> </span><span class="o">^=</span><span class="w"> </span><span class="o">*</span><span class="p">((</span><span class="kt">long</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="n">file</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">i</span><span class="p">);</span>
+<a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a><span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;checksum = 0x%lx</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">checksum</span><span class="p">);</span>
+<a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a><span class="w">    </span><span class="n">close</span><span class="p">(</span><span class="n">fd</span><span class="p">);</span>
+<a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a><span class="p">}</span>
+<a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a>
+<a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a><span class="c1">// checksum = 0xdcce4fdc7fd2151d</span>
+<a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a><span class="c1">// real    0m5.762s</span>
+<a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a><span class="c1">// user    0m2.910s</span>
+<a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a><span class="c1">// sys     0m2.358s</span>
+</code></pre></div>
+<p>mmap 为什么会比带 buffer 的 read/write 快呢，Page Size 是 4K，每次缺页加载 4K，和我之前手动 Buffer 不是很相似吗？因为 <strong>少了一次 CPU 的拷贝</strong>。试想 read 的过程，DMA 将数据从硬盘拷贝到 kernel space，CPU 再将数据从 kernel space 拷贝到 user space；而 mmap 就少了一次从 kernel space 拷贝到 user space 的过程。</p>
+<p>不过在使用 mmap 的时候需要小心，如果有其他的进程截断了文件，那么你可能会访问到一个非法的地址，从而进程被杀死。</p>
+<p>除了 <code>mmap</code>，<a href="https://man7.org/linux/man-pages/man2/sendfile.2.html"><code>sendfile</code></a>/<a href="https://man7.org/linux/man-pages/man2/splice.2.html"><code>splice</code></a> 也可以实现类似的减少从 kernel space 到 user space 拷贝的作用，我们在后面介绍。他们提供的这种特性叫做 <strong>零拷贝 Zero Copy</strong>，<a href="https://zhuanlan.zhihu.com/p/308054212">知乎上的这篇文章</a> 提供了一个很好的介绍。</p>
+<blockquote>
+<p>如果追求极致，你可以绕过内核做 I/O 操作，不过一般情况下这样做会牺牲相当的灵活性、可移植性，而且非常困难。</p>
+</blockquote>
+<h3 id="_3"><a class="toclink" href="../../2024/11/30/%E9%9B%B6%E6%8B%B7%E8%B4%9D/#_3">针对网络的零拷贝技术</a></h3>
+<p>下面我们要面对的场景，是我们从硬盘中读取数据到内存，进行处理，然后写到网卡中。这是一个很典型的网络应用的操作。</p>
+<p>那么，最原始的使用 <code>read/write</code> 进行操作的话，我们将至少会有 4 次拷贝。中间两次是内存中的拷贝，虽然需要内核态到用户态的切换，但是相对 I/O 来说还是快的。但是我们还是要优化中间 2 次。</p>
+<ul>
+<li>硬盘拷贝到内存（内核态），DMA，慢</li>
+<li>内核态拷贝到用户态，CPU，快</li>
+<li>用户态拷贝到内核态，CPU，快</li>
+<li>内存（内核态）拷贝到网卡，DMA，慢</li>
+</ul>
+<p>如果我们使用之前介绍的 <code>mmap</code>，我们可以优化到 3 次。</p>
+<p>使用 <code>sendfile</code>，可以优化到 2 次，硬盘 -&gt;内核态内存 -&gt;网卡。但是你也发现了，没有经过用户态我们怎么处理数据，答案就是 <strong>没法处理数据</strong>，所以他可能只适合用于静态服务器。那么既然都无法处理了，还拷到内存干啥？能不能直接从硬盘 DMA 到网卡呢？答案是可以，新的 Linux 已经让 <code>sendfile</code> 可以做到这一点了，也就是可以优化到 1 次了。<code>splice</code> 也是类似的。</p>
+<h3 id="copy-on-write"><a class="toclink" href="../../2024/11/30/%E9%9B%B6%E6%8B%B7%E8%B4%9D/#copy-on-write">Copy On Write</a></h3>
+<p>其实这是一种思想，对于读多写少的场景的优化。在追求极致优化的内核中得到了广泛使用。你看到 <code>rcu</code> 字样的时候，多半就是 copy on write。</p>
     
   </div>
 </article>

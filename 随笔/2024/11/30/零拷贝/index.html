@@ -6,32 +6,28 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="虽然文章叫做Docker，但是这里主要想探讨Linux提供的隔离机制，Docker的底层技术：">
+      
+      
+        <link rel="canonical" href="https://reticenceji.github.io/%E9%9A%8F%E7%AC%94/2024/11/30/%E9%9B%B6%E6%8B%B7%E8%B4%9D/">
       
       
       
-        <link rel="canonical" href="https://reticenceji.github.io/%E5%BC%80%E5%8F%91/%E7%B3%BB%E7%BB%9F%E7%BC%96%E7%A8%8B/Docker/">
+        <link rel="next" href="../../../12/12/%E9%92%89%E9%92%89%E5%9C%A8%E9%83%A8%E5%88%86%E6%A1%8C%E9%9D%A2%E7%8E%AF%E5%A2%83%E6%97%A0%E6%B3%95%E6%89%93%E5%BC%80%E9%93%BE%E6%8E%A5/">
       
       
-        <link rel="prev" href="../../%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6/ThirdWeb/">
-      
-      
-        <link rel="next" href="../File/">
-      
-      
-      <link rel="icon" href="../../../static/favicon.png">
+      <link rel="icon" href="../../../../../static/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.45">
     
     
       
-        <title>Docker - Reticence Ji's Notes</title>
+        <title>零拷贝 - Reticence Ji's Notes</title>
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.0253249f.min.css">
+      <link rel="stylesheet" href="../../../../../assets/stylesheets/main.0253249f.min.css">
       
         
-        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+        <link rel="stylesheet" href="../../../../../assets/stylesheets/palette.06af60db.min.css">
       
       
 
@@ -50,11 +46,11 @@
       
     
     
-      <link rel="stylesheet" href="../../../stylesheets/extra.css">
+      <link rel="stylesheet" href="../../../../../stylesheets/extra.css">
     
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
-    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -63,11 +59,11 @@
       
         <meta  property="og:type"  content="website" >
       
-        <meta  property="og:title"  content="Docker - Reticence Ji's Notes" >
+        <meta  property="og:title"  content="零拷贝 - Reticence Ji's Notes" >
       
         <meta  property="og:description"  content="None" >
       
-        <meta  property="og:image"  content="https://reticenceji.github.io/assets/images/social/开发/系统编程/Docker.png" >
+        <meta  property="og:image"  content="https://reticenceji.github.io/assets/images/social/随笔/posts/Zero Copy.png" >
       
         <meta  property="og:image:type"  content="image/png" >
       
@@ -75,15 +71,15 @@
       
         <meta  property="og:image:height"  content="630" >
       
-        <meta  property="og:url"  content="https://reticenceji.github.io/%E5%BC%80%E5%8F%91/%E7%B3%BB%E7%BB%9F%E7%BC%96%E7%A8%8B/Docker/" >
+        <meta  property="og:url"  content="https://reticenceji.github.io/%E9%9A%8F%E7%AC%94/2024/11/30/%E9%9B%B6%E6%8B%B7%E8%B4%9D/" >
       
         <meta  name="twitter:card"  content="summary_large_image" >
       
-        <meta  name="twitter:title"  content="Docker - Reticence Ji's Notes" >
+        <meta  name="twitter:title"  content="零拷贝 - Reticence Ji's Notes" >
       
         <meta  name="twitter:description"  content="None" >
       
-        <meta  name="twitter:image"  content="https://reticenceji.github.io/assets/images/social/开发/系统编程/Docker.png" >
+        <meta  name="twitter:image"  content="https://reticenceji.github.io/assets/images/social/随笔/posts/Zero Copy.png" >
       
     
     
@@ -106,7 +102,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#docker" class="md-skip">
+        <a href="#_1" class="md-skip">
           跳转至
         </a>
       
@@ -120,7 +116,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="页眉">
-    <a href="../../.." title="Reticence Ji&#39;s Notes" class="md-header__button md-logo" aria-label="Reticence Ji's Notes" data-md-component="logo">
+    <a href="../../../../.." title="Reticence Ji&#39;s Notes" class="md-header__button md-logo" aria-label="Reticence Ji's Notes" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -140,7 +136,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Docker
+              零拷贝
             
           </span>
         </div>
@@ -247,7 +243,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../../.." class="md-tabs__link">
+      <a href="../../../../.." class="md-tabs__link">
         
   
     
@@ -266,7 +262,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" class="md-tabs__link">
+        <a href="../../../../../%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" class="md-tabs__link">
           
   
     
@@ -286,7 +282,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../%E5%B7%A5%E5%85%B7/" class="md-tabs__link">
+        <a href="../../../../../%E5%B7%A5%E5%85%B7/" class="md-tabs__link">
           
   
     
@@ -302,13 +298,11 @@
         
   
   
-    
-  
   
     
     
-      <li class="md-tabs__item md-tabs__item--active">
-        <a href="../../" class="md-tabs__link">
+      <li class="md-tabs__item">
+        <a href="../../../../../%E5%BC%80%E5%8F%91/" class="md-tabs__link">
           
   
     
@@ -328,7 +322,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" class="md-tabs__link">
+        <a href="../../../../../%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" class="md-tabs__link">
           
   
     
@@ -344,11 +338,13 @@
         
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
-        <a href="../../../%E9%9A%8F%E7%AC%94/" class="md-tabs__link">
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../../../" class="md-tabs__link">
           
   
     
@@ -372,7 +368,9 @@
           
             
               
-              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" hidden>
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
                     
@@ -383,7 +381,7 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../.." title="Reticence Ji&#39;s Notes" class="md-nav__button md-logo" aria-label="Reticence Ji's Notes" data-md-component="logo">
+    <a href="../../../../.." title="Reticence Ji&#39;s Notes" class="md-nav__button md-logo" aria-label="Reticence Ji's Notes" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -413,7 +411,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../.." class="md-nav__link">
+      <a href="../../../../.." class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -473,7 +471,7 @@
         
   
   
-    <a href="../../../%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" class="md-nav__link">
+    <a href="../../../../../%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" class="md-nav__link">
       
   
   <span class="md-ellipsis">
@@ -517,6 +515,8 @@
       
         
       
+        
+      
     
     
       
@@ -533,7 +533,7 @@
         
   
   
-    <a href="../../../%E5%B7%A5%E5%85%B7/" class="md-nav__link">
+    <a href="../../../../../%E5%B7%A5%E5%85%B7/" class="md-nav__link">
       
   
   <span class="md-ellipsis">
@@ -556,8 +556,6 @@
       
   
   
-    
-  
   
   
     
@@ -592,725 +590,33 @@
     
     
       
-        
-        
-      
       
     
     
       
+        
+        
+      
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
       
         
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
-        
-          
-          
-          <div class="md-nav__link md-nav__container">
-            <a href="../../" class="md-nav__link ">
-              
+  
+  
+    <a href="../../../../../%E5%BC%80%E5%8F%91/" class="md-nav__link">
+      
   
   <span class="md-ellipsis">
     开发
   </span>
   
 
-            </a>
-            
-              
-              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="">
-                <span class="md-nav__icon md-icon"></span>
-              </label>
-            
-          </div>
-        
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
-          <label class="md-nav__title" for="__nav_4">
-            <span class="md-nav__icon md-icon"></span>
-            开发
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../CICD/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    CI/CD
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../%E6%97%A5%E5%BF%97/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    日志
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../%E7%88%AC%E8%99%AB/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    爬虫
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    
-    
-      
-        
-      
-        
-      
-    
-    
-      
-      
-    
-    
-      
-        
-        
-      
-    
-    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
-      
-        
-  
-  
-    <a href="../../Distribute/RabbitMQ/" class="md-nav__link">
-      
-  
-  <span class="md-ellipsis">
-    Distribute
-  </span>
-  
-
       
         <span class="md-nav__icon md-icon"></span>
       
     </a>
   
 
-      
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    
-    
-      
-        
-      
-        
-      
-        
-      
-    
-    
-      
-      
-    
-    
-      
-        
-        
-      
-    
-    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
-      
-        
-  
-  
-    <a href="../../Optimize/Basic/" class="md-nav__link">
-      
-  
-  <span class="md-ellipsis">
-    Optimize
-  </span>
-  
-
-      
-        <span class="md-nav__icon md-icon"></span>
-      
-    </a>
-  
-
-      
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    
-    
-      
-        
-      
-    
-    
-      
-      
-    
-    
-      
-        
-        
-      
-    
-    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
-      
-        
-  
-  
-    <a href="../../PL/LLVM/" class="md-nav__link">
-      
-  
-  <span class="md-ellipsis">
-    PL
-  </span>
-  
-
-      
-        <span class="md-nav__icon md-icon"></span>
-      
-    </a>
-  
-
-      
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    
-    
-      
-        
-      
-        
-      
-        
-      
-        
-      
-    
-    
-      
-      
-    
-    
-      
-        
-        
-      
-    
-    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
-      
-        
-  
-  
-    <a href="../../Web/CRUD/" class="md-nav__link">
-      
-  
-  <span class="md-ellipsis">
-    Web
-  </span>
-  
-
-      
-        <span class="md-nav__icon md-icon"></span>
-      
-    </a>
-  
-
-      
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    
-    
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-    
-    
-      
-      
-    
-    
-      
-        
-        
-      
-    
-    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
-      
-        
-  
-  
-    <a href="../../%E5%AE%A2%E6%88%B7%E7%AB%AF/API/" class="md-nav__link">
-      
-  
-  <span class="md-ellipsis">
-    客户端
-  </span>
-  
-
-      
-        <span class="md-nav__icon md-icon"></span>
-      
-    </a>
-  
-
-      
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    
-    
-      
-        
-          
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-    
-    
-      
-      
-    
-    
-      
-        
-        
-      
-    
-    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
-      
-        
-  
-  
-    <a href="../../%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/" class="md-nav__link">
-      
-  
-  <span class="md-ellipsis">
-    数据处理
-  </span>
-  
-
-      
-        <span class="md-nav__icon md-icon"></span>
-      
-    </a>
-  
-
-      
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    
-    
-      
-        
-      
-    
-    
-      
-      
-    
-    
-      
-        
-        
-      
-    
-    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
-      
-        
-  
-  
-    <a href="../../%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6/ThirdWeb/" class="md-nav__link">
-      
-  
-  <span class="md-ellipsis">
-    智能合约
-  </span>
-  
-
-      
-        <span class="md-nav__icon md-icon"></span>
-      
-    </a>
-  
-
-      
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-    
-  
-  
-  
-    
-    
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-    
-    
-      
-      
-    
-    
-      
-    
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_12" checked>
-        
-          
-          <label class="md-nav__link" for="__nav_4_12" id="__nav_4_12_label" tabindex="0">
-            
-  
-  <span class="md-ellipsis">
-    系统编程
-  </span>
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_12_label" aria-expanded="true">
-          <label class="md-nav__title" for="__nav_4_12">
-            <span class="md-nav__icon md-icon"></span>
-            系统编程
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-    
-  
-  
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
-        
-  
-  <span class="md-ellipsis">
-    Docker
-  </span>
-  
-
-      </a>
-      
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../File/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    File
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../Process/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Process
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../Signal/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Signal
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../Socket/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Socket
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../Time/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Time
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../Zero%20Copy/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Zero Copy
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../errno/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    errno
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
       
     </li>
   
@@ -1357,7 +663,7 @@
         
   
   
-    <a href="../../../%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" class="md-nav__link">
+    <a href="../../../../../%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" class="md-nav__link">
       
   
   <span class="md-ellipsis">
@@ -1380,6 +686,8 @@
       
   
   
+    
+  
   
   
     
@@ -1387,6 +695,65 @@
       
         
           
+        
+      
+        
+      
+    
+    
+      
+        
+        
+      
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../../" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    随笔
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_6" id="__nav_6_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            随笔
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
         
       
         
@@ -1407,11 +774,11 @@
         
   
   
-    <a href="../../../%E9%9A%8F%E7%AC%94/" class="md-nav__link">
+    <a href="../../../../archive/2025/" class="md-nav__link">
       
   
   <span class="md-ellipsis">
-    随笔
+    归档
   </span>
   
 
@@ -1425,6 +792,14 @@
     </li>
   
 
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
     
   </ul>
 </nav>
@@ -1433,6 +808,8 @@
               </div>
             
             
+              
+                
               
               <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
                 <div class="md-sidebar__scrollwrap">
@@ -1446,6 +823,41 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      减少内核和用户之间的拷贝
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      针对网络的零拷贝技术
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#copy-on-write" class="md-nav__link">
+    <span class="md-ellipsis">
+      Copy On Write
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -1453,111 +865,141 @@
             
           
           
-            <div class="md-content" data-md-component="content">
-              <article class="md-content__inner md-typeset">
-                
-
-                  
-
-  
-  
-
-
-<h1 id="docker">Docker</h1>
-<p>虽然文章叫做Docker，但是这里主要想探讨Linux提供的隔离机制，Docker的底层技术：</p>
-<ul>
-<li>Overlay FS</li>
-<li>Cgroup</li>
-<li>BPF</li>
-</ul>
-
-
-
-
-
-
-
-  
-  
-
-
-
-
-
-
-                
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        var article = document.querySelector('.md-content__inner');
-        if (article) {
-            // 创建一个容器来包裹导航路径和元数据
-            var container = document.createElement('div');
-            container.className = 'nav-meta-container';
-
-            // 创建导航路径容器
-            var pathNav = document.createElement('div');
-            pathNav.className = 'navigation-path';
-
-            // 获取当前页面路径
-            var currentPath = document.location.pathname;
-            var pathParts = currentPath.split('/').filter(Boolean);
-
-            // 构建导航路径HTML
-            var pathHTML = '<div class="path-container">';
-            var accumPath = '';
-
-            // 添加首页链接
-            // pathHTML += '<a href="/" class="path-item">主页</a>';
-
-            // 添加中间路径
-            for (var i = 0; i < pathParts.length - 1; i++) {
-                accumPath += '/' + pathParts[i];
-                var decodedPart = decodeURIComponent(pathParts[i]);
-                pathHTML += '<span class="path-separator">/</span>';
-                pathHTML += `<a href="${accumPath}" class="path-item">${decodedPart}</a>`;
-            }
-
-            // 添加当前页面（最后一项）
-            if (pathParts.length > 0) {
-                var currentPage = decodeURIComponent(pathParts[pathParts.length - 1].replace('.html', ''));
-                pathHTML += '<span class="path-separator">/</span>';
-                pathHTML += `<span class="path-current">${currentPage}</span>`;
-            }
-
-            pathHTML += '</div>';
-            pathNav.innerHTML = pathHTML;
-
-            // 添加元数据（时间信息）
-            var meta = document.createElement('div');
-            meta.className = 'article-meta';
-            var metaContent = [];
-
-            
-            metaContent.push(`<span class="meta-item"> ✨ 创建于 2024-11-30 </span>`);
-            
-
-            
-            metaContent.push(`<span class="meta-item"> ✨ 更新于 2024-12-11 </span>`);
-            
-
-            if (metaContent.length > 0) {
-                meta.innerHTML = metaContent.join(' ');
-            }
-
-            // 将两个元素添加到容器中
-            container.appendChild(pathNav);
-            container.appendChild(meta);
-
-            // 将容器插入到文章开头
-            article.insertBefore(container, article.firstChild);
-        }
-    });
-</script>
-
-
-              </article>
+  <div class="md-content md-content--post" data-md-component="content">
+    <div class="md-sidebar md-sidebar--post" data-md-component="sidebar" data-md-type="navigation">
+      <div class="md-sidebar__scrollwrap">
+        <div class="md-sidebar__inner md-post">
+          <nav class="md-nav md-nav--primary">
+            <div class="md-post__back">
+              <div class="md-nav__title md-nav__container">
+                <a href="../../../../" class="md-nav__link">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+                  <span class="md-ellipsis">
+                    回到主页
+                  </span>
+                </a>
+              </div>
             </div>
+            
+            <ul class="md-post__meta md-nav__list">
+              <li class="md-nav__item md-nav__item--section">
+                <div class="md-post__title">
+                  <span class="md-ellipsis">
+                    元数据
+                  </span>
+                </div>
+                <nav class="md-nav">
+                  <ul class="md-nav__list">
+                    <li class="md-nav__item">
+                      <div class="md-nav__link">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 19H5V8h14m-3-7v2H8V1H6v2H5c-1.11 0-2 .89-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2h-1V1m-1 11h-5v5h5z"/></svg>
+                        <time datetime="2024-11-30 00:00:00+00:00" class="md-ellipsis">2024年11月30日</time>
+                      </div>
+                    </li>
+                    
+                    
+                    
+                      
+                      <li class="md-nav__item">
+                        <div class="md-nav__link">
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20a8 8 0 0 0 8-8 8 8 0 0 0-8-8 8 8 0 0 0-8 8 8 8 0 0 0 8 8m0-18a10 10 0 0 1 10 10 10 10 0 0 1-10 10C6.47 22 2 17.5 2 12A10 10 0 0 1 12 2m.5 5v5.25l4.5 2.67-.75 1.23L11 13V7z"/></svg>
+                          <span class="md-ellipsis">
+                            
+                              需要 2 分钟阅读时间
+                            
+                          </span>
+                        </div>
+                      </li>
+                    
+                  </ul>
+                </nav>
+              </li>
+            </ul>
+          </nav>
           
+        </div>
+      </div>
+    </div>
+    <article class="md-content__inner md-typeset">
+      
+        
+
+  
+  
+
+
+<h1 id="_1">零拷贝</h1>
+<h2 id="_2">减少内核和用户之间的拷贝</h2>
+<p>出于安全的考虑，内核不应该直接使用用户指针指向的内存，用户更不可能直接使用内核指针指向的内存。他们之间的信息交换，基本都要涉及拷贝，比如 Linux 上的 <code>copy_to_user</code> 和 <code>copy_from_user</code>。</p>
+<p><a href="https://man7.org/linux/man-pages/man2/mmap.2.html"><code>mmap</code></a> 也是一个非常好用的东西。什么是 mmap？mmap 是一种内存映射文件的方法，即将一个文件或者其它对象映射到进程的地址空间，实现文件磁盘地址和进程虚拟地址空间中一段虚拟地址的一一对映关系。实现这样的映射关系后，进程就可以使用操作内存的方式操作文件，而系统会自动回写脏页面到对应的文件磁盘上，即完成了对文件的操作而不必再调用 read,write 等系统调用函数。相反，内核空间对这段区域的修改也直接反映用户空间，从而可以实现不同进程间的文件共享。</p>
+<p>所以，当你有若干个进程以只读的方式访问一个文件，或者是访问较大文件的大块，用 <code>mmap</code> 都是很好的选择。<code>mmap</code> 还可以用来做进程通信。不过并不是所有的文件都可以用 <code>mmap</code> 来访问，例如 socket 就只能用他专有的接口读写，还有 pipe 类型的文件就只能用 <code>read</code>/<code>write</code> 等。也不是所有能用 <code>mmap</code> 的文件都适合用 <code>mmap</code>，一个和 page 差不多大的文件，或者你就想从文件中读那么几个字节，用 <code>mmap</code> 适得其反。</p>
+<p>使用 mmap</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;fcntl.h&gt;</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;sys/mman.h&gt;</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;sys/stat.h&gt;</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;unistd.h&gt;</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">    </span><span class="kt">long</span><span class="w"> </span><span class="n">checksum</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">    </span><span class="k">struct</span><span class="w"> </span><span class="nc">stat</span><span class="w"> </span><span class="n">sb</span><span class="p">;</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">fd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">open</span><span class="p">(</span><span class="s">&quot;disk.dd&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">O_RDONLY</span><span class="p">);</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="w">    </span><span class="n">fstat</span><span class="p">(</span><span class="n">fd</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">sb</span><span class="p">);</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">file</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mmap</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">sb</span><span class="p">.</span><span class="n">st_size</span><span class="p">,</span><span class="w"> </span><span class="n">PROT_READ</span><span class="p">,</span><span class="w"> </span><span class="n">MAP_PRIVATE</span><span class="p">,</span><span class="w"> </span><span class="n">fd</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">long</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="p">(</span><span class="n">sb</span><span class="p">.</span><span class="n">st_size</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="mi">3</span><span class="p">);</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="w">        </span><span class="n">checksum</span><span class="w"> </span><span class="o">^=</span><span class="w"> </span><span class="o">*</span><span class="p">((</span><span class="kt">long</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="n">file</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">i</span><span class="p">);</span>
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;checksum = 0x%lx</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">checksum</span><span class="p">);</span>
+<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="w">    </span><span class="n">close</span><span class="p">(</span><span class="n">fd</span><span class="p">);</span>
+<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a><span class="p">}</span>
+<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>
+<a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a><span class="c1">// checksum = 0xdcce4fdc7fd2151d</span>
+<a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a><span class="c1">// real    0m5.762s</span>
+<a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a><span class="c1">// user    0m2.910s</span>
+<a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a><span class="c1">// sys     0m2.358s</span>
+</code></pre></div>
+<p>mmap 为什么会比带 buffer 的 read/write 快呢，Page Size 是 4K，每次缺页加载 4K，和我之前手动 Buffer 不是很相似吗？因为 <strong>少了一次 CPU 的拷贝</strong>。试想 read 的过程，DMA 将数据从硬盘拷贝到 kernel space，CPU 再将数据从 kernel space 拷贝到 user space；而 mmap 就少了一次从 kernel space 拷贝到 user space 的过程。</p>
+<p>不过在使用 mmap 的时候需要小心，如果有其他的进程截断了文件，那么你可能会访问到一个非法的地址，从而进程被杀死。</p>
+<p>除了 <code>mmap</code>，<a href="https://man7.org/linux/man-pages/man2/sendfile.2.html"><code>sendfile</code></a>/<a href="https://man7.org/linux/man-pages/man2/splice.2.html"><code>splice</code></a> 也可以实现类似的减少从 kernel space 到 user space 拷贝的作用，我们在后面介绍。他们提供的这种特性叫做 <strong>零拷贝 Zero Copy</strong>，<a href="https://zhuanlan.zhihu.com/p/308054212">知乎上的这篇文章</a> 提供了一个很好的介绍。</p>
+<blockquote>
+<p>如果追求极致，你可以绕过内核做 I/O 操作，不过一般情况下这样做会牺牲相当的灵活性、可移植性，而且非常困难。</p>
+</blockquote>
+<h2 id="_3">针对网络的零拷贝技术</h2>
+<p>下面我们要面对的场景，是我们从硬盘中读取数据到内存，进行处理，然后写到网卡中。这是一个很典型的网络应用的操作。</p>
+<p>那么，最原始的使用 <code>read/write</code> 进行操作的话，我们将至少会有 4 次拷贝。中间两次是内存中的拷贝，虽然需要内核态到用户态的切换，但是相对 I/O 来说还是快的。但是我们还是要优化中间 2 次。</p>
+<ul>
+<li>硬盘拷贝到内存（内核态），DMA，慢</li>
+<li>内核态拷贝到用户态，CPU，快</li>
+<li>用户态拷贝到内核态，CPU，快</li>
+<li>内存（内核态）拷贝到网卡，DMA，慢</li>
+</ul>
+<p>如果我们使用之前介绍的 <code>mmap</code>，我们可以优化到 3 次。</p>
+<p>使用 <code>sendfile</code>，可以优化到 2 次，硬盘 -&gt;内核态内存 -&gt;网卡。但是你也发现了，没有经过用户态我们怎么处理数据，答案就是 <strong>没法处理数据</strong>，所以他可能只适合用于静态服务器。那么既然都无法处理了，还拷到内存干啥？能不能直接从硬盘 DMA 到网卡呢？答案是可以，新的 Linux 已经让 <code>sendfile</code> 可以做到这一点了，也就是可以优化到 1 次了。<code>splice</code> 也是类似的。</p>
+<h2 id="copy-on-write">Copy On Write</h2>
+<p>其实这是一种思想，对于读多写少的场景的优化。在追求极致优化的内核中得到了广泛使用。你看到 <code>rcu</code> 字样的时候，多半就是 copy on write。</p>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+  
+
+
+
+      
+    </article>
+  </div>
+
           
 <script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
         </div>
@@ -1618,14 +1060,14 @@
     </div>
     
     
-    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.path", "navigation.tabs", "navigation.tracking", "navigation.indexes", "navigation.tracking", "navigation.top", "navigation.prune", "toc.follow", "content.code.copy", "content.code.annotate", "search.highlight"], "search": "../../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
+    <script id="__config" type="application/json">{"base": "../../../../..", "features": ["navigation.path", "navigation.tabs", "navigation.tracking", "navigation.indexes", "navigation.tracking", "navigation.top", "navigation.prune", "toc.follow", "content.code.copy", "content.code.annotate", "search.highlight"], "search": "../../../../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.83f73b43.min.js"></script>
+      <script src="../../../../../assets/javascripts/bundle.83f73b43.min.js"></script>
       
         <script src="https://lf9-cdn-tos.bytecdntp.com/cdn/expire-1-M/mathjax/3.2.0/es5/tex-mml-chtml.js"></script>
       
-        <script src="../../../javascripts/extra.js"></script>
+        <script src="../../../../../javascripts/extra.js"></script>
       
     
   </body>

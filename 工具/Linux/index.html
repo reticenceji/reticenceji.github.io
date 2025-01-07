@@ -519,6 +519,8 @@
       
         
       
+        
+      
     
     
       
@@ -714,6 +716,15 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#ip" class="md-nav__link">
+    <span class="md-ellipsis">
+      查看主机ip地址
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -806,6 +817,27 @@
   
   <span class="md-ellipsis">
     Website
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../vscode/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Vscode
   </span>
   
 
@@ -1083,6 +1115,15 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#ip" class="md-nav__link">
+    <span class="md-ellipsis">
+      查看主机ip地址
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1202,6 +1243,10 @@
 </ul>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span>-H<span class="w"> </span><span class="s2">&quot;Content-Type: application/json&quot;</span><span class="w"> </span>-d<span class="w"> </span><span class="s1">&#39;{&quot;chain_id&quot;: 1, &quot;attributes&quot;: [&quot;Hot Wallet&quot;], &quot;limit&quot;: 2000}&#39;</span><span class="w"> </span>http://172.29.4.222:7001/label/address/by-attributes
 </code></pre></div>
+<h3 id="ip">查看主机ip地址</h3>
+<p>推荐使用<code>ip</code>命令而不是<code>ifconfig</code>。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>ip<span class="w"> </span>addr<span class="w"> </span>show<span class="w"> </span><span class="c1"># or `ip a` in short</span>
+</code></pre></div>
 <h2 id="desktop-environment">Desktop Environment</h2>
 <p>我并不想花很多时间让桌面环境变得很漂亮，但是作为日常使用系统也不能太丑。。。</p>
 <h3 id="flatpak">Flatpak 应用字体</h3>
@@ -1276,7 +1321,7 @@
             
 
             
-            metaContent.push(`<span class="meta-item"> ✨ 更新于 2024-12-11 </span>`);
+            metaContent.push(`<span class="meta-item"> ✨ 更新于 2024-12-24 </span>`);
             
 
             if (metaContent.length > 0) {

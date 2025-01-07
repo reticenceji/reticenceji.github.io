@@ -517,6 +517,8 @@
       
         
       
+        
+      
     
     
       
@@ -919,6 +921,8 @@
       
         
       
+        
+      
     
     
       
@@ -968,6 +972,8 @@
       
         
           
+        
+      
         
       
         
@@ -1209,6 +1215,27 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Serde/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    序列化
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -1285,10 +1312,6 @@
       
         
       
-        
-      
-        
-      
     
     
       
@@ -1305,7 +1328,7 @@
         
   
   
-    <a href="../../%E7%B3%BB%E7%BB%9F%E7%BC%96%E7%A8%8B/Docker/" class="md-nav__link">
+    <a href="../../%E7%B3%BB%E7%BB%9F%E7%BC%96%E7%A8%8B/File/" class="md-nav__link">
       
   
   <span class="md-ellipsis">
@@ -1518,6 +1541,8 @@
 </code></pre></div>
 <h2 id="_2">数据结构</h2>
 <p>对Redis来说，所有的key都是字符串。value有5种数据类型，分别是：String、List、Set、Zset、Hash。</p>
+<p>String其实可以认为是字符序列，如果存储对象的话，可以序列化之后用String存储。</p>
+<p>Hash就是键值对集合。Set是无序集合，可以用来存储不重复的字符串。</p>
 
 
 
@@ -1585,7 +1610,7 @@
             
 
             
-            metaContent.push(`<span class="meta-item"> ✨ 更新于 2024-12-18 </span>`);
+            metaContent.push(`<span class="meta-item"> ✨ 更新于 2024-12-20 </span>`);
             
 
             if (metaContent.length > 0) {

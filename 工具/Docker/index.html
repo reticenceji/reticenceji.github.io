@@ -517,6 +517,8 @@
       
         
       
+        
+      
     
     
       
@@ -738,6 +740,27 @@
   
   <span class="md-ellipsis">
     Website
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../vscode/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Vscode
   </span>
   
 
@@ -1000,7 +1023,8 @@
 <h1 id="docker">Docker</h1>
 <h3 id="case-1">Case 1: 代理</h3>
 <p>国内必须要面对的问题。国内的Docker Hub镜像基本都被封了，而直接拉太慢，有时根本访问不上。必须挂代理。</p>
-<p>参考Docker的官方链接：<a href="https://docs.docker.com/engine/cli/proxy/">https://docs.docker.com/engine/cli/proxy/</a></p>
+<p>参考Docker的官方链接：<a href="https://docs.docker.com/engine/cli/proxy/">https://docs.docker.com/engine/cli/proxy/</a>这里给出的方法是修改<code>~/.docker/config.json</code></p>
+<p><a href="https://yeasy.gitbook.io/docker_practice/advanced_network/http_https_proxy">配置 HTTP/HTTPS 网络代理 | Docker — 从入门到实践</a> 这里给出的方法是修改<code>/etc/systemd/system/docker.service.d/http-proxy.conf</code>。都可以试一试。</p>
 <h3 id="case-2-dockerfile">Case 2: Dockerfile</h3>
 <p>如果要把自己程序的运行环境发布，最简单的办法就是编写Dockerfile文件，随源代码一起发布。</p>
 
@@ -1070,7 +1094,7 @@
             
 
             
-            metaContent.push(`<span class="meta-item"> ✨ 更新于 2024-12-11 </span>`);
+            metaContent.push(`<span class="meta-item"> ✨ 更新于 2024-12-30 </span>`);
             
 
             if (metaContent.length > 0) {

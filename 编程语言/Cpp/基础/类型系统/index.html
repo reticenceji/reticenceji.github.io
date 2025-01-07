@@ -13,7 +13,7 @@
         <link rel="canonical" href="https://reticenceji.github.io/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Cpp/%E5%9F%BA%E7%A1%80/%E7%B1%BB%E5%9E%8B%E7%B3%BB%E7%BB%9F/">
       
       
-        <link rel="prev" href="../%E4%BF%AE%E9%A5%B0%E7%AC%A6/">
+        <link rel="prev" href="../%E6%A8%A1%E6%9D%BF/">
       
       
         <link rel="next" href="../%E8%B0%83%E7%94%A8%E8%A7%84%E8%8C%83/">
@@ -517,6 +517,8 @@
       
         
       
+        
+      
     
     
       
@@ -831,6 +833,10 @@
       
         
       
+        
+      
+        
+      
     
     
       
@@ -876,6 +882,48 @@
   
   <span class="md-ellipsis">
     修饰符
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    构造函数
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E6%A8%A1%E6%9D%BF/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    模板
   </span>
   
 
@@ -998,6 +1046,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#auto" class="md-nav__link">
+    <span class="md-ellipsis">
+      auto
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#_6" class="md-nav__link">
     <span class="md-ellipsis">
       参考链接
@@ -1080,6 +1137,16 @@
       
         
       
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
     
     
       
@@ -1096,7 +1163,7 @@
         
   
   
-    <a href="../../%E5%BA%93/leveldb/" class="md-nav__link">
+    <a href="../../%E5%BA%93/algorithm/" class="md-nav__link">
       
   
   <span class="md-ellipsis">
@@ -1124,6 +1191,8 @@
   
     
     
+      
+        
       
         
       
@@ -1525,6 +1594,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#auto" class="md-nav__link">
+    <span class="md-ellipsis">
+      auto
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#_6" class="md-nav__link">
     <span class="md-ellipsis">
       参考链接
@@ -1683,6 +1761,16 @@
 <li><code>reinterpret_cast</code> 顾名思义重新解释二进制进行表示。谨慎使用。</li>
 </ul>
 <p>这3种类型转换方式可以完全替代C语言风格的类型转换，现代C++不推荐使用C语言风格的类型转换。</p>
+<h2 id="auto">auto</h2>
+<p>我本来以为<code>auto</code>能平替Rust中的<code>let</code>关键字，但是事实并非如此。下面是一个我遇到的陷阱：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1">// 函数返回引用时</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="k">class</span><span class="w"> </span><span class="nc">MyClass</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">    </span><span class="kt">int</span><span class="o">&amp;</span><span class="w"> </span><span class="nf">getData</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">data</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="p">};</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="n">MyClass</span><span class="w"> </span><span class="n">obj</span><span class="p">;</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="k">auto</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">obj</span><span class="p">.</span><span class="n">getData</span><span class="p">();</span><span class="w">    </span><span class="c1">// int（拷贝）</span>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="k">auto</span><span class="o">&amp;</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">obj</span><span class="p">.</span><span class="n">getData</span><span class="p">();</span><span class="w">   </span><span class="c1">// int&amp;（引用）</span>
+</code></pre></div>
 <h2 id="_6">参考链接</h2>
 <p><a href="https://learn.microsoft.com/zh-cn/cpp/cpp/cpp-type-system-modern-cpp?view=msvc-170">C++ 类型系统 | Microsoft Learn</a></p>
 
@@ -1752,7 +1840,7 @@
             
 
             
-            metaContent.push(`<span class="meta-item"> ✨ 更新于 2024-12-11 </span>`);
+            metaContent.push(`<span class="meta-item"> ✨ 更新于 2024-12-24 </span>`);
             
 
             if (metaContent.length > 0) {
