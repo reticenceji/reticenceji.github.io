@@ -1,7 +1,7 @@
 ---
 aliases: 
 tags: 
-date_modified: 2024-12-11
+date_modified: 2024-12-24
 date: 2024-11-30
 ---
 
@@ -99,6 +99,14 @@ if __name__ == "__main__":
 
 ```bash
 curl -X POST -H "Content-Type: application/json" -d '{"chain_id": 1, "attributes": ["Hot Wallet"], "limit": 2000}' http://172.29.4.222:7001/label/address/by-attributes
+```
+
+### 查看主机ip地址
+
+推荐使用`ip`命令而不是`ifconfig`。
+
+```bash
+ip addr show # or `ip a` in short
 ```
 
 ## Desktop Environment

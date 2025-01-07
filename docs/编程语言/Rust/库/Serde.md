@@ -1,7 +1,7 @@
 ---
 aliases: 
 tags: 
-date_modified: 2024-12-16
+date_modified: 2024-12-20
 date: 2024-11-30
 ---
 
@@ -11,7 +11,109 @@ date: 2024-11-30
 
 ## 使用方式
 
-参考[Using derive · Serde](https://serde.rs/derive.html)。对于一般的情况（如反序列化个JSON文件），只需要简单的定一个一个数据结构，添加个宏就够了。
+参考[Using derive · Serde](https://serde.rs/derive.html)。对于一般的情况（如反序列化个JSON文件），只需要简单的定一个一个数据结构，添加个宏就够了。以JSON为例：
+
+在解析 JSON 文本的时候，我们可能有两种需求，以及相反的序列化的需求。
+
+1. 解析成一个 **strongly typed** Rust data structure。比如一些 API 已经规定好了返回的数据格式。
+2. 解析成一个 **untyped or loosely typed** representation。一些更普通的情况。
+
+**Demo For Strong Type**： 我们一般使用 `#[derive(Serialize, Deserialize)]` 来修饰要序列化/反序列化的类型。然后在 `serde_json::from_str` 的时候指定类型。
+
+```rust
+use serde::{Deserialize, Serialize};
+use serde_json::Result;
+
+#[derive(Serialize, Deserialize)]
+struct Person {
+    name: String,
+    age: u8,
+    phones: Vec<String>,
+}
+
+fn typed_example() -> Result<()> {
+    // Some JSON input data as a &str. Maybe this comes from the user.
+    let data = r#"
+        {
+            "name": "John Doe",
+            "age": 43,
+            "phones": [
+                "+44 1234567",
+                "+44 2345678"
+            ]
+        }"#;
+
+    // Parse the string of data into a Person object. This is exactly the
+    // same function as the one that produced serde_json::Value above, but
+    // now we are asking it for a Person as output.
+    let p: Person = serde_json::from_str(data)?;
+
+    // Do things just like with any other Rust data structure.
+    println!("Please call {} at the number {}", p.name, p.phones[0]);
+
+    Ok(())
+}
+```
+
+如果我们希望再将 Person 序列化成 json 文本，可以调用 `serde_json::to_string`
+
+```rust
+    // Serialize it to a JSON string.
+    let j = serde_json::to_string(&p)?;
+
+    // Print, write to a file, or send to an HTTP server.
+    println!("{}", j);
+```
+
+**Demo For Loose Type**: [`serde_json::Value`](https://docs.rs/serde_json/1/serde_json/value/enum.Value.html) 是这种松散类型的一般表示。在 `serde_json::from_str` 的时候指定类型为 Value 即可。
+
+```rust
+use serde_json::{Result, Value};
+
+fn untyped_example() -> Result<()> {
+    // Some JSON input data as a &str. Maybe this comes from the user.
+    let data = r#"
+        {
+            "name": "John Doe",
+            "age": 43,
+            "phones": [
+                "+44 1234567",
+                "+44 2345678"
+            ]
+        }"#;
+
+    // Parse the string of data into serde_json::Value.
+    let v: Value = serde_json::from_str(data)?;
+
+    // Access parts of the data by indexing with square brackets.
+    println!("Please call {} at the number {}", v["name"], v["phones"][0]);
+
+    Ok(())
+}
+```
+
+不难想到，序列化就是先构造松散类型的 `Value` 类型数据，再 `to_string`。我们可以使用 `json!` 宏来构造 `Value` 类型数据。
+
+```rust
+use serde_json::json;
+
+fn main() {
+    // The type of `john` is `serde_json::Value`
+    let john = json!({
+        "name": "John Doe",
+        "age": 43,
+        "phones": [
+            "+44 1234567",
+            "+44 2345678"
+        ]
+    });
+
+    println!("first phone number: {}", john["phones"][0]);
+
+    // Convert to a string of JSON and print it out
+    println!("{}", john.to_string());
+}
+```
 
 ## 工作原理
 

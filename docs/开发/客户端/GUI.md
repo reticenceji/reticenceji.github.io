@@ -43,7 +43,7 @@ MVP 架构模式是 MVC 的一个变种。Presenter 可以理解为松散的控�
 
 在较高级别上，View “知道” ViewModel，ViewModel “知道” Model，但 Model 不知道 ViewModel，ViewModel 不知道 View。因此，ViewModel 将 View 与 Model 隔离开来，并允许 Model 独立于 View 而演化。
 
-## Framework
+## Frameworks
 
 ### GTK
 

@@ -2,12 +2,14 @@
 aliases: 
 tags:
   - defi
-date_modified: 2024-12-20
+date_modified: 2024-12-25
 date: 2024-12-10
 draft: true
 ---
 
 # iZumiSwap 精度问题探究
+
+前情提要：iZumiSwap的NEAR fork项目REF-DCL在线上发现了一个溢出问题，疑似是精度损失造成的。分析原因之后发现REF-DCL和iZumiSwap的实现都存在问题。
 
 ## iZumiSwap 基本原理
 
@@ -33,9 +35,9 @@ $$Y = \lceil \frac {p_r - p_l}{p-2^{96}}  \times liq \rceil$$
 
 首先使用非常符合直觉的方式（Ref-DCL有问题的实现）：（注意下面的不等号在极端情况是可以取等的。在审计以及问题排查的时候，虽然意识到了很可能是精度问题，但是只注意到了下面公式中的取整方向是有利于协议的，所以一开始找不到问题）
 
-$$Y'= (\lfloor \frac{p_{r}-p_{l+1}}{p-2^{96}} \times liq \rfloor + \lfloor \frac{p_{l}}{2^{96}} \times liq \rfloor )  
-\leq \lfloor \frac{2^{96}(p_r-p_{l+1}) + p_l(p-2^{96})}{(p-2^{96}) \times 2^{96}} \times liq \rfloor 
-= \lfloor \frac{(p_r-p_l) +(\frac{p_l\times p}{2^{96}}-p_{l+1})}{(p-2^{96})} \times liq \rfloor$$
+$$Y'= (\lfloor \frac{p_{r}-p_{l+1}}{p_1-2^{96}} \times liq \rfloor + \lfloor \frac{p_{l}}{2^{96}} \times liq \rfloor )  
+\leq \lfloor \frac{2^{96}(p_r-p_{l+1}) + p_l(p_1-2^{96})}{(p_1-2^{96}) \times 2^{96}} \times liq \rfloor 
+= \lfloor \frac{(p_r-p_l) +(\frac{p_l\times p_1}{2^{96}}-p_{l+1})}{(p_1-2^{96})} \times liq \rfloor$$
 
 你可以证明$Y' \leq Y$吗，不可以。**因为$p_{x+1} 和 \lfloor \frac{p_{x}\times p}{2^{96}} \rfloor$大小关系不固定**。也就是说最后的值可能会大于$Y$，这就是Ref-DCL线上遇到的Bug。我们再看 iZumiSwap 的实现：
 
@@ -112,6 +114,9 @@ pub fn get_sqrt_price(point: i32) -> U256 {
 但是等比数列求和公式，实际上是**隐含了从点到区域的求和过程公式**，即
 $$\sum^n_1 a_i = \frac{a_1(1-q^n)}{1-q}$$
 这个公式的舍入方向是否是对协议有利的，被忽略了。
+
+---
+下面的内容是上面的草稿：
 
 ## 从一处奇怪的代码开始
 
