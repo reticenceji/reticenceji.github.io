@@ -1,8 +1,8 @@
 ---
 aliases: 
 tags: 
-date_created: Wednesday, November 13th 2024, 1:30:01 pm
-date_modified: Wednesday, November 13th 2024, 2:15:37 pm
+date_modified: 2025-02-10
+date: 2024-11-30
 ---
 
 # Server
@@ -74,13 +74,35 @@ fn rocket() -> _ {
 - [Rocket Guide](https://rocket.rs/guide/v0.5/)
 - [Rocket Documents](https://api.rocket.rs/v0.5/rocket/)
 
-### Node.js
+### fastapi
 
-### Ngnix
+[FastAPI](https://fastapi.tiangolo.com/#example) 是一个Python的Web框架，主打一个快，运行快开发快，写起来很舒服。下面这是一个简单的例子，使用了三个库：`fastapi`库，用于创建Web API；`pydantic`用来设置和验证数据模型；`uvicorn`是一个快速的ASGI (Asynchronous Server Gateway Interface)实现。
 
-reverse proxy
+```python
+from fastapi import FastAPI
+from pydantic import BaseModel
 
-### Apache
+app = FastAPI()
+
+class TextInput(BaseModel):
+    text: str
+
+@app.post("/check")
+async def check_text(input_data: TextInput):
+    # 获取文本长度
+    text_length = len(input_data.text)
+    
+    # 判断文本长度是奇数还是偶数
+    if text_length % 2 == 0:
+        return {"result": "good"}
+    else:
+        return {"result": "bad"}
+
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run(app, host="0.0.0.0", port=8000)
+
+```
 
 ## API 
 

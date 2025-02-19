@@ -1,33 +1,30 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     // 代码块优化
     enhanceCodeBlocks();
-    
+
     // 图片优化
     enhanceImages();
-    
-    // 添加返回顶部按钮
-    addBackToTop();
-    
+
     // 添加目录滚动监听
     addTocHighlight();
-    
+
     // 添加外部链接图标
     markExternalLinks();
-    
+
     // 查找所有 h2 标题
     const headers = document.querySelectorAll('h2');
-    
+
     headers.forEach(header => {
         console.log(header.textContent.trim());
         if (header.textContent.trim() === '参考链接') {
             // 创建新的 div 元素
             const wrapperDiv = document.createElement('div');
             wrapperDiv.className = 'references';
-            
+
             // 将标题元素包在新的 div 中
             header.parentNode.insertBefore(wrapperDiv, header);
             wrapperDiv.appendChild(header);
-            
+
             // 将后续的元素（直到下一个标题）也移到这个 div 中
             let nextElement = wrapperDiv.nextElementSibling;
             while (nextElement && !nextElement.matches('h1, h2, h3, h4, h5, h6')) {
@@ -43,13 +40,7 @@ document.addEventListener('DOMContentLoaded', function() {
 function enhanceCodeBlocks() {
     const codeBlocks = document.querySelectorAll('pre code');
     codeBlocks.forEach(block => {
-        // // 添加行号
-        // const lines = block.innerHTML.split('\n');
-        // const numberedLines = lines.map((line, index) => 
-        //     `<span class="line-number">${index + 1}</span>${line}`
-        // ).join('\n');
-        // block.innerHTML = numberedLines;
-        
+
         // 添加代码语言标签
         const language = block.className.split(' ')[0].replace('language-', '');
         if (language) {
@@ -72,42 +63,19 @@ function enhanceImages() {
             const clone = img.cloneNode();
             overlay.appendChild(clone);
             document.body.appendChild(overlay);
-            
+
             overlay.addEventListener('click', () => {
                 overlay.remove();
             });
         });
-        
+
         // 添加加载动画
         img.addEventListener('load', () => {
             img.classList.add('loaded');
         });
-        
+
         // 添加懒加载
         img.loading = 'lazy';
-    });
-}
-
-// 返回顶部按钮
-function addBackToTop() {
-    const button = document.createElement('button');
-    button.className = 'back-to-top';
-    button.innerHTML = '↑';
-    document.body.appendChild(button);
-    
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 300) {
-            button.classList.add('visible');
-        } else {
-            button.classList.remove('visible');
-        }
-    });
-    
-    button.addEventListener('click', () => {
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-        });
     });
 }
 
@@ -115,7 +83,7 @@ function addBackToTop() {
 function addTocHighlight() {
     const headings = document.querySelectorAll('.md-content h1, .md-content h2, .md-content h3');
     const tocLinks = document.querySelectorAll('.md-nav__link');
-    
+
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -128,7 +96,7 @@ function addTocHighlight() {
             }
         });
     }, { threshold: 0.5 });
-    
+
     headings.forEach(heading => observer.observe(heading));
 }
 
@@ -136,7 +104,7 @@ function addTocHighlight() {
 function markExternalLinks() {
     const links = document.querySelectorAll('.md-content a');
     const currentHost = window.location.hostname;
-    
+
     links.forEach(link => {
         if (link.hostname !== currentHost && link.hostname !== '') {
             link.classList.add('external-link');
@@ -149,12 +117,12 @@ function markExternalLinks() {
 // 添加代码复制功能
 function addCodeCopy() {
     const codeBlocks = document.querySelectorAll('pre');
-    
+
     codeBlocks.forEach(block => {
         const copyButton = document.createElement('button');
         copyButton.className = 'copy-button';
         copyButton.textContent = '复制';
-        
+
         copyButton.addEventListener('click', async () => {
             const code = block.querySelector('code').innerText;
             try {
@@ -167,7 +135,7 @@ function addCodeCopy() {
                 copyButton.textContent = '复制失败';
             }
         });
-        
+
         block.appendChild(copyButton);
     });
 }
@@ -177,7 +145,7 @@ function addReadingProgress() {
     const progress = document.createElement('div');
     progress.className = 'reading-progress';
     document.body.appendChild(progress);
-    
+
     window.addEventListener('scroll', () => {
         const docHeight = document.documentElement.scrollHeight - window.innerHeight;
         const scrolled = (window.scrollY / docHeight) * 100;
@@ -197,9 +165,28 @@ function addThemeTransition() {
             }
         });
     });
-    
+
     observer.observe(document.documentElement, {
         attributes: true,
         attributeFilter: ['data-md-color-scheme']
     });
-} 
+}
+
+// 渲染[!NOTE]/[!WARN]/[!ERROR]块
+document.addEventListener("DOMContentLoaded", function () {
+    document.querySelectorAll('blockquote p').forEach(function (p) {
+        if (p.textContent.startsWith('[!NOTE]')) {
+            const blockquote = p.parentNode;
+            blockquote.classList.add('note');
+            p.innerHTML = p.innerHTML.replace('[!NOTE]', '');
+        } else if (p.textContent.startsWith('[!WARN]')) {
+            const blockquote = p.parentNode;
+            blockquote.classList.add('warn');
+            p.innerHTML = p.innerHTML.replace('[!WARNING]', '');
+        } else if (p.textContent.startsWith('[!ERROR]')) {
+            const blockquote = p.parentNode;
+            blockquote.classList.add('error');
+            p.innerHTML = p.innerHTML.replace('[!ERROR]', '');
+        }
+    });
+});

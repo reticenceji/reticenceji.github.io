@@ -1,11 +1,11 @@
 ---
 aliases: 
 tags: 
-date_created: Monday, September 30th 2024, 11:40:49 pm
-date_modified: Wednesday, November 13th 2024, 2:15:37 pm
+date_modified: 2025-02-08
+date: 2024-11-30
 ---
 
-# RabbitMQ
+# Message Queue
 
 消息队列中间件 (Message Queue Middleware ，简称为 MQ) 是指利用高效可靠的消息传递机制进行与平台无关的数据交流，并基于数据通信来进行分布式系统的集成。通过提供消息传递 和消息排队模型，它可以在 **分布式环境下扩展进程间的通信**。 对于编程人员来说，引入消息中间件还有利于程序的解耦。
 
@@ -13,7 +13,7 @@ date_modified: Wednesday, November 13th 2024, 2:15:37 pm
 
 > RabbitMQ is a reliable and mature messaging and streaming broker, which is easy to deploy on cloud environments, on-premises, and on your local machine. It is currently used by millions worldwide.
 
-## Introduction
+## RabbitMQ
 
 RabbitMQ 整体上是 一个生产者（producer）与消费者（consumer）模型，主要负责接收、存储和转发消息。除了生产者和消费者这些通用概念，还需要知道以下术语：
 
@@ -45,7 +45,7 @@ AMQP 可以理解为和 HTTP 类似的应用层协议。AMQP 协议本身包括 
 
 RabbitMQ本身也可以被分布式部署。
 
-## Demo
+### Demo
 
 在本地开一个RabbitMQ服务端，Docker肯定是最简单的方法。
 
@@ -127,3 +127,15 @@ RabbitMQ还支持多种模式，[tutorials](https://www.rabbitmq.com/tutorials) 
 - 所以 caller 同时也要作为 consumer，等待 `returnqueue` 的`returnmsg`。
 
 敏锐的人可能发现一个细节，如果caller同时向callee发送好几个消息，callee没有按照顺序返回怎么办？难道这个过程要阻塞的完成？当然不需要，可以给每个 `callmsg` 编上一个独一无二的编号，再在 `returnmsg` 中带上这个编号就可以了。同样的约定俗称，这个编号一般通过 properties 的 `correlation_id` 发送。再注意一个细节，传递参数的编码如果使用json的话，需要注意json中数字大小的范围限制！代码见 [tutorials](https://www.rabbitmq.com/tutorials)。
+
+## Kafka
+
+消息：Kafka 中的数据单元被称为`消息`，也被称为记录，可以把它看作数据库表中某一行的记录。
+
+批次：为了提高效率， 消息会`分批次`写入 Kafka，批次就代指的是一组消息。
+
+主题：消息的种类称为 `主题`（Topic）,可以说一个主题代表了一类消息。相当于是对消息进行分类。主题就像是数据库中的表。
+
+## 参考链接
+
+- <https://juejin.cn/post/6844903495670169607>  

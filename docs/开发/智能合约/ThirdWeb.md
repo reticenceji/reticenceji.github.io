@@ -1,8 +1,8 @@
 ---
 aliases: 
 tags: 
-date_created: Tuesday, November 12th 2024, 10:48:46 am
-date_modified: Wednesday, November 13th 2024, 2:15:36 pm
+date_modified: 2024-12-11
+date: 2024-11-30
 ---
 
 # ThirdWeb Attack Analysis

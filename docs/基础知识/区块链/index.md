@@ -1,11 +1,11 @@
 ---
 aliases: 
 tags: 
-date_created: Monday, September 30th 2024, 11:40:49 pm
-date_modified: Wednesday, November 13th 2024, 2:15:37 pm
+date_modified: 2024-12-11
+date: 2024-11-30
 ---
 
-# Blockchain
+# 区块链
 
 区块链可以当作是一个分布式数据库。
 

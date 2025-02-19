@@ -1,13 +1,15 @@
 ---
 aliases: 
 tags: 
-date_created: Tuesday, November 12th 2024, 10:39:23 am
-date_modified: Wednesday, November 20th 2024, 2:41:58 pm
+date_modified: 2024-12-24
+date: 2024-11-30
 ---
 
 # Linux
 
 此处主要记录一些常用的指令。
+
+## Shell Commands
 
 ### 查找进程 pid `ps`
 
@@ -98,3 +100,23 @@ if __name__ == "__main__":
 ```bash
 curl -X POST -H "Content-Type: application/json" -d '{"chain_id": 1, "attributes": ["Hot Wallet"], "limit": 2000}' http://172.29.4.222:7001/label/address/by-attributes
 ```
+
+### 查看主机ip地址
+
+推荐使用`ip`命令而不是`ifconfig`。
+
+```bash
+ip addr show # or `ip a` in short
+```
+
+### 查找文件
+
+
+## Desktop Environment
+
+我并不想花很多时间让桌面环境变得很漂亮，但是作为日常使用系统也不能太丑。。。
+
+### Flatpak 应用字体
+
+- [Linux 下的字体调校指南 - Leo's Field](https://szclsya.me/zh-cn/posts/fonts/linux-config-guide/)
+- [Flatpak 应用中文字体问题 – Glaumar's Blog](https://blog.geekgo.tech/linux/flatpak-%E5%BA%94%E7%94%A8%E4%B8%AD%E6%96%87%E5%AD%97%E4%BD%93%E9%97%AE%E9%A2%98/)

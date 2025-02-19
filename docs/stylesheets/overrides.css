@@ -1,0 +1,103 @@
+/* 元数据和引用样式 */
+/* {
+    margin-bottom: 1rem;
+    border-left: 4px solid #2196f3;
+    background-color: rgba(33, 150, 243, 0.1);
+    font-size: 0.9em;
+} */
+
+.article-meta {
+    color: var(--md-default-fg-color--lighter);
+    font-size: 0.75rem;
+    text-align: right;
+}
+
+.navigation-path .metadata {
+    margin-top: 0rem;
+    margin-bottom: 1rem;
+    padding: 0.5rem 0;
+    font-size: 0.8rem;
+    border-bottom: 1px solid var(--md-default-fg-color--lightest);
+}
+
+.path-container {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.path-item {
+    color: var(--md-typeset-color);
+    text-decoration: none;
+}
+
+.path-item:hover {
+    color: var(--md-accent-fg-color);
+}
+
+.path-separator {
+    color: var(--md-default-fg-color--light);
+}
+
+.path-current {
+    color: var(--md-accent-fg-color);
+    font-weight: 500;
+}
+
+.meta-item {
+    margin-right: 1rem;
+    /* 可以根据需要调整间距大小 */
+}
+
+/* 适配移动端 */
+@media screen and (max-width: 76.1875em) {
+    .navigation-path {
+        margin-bottom: 1rem;
+        padding: 0.3rem 0;
+        font-size: 0.8rem;
+    }
+}
+
+/* 添加新的容器样式 */
+.nav-meta-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: -1.5rem;
+    margin-bottom: 1rem;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid var(--md-default-fg-color--lightest);
+}
+
+/* 修改现有的导航路径样式 */
+.navigation-path {
+    margin: 0;
+    /* 移除原有的 margin */
+    padding: 0;
+    /* 移除原有的 padding */
+    border: none;
+    /* 移除原有的 border */
+    flex: 1;
+    /* 占据剩余空间的一半 */
+}
+
+/* 修改元数据样式 */
+.article-meta {
+    flex: 1;
+    /* 占据剩余空间的一半 */
+    text-align: right;
+}
+
+/* 适配移动端 */
+@media screen and (max-width: 76.1875em) {
+    .nav-meta-container {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+
+    .article-meta {
+        text-align: left;
+    }
+}
