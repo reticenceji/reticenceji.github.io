@@ -264,6 +264,26 @@
     
     
       <li class="md-tabs__item">
+        <a href="../../../../hidden/202502191511-fbp/" class="md-tabs__link">
+          
+  
+    
+  
+  Hidden
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
         <a href="../../../../%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" class="md-tabs__link">
           
   
@@ -434,7 +454,65 @@
     
       
         
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../../../hidden/202502191511-fbp/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    Hidden
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
           
+        
+      
         
       
         
@@ -664,7 +742,7 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
         
           
           
@@ -680,14 +758,14 @@
             </a>
             
               
-              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="">
+              <label class="md-nav__link " for="__nav_6" id="__nav_6_label" tabindex="">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
           </div>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
-          <label class="md-nav__title" for="__nav_5">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_6">
             <span class="md-nav__icon md-icon"></span>
             编程语言
           </label>
@@ -991,7 +1069,7 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_7" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_7" checked>
         
           
           
@@ -1007,14 +1085,14 @@
             </a>
             
               
-              <label class="md-nav__link " for="__nav_5_7" id="__nav_5_7_label" tabindex="0">
+              <label class="md-nav__link " for="__nav_6_7" id="__nav_6_7_label" tabindex="0">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
           </div>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_7_label" aria-expanded="true">
-          <label class="md-nav__title" for="__nav_5_7">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_7_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_6_7">
             <span class="md-nav__icon md-icon"></span>
             Rust
           </label>
@@ -1051,10 +1129,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_7_2" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_7_2" checked>
         
           
-          <label class="md-nav__link" for="__nav_5_7_2" id="__nav_5_7_2_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_6_7_2" id="__nav_6_7_2_label" tabindex="0">
             
   
   <span class="md-ellipsis">
@@ -1065,8 +1143,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_5_7_2_label" aria-expanded="true">
-          <label class="md-nav__title" for="__nav_5_7_2">
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_6_7_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_6_7_2">
             <span class="md-nav__icon md-icon"></span>
             实践
           </label>
@@ -1643,7 +1721,7 @@
 <h2 id="_2">基本概念</h2>
 <h3 id="send-sync">Send &amp; Sync</h3>
 <p>在 Rust 中，<code>Send</code> 和 <code>Sync</code> 是两个非常重要的 trait，它们定义了类型在<strong>并发环境下的安全性</strong>。理解这两个 trait 的含义和应用是进行 Rust 并发编程的关键。</p>
-<p><code>Send</code> 标记 trait 表示一个<strong>类型的值可以安全地从一个线程转移到另一个线程</strong>。如果一个类型 <code>T</code> 实现了 <code>Send</code>，那么一个该类型的变量可以被移动到另一个线程中去使用。大多数 Rust 的类型都是 <code>Send</code>。不是 <code>Send</code> 的例子包括 <code>Rc&lt;T&gt;</code>（引用计数智能指针），因为 <code>Rc&lt;T&gt;</code> 不是线程安全的，多个线程增减引用计数可能导致数据竞争。<code>Arc&lt;T&gt;</code> 是一个线程安全的引用计数智能指针，它可以在多线程中共享，因为内部使用原子操作来管理引用计数。r</p>
+<p><code>Send</code> 标记 trait 表示一个<strong>类型的值可以安全地从一个线程转移到另一个线程</strong>。如果一个类型 <code>T</code> 实现了 <code>Send</code>，那么一个该类型的变量可以被移动到另一个线程中去使用。大多数 Rust 的类型都是 <code>Send</code>。不是 <code>Send</code> 的例子包括 <code>Rc&lt;T&gt;</code>（引用计数智能指针），因为 <code>Rc&lt;T&gt;</code> 不是线程安全的，多个线程增减引用计数可能导致数据竞争。<code>Arc&lt;T&gt;</code> 是一个线程安全的引用计数智能指针，它可以在多线程中共享，因为内部使用原子操作来管理引用计数。</p>
 <p><code>Sync</code> 标记 trait 表示一个<strong>类型的引用（<code>&amp;T</code>）可以安全地被多个线程同时访问</strong>。如果类型 <code>T</code> 是 <code>Sync</code> 的，意味着 <code>&amp;T</code> 是线程安全的。这<strong>通常意味着在内部没有可变状态</strong>，或者类型使用内部锁（如 <code>Mutex</code> 或 <code>RwLock</code>）来管理内部状态的访问。不是 <code>Sync</code> 的例子包括 <code>RefCell&lt;T&gt;</code> 和 <code>Cell&lt;T&gt;</code>，因为它们允许在运行时改变其内部值，而不是通过锁或其他线程安全的机制来保护其状态。</p>
 <p>他们的实现是编译器<strong>自动推理</strong>的，除非你使用<code>unsafe</code>。</p>
 <h3 id="future-poll">Future &amp; Poll</h3>

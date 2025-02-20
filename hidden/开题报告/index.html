@@ -1,0 +1,1627 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://reticenceji.github.io/hidden/%E5%BC%80%E9%A2%98%E6%8A%A5%E5%91%8A/">
+      
+      
+        <link rel="prev" href="../%E5%A4%A7%E7%BA%B2/">
+      
+      
+        <link rel="next" href="../%E9%92%93%E9%B1%BC/">
+      
+      
+      <link rel="icon" href="../../static/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.45">
+    
+    
+      
+        <title>区块链代币欺诈行为的检测和预防 - Reticence Ji's Notes</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.0253249f.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans+SC:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Noto Sans SC";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+      
+        <meta  property="og:type"  content="website" >
+      
+        <meta  property="og:title"  content="区块链代币欺诈行为的检测和预防 - Reticence Ji's Notes" >
+      
+        <meta  property="og:description"  content="None" >
+      
+        <meta  property="og:image"  content="https://reticenceji.github.io/assets/images/social/hidden/开题报告.png" >
+      
+        <meta  property="og:image:type"  content="image/png" >
+      
+        <meta  property="og:image:width"  content="1200" >
+      
+        <meta  property="og:image:height"  content="630" >
+      
+        <meta  property="og:url"  content="https://reticenceji.github.io/hidden/%E5%BC%80%E9%A2%98%E6%8A%A5%E5%91%8A/" >
+      
+        <meta  name="twitter:card"  content="summary_large_image" >
+      
+        <meta  name="twitter:title"  content="区块链代币欺诈行为的检测和预防 - Reticence Ji's Notes" >
+      
+        <meta  name="twitter:description"  content="None" >
+      
+        <meta  name="twitter:image"  content="https://reticenceji.github.io/assets/images/social/hidden/开题报告.png" >
+      
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="light-green">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../.." title="Reticence Ji&#39;s Notes" class="md-header__button md-logo" aria-label="Reticence Ji's Notes" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Reticence Ji's Notes
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              区块链代币欺诈行为的检测和预防
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="light-green"  aria-label="Dark Mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Dark Mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="green"  aria-label="Light Mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Light Mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/reticenceji/reticenceji.github.io" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    reticenceji/reticenceji.github.io
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+    
+  
+  主页
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../202502191511-fbp/" class="md-tabs__link">
+          
+  
+    
+  
+  Hidden
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" class="md-tabs__link">
+          
+  
+    
+  
+  基础知识
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../%E5%B7%A5%E5%85%B7/" class="md-tabs__link">
+          
+  
+    
+  
+  工具
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../%E5%BC%80%E5%8F%91/" class="md-tabs__link">
+          
+  
+    
+  
+  开发
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" class="md-tabs__link">
+          
+  
+    
+  
+  编程语言
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../%E9%9A%8F%E7%AC%94/" class="md-tabs__link">
+          
+  
+    
+  
+  随笔
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Reticence Ji&#39;s Notes" class="md-nav__button md-logo" aria-label="Reticence Ji's Notes" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Reticence Ji's Notes
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/reticenceji/reticenceji.github.io" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    reticenceji/reticenceji.github.io
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    主页
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+        
+        
+      
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Hidden
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Hidden
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../202502191511-fbp/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Flow Based Programming - 从一个例子开始
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E4%BB%A3%E5%B8%81%E6%AC%BA%E8%AF%88/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    区块链欺诈
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E5%A4%A7%E7%BA%B2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    大纲
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    区块链代币欺诈行为的检测和预防
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    区块链代币欺诈行为的检测和预防
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      选题依据
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="选题依据">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      课题来源
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      课题的研究意义
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      国内外研究现状分析
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      主要参考文献
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      研究方案
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="研究方案">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      研究目标、内容和拟解决的关键问题
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      拟采取的研究方法、技术路线、试验方案及可行性分析
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      研究的创新点
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      研究计划及预测进展
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      预期研究成果
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      研究基础
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="研究基础">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      与本项目有关的研究工作积累和已取得的研究工作成绩（报告者本人的单独列出）
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      已具备的实验、资料等条件，尚缺少的实验、资料条件和拟解决的途径
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E9%92%93%E9%B1%BC/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Phishing
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../crypto-agent/DSL/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    Crypto agent
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    基础知识
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../%E5%B7%A5%E5%85%B7/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    工具
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../%E5%BC%80%E5%8F%91/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    开发
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    编程语言
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../%E9%9A%8F%E7%AC%94/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    随笔
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      选题依据
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="选题依据">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      课题来源
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      课题的研究意义
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      国内外研究现状分析
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      主要参考文献
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      研究方案
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="研究方案">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      研究目标、内容和拟解决的关键问题
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      拟采取的研究方法、技术路线、试验方案及可行性分析
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      研究的创新点
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      研究计划及预测进展
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      预期研究成果
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      研究基础
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="研究基础">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      与本项目有关的研究工作积累和已取得的研究工作成绩（报告者本人的单独列出）
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      已具备的实验、资料等条件，尚缺少的实验、资料条件和拟解决的途径
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+
+                  
+  
+<nav class="md-tags" >
+  
+    
+    
+    
+      <span class="md-tag">scam</span>
+    
+  
+</nav>
+
+
+  
+  
+
+
+<h1 id="_1">区块链代币欺诈行为的检测和预防</h1>
+<h2 id="_2">选题依据</h2>
+<h3 id="_3">课题来源</h3>
+<p>本课题源于当前去中心化金融（DeFi）领域中日益严重的一个现实问题——代币欺诈行为的猖獗。这些欺诈行为不仅破坏了数字金融系统的完整性，还对投资者构成了重大风险，因此迫切需要对此进行深入研究，并开发出有效的防范措施。</p>
+<h3 id="_4">课题的研究意义</h3>
+<p>去中心化交易所（Decentralized Exchanges, DEXs）构成了去中心化金融（Decentralized Finance, DeFi）领域的核心基础设施之一，并通常被认为优于中心化交易所（Centralized Exchanges, CEXs）在于其增强的可靠性。然而，尽管存在这种普遍看法，一些领先的去中心化交易平台如Uniswap却允许任何未经审计的ERC20代币在其平台上自由部署。这种开放性策略虽然符合去中心化精神，但也无可避免地引发了大量的欺诈活动。具体而言，欺诈者通过创建并推广旨在窃取交易者资产的代币，诱使投资者将宝贵的资产（例如以太坊ETH）投入到所谓的流动性池中换取这些欺诈性代币，结果却发现这些代币无法再兑换回原始资产。</p>
+<p>根据Federico Cernera在其研究文章中提供的统计数据，这类欺诈行为涉及的恶意行为者已超过数十万人次，涉及的资金转移总额达到惊人的10亿美元以上。这不仅损害了交易者的财产安全，更对整个去中心化金融生态系统的信誉和稳定性造成了严重的负面影响。</p>
+<p>鉴于此，本研究课题的主要目的是归纳并总结这种代币欺诈行为的模式及其特征，基于此进一步开发出一套创新的代币欺诈交易监测系统以及针对欺诈代币合约的检测系统。这些系统的设计旨在通过先进的算法和分析技术，实时监测和识别潜在的欺诈行为，为DEX平台提供强有力的安全保障措施，从而保护投资者资产安全，维护DeFi生态系统的公正性和透明度。</p>
+<h3 id="_5">国内外研究现状分析</h3>
+<p>学术界对欺诈性代币的研究主要集中在两个方面：实证分析和检测策略的开发。</p>
+<p>实证分析调查了各种区块链平台上欺诈性代币的模式和影响，为欺诈性代币提供了重要见解。Xia等人对Uniswap上的欺诈代币进行了启发式收集，分析了欺诈代币的行为特点。Cernera等人对Binance Smart Chain上的欺诈行为进行了分析，发现欺诈代币的欺骗对象不只是人，还有交易机器人。Sun等人对代币欺诈行为进行了归纳总结，综合了很多不同的工作给出了较为完善的欺诈交易数据库。</p>
+<p>当前的检测策略则多使用机器学习、模糊测试或静态分析等方式，旨在预先识别欺诈代币。Nguyen等人提出了基于特征工程等监督学习方法来检测欺诈代币，Hu等人使用预训练的Transformer对以太坊的数据进行分析，检测欺诈行为；Cao等人通过模糊测试来检测代币合约中是否存在操纵代币价格的方法，Tokeer, CRPWarner, Pied-Pier等工具分析了欺诈代币合约中常见的后门类型，在此基础上开发了针对后门的静态分析工具；然而，代币想要完成欺诈行为，不一定要在合约中添加后门。除了对代币合约进行分析，Mazorra等人通过机器学习分析代币在Uniswap中的交易模式，来预测恶意代币。</p>
+<p>在地址聚类方面，Victor等人提出了基于启发式规则将属于同一个实体控制的地址进行聚类。Zhou等人利用图神经网络对对交易数据进行分析，尝试对以太坊地址进行去匿名化。尽管相关的工作提出了不同的解决办法，但是地址聚类依然是一个开放性的问题。</p>
+<p>工业届的 GoPlus Security、TokenSniffer、RugPullDetector 等工具通过审计代币合约的源代码来检查代币安全性。其中一些工具可以覆盖对多种欺诈性代币风险的检测。然而,这些工具过度依赖合约源代码和已知的欺诈性代币模式，容易受到源代码级混淆的影响，并且无法覆盖复杂的代码结构。</p>
+<h3 id="_6">主要参考文献</h3>
+<ul>
+<li>Cernera, Federico, Massimo La Morgia, and Alessandro Mei. “Token Spammers, Rug Pulls, and Sniper Bots: An Analysis of the Ecosystem of Tokens in Ethereum and in the Binance Smart Chain (BNB),” n.d.</li>
+<li>Lin, Zewei, Jiachi Chen, Jiajing Wu, Weizhe Zhang, Yongjuan Wang, and Zibin Zheng. “CRPWarner: Warning the Risk of Contract-Related Rug Pull in DeFi Smart Contracts.” IEEE TRANSACTIONS ON SOFTWARE ENGINEERING 50, no. 6 (2024).</li>
+<li>Ma, Fuchen, Meng Ren, Lerong Ouyang, Yuanliang Chen, Juan Zhu, Ting Chen, Yingli Zheng, Xiao Dai, Yu Jiang, and Jiaguang Sun. “Pied-Piper: Revealing the Backdoor Threats in Ethereum ERC Token Contracts.” ACM Transactions on Software Engineering and Methodology 32, no. 3 (July 31, 2023): 1–24. <a href="https://doi.org/10.1145/3560264">https://doi.org/10.1145/3560264</a>.</li>
+<li>Sharma, Trishie, Rachit Agarwal, and Sandeep Kumar Shukla. “Understanding Rug Pulls: An In-Depth Behavioral Analysis of Fraudulent NFT Creators.” ACM Trans. Web 18, no. 1 (October 11, 2023): 8:1-8:39. <a href="https://doi.org/10.1145/3623376">https://doi.org/10.1145/3623376</a>.</li>
+<li>Sun, Dianxiang, Wei Ma, Liming Nie, and Yang Liu. “SoK: Comprehensive Analysis of Rug Pull Causes, Datasets, and Detection Tools in DeFi.” arXiv, March 24, 2024. <a href="http://arxiv.org/abs/2403.16082">http://arxiv.org/abs/2403.16082</a>.</li>
+<li>Torres, Christof Ferreira, Mathis Steichen, and Radu State. “The Art of The Scam: Demystifying Honeypots in Ethereum Smart Contracts,” n.d.</li>
+<li>Xia, Pengcheng, Haoyu wang, Bingyu Gao, Weihang Su, Zhou Yu, Xiapu Luo, Chao Zhang, Xusheng Xiao, and Guoai Xu. “Trade or Trick? Detecting and Characterizing Scam Tokens on Uniswap Decentralized Exchange.” arXiv, November 11, 2021. <a href="http://arxiv.org/abs/2109.00229">http://arxiv.org/abs/2109.00229</a>.</li>
+<li>Zhou, Yuanhang, Jingxuan Sun, Fuchen Ma, Yuanliang Chen, Zhen Yan, and Yu Jiang. “Stop Pulling My Rug: Exposing Rug Pull Risks in Crypto Token to Investors.” In Proceedings of the 46th International Conference on Software Engineering: Software Engineering in Practice, 228–39. ICSE-SEIP ’24. New York, NY, USA: Association for Computing Machinery, 2024. <a href="https://doi.org/10.1145/3639477.3639722">https://doi.org/10.1145/3639477.3639722</a>.</li>
+<li>“SoK: Decentralized Exchanges (DEX) with Automated Market Maker (AMM) Protocols | ACM Computing Surveys.” Accessed October 11, 2024. <a href="https://dl.acm.org/doi/abs/10.1145/3570639">https://dl.acm.org/doi/abs/10.1145/3570639</a>.</li>
+<li>“Why Trick Me: The Honeypot Traps on Decentralized Exchanges | Proceedings of the 2023 Workshop on Decentralized Finance and Security.” Accessed October 11, 2024. <a href="https://dl.acm.org/doi/abs/10.1145/3605768.3623546">https://dl.acm.org/doi/abs/10.1145/3605768.3623546</a>.</li>
+<li>Cao, Mingpei, Yueze Zhang, Zhenxuan Feng, Jiahao Hu, and Yuesheng Zhu. “TokenAuditor: Detecting Manipulation Risk in Token Smart Contract by Fuzzing.” In <em>2022 IEEE 22nd International Conference on Software Quality, Reliability and Security (QRS)</em>, 651–62. Guangzhou, China: IEEE, 2022. <a href="https://doi.org/10.1109/QRS57517.2022.00071">https://doi.org/10.1109/QRS57517.2022.00071</a>.</li>
+<li>Hu, Sihao, Zhen Zhang, Bingqiao Luo, Shengliang Lu, Bingsheng He, and Ling Liu. “BERT4ETH: A Pre-Trained Transformer for Ethereum Fraud Detection.” In <em>Proceedings of the ACM Web Conference 2023</em>, 2189–97. Austin TX USA: ACM, 2023. <a href="https://doi.org/10.1145/3543507.3583345">https://doi.org/10.1145/3543507.3583345</a>.</li>
+<li>Victor, Friedhelm. “Address Clustering Heuristics for Ethereum.” In <em>Financial Cryptography and Data Security</em>, edited by Joseph Bonneau and Nadia Heninger, 12059:617–33. Lecture Notes in Computer Science. Cham: Springer International Publishing, 2020. <a href="https://doi.org/10.1007/978-3-030-51280-4_33">https://doi.org/10.1007/978-3-030-51280-4_33</a>.</li>
+<li>Zhou, Jiajun, Chenkai Hu, Jianlei Chi, Jiajing Wu, Meng Shen, and Qi Xuan. “Behavior-Aware Account De-Anonymization on Ethereum Interaction Graph.” <em>IEEE Transactions on Information Forensics and Security</em> 17 (2022): 3433–48. <a href="https://doi.org/10.1109/TIFS.2022.3208471">https://doi.org/10.1109/TIFS.2022.3208471</a>.</li>
+</ul>
+<h2 id="_7">研究方案</h2>
+<h3 id="_8">研究目标、内容和拟解决的关键问题</h3>
+<p>本研究有三个研究目标：</p>
+<ol>
+<li>对代币欺诈行为进行系统的归纳总结。</li>
+<li>提出一种代币欺诈交易监测系统。当检测到链上发生代币欺诈交易时，进行预警。</li>
+<li>提出一种欺诈代币合约检测系统。当检测到链上有疑似欺诈代币部署时，进行预警。</li>
+</ol>
+<p>为了完成这三个研究目标，研究内容包括</p>
+<ol>
+<li>调研现有文献，梳理已有的代币欺诈行为分类方法。</li>
+<li>总结不同类型代币欺诈的特点、实施方式和危害，在此基础上建立代币欺诈交易监测系统，根据监测系统的结果，反复迭代对代币欺诈行为的认识，改进监测系统。</li>
+<li>基于监测系统的结果,收集和标注已知代币欺诈交易的链上数据,构建高质量的数据集。深入分析欺诈交易的链上特征,如交易模式、金额、频率等。在实证研究的基础上,进一步加深对代币欺诈行为的认知,对代币欺诈手段的发展趋势进行分析和预测。</li>
+<li>设计并实现基于静态分析、动态分析、地址聚类等的欺诈代币合约检测方法，为用户预警欺诈代币信息。</li>
+</ol>
+<p>为此，需要解决的关键问题包括：</p>
+<ol>
+<li>现有的欺诈代币交易数据集规模有限，难以全面反映链上真实的欺诈情况。如何在有限的数据集基础上，设计有效的欺诈交易检测规则和策略，提高检测的覆盖范围。</li>
+<li>欺诈手段不断演化，单一特征难以准确判断欺诈交易和欺诈合约。需要探索多维度、多指标综合分析的检测方法，提高检测系统应对新型欺诈的能力。同时，还要持续跟踪欺诈手段的发展变化，及时更新检测规则。</li>
+<li>正常交易与欺诈交易在某些特征上可能存在相似性，导致误报情况的发生。需要深入研究正常交易和欺诈交易的区分边界，优化检测算法，提高系统的精准度，降低假阳性率。</li>
+<li>海量交易数据给检测系统带来了计算和存储压力。需要在算法设计上追求时间和空间效率,并充分利用分布式计算、并行处理等技术手段,提升系统性能。</li>
+<li>欺诈合约的代码实现多种多样，需要准确的提取和表示欺诈代币合约的关键特征，设计有针对性的监测方法，并具有一定扩展性，以应对新型欺诈手段。</li>
+</ol>
+<h3 id="_9">拟采取的研究方法、技术路线、试验方案及可行性分析</h3>
+<p>为实现预设的研究目标，本研究拟综合运用以下技术：</p>
+<ol>
+<li>交易分析技术：通过对区块链交易数据的解析，提取交易中蕴含的高阶DeFi语义信息，挖掘欺诈代币的流转模式和用户行为特征，为欺诈交易的识别提供依据。</li>
+<li>地址聚类技术:运用基于交易关系和行为特征的聚类算法,将隶属于同一控制主体的多个地址进行归类,揭示欺诈代币背后的幕后操纵者,为潜在欺诈合约的识别提供重要线索。</li>
+<li>智能合约相似度分析技术:通过源代码、字节码、控制流图等多层次的相似度度量和比较,发现功能相近或代码相似的智能合约,识别出潜伏的欺诈合约,有效扩大欺诈合约的检出范围。</li>
+<li>智能合约静态分析技术:综合运用符号执行、数据流分析、控制流分析等程序分析技术,对智能合约进行全面的语法语义检查,精准识别合约中隐藏的后门、权限缺陷等欺诈风险点。</li>
+</ol>
+<p><img alt="scam.drawio" src="../../static/drawio/prediction.drawio.png" /></p>
+<p><center>图1 代币欺诈交易检测</center></p>
+<p>图一展示了代币欺诈交易检测的方法流程。首先，通过对区块链上的交易数据进行语义化解析，我们可以提取出与交易相关的代币信息、资金流向图以及操作地址。进一步的分析将揭示代币价格的波动情况以及资金的流向。通过比对疑似代币团队地址与资金流向人的交易记录和交易操作者的信息，我们可以评估该交易是否涉及代币欺诈行为。</p>
+<p><img alt="x.drawio" src="../../static/drawio/detection.drawio.png" /></p>
+<p><center>图2 欺诈代币合约检测</center></p>
+<p>图二展示了欺诈代币合约检测的思路。</p>
+<ol>
+<li>使用静态分析的方式，对代币合约中隐藏的后门进行分析。</li>
+<li>使用地址聚类和合约相似度分析的方式，将新部署的代币和已知的欺诈代币进行分析比对。</li>
+<li>使用交易分析的方式，对代币的交易、分布进行分析。</li>
+<li>使用账户的混币情况和交易数量，分析账户的潜在风险。</li>
+</ol>
+<p>上述技术均已在区块链安全、程序分析等领域得到广泛研究和应用，具有成熟的理论基础和实践案例。这为本研究的顺利开展提供了坚实的技术保障和经验参考，极大地提高了研究成功的可能性和结果的可信度。</p>
+<h3 id="_10">研究的创新点</h3>
+<p>本研究的创新点有：</p>
+<ol>
+<li>本研究提出了一种集成多种特征分析方法的代币欺诈交易检测框架，较现有方法实现了更广的覆盖范围和更高的检测精度。由此构建了一个全面的代币欺诈交易数据集，涵盖了各类典型的欺诈手法。</li>
+<li>本研究提出了一种基于图神经网络的智能合约相似度分析算法。该算法将合约代码抽象为语法依赖图，通过图卷积操作学习合约的语义表示，在欺诈合约检测任务上取得了优于传统方法的效果。此外，所提出的相似度分析算法还可用于合约克隆检测、合约漏洞检测等智能合约分析场景，具有一定的通用性。</li>
+<li>本文提出了一种新的基于交易模式、资金流向、代码调用的地址聚类算法，改进了已有研究的地址聚类算法可解释性差、计算开销大等问题。所提出的地址聚类算法还可用于钓鱼检测，反洗钱分析等工作。</li>
+</ol>
+<h3 id="_11">研究计划及预测进展</h3>
+<ol>
+<li>2024年10月前，调研和收集近年来关于代币欺诈的学术和行业报告，总结和归纳代币欺诈的类型和特点。初步筛选和标注数据，建立初步的欺诈交易数据集。</li>
+<li>2025年6月前，根据第一阶段收集的数据和文献回顾结果，设计初步的代币欺诈交易监测规则和算法。实现监测系统的原型，并在实际数据上进行测试。利用程序分析、地址聚类等方法，检测欺诈合约。根据测试结果不断进行系统迭代。</li>
+<li>2025年10月前，对系统进行全面评估，包括准确率、召回率和实时性等。整理研究成果，撰写学术论文。</li>
+</ol>
+<h3 id="_12">预期研究成果</h3>
+<ol>
+<li>代币欺诈类型和特征的系统整理：通过文献回顾和开发的检测系统，提供一份关于代币欺诈类型和行为特征的详尽报告，为学术界和业界提供研究基础。</li>
+<li>欺诈模式和行为识别框架：建立一个理论框架，用于识别和分类不同类型的代币欺诈行为，增强对新出现欺诈手段的理解和应对。</li>
+<li>代币交易监测系统：开发一个能实时监测和警报可疑代币交易的系统，该系统将利用最新的数据分析技术，提高欺诈检测的准确性和效率。</li>
+<li>欺诈代币分析工具：创建一个风控体系，综合程序分析和链上交易信息，对潜在的欺诈代币进行识别。</li>
+</ol>
+<h2 id="_13">研究基础</h2>
+<h3 id="_14">与本项目有关的研究工作积累和已取得的研究工作成绩（报告者本人的单独列出）</h3>
+<p>与本项目有关的基础性的研究工作积累有以下部分，均为本人完成：</p>
+<ol>
+<li>对相关文献、已披露的代币欺诈事件的归纳总结。</li>
+<li>对以太坊虚拟机执行的区块、交易的解析。</li>
+<li>对以太坊交易的部分DeFi语义化解析。</li>
+<li>对智能合约代码相似度的分析工作。</li>
+</ol>
+<p>在这些基工作积累的基础上，根据对现有的欺诈交易数据的归纳总结，完成了初步的代币欺诈交易监测系统，稳定运行并实时监测以太坊上的交易，积累了一些多欺诈交易数据。</p>
+<h3 id="_15">已具备的实验、资料等条件，尚缺少的实验、资料条件和拟解决的途径</h3>
+<p>已具备必要的计算硬件、软件。实验室运行区块链节点，可以实时获取最新的区块数据。</p>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var article = document.querySelector('.md-content__inner');
+        if (article) {
+            // 创建一个容器来包裹导航路径和元数据
+            var container = document.createElement('div');
+            container.className = 'nav-meta-container';
+
+            // 创建导航路径容器
+            var pathNav = document.createElement('div');
+            pathNav.className = 'navigation-path';
+
+            // 获取当前页面路径
+            var currentPath = document.location.pathname;
+            var pathParts = currentPath.split('/').filter(Boolean);
+
+            // 构建导航路径HTML
+            var pathHTML = '<div class="path-container">';
+            var accumPath = '';
+
+            // 添加首页链接
+            // pathHTML += '<a href="/" class="path-item">主页</a>';
+
+            // 添加中间路径
+            for (var i = 0; i < pathParts.length - 1; i++) {
+                accumPath += '/' + pathParts[i];
+                var decodedPart = decodeURIComponent(pathParts[i]);
+                pathHTML += '<span class="path-separator">/</span>';
+                pathHTML += `<a href="${accumPath}" class="path-item">${decodedPart}</a>`;
+            }
+
+            // 添加当前页面（最后一项）
+            if (pathParts.length > 0) {
+                var currentPage = decodeURIComponent(pathParts[pathParts.length - 1].replace('.html', ''));
+                pathHTML += '<span class="path-separator">/</span>';
+                pathHTML += `<span class="path-current">${currentPage}</span>`;
+            }
+
+            pathHTML += '</div>';
+            pathNav.innerHTML = pathHTML;
+
+            // 添加元数据（时间信息）
+            var meta = document.createElement('div');
+            meta.className = 'article-meta';
+            var metaContent = [];
+
+            
+            metaContent.push(`<span class="meta-item"> ✨ 创建于 2024-12-25 </span>`);
+            
+
+            
+            metaContent.push(`<span class="meta-item"> ✨ 更新于 2024-12-25 </span>`);
+            
+
+            if (metaContent.length > 0) {
+                meta.innerHTML = metaContent.join(' ');
+            }
+
+            // 将两个元素添加到容器中
+            container.appendChild(pathNav);
+            container.appendChild(meta);
+
+            // 将容器插入到文章开头
+            article.insertBefore(container, article.firstChild);
+        }
+    });
+</script>
+
+
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  回到页面顶部
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2024 Reticence Ji
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+    <a href="https://github.com/reticenceji" target="_blank" rel="noopener" title="Reticence Ji on GitHub" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="https://linkedin.com/in/reticenceji" target="_blank" rel="noopener" title="Reticence Ji on LinkedIn" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3M135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5m282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.path", "navigation.tabs", "navigation.tracking", "navigation.indexes", "navigation.tracking", "navigation.top", "navigation.prune", "toc.follow", "content.code.copy", "content.code.annotate", "search.highlight"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.83f73b43.min.js"></script>
+      
+        <script src="https://lf9-cdn-tos.bytecdntp.com/cdn/expire-1-M/mathjax/3.2.0/es5/tex-mml-chtml.js"></script>
+      
+        <script src="../../javascripts/extra.js"></script>
+      
+    
+  </body>
+</html>
