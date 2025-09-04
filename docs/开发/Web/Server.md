@@ -1,7 +1,7 @@
 ---
 aliases: 
 tags: 
-date_modified: 2024-12-11
+date_modified: 2025-03-25
 date: 2024-11-30
 ---
 
@@ -74,18 +74,38 @@ fn rocket() -> _ {
 - [Rocket Guide](https://rocket.rs/guide/v0.5/)
 - [Rocket Documents](https://api.rocket.rs/v0.5/rocket/)
 
-### Node.js
+### fastapi
 
-### Ngnix
+[FastAPI](https://fastapi.tiangolo.com/#example) 是一个Python的Web框架，主打一个快，运行快开发快，写起来很舒服。下面这是一个简单的例子，使用了三个库：`fastapi`库，用于创建Web API；`pydantic`用来设置和验证数据模型；`uvicorn`是一个快速的ASGI (Asynchronous Server Gateway Interface)实现。
 
-reverse proxy
+```python
+from fastapi import FastAPI
+from pydantic import BaseModel
 
-### Apache
+app = FastAPI(title="A test API")
 
-## API 
+class TextInput(BaseModel):
+    text: str
 
-提供 [API](../客户端/API.md) 是常见的后端服务。其中RESTful API又是最为简单常见的。
+@app.post("/check")
+async def check_text(input_data: TextInput):
+    # 获取文本长度
+    text_length = len(input_data.text)
+    
+    # 判断文本长度是奇数还是偶数
+    if text_length % 2 == 0:
+        return {"result": "good"}
+    else:
+        return {"result": "bad"}
 
-编写RESTful API服务本身是非常简单的，不过编写API文档倒是挺麻烦的工作，尤其是万一API经常变动，如何保证文档和代码的一致性？这种自动化的工作自然有自动化的方法，例如[OpenAPI](https://www.openapis.org/)。
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run(app, host="0.0.0.0", port=8000)
+```
 
-Rust与OpenAPI集成方案有[utoipa](https://docs.rs/utoipa/4.2.3/utoipa/)，他可以通过宏来对外部接口进行注释，进而自动生成 API Doc，可以直接在代码中暴露API Doc给用户。这个库目前还不是很成熟，文档也比较混乱。
+FastAPI 提供了自动生成的交互式文档：
+
+- Swagger UI: <http://localhost:8000/docs>
+- ReDoc: <http://localhost:8000/redoc>
+
+通过这些页面，您可以直接在浏览器中测试 API。

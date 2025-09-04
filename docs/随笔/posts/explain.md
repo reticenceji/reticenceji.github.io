@@ -5,7 +5,7 @@ date: 2025-01-07
 date_modified: 2025-01-07
 ---
 
-# 记一次SLOW SQL调整
+# 记一次SLOW SQL排查
 
 没有使用ORM框架，也没有对SQL的执行时间进行统计，只是在运行的时候发现瓶颈貌似出现在了Postgresql数据库，于是开始尝试排查。。。
 

@@ -1,7 +1,7 @@
 ---
 aliases: 
 tags: 
-date_modified: 2024-12-24
+date_modified: 2025-03-31
 date: 2024-11-30
 ---
 
@@ -108,6 +108,41 @@ curl -X POST -H "Content-Type: application/json" -d '{"chain_id": 1, "attributes
 ```bash
 ip addr show # or `ip a` in short
 ```
+
+### 查找文件
+
+### 后台运行程序
+
+`nohup`（No Hang Up）允许命令在终端关闭后继续运行，输出默认保存到 `nohup.out` 文件。
+
+```bash
+nohup your_command &
+nohup your_command > output.log 2>&1 &  # 自定义输出文件
+```
+
+可以使用`tumx`创建持久会话，即使断开连接也能恢复任务
+
+```bash
+tmux new -s session_name  # 创建新会话
+your_command              # 在会话中运行命令
+Ctrl+B D                  # 脱离会话
+tmux attach -t session_name  # 重新连接会话
+tmux kill-session -t session_name # 关闭会话
+```
+
+### Shell分屏
+
+使用tmux进行分屏：
+
+1. `Ctrl-b %` 会将当前窗口垂直分成左右两部分。
+2. `Ctrl-b "` 会将当前窗口水平分成上下两部分。
+
+切换：
+
+- `Ctrl-b ↑`：切换到上方的 pane。
+- `Ctrl-b ↓`：切换到下方的 pane。
+- `Ctrl-b ←`：切换到左侧的 pane。
+- `Ctrl-b →`：切换到右侧的 pane。
 
 ## Desktop Environment
 

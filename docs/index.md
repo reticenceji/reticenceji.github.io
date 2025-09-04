@@ -1,7 +1,7 @@
 ---
 aliases: 
 tags: 
-date_modified: 2024-12-11
+date_modified: 2025-07-22
 date: 2024-11-30
 ---
 
@@ -15,7 +15,7 @@ I’m Reticence Ji. A student in Zhejiang University, Information Security Major
 
 ## 编程技能 
 
-- 语言：Rust > Python, C > Golang > C++, Scala
+- 语言：Rust > Python, C > Go, C++ > Scala
 - 领域：Web, OS, Linux Programming, Smart Contract, Client, Static Program Analysis ...
 
 ## 编写规范 
@@ -25,3 +25,8 @@ I’m Reticence Ji. A student in Zhejiang University, Information Security Major
     - 对于专有名词，可以选择使用英语/中文，通过括号注明对应的中文/英文。在后续的文章中，统一使用英语/中文来引用该名词。
     - 对于引用，不加限制。
 - 在一篇文章的最后，给出参考链接。
+
+## 阅读
+
+- 论文阅读推荐使用 [dblp](https://dblp.uni-trier.de/)，然后搜索各个领域的顶会。例如操作系统的顶会 [OSDI](https://dblp.uni-trier.de/db/conf/osdi/index.html)， USENIX ATC。
+- 论坛

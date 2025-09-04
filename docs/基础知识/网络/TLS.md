@@ -1,7 +1,7 @@
 ---
 aliases: 
 tags: 
-date_modified: 2024-12-11
+date_modified: 2025-03-12
 date: 2024-11-30
 ---
 
@@ -16,3 +16,7 @@ TLS（传输层安全协议，Transport Layer Security）是一种广泛使用�
 - **数据完整性**：TLS 提供消息完整性检查，确保数据在传输过程中没有被篡改。
 
 > 如果证书没有CA认证，可能遭受中间人攻击。
+
+## 步骤
+
+TL;DR 通信的双方通过Diffie-Hellman (TLS1.3使用基于椭圆曲线的ECDH) 密钥交换，各自独立计算得到相同的密钥，加密之后的通信。
